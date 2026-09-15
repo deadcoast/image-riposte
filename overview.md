@@ -1,4 +1,4 @@
-## RIPOSTE — first executable release
+# RIPOSTE — first executable release
 
 I built **RIPOSTE v0.1.0**: a local application with an artwork browser, metadata cleansing and organization, a before/after protection lab, transport testing, and an experimental model-driven image optimizer.
 
@@ -40,7 +40,7 @@ Artwork/
 The same thresholds apply to every month:
 
 | Folder  |  Total pixels: width × height |
-| ------- | ----------------------------: |
+|---------|------------------------------:|
 | **SML** |               Below 1 million |
 | **MED** |  1 million to below 4 million |
 | **LRG** | 4 million to below 16 million |
@@ -83,12 +83,12 @@ This removes the supported containers’ metadata—not information drawn into t
 The research dossier separates training interference, editing disruption, and video disruption. That distinction matters to your specific case.
 
 | Method             | Actual target and relevance                                                                                                                                                                                                                                    |
-| ------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|--------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Glaze**          | Artist-style mimicry. Its own current FAQ explicitly says it does **not** provide consistent protection against image-to-image editing, style transfer, or inpainting. It is not a complete answer to someone directly reusing your illustration. ([Glaze][1]) |
 | **Nightshade**     | Training-data poisoning. It acts through subsequent model training; it is not an immediate shield against an already-trained generator processing your uploaded image. ([arXiv][2])                                                                            |
 | **DiffusionGuard** | Unauthorized diffusion editing. Its early-stage diffusion objective and mask augmentation are relevant to edits that target only part of an illustration. ([arXiv][3])                                                                                         |
 | **DCT-Shield**     | Frequency-domain protection against editing, with JPEG robustness directly relevant to public image distribution. This is a more pertinent research direction than adding arbitrary grain. ([arXiv][4])                                                        |
-| **I2VShield**      | A July 2026 approach targeting transformer-based image-to-video systems through text-adaptive perturbations and multimodal-attention disruption. It is a video-specific research candidate, not an installed RIPOSTE engine. ([arXiv][5])                       |
+| **I2VShield**      | A July 2026 approach targeting transformer-based image-to-video systems through text-adaptive perturbations and multimodal-attention disruption. It is a video-specific research candidate, not an installed RIPOSTE engine. ([arXiv][5])                      |
 | **Anti-Prompt**    | Text-guided image-to-video protection, targeting the model’s text-conditioned interactions. This addresses a different mechanism from a still-image encoder defense. ([arXiv][6])                                                                              |
 
 The dossier additionally covers **PhotoGuard, Mist v2, I2VGuard, Vid-Freeze**, and evaluation literature. The application includes a **12-record research register**, not a misleading claim that twelve protection engines are installed.
@@ -162,7 +162,7 @@ Weights are not bundled or automatically downloaded. The core organizer does not
 ## 6. Validation and handoff
 
 | Executed check                                            |                      Result |
-| --------------------------------------------------------- | --------------------------: |
+|-----------------------------------------------------------|----------------------------:|
 | Source test suite                                         |              **194 passed** |
 | Separately installed wheel, sharing existing dependencies |              **194 passed** |
 | Final delivered ZIP, freshly extracted                    |              **194 passed** |
