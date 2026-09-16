@@ -1,0 +1,226 @@
+{
+  "package_files": 44,
+  "all_equal": true,
+  "files": {
+    "riposte/models.py": {
+      "source_sha256": "19c774fff774c2c947a836ece9493168e71a20bec3a4f658853333d671c5a002",
+      "wheel_match": true,
+      "installed_match": true
+    },
+    "riposte/organizer.py": {
+      "source_sha256": "249c082bce0872f6395f15ea7af6ac1df814002a635a15fb2d51d5fe23d62579",
+      "wheel_match": true,
+      "installed_match": true
+    },
+    "riposte/__main__.py": {
+      "source_sha256": "79ee6f134c5c5193377cf9b189cbdcc3e2095e49ba9cec310114441c15a917c4",
+      "wheel_match": true,
+      "installed_match": true
+    },
+    "riposte/server.py": {
+      "source_sha256": "fd4336c40f67189e953256980a18dab6ef4edf342ac5cdb87279d2cad240af6a",
+      "wheel_match": true,
+      "installed_match": true
+    },
+    "riposte/publication.py": {
+      "source_sha256": "f3120bca31c8c851206e46a803b0a93cb83f99eed08a62f1e40dc15511b013bd",
+      "wheel_match": true,
+      "installed_match": true
+    },
+    "riposte/runtime_probe.py": {
+      "source_sha256": "63d28c72b3d7aaeca6e503ae6ac7f8965fb8ed862d4a423cdd4fe981614bb339",
+      "wheel_match": true,
+      "installed_match": true
+    },
+    "riposte/metrics.py": {
+      "source_sha256": "0d873a0cb8972b5bdce14eb3cdc49ab391af31a297981fda1ad37603496c22eb",
+      "wheel_match": true,
+      "installed_match": true
+    },
+    "riposte/temporal.py": {
+      "source_sha256": "22fb7b410ebfbe906816267d9d049e9413bc65a5e515bfa1af9c5749ba09ade9",
+      "wheel_match": true,
+      "installed_match": true
+    },
+    "riposte/coupled.py": {
+      "source_sha256": "eca0afb9e0de03b740029864a5ddeeb7212cc9676c5e9cc191a6f4d1274641a8",
+      "wheel_match": true,
+      "installed_match": true
+    },
+    "riposte/store.py": {
+      "source_sha256": "f6a88c29653c26c58db9d69845a96dfa5e6b8071bce4578e29aa6932bd8e0b9a",
+      "wheel_match": true,
+      "installed_match": true
+    },
+    "riposte/quality.py": {
+      "source_sha256": "3af92838360f5f9ce65d69973eef37a6dd006d733f56c376443a2228d3c9656d",
+      "wheel_match": true,
+      "installed_match": true
+    },
+    "riposte/lab.py": {
+      "source_sha256": "3845f3e3abedd03d1f0c200b84395e6b46f67b2ff120f6e8a8fc75a2d8c03093",
+      "wheel_match": true,
+      "installed_match": true
+    },
+    "riposte/optimizer.py": {
+      "source_sha256": "16367347cb57cfd8efba57a5002d2c313ce31106304d993dc0fba0d398ae4121",
+      "wheel_match": true,
+      "installed_match": true
+    },
+    "riposte/release_guard.py": {
+      "source_sha256": "673fcfc83602e074d774b4ccfeddf4f481f784887a72986dbce8d9abf150245e",
+      "wheel_match": true,
+      "installed_match": true
+    },
+    "riposte/policy.py": {
+      "source_sha256": "a4e0d5ab07a0b4aac2efcf518f7cdf19a1a9cdfa9c1fc7e263ef66545d2774e7",
+      "wheel_match": true,
+      "installed_match": true
+    },
+    "riposte/qualification.py": {
+      "source_sha256": "4fc049f680adc31c34f02499d8dfe4ebed9af46f47fa1cd554f50ead273231ce",
+      "wheel_match": true,
+      "installed_match": true
+    },
+    "riposte/__init__.py": {
+      "source_sha256": "eb65180dccdd65e3624515fd019e24b5d80248421be7cb071a59da6f451d1df9",
+      "wheel_match": true,
+      "installed_match": true
+    },
+    "riposte/methods.json": {
+      "source_sha256": "4405d32fac499c6f3b7fbce0afa04abea62e2509e130844a20899c39a6283920",
+      "wheel_match": true,
+      "installed_match": true
+    },
+    "riposte/sanitize.py": {
+      "source_sha256": "358ebd215602d8fe93aea4ab07931cfb84f9094202bec3ab34231ab193fb7001",
+      "wheel_match": true,
+      "installed_match": true
+    },
+    "riposte/benchmark.py": {
+      "source_sha256": "a7fbb359fb87d7ed6c5593a6fb0c194e5a34d20dfe0e9dd549200fe1007c7d68",
+      "wheel_match": true,
+      "installed_match": true
+    },
+    "riposte/cli.py": {
+      "source_sha256": "ed86a06b1880aedc0e4cdb0f4adfe66e6d6b8f24f74c8efb1483f4b30c6a0a54",
+      "wheel_match": true,
+      "installed_match": true
+    },
+    "riposte/generation.py": {
+      "source_sha256": "97d3481d0d51cd95899c0c47b3a1e9aab1fc4bac09c1a39e791d79d74617515d",
+      "wheel_match": true,
+      "installed_match": true
+    },
+    "riposte/errors.py": {
+      "source_sha256": "7a9c08b799d1c713fbd82e30fd145a6dc3085c215848893e31d1ec066abc5244",
+      "wheel_match": true,
+      "installed_match": true
+    },
+    "riposte/views.py": {
+      "source_sha256": "901a71db135ce03b0c929d230de1bacb73542dcc1570df166f36013a906b90e7",
+      "wheel_match": true,
+      "installed_match": true
+    },
+    "riposte/terminal/jobs.py": {
+      "source_sha256": "c3e7f2ab8d53ba9d2319c9021a059af816e246272f9001e7bbe0eb3ea5f2633b",
+      "wheel_match": true,
+      "installed_match": true
+    },
+    "riposte/terminal/output.py": {
+      "source_sha256": "a5a8313ce949664d10582aaa80609643cf2c35384c586050bb5e7b37a2707cda",
+      "wheel_match": true,
+      "installed_match": true
+    },
+    "riposte/terminal/material.py": {
+      "source_sha256": "522d5080177faae021905b94851bf3836bb2c18805a38d0a1d56b8402f5cebeb",
+      "wheel_match": true,
+      "installed_match": true
+    },
+    "riposte/terminal/signals.py": {
+      "source_sha256": "dd7ef5eac1860b126ceebeecb6aa6c6151f14dd4813254870b061ce71470ce19",
+      "wheel_match": true,
+      "installed_match": true
+    },
+    "riposte/terminal/app.py": {
+      "source_sha256": "ba0406d36e6a154b784c0b035bfd544775e34faa2a6f18a4bfa2186dd6a89f29",
+      "wheel_match": true,
+      "installed_match": true
+    },
+    "riposte/terminal/surface.py": {
+      "source_sha256": "d934216e526fe9bccc905f46f8a3f4c02dbb899d31e501b39e40ca81f3722eca",
+      "wheel_match": true,
+      "installed_match": true
+    },
+    "riposte/terminal/keyboard.py": {
+      "source_sha256": "5506f92c9999aad2658ed012f808c90043c4ea830cc1c6f6e32871518c83a4e0",
+      "wheel_match": true,
+      "installed_match": true
+    },
+    "riposte/terminal/controller.py": {
+      "source_sha256": "53190dcabbe2fbef83abae61a43c42a1432487047a7154d4197f641ea5631ab3",
+      "wheel_match": true,
+      "installed_match": true
+    },
+    "riposte/terminal/help.py": {
+      "source_sha256": "3413a10ce149e99c22ce30fa46b6ec4433b4d20e271dd9daa3a93926349fb642",
+      "wheel_match": true,
+      "installed_match": true
+    },
+    "riposte/terminal/__init__.py": {
+      "source_sha256": "3205c2b37274b4a78cad648f40635e4b02474f77515b94e506510e521ec79fa2",
+      "wheel_match": true,
+      "installed_match": true
+    },
+    "riposte/terminal/state.py": {
+      "source_sha256": "02c9f20c569aca7d4398c4463e9f523de4f674acb1a1ab4b57f295d7cc19921e",
+      "wheel_match": true,
+      "installed_match": true
+    },
+    "riposte/terminal/service.py": {
+      "source_sha256": "040ada5a2749e3abe041094e3094d5345aafaf8f6586a702d2eb19a349188bff",
+      "wheel_match": true,
+      "installed_match": true
+    },
+    "riposte/terminal/preview.py": {
+      "source_sha256": "4466c9add700fcaf41f7fd4fe5e8cceb33aac116fab513bb858cd542ac2bc168",
+      "wheel_match": true,
+      "installed_match": true
+    },
+    "riposte/terminal/render.py": {
+      "source_sha256": "0bb20acfe252cb9ba817a4c10918ef360dc4299a4e51f306ecea30bc7423b426",
+      "wheel_match": true,
+      "installed_match": true
+    },
+    "riposte/terminal/actions.py": {
+      "source_sha256": "c8bef2ea12fc14f0f2d2f88e104e01d47da920fa9bc1383a3bcbffef3705f04c",
+      "wheel_match": true,
+      "installed_match": true
+    },
+    "riposte/static/style.css": {
+      "source_sha256": "932983321f7c1394a44750a05433f6b521262ffd84b0db71eb0c41556813e3a7",
+      "wheel_match": true,
+      "installed_match": true
+    },
+    "riposte/static/app.js": {
+      "source_sha256": "a27663ef2e214bd14d956987081c039ecfc878c972abe17f2806679daec612a4",
+      "wheel_match": true,
+      "installed_match": true
+    },
+    "riposte/static/publish.css": {
+      "source_sha256": "3194ff34f6648c32432a8a85fcd7cbe8d2103f4fe0e4506e5af3e759c460261b",
+      "wheel_match": true,
+      "installed_match": true
+    },
+    "riposte/static/index.html": {
+      "source_sha256": "c294c3ecdb09ccd2dd582460d051255c08cc9156a4c750b53ed8ca416aa37971",
+      "wheel_match": true,
+      "installed_match": true
+    },
+    "riposte/static/publish.js": {
+      "source_sha256": "446685b4373385fea701c61148559e88a81b6e9db060f34dcc92ea246cf7aeae",
+      "wheel_match": true,
+      "installed_match": true
+    }
+  }
+}

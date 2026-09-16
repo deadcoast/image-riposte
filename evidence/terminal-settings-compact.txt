@@ -1,0 +1,24 @@
+                                                                               
+   R I P O S T E    /  TERMINAL SETTINGS               LOCAL   /   v0.4.0      
+                                                                               
+  ---------------------------------------------------------------------------  
+   01 SELECT     02 CLEAN      03 PROTECT    04 REVIEW     05 PUBLISH          
+                                                                               
+   TERMINAL & WORKSPACE                                                        
+   Appearance and local paths are session-only.                                
+                                                                               
+  ---------------------------------------------------------------------------  
+      Artwork workspace              SELECTED                                  
+      Palette                        LIGHT                                     
+      ASCII motion                   LIVE                                      
+      Refresh ceiling                12 fps                                    
+      Linear interface               SWITCH                                    
+      Browser alternative            EXPLICIT HANDOFF                          
+    > Legacy state upgrade           NO ARTWORK REWRITE                        
+                                                                               
+                                                                               
+                                                                               
+  ---------------------------------------------------------------------------  
+   [Enter] change   [Esc] home                                                 
+   F1 help | F2 motion | F3 palette | F4 command                               
+                                                                               

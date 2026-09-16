@@ -1,4 +1,4 @@
 WARNING: The directory '/home/oai/.cache/pip' or its parent directory is not owned or is not writable by the current user. The cache has been disabled. Check the permissions and owner of that directory. If executing pip with sudo, you should use sudo's -H flag.
-Processing /mnt/data/wheel03final/riposte_studio-0.3.0-py3-none-any.whl
+Processing /mnt/data/RIPOSTE_v0.4.0/dist/riposte_studio-0.4.0-py3-none-any.whl
 Installing collected packages: riposte-studio
-Successfully installed riposte-studio-0.3.0
+Successfully installed riposte-studio-0.4.0

@@ -1,0 +1,46 @@
+                                                                                                                                    
+   R I P O S T E    /  PROTECT & PUBLISH                                                                    LOCAL   /   v0.4.0      
+                                                                                                                                    
+  --------------------------------------------------------------------------------------------------------------------------------  
+   01 SELECT                02 CLEAN                 03 PROTECT               04 REVIEW                05 PUBLISH                   
+                                                                                                                                    
+   PROTECT & PUBLISH                                                                                                                
+   2 selected images / clean masters unchanged                                                                                      
+                                                                                                                                    
+  --------------------------------------------------------------------------------------------------------------------------------  
+      Publishing edges        1536                                                       FIELD / CONTEXT                            
+    > Channel-change cap      4                                                                                                     
+      Iterations              24                                                         CHANNEL-CHANGE CAP                         
+      Search restarts         2                                                                                                     
+      Seed                    7                                                          Maximum integer 8-bit channel change;      
+      Preserve smooth white   [x] ON                                                     edge/white budgets may be lower.           
+      Colour-difference cap   6.0                                                                                                   
+      Local RMS fraction      0.95                                                       1 .. 16                                    
+      Device                  auto                                                                                                  
+      Local encoder 1         not selected                                                                                          
+      Local encoder 2         not selected                                                                                          
+      Local encoder 3         not selected                                                                                          
+      Local encoder 4         not selected                                               Path values stay in this process; no       
+      Inpainting model        not selected                                               saved model-path history.                  
+      Video model             not selected                                                                                          
+    >> PREVIEW BATCH                                                                                                                
+                                                                                                                                    
+                                                                                                                                    
+                                                                                                                                    
+                                                                                                                                    
+                                                                                                                                    
+                                                                                                                                    
+                                                                                                                                    
+                                                                                                                                    
+                                                                                                                                    
+                                                                                                                                    
+                                                                                                                                    
+                                                                                                                                    
+                                                                                                                                    
+                                                                                                                                    
+   FIELD 2/16   |   Enter edits; Space toggles; Left/Right cycles choices                                                           
+                                                                                                                                    
+  --------------------------------------------------------------------------------------------------------------------------------  
+   [Enter] edit / continue   [p] preview   [r] run   [Esc] back                                                                     
+   [F1] keys  [F2] motion ON  [F3] palette  [F4] command                                                                            
+                                                                                                                                    

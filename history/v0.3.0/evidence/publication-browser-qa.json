@@ -1,0 +1,33 @@
+{
+  "checks_passed": 23,
+  "checks": [
+    "synthetic demo banner visible",
+    "primary library action enters publishing, not workshop",
+    "real canonical collection and selection carried into publishing",
+    "select-all, clear and empty selection guard",
+    "missing local-model choice cannot silently trigger a noise filter",
+    "read-only planning explains no-upscale duplicate avoidance",
+    "planning did not create publishing folders",
+    "real optimizer produced three unapproved final-raster outputs",
+    "render completion never hides synthetic or unverified status",
+    "exact-output review requires both explicit acknowledgements",
+    "review initially serves exact verified PNGs",
+    "fit and native-pixel inspection",
+    "difference visualization stays a preview, not a defense",
+    "actual matched JPEG previews with separate fidelity scope",
+    "review commits acceptance only for the inspected output",
+    "browser downloads a pack containing only approved PNGs",
+    "rejecting an approved image revokes it from new packs",
+    "optional workshop handoff uses committed publishing output",
+    "publishing layout fits 1024px",
+    "review fits 1024px",
+    "publishing layout fits 390px",
+    "review fits 390px",
+    "no JavaScript exceptions"
+  ],
+  "javascript_errors": [],
+  "transport": "Real FastAPI TestClient through browser fetch bridge",
+  "models": "SYNTHETIC_ORACLE_NOT_PRETRAINED",
+  "optimizer": "actual release-v1 CPU autograd, codecs, best-iterate and quality gates",
+  "ai_protection": "UNVERIFIED"
+}

@@ -1,0 +1,289 @@
+"""One operation boundary shared by typed commands and the interactive terminal.
+
+No shell strings are executed. Model/root paths live only in the caller's session.
+The existing backend retains authority over sanitation, locks and image approvals.
+"""
+from __future__ import annotations
+
+from dataclasses import dataclass, field
+from pathlib import Path
+from typing import Any, Callable
+import io
+import os
+import re
+import subprocess
+import sys
+
+from ..errors import RiposteError
+from ..policy import Policy, MONTHS, BINS, YEARS
+
+Progress = Callable[[dict], None]
+
+
+@dataclass(frozen=True)
+class Request:
+    name: str
+    root: Path | None = None
+    values: dict[str, Any] = field(default_factory=dict)
+
+
+# These are application effects, not a permission system for hostile local code.
+EFFECTS = {
+    "organize": "INSPECT", "apply": "REPLACE_SOURCES", "audit": "INSPECT",
+    "list": "INSPECT", "inspect": "INSPECT", "publish": "CREATE_CANDIDATES",
+    "plan": "INSPECT", "publications": "INSPECT", "resume": "CREATE_CANDIDATES",
+    "review": "RECORD_REVIEW", "package": "WRITE_APPROVED_PACK", "doctor": "INSPECT",
+    "upgrade": "RENAME_APP_STATE", "guard": "CREATE_TRIAL", "compare": "CREATE_TRIAL",
+    "qualify": "WRITE_EVALUATION", "challenge": "WRITE_GENERATIONS",
+    "benchmark": "WRITE_GENERATIONS", "export": "WRITE_UNREVIEWED_EXPORT",
+    "trials": "INSPECT", "evaluations": "INSPECT", "generations": "INSPECT",
+    "generation": "INSPECT", "frame": "INSPECT", "handoff": "CREATE_EXACT_TRIAL", "image": "INSPECT", "open-image": "OPEN_LOCAL_VIEWER",
+}
+CANCELLABLE = frozenset({"organize", "audit", "list", "inspect", "plan", "publish", "resume",
+                         "guard", "qualify", "challenge", "doctor"})
+
+
+def root_of(request: Request) -> Path:
+    if request.root is None:
+        raise RiposteError("WORKSPACE_REQUIRED")
+    from ..store import check_root
+    return check_root(Path(request.root).expanduser().absolute())
+
+
+def parse_month(value: str | int | None) -> str | None:
+    if value in (None, "", "all", "ALL"):
+        return None
+    word = str(value)
+    if word.isdigit() and 1 <= int(word) <= 12:
+        return MONTHS[int(word) - 1]
+    matches = [m for m in MONTHS if m.lower() == word.lower() or m[:3].lower() == word.lower()]
+    if len(matches) == 1:
+        return matches[0]
+    raise RiposteError("MONTH_FILTER_INVALID")
+
+
+def select_rows(root: Path, *, year=None, month=None, size=None, search="", limit=None, offset=0) -> list[dict]:
+    from ..store import catalog
+    if year not in (None, "", "all", *YEARS, "EVERYTHING_ELSE"):
+        raise RiposteError("YEAR_FILTER_INVALID")
+    if size not in (None, "", "all", *BINS):
+        raise RiposteError("SIZE_FILTER_INVALID")
+    if type(offset) is not int or offset < 0 or (limit is not None and (type(limit) is not int or limit < 1)):
+        raise RiposteError("PAGINATION_INVALID")
+    month = parse_month(month)
+    rows = catalog(root)
+    filtered = []
+    for row in rows:
+        parts = row["relative"].split("/")
+        if year not in (None, "", "all") and parts[0] != year: continue
+        if month is not None and parts[1] != month: continue
+        if size not in (None, "", "all") and parts[2] != size: continue
+        if search and search.lower() not in (row["relative"] + " " + row["id"] + " " + row["day"]).lower(): continue
+        filtered.append(row)
+    return filtered[offset:] if limit is None else filtered[offset:offset + limit]
+
+
+def recipe(values: dict):
+    from ..publication import PublishRecipe
+    from ..quality import QualityLimits
+    from ..release_guard import ReleaseConfig
+    return PublishRecipe(tuple(values.get("edges") or (1536,)),
+                         ReleaseConfig(steps=values.get("steps", 24), restarts=values.get("restarts", 2),
+                                       seed=values.get("seed", 7)),
+                         QualityLimits(epsilon_255=values.get("epsilon", 4),
+                                       preserve_white=values.get("preserve_white", True),
+                                       delta_e76_p95=values.get("delta_e76_p95", 6.0),
+                                       rms_fraction=values.get("rms_fraction", .95)))
+
+
+def image_selection(root, values):
+    ids = list(values.get("image_ids") or [])
+    all_images = values.get("all_images", False)
+    if bool(ids) == bool(all_images):
+        raise RiposteError("SELECT_IMAGES_OR_ALL")
+    filters = {k: values.get(k) for k in ("year", "month", "size")}
+    if ids and any(v not in (None, "", "all") for v in filters.values()):
+        raise RiposteError("FILTERS_REQUIRE_ALL_SELECTION")
+    return [r["id"] for r in select_rows(root, **filters)] if all_images else ids
+
+
+def _paths(values):
+    paths = values.get("vae_dirs", [])
+    if len(paths) > 4: raise RiposteError("TOO_MANY_LOCAL_ENCODERS")
+    return [Path(p).expanduser().absolute() for p in paths]
+
+
+def _optional(values, key):
+    value = values.get(key)
+    return Path(value).expanduser().absolute() if value else None
+
+
+def execute(request: Request, progress: Progress | None = None) -> Any:
+    """Invoke an allowlisted operation. All returned data is existing clean state."""
+    name, v = request.name, request.values
+    if name not in EFFECTS:
+        raise RiposteError("COMMAND_NOT_AVAILABLE")
+    if name == "doctor":
+        from ..models import runtime_capabilities, inspect_vae
+        if v.get("execute"):
+            from ..runtime_probe import execute_local_probe
+            if not v.get("vae_dirs"): raise RiposteError("LOCAL_VAE_DIRECTORY_REQUIRED")
+            return execute_local_probe(_paths(v), device=v.get("device", "auto"), progress=progress)
+        result = {"runtime": runtime_capabilities()}
+        if v.get("vae_dirs"):
+            entries = [inspect_vae(p) for p in _paths(v)]
+            result["model" if len(entries) == 1 else "models"] = entries[0] if len(entries) == 1 else entries
+        return result
+    root = root_of(request)
+    if name in {"organize", "apply"}:
+        from ..organizer import plan, organize
+        return (organize if name == "apply" else plan)(
+            root, Policy(date_mode=v.get("date_mode", "download"), discard_sidecars=v.get("discard_sidecars", False)), progress)
+    if name == "audit":
+        from ..organizer import audit_workspace
+        return audit_workspace(root)
+    if name == "list":
+        return select_rows(root, **{k: v[k] for k in ("year", "month", "size", "search", "limit", "offset") if k in v})
+    if name == "inspect":
+        from ..store import find_image, safe_child
+        from ..sanitize import png_audit
+        row = find_image(root, v["image_id"])
+        audit = png_audit(safe_child(root, row["relative"]).read_bytes())
+        if audit["sha256"] != row["sha256"]: raise RiposteError("CATALOG_FILE_CHANGED")
+        return {"mode": "CLEAN_IMAGE", **row, "audit": audit, "metadata_policy": "DATE_ONLY"}
+    if name in {"publish", "plan"}:
+        from ..publication import publication_plan, start_publication
+        ids, configuration = image_selection(root, v), recipe(v)
+        if name == "plan": return publication_plan(root, ids, configuration)
+        return start_publication(root, ids, _paths(v), configuration, device=v.get("device", "auto"),
+                                 pipeline_dir=_optional(v, "inpaint"), temporal_dir=_optional(v, "video"), progress=progress)
+    if name == "publications":
+        from ..publication import publication_status, publications
+        return publication_status(root, v["batch_id"]) if v.get("batch_id") else publications(root)
+    if name == "resume":
+        from ..publication import resume_publication
+        return resume_publication(root, v["batch_id"], _paths(v), device=v.get("device", "auto"),
+                                  pipeline_dir=_optional(v, "inpaint"), temporal_dir=_optional(v, "video"), progress=progress)
+    if name == "review":
+        from ..publication import review_publication
+        return review_publication(root, v["batch_id"], v["item_ids"], v.get("decision", "ACCEPTED"),
+                                  v.get("visual_accepted", False), v.get("acknowledge_unverified", False))
+    if name == "package":
+        from ..publication import export_publication
+        return export_publication(root, v["batch_id"])
+    if name == "upgrade":
+        from ..store import upgrade_workspace
+        return upgrade_workspace(root)
+    if name == "guard":
+        from ..lab import create_candidate
+        return create_candidate(root, v["image_id"], _paths(v), max_edge=v.get("max_edge", 1536),
+                                epsilon=v.get("epsilon", 4), steps=v.get("steps", 48), seed=v.get("seed", 7),
+                                engine=v.get("engine", "coupled"), pipeline_dir=_optional(v, "inpaint"),
+                                device=v.get("device", "auto"), preserve_white=v.get("preserve_white", True), progress=progress)
+    if name == "compare":
+        from ..lab import compare_external
+        return compare_external(root, v["image_id"], Path(v["candidate"]).expanduser().absolute(),
+                                v.get("max_edge", 1536), v.get("method", "external"))
+    if name == "qualify":
+        from ..qualification import qualify_trial
+        return qualify_trial(root, v["trial_id"], _paths(v), device=v.get("device", "auto"), progress=progress)
+    if name == "challenge":
+        from ..generation import controlled_generation
+        return controlled_generation(root, v["trial_id"], Path(v["model"]).expanduser().absolute(), v.get("task", "edit"),
+                                     seeds=tuple(v.get("seeds") or (7, 19)), views=tuple(v.get("views") or ("identity", "jpeg70")),
+                                     steps=v.get("steps", 25), progress=progress)
+    if name == "benchmark":
+        from ..benchmark import run_benchmark
+        return run_benchmark(root, v["trial_id"], Path(v["model"]).expanduser().absolute(),
+                             task=v.get("task", "edit"), steps=v.get("steps", 25))
+    if name == "export":
+        from ..lab import export_candidate
+        return export_candidate(root, v["trial_id"], v.get("acknowledge_unverified", False))
+    if name == "trials":
+        from ..lab import trials, trial_report
+        return trial_report(root, v["trial_id"]) if v.get("trial_id") else trials(root)
+    if name == "evaluations":
+        from ..qualification import evaluations
+        return evaluations(root, v["trial_id"])
+    if name == "generations":
+        from ..generation import generation_runs
+        return generation_runs(root, v["trial_id"])
+    if name == "generation":
+        from ..generation import generation_report
+        return generation_report(root, v["run_id"])
+    if name == "frame":
+        return view_image(root, v, open_viewer=v.get("open_viewer",False))
+    if name == "handoff":
+        from ..publication import open_in_workshop
+        return open_in_workshop(root, v["batch_id"], v["item_id"])
+    if name in {"image", "open-image"}:
+        return view_image(root, v, open_viewer=name == "open-image")
+    raise RiposteError("COMMAND_NOT_AVAILABLE")
+
+
+def image_bytes(root, values) -> bytes:
+    from ..store import find_image, safe_child
+    from ..sanitize import png_audit
+    if values.get("run_id"):
+        from ..generation import generation_frame
+        return generation_frame(root,values["run_id"],values["relative"])
+    if values.get("batch_id"):
+        from ..publication import publication_pixels
+        return publication_pixels(root, values["batch_id"], values["item_id"],
+                                  values.get("kind", "candidate"), view=values.get("view", "identity"))
+    if values.get("trial_id"):
+        from ..lab import trial_pixels
+        return trial_pixels(root, values["trial_id"], values.get("kind", "candidate"), values.get("view", "identity"))
+    if values.get("view", "identity") != "identity" or values.get("kind", "candidate") not in {"candidate", "clean"}:
+        raise RiposteError("CLEAN_MASTER_VIEW_INVALID")
+    row = find_image(root, values["image_id"])
+    raw = safe_child(root, row["relative"]).read_bytes()
+    if png_audit(raw)["sha256"] != row["sha256"]:
+        raise RiposteError("CATALOG_FILE_CHANGED")
+    return raw
+
+
+def view_image(root, values, open_viewer=False):
+    """Return image information or explicitly open an audited clean PNG.
+
+    For canonical images, open the canonical path. For transformed/review images,
+    write a date-only cache from verified bytes. No raw source or metadata is copied.
+    The viewer is a local OS handoff, not evidence that somebody inspected pixels.
+    """
+    from ..sanitize import png_audit
+    from ..store import safe_child, state_relative, atomic_clean_write, workspace_lock, find_image
+    raw = image_bytes(root, values)
+    audit = png_audit(raw)
+    result = {"mode": "VERIFIED_IMAGE", **audit, "viewer": "NOT_OPENED"}
+    if not open_viewer: return result
+    if values.get("image_id") and not values.get("batch_id") and not values.get("trial_id"):
+        relative = find_image(root, values["image_id"])["relative"]
+    else:
+        relative = state_relative(root, f'terminal-previews/{audit["sha256"]}.png')
+        with workspace_lock(root):
+            path = safe_child(root, relative)
+            if path.exists():
+                if path.read_bytes() != raw: raise RiposteError("PREVIEW_ARTIFACT_CHANGED")
+            else: atomic_clean_write(root, relative, raw)
+    path = safe_child(root, relative)
+    try:
+        if os.name == "nt":
+            os.startfile(str(path))
+        else:
+            command = "open" if sys.platform == "darwin" else "xdg-open"
+            completed = subprocess.run([command, str(path)], stdin=subprocess.DEVNULL,
+                                       stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, timeout=15, check=False)
+            if completed.returncode: raise RiposteError("LOCAL_VIEWER_UNAVAILABLE")
+    except (OSError, subprocess.SubprocessError):
+        raise RiposteError("LOCAL_VIEWER_UNAVAILABLE") from None
+    return {**result, "relative": relative, "viewer": "HANDOFF_REQUESTED"}
+
+
+def result_exit_code(result):
+    if isinstance(result, dict):
+        if result.get("checkpoint") == "INCOMPLETE" or result.get("ready") is False:
+            return 2
+        counts = result.get("counts", {})
+        if result.get("mode") == "PUBLICATION_BATCH" and (counts.get("BLOCKED", 0) or counts.get("PENDING", 0)):
+            return 2
+    return 0

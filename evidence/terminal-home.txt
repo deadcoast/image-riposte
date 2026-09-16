@@ -1,0 +1,46 @@
+                                                                                                                                    
+   R I P O S T E    /  IMAGE SECURITY                                                                       LOCAL   /   v0.4.0      
+                                                                                                                                    
+  --------------------------------------------------------------------------------------------------------------------------------  
+   01 SELECT                02 CLEAN                 03 PROTECT               04 REVIEW                05 PUBLISH                   
+                                                                                                             -----------            
+    RRRR   III  PPPP    OOO   SSSS  TTTTT  EEEEE                                                  -----------.:/----                
+    R   R   I   P   P  O   O  S       T    E                                             ---+-----.+:....::/ ---  =-------          
+    RRRR    I   PPPP   O   O   SSS    T    EEEE                                      ----:....::.+..=-------+------ ----            
+    R  R    I   P      O   O      S   T    E                                     /---....:/----------.+.::+.../ -----------         
+    R   R  III  P       OOO   SSSS    T    EEEEE                             --:--- ----.--:+..//>.:+.=-------------/----           
+                                                                          ------------+:.//////+-------...::+.../----               
+    YOUR ART. YOUR COUNTERMOVE.                                               ----:== -/----:::......:+:..../----                   
+                                                                           -------- ----::..+...+::===-- ----                       
+                                                                                ----.== --------------                              
+                                                                             -----------                                            
+   06 CLEAN IMAGES   /   00 SELECTED   /   00 BATCHES                                                                               
+                                                                                                                                    
+  -- ACTION DECK -----------------------------------------------------------------------------------------------------------------  
+                                                                                                                                    
+    > 1  Protect & publish                                                     FOCUS / PROTECT & PUBLISH                            
+          Create final-size candidate images                                                                                        
+      2  Image library                                                         Selected clean art -> independently optimized        
+          Select cleaned illustrations                                         publishing files.                                    
+      3  Clean & organize                                                                                                           
+          Inspect, reconstruct, classify                                                                                            
+      4  Publishing batches                                                                                                         
+          Review, resume, package                                              CREATE CANDIDATES                                    
+      5  Local models                                                                                                               
+          Configure local processing                                           Master images stay unchanged.                        
+      6  Terminal & workspace                                                                                                       
+          Palette, motion, workspace                                                                                                
+      7  Workshop                                                              [Enter] continue                                     
+          Optional expert helpers                                                                                                   
+                                                                                                                                    
+                                                                                                                                    
+                                                                                                                                    
+                                                                                                                                    
+                                                                                                                                    
+                                                                                                                                    
+                                                                                                                                    
+                                                                                                                                    
+  --------------------------------------------------------------------------------------------------------------------------------  
+   [1-7] choose   [Up/Down] focus   [Enter] open   [/] find   [q] quit                                                              
+   [F1] keys  [F2] motion ON  [F3] palette  [F4] command                                                                            
+                                                                                                                                    

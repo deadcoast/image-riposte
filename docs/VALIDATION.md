@@ -1,43 +1,52 @@
-# RIPOSTE 0.3.0 — release validation
+# RIPOSTE 0.4 / internal development verification
 
-## Executed software checks
+These are developer checks performed as part of implementation, not a request for the user to test or qualify an unfinished application. Passing them does not establish adversarial effectiveness or independent visual preference.
 
-| Check | Result |
-|---|---:|
-| Actual 0.2 archive baseline | 332 passed |
-| Final 0.3 source unit/integration suite | 449 passed |
-| Independently installed 0.3 wheel | 449 passed |
-| Fresh final delivered ZIP extraction | 449 passed — external final release report records the actual run |
-| Inherited test files | All 15 byte-identical; 332 inherited cases retained |
-| New test cases | 117 across four new files |
-| Existing library/workshop browser scenarios | 30 passed |
-| Main publishing browser scenarios | 23 passed; repeated using installed-wheel runtime/assets |
-| Existing live HTTP scenarios | 16 passed |
-| Main publishing live HTTP scenarios | 16 passed |
-| Package files across source/wheel/installed/extracted | 29 byte-identical; see external release report |
+## Executed
 
-The final-extraction assertion is backed by the external release report produced after ZIP creation and extraction. The manifest inside the release is checked against the actual files. A failed final check must prevent delivery; it must not be relabeled as a planned check.
+| Execution | Result |
+|---|---|
+| Source suite | 667 passed |
+| Separately installed local wheel | 667 passed |
+| Fresh final ZIP extraction | See the external final release report; execution follows packaging |
+| Inherited tests | All 449 cases retained; 18 modules plus `conftest.py` byte-identical |
+| New terminal/CLI cases | 218 cases across four added modules |
+| Source/wheel/installed package bytes | 44 files equal |
+| CLI inventory | 27 actual Typer command names, including one publish alias |
+| Real POSIX terminal cases | 4 scenarios: normal exit, Ctrl+C, SIGTERM, live resize |
+| Windows key adapter | 6 mocked-console key scenarios plus output-failure cleanup, not native Windows execution |
+| Same-controller main product path | Real sanitation, source-replacement boundary, numerical candidate, review, exact-byte ZIP and model/viewer failures |
+| Read-only real-terminal recording | 76 recorded output events, exit 0, 2.37 seconds; original synthetic artwork |
+| Shell launcher | `bash -n` successful; native macOS/PowerShell not executed |
 
-## What the tests actually exercised
+The final archive verification report is external to avoid a circular hash dependency. Its reported test result is only written after running the final extracted artifact. The source and installed-wheel reports are included under `evidence/`.
 
-Real CPU PyTorch autograd, quantized spatial projection, actual JPEG/resize processing, local-tile and colour quality measures, useful-gradient refusal, best-checkpoint selection across restarts, deterministic per-item seeds without global RNG mutation, and coupled temporal/image objectives were executed. The temporal adapter graph is tested with explicit synthetic components for frame-axis correctness, CFG separation, image-conditioning gradients, augmentation seeds, local component allowlists and safe loader options. None of those substitutes is a production fallback.
+## What ran versus what was substituted
 
-Publishing tests cover read-only/no-model planning, independently optimized distinct resolutions, no-upscale deduplication, model reuse, per-item failure, cancellation/resume, uncommitted orphan recovery, committed-file preservation, model mismatch, source/baseline integrity, quality refusal, exact-file approval, revocation, date-only pack membership, code-only errors, actual API/CLI orchestration and the optional exact-output workshop bridge. Automation scripts refuse a workspace without its explicit synthetic-demo marker.
+The actual Typer parser, Rich segment renderer, keyboard controller, POSIX alternate-screen terminal, line-input interface, Python worker lifecycle, image sanitation, operation locks, publication state, quality limits, CPU autograd, image codecs, output approval and ZIP assembly executed.
 
-Browser QA uses Chromium and the actual HTML/CSS/JavaScript against the real FastAPI backend through a TestClient fetch bridge. Primary QA executes the real optimizer on synthetic illustrations through a labeled synthetic encoder, including actual browser PNG-pack downloads. This was repeated with `riposte` loaded from the independently installed wheel. It is not a mocked interface or a screenshot of a nonfunctional design. Source-library/workshop tests also use explicitly labeled synthetic oracles and generator substitutes.
+The protection workflow scenarios use an explicitly labeled synthetic differentiable model oracle; they are not pretrained model results. The local image-viewer test uses an explicit subprocess substitute so automated developer checks do not open an unrelated desktop application. Windows `msvcrt` key sequences are adapter checks, not proof of native Windows console behavior. Backend/API regression tests inherited from prior releases still run; unchanged web code was not newly credited with another browser-design milestone.
 
-Separate Uvicorn subprocesses exercise actual loopback TCP HTTP, authentication/origin/host handling, exact candidate bytes, codec previews, approval/revocation, download membership and metadata audits. Direct Chromium navigation to localhost is blocked by this runtime's administrator policy. The browser-bridge checks and live HTTP checks are reported separately rather than claimed as a native end-to-end browser listener test.
+## Native terminal lifecycle
 
-Desktop and 1024/390-pixel publishing and review layouts were exercised and screenshots inspected. Final screenshots show synthetic art, not the user's illustrations.
+A real POSIX pseudo-terminal exercised Rich's alternate screen and the actual input reader, including search, arrow/menu actions, F2/F3, resizing to a noninteractive small window, returning to 79×24 and exit. The child process compared cooked-terminal settings before and after running the application. Captured output includes alternate-screen exit, bracketed-paste disable and cursor-show sequences. SIGTERM returns 143 after cleanup; a non-daemon owned worker is joined before return.
 
-## Runtime and unavailable qualification
+Python 3.13 emitted four `forkpty()` deprecation warnings because the test host process is multithreaded. These were warnings, not hidden passes or assertion failures. Native Windows/macOS launchers, assistive technologies and GPU backends were not run in this host.
 
-Python 3.13, PyTorch 2.10.0+cpu and safetensors 0.7.0 were available. Diffusers, Transformers and Accelerate were absent. An explicit optional-dependency installation attempt failed; its output is included without inventing a successful model setup. CUDA and MPS were unavailable. The core installed-wheel tests reuse the host's third-party dependencies; they are not a new operating-system/dependency-isolated installation.
+## Safety and behavior checks
 
-**Not executed:** real pretrained encoder/inpainting/SVD loading or protection outcomes, native Windows/macOS launchers, CUDA gradients/memory/timing, real artist-approved artwork evaluation, actual social-platform uploads/downloads, modern text-guided video objectives or independent-family transfer. No real image-to-video generation was performed by the new temporal objective. No efficacy percentage, imperceptibility guarantee, general-recognition block or recommended protection recipe is inferred.
+The new checks cover every command's generated help, menu-to-Typer argument equivalence, invalid input without private-value echo, date/size filters, read-only planning, publishing/source confirmation, both real review acknowledgements, exact-byte package contents, model failures without noise, changed-pixel rejection, explicit viewer handoff without implicit approval, worker cancellation and commit completion, malformed/fragmented escape sequences, bounded multiline paste, motion freezing, all three palettes and small-screen action suspension.
 
-The prior 0.2 archive remains the comparison baseline. No user artwork or raw personal image metadata was used in these runs. All publishing and test-copy artifacts are already reconstructed, date-only synthetic images.
+A broad scene matrix verifies pure ASCII cell dimensions and Rich rendering at 79×24, 100×34 and 132×46. Those mechanical checks complement direct inspection of the captures; they do not certify that any user will like the design.
 
-## Evidence files
+## Continuity and evidence artifacts
 
-`evidence/source-tests.txt`, `installed-wheel-tests.txt`, `baseline-tests.txt`, `inheritance.json`, `runtime.json`, `optional-dependencies-attempt.txt`, `package-equivalence.json`, `publication-browser-qa.json`, `library-workshop-browser-qa.json`, `publication-http-qa.json`, and `library-workshop-http-qa.json` record the executed checks. `RELEASE-MANIFEST.json` describes the exact delivered file bytes. The external `RIPOSTE_v0.3.0_release_report.json` records final ZIP hash, final-extraction test output, manifest verification, and source/wheel/installed/extracted equivalence.
+`provenance.json` identifies the actual prior archive digest and every inherited package/test file. 27 of 29 old package files are byte-identical; only `cli.py` and the version module changed. Fifteen terminal package files were added. No original image-engine algorithm or browser asset was replaced for this wave.
+
+`package-equality.json` compares all 44 package files across source, built wheel and separately installed wheel. The final manifest and external release report additionally bind the extracted release. Re-running checks in another environment may change warning counts or timings; no wall-clock performance guarantee is claimed.
+
+The GIF and PNGs are captures of the actual ASCII cell renderer. The `.cast` is a separate recording of a running terminal, not a rendered mockup. All visible artwork consists of the shipped original synthetic geometric fixtures. No user artwork, font file, pretrained model weight or secret source metadata is in the archive.
+
+## Scope
+
+This release implements the requested terminal/application surfaces. It does not claim completion of every future image-security objective. It makes no new pretrained-model, AI-resistance, CUDA-performance, native-Windows or text-guided-video efficacy assertion. Development continues through product implementation; these limits are not a handoff asking the user to stop and evaluate a prototype.

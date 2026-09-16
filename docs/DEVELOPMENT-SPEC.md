@@ -1,3 +1,7 @@
+# Current entry-point amendment / RIPOSTE 0.4
+
+The main application now has a native Typer/Rich product entry as well as the retained browser alternative. Read `TERMINAL-DESIGN.spec.md`, `CLI.md`, and `WAVE-04.md` for the implemented command, interaction and development contracts. The shared operation service calls the original image, organization and publication modules; renderer state is never authoritative for a file write. Older sections below describe the inherited foundation and remain valid unless the current entry-point documentation explicitly supersedes them.
+
 > Current implementation extension: **RIPOSTE 0.3.0**. The main product is now Protect & publish. See PUBLISHING.md, ENGINE-v03.md and WAVE-03-HANDOFF.md for current behavior; the following foundation specification remains historical where it describes earlier delivery scope.
 
 # RIPOSTE — development specification

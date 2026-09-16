@@ -1,0 +1,20 @@
+........................................................................ [ 10%]
+........................................................................ [ 21%]
+........................................................................ [ 32%]
+........................................................................ [ 43%]
+........................................................................ [ 53%]
+........................................................................ [ 64%]
+........................................................................ [ 75%]
+........................................................................ [ 86%]
+........................................................................ [ 97%]
+...................                                                      [100%]
+=============================== warnings summary ===============================
+tests/test_v04_terminal_host.py::test_actual_native_rich_pty_restores_terminal[q]
+tests/test_v04_terminal_host.py::test_actual_native_rich_pty_restores_terminal[interrupt]
+tests/test_v04_terminal_host.py::test_actual_native_rich_pty_restores_terminal[sigterm]
+tests/test_v04_terminal_host.py::test_actual_native_rich_pty_restores_terminal[resize]
+  /usr/lib/python3.13/pty.py:95: DeprecationWarning: This process (pid=1841) is multi-threaded, use of forkpty() may lead to deadlocks in the child.
+    pid, fd = os.forkpty()
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+667 passed, 4 warnings in 27.10s

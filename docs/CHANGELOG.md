@@ -1,3 +1,13 @@
+# 0.4.0 / Native Typer + Rich ASCII
+
+- Replaced argparse with 27 native Typer command names and preserved direct payload/positional compatibility.
+- Added a real foreground-owned Rich terminal, ASCII geometry, image previews, task-specific layouts and a same-controller linear alternative.
+- Connected all primary clean/protect/publish/review/package actions and retained every expert helper; added exact generation report/frame targets.
+- Added date/size catalog targeting, repeatable model and output parameters, explicit JSON/events channels and code-only failures.
+- Added bounded key/paste parsing, pause/palettes, resize boundaries, source-replacement confirmation, exact review enforcement and terminal/signal cleanup.
+- Changed launchers to native terminal by default, with explicit browser alternative and a local Windows command wrapper.
+- No change to backend protection algorithms or any pretrained efficacy status in this interface wave.
+
 # 0.3.0 — Main publishing product and temporal pathway
 
 Independent per-size batch protection; model reuse and execution probing; best-feasible quantized search with restarts; spatial/local-colour quality gates; interrupted-item resume; exact-byte reviewed PNG packs; optional SVD first-step temporal-energy objective; primary publishing UI and optional exact-output workshop handoff. No pretrained or CUDA efficacy claim. See ENGINE-v03.md and WAVE-03-HANDOFF.md.

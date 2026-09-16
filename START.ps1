@@ -1,6 +1,10 @@
 param(
     [Parameter(Position = 0)][string]$ArtworkFolder,
-    [switch]$Lab
+    [switch]$Lab,
+    [switch]$Browser,
+    [switch]$NoAnimation,
+    [switch]$Linear,
+    [ValidateSet("dark", "light", "mono")][string]$Theme = "dark"
 )
 Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
@@ -43,5 +47,10 @@ if ($Created -or $Lab -or $Installed.Trim() -ne $Expected.Trim()) {
     & $Python -m pip install $Target
     if ($LASTEXITCODE -ne 0) { throw 'Package installation failed. Artwork has not been modified.' }
 }
-& $Python -m riposte serve $Artwork
+$LaunchArgs = @('-m', 'riposte', '--theme', $Theme)
+if ($NoAnimation) { $LaunchArgs += '--no-animation' }
+if ($Linear) { $LaunchArgs += '--plain' }
+if ($Browser) { $LaunchArgs += @('serve', $Artwork) }
+else { $LaunchArgs += @('ui', $Artwork) }
+& $Python @LaunchArgs
 exit $LASTEXITCODE

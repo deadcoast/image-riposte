@@ -1,0 +1,10 @@
+WARNING: The directory '/home/oai/.cache/pip' or its parent directory is not owned or is not writable by the current user. The cache has been disabled. Check the permissions and owner of that directory. If executing pip with sudo, you should use sudo's -H flag.
+Processing /mnt/data/release03/RIPOSTE
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Building wheels for collected packages: riposte-studio
+  Building wheel for riposte-studio (pyproject.toml): started
+  Building wheel for riposte-studio (pyproject.toml): finished with status 'done'
+  Created wheel for riposte-studio: filename=riposte_studio-0.3.0-py3-none-any.whl size=110549 sha256=aa53d00c5114c9c6e1a92d331d840c76fdaab7c29679b6cdeb081d59c28db915
+  Stored in directory: /tmp/pip-ephem-wheel-cache-4oi_5i_t/wheels/c0/5e/7d/5656894583583d159f604c599b082411a77d44ba8a93935896
+Successfully built riposte-studio

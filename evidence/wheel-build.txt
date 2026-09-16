@@ -1,10 +1,174 @@
-WARNING: The directory '/home/oai/.cache/pip' or its parent directory is not owned or is not writable by the current user. The cache has been disabled. Check the permissions and owner of that directory. If executing pip with sudo, you should use sudo's -H flag.
-Processing /mnt/data/release03/RIPOSTE
-  Preparing metadata (pyproject.toml): started
-  Preparing metadata (pyproject.toml): finished with status 'done'
-Building wheels for collected packages: riposte-studio
-  Building wheel for riposte-studio (pyproject.toml): started
-  Building wheel for riposte-studio (pyproject.toml): finished with status 'done'
-  Created wheel for riposte-studio: filename=riposte_studio-0.3.0-py3-none-any.whl size=110549 sha256=aa53d00c5114c9c6e1a92d331d840c76fdaab7c29679b6cdeb081d59c28db915
-  Stored in directory: /tmp/pip-ephem-wheel-cache-4oi_5i_t/wheels/c0/5e/7d/5656894583583d159f604c599b082411a77d44ba8a93935896
-Successfully built riposte-studio
+running bdist_wheel
+running build
+running build_py
+creating build/lib/riposte
+copying src/riposte/models.py -> build/lib/riposte
+copying src/riposte/organizer.py -> build/lib/riposte
+copying src/riposte/__main__.py -> build/lib/riposte
+copying src/riposte/server.py -> build/lib/riposte
+copying src/riposte/publication.py -> build/lib/riposte
+copying src/riposte/runtime_probe.py -> build/lib/riposte
+copying src/riposte/metrics.py -> build/lib/riposte
+copying src/riposte/temporal.py -> build/lib/riposte
+copying src/riposte/coupled.py -> build/lib/riposte
+copying src/riposte/store.py -> build/lib/riposte
+copying src/riposte/quality.py -> build/lib/riposte
+copying src/riposte/lab.py -> build/lib/riposte
+copying src/riposte/optimizer.py -> build/lib/riposte
+copying src/riposte/release_guard.py -> build/lib/riposte
+copying src/riposte/policy.py -> build/lib/riposte
+copying src/riposte/qualification.py -> build/lib/riposte
+copying src/riposte/__init__.py -> build/lib/riposte
+copying src/riposte/sanitize.py -> build/lib/riposte
+copying src/riposte/benchmark.py -> build/lib/riposte
+copying src/riposte/cli.py -> build/lib/riposte
+copying src/riposte/generation.py -> build/lib/riposte
+copying src/riposte/errors.py -> build/lib/riposte
+copying src/riposte/views.py -> build/lib/riposte
+creating build/lib/riposte/terminal
+copying src/riposte/terminal/jobs.py -> build/lib/riposte/terminal
+copying src/riposte/terminal/output.py -> build/lib/riposte/terminal
+copying src/riposte/terminal/material.py -> build/lib/riposte/terminal
+copying src/riposte/terminal/signals.py -> build/lib/riposte/terminal
+copying src/riposte/terminal/app.py -> build/lib/riposte/terminal
+copying src/riposte/terminal/surface.py -> build/lib/riposte/terminal
+copying src/riposte/terminal/keyboard.py -> build/lib/riposte/terminal
+copying src/riposte/terminal/controller.py -> build/lib/riposte/terminal
+copying src/riposte/terminal/help.py -> build/lib/riposte/terminal
+copying src/riposte/terminal/__init__.py -> build/lib/riposte/terminal
+copying src/riposte/terminal/state.py -> build/lib/riposte/terminal
+copying src/riposte/terminal/service.py -> build/lib/riposte/terminal
+copying src/riposte/terminal/preview.py -> build/lib/riposte/terminal
+copying src/riposte/terminal/render.py -> build/lib/riposte/terminal
+copying src/riposte/terminal/actions.py -> build/lib/riposte/terminal
+running egg_info
+creating src/riposte_studio.egg-info
+writing src/riposte_studio.egg-info/PKG-INFO
+writing dependency_links to src/riposte_studio.egg-info/dependency_links.txt
+writing entry points to src/riposte_studio.egg-info/entry_points.txt
+writing requirements to src/riposte_studio.egg-info/requires.txt
+writing top-level names to src/riposte_studio.egg-info/top_level.txt
+writing manifest file 'src/riposte_studio.egg-info/SOURCES.txt'
+reading manifest file 'src/riposte_studio.egg-info/SOURCES.txt'
+adding license file 'LICENSE'
+writing manifest file 'src/riposte_studio.egg-info/SOURCES.txt'
+copying src/riposte/methods.json -> build/lib/riposte
+creating build/lib/riposte/static
+copying src/riposte/static/style.css -> build/lib/riposte/static
+copying src/riposte/static/app.js -> build/lib/riposte/static
+copying src/riposte/static/publish.css -> build/lib/riposte/static
+copying src/riposte/static/index.html -> build/lib/riposte/static
+copying src/riposte/static/publish.js -> build/lib/riposte/static
+copying src/riposte/static/app.js -> build/lib/riposte/static
+copying src/riposte/static/index.html -> build/lib/riposte/static
+copying src/riposte/static/publish.css -> build/lib/riposte/static
+copying src/riposte/static/publish.js -> build/lib/riposte/static
+copying src/riposte/static/style.css -> build/lib/riposte/static
+installing to build/bdist.linux-x86_64/wheel
+running install
+running install_lib
+creating build/bdist.linux-x86_64/wheel
+creating build/bdist.linux-x86_64/wheel/riposte
+creating build/bdist.linux-x86_64/wheel/riposte/terminal
+copying build/lib/riposte/terminal/jobs.py -> build/bdist.linux-x86_64/wheel/./riposte/terminal
+copying build/lib/riposte/terminal/output.py -> build/bdist.linux-x86_64/wheel/./riposte/terminal
+copying build/lib/riposte/terminal/material.py -> build/bdist.linux-x86_64/wheel/./riposte/terminal
+copying build/lib/riposte/terminal/signals.py -> build/bdist.linux-x86_64/wheel/./riposte/terminal
+copying build/lib/riposte/terminal/app.py -> build/bdist.linux-x86_64/wheel/./riposte/terminal
+copying build/lib/riposte/terminal/surface.py -> build/bdist.linux-x86_64/wheel/./riposte/terminal
+copying build/lib/riposte/terminal/keyboard.py -> build/bdist.linux-x86_64/wheel/./riposte/terminal
+copying build/lib/riposte/terminal/controller.py -> build/bdist.linux-x86_64/wheel/./riposte/terminal
+copying build/lib/riposte/terminal/help.py -> build/bdist.linux-x86_64/wheel/./riposte/terminal
+copying build/lib/riposte/terminal/__init__.py -> build/bdist.linux-x86_64/wheel/./riposte/terminal
+copying build/lib/riposte/terminal/state.py -> build/bdist.linux-x86_64/wheel/./riposte/terminal
+copying build/lib/riposte/terminal/service.py -> build/bdist.linux-x86_64/wheel/./riposte/terminal
+copying build/lib/riposte/terminal/preview.py -> build/bdist.linux-x86_64/wheel/./riposte/terminal
+copying build/lib/riposte/terminal/render.py -> build/bdist.linux-x86_64/wheel/./riposte/terminal
+copying build/lib/riposte/terminal/actions.py -> build/bdist.linux-x86_64/wheel/./riposte/terminal
+copying build/lib/riposte/models.py -> build/bdist.linux-x86_64/wheel/./riposte
+copying build/lib/riposte/organizer.py -> build/bdist.linux-x86_64/wheel/./riposte
+copying build/lib/riposte/__main__.py -> build/bdist.linux-x86_64/wheel/./riposte
+copying build/lib/riposte/server.py -> build/bdist.linux-x86_64/wheel/./riposte
+creating build/bdist.linux-x86_64/wheel/riposte/static
+copying build/lib/riposte/static/style.css -> build/bdist.linux-x86_64/wheel/./riposte/static
+copying build/lib/riposte/static/app.js -> build/bdist.linux-x86_64/wheel/./riposte/static
+copying build/lib/riposte/static/publish.css -> build/bdist.linux-x86_64/wheel/./riposte/static
+copying build/lib/riposte/static/index.html -> build/bdist.linux-x86_64/wheel/./riposte/static
+copying build/lib/riposte/static/publish.js -> build/bdist.linux-x86_64/wheel/./riposte/static
+copying build/lib/riposte/publication.py -> build/bdist.linux-x86_64/wheel/./riposte
+copying build/lib/riposte/runtime_probe.py -> build/bdist.linux-x86_64/wheel/./riposte
+copying build/lib/riposte/metrics.py -> build/bdist.linux-x86_64/wheel/./riposte
+copying build/lib/riposte/temporal.py -> build/bdist.linux-x86_64/wheel/./riposte
+copying build/lib/riposte/coupled.py -> build/bdist.linux-x86_64/wheel/./riposte
+copying build/lib/riposte/store.py -> build/bdist.linux-x86_64/wheel/./riposte
+copying build/lib/riposte/quality.py -> build/bdist.linux-x86_64/wheel/./riposte
+copying build/lib/riposte/lab.py -> build/bdist.linux-x86_64/wheel/./riposte
+copying build/lib/riposte/optimizer.py -> build/bdist.linux-x86_64/wheel/./riposte
+copying build/lib/riposte/release_guard.py -> build/bdist.linux-x86_64/wheel/./riposte
+copying build/lib/riposte/policy.py -> build/bdist.linux-x86_64/wheel/./riposte
+copying build/lib/riposte/qualification.py -> build/bdist.linux-x86_64/wheel/./riposte
+copying build/lib/riposte/__init__.py -> build/bdist.linux-x86_64/wheel/./riposte
+copying build/lib/riposte/methods.json -> build/bdist.linux-x86_64/wheel/./riposte
+copying build/lib/riposte/sanitize.py -> build/bdist.linux-x86_64/wheel/./riposte
+copying build/lib/riposte/benchmark.py -> build/bdist.linux-x86_64/wheel/./riposte
+copying build/lib/riposte/cli.py -> build/bdist.linux-x86_64/wheel/./riposte
+copying build/lib/riposte/generation.py -> build/bdist.linux-x86_64/wheel/./riposte
+copying build/lib/riposte/errors.py -> build/bdist.linux-x86_64/wheel/./riposte
+copying build/lib/riposte/views.py -> build/bdist.linux-x86_64/wheel/./riposte
+running install_egg_info
+Copying src/riposte_studio.egg-info to build/bdist.linux-x86_64/wheel/./riposte_studio-0.4.0-py3.13.egg-info
+running install_scripts
+creating build/bdist.linux-x86_64/wheel/riposte_studio-0.4.0.dist-info/WHEEL
+creating '/mnt/data/RIPOSTE_v0.4.0/dist/.tmp-21oadf7g/riposte_studio-0.4.0-py3-none-any.whl' and adding 'build/bdist.linux-x86_64/wheel' to it
+adding 'riposte/__init__.py'
+adding 'riposte/__main__.py'
+adding 'riposte/benchmark.py'
+adding 'riposte/cli.py'
+adding 'riposte/coupled.py'
+adding 'riposte/errors.py'
+adding 'riposte/generation.py'
+adding 'riposte/lab.py'
+adding 'riposte/methods.json'
+adding 'riposte/metrics.py'
+adding 'riposte/models.py'
+adding 'riposte/optimizer.py'
+adding 'riposte/organizer.py'
+adding 'riposte/policy.py'
+adding 'riposte/publication.py'
+adding 'riposte/qualification.py'
+adding 'riposte/quality.py'
+adding 'riposte/release_guard.py'
+adding 'riposte/runtime_probe.py'
+adding 'riposte/sanitize.py'
+adding 'riposte/server.py'
+adding 'riposte/store.py'
+adding 'riposte/temporal.py'
+adding 'riposte/views.py'
+adding 'riposte/static/app.js'
+adding 'riposte/static/index.html'
+adding 'riposte/static/publish.css'
+adding 'riposte/static/publish.js'
+adding 'riposte/static/style.css'
+adding 'riposte/terminal/__init__.py'
+adding 'riposte/terminal/actions.py'
+adding 'riposte/terminal/app.py'
+adding 'riposte/terminal/controller.py'
+adding 'riposte/terminal/help.py'
+adding 'riposte/terminal/jobs.py'
+adding 'riposte/terminal/keyboard.py'
+adding 'riposte/terminal/material.py'
+adding 'riposte/terminal/output.py'
+adding 'riposte/terminal/preview.py'
+adding 'riposte/terminal/render.py'
+adding 'riposte/terminal/service.py'
+adding 'riposte/terminal/signals.py'
+adding 'riposte/terminal/state.py'
+adding 'riposte/terminal/surface.py'
+adding 'riposte_studio-0.4.0.dist-info/licenses/LICENSE'
+adding 'riposte_studio-0.4.0.dist-info/METADATA'
+adding 'riposte_studio-0.4.0.dist-info/WHEEL'
+adding 'riposte_studio-0.4.0.dist-info/entry_points.txt'
+adding 'riposte_studio-0.4.0.dist-info/top_level.txt'
+adding 'riposte_studio-0.4.0.dist-info/RECORD'
+removing build/bdist.linux-x86_64/wheel
+riposte_studio-0.4.0-py3-none-any.whl

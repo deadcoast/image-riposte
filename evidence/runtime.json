@@ -1,20 +1,19 @@
 {
-  "runtime": {
-    "versions": {
-      "torch": "2.10.0+cpu",
-      "safetensors": "0.7.0"
-    },
-    "missing": [
-      "diffusers",
-      "transformers",
-      "accelerate"
-    ],
-    "cpu": true,
-    "cuda": false,
-    "mps": false,
-    "recommended_device": "cpu",
-    "model_loading": "EXPLICIT_LOCAL_ONLY",
-    "privacy": "NO_IMAGE_UPLOADS",
-    "pretrained_qualification": "NOT_IMPLIED_BY_PREFLIGHT"
-  }
+  "python": "3.13.5",
+  "platform": "Linux",
+  "packages": {
+    "typer": "0.26.3",
+    "rich": "15.0.0",
+    "click": "8.1.8",
+    "Pillow": "12.3.0",
+    "numpy": "2.3.5",
+    "fastapi": "0.128.2",
+    "uvicorn": "0.48.0",
+    "pytest": "9.0.2",
+    "torch": "2.10.0+cpu",
+    "setuptools": "82.0.1",
+    "pexpect": "4.9.0"
+  },
+  "cuda": false,
+  "new_pretrained_execution": false
 }

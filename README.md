@@ -1,140 +1,149 @@
-# RIPOSTE 0.3.0
+# RIPOSTE 0.4.0
 
-**Local artwork protection. Clean masters in; reviewed publishing files out.**
+**Local artwork security. Native Typer commands. An authored, animated Rich ASCII interface.**
 
-RIPOSTE reconstructs image containers with date-only metadata, organizes your collection, and optimizes bounded changes directly into publishing rasters using explicitly selected local models. The main application is **Protect & publish**. The workshop is an optional helper for advanced comparisons of those same files.
+RIPOSTE reconstructs image files with date-only metadata, organizes a maintained artwork directory, applies experimental image-integrated protection through selected local models, and packages exact reviewed publishing images. This release replaces the old argparse entry with a complete Typer command surface and a native Rich terminal application. The browser remains available; the workshop remains an optional helper.
 
-**The organizer and publishing workflow are implemented and tested. The protection engines are experimental. No pretrained-model/CUDA efficacy is established by this release.** Passing a pixel-quality check, producing a different latent representation, or completing a render does not establish resistance to copying, editing, recognition, style learning, or animation. There are no watermarks, audience logins, licensing gates, artwork uploads, or fake protection percentages.
+## Start the terminal on Windows
 
-## Start on Windows
-
-Extract the application separately from your artwork and model folders. Python 3.11+ is required; the launcher's suggested installation version is 3.13.
+Extract the application outside your artwork and model folders. Python 3.11+ is required.
 
 ```powershell
 .\START.ps1 -ArtworkFolder "D:\Artwork\SocialSamples"
 ```
 
-This creates a project-local environment and opens the local browser interface. Starting the application does not organize or remove your images. To also install the optional model-processing dependencies:
+The launcher installs the core into a project-local `.venv`, then opens the animated terminal. Startup does not organize or remove images. Add `-Lab` to install the optional model-processing dependencies; weights are not bundled or automatically downloaded.
 
 ```powershell
 .\START.ps1 -ArtworkFolder "D:\Artwork\SocialSamples" -Lab
+.\START.ps1 -ArtworkFolder "D:\Artwork\SocialSamples" -NoAnimation
+.\START.ps1 -ArtworkFolder "D:\Artwork\SocialSamples" -Theme light
 ```
 
-The `-Lab` name is retained for launcher compatibility; these dependencies power the main protection workflow as well as the workshop. This installs packages, **not model weights**. Your PyTorch build must support the selected device. Native Windows/macOS startup and CUDA were not executed in the release environment.
+`-Browser` explicitly starts the existing browser application. `-Linear` selects the plain line-input interface. The launcher preserves application/artwork separation checks. Native PowerShell execution was not available in the development host; the actual terminal was exercised in a POSIX pseudo-terminal, including cleanup and resize.
 
-When a PowerShell policy blocks the launcher, the equivalent manual setup is:
+Once installed, the supplied local wrapper supports all commands without environment activation:
+
+```powershell
+.\riposte.cmd list "D:\Artwork\SocialSamples"
+.\riposte.cmd --json publish "D:\Artwork\SocialSamples" --all --edge 1024 --plan
+.\riposte.cmd ui "D:\Artwork\SocialSamples"
+```
+
+The installed console entry is `riposte`. Activate the project environment to use that shorter name, or invoke `.venv\Scripts\riposte.exe` directly. Manual setup when script execution is restricted:
 
 ```powershell
 py -3 -m venv .venv
-.\.venv\Scripts\python.exe -m pip install ".[lab]"
-.\.venv\Scripts\python.exe -m riposte serve "D:\Artwork\SocialSamples"
+.\.venv\Scripts\python.exe -m pip install .
+.\.venv\Scripts\riposte.exe ui "D:\Artwork\SocialSamples"
 ```
 
-On macOS/Linux, run `bash START.sh /path/to/artwork`; install the optional dependencies into `.venv` before using models. Do not put the application or model checkpoints inside the actively maintained artwork folder.
+On macOS/Linux:
 
-## The main workflow
+```sh
+bash START.sh "$HOME/Artwork/SocialSamples"
+# Optional flags: --lab --browser --no-animation --linear --theme light
+```
 
-**Scan & organize → Protect & publish → Review actual pixels → Download approved PNGs.**
+## Two complete entry paths, one operation boundary
 
-1. Preview the recursive organization. Resolve blockers. Only applying an explicitly approved migration removes successfully replaced source files. There are no raw backups or quarantine copies.
-2. Choose cleaned illustrations and one or more publishing edges. Enter local VAE folders, one per line, and select a device. Models load once per batch. `Test model execution` actually runs a numerical forward/input-gradient probe rather than merely checking that files exist.
-3. Preview the batch, then protect it. Each distinct output size is optimized from the clean master independently. Small images are not enlarged; duplicate effective sizes are skipped. White-preservation, spatial channel limits, local RMS and colour-difference limits constrain the output.
-4. Inspect each output at fit or native-pixel size, with optional amplified differences and matched JPEG/resize/crop/blur previews. Accept visual quality and acknowledge the unresolved AI-resistance status. Rejecting a previously accepted output excludes it from future packs.
-5. Download the approved-image pack. It contains **only date-only PNGs in the requested calendar/size structure**—not clean baselines, test reports, IDs, model configurations or location metadata. Downloaded bytes are the exact accepted candidate bytes, not a resized or recompressed re-export.
-
-The default numerical limits are working settings, **not empirically qualified recommended protection recipes**. Stronger settings may visibly damage an illustration without improving resistance. Empty or unusable model selections never fall back to arbitrary noise.
-
-## Clean organization remains the first checkpoint
+With the installed entry available:
 
 ```text
-2026 / September / SML / SML01.png
-2025 / January   / MED / MED01.png
-2024 / December  / LRG / LRG01.png
-EVERYTHING_ELSE / March / XTL / XTL01.png
+riposte                                Animated workspace chooser
+riposte --root ROOT                     Animated workspace already selected
+riposte ui ROOT                         Explicit interactive entry
+riposte ui ROOT --linear                Numbered, line-input alternative
+riposte --help                          Complete typed command reference
+riposte publish --help                  All publishing controls
 ```
 
-Bins use pixel area: SML below 1 million; MED below 4 million; LRG below 16 million; XTL 16 million or more. Months are English names. Directories are created only when needed. Images are not sorted by extension. Clean masters and publishing outputs are uniform lossless PNGs; a publishing output is classified by its **own** resolution, not its master's.
+Direct commands and interactive forms call the same operation service. The interface does not simulate an engine, shell out to a pretend CLI, or execute the text displayed in the command lens.
 
-Source reconstruction applies orientation, converts supported colour profiles, makes fresh pixel storage, clears concealed RGB in fully transparent pixels, and writes only `Creation Time: YYYY-MM-DD`. Raw EXIF/GPS/XMP, comments, thumbnails, profiles and unknown ancillary chunks are not carried forward. Known metadata sidecars require explicit deletion authorization. Unsupported or unreadable inputs keep the checkpoint incomplete rather than silently passing.
+The main action deck is **Protect & publish / Image library / Clean & organize / Publishing batches / Local models / Terminal & workspace / Workshop**. The normal workflow never requires the workshop.
 
-Date basis defaults to filesystem creation/birth time when available, with an explicitly recorded modified-time fallback. Embedded-date and modified-date modes remain available. Filesystem modification time is not falsely described as a known download time.
+## The ASCII experience
 
-Metadata cleaning does not erase visible information, arbitrary pixel steganography, other copies, filesystem recovery traces, or operating-system caches outside this application. This is not forensic secure erasure or a claim to make a publicly readable illustration unrecognizable to all models.
+COUNTERSTROKE is an authored depth-resolved lamellar image-plane material with moving hinges, travelling light and a reflected stroke. It is drawn from ordinary ASCII cells by Rich, not from terminal bitmaps, web views, a font pack or a pre-rendered movie. The entrance is immediately interactive: no artificial loading countdown or minimum animation duration.
 
-## Local model inputs
+Working screens have different compositions: selected artwork, editable protection fields, real batch outputs, explicit source-replacement confirmation, operation activity and full result inspection. Colour ASCII previews help identify an illustration; **they are not substitutes for full-resolution visual review**. Press `v` in an image inspector to hand audited PNG bytes to a local image viewer. The handoff does not approve the image.
 
-The main workflow requires at least one compatible local `AutoencoderKL` or `AutoencoderTiny` directory with `config.json` and safetensors. Tiny is a distilled encoder proxy, not an interchangeable full generator. Up to four encoders may be combined. Local model paths remain transient; safe technical identities and model-weight hashes, not the paths, enter batch records.
+| Key | Behaviour |
+|---|---|
+| Arrows or `j` / `k`, Enter | Move focus, open an action, edit a field |
+| Space | Select an image or toggle a checkbox |
+| `/` | Search visible actions, clean catalog or batches |
+| Esc / `0` | Back; discard an unfinished field edit |
+| F1 / F2 / F3 / F4 | Key map / pause motion / palette / equivalent direct command |
+| `q` / Ctrl+C | Exit or request a cooperative stop; active source commits finish safely |
 
-Two additional objectives are optional under advanced settings:
+Library shortcuts are visible on the screen: `a` selects visible images, `n` clears, `p` opens protection. Forms use `p` for a read-only plan and `r` for the explicit operation; Clean & organize always previews first and also exposes `v` for the audit. The migration result requires a typed **REPLACE** confirmation before source replacement.
 
-| Input | Implemented pathway | Scope |
-|---|---|---|
-| Nine-channel SD inpainting pipeline | Early masked-image conditioning displacement | Inpainting component proxy; not a generated-edit result |
-| Stable Video Diffusion pipeline | First-step predicted-latent temporal-energy reduction, coupled to the image objectives | Actual temporal computation graph, but not generated video, not text-guided protection, not verified motion suppression |
+Designed terminal sizes include **132×46, 100×34 and 79×24**. Below 72×24, interactive actions are suspended behind a resize notice; exit/cancellation remains available. The line-input alternative does not need raw keyboard mode. `--no-color`, `NO_COLOR`, `--plain`, `--no-animation` and `RIPOSTE_NO_ANIMATION=1` are supported. Session preferences and local model paths are not written to a history file.
 
-All model classes are fixed/allowlisted; loading is offline, local-only and safetensors-only. Remote custom code is not loaded. No weights are bundled or automatically downloaded. Licensed model access, compatible package versions, sufficient memory and device support remain necessary. Added models can substantially increase time and memory; no GPU-memory benchmark is claimed.
+## Direct targeting and publishing
 
 ```powershell
-.\.venv\Scripts\python.exe -m riposte doctor
-.\.venv\Scripts\python.exe -m riposte doctor --vae "D:\Models\LocalVAE" --execute
+# Read-only listing and image selection filters.
+riposte list ROOT --year 2026 --month September --size MED
+riposte list ROOT --search September --limit 20 --offset 0
+riposte inspect ROOT IMAGE_ID
+
+# Preview the reconstruction and organization; this writes nothing.
+riposte organize ROOT --date-mode modified
+
+# Explicitly authorize reconstruction followed by removal of verified sources.
+riposte organize ROOT --apply --date-mode modified --discard-sidecars
+riposte audit ROOT
+
+# Preview selected final-size outputs, without a model requirement.
+riposte publish ROOT --all --year 2026 --month 9 --edge 1024 --edge 1536 --plan
+
+# Apply protection to selected clean images. No master image is changed.
+riposte publish ROOT --image IMAGE_ID --vae "D:\Models\Encoder" --edge 1536 --epsilon 4 --steps 24 --restarts 2
+
+# Open exact output bytes, record visual acceptance, then package.
+riposte publications ROOT BATCH_ID
+riposte image ROOT --batch BATCH_ID --item ITEM_ID --open
+riposte review ROOT BATCH_ID --item ITEM_ID --visual-accepted --acknowledge-unverified
+riposte package ROOT BATCH_ID
+
+# Resume unfinished work with matching local models; retain committed outputs.
+riposte resume ROOT BATCH_ID --vae "D:\Models\Encoder"
 ```
 
-`doctor` without `--execute` reports package/device availability and optional model-file presence. `--execute` actually loads the selected encoder and checks a finite, nonzero image gradient. Neither is an efficacy test.
+`ROOT`, `IMAGE_ID`, `BATCH_ID`, and `ITEM_ID` are placeholders; use the path and IDs returned by the application. Repeat `--image`, `--vae`, `--edge` and `--item` where appropriate. Explicit IDs and `--all` are mutually exclusive; date/size filters qualify `--all`. Up to 200 images, four encoders and three distinct publishing edges are accepted. No upscale; duplicate effective output sizes are avoided. `protect` is a typed alias of `publish`.
 
-## Batch commands and recovery
+The reviewed ZIP is written under `.riposte/exports/BATCH_ID/RIPOSTE.zip`. Only accepted date-only PNGs enter it, with exact candidate bytes and the requested year/month/size organization. Model paths, reports, clean comparison images and raw metadata do not enter it. Rejection excludes an output from future packs, not from already downloaded copies.
 
-Read-only preview, no model required:
+## Automation is not an animated transcript
 
 ```powershell
-.\.venv\Scripts\python.exe -m riposte publish "D:\Artwork\SocialSamples" --all --edge 1024 --edge 1536 --plan
+riposte --json list ROOT
+riposte --json --events publish ROOT --all --vae "D:\Models\Encoder" --edge 1024
 ```
 
-Protect the selected collection (clean masters stay unchanged):
+Global presentation flags precede the command. Direct output automatically becomes JSON when stdout is redirected; `--human` forces readable Rich output. `--json` emits one result document on stdout. `--events` sends code-defined progress JSON Lines separately to stderr. Errors return sanitized codes rather than raw exceptions, local paths or metadata. No animation enters machine output.
 
-```powershell
-.\.venv\Scripts\python.exe -m riposte publish "D:\Artwork\SocialSamples" --all --vae "D:\Models\LocalVAE" --edge 1024 --edge 1536 --epsilon 4 --steps 24 --restarts 2
-```
+Exit statuses: **0** completed command, **2** invalid input/operation failure/incomplete checkpoint or blocked output, **130** cooperative model cancellation, **143** handled SIGTERM. A publishing queue reaching its end is not silently converted into success when items are blocked. A non-cancellable source commit returns its actual outcome after Ctrl+C rather than abandoning a half-commit.
 
-Use repeated `--image ID` instead of `--all` to target individual catalog images; `riposte list ROOT` shows their IDs. `--inpaint PATH` and `--video PATH` add the optional objectives. The CLI supports up to three distinct edges from 64 to 4096; the UI offers 1024, 1536 and 2048. Up to 200 images can be selected per request.
+## Existing privacy and image contracts
 
-`riposte publications ROOT` lists batches. `riposte publications ROOT BATCH_ID` shows their items, blockers and review states. The completion label `FINISHED` means the queue was traversed, **not** that every item succeeded; always read the counts.
+The calendar roots remain `2026`, `2025`, `2024`, `EVERYTHING_ELSE`; English month directories and SML/MED/LRG/XTL appear only when needed. Bins are pixel area below 1M, 4M, 16M and 16M or more. Images are not sorted by file extension.
 
-```powershell
-.\.venv\Scripts\python.exe -m riposte resume "D:\Artwork\SocialSamples" BATCH_ID --vae "D:\Models\LocalVAE"
-```
+Sanitation still decodes supported input, applies orientation, converts supported colour profiles, rebuilds pixels, clears fully transparent hidden RGB, and writes fresh PNG with only its date. Applying organization removes successfully replaced originals, without raw backup or Trash copies. Unsupported and failed inputs remain blockers. This is not forensic erasure of operating-system caches or data encoded into visible artwork.
 
-Resume validates the stored recipe, selected model identities, cleaned master hashes and committed output files. Completed items are kept byte-identically; pending/failed items are retried with the same per-item seed. An uncommitted clean orphan directory is removed before retry. Models must be reselected because their paths are not stored. Cooperative cancellation stops between model/iteration checkpoints, not in the middle of an individual forward pass.
+The protection engines are unchanged in this CLI release and remain **experimental**. Generating a candidate, passing a numerical visual limit, or accepting its appearance does not establish AI resistance. No new efficacy or pretrained-model result is claimed here. There is no watermark, audience login, licensing gate, artwork upload or noise-only fallback.
 
-After an operating-system crash, a stale `.riposte/operation.lock` may remain. Stop all RIPOSTE processes and verify no operation is still running before manually removing that lock. The application deliberately does not guess that an active lock is stale. Changing or corrupting a committed master/output is not silently repaired on resume.
+## Optional helpers and reference
 
-Batch review is also available through repeated item flags; only assert approval after inspecting those illustrations:
+All inherited helper paths remain accessible, including standalone guard, external comparison, encoder qualification, five-arm generation, legacy paired benchmark, trial export and exact-file handoff. New `generation` and `frame` commands expose complete saved reports and audited frames. They are below the main product actions, not prerequisites for normal publishing.
 
-```powershell
-.\.venv\Scripts\python.exe -m riposte review "D:\Artwork\SocialSamples" BATCH_ID --item ITEM_ID --visual-accepted --acknowledge-unverified
-.\.venv\Scripts\python.exe -m riposte package "D:\Artwork\SocialSamples" BATCH_ID
-```
+- [Complete CLI and linear-menu reference](docs/CLI.md)
+- [Terminal visual and interaction specification](docs/TERMINAL-DESIGN.spec.md)
+- [Publishing contracts](docs/PUBLISHING.md)
+- [Image-engine mathematics](docs/ENGINE-v03.md)
+- [Development record and next grouped implementation](docs/WAVE-04.md)
+- [Executed internal validation and provenance](docs/VALIDATION.md)
 
-`package` writes `.riposte/exports/BATCH_ID/RIPOSTE.zip`. To revoke an approval, use `review ROOT BATCH_ID --item ITEM_ID --decision REJECTED`. New packs exclude it; an already downloaded copy cannot be recalled. ZIP entries use midnight date stamps without extra fields. Dates outside the ZIP format's representable calendar range use a container-safe boundary date; the PNG retains its actual full `YYYY-MM-DD` date.
-
-## The workshop remains a helper
-
-`Advanced model testing in the workshop` opens the **exact committed publishing raster**, without regeneration, and reuses an existing handoff when possible. Existing external comparisons, controlled encoder challenges, five-arm generation review and experimental standalone guard commands remain available. They are not required for a normal publishing batch and do not secretly determine a protection certification.
-
-The previous SHROUD `.shroud` state remains readable. Use the UI's explicit upgrade action or `riposte upgrade ROOT` to rename its application state to `.riposte`; artwork and IDs are not rewritten. Existing 0.2 workspaces require no migration for the new publishing namespace.
-
-## Development and evidence
-
-```text
-publication.py   Main batch planning, independent renditions, resume, review and exact-byte packs
-release_guard.py Shared-raster, best-feasible quantized optimization
-quality.py       Local damage, colour diagnostics and integer spatial budget
-runtime_probe.py Real model forward/input-gradient execution check
-temporal.py     Fixed SVD first-step temporal pathway (experimental)
-server.py / cli.py / static/publish.*   Product entry points
-lab.py / qualification.py / generation.py   Optional workshop
-organizer.py / sanitize.py / store.py / policy.py   Inherited clean foundation
-```
-
-Read [engine mathematics](docs/ENGINE-v03.md), [publication contracts](docs/PUBLISHING.md), [validation](docs/VALIDATION.md), and [next grouped work](docs/WAVE-03-HANDOFF.md). The prior detailed manual is preserved as [historical 0.2 documentation](docs/HISTORY-v02-README.md); current behaviour takes precedence where it changed.
-
-The 0.3 release executes real CPU autograd/codecs and UI/HTTP/storage operations on synthetic illustrations. Model-adapter tests use explicitly identified substitutes. No user's artwork was processed, no pretrained model was qualified, and no CUDA or native Windows/macOS launcher run occurred. Synthetic fixture values and screenshots are not AI-protection evidence.
+The previous CLI, README, validation and evidence are retained under `history/v0.3.0/`. All inherited image/backend modules except the package version and CLI entry remain byte-identical. No user artwork was used in development captures; previews show original synthetic geometric fixtures.
