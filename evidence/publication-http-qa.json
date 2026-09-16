@@ -1,0 +1,28 @@
+{
+  "passed": 16,
+  "checks": [
+    "actual loopback server delivers primary publishing interface",
+    "new primary assets served by installed routing",
+    "session required",
+    "current release identity and live state",
+    "no-store and self-only content policy",
+    "host, origin and cross-site requests rejected",
+    "actual organization checkpoint remains complete",
+    "live read-only publishing plan",
+    "both visual and unverified acknowledgments required",
+    "nine live image routes independently date-only audited",
+    "artifact-bound acceptance through real HTTP",
+    "download bytes match the reviewed publishing PNG exactly",
+    "optional helper receives same exact candidate",
+    "unknown processing view rejected",
+    "revocation affects subsequent live packs",
+    "safe request validation does not echo submitted paths"
+  ],
+  "transport": "Uvicorn subprocess; actual loopback TCP HTTP; httpx trust_env=False",
+  "browser": {
+    "status": "LOCALHOST_NAVIGATION_BLOCKED_BY_ENVIRONMENT",
+    "alternative": "separate actual-UI ASGI browser bridge tested"
+  },
+  "artwork": "synthetic fixtures only",
+  "ai_protection": "UNVERIFIED"
+}

@@ -25,3 +25,8 @@ No external font, analytics, image service or remote script is loaded. Screensho
 ## Next visual refinements
 
 Prioritize inspection of real high-resolution line art, pointer/stylus behavior on native Windows, long-running GPU jobs and genuine multi-frame outputs. Batch selection/protection queues and persisted review notes are not yet implemented. Do not bury failures to make the status surface appear cleaner, and do not sacrifice raster area to decorative lifecycle graphics.
+
+
+## 0.3 primary publishing surface
+
+The Sauce Labs-inspired continuous dark/mint/monospace direction is retained without another research dashboard. Library -> Protect & publish is the primary action. A compact master selection, independently rendered output grid, local model/quality settings and exact-file comparison/review lead directly to an approved-PNG download. The existing laboratory is explicitly named Workshop and reached secondarily for exact-output model testing. Native-pixel and actual codec previews live in the product, not behind the helper. The new page and review dialog are checked at desktop, 1024 px and 390 px; screenshots use explicitly labeled synthetic fixtures.

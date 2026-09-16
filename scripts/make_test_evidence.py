@@ -17,6 +17,8 @@ import riposte.models as models
 import riposte.generation as generation
 
 def run(root:Path):
+    if not (root / state_relative(root, "DEMO")).is_file():
+        raise RuntimeError("SYNTHETIC_DEMO_WORKSPACE_REQUIRED")
     import torch
     torch.set_num_threads(1)
     marker=safe_child(root,state_relative(root,'DEMO'))

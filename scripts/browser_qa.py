@@ -30,8 +30,11 @@ def run(output:Path, root:Path|None=None):
             html=(STATIC/'index.html').read_text()
             html=html.replace('<link rel="stylesheet" href="/static/style.css">','')
             html=html.replace('<script src="/static/app.js" defer></script>','')
+            html=html.replace('<script src="/static/publish.js" defer></script>','')
+            html=html.replace('<link rel="stylesheet" href="/static/publish.css">','')
             page.set_content(html)
             page.add_style_tag(content=(STATIC/'style.css').read_text())
+            page.add_style_tag(content=(STATIC/'publish.css').read_text())
             page.add_script_tag(content="""
                 Object.defineProperty(window,'sessionStorage',{value:{getItem:()=>
                     'browser-validation-only',setItem:()=>{}}});
@@ -42,6 +45,7 @@ def run(output:Path, root:Path|None=None):
                 };
             """)
             page.add_script_tag(content=(STATIC/'app.js').read_text())
+            page.add_script_tag(content=(STATIC/'publish.js').read_text())
         page.wait_for_selector('.art',timeout=10000)
         assert page.locator('.art').count()==6;checks.append('live catalog renders six fixture images')
         assert page.locator('#inspect-name').inner_text().endswith('.png');checks.append('selection populates inspector')

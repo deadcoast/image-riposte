@@ -67,6 +67,38 @@ class ExportRequest(StrictModel):
     trial_id: str
     acknowledge_unverified: bool = False
 
+class PublishRequest(StrictModel):
+    image_ids: list[str] = Field(min_length=1, max_length=200)
+    vae_directories: list[str] = Field(default_factory=list, max_length=4)
+    edges: list[int] = Field(default_factory=lambda: [1536], min_length=1, max_length=3)
+    epsilon: int = Field(default=4, ge=1, le=16)
+    steps: int = Field(default=24, ge=1, le=1000)
+    restarts: int = Field(default=2, ge=1, le=4)
+    seed: int = Field(default=7, ge=0, lt=2**32)
+    preserve_white: bool = True
+    delta_e76_p95: float = Field(default=6, ge=.1, le=40)
+    rms_fraction: float = Field(default=.95, ge=.1, le=1)
+    pipeline_directory: str = Field(default="", max_length=2048)
+    temporal_directory: str = Field(default="", max_length=2048)
+    device: Literal["auto", "cpu", "cuda", "mps"] = "auto"
+    plan_only: bool = False
+
+class ResumePublishRequest(StrictModel):
+    vae_directories: list[str] = Field(min_length=1, max_length=4)
+    pipeline_directory: str = Field(default="", max_length=2048)
+    temporal_directory: str = Field(default="", max_length=2048)
+    device: Literal["auto", "cpu", "cuda", "mps"] = "auto"
+
+class PublishReviewRequest(StrictModel):
+    item_ids: list[str] = Field(min_length=1, max_length=600)
+    decision: Literal["ACCEPTED", "REJECTED"] = "ACCEPTED"
+    visual_accepted: bool = False
+    acknowledge_unverified: bool = False
+
+class ExecutionRequest(StrictModel):
+    vae_directories: list[str] = Field(min_length=1, max_length=4)
+    device: Literal["auto", "cpu", "cuda", "mps"] = "auto"
+
 class Jobs:
     def __init__(self):
         self.pool = concurrent.futures.ThreadPoolExecutor(max_workers=1, thread_name_prefix="riposte")
@@ -158,7 +190,7 @@ def create_app(root: Path, token: str | None = None) -> FastAPI:
             if request.headers.get("sec-fetch-site") == "cross-site":
                 return JSONResponse({"code":"ORIGIN_REJECTED"},status_code=403)
             length=request.headers.get("content-length")
-            if length and (not length.isdigit() or int(length)>16384):
+            if length and (not length.isdigit() or int(length)>32768):
                 return JSONResponse({"code":"REQUEST_TOO_LARGE"},status_code=413)
         response=await call_next(request)
         response.headers.update({"Cache-Control":"no-store", "Referrer-Policy":"no-referrer",
@@ -183,7 +215,8 @@ def create_app(root: Path, token: str | None = None) -> FastAPI:
     @app.get("/api/state")
     def state():
         images=catalog(root)
-        return {"version":"0.2.0","images":images,"trials":trials(root),"jobs":app.state.jobs.snapshot(),
+        from .publication import publications
+        return {"version":"0.3.0","images":images,"trials":trials(root),"jobs":app.state.jobs.snapshot(),"publications":publications(root),
                 "privacy":"Local only • no telemetry • date-only image metadata","root_label":"Active artwork folder", "legacy_workspace":legacy_workspace(root), "demo":safe_child(root, state_relative(root,"DEMO")).is_file()}
     @app.get("/api/methods")
     def methods():
@@ -274,4 +307,62 @@ def create_app(root: Path, token: str | None = None) -> FastAPI:
         if any(job["state"] in {"queued", "running"} for job in app.state.jobs.snapshot()):
             raise RiposteError("JOB_ALREADY_RUNNING")
         return upgrade_workspace(root)
+    def model_paths(values):
+        if any(not isinstance(v, str) or not v.strip() or len(v) > 2048 for v in values):
+            raise RiposteError("LOCAL_MODEL_DIRECTORY_REQUIRED")
+        return [Path(v) for v in values]
+
+    @app.post("/api/publish")
+    def publish(body: PublishRequest):
+        from .publication import PublishRecipe, start_publication, publication_plan
+        from .quality import QualityLimits
+        from .release_guard import ReleaseConfig
+        recipe = PublishRecipe(tuple(body.edges), ReleaseConfig(steps=body.steps, restarts=body.restarts, seed=body.seed),
+                               QualityLimits(epsilon_255=body.epsilon, preserve_white=body.preserve_white,
+                                             delta_e76_p95=body.delta_e76_p95, rms_fraction=body.rms_fraction))
+        if body.plan_only:
+            return publication_plan(root, body.image_ids, recipe)
+        return app.state.jobs.start(start_publication, root=root, image_ids=body.image_ids,
+                                   vae_dirs=model_paths(body.vae_directories), recipe=recipe, device=body.device,
+                                   pipeline_dir=Path(body.pipeline_directory) if body.pipeline_directory else None,
+                                   temporal_dir=Path(body.temporal_directory) if body.temporal_directory else None)
+
+    @app.get("/api/publication/{batch_id}")
+    def publish_status(batch_id: str):
+        from .publication import publication_status
+        return publication_status(root, batch_id)
+
+    @app.post("/api/publication/{batch_id}/resume")
+    def publish_resume(batch_id: str, body: ResumePublishRequest):
+        from .publication import resume_publication
+        return app.state.jobs.start(resume_publication, root=root, batch_id=batch_id,
+                                   vae_dirs=model_paths(body.vae_directories), device=body.device,
+                                   pipeline_dir=Path(body.pipeline_directory) if body.pipeline_directory else None,
+                                   temporal_dir=Path(body.temporal_directory) if body.temporal_directory else None)
+
+    @app.post("/api/publication/{batch_id}/review")
+    def publish_review(batch_id: str, body: PublishReviewRequest):
+        from .publication import review_publication
+        return review_publication(root, batch_id, body.item_ids, body.decision, body.visual_accepted, body.acknowledge_unverified)
+
+    @app.get("/api/publication/{batch_id}/pack")
+    def publish_pack(batch_id: str):
+        from .publication import publication_zip
+        return Response(publication_zip(root, batch_id), media_type="application/zip",
+                        headers={"Content-Disposition": 'attachment; filename="RIPOSTE.zip"'})
+
+    @app.get("/api/publication/{batch_id}/image/{item_id}/{kind}")
+    def publish_image(batch_id: str, item_id: str, kind: str, thumb: bool = False, view: str = "identity"):
+        from .publication import publication_pixels
+        return Response(publication_pixels(root, batch_id, item_id, kind, thumb, view), media_type="image/png")
+
+    @app.post("/api/publication/{batch_id}/workshop/{item_id}")
+    def publication_workshop(batch_id: str, item_id: str):
+        from .publication import open_in_workshop
+        return open_in_workshop(root, batch_id, item_id)
+
+    @app.post("/api/execute-model")
+    def execute_model(body: ExecutionRequest):
+        from .runtime_probe import execute_local_probe
+        return app.state.jobs.start(execute_local_probe, vae_dirs=model_paths(body.vae_directories), device=body.device)
     return app

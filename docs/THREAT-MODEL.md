@@ -69,3 +69,8 @@ Model paths are transient operator inputs. Weight fingerprints identify local mo
 GPU/CPU tensors, framework caches, error behavior in third-party libraries and process memory are not forensic-erasure targets. The application avoids deliberately logging model/source paths in its own structured responses. Dependency diagnostic output under operator control can still mention local installation details; it is not embedded into artwork or normal catalog reports.
 
 This distinction is the central product boundary: **privacy sanitation is enforced now; broad AI-reuse resistance is the experimental objective, not a completed guarantee.**
+
+
+## 0.3 publishing extension
+
+The primary path adds numeric fidelity gates and exact-file review/export binding, not an efficacy certificate. Model paths are transient; only code-defined technical identities and cleaned-image hashes enter its records. Publishing packs contain accepted date-only PNGs only. Review receipts are local integrity relationships, not signatures against a hostile machine owner. Cancellation retains completed sanitized outputs; abrupt interruptions may require stale-lock inspection. Existing copies and previously downloaded packs cannot be erased remotely. The temporal branch measures first-step predicted-latent dynamics, not decoded-video suppression or text-guided protection. See PUBLISHING.md and ENGINE-v03.md.

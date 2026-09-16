@@ -1,0 +1,58 @@
+{
+  "base_archive_sha256": "8fca3b1bd2c439b0bd0af59b0a3866f38d794511e528eb96860fdbf4ebd6ea92",
+  "baseline_cases": 332,
+  "current_cases": 449,
+  "new_cases": 117,
+  "inherited_test_files_byte_identical": [
+    "test_v02_migration.py",
+    "test_benchmark.py",
+    "test_v02_coupled.py",
+    "test_optimizer.py",
+    "test_policy.py",
+    "conftest.py",
+    "test_v02_models.py",
+    "test_lab.py",
+    "test_server.py",
+    "test_v02_api_cli.py",
+    "test_v02_qualification.py",
+    "test_sanitize.py",
+    "test_v02_views.py",
+    "test_organizer.py",
+    "test_v02_generation.py"
+  ],
+  "new_package_files": [
+    "publication.py",
+    "quality.py",
+    "release_guard.py",
+    "runtime_probe.py",
+    "static/publish.css",
+    "static/publish.js",
+    "temporal.py"
+  ],
+  "modified_package_files": [
+    "__init__.py",
+    "cli.py",
+    "server.py",
+    "static/app.js",
+    "static/index.html"
+  ],
+  "unchanged_package_files": [
+    "__main__.py",
+    "benchmark.py",
+    "coupled.py",
+    "errors.py",
+    "generation.py",
+    "lab.py",
+    "methods.json",
+    "metrics.py",
+    "models.py",
+    "optimizer.py",
+    "organizer.py",
+    "policy.py",
+    "qualification.py",
+    "sanitize.py",
+    "static/style.css",
+    "store.py",
+    "views.py"
+  ]
+}

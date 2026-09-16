@@ -1,3 +1,5 @@
+> Current implementation extension: **RIPOSTE 0.3.0**. The main product is now Protect & publish. See PUBLISHING.md, ENGINE-v03.md and WAVE-03-HANDOFF.md for current behavior; the following foundation specification remains historical where it describes earlier delivery scope.
+
 # RIPOSTE — development specification
 
 **Release:** 0.2.0 · **Status:** integrated workbench, controlled qualification and experimental coupled engine; pretrained efficacy unqualified.

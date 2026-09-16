@@ -1,3 +1,7 @@
+# 0.3.0 — Main publishing product and temporal pathway
+
+Independent per-size batch protection; model reuse and execution probing; best-feasible quantized search with restarts; spatial/local-colour quality gates; interrupted-item resume; exact-byte reviewed PNG packs; optional SVD first-step temporal-energy objective; primary publishing UI and optional exact-output workshop handoff. No pretrained or CUDA efficacy claim. See ENGINE-v03.md and WAVE-03-HANDOFF.md.
+
 # Change log
 
 ## 0.2.0 — RIPOSTE / Wave 02

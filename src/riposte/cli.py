@@ -9,8 +9,8 @@ from .errors import RiposteError
 from .policy import Policy
 
 def main(argv=None) -> int:
-    parser=argparse.ArgumentParser(prog="riposte",description="RIPOSTE · local image security workbench")
-    parser.add_argument("--version",action="version",version="RIPOSTE 0.2.0")
+    parser=argparse.ArgumentParser(prog="riposte",description="RIPOSTE · local image protection and publication")
+    parser.add_argument("--version",action="version",version="RIPOSTE 0.3.0")
     subs=parser.add_subparsers(dest="command",required=True)
     organize=subs.add_parser("organize",help="Read-only plan by default; --apply replaces verified sources.")
     organize.add_argument("root",type=Path)
@@ -31,6 +31,7 @@ def main(argv=None) -> int:
     qualify.add_argument("--device", choices=["auto", "cpu", "cuda", "mps"], default="auto")
     doctor=subs.add_parser("doctor", help="Read-only local runtime and optional model-file preflight.")
     doctor.add_argument("--vae", type=Path)
+    doctor.add_argument("--execute", action="store_true", help="Execute the selected model and its input gradient; no download.")
     upgrade=subs.add_parser("upgrade", help="Explicitly rename legacy application state; artwork is not rewritten.")
     upgrade.add_argument("root", type=Path)
     compare=subs.add_parser("compare");compare.add_argument("root",type=Path);compare.add_argument("image_id");compare.add_argument("candidate",type=Path);compare.add_argument("--max-edge",type=int,default=1536);compare.add_argument("--method",default="external")
@@ -43,6 +44,39 @@ def main(argv=None) -> int:
     challenge.add_argument("--steps", type=int, default=25)
     challenge.add_argument("--seed", type=int, action="append")
     challenge.add_argument("--view", action="append")
+    publish=subs.add_parser("publish", help="Protect a batch at each final size; clean masters remain unchanged.")
+    publish.add_argument("root", type=Path)
+    selection=publish.add_mutually_exclusive_group(required=True)
+    selection.add_argument("--image", action="append")
+    selection.add_argument("--all", action="store_true")
+    publish.add_argument("--vae", type=Path, action="append", default=[])
+    publish.add_argument("--edge", type=int, action="append")
+    publish.add_argument("--epsilon", type=int, default=4)
+    publish.add_argument("--steps", type=int, default=24)
+    publish.add_argument("--restarts", type=int, default=2)
+    publish.add_argument("--seed", type=int, default=7)
+    publish.add_argument("--plan", action="store_true")
+    publish.add_argument("--preserve-white", action=argparse.BooleanOptionalAction, default=True)
+    publish.add_argument("--inpaint", type=Path)
+    publish.add_argument("--video", type=Path, help="Optional experimental SVD first-step temporal objective; not text-guided.")
+    publish.add_argument("--device", choices=["auto", "cpu", "cuda", "mps"], default="auto")
+    publish.add_argument("--delta-e76-p95", type=float, default=6.)
+    publish.add_argument("--rms-fraction", type=float, default=.95)
+    batches=subs.add_parser("publications", help="List publication batches or inspect a batch.")
+    batches.add_argument("root", type=Path); batches.add_argument("batch_id", nargs="?")
+    resume=subs.add_parser("resume", help="Retry unfinished publication work with matching model identities.")
+    resume.add_argument("root", type=Path); resume.add_argument("batch_id")
+    resume.add_argument("--vae", type=Path, action="append", required=True)
+    resume.add_argument("--inpaint", type=Path); resume.add_argument("--video", type=Path)
+    resume.add_argument("--device", choices=["auto", "cpu", "cuda", "mps"], default="auto")
+    review=subs.add_parser("review", help="Accept or reject exact publishing outputs; no efficacy claim is implied.")
+    review.add_argument("root", type=Path); review.add_argument("batch_id")
+    review.add_argument("--item", action="append", required=True)
+    review.add_argument("--decision", choices=["ACCEPTED", "REJECTED"], default="ACCEPTED")
+    review.add_argument("--visual-accepted", action="store_true")
+    review.add_argument("--acknowledge-unverified", action="store_true")
+    pack=subs.add_parser("package", help="Write approved date-only PNGs to a publishing ZIP, not a research archive.")
+    pack.add_argument("root", type=Path); pack.add_argument("batch_id")
     args=parser.parse_args(argv)
     try:
         if args.command=="organize":
@@ -80,8 +114,36 @@ def main(argv=None) -> int:
         elif args.command=="doctor":
             from .models import runtime_capabilities,inspect_vae
             result={"runtime":runtime_capabilities()}
-            if args.vae:
+            if args.vae and not args.execute:
                 result["model"]=inspect_vae(args.vae)
+            if args.execute:
+                if not args.vae: raise RiposteError("LOCAL_VAE_DIRECTORY_REQUIRED")
+                from .runtime_probe import execute_local_probe
+                result=execute_local_probe([args.vae])
+        elif args.command=="publish":
+            from .publication import PublishRecipe, publication_plan, start_publication
+            from .quality import QualityLimits
+            from .release_guard import ReleaseConfig
+            from .store import catalog
+            ids=[r["id"] for r in catalog(args.root)] if args.all else args.image
+            recipe=PublishRecipe(tuple(args.edge or (1536,)), ReleaseConfig(steps=args.steps, restarts=args.restarts, seed=args.seed),
+                                 QualityLimits(epsilon_255=args.epsilon, preserve_white=args.preserve_white,
+                                               delta_e76_p95=args.delta_e76_p95, rms_fraction=args.rms_fraction))
+            result=(publication_plan(args.root, ids, recipe) if args.plan else
+                    start_publication(args.root, ids, args.vae, recipe, device=args.device,
+                                      pipeline_dir=args.inpaint, temporal_dir=args.video))
+        elif args.command=="publications":
+            from .publication import publication_status, publications
+            result=publication_status(args.root, args.batch_id) if args.batch_id else publications(args.root)
+        elif args.command=="resume":
+            from .publication import resume_publication
+            result=resume_publication(args.root, args.batch_id, args.vae, device=args.device, pipeline_dir=args.inpaint, temporal_dir=args.video)
+        elif args.command=="review":
+            from .publication import review_publication
+            result=review_publication(args.root, args.batch_id, args.item, args.decision, args.visual_accepted, args.acknowledge_unverified)
+        elif args.command=="package":
+            from .publication import export_publication
+            result=export_publication(args.root, args.batch_id)
         elif args.command=="upgrade":
             from .store import upgrade_workspace
             result=upgrade_workspace(args.root)

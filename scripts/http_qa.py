@@ -26,7 +26,7 @@ def run(root:Path,output:Path):
             assert client.get('/api/state').status_code==401;checks.append('real listener requires session token')
             client.headers['X-Riposte-Token']=token
             response=client.get('/api/state');state=response.json()
-            assert response.status_code==200 and state['version']=='0.2.0' and len(state['images'])==6;checks.append('authorized live catalog')
+            assert response.status_code==200 and state['version']=='0.3.0' and len(state['images'])==6;checks.append('authorized live catalog')
             assert response.headers['cache-control']=='no-store';checks.append('no-store response policy')
             assert "default-src 'self'" in response.headers['content-security-policy'];checks.append('self-only application content policy')
             assert client.get('/api/state',headers={'Origin':'https://untrusted.invalid'}).status_code==403;checks.append('cross-origin requests rejected')
