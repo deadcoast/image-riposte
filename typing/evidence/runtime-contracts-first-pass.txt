@@ -1,0 +1,44 @@
+test_incomplete_organization_records (__main__.ContractFixtures.test_incomplete_organization_records) ... ok
+test_operation_callback_and_form_contracts (__main__.ContractFixtures.test_operation_callback_and_form_contracts) ... FAIL
+test_organization_catalog_and_image_selection (__main__.ContractFixtures.test_organization_catalog_and_image_selection) ... ok
+test_png_fidelity_quality_and_budget (__main__.ContractFixtures.test_png_fidelity_quality_and_budget) ... ok
+test_runtime_and_preflight_shapes_without_model_loading (__main__.ContractFixtures.test_runtime_and_preflight_shapes_without_model_loading) ... ok
+test_synthetic_publication_pending_and_blocked_shapes (__main__.ContractFixtures.test_synthetic_publication_pending_and_blocked_shapes) ... ERROR
+test_synthetic_publication_ready_and_export_shape (__main__.ContractFixtures.test_synthetic_publication_ready_and_export_shape) ... ok
+test_upgrade_optional_fields (__main__.ContractFixtures.test_upgrade_optional_fields) ... ok
+test_validator_rejects_drift (__main__.ContractFixtures.test_validator_rejects_drift) ... ok
+
+======================================================================
+ERROR: test_synthetic_publication_pending_and_blocked_shapes (__main__.ContractFixtures.test_synthetic_publication_pending_and_blocked_shapes)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ryanf\github\_new\image-riposte\typing\runtime_contracts.py", line 188, in test_synthetic_publication_pending_and_blocked_shapes
+    batch_id, item_id, prefix = self.fixture_batch()
+                                ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\ryanf\github\_new\image-riposte\typing\runtime_contracts.py", line 174, in fixture_batch
+    planned = publication.publication_plan(self.root, [row["id"]], recipe)
+  File "C:\Users\ryanf\github\_new\image-riposte\src\riposte\publication.py", line 95, in publication_plan
+    _checkpoint(root)
+    ~~~~~~~~~~~^^^^^^
+  File "C:\Users\ryanf\github\_new\image-riposte\src\riposte\publication.py", line 87, in _checkpoint
+    raise RiposteError("ORGANIZATION_CHECKPOINT_REQUIRED")
+riposte.errors.RiposteError: ORGANIZATION_CHECKPOINT_REQUIRED
+
+======================================================================
+FAIL: test_operation_callback_and_form_contracts (__main__.ContractFixtures.test_operation_callback_and_form_contracts)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ryanf\github\_new\image-riposte\typing\runtime_contracts.py", line 245, in test_operation_callback_and_form_contracts
+    matches(request.values, RECORDS.RequestValues)
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ryanf\github\_new\image-riposte\typing\runtime_contracts.py", line 56, in matches
+    matches(item, hints[key], f"{label}.{key}")
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ryanf\github\_new\image-riposte\typing\runtime_contracts.py", line 68, in matches
+    raise AssertionError(f"{label}: {value!r} does not match {expected}")
+AssertionError: result.inpaint: '' does not match pathlib._local.Path | None
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.829s
+
+FAILED (failures=1, errors=1)

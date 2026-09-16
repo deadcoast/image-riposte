@@ -1,0 +1,13 @@
+# Source-derived external stub; see typing/README.md for scope.
+from _riposte_types import FidelityReport, TransportReport
+from .errors import RiposteError as RiposteError
+from PIL import Image
+TRANSFORMS: tuple[str, ...]
+
+def transform(image: Image.Image, name: str) -> Image.Image: ...
+
+def fidelity(clean: Image.Image, candidate: Image.Image) -> FidelityReport: ...
+
+def transport_report(clean: Image.Image, candidate: Image.Image) -> TransportReport: ...
+
+def difference_image(clean: Image.Image, candidate: Image.Image, gain: int=12) -> Image.Image: ...

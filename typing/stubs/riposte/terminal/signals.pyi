@@ -1,0 +1,6 @@
+# Source-derived external stub; see typing/README.md for scope.
+from contextlib import AbstractContextManager
+
+class TerminationRequested(BaseException): ...
+
+def termination_guard() -> AbstractContextManager[None]: ...

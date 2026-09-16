@@ -1,0 +1,39 @@
+# Source-derived external stub; see typing/README.md for scope.
+from pathlib import Path
+from PIL.Image import Image as _Image
+from _riposte_types import SizeBin, DateSource
+import os
+import re
+from .errors import RiposteError as RiposteError
+from dataclasses import dataclass
+MONTHS: tuple[str, ...]
+YEARS: tuple[str, ...]
+BINS: tuple[SizeBin, ...]
+FORMAT_NAMES: frozenset[str]
+IMAGE_SUFFIXES: frozenset[str]
+SIDECAR_SUFFIXES: frozenset[str]
+CACHE_NAMES: frozenset[str]
+CANONICAL: re.Pattern[str]
+
+@dataclass(frozen=True)
+class Policy:
+    date_mode: str = ...
+    max_pixels: int = ...
+    max_file_bytes: int = ...
+    discard_sidecars: bool = ...
+
+    def __post_init__(self) -> None: ...
+
+def size_bin(width: int, height: int) -> SizeBin: ...
+
+def valid_day(value: str) -> str: ...
+
+def extract_day(image: _Image, stat: os.stat_result, mode: str) -> tuple[str, DateSource]: ...
+
+def folder_for(day: str, width: int, height: int) -> Path: ...
+
+def is_link(path: Path) -> bool: ...
+
+def same_file_state(a: os.stat_result, b: os.stat_result) -> bool: ...
+
+def canonical_path(value: str) -> str: ...

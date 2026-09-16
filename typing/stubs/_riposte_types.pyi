@@ -1,0 +1,279 @@
+"""Type-only records derived from source; never import this module at runtime.
+
+Report and ModelTensor mark unresolved dynamic JSON and optional ML boundaries.
+They do not certify report validation, tensor shapes, or model execution.
+"""
+from collections.abc import Callable, Sequence
+from pathlib import Path
+from typing import Any, Literal, NotRequired, Protocol, TypeAlias, TypedDict, TypeVar
+
+JSONValue: TypeAlias = None | bool | int | float | str | list[JSONValue] | dict[str, JSONValue]
+Report: TypeAlias = dict[str, Any]
+ModelTensor: TypeAlias = Any
+SizeBin: TypeAlias = Literal["SML", "MED", "LRG", "XTL"]
+DateSource: TypeAlias = Literal["embedded", "filesystem_creation", "filesystem_modified"]
+# The existing "words" parser preserves sequence elements without coercion.
+FormValue: TypeAlias = str | bool | int | float | tuple[object, ...]
+
+class ProgressEvent(TypedDict, total=False):
+    phase: str
+    processed: int
+    total: int
+    item: int
+    items: int
+    branch: int
+    branches: int
+    batch_id: str
+    state: str
+
+Progress: TypeAlias = Callable[[ProgressEvent], None]
+
+class PngAudit(TypedDict):
+    date: str
+    width: int
+    height: int
+    chunks: list[str]
+    metadata: Literal["DATE_ONLY"]
+    sha256: str
+
+class CatalogRow(TypedDict):
+    id: str
+    relative: str
+    day: str
+    date_source: str
+    width: int
+    height: int
+    sha256: str
+    bytes: int
+
+class OrganizationPlan(TypedDict):
+    mode: Literal["READ_ONLY"]
+    counts: dict[str, int]
+    destinations: dict[str, int]
+    blockers: dict[str, int]
+    ready: bool
+    source_policy: str
+
+class OrganizationReport(TypedDict):
+    mode: Literal["APPLY"]
+    counts: dict[str, int]
+    blockers: dict[str, int]
+    unmanaged_or_changed_remaining: int
+    checkpoint: Literal["COMPLETE", "INCOMPLETE"]
+    metadata_policy: Literal["DATE_ONLY"]
+    source_backups: Literal["NONE"]
+
+class WorkspaceAudit(TypedDict):
+    checkpoint: Literal["COMPLETE", "INCOMPLETE"]
+    verified_images: int
+    verified_artifacts: int
+    blockers: dict[str, int]
+    metadata_policy: Literal["DATE_ONLY"]
+    ai_protection: Literal["NOT_ESTABLISHED_BY_METADATA_AUDIT"]
+
+class UpgradeReport(TypedDict):
+    mode: Literal["STATE_UPGRADE"]
+    status: Literal["ALREADY_CURRENT", "UPGRADED"]
+    artwork_rewritten: Literal[0]
+    catalog_ids_preserved: NotRequired[Literal[True]]
+    state_directory: NotRequired[Literal[".riposte"]]
+
+class FidelityReport(TypedDict):
+    psnr_db: float | None
+    identical_pixels: bool
+    rmse_255: float
+    max_channel_delta_255: int
+    mean_channel_delta_255: float
+    edge_error_255: float
+
+class TransportRow(FidelityReport):
+    transform: str
+
+class TransportReport(TypedDict):
+    evidence_level: Literal["PIXEL_TRANSPORT_ONLY"]
+    ai_protection: Literal["UNVERIFIED"]
+    profiles: str
+    rows: list[TransportRow]
+
+class QualityPolicy(TypedDict):
+    epsilon_255: int
+    preserve_white: bool
+    rms_fraction: float
+    delta_e76_p95: float
+    tile_size: int
+
+class QualityReport(FidelityReport):
+    status: Literal["PASS", "BLOCKED"]
+    policy: QualityPolicy
+    blockers: list[str]
+    worst_tile_rmse_255: float
+    delta_e76_p95: float
+    budget_violating_pixels: int
+    protected_pixels_changed: int
+    visual_approval: Literal["REQUIRED"]
+    ai_protection: Literal["UNVERIFIED"]
+    scope: str
+
+class ReleaseSettings(TypedDict):
+    steps: int
+    restarts: int
+    seed: int
+    step_255: float
+    checkpoint_every: int
+    frequency_weight: float
+
+class RecipeRecord(TypedDict):
+    edges: tuple[int, ...]
+    guard: ReleaseSettings
+    quality: QualityPolicy
+
+class PublicationTask(TypedDict):
+    image_id: str
+    date: str
+    max_edge: int
+    source_clean_sha256: str
+    index: int
+
+class PublicationPlan(TypedDict):
+    mode: Literal["PUBLICATION_PLAN"]
+    images: int
+    outputs: int
+    duplicate_renders_avoided: int
+    tasks: list[PublicationTask]
+    recipe: RecipeRecord
+    master_changes: Literal[0]
+    ai_protection: Literal["UNVERIFIED"]
+    writes: Literal[False]
+
+class PublicationItem(TypedDict):
+    id: str
+    image_id: str
+    max_edge: int
+    date: str
+    status: Literal["PENDING", "READY_FOR_REVIEW", "BLOCKED"]
+    review: str
+    relative: NotRequired[str]
+    width: NotRequired[int]
+    height: NotRequired[int]
+    quality: NotRequired[QualityReport]
+    artifact_sha256: NotRequired[dict[str, str]]
+    transport: NotRequired[TransportReport]
+    code: NotRequired[str]
+
+class PublicationSummary(TypedDict):
+    id: str
+    sequence: int
+    status: str
+    counts: dict[str, int]
+    ai_protection: Literal["UNVERIFIED"]
+
+class PublicationBatch(PublicationSummary):
+    mode: Literal["PUBLICATION_BATCH"]
+    items: list[PublicationItem]
+    recipe: Report
+    master_changes: Literal[0]
+    duplicate_renders_avoided: int
+
+class PublicationExport(TypedDict):
+    relative: str
+    bytes: int
+    sha256: str
+    contents: Literal["APPROVED_DATE_ONLY_PNGS"]
+    ai_protection: Literal["UNVERIFIED"]
+
+class ImageInfo(PngAudit):
+    mode: Literal["VERIFIED_IMAGE"]
+    viewer: Literal["NOT_OPENED", "HANDOFF_REQUESTED"]
+    relative: NotRequired[str]
+
+class RequestValues(TypedDict, total=False):
+    image_id: str
+    image_ids: list[str] | tuple[str, ...]
+    all_images: bool
+    batch_id: str | None
+    item_id: str
+    item_ids: list[str] | tuple[str, ...]
+    trial_id: str | None
+    run_id: str
+    relative: str
+    vae_dirs: Sequence[Path | str]
+    model: Path | str
+    candidate: Path | str
+    inpaint: Path | str | None
+    video: Path | str | None
+    edges: list[int] | tuple[int, ...]
+    epsilon: int
+    steps: int
+    restarts: int
+    seed: int
+    seeds: list[int] | tuple[int, ...]
+    views: list[str] | tuple[str, ...]
+    max_edge: int
+    device: str
+    engine: str
+    task: str
+    method: str
+    date_mode: str
+    discard_sidecars: bool
+    preserve_white: bool
+    delta_e76_p95: float
+    rms_fraction: float
+    decision: str
+    visual_accepted: bool
+    acknowledge_unverified: bool
+    execute: bool
+    kind: str
+    view: str
+    open_viewer: bool
+    year: str | None
+    month: str | int | None
+    size: str | None
+    search: str
+    limit: int | None
+    offset: int
+
+class Encoder(Protocol):
+    def __call__(self, x: ModelTensor, /) -> ModelTensor: ...
+
+EncoderT = TypeVar("EncoderT", bound=Encoder)
+
+class InpaintProbe(Protocol):
+    def __call__(self, x: ModelTensor, keep: ModelTensor, seed: int,
+                 early_fraction: float, prompt_key: str, /) -> ModelTensor: ...
+
+class TemporalProbe(Protocol):
+    def __call__(self, x: ModelTensor, seed: int, /) -> ModelTensor: ...
+
+class ContentFilterFlags(TypedDict):
+    content_filter_reported: bool
+    content_filter_flags: list[bool] | None
+
+class JobStarted(TypedDict):
+    job_id: str
+
+class JobCancelled(TypedDict):
+    status: Literal["CANCEL_REQUESTED"]
+    boundary: Literal["NEXT_MODEL_OR_ITERATION_CHECKPOINT"]
+
+class VaeInspection(TypedDict):
+    kind: str
+    weights_format: Literal["safetensors"]
+    weight_files: int
+    weight_bytes: int
+    scope: Literal["DISTILLED_ENCODER_PROXY", "ENCODER_PROXY"]
+    preflight: Literal["FILES_PRESENT_NOT_EXECUTED"]
+    ai_protection: Literal["UNVERIFIED"]
+    weights_sha256: NotRequired[str]
+
+class RuntimeCapabilities(TypedDict):
+    versions: dict[str, str]
+    missing: list[str]
+    cpu: Literal[True]
+    cuda: bool
+    mps: bool
+    recommended_device: str
+    model_loading: Literal["EXPLICIT_LOCAL_ONLY"]
+    privacy: Literal["NO_IMAGE_UPLOADS"]
+    pretrained_qualification: Literal["NOT_IMPLIED_BY_PREFLIGHT"]
+    cuda_memory_mib: NotRequired[dict[str, int]]
+    runtime_code: NotRequired[str]

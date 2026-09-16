@@ -1,0 +1,15 @@
+typing\stubs\riposte\terminal\help.pyi:19:27: error: Argument 1 of "format_help" is incompatible with supertype "typer.core.TyperCommand"; supertype defines the argument type as "Context"  [override]
+typing\stubs\riposte\terminal\help.pyi:19:27: note: This violates the Liskov substitution principle
+typing\stubs\riposte\terminal\help.pyi:19:27: note: See https://mypy.readthedocs.io/en/stable/common_issues.html#incompatible-overrides
+typing\stubs\riposte\terminal\help.pyi:19:27: error: Argument 1 of "format_help" is incompatible with supertype "typer._click.core.Command"; supertype defines the argument type as "Context"  [override]
+typing\stubs\riposte\terminal\help.pyi:19:41: error: Argument 2 of "format_help" is incompatible with supertype "typer.core.TyperCommand"; supertype defines the argument type as "HelpFormatter"  [override]
+typing\stubs\riposte\terminal\help.pyi:19:41: error: Argument 2 of "format_help" is incompatible with supertype "typer._click.core.Command"; supertype defines the argument type as "HelpFormatter"  [override]
+typing\stubs\riposte\terminal\help.pyi:24:27: error: Argument 1 of "format_help" is incompatible with supertype "typer.core.TyperGroup"; supertype defines the argument type as "Context"  [override]
+typing\stubs\riposte\terminal\help.pyi:24:27: note: This violates the Liskov substitution principle
+typing\stubs\riposte\terminal\help.pyi:24:27: note: See https://mypy.readthedocs.io/en/stable/common_issues.html#incompatible-overrides
+typing\stubs\riposte\terminal\help.pyi:24:27: error: Argument 1 of "format_help" is incompatible with supertype "typer._click.core.Command"; supertype defines the argument type as "Context"  [override]
+typing\stubs\riposte\terminal\help.pyi:24:41: error: Argument 2 of "format_help" is incompatible with supertype "typer.core.TyperGroup"; supertype defines the argument type as "HelpFormatter"  [override]
+typing\stubs\riposte\terminal\help.pyi:24:41: error: Argument 2 of "format_help" is incompatible with supertype "typer._click.core.Command"; supertype defines the argument type as "HelpFormatter"  [override]
+typing\stubs\riposte\server.pyi:26:5: error: Cannot override class variable (previously declared on base class "BaseModel") with instance variable  [misc]
+typing\stubs\riposte\terminal\service.pyi:23:29: error: Incompatible types in assignment (expression has type "dict[Never, Never]", variable has type "RequestValues")  [assignment]
+Found 10 errors in 3 files (checked 39 source files)

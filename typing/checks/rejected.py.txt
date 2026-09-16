@@ -1,0 +1,22 @@
+from pathlib import Path
+from _riposte_types import ProgressEvent
+from riposte.metrics import fidelity
+from riposte.publication import PublishRecipe, publication_zip
+from riposte.sanitize import png_audit
+from riposte.terminal.jobs import Operation
+from riposte.terminal.service import Request, select_rows
+from riposte.terminal.surface import Surface
+
+root = Path("example")
+png_audit("not bytes")  # error: arg-type
+size: str = png_audit(b"")["width"]  # error: assignment
+png_audit(b"")["original_filename"]  # error: typeddict-item
+PublishRecipe(edges=[64])  # error: arg-type
+select_rows(root, limit="ten")  # error: arg-type
+Request("publish", root, {"steps": "many"})  # error: typeddict-item
+Request("publish", root, {"unknown_option": True})  # error: typeddict-unknown-key
+Surface(80, 24).put("x", 0, "*")  # error: arg-type
+package: str = publication_zip(root, "id")  # error: assignment
+event: ProgressEvent = {"processed": "1"}  # error: typeddict-item
+Operation(Request("doctor")).progress({"total": "20"})  # error: typeddict-item
+fidelity("not an image", "not an image")  # error: arg-type,arg-type

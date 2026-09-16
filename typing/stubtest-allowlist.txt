@@ -1,0 +1,11 @@
+# mypy 2.3.1 compares the erased type aliases against typing.Annotated objects.
+# The runtime aliases carry Typer ArgumentInfo/OptionInfo metadata; the types
+# remain Path and list[Path] | None. Consumer tests exercise both aliases.
+riposte.cli.Root
+riposte.cli.Vae
+# Typer replaces these ArgumentInfo default sentinels with optional strings
+# during command invocation. Preserve the source's Optional[str] annotations.
+# These exceptions cover default-value introspection only; AST parity still
+# checks their complete argument names, kinds, and presence of defaults.
+riposte.cli.trials
+riposte.cli.workshop

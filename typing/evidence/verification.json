@@ -1,0 +1,24 @@
+{
+  "scope": "External declarations, consumer typing, signatures, and offline record fixtures; not source-body or model-execution certification",
+  "python": "3.13.9 (main, Oct 14 2025, 21:22:32) [MSC v.1944 64 bit (AMD64)]",
+  "versions": {
+    "mypy": "2.3.1",
+    "numpy": "2.5.3",
+    "Pillow": "12.3.0",
+    "typer": "0.26.8",
+    "fastapi": "0.141.1",
+    "rich": "15.0.0"
+  },
+  "source_files": 50,
+  "source_signatures": 286,
+  "stubtest_leaf_modules": 35,
+  "stubtest_allowlist_entries": 4,
+  "dynamic_declarations": 89,
+  "results": {
+    "mypy-contracts": true,
+    "stubtest": true,
+    "runtime-contracts": true,
+    "negative-consumers": true,
+    "source-stable": true
+  }
+}

@@ -1,0 +1,7 @@
+error: not checking stubs due to failed mypy compile:
+typing\stubs\riposte\benchmark.pyi: error: Duplicate module named "riposte.benchmark" (also at "C:\Users\ryanf\github\_new\image-riposte\typing\stubs\riposte\benchmark.pyi")
+typing\stubs\riposte\benchmark.pyi: note: See https://mypy.readthedocs.io/en/stable/running_mypy.html#mapping-file-paths-to-modules for more info
+typing\stubs\riposte\benchmark.pyi: note: Common resolutions include:
+typing\stubs\riposte\benchmark.pyi: note:     a) using `--exclude` to avoid checking one of them,
+typing\stubs\riposte\benchmark.pyi: note:     b) adding `__init__.py` somewhere,
+typing\stubs\riposte\benchmark.pyi: note:     c) using `--explicit-package-bases` or adjusting `MYPYPATH`

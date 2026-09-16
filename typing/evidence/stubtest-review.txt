@@ -1,0 +1,199 @@
+error: riposte.cli.DateMode.__new__ is inconsistent, stub parameter "object" differs from runtime parameter "value"
+Stub: in file C:\Users\ryanf\github\_new\image-riposte\typing\stubs\riposte\cli.pyi:488
+Overload(def [Self <: str] (cls: type[Self], object: object =) -> Self, def [Self <: str] (cls: type[Self], object: _collections_abc.Buffer, encoding: str =, errors: str =) -> Self)
+Inferred signature: def (cls: type[Self], object: object = ..., encoding: str = ..., errors: str = ...)
+Runtime: in file C:\Users\ryanf\AppData\Roaming\uv\python\cpython-3.13.9-windows-x86_64-none\Lib\enum.py:1156
+def (cls, value)
+
+error: riposte.cli.DateMode.__new__ is inconsistent, stub parameter "object" has a default value but runtime parameter does not
+Stub: in file C:\Users\ryanf\github\_new\image-riposte\typing\stubs\riposte\cli.pyi:488
+Overload(def [Self <: str] (cls: type[Self], object: object =) -> Self, def [Self <: str] (cls: type[Self], object: _collections_abc.Buffer, encoding: str =, errors: str =) -> Self)
+Inferred signature: def (cls: type[Self], object: object = ..., encoding: str = ..., errors: str = ...)
+Runtime: in file C:\Users\ryanf\AppData\Roaming\uv\python\cpython-3.13.9-windows-x86_64-none\Lib\enum.py:1156
+def (cls, value)
+
+error: riposte.cli.DateMode.__new__ is inconsistent, runtime does not have parameter "encoding"
+Stub: in file C:\Users\ryanf\github\_new\image-riposte\typing\stubs\riposte\cli.pyi:488
+Overload(def [Self <: str] (cls: type[Self], object: object =) -> Self, def [Self <: str] (cls: type[Self], object: _collections_abc.Buffer, encoding: str =, errors: str =) -> Self)
+Inferred signature: def (cls: type[Self], object: object = ..., encoding: str = ..., errors: str = ...)
+Runtime: in file C:\Users\ryanf\AppData\Roaming\uv\python\cpython-3.13.9-windows-x86_64-none\Lib\enum.py:1156
+def (cls, value)
+
+error: riposte.cli.DateMode.__new__ is inconsistent, runtime does not have parameter "errors"
+Stub: in file C:\Users\ryanf\github\_new\image-riposte\typing\stubs\riposte\cli.pyi:488
+Overload(def [Self <: str] (cls: type[Self], object: object =) -> Self, def [Self <: str] (cls: type[Self], object: _collections_abc.Buffer, encoding: str =, errors: str =) -> Self)
+Inferred signature: def (cls: type[Self], object: object = ..., encoding: str = ..., errors: str = ...)
+Runtime: in file C:\Users\ryanf\AppData\Roaming\uv\python\cpython-3.13.9-windows-x86_64-none\Lib\enum.py:1156
+def (cls, value)
+
+error: riposte.cli.Decision.__new__ is inconsistent, stub parameter "object" differs from runtime parameter "value"
+Stub: in file C:\Users\ryanf\github\_new\image-riposte\typing\stubs\riposte\cli.pyi:488
+Overload(def [Self <: str] (cls: type[Self], object: object =) -> Self, def [Self <: str] (cls: type[Self], object: _collections_abc.Buffer, encoding: str =, errors: str =) -> Self)
+Inferred signature: def (cls: type[Self], object: object = ..., encoding: str = ..., errors: str = ...)
+Runtime: in file C:\Users\ryanf\AppData\Roaming\uv\python\cpython-3.13.9-windows-x86_64-none\Lib\enum.py:1156
+def (cls, value)
+
+error: riposte.cli.Decision.__new__ is inconsistent, stub parameter "object" has a default value but runtime parameter does not
+Stub: in file C:\Users\ryanf\github\_new\image-riposte\typing\stubs\riposte\cli.pyi:488
+Overload(def [Self <: str] (cls: type[Self], object: object =) -> Self, def [Self <: str] (cls: type[Self], object: _collections_abc.Buffer, encoding: str =, errors: str =) -> Self)
+Inferred signature: def (cls: type[Self], object: object = ..., encoding: str = ..., errors: str = ...)
+Runtime: in file C:\Users\ryanf\AppData\Roaming\uv\python\cpython-3.13.9-windows-x86_64-none\Lib\enum.py:1156
+def (cls, value)
+
+error: riposte.cli.Decision.__new__ is inconsistent, runtime does not have parameter "encoding"
+Stub: in file C:\Users\ryanf\github\_new\image-riposte\typing\stubs\riposte\cli.pyi:488
+Overload(def [Self <: str] (cls: type[Self], object: object =) -> Self, def [Self <: str] (cls: type[Self], object: _collections_abc.Buffer, encoding: str =, errors: str =) -> Self)
+Inferred signature: def (cls: type[Self], object: object = ..., encoding: str = ..., errors: str = ...)
+Runtime: in file C:\Users\ryanf\AppData\Roaming\uv\python\cpython-3.13.9-windows-x86_64-none\Lib\enum.py:1156
+def (cls, value)
+
+error: riposte.cli.Decision.__new__ is inconsistent, runtime does not have parameter "errors"
+Stub: in file C:\Users\ryanf\github\_new\image-riposte\typing\stubs\riposte\cli.pyi:488
+Overload(def [Self <: str] (cls: type[Self], object: object =) -> Self, def [Self <: str] (cls: type[Self], object: _collections_abc.Buffer, encoding: str =, errors: str =) -> Self)
+Inferred signature: def (cls: type[Self], object: object = ..., encoding: str = ..., errors: str = ...)
+Runtime: in file C:\Users\ryanf\AppData\Roaming\uv\python\cpython-3.13.9-windows-x86_64-none\Lib\enum.py:1156
+def (cls, value)
+
+error: riposte.cli.Device.__new__ is inconsistent, stub parameter "object" differs from runtime parameter "value"
+Stub: in file C:\Users\ryanf\github\_new\image-riposte\typing\stubs\riposte\cli.pyi:488
+Overload(def [Self <: str] (cls: type[Self], object: object =) -> Self, def [Self <: str] (cls: type[Self], object: _collections_abc.Buffer, encoding: str =, errors: str =) -> Self)
+Inferred signature: def (cls: type[Self], object: object = ..., encoding: str = ..., errors: str = ...)
+Runtime: in file C:\Users\ryanf\AppData\Roaming\uv\python\cpython-3.13.9-windows-x86_64-none\Lib\enum.py:1156
+def (cls, value)
+
+error: riposte.cli.Device.__new__ is inconsistent, stub parameter "object" has a default value but runtime parameter does not
+Stub: in file C:\Users\ryanf\github\_new\image-riposte\typing\stubs\riposte\cli.pyi:488
+Overload(def [Self <: str] (cls: type[Self], object: object =) -> Self, def [Self <: str] (cls: type[Self], object: _collections_abc.Buffer, encoding: str =, errors: str =) -> Self)
+Inferred signature: def (cls: type[Self], object: object = ..., encoding: str = ..., errors: str = ...)
+Runtime: in file C:\Users\ryanf\AppData\Roaming\uv\python\cpython-3.13.9-windows-x86_64-none\Lib\enum.py:1156
+def (cls, value)
+
+error: riposte.cli.Device.__new__ is inconsistent, runtime does not have parameter "encoding"
+Stub: in file C:\Users\ryanf\github\_new\image-riposte\typing\stubs\riposte\cli.pyi:488
+Overload(def [Self <: str] (cls: type[Self], object: object =) -> Self, def [Self <: str] (cls: type[Self], object: _collections_abc.Buffer, encoding: str =, errors: str =) -> Self)
+Inferred signature: def (cls: type[Self], object: object = ..., encoding: str = ..., errors: str = ...)
+Runtime: in file C:\Users\ryanf\AppData\Roaming\uv\python\cpython-3.13.9-windows-x86_64-none\Lib\enum.py:1156
+def (cls, value)
+
+error: riposte.cli.Device.__new__ is inconsistent, runtime does not have parameter "errors"
+Stub: in file C:\Users\ryanf\github\_new\image-riposte\typing\stubs\riposte\cli.pyi:488
+Overload(def [Self <: str] (cls: type[Self], object: object =) -> Self, def [Self <: str] (cls: type[Self], object: _collections_abc.Buffer, encoding: str =, errors: str =) -> Self)
+Inferred signature: def (cls: type[Self], object: object = ..., encoding: str = ..., errors: str = ...)
+Runtime: in file C:\Users\ryanf\AppData\Roaming\uv\python\cpython-3.13.9-windows-x86_64-none\Lib\enum.py:1156
+def (cls, value)
+
+error: riposte.cli.Engine.__new__ is inconsistent, stub parameter "object" differs from runtime parameter "value"
+Stub: in file C:\Users\ryanf\github\_new\image-riposte\typing\stubs\riposte\cli.pyi:488
+Overload(def [Self <: str] (cls: type[Self], object: object =) -> Self, def [Self <: str] (cls: type[Self], object: _collections_abc.Buffer, encoding: str =, errors: str =) -> Self)
+Inferred signature: def (cls: type[Self], object: object = ..., encoding: str = ..., errors: str = ...)
+Runtime: in file C:\Users\ryanf\AppData\Roaming\uv\python\cpython-3.13.9-windows-x86_64-none\Lib\enum.py:1156
+def (cls, value)
+
+error: riposte.cli.Engine.__new__ is inconsistent, stub parameter "object" has a default value but runtime parameter does not
+Stub: in file C:\Users\ryanf\github\_new\image-riposte\typing\stubs\riposte\cli.pyi:488
+Overload(def [Self <: str] (cls: type[Self], object: object =) -> Self, def [Self <: str] (cls: type[Self], object: _collections_abc.Buffer, encoding: str =, errors: str =) -> Self)
+Inferred signature: def (cls: type[Self], object: object = ..., encoding: str = ..., errors: str = ...)
+Runtime: in file C:\Users\ryanf\AppData\Roaming\uv\python\cpython-3.13.9-windows-x86_64-none\Lib\enum.py:1156
+def (cls, value)
+
+error: riposte.cli.Engine.__new__ is inconsistent, runtime does not have parameter "encoding"
+Stub: in file C:\Users\ryanf\github\_new\image-riposte\typing\stubs\riposte\cli.pyi:488
+Overload(def [Self <: str] (cls: type[Self], object: object =) -> Self, def [Self <: str] (cls: type[Self], object: _collections_abc.Buffer, encoding: str =, errors: str =) -> Self)
+Inferred signature: def (cls: type[Self], object: object = ..., encoding: str = ..., errors: str = ...)
+Runtime: in file C:\Users\ryanf\AppData\Roaming\uv\python\cpython-3.13.9-windows-x86_64-none\Lib\enum.py:1156
+def (cls, value)
+
+error: riposte.cli.Engine.__new__ is inconsistent, runtime does not have parameter "errors"
+Stub: in file C:\Users\ryanf\github\_new\image-riposte\typing\stubs\riposte\cli.pyi:488
+Overload(def [Self <: str] (cls: type[Self], object: object =) -> Self, def [Self <: str] (cls: type[Self], object: _collections_abc.Buffer, encoding: str =, errors: str =) -> Self)
+Inferred signature: def (cls: type[Self], object: object = ..., encoding: str = ..., errors: str = ...)
+Runtime: in file C:\Users\ryanf\AppData\Roaming\uv\python\cpython-3.13.9-windows-x86_64-none\Lib\enum.py:1156
+def (cls, value)
+
+error: riposte.cli.Root is inconsistent, runtime is not a type
+Stub: in file C:\Users\ryanf\github\_new\image-riposte\typing\stubs\riposte\cli.pyi:11
+Type alias for pathlib.Path
+Runtime:
+def (*args, **kwargs)
+
+error: riposte.cli.Task.__new__ is inconsistent, stub parameter "object" differs from runtime parameter "value"
+Stub: in file C:\Users\ryanf\github\_new\image-riposte\typing\stubs\riposte\cli.pyi:488
+Overload(def [Self <: str] (cls: type[Self], object: object =) -> Self, def [Self <: str] (cls: type[Self], object: _collections_abc.Buffer, encoding: str =, errors: str =) -> Self)
+Inferred signature: def (cls: type[Self], object: object = ..., encoding: str = ..., errors: str = ...)
+Runtime: in file C:\Users\ryanf\AppData\Roaming\uv\python\cpython-3.13.9-windows-x86_64-none\Lib\enum.py:1156
+def (cls, value)
+
+error: riposte.cli.Task.__new__ is inconsistent, stub parameter "object" has a default value but runtime parameter does not
+Stub: in file C:\Users\ryanf\github\_new\image-riposte\typing\stubs\riposte\cli.pyi:488
+Overload(def [Self <: str] (cls: type[Self], object: object =) -> Self, def [Self <: str] (cls: type[Self], object: _collections_abc.Buffer, encoding: str =, errors: str =) -> Self)
+Inferred signature: def (cls: type[Self], object: object = ..., encoding: str = ..., errors: str = ...)
+Runtime: in file C:\Users\ryanf\AppData\Roaming\uv\python\cpython-3.13.9-windows-x86_64-none\Lib\enum.py:1156
+def (cls, value)
+
+error: riposte.cli.Task.__new__ is inconsistent, runtime does not have parameter "encoding"
+Stub: in file C:\Users\ryanf\github\_new\image-riposte\typing\stubs\riposte\cli.pyi:488
+Overload(def [Self <: str] (cls: type[Self], object: object =) -> Self, def [Self <: str] (cls: type[Self], object: _collections_abc.Buffer, encoding: str =, errors: str =) -> Self)
+Inferred signature: def (cls: type[Self], object: object = ..., encoding: str = ..., errors: str = ...)
+Runtime: in file C:\Users\ryanf\AppData\Roaming\uv\python\cpython-3.13.9-windows-x86_64-none\Lib\enum.py:1156
+def (cls, value)
+
+error: riposte.cli.Task.__new__ is inconsistent, runtime does not have parameter "errors"
+Stub: in file C:\Users\ryanf\github\_new\image-riposte\typing\stubs\riposte\cli.pyi:488
+Overload(def [Self <: str] (cls: type[Self], object: object =) -> Self, def [Self <: str] (cls: type[Self], object: _collections_abc.Buffer, encoding: str =, errors: str =) -> Self)
+Inferred signature: def (cls: type[Self], object: object = ..., encoding: str = ..., errors: str = ...)
+Runtime: in file C:\Users\ryanf\AppData\Roaming\uv\python\cpython-3.13.9-windows-x86_64-none\Lib\enum.py:1156
+def (cls, value)
+
+error: riposte.cli.Theme.__new__ is inconsistent, stub parameter "object" differs from runtime parameter "value"
+Stub: in file C:\Users\ryanf\github\_new\image-riposte\typing\stubs\riposte\cli.pyi:488
+Overload(def [Self <: str] (cls: type[Self], object: object =) -> Self, def [Self <: str] (cls: type[Self], object: _collections_abc.Buffer, encoding: str =, errors: str =) -> Self)
+Inferred signature: def (cls: type[Self], object: object = ..., encoding: str = ..., errors: str = ...)
+Runtime: in file C:\Users\ryanf\AppData\Roaming\uv\python\cpython-3.13.9-windows-x86_64-none\Lib\enum.py:1156
+def (cls, value)
+
+error: riposte.cli.Theme.__new__ is inconsistent, stub parameter "object" has a default value but runtime parameter does not
+Stub: in file C:\Users\ryanf\github\_new\image-riposte\typing\stubs\riposte\cli.pyi:488
+Overload(def [Self <: str] (cls: type[Self], object: object =) -> Self, def [Self <: str] (cls: type[Self], object: _collections_abc.Buffer, encoding: str =, errors: str =) -> Self)
+Inferred signature: def (cls: type[Self], object: object = ..., encoding: str = ..., errors: str = ...)
+Runtime: in file C:\Users\ryanf\AppData\Roaming\uv\python\cpython-3.13.9-windows-x86_64-none\Lib\enum.py:1156
+def (cls, value)
+
+error: riposte.cli.Theme.__new__ is inconsistent, runtime does not have parameter "encoding"
+Stub: in file C:\Users\ryanf\github\_new\image-riposte\typing\stubs\riposte\cli.pyi:488
+Overload(def [Self <: str] (cls: type[Self], object: object =) -> Self, def [Self <: str] (cls: type[Self], object: _collections_abc.Buffer, encoding: str =, errors: str =) -> Self)
+Inferred signature: def (cls: type[Self], object: object = ..., encoding: str = ..., errors: str = ...)
+Runtime: in file C:\Users\ryanf\AppData\Roaming\uv\python\cpython-3.13.9-windows-x86_64-none\Lib\enum.py:1156
+def (cls, value)
+
+error: riposte.cli.Theme.__new__ is inconsistent, runtime does not have parameter "errors"
+Stub: in file C:\Users\ryanf\github\_new\image-riposte\typing\stubs\riposte\cli.pyi:488
+Overload(def [Self <: str] (cls: type[Self], object: object =) -> Self, def [Self <: str] (cls: type[Self], object: _collections_abc.Buffer, encoding: str =, errors: str =) -> Self)
+Inferred signature: def (cls: type[Self], object: object = ..., encoding: str = ..., errors: str = ...)
+Runtime: in file C:\Users\ryanf\AppData\Roaming\uv\python\cpython-3.13.9-windows-x86_64-none\Lib\enum.py:1156
+def (cls, value)
+
+error: riposte.cli.Vae is not a Union
+Stub: in file C:\Users\ryanf\github\_new\image-riposte\typing\stubs\riposte\cli.pyi:12
+list[pathlib.Path] | None
+Runtime:
+def (*args, **kwargs)
+
+error: riposte.cli.trials is inconsistent, runtime parameter "trial_id" has a default value of type typer.models.ArgumentInfo, which is incompatible with stub parameter type str | None
+Stub: in file C:\Users\ryanf\github\_new\image-riposte\typing\stubs\riposte\cli.pyi:126
+def (ctx: typer.models.Context, root: pathlib.Path, trial_id: str | None =)
+Runtime: in file C:\Users\ryanf\github\_new\image-riposte\src\riposte\cli.py:274
+def (ctx: 'typer.Context', root: 'Root', trial_id: 'Optional[str]' = <typer.models.ArgumentInfo object at 0x0000028431BE4B90>)
+
+error: riposte.cli.workshop is inconsistent, runtime parameter "batch_id" has a default value of type typer.models.ArgumentInfo, which is incompatible with stub parameter type str | None
+Stub: in file C:\Users\ryanf\github\_new\image-riposte\typing\stubs\riposte\cli.pyi:141
+def (ctx: typer.models.Context, root: pathlib.Path, batch_id: str | None =, item_id: str | None =)
+Runtime: in file C:\Users\ryanf\github\_new\image-riposte\src\riposte\cli.py:306
+def (ctx: 'typer.Context', root: 'Root', batch_id: 'Optional[str]' = <typer.models.ArgumentInfo object at 0x0000028431BE4CD0>, item_id: 'Optional[str]' = <typer.models.ArgumentInfo object at 0x0000028431BE4E10>)
+
+error: riposte.cli.workshop is inconsistent, runtime parameter "item_id" has a default value of type typer.models.ArgumentInfo, which is incompatible with stub parameter type str | None
+Stub: in file C:\Users\ryanf\github\_new\image-riposte\typing\stubs\riposte\cli.pyi:141
+def (ctx: typer.models.Context, root: pathlib.Path, batch_id: str | None =, item_id: str | None =)
+Runtime: in file C:\Users\ryanf\github\_new\image-riposte\src\riposte\cli.py:306
+def (ctx: 'typer.Context', root: 'Root', batch_id: 'Optional[str]' = <typer.models.ArgumentInfo object at 0x0000028431BE4CD0>, item_id: 'Optional[str]' = <typer.models.ArgumentInfo object at 0x0000028431BE4E10>)
+
+Found 29 errors (checked 35 modules)
