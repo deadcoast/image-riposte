@@ -1,8 +1,10 @@
 # MIVIM.spec mypy-engineer / source-derived typing
 
 This work defines the existing RIPOSTE interfaces without changing application
-source. No local `MIVIM.spec` or `AGENTS.md` was found during this review; the
-user's instruction to leave source unchanged governs this delivery.
+source. The original typing review preceded PACER setup. The current
+[`../AGENTS.md`](../AGENTS.md) preserves the user's source-change restriction
+for this assignment. The live PACER registers index the existing contracts and
+their evidence; they do not certify application behavior.
 
 The external stub tree covers all 38 Python modules. The shared declarations in
 [`stubs/_riposte_types.pyi`](stubs/_riposte_types.pyi) define 27 record shapes,
@@ -121,3 +123,25 @@ organization run there. Its temporary paths and image data are synthetic.
 Initial stub, consumer-harness, and runtime-fixture failures remain in `evidence/`
 alongside the final results. Later passing contract checks do not supersede the
 source audit or the Windows finding.
+
+The PACER file inventory can be reconciled without importing application code:
+
+```powershell
+uv run --project typing --frozen --cache-dir typing/.cache/uv python typing/pacer_inventory.py
+```
+
+It compares scoped files, static declarations/imports, local module dependencies,
+source/stub pairing, and the reviewed source snapshot with `overlord.PACER.csv`.
+`--plan typing/.cache/pacer-index-plan.json` writes proposed guarded operations;
+it does not edit the registers. Inspect and apply the plan through PACER with a
+current task receipt. A failing audit returns a nonzero exit status even when a
+plan was written. Renames and removed assets need explicit review.
+
+`Exports` records syntactic declarations, including class methods and private
+names; it is not a guarantee about Python's dynamic export behavior. The index
+excludes build/history trees and caches. Run the external contract checker before
+acceptance: a recorded pass read by the inventory is not a fresh test execution.
+The inherited 50-file identity snapshot includes six generated `.egg-info` files
+alongside 44 application files; the inventory labels those generated inputs.
+Existing source/stub definitions are indexed in FILE exports and the JSON report.
+The new inventory tool's functions also have individual overlord symbol rows.

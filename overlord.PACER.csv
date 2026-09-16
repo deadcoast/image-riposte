@@ -1,0 +1,844 @@
+ID,AssetType,Path,Symbol,Purpose,Exports,Imports,Requires,RequiredBy,OGMRefs,PACRefs,NDLRefs,Tags,Notes,UpdatedAt,EvidenceFor
+OVR-001,FILE,README.md,,Project authority or canonical PACER register,,,,,OGM-001,,,#core #typing-index,2026-09-16T21:38:02Z initialize: registered project authority | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: updated Tags | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked OGMRefs to OGM-001,2026-09-16T21:43:24Z,
+OVR-002,FILE,AGENTS.md,,Project authority or canonical PACER register,,,,,OGM-001,PAC-001,NDL-001,#core #typing-index,2026-09-16T21:38:02Z initialize: registered project authority | 2026-09-16T21:38:53Z MIVIM.spec mypy-engineer: linked NDLRefs to NDL-001 | 2026-09-16T21:38:53Z MIVIM.spec mypy-engineer: linked OGMRefs to OGM-001 | 2026-09-16T21:38:53Z MIVIM.spec mypy-engineer: linked PACRefs to PAC-001 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: updated Tags,2026-09-16T21:43:24Z,
+OVR-003,FILE,todo.PACER.csv,,Project authority or canonical PACER register,,,,,,,,#core,2026-09-16T21:38:02Z initialize: registered project authority,2026-09-16T21:38:02Z,
+OVR-004,FILE,overlord.PACER.csv,,Project authority or canonical PACER register,,,,,OGM-001,PAC-001,NDL-001,#core,2026-09-16T21:38:02Z initialize: registered project authority | 2026-09-16T21:38:53Z MIVIM.spec mypy-engineer: linked NDLRefs to NDL-001 | 2026-09-16T21:38:53Z MIVIM.spec mypy-engineer: linked PACRefs to PAC-001 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked OGMRefs to OGM-001,2026-09-16T21:43:24Z,
+OVR-005,FILE,organism.PACER.csv,,Project authority or canonical PACER register,,,,,,,,#core,2026-09-16T21:38:02Z initialize: registered project authority,2026-09-16T21:38:02Z,
+OVR-006,FILE,nodule.PACER.csv,,Project authority or canonical PACER register,,,,,,,,#core,2026-09-16T21:38:02Z initialize: registered project authority,2026-09-16T21:38:02Z,
+OVR-007,FILE,mypy.ini,,"Typing validation input, evidence or development authority",,,,,OGM-001,,,#typing-index,2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: added overlord row | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked OGMRefs to OGM-001,2026-09-16T21:43:24Z,
+OVR-008,FILE,pyproject.toml,,"Typing validation input, evidence or development authority",,,,,OGM-001,,,#typing-index,2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: added overlord row | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked OGMRefs to OGM-001,2026-09-16T21:43:24Z,
+OVR-009,FILE,src/riposte/__init__.py,,Existing application module riposte,__version__,,,OVR-012;OVR-074;OVR-076,OGM-001,,,#typing-index,2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: added overlord row | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-012 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-074 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-076 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked OGMRefs to OGM-001,2026-09-16T21:43:24Z,
+OVR-010,FILE,src/riposte/__main__.py,,Existing application module riposte.__main__,,from .cli import main,OVR-012,OVR-077,OGM-001,,,#typing-index,2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: added overlord row | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-077 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked OGMRefs to OGM-001,2026-09-16T21:43:24Z,
+OVR-011,FILE,src/riposte/benchmark.py,,Existing application module riposte.benchmark,PROMPTS;run_benchmark,"from .errors import RiposteError
+from .lab import trial_report
+from .metrics import transform, fidelity
+from .organizer import audit_workspace
+from .sanitize import encode_clean, social_render, png_audit
+from .store import workspace_lock, safe_child, atomic_clean_write, state_relative
+from PIL import Image
+from PIL import ImageOps
+from __future__ import annotations
+from diffusers import StableDiffusionImg2ImgPipeline, StableVideoDiffusionPipeline
+from pathlib import Path
+import json
+import os
+import torch
+import uuid",OVR-014;OVR-016;OVR-018;OVR-021;OVR-028;OVR-035,OVR-048;OVR-078,OGM-001,,,#typing-index,2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: added overlord row | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-048 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-078 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked OGMRefs to OGM-001,2026-09-16T21:43:24Z,
+OVR-012,FILE,src/riposte/cli.py,,Existing application module riposte.cli,DateMode;Decision;Device;Engine;Root;Task;Theme;Vae;_version;app;audit;benchmark;challenge;command;compare;dispatch;doctor;evaluations;export;frame;generation;generations;guard;image;inspect;list_images;main;organize;package;publications;publish;qualify;resume;review;root_callback;serve;trials;ui;upgrade;workshop,"from . import __version__
+from .errors import RiposteError
+from .server import create_app
+from .terminal.app import launch
+from .terminal.help import RichCommand, RichGroup
+from .terminal.output import Presentation, error, run_direct
+from .terminal.service import Request
+from __future__ import annotations
+from enum import Enum
+from pathlib import Path
+from typing import Annotated, Optional
+import click
+import os
+import sys
+import threading
+import typer
+import uvicorn
+import webbrowser",OVR-009;OVR-014;OVR-029;OVR-039;OVR-041;OVR-045;OVR-048,OVR-010;OVR-039;OVR-079,OGM-001,,,#typing-index,2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: added overlord row | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-010 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-039 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-061 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-079 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked OGMRefs to OGM-001 | 2026-09-16T21:46:16Z MIVIM.spec mypy-engineer: removed reciprocal RequiredBy edge from OVR-061,2026-09-16T21:46:16Z,
+OVR-013,FILE,src/riposte/coupled.py,,Existing application module riposte.coupled,Branch;CoupledConfig;CoupledConfig.__post_init__;_branches;_features;protect_coupled,"from .errors import RiposteError
+from .metrics import fidelity
+from .optimizer import _round_ste
+from .views import TRAIN_VIEWS, budget_map, differentiable_view, image_tensor, keep_mask, spectral_direction, tensor_image
+from PIL import Image
+from __future__ import annotations
+from dataclasses import dataclass
+from typing import Callable
+import math
+import numpy as np
+import torch",OVR-014;OVR-018;OVR-020;OVR-052,OVR-016;OVR-026;OVR-080,OGM-001,,,#typing-index,2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: added overlord row | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-016 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-026 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-061 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-080 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked OGMRefs to OGM-001 | 2026-09-16T21:46:16Z MIVIM.spec mypy-engineer: removed reciprocal RequiredBy edge from OVR-061,2026-09-16T21:46:16Z,
+OVR-014,FILE,src/riposte/errors.py,,Existing application module riposte.errors,RiposteError;RiposteError.__init__,,,OVR-011;OVR-012;OVR-013;OVR-015;OVR-016;OVR-018;OVR-019;OVR-020;OVR-021;OVR-022;OVR-023;OVR-024;OVR-025;OVR-026;OVR-027;OVR-028;OVR-029;OVR-035;OVR-036;OVR-038;OVR-039;OVR-040;OVR-042;OVR-048;OVR-052;OVR-081,OGM-001,,,#typing-index,2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: added overlord row | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-011 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-012 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-013 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-015 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-016 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-018 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-019 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-020 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-021 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-022 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-023 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-024 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-025 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-026 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-027 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-028 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-029 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-035 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-036 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-038 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-039 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-040 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-042 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-048 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-052 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-081 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked OGMRefs to OGM-001,2026-09-16T21:43:24Z,
+OVR-015,FILE,src/riposte/generation.py,,Existing application module riposte.generation,ALLOWED_COMPONENTS;LocalGenerator;LocalGenerator.__call__;LocalGenerator.__init__;_execute;_validate;controlled_generation;frame_motion;generation_frame;generation_report;generation_runs;prepare_input,"from .errors import RiposteError
+from .lab import trial_report
+from .metrics import fidelity
+from .models import offline, read_config, model_fingerprint
+from .organizer import audit_workspace
+from .policy import is_link
+from .qualification import _verified_pair, CONTROL_SEEDS
+from .sanitize import encode_clean, png_audit, social_render
+from .store import workspace_lock, safe_child, state_relative, atomic_clean_write, atomic_json_write
+from .views import keep_mask
+from .views import publication_view, matched_control, TRAIN_VIEWS, HOLDOUT_VIEWS
+from PIL import Image, ImageOps
+from __future__ import annotations
+from diffusers import StableDiffusionImg2ImgPipeline, StableDiffusionInpaintPipeline, StableVideoDiffusionPipeline
+from pathlib import Path
+import json
+import math
+import numpy as np
+import re
+import shutil
+import torch
+import uuid",OVR-014;OVR-016;OVR-018;OVR-019;OVR-021;OVR-022;OVR-024;OVR-028;OVR-035;OVR-052,OVR-029;OVR-048;OVR-082,OGM-001,,,#typing-index,2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: added overlord row | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-029 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-048 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-082 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked OGMRefs to OGM-001,2026-09-16T21:43:24Z,
+OVR-016,FILE,src/riposte/lab.py,,Existing application module riposte.lab,METHODS;_master;_store_trial;compare_external;create_candidate;export_candidate;trial_pixels;trial_report;trials,"from .coupled import CoupledConfig, protect_coupled
+from .errors import RiposteError
+from .metrics import transform
+from .metrics import transport_report, fidelity, difference_image
+from .models import LocalEncoder, LocalInpaintProbe
+from .optimizer import GuardConfig, protect
+from .organizer import audit_workspace
+from .policy import Policy
+from .qualification import _verified_pair
+from .sanitize import decode_clean, encode_clean, social_render, png_audit
+from .store import atomic_json_write
+from .store import workspace_lock, find_image, safe_child, atomic_clean_write, check_root, state_relative
+from .views import publication_view, TRAIN_VIEWS, HOLDOUT_VIEWS
+from PIL import Image
+from __future__ import annotations
+from pathlib import Path
+import io
+import json
+import re
+import shutil
+import uuid",OVR-013;OVR-014;OVR-018;OVR-019;OVR-020;OVR-021;OVR-022;OVR-024;OVR-028;OVR-035;OVR-052,OVR-011;OVR-015;OVR-023;OVR-024;OVR-029;OVR-048;OVR-083,OGM-001,,,#typing-index,2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: added overlord row | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-011 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-015 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-023 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-024 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-029 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-048 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-083 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked OGMRefs to OGM-001,2026-09-16T21:43:24Z,
+OVR-017,FILE,src/riposte/methods.json,,Existing application asset,,,,,OGM-001,,,#typing-index,2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: added overlord row | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked OGMRefs to OGM-001,2026-09-16T21:43:24Z,
+OVR-018,FILE,src/riposte/metrics.py,,Existing application module riposte.metrics,TRANSFORMS;difference_image;fidelity;transform;transport_report,"from .errors import RiposteError
+from PIL import Image, ImageFilter
+from __future__ import annotations
+import io
+import math
+import numpy as np",OVR-014,OVR-011;OVR-013;OVR-015;OVR-016;OVR-020;OVR-023;OVR-024;OVR-025;OVR-040;OVR-074;OVR-084,OGM-001,,,#typing-index,2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: added overlord row | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-011 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-013 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-015 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-016 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-020 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-023 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-024 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-025 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-040 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-061 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-074 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-084 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked OGMRefs to OGM-001 | 2026-09-16T21:46:16Z MIVIM.spec mypy-engineer: removed reciprocal RequiredBy edge from OVR-061,2026-09-16T21:46:16Z,
+OVR-019,FILE,src/riposte/models.py,,Existing application module riposte.models,DEPENDENCIES;LocalEncoder;LocalEncoder.__call__;LocalEncoder.__init__;LocalInpaintProbe;LocalInpaintProbe.__call__;LocalInpaintProbe.__init__;PROMPTS;VAE_CLASSES;_weights;inspect_vae;model_fingerprint;offline;read_config;runtime_capabilities;select_device,"from .errors import RiposteError
+from .policy import is_link
+from __future__ import annotations
+from diffusers import AutoencoderKL, AutoencoderTiny
+from diffusers import AutoencoderKL, UNet2DConditionModel, DDIMScheduler
+from pathlib import Path
+from transformers import CLIPTextModel, CLIPTokenizer
+import hashlib
+import importlib.metadata
+import importlib.util
+import json
+import os
+import torch
+import torch.nn.functional as F",OVR-014;OVR-022,OVR-015;OVR-016;OVR-023;OVR-024;OVR-027;OVR-029;OVR-036;OVR-048;OVR-074;OVR-085,OGM-001,,,#typing-index,2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: added overlord row | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-015 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-016 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-023 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-024 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-027 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-029 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-036 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-048 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-074 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-085 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked OGMRefs to OGM-001,2026-09-16T21:43:24Z,
+OVR-020,FILE,src/riposte/optimizer.py,,Existing application module riposte.optimizer,GuardConfig;GuardConfig.__post_init__;LocalVAE;LocalVAE.__call__;LocalVAE.__init__;_round_ste;eot;jpeg_surrogate;protect,"from .errors import RiposteError
+from .metrics import fidelity
+from PIL import Image
+from __future__ import annotations
+from dataclasses import dataclass
+from diffusers import AutoencoderKL
+from pathlib import Path
+from typing import Callable
+import math
+import numpy as np
+import os
+import torch
+import torch.nn.functional as F",OVR-014;OVR-018,OVR-013;OVR-016;OVR-026;OVR-052;OVR-086,OGM-001,,,#typing-index,2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: added overlord row | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-013 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-016 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-026 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-052 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-061 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-086 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked OGMRefs to OGM-001 | 2026-09-16T21:46:16Z MIVIM.spec mypy-engineer: removed reciprocal RequiredBy edge from OVR-061,2026-09-16T21:46:16Z,
+OVR-021,FILE,src/riposte/organizer.py,,Existing application module riposte.organizer,Progress;_next_relative;_validate_managed;audit_workspace;known_good;organize;plan;walk_inputs,"from .errors import RiposteError
+from .policy import Policy, IMAGE_SUFFIXES, SIDECAR_SUFFIXES, CACHE_NAMES, folder_for, is_link, same_file_state
+from .sanitize import decode_clean, encode_clean, png_audit
+from .store import check_root, workspace_lock, catalog, record_image, atomic_clean_write, write_report, safe_child, state_name
+from PIL import Image, UnidentifiedImageError
+from __future__ import annotations
+from pathlib import Path
+from typing import Callable
+import collections
+import os",OVR-014;OVR-022;OVR-028;OVR-035,OVR-011;OVR-015;OVR-016;OVR-023;OVR-024;OVR-029;OVR-048;OVR-074;OVR-087,OGM-001,PAC-002,,#typing-index,2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: added overlord row | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-011 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-015 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-016 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-023 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-024 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-029 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-048 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-061 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-074 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-087 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked OGMRefs to OGM-001 | 2026-09-16T21:46:16Z MIVIM.spec mypy-engineer: removed reciprocal RequiredBy edge from OVR-061 | 2026-09-16T21:46:16Z MIVIM.spec mypy-engineer: linked PACRefs to PAC-002,2026-09-16T21:46:16Z,
+OVR-022,FILE,src/riposte/policy.py,,Existing application module riposte.policy,BINS;CACHE_NAMES;CANONICAL;FORMAT_NAMES;IMAGE_SUFFIXES;MONTHS;Policy;Policy.__post_init__;SIDECAR_SUFFIXES;YEARS;canonical_path;extract_day;folder_for;is_link;same_file_state;size_bin;valid_day,"from .errors import RiposteError
+from __future__ import annotations
+from dataclasses import dataclass
+from pathlib import Path
+import datetime as dt
+import os
+import re",OVR-014,OVR-015;OVR-016;OVR-019;OVR-021;OVR-023;OVR-028;OVR-029;OVR-035;OVR-036;OVR-048;OVR-088,OGM-001,PAC-002,,#typing-index,2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: added overlord row | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-015 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-016 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-019 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-021 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-023 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-028 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-029 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-035 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-036 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-048 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-061 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-088 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked OGMRefs to OGM-001 | 2026-09-16T21:46:16Z MIVIM.spec mypy-engineer: removed reciprocal RequiredBy edge from OVR-061 | 2026-09-16T21:46:16Z MIVIM.spec mypy-engineer: linked PACRefs to PAC-002,2026-09-16T21:46:16Z,
+OVR-023,FILE,src/riposte/publication.py,,Existing application module riposte.publication,PublishRecipe;PublishRecipe.__post_init__;PublishRecipe.from_dict;PublishRecipe.public;_checkpoint;_id;_models;_prefix;_publication_zip_locked;_read;_replace_json;_request;_run;_verified_item;export_publication;open_in_workshop;publication_pixels;publication_plan;publication_status;publication_zip;publications;resume_publication;review_publication;start_publication,"from .errors import RiposteError
+from .lab import trials, _store_trial
+from .metrics import TRANSFORMS, transform
+from .metrics import difference_image
+from .metrics import transport_report
+from .models import LocalEncoder, LocalInpaintProbe
+from .organizer import audit_workspace
+from .policy import canonical_path
+from .policy import folder_for, valid_day
+from .quality import QualityLimits, quality_report
+from .release_guard import ReleaseConfig, protect_release
+from .runtime_probe import probe_encoder
+from .sanitize import encode_clean, png_audit, social_render
+from .store import check_root, safe_child, state_relative, workspace_lock, find_image, atomic_clean_write, atomic_json_write
+from .temporal import LocalTemporalProbe
+from PIL import Image
+from __future__ import annotations
+from dataclasses import asdict, dataclass, replace
+from pathlib import Path
+import hashlib
+import io
+import json
+import os
+import re
+import shutil
+import uuid
+import zipfile",OVR-014;OVR-016;OVR-018;OVR-019;OVR-021;OVR-022;OVR-025;OVR-026;OVR-027;OVR-028;OVR-035;OVR-036,OVR-029;OVR-048;OVR-074;OVR-089,OGM-001,,,#typing-index,2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: added overlord row | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-029 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-048 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-061 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-074 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-089 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked OGMRefs to OGM-001 | 2026-09-16T21:46:16Z MIVIM.spec mypy-engineer: removed reciprocal RequiredBy edge from OVR-061,2026-09-16T21:46:16Z,
+OVR-024,FILE,src/riposte/qualification.py,,Existing application module riposte.qualification,CONTROL_SEEDS;EVAL_MASKS;_verified_pair;evaluate_pair;evaluations;qualify_trial,"from .errors import RiposteError
+from .lab import trial_report
+from .metrics import fidelity
+from .models import LocalEncoder
+from .organizer import audit_workspace
+from .sanitize import encode_clean, png_audit
+from .store import atomic_json_write
+from .store import safe_child, state_relative, workspace_lock, atomic_clean_write
+from .views import TRAIN_VIEWS, HOLDOUT_VIEWS, publication_view, image_tensor, keep_mask, matched_control
+from PIL import Image
+from __future__ import annotations
+from pathlib import Path
+import json
+import math
+import re
+import shutil
+import torch
+import uuid",OVR-014;OVR-016;OVR-018;OVR-019;OVR-021;OVR-028;OVR-035;OVR-052,OVR-015;OVR-016;OVR-029;OVR-048;OVR-090,OGM-001,,,#typing-index,2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: added overlord row | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-015 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-016 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-029 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-048 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-090 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked OGMRefs to OGM-001,2026-09-16T21:43:24Z,
+OVR-025,FILE,src/riposte/quality.py,,Existing application module riposte.quality,QualityLimits;QualityLimits.__post_init__;QualityLimits.public;_lab;quality_report;spatial_budget,"from .errors import RiposteError
+from .metrics import fidelity
+from PIL import Image
+from __future__ import annotations
+from dataclasses import asdict, dataclass
+import math
+import numpy as np",OVR-014;OVR-018,OVR-023;OVR-026;OVR-029;OVR-048;OVR-074;OVR-091,OGM-001,,,#typing-index,2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: added overlord row | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-023 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-026 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-029 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-048 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-061 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-074 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-091 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked OGMRefs to OGM-001 | 2026-09-16T21:46:16Z MIVIM.spec mypy-engineer: removed reciprocal RequiredBy edge from OVR-061,2026-09-16T21:46:16Z,
+OVR-026,FILE,src/riposte/release_guard.py,,Existing application module riposte.release_guard,ReleaseConfig;ReleaseConfig.__post_init__;protect_release;temporal_energy,"from .coupled import Branch, _branches, _features
+from .errors import RiposteError
+from .optimizer import _round_ste
+from .quality import QualityLimits, spatial_budget, quality_report
+from .views import image_tensor, tensor_image, spectral_direction, differentiable_view, TRAIN_VIEWS
+from PIL import Image
+from __future__ import annotations
+from dataclasses import asdict, dataclass
+import math
+import numpy as np
+import torch",OVR-013;OVR-014;OVR-020;OVR-025;OVR-052,OVR-023;OVR-029;OVR-048;OVR-092,OGM-001,,,#typing-index,2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: added overlord row | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-023 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-029 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-048 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-061 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-092 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked OGMRefs to OGM-001 | 2026-09-16T21:46:16Z MIVIM.spec mypy-engineer: removed reciprocal RequiredBy edge from OVR-061,2026-09-16T21:46:16Z,
+OVR-027,FILE,src/riposte/runtime_probe.py,,Existing application module riposte.runtime_probe,execute_local_probe;probe_encoder,"from .errors import RiposteError
+from .models import LocalEncoder, runtime_capabilities
+from __future__ import annotations
+import time
+import torch",OVR-014;OVR-019,OVR-023;OVR-029;OVR-048;OVR-093,OGM-001,,,#typing-index,2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: added overlord row | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-023 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-029 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-048 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-093 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked OGMRefs to OGM-001,2026-09-16T21:43:24Z,
+OVR-028,FILE,src/riposte/sanitize.py,,Existing application module riposte.sanitize,CleanImage;PNG_MAGIC;decode_clean;encode_clean;fresh_pixels;png_audit;social_render;timestamp_day,"from .errors import RiposteError
+from .policy import Policy, FORMAT_NAMES, extract_day, valid_day, same_file_state
+from PIL import Image, ImageCms, ImageOps, PngImagePlugin
+from __future__ import annotations
+from dataclasses import dataclass
+from pathlib import Path
+import binascii
+import datetime as dt
+import hashlib
+import io
+import numpy as np
+import os
+import struct
+import warnings
+import zlib",OVR-014;OVR-022,OVR-011;OVR-015;OVR-016;OVR-021;OVR-023;OVR-024;OVR-029;OVR-035;OVR-048;OVR-072;OVR-074;OVR-094,OGM-001,PAC-002,,#typing-index,2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: added overlord row | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-011 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-015 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-016 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-021 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-023 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-024 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-029 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-035 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-048 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-061 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-072 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-074 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-094 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked OGMRefs to OGM-001 | 2026-09-16T21:46:16Z MIVIM.spec mypy-engineer: removed reciprocal RequiredBy edge from OVR-061 | 2026-09-16T21:46:16Z MIVIM.spec mypy-engineer: linked PACRefs to PAC-002,2026-09-16T21:46:16Z,
+OVR-029,FILE,src/riposte/server.py,,Existing application module riposte.server,CompareRequest;ExecutionRequest;ExportRequest;GenerationRequest;GuardRequest;Jobs;Jobs.__init__;Jobs.cancel;Jobs.close;Jobs.snapshot;Jobs.start;OrganizeRequest;PreflightRequest;PublishRequest;PublishReviewRequest;QualificationRequest;ResumePublishRequest;STATIC;StrictModel;create_app,"from .errors import RiposteError
+from .generation import controlled_generation
+from .generation import generation_frame
+from .generation import generation_runs
+from .lab import create_candidate, compare_external, trials, trial_report, export_candidate, trial_pixels
+from .models import inspect_vae, runtime_capabilities
+from .models import runtime_capabilities
+from .organizer import plan, organize, audit_workspace
+from .policy import Policy
+from .publication import PublishRecipe, start_publication, publication_plan
+from .publication import open_in_workshop
+from .publication import publication_pixels
+from .publication import publication_status
+from .publication import publication_zip
+from .publication import publications
+from .publication import resume_publication
+from .publication import review_publication
+from .qualification import evaluations
+from .qualification import qualify_trial
+from .quality import QualityLimits
+from .release_guard import ReleaseConfig
+from .runtime_probe import execute_local_probe
+from .sanitize import encode_clean, png_audit
+from .store import check_root, catalog, find_image, safe_child, state_relative, legacy_workspace, upgrade_workspace
+from PIL import Image
+from __future__ import annotations
+from contextlib import asynccontextmanager
+from fastapi import FastAPI, Request
+from fastapi.exceptions import RequestValidationError
+from fastapi.responses import HTMLResponse, Response, JSONResponse
+from fastapi.staticfiles import StaticFiles
+from pathlib import Path
+from pydantic import BaseModel, Field, ConfigDict
+from typing import Literal
+import concurrent.futures
+import io
+import json
+import secrets
+import threading
+import uuid",OVR-014;OVR-015;OVR-016;OVR-019;OVR-021;OVR-022;OVR-023;OVR-024;OVR-025;OVR-026;OVR-027;OVR-028;OVR-035,OVR-012;OVR-095,OGM-001,,,#typing-index,2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: added overlord row | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-012 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-061 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-095 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked OGMRefs to OGM-001 | 2026-09-16T21:46:16Z MIVIM.spec mypy-engineer: removed reciprocal RequiredBy edge from OVR-061,2026-09-16T21:46:16Z,
+OVR-030,FILE,src/riposte/static/app.js,,Existing application asset,,,,,OGM-001,,,#typing-index,2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: added overlord row | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked OGMRefs to OGM-001,2026-09-16T21:43:24Z,
+OVR-031,FILE,src/riposte/static/index.html,,Existing application asset,,,,,OGM-001,,,#typing-index,2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: added overlord row | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked OGMRefs to OGM-001,2026-09-16T21:43:24Z,
+OVR-032,FILE,src/riposte/static/publish.css,,Existing application asset,,,,,OGM-001,,,#typing-index,2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: added overlord row | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked OGMRefs to OGM-001,2026-09-16T21:43:24Z,
+OVR-033,FILE,src/riposte/static/publish.js,,Existing application asset,,,,,OGM-001,,,#typing-index,2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: added overlord row | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked OGMRefs to OGM-001,2026-09-16T21:43:24Z,
+OVR-034,FILE,src/riposte/static/style.css,,Existing application asset,,,,,OGM-001,,,#typing-index,2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: added overlord row | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked OGMRefs to OGM-001,2026-09-16T21:43:24Z,
+OVR-035,FILE,src/riposte/store.py,,Existing application module riposte.store,LEGACY_SIGNATURE;SIGNATURE;atomic_clean_write;atomic_json_write;catalog;check_root;connect;find_image;legacy_workspace;record_image;safe_child;state_dir;state_name;state_relative;upgrade_workspace;workspace_lock;write_report,"from .errors import RiposteError
+from .policy import canonical_path, is_link
+from .sanitize import png_audit, timestamp_day
+from __future__ import annotations
+from pathlib import Path
+import contextlib
+import json
+import os
+import sqlite3
+import uuid",OVR-014;OVR-022;OVR-028,OVR-011;OVR-015;OVR-016;OVR-021;OVR-023;OVR-024;OVR-029;OVR-048;OVR-074;OVR-096,OGM-001,,,#typing-index,2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: added overlord row | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-011 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-015 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-016 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-021 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-023 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-024 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-029 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-048 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-061 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-074 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-096 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked OGMRefs to OGM-001 | 2026-09-16T21:46:16Z MIVIM.spec mypy-engineer: removed reciprocal RequiredBy edge from OVR-061,2026-09-16T21:46:16Z,
+OVR-036,FILE,src/riposte/temporal.py,,Existing application module riposte.temporal,LocalTemporalProbe;LocalTemporalProbe.__call__;LocalTemporalProbe.__init__;TemporalConfig;TemporalConfig.__post_init__;letterbox_tensor;v_prediction_original,"from .errors import RiposteError
+from .models import offline, read_config, model_fingerprint, select_device
+from .policy import is_link
+from __future__ import annotations
+from dataclasses import asdict, dataclass
+from diffusers import AutoencoderKLTemporalDecoder, UNetSpatioTemporalConditionModel, EulerDiscreteScheduler
+from pathlib import Path
+from transformers import CLIPVisionModelWithProjection
+import math
+import torch
+import torch.nn.functional as F",OVR-014;OVR-019;OVR-022,OVR-023;OVR-097,OGM-001,,,#typing-index,2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: added overlord row | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-023 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-097 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked OGMRefs to OGM-001,2026-09-16T21:43:24Z,
+OVR-037,FILE,src/riposte/terminal/__init__.py,,Existing application module riposte.terminal,,,,OVR-074;OVR-098,OGM-001,,,#typing-index,2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: added overlord row | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-074 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-098 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked OGMRefs to OGM-001,2026-09-16T21:43:24Z,
+OVR-038,FILE,src/riposte/terminal/actions.py,,Existing application module riposte.terminal.actions,ACTIONS;Action;Action.effect;BATCH;BY_KEY;DEVICE;EDGES;EPSILON;Field;IMAGE;INPAINT;ITEM;MAX_EDGE;MODEL;PUB_FIELDS;SEED;STEPS;TRIAL;VAE_FIELDS;VIDEO;WHITE;command_line;defaults;make_request;parse_value;request_argv,"from ..errors import RiposteError
+from .service import Request, EFFECTS
+from __future__ import annotations
+from dataclasses import dataclass
+from pathlib import Path
+from typing import Any
+import math
+import shlex",OVR-014;OVR-048,OVR-039;OVR-040;OVR-047;OVR-050;OVR-074;OVR-099,OGM-001,,,#typing-index,2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: added overlord row | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-039 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-040 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-047 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-050 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-061 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-074 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-099 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked OGMRefs to OGM-001 | 2026-09-16T21:46:16Z MIVIM.spec mypy-engineer: removed reciprocal RequiredBy edge from OVR-061,2026-09-16T21:46:16Z,
+OVR-039,FILE,src/riposte/terminal/app.py,,Existing application module riposte.terminal.app,_launch;_line_command;launch;linear_session,"from ..cli import main
+from ..errors import RiposteError
+from .actions import BY_KEY, parse_value
+from .controller import Controller
+from .keyboard import Key, TerminalKeys
+from .output import Presentation, error
+from .render import render, view_rows
+from .signals import termination_guard, TerminationRequested
+from __future__ import annotations
+from pathlib import Path
+from rich.live import Live
+from rich.text import Text
+import os
+import signal
+import sys
+import time",OVR-012;OVR-014;OVR-038;OVR-040;OVR-043;OVR-045;OVR-047;OVR-049,OVR-012;OVR-100,OGM-001,,,#typing-index,2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: added overlord row | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-012 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-100 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked OGMRefs to OGM-001,2026-09-16T21:43:24Z,
+OVR-040,FILE,src/riposte/terminal/controller.py,,Existing application module riposte.terminal.controller,Controller;Controller.__init__;Controller._key;Controller.accept_editor;Controller.action;Controller.back;Controller.batch;Controller.batches;Controller.confirm;Controller.cycle_theme;Controller.edit_workspace;Controller.editor_key;Controller.field_edit;Controller.freeze_motion;Controller.inspect_asset;Controller.inspect_item;Controller.key;Controller.library;Controller.move;Controller.preferences;Controller.pump;Controller.refresh;Controller.reload_preview;Controller.request_from_form;Controller.require_workspace;Controller.run;Controller.run_form;Controller.save_model_session;Controller.selected_row;Controller.show;Controller.shutdown;Controller.toggle_selection,"from ..errors import RiposteError
+from ..metrics import TRANSFORMS
+from .actions import ACTIONS, BY_KEY, Field, defaults, make_request, parse_value
+from .jobs import Operation, safe_code
+from .keyboard import Key
+from .output import Presentation
+from .preview import make_preview
+from .render import view_rows, scroll_limit
+from .service import Request, execute, image_bytes, root_of
+from .state import Session, Page, Editor
+from __future__ import annotations
+from dataclasses import replace
+from pathlib import Path
+import time",OVR-014;OVR-018;OVR-038;OVR-042;OVR-043;OVR-045;OVR-046;OVR-047;OVR-048;OVR-050,OVR-039;OVR-101,OGM-001,,,#typing-index,2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: added overlord row | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-039 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-101 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked OGMRefs to OGM-001,2026-09-16T21:43:24Z,
+OVR-041,FILE,src/riposte/terminal/help.py,,Existing application module riposte.terminal.help,RichCommand;RichCommand.format_help;RichGroup;RichGroup.format_help;format_help,"from __future__ import annotations
+from rich import box
+from rich.console import Console
+from rich.table import Table
+from rich.text import Text
+from typer.core import TyperGroup, TyperCommand
+import io
+import os
+import sys",,OVR-012;OVR-102,OGM-001,,,#typing-index,2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: added overlord row | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-012 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-102 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked OGMRefs to OGM-001,2026-09-16T21:43:24Z,
+OVR-042,FILE,src/riposte/terminal/jobs.py,,Existing application module riposte.terminal.jobs,Operation;Operation.__init__;Operation._run;Operation.cancel;Operation.join;Operation.progress;Operation.snapshot;Operation.start;Snapshot;safe_code;safe_phase,"from ..errors import RiposteError
+from .service import Request, CANCELLABLE, execute, result_exit_code
+from __future__ import annotations
+from collections import deque
+from dataclasses import dataclass, field
+from typing import Any, Callable
+import re
+import threading
+import time",OVR-014;OVR-048,OVR-040;OVR-045;OVR-074;OVR-103,OGM-001,,,#typing-index,2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: added overlord row | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-040 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-045 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-061 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-074 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-103 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked OGMRefs to OGM-001 | 2026-09-16T21:46:16Z MIVIM.spec mypy-engineer: removed reciprocal RequiredBy edge from OVR-061,2026-09-16T21:46:16Z,
+OVR-043,FILE,src/riposte/terminal/keyboard.py,,Existing application module riposte.terminal.keyboard,Key;KeyDecoder;KeyDecoder.__init__;KeyDecoder.feed;KeyDecoder.next;SEQUENCES;SINGLE;TerminalKeys;TerminalKeys.__enter__;TerminalKeys.__exit__;TerminalKeys.__init__;TerminalKeys.read,"from __future__ import annotations
+from dataclasses import dataclass
+import codecs
+import contextlib
+import msvcrt
+import os
+import select
+import sys
+import termios
+import termios, tty
+import time",,OVR-039;OVR-040;OVR-074;OVR-104,OGM-001,,,#typing-index,2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: added overlord row | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-039 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-040 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-061 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-074 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-104 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked OGMRefs to OGM-001 | 2026-09-16T21:46:16Z MIVIM.spec mypy-engineer: removed reciprocal RequiredBy edge from OVR-061,2026-09-16T21:46:16Z,
+OVR-044,FILE,src/riposte/terminal/material.py,,Existing application module riposte.terminal.material,LOGO;activity_trace;counterstroke,"from .surface import Surface
+from __future__ import annotations
+import math",OVR-051,OVR-045;OVR-047;OVR-105,OGM-001,,,#typing-index,2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: added overlord row | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-045 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-047 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-105 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked OGMRefs to OGM-001,2026-09-16T21:43:24Z,
+OVR-045,FILE,src/riposte/terminal/output.py,,Existing application module riposte.terminal.output,Activity;Activity.__init__;Activity.__rich__;Presentation;Presentation.console;Presentation.machine;RECOVERY;_run_direct;emit;error;result_table;run_direct,"from .jobs import Operation, safe_code
+from .material import activity_trace
+from .service import Request
+from .signals import termination_guard, TerminationRequested
+from .surface import Surface, PALETTES, ascii_text
+from __future__ import annotations
+from dataclasses import dataclass
+from rich import box
+from rich.console import Console
+from rich.live import Live
+from rich.panel import Panel
+from rich.table import Table
+from rich.text import Text
+import json
+import os
+import sys
+import time",OVR-042;OVR-044;OVR-048;OVR-049;OVR-051,OVR-012;OVR-039;OVR-040;OVR-047;OVR-050;OVR-106,OGM-001,,,#typing-index,2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: added overlord row | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-012 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-039 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-040 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-047 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-050 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-061 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-106 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked OGMRefs to OGM-001 | 2026-09-16T21:46:16Z MIVIM.spec mypy-engineer: removed reciprocal RequiredBy edge from OVR-061,2026-09-16T21:46:16Z,
+OVR-046,FILE,src/riposte/terminal/preview.py,,Existing application module riposte.terminal.preview,Preview;make_preview;paint_preview,"from .surface import Surface
+from PIL import Image
+from __future__ import annotations
+from dataclasses import dataclass, field
+import io",OVR-051,OVR-040;OVR-047;OVR-107,OGM-001,,,#typing-index,2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: added overlord row | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-040 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-047 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-107 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked OGMRefs to OGM-001,2026-09-16T21:43:24Z,
+OVR-047,FILE,src/riposte/terminal/render.py,,Existing application module riposte.terminal.render,asset;batches;collection;command_page;confirm;editor_overlay;footer;form;header;help_page;home;item;job;page_window;preferences;render;result;scroll_limit;shown;view_rows;workshop,"from .actions import BY_KEY, ACTIONS, command_line
+from .material import LOGO, counterstroke, activity_trace
+from .output import RECOVERY
+from .preview import paint_preview
+from .state import Session, HOME
+from .surface import Surface, ascii_text
+from __future__ import annotations
+import json
+import textwrap",OVR-038;OVR-044;OVR-045;OVR-046;OVR-050;OVR-051,OVR-039;OVR-040;OVR-108,OGM-001,,,#typing-index,2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: added overlord row | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-039 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-040 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-061 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-108 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked OGMRefs to OGM-001 | 2026-09-16T21:46:16Z MIVIM.spec mypy-engineer: removed reciprocal RequiredBy edge from OVR-061,2026-09-16T21:46:16Z,
+OVR-048,FILE,src/riposte/terminal/service.py,,Existing application module riposte.terminal.service,CANCELLABLE;EFFECTS;Progress;Request;_optional;_paths;execute;image_bytes;image_selection;parse_month;recipe;result_exit_code;root_of;select_rows;view_image,"from ..benchmark import run_benchmark
+from ..errors import RiposteError
+from ..generation import controlled_generation
+from ..generation import generation_frame
+from ..generation import generation_report
+from ..generation import generation_runs
+from ..lab import compare_external
+from ..lab import create_candidate
+from ..lab import export_candidate
+from ..lab import trial_pixels
+from ..lab import trials, trial_report
+from ..models import runtime_capabilities, inspect_vae
+from ..organizer import audit_workspace
+from ..organizer import plan, organize
+from ..policy import Policy, MONTHS, BINS, YEARS
+from ..publication import PublishRecipe
+from ..publication import export_publication
+from ..publication import open_in_workshop
+from ..publication import publication_pixels
+from ..publication import publication_plan, start_publication
+from ..publication import publication_status, publications
+from ..publication import resume_publication
+from ..publication import review_publication
+from ..qualification import evaluations
+from ..qualification import qualify_trial
+from ..quality import QualityLimits
+from ..release_guard import ReleaseConfig
+from ..runtime_probe import execute_local_probe
+from ..sanitize import png_audit
+from ..store import catalog
+from ..store import check_root
+from ..store import find_image, safe_child
+from ..store import safe_child, state_relative, atomic_clean_write, workspace_lock, find_image
+from ..store import upgrade_workspace
+from __future__ import annotations
+from dataclasses import dataclass, field
+from pathlib import Path
+from typing import Any, Callable
+import io
+import os
+import re
+import subprocess
+import sys",OVR-011;OVR-014;OVR-015;OVR-016;OVR-019;OVR-021;OVR-022;OVR-023;OVR-024;OVR-025;OVR-026;OVR-027;OVR-028;OVR-035,OVR-012;OVR-038;OVR-040;OVR-042;OVR-045;OVR-074;OVR-109,OGM-001,,,#typing-index,2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: added overlord row | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-012 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-038 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-040 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-042 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-045 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-061 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-074 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-109 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked OGMRefs to OGM-001 | 2026-09-16T21:46:16Z MIVIM.spec mypy-engineer: removed reciprocal RequiredBy edge from OVR-061,2026-09-16T21:46:16Z,
+OVR-049,FILE,src/riposte/terminal/signals.py,,Existing application module riposte.terminal.signals,TerminationRequested;termination_guard,"from __future__ import annotations
+from contextlib import contextmanager
+import signal
+import threading",,OVR-039;OVR-045;OVR-110,OGM-001,,,#typing-index,2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: added overlord row | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-039 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-045 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-110 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked OGMRefs to OGM-001,2026-09-16T21:43:24Z,
+OVR-050,FILE,src/riposte/terminal/state.py,,Existing application module riposte.terminal.state,Editor;HOME;Page;Session,"from .actions import Field
+from .output import Presentation
+from __future__ import annotations
+from dataclasses import dataclass, field
+from pathlib import Path
+from typing import Any",OVR-038;OVR-045,OVR-040;OVR-047;OVR-111,OGM-001,,,#typing-index,2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: added overlord row | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-040 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-047 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-061 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-111 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked OGMRefs to OGM-001 | 2026-09-16T21:46:16Z MIVIM.spec mypy-engineer: removed reciprocal RequiredBy edge from OVR-061,2026-09-16T21:46:16Z,
+OVR-051,FILE,src/riposte/terminal/surface.py,,Existing application module riposte.terminal.surface,Cell;PALETTES;Surface;Surface.__init__;Surface.__rich_console__;Surface.fill;Surface.frame;Surface.plain;Surface.put;Surface.rule;Surface.text;Surface.wrap;_style;ascii_text,"from __future__ import annotations
+from dataclasses import dataclass
+from functools import lru_cache
+from rich.segment import Segment
+from rich.style import Style
+import textwrap",,OVR-044;OVR-045;OVR-046;OVR-047;OVR-112,OGM-001,,,#typing-index,2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: added overlord row | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-044 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-045 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-046 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-047 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-112 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked OGMRefs to OGM-001,2026-09-16T21:43:24Z,
+OVR-052,FILE,src/riposte/views.py,,Existing application module riposte.views,HOLDOUT_VIEWS;MASKS;TRAIN_VIEWS;budget_map;differentiable_view;image_tensor;keep_mask;matched_control;publication_view;spectral_direction;tensor_image,"from .errors import RiposteError
+from .optimizer import jpeg_surrogate
+from PIL import Image, ImageFilter
+from __future__ import annotations
+import io
+import math
+import numpy as np
+import torch
+import torch.nn.functional as F",OVR-014;OVR-020,OVR-013;OVR-015;OVR-016;OVR-024;OVR-026;OVR-113,OGM-001,,,#typing-index,2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: added overlord row | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-013 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-015 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-016 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-024 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-026 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-113 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked OGMRefs to OGM-001,2026-09-16T21:43:24Z,
+OVR-053,FILE,src/riposte_studio.egg-info/PKG-INFO,,Generated installation metadata included in the reviewed source snapshot,,,,,OGM-001,,,#typing-index,2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: added overlord row | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked OGMRefs to OGM-001,2026-09-16T21:43:24Z,
+OVR-054,FILE,src/riposte_studio.egg-info/SOURCES.txt,,Generated installation metadata included in the reviewed source snapshot,,,,,OGM-001,,,#typing-index,2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: added overlord row | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked OGMRefs to OGM-001,2026-09-16T21:43:24Z,
+OVR-055,FILE,src/riposte_studio.egg-info/dependency_links.txt,,Generated installation metadata included in the reviewed source snapshot,,,,,OGM-001,,,#typing-index,2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: added overlord row | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked OGMRefs to OGM-001,2026-09-16T21:43:24Z,
+OVR-056,FILE,src/riposte_studio.egg-info/entry_points.txt,,Generated installation metadata included in the reviewed source snapshot,,,,,OGM-001,,,#typing-index,2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: added overlord row | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked OGMRefs to OGM-001,2026-09-16T21:43:24Z,
+OVR-057,FILE,src/riposte_studio.egg-info/requires.txt,,Generated installation metadata included in the reviewed source snapshot,,,,,OGM-001,,,#typing-index,2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: added overlord row | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked OGMRefs to OGM-001,2026-09-16T21:43:24Z,
+OVR-058,FILE,src/riposte_studio.egg-info/top_level.txt,,Generated installation metadata included in the reviewed source snapshot,,,,,OGM-001,,,#typing-index,2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: added overlord row | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked OGMRefs to OGM-001,2026-09-16T21:43:24Z,
+OVR-059,FILE,typing/README.md,,"Typing validation input, evidence or development authority",,,,,OGM-001,,NDL-001,#typing-index,2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: added overlord row | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked OGMRefs to OGM-001 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked NDLRefs to NDL-001,2026-09-16T21:43:24Z,
+OVR-060,FILE,typing/check.py,,"Typing validation input, evidence or development authority",EVIDENCE;HERE;ROOT;STUBS;check_parity;declarations;dynamic_inventory;main;negative_check;run;signature;source_hashes,"from __future__ import annotations
+from collections import Counter
+from pathlib import Path
+import argparse
+import ast
+import hashlib
+import importlib.metadata
+import json
+import os
+import re
+import subprocess
+import sys",,,OGM-001,,,#typing-index,2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: added overlord row | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked OGMRefs to OGM-001,2026-09-16T21:43:24Z,
+OVR-061,FILE,typing/checks/consumers.py,,"Typing validation input, evidence or development authority",ExampleEncoder;ExampleEncoder.__call__;consume;encoder_contracts;operation;progress;terminal_contracts,"from PIL import Image
+from _riposte_types import CatalogRow, FidelityReport, ImageInfo, JobStarted, OrganizationPlan, OrganizationReport, PngAudit, ProgressEvent, PublicationBatch, PublicationExport, PublicationPlan, PublicationSummary, QualityReport, RecipeRecord, TransportReport, WorkspaceAudit, Progress
+from numpy.typing import NDArray
+from pathlib import Path
+from riposte.cli import Root, Vae
+from riposte.coupled import protect_coupled
+from riposte.metrics import fidelity, transport_report
+from riposte.optimizer import protect
+from riposte.organizer import audit_workspace, organize, plan
+from riposte.policy import size_bin
+from riposte.publication import PublishRecipe, export_publication, publication_plan, publication_status, publication_zip, publications, review_publication
+from riposte.quality import QualityLimits, quality_report, spatial_budget
+from riposte.release_guard import protect_release
+from riposte.sanitize import decode_clean, encode_clean, png_audit
+from riposte.server import Jobs
+from riposte.store import catalog, find_image, workspace_lock, write_report
+from riposte.terminal.actions import command_line
+from riposte.terminal.jobs import Operation
+from riposte.terminal.keyboard import Key, KeyDecoder
+from riposte.terminal.output import Presentation
+from riposte.terminal.render import render
+from riposte.terminal.service import Request, image_bytes, recipe, select_rows, view_image
+from riposte.terminal.state import Session
+from typing import TYPE_CHECKING, Literal, assert_type
+import numpy as np",OVR-075;OVR-079;OVR-080;OVR-084;OVR-086;OVR-087;OVR-088;OVR-089;OVR-091;OVR-092;OVR-094;OVR-095;OVR-096;OVR-099;OVR-103;OVR-104;OVR-106;OVR-108;OVR-109;OVR-111,,OGM-001,,,#typing-index,2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: added overlord row | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked OGMRefs to OGM-001 | 2026-09-16T21:46:16Z MIVIM.spec mypy-engineer: updated Requires,2026-09-16T21:46:16Z,
+OVR-062,FILE,typing/checks/rejected.py.txt,,"Typing validation input, evidence or development authority",event;package;root;size,"from _riposte_types import ProgressEvent
+from pathlib import Path
+from riposte.metrics import fidelity
+from riposte.publication import PublishRecipe, publication_zip
+from riposte.sanitize import png_audit
+from riposte.terminal.jobs import Operation
+from riposte.terminal.service import Request, select_rows
+from riposte.terminal.surface import Surface",OVR-075;OVR-084;OVR-089;OVR-094;OVR-103;OVR-109;OVR-112,,OGM-001,,,#typing-index,2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: added overlord row | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked OGMRefs to OGM-001 | 2026-09-16T21:46:16Z MIVIM.spec mypy-engineer: updated Exports;Imports;Requires,2026-09-16T21:46:16Z,
+OVR-063,FILE,typing/evidence/dynamic-boundaries.json,,"Typing validation input, evidence or development authority",,,,,OGM-001,,,#typing-index,2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: added overlord row | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked OGMRefs to OGM-001,2026-09-16T21:43:24Z,
+OVR-064,FILE,typing/evidence/source-before.json,,"Typing validation input, evidence or development authority",,,,,OGM-001,,,#typing-index,2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: added overlord row | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked OGMRefs to OGM-001,2026-09-16T21:43:24Z,
+OVR-065,FILE,typing/evidence/source-current-command.txt,,"Typing validation input, evidence or development authority",,,,,OGM-001,,,#typing-index,2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: added overlord row | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked OGMRefs to OGM-001,2026-09-16T21:43:24Z,
+OVR-066,FILE,typing/evidence/source-current.txt,,"Typing validation input, evidence or development authority",,,,,OGM-001,,,#typing-index,2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: added overlord row | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked OGMRefs to OGM-001,2026-09-16T21:43:24Z,
+OVR-067,FILE,typing/evidence/verification.json,,"Typing validation input, evidence or development authority",,,,,OGM-001,,,#typing-index,2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: added overlord row | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked OGMRefs to OGM-001,2026-09-16T21:43:24Z,
+OVR-068,FILE,typing/evidence/windows-stat-probe-app-py314.txt,,"Typing validation input, evidence or development authority",,,,,OGM-001,PAC-002,,#typing-index,2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: added overlord row | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked OGMRefs to OGM-001 | 2026-09-16T21:46:16Z MIVIM.spec mypy-engineer: linked PACRefs to PAC-002,2026-09-16T21:46:16Z,
+OVR-069,FILE,typing/evidence/windows-stat-probe.txt,,"Typing validation input, evidence or development authority",,,,,OGM-001,PAC-002,,#typing-index,2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: added overlord row | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked OGMRefs to OGM-001 | 2026-09-16T21:46:16Z MIVIM.spec mypy-engineer: linked PACRefs to PAC-002,2026-09-16T21:46:16Z,
+OVR-070,FILE,typing/mypy-source.ini,,"Typing validation input, evidence or development authority",,,,,OGM-001,,,#typing-index,2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: added overlord row | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked OGMRefs to OGM-001,2026-09-16T21:43:24Z,
+OVR-071,FILE,typing/pacer_inventory.py,,"Typing validation input, evidence or development authority",INPUTS;REPORT;ROOT;TAG;definitions;describe;digest;inventory;main;module_key;reconcile;scoped_paths,"from __future__ import annotations
+from pathlib import Path
+import argparse
+import ast
+import csv
+import hashlib
+import json",,OVR-117;OVR-118;OVR-119;OVR-120;OVR-121;OVR-122;OVR-123;OVR-124,OGM-001,,NDL-001,#typing-index,2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: added overlord row | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-117 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-118 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-119 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-120 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-121 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-122 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-123 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-124 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked OGMRefs to OGM-001 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked NDLRefs to NDL-001,2026-09-16T21:43:24Z,
+OVR-072,FILE,typing/probe_windows_stat.py,,"Typing validation input, evidence or development authority",keys,"from PIL import Image
+from pathlib import Path
+from riposte.sanitize import decode_clean
+import json
+import os
+import sys
+import tempfile",OVR-028,,OGM-001,PAC-002,,#typing-index,2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: added overlord row | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked OGMRefs to OGM-001 | 2026-09-16T21:46:16Z MIVIM.spec mypy-engineer: linked PACRefs to PAC-002,2026-09-16T21:46:16Z,
+OVR-073,FILE,typing/pyproject.toml,,"Typing validation input, evidence or development authority",,,,,OGM-001,,,#typing-index,2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: added overlord row | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked OGMRefs to OGM-001,2026-09-16T21:43:24Z,
+OVR-074,FILE,typing/runtime_contracts.py,,"Typing validation input, evidence or development authority",ContractFixtures;ContractFixtures.fixture_batch;ContractFixtures.organized;ContractFixtures.setUp;ContractFixtures.test_incomplete_organization_records;ContractFixtures.test_operation_callback_and_form_contracts;ContractFixtures.test_organization_catalog_and_image_selection;ContractFixtures.test_png_fidelity_quality_and_budget;ContractFixtures.test_runtime_and_preflight_shapes_without_model_loading;ContractFixtures.test_synthetic_publication_pending_and_blocked_shapes;ContractFixtures.test_synthetic_publication_ready_and_export_shape;ContractFixtures.test_upgrade_optional_fields;ContractFixtures.test_validator_rejects_drift;RECORDS;ROOT;load_records;matches,"from PIL import Image
+from __future__ import annotations
+from collections.abc import Sequence
+from pathlib import Path
+from riposte import metrics, models, organizer, publication, quality, sanitize, store
+from riposte.terminal import actions, service
+from riposte.terminal.jobs import Operation
+from riposte.terminal.keyboard import KeyDecoder
+from unittest.mock import patch
+import ast
+import json
+import sys
+import tempfile
+import types
+import typing
+import unittest",OVR-009;OVR-018;OVR-019;OVR-021;OVR-023;OVR-025;OVR-028;OVR-035;OVR-037;OVR-038;OVR-042;OVR-043;OVR-048,,OGM-001,,,#typing-index,2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: added overlord row | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked OGMRefs to OGM-001,2026-09-16T21:43:24Z,
+OVR-075,FILE,typing/stubs/_riposte_types.pyi,,External source-derived typing declarations,CatalogRow;ContentFilterFlags;DateSource;Encoder;Encoder.__call__;EncoderT;FidelityReport;FormValue;ImageInfo;InpaintProbe;InpaintProbe.__call__;JSONValue;JobCancelled;JobStarted;ModelTensor;OrganizationPlan;OrganizationReport;PngAudit;Progress;ProgressEvent;PublicationBatch;PublicationExport;PublicationItem;PublicationPlan;PublicationSummary;PublicationTask;QualityPolicy;QualityReport;RecipeRecord;ReleaseSettings;Report;RequestValues;RuntimeCapabilities;SizeBin;TemporalProbe;TemporalProbe.__call__;TransportReport;TransportRow;UpgradeReport;VaeInspection;WorkspaceAudit,"from collections.abc import Callable, Sequence
+from pathlib import Path
+from typing import Any, Literal, NotRequired, Protocol, TypeAlias, TypedDict, TypeVar",,OVR-080;OVR-082;OVR-083;OVR-084;OVR-085;OVR-086;OVR-087;OVR-088;OVR-089;OVR-090;OVR-091;OVR-092;OVR-093;OVR-094;OVR-095;OVR-096;OVR-097;OVR-099;OVR-101;OVR-103;OVR-108;OVR-109;OVR-111;OVR-113;OVR-061;OVR-062,OGM-001,,,#typing-index,2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: added overlord row | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-080 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-082 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-083 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-084 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-085 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-086 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-087 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-088 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-089 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-090 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-091 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-092 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-093 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-094 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-095 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-096 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-097 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-099 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-101 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-103 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-108 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-109 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-111 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-113 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked OGMRefs to OGM-001 | 2026-09-16T21:46:16Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-061 | 2026-09-16T21:46:16Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-062,2026-09-16T21:46:16Z,
+OVR-076,FILE,typing/stubs/riposte/__init__.pyi,,External source-derived typing declarations,__version__,,OVR-009,OVR-079,OGM-001,,,#typing-index,2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: added overlord row | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-079 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked OGMRefs to OGM-001,2026-09-16T21:43:24Z,
+OVR-077,FILE,typing/stubs/riposte/__main__.pyi,,External source-derived typing declarations,,from .cli import main as main,OVR-010;OVR-079,,OGM-001,,,#typing-index,2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: added overlord row | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked OGMRefs to OGM-001,2026-09-16T21:43:24Z,
+OVR-078,FILE,typing/stubs/riposte/benchmark.pyi,,External source-derived typing declarations,PROMPTS;run_benchmark,"from .errors import RiposteError as RiposteError
+from .lab import trial_report as trial_report
+from .metrics import fidelity as fidelity, transform as transform
+from .sanitize import encode_clean as encode_clean, png_audit as png_audit, social_render as social_render
+from .store import atomic_clean_write as atomic_clean_write, safe_child as safe_child, state_relative as state_relative, workspace_lock as workspace_lock
+from pathlib import Path
+from typing import Any",OVR-011;OVR-081;OVR-083;OVR-084;OVR-094;OVR-096,,OGM-001,,,#typing-index,2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: added overlord row | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked OGMRefs to OGM-001,2026-09-16T21:43:24Z,
+OVR-079,FILE,typing/stubs/riposte/cli.pyi,,External source-derived typing declarations,DateMode;DateMode.__new__;Decision;Decision.__new__;Device;Device.__new__;Engine;Engine.__new__;Root;Task;Task.__new__;Theme;Theme.__new__;Vae;_F;_version;app;audit;benchmark;challenge;command;compare;dispatch;doctor;evaluations;export;frame;generation;generations;guard;image;inspect;list_images;main;organize;package;publications;publish;qualify;resume;review;root_callback;serve;trials;ui;upgrade;workshop,"from . import __version__ as __version__
+from .errors import RiposteError as RiposteError
+from .terminal.help import RichCommand as RichCommand, RichGroup as RichGroup
+from .terminal.output import Presentation as Presentation, error as error, run_direct as run_direct
+from .terminal.service import Request as Request
+from enum import Enum
+from pathlib import Path
+from typing import Annotated
+from typing import Any, Callable, Self, TypeAlias, TypeVar
+import typer",OVR-012;OVR-076;OVR-081;OVR-102;OVR-106;OVR-109,OVR-077;OVR-061,OGM-001,,,#typing-index,2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: added overlord row | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-077 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked OGMRefs to OGM-001 | 2026-09-16T21:46:16Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-061,2026-09-16T21:46:16Z,
+OVR-080,FILE,typing/stubs/riposte/coupled.pyi,,External source-derived typing declarations,Branch;CoupledConfig;CoupledConfig.__post_init__;_branches;_features;protect_coupled,"from .errors import RiposteError as RiposteError
+from .metrics import fidelity as fidelity
+from .optimizer import _round_ste as _round_ste
+from .views import TRAIN_VIEWS as TRAIN_VIEWS, budget_map as budget_map, differentiable_view as differentiable_view, image_tensor as image_tensor, keep_mask as keep_mask, spectral_direction as spectral_direction, tensor_image as tensor_image
+from PIL import Image as Image
+from PIL.Image import Image as _Image
+from _riposte_types import EncoderT
+from _riposte_types import Progress as _Progress
+from _riposte_types import Report, ModelTensor, Encoder, InpaintProbe
+from dataclasses import dataclass",OVR-013;OVR-075;OVR-081;OVR-084;OVR-086;OVR-113,OVR-092;OVR-061,OGM-001,,,#typing-index,2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: added overlord row | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-092 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked OGMRefs to OGM-001 | 2026-09-16T21:46:16Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-061,2026-09-16T21:46:16Z,
+OVR-081,FILE,typing/stubs/riposte/errors.pyi,,External source-derived typing declarations,RiposteError;RiposteError.__init__,,OVR-014,OVR-078;OVR-079;OVR-080;OVR-082;OVR-083;OVR-084;OVR-085;OVR-086;OVR-087;OVR-088;OVR-089;OVR-090;OVR-091;OVR-092;OVR-093;OVR-094;OVR-095;OVR-096;OVR-097;OVR-099;OVR-100;OVR-101;OVR-103;OVR-109;OVR-113,OGM-001,,,#typing-index,2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: added overlord row | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-078 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-079 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-080 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-082 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-083 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-084 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-085 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-086 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-087 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-088 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-089 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-090 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-091 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-092 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-093 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-094 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-095 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-096 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-097 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-099 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-100 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-101 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-103 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-109 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-113 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked OGMRefs to OGM-001,2026-09-16T21:43:24Z,
+OVR-082,FILE,typing/stubs/riposte/generation.pyi,,External source-derived typing declarations,ALLOWED_COMPONENTS;LocalGenerator;LocalGenerator.__call__;LocalGenerator.__init__;_execute;_validate;controlled_generation;frame_motion;generation_frame;generation_report;generation_runs;prepare_input,"from .errors import RiposteError as RiposteError
+from .metrics import fidelity as fidelity
+from .models import model_fingerprint as model_fingerprint, offline as offline, read_config as read_config
+from .qualification import CONTROL_SEEDS as CONTROL_SEEDS, _verified_pair as _verified_pair
+from .sanitize import encode_clean as encode_clean, png_audit as png_audit, social_render as social_render
+from .store import atomic_clean_write as atomic_clean_write, atomic_json_write as atomic_json_write, safe_child as safe_child, state_relative as state_relative, workspace_lock as workspace_lock
+from .views import HOLDOUT_VIEWS as HOLDOUT_VIEWS, TRAIN_VIEWS as TRAIN_VIEWS, matched_control as matched_control, publication_view as publication_view
+from PIL import Image
+from PIL.Image import Image as _Image
+from _riposte_types import ContentFilterFlags
+from _riposte_types import Progress as _Progress
+from _riposte_types import Report
+from pathlib import Path
+from typing import Any",OVR-015;OVR-075;OVR-081;OVR-084;OVR-085;OVR-090;OVR-094;OVR-096;OVR-113,,OGM-001,,,#typing-index,2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: added overlord row | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked OGMRefs to OGM-001,2026-09-16T21:43:24Z,
+OVR-083,FILE,typing/stubs/riposte/lab.pyi,,External source-derived typing declarations,METHODS;_master;_store_trial;compare_external;create_candidate;export_candidate;trial_pixels;trial_report;trials,"from .errors import RiposteError as RiposteError
+from .metrics import difference_image as difference_image, fidelity as fidelity, transport_report as transport_report
+from .policy import Policy as Policy
+from .sanitize import decode_clean as decode_clean, encode_clean as encode_clean, png_audit as png_audit, social_render as social_render
+from .store import atomic_clean_write as atomic_clean_write, check_root as check_root, find_image as find_image, safe_child as safe_child, state_relative as state_relative, workspace_lock as workspace_lock
+from PIL import Image
+from PIL.Image import Image as _Image
+from _riposte_types import Progress as _Progress
+from _riposte_types import Report, CatalogRow
+from pathlib import Path
+from typing import Any",OVR-016;OVR-075;OVR-081;OVR-084;OVR-088;OVR-094;OVR-096,OVR-078;OVR-095,OGM-001,,,#typing-index,2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: added overlord row | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-078 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-095 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked OGMRefs to OGM-001,2026-09-16T21:43:24Z,
+OVR-084,FILE,typing/stubs/riposte/metrics.pyi,,External source-derived typing declarations,TRANSFORMS;difference_image;fidelity;transform;transport_report,"from .errors import RiposteError as RiposteError
+from PIL import Image
+from _riposte_types import FidelityReport, TransportReport",OVR-018;OVR-075;OVR-081,OVR-078;OVR-080;OVR-082;OVR-083;OVR-086;OVR-089;OVR-090;OVR-091;OVR-101;OVR-061;OVR-062,OGM-001,,,#typing-index,2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: added overlord row | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-078 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-080 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-082 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-083 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-086 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-089 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-090 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-091 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-101 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked OGMRefs to OGM-001 | 2026-09-16T21:46:16Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-061 | 2026-09-16T21:46:16Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-062,2026-09-16T21:46:16Z,
+OVR-085,FILE,typing/stubs/riposte/models.pyi,,External source-derived typing declarations,DEPENDENCIES;LocalEncoder;LocalEncoder.__call__;LocalEncoder.__init__;LocalInpaintProbe;LocalInpaintProbe.__call__;LocalInpaintProbe.__init__;PROMPTS;VAE_CLASSES;_weights;inspect_vae;model_fingerprint;offline;read_config;runtime_capabilities;select_device,"from .errors import RiposteError as RiposteError
+from .policy import is_link as is_link
+from _riposte_types import Report, ModelTensor
+from _riposte_types import VaeInspection, RuntimeCapabilities
+from pathlib import Path
+from typing import Any",OVR-019;OVR-075;OVR-081;OVR-088,OVR-082;OVR-097,OGM-001,,,#typing-index,2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: added overlord row | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-082 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-097 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked OGMRefs to OGM-001,2026-09-16T21:43:24Z,
+OVR-086,FILE,typing/stubs/riposte/optimizer.pyi,,External source-derived typing declarations,GuardConfig;GuardConfig.__post_init__;LocalVAE;LocalVAE.__call__;LocalVAE.__init__;_round_ste;eot;jpeg_surrogate;protect,"from .errors import RiposteError as RiposteError
+from .metrics import fidelity as fidelity
+from PIL import Image
+from PIL.Image import Image as _Image
+from _riposte_types import EncoderT
+from _riposte_types import Progress as _Progress
+from _riposte_types import Report, ModelTensor, Encoder
+from dataclasses import dataclass
+from pathlib import Path
+from typing import Any",OVR-020;OVR-075;OVR-081;OVR-084,OVR-080;OVR-092;OVR-061,OGM-001,,,#typing-index,2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: added overlord row | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-080 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-092 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked OGMRefs to OGM-001 | 2026-09-16T21:46:16Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-061,2026-09-16T21:46:16Z,
+OVR-087,FILE,typing/stubs/riposte/organizer.pyi,,External source-derived typing declarations,Progress;_next_relative;_validate_managed;audit_workspace;known_good;organize;plan;walk_inputs,"from .errors import RiposteError as RiposteError
+from .policy import CACHE_NAMES as CACHE_NAMES, IMAGE_SUFFIXES as IMAGE_SUFFIXES, Policy as Policy, SIDECAR_SUFFIXES as SIDECAR_SUFFIXES, folder_for as folder_for, is_link as is_link, same_file_state as same_file_state
+from .sanitize import decode_clean as decode_clean, encode_clean as encode_clean, png_audit as png_audit
+from .store import atomic_clean_write as atomic_clean_write, catalog as catalog, check_root as check_root, record_image as record_image, safe_child as safe_child, state_name as state_name, workspace_lock as workspace_lock, write_report as write_report
+from _riposte_types import CatalogRow, OrganizationPlan, OrganizationReport, WorkspaceAudit
+from _riposte_types import Progress as _Progress
+from pathlib import Path
+from typing import Iterator",OVR-021;OVR-075;OVR-081;OVR-088;OVR-094;OVR-096,OVR-095;OVR-061,OGM-001,,,#typing-index,2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: added overlord row | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-095 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked OGMRefs to OGM-001 | 2026-09-16T21:46:16Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-061,2026-09-16T21:46:16Z,
+OVR-088,FILE,typing/stubs/riposte/policy.pyi,,External source-derived typing declarations,BINS;CACHE_NAMES;CANONICAL;FORMAT_NAMES;IMAGE_SUFFIXES;MONTHS;Policy;Policy.__post_init__;SIDECAR_SUFFIXES;YEARS;canonical_path;extract_day;folder_for;is_link;same_file_state;size_bin;valid_day,"from .errors import RiposteError as RiposteError
+from PIL.Image import Image as _Image
+from _riposte_types import SizeBin, DateSource
+from dataclasses import dataclass
+from pathlib import Path
+import os
+import re",OVR-022;OVR-075;OVR-081,OVR-083;OVR-085;OVR-087;OVR-089;OVR-094;OVR-095;OVR-096;OVR-097;OVR-109;OVR-061,OGM-001,,,#typing-index,2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: added overlord row | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-083 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-085 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-087 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-089 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-094 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-095 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-096 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-097 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-109 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked OGMRefs to OGM-001 | 2026-09-16T21:46:16Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-061,2026-09-16T21:46:16Z,
+OVR-089,FILE,typing/stubs/riposte/publication.pyi,,External source-derived typing declarations,PublishRecipe;PublishRecipe.__post_init__;PublishRecipe.from_dict;PublishRecipe.public;_checkpoint;_id;_models;_prefix;_publication_zip_locked;_read;_replace_json;_request;_run;_verified_item;export_publication;open_in_workshop;publication_pixels;publication_plan;publication_status;publication_zip;publications;resume_publication;review_publication;start_publication,"from .errors import RiposteError as RiposteError
+from .metrics import transport_report as transport_report
+from .policy import folder_for as folder_for, valid_day as valid_day
+from .quality import QualityLimits as QualityLimits, quality_report as quality_report
+from .release_guard import ReleaseConfig as ReleaseConfig, protect_release as protect_release
+from .sanitize import encode_clean as encode_clean, png_audit as png_audit, social_render as social_render
+from .store import atomic_clean_write as atomic_clean_write, atomic_json_write as atomic_json_write, check_root as check_root, find_image as find_image, safe_child as safe_child, state_relative as state_relative, workspace_lock as workspace_lock
+from PIL.Image import Image as _Image
+from _riposte_types import Progress as _Progress
+from _riposte_types import Report, RecipeRecord, PublicationPlan, PublicationSummary, PublicationBatch, PublicationExport, Encoder, InpaintProbe, TemporalProbe
+from dataclasses import dataclass
+from pathlib import Path
+from pathlib import Path as Path
+from typing import Any, Mapping, Self",OVR-023;OVR-075;OVR-081;OVR-084;OVR-088;OVR-091;OVR-092;OVR-094;OVR-096,OVR-109;OVR-061;OVR-062,OGM-001,,,#typing-index,2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: added overlord row | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-109 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked OGMRefs to OGM-001 | 2026-09-16T21:46:16Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-061 | 2026-09-16T21:46:16Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-062,2026-09-16T21:46:16Z,
+OVR-090,FILE,typing/stubs/riposte/qualification.pyi,,External source-derived typing declarations,CONTROL_SEEDS;EVAL_MASKS;_verified_pair;evaluate_pair;evaluations;qualify_trial,"from .errors import RiposteError as RiposteError
+from .metrics import fidelity as fidelity
+from .sanitize import encode_clean as encode_clean, png_audit as png_audit
+from .store import atomic_clean_write as atomic_clean_write, safe_child as safe_child, state_relative as state_relative, workspace_lock as workspace_lock
+from .views import HOLDOUT_VIEWS as HOLDOUT_VIEWS, TRAIN_VIEWS as TRAIN_VIEWS, image_tensor as image_tensor, keep_mask as keep_mask, matched_control as matched_control, publication_view as publication_view
+from PIL import Image
+from PIL.Image import Image as _Image
+from _riposte_types import EncoderT
+from _riposte_types import Progress as _Progress
+from _riposte_types import Report, Encoder
+from pathlib import Path
+from typing import Any",OVR-024;OVR-075;OVR-081;OVR-084;OVR-094;OVR-096;OVR-113,OVR-082,OGM-001,,,#typing-index,2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: added overlord row | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-082 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked OGMRefs to OGM-001,2026-09-16T21:43:24Z,
+OVR-091,FILE,typing/stubs/riposte/quality.pyi,,External source-derived typing declarations,QualityLimits;QualityLimits.__post_init__;QualityLimits.public;_lab;quality_report;spatial_budget,"from .errors import RiposteError as RiposteError
+from .metrics import fidelity as fidelity
+from PIL import Image as Image
+from PIL.Image import Image as _Image
+from _riposte_types import QualityPolicy, QualityReport
+from dataclasses import dataclass
+from numpy.typing import NDArray
+from typing import Any
+import numpy as np",OVR-025;OVR-075;OVR-081;OVR-084,OVR-089;OVR-092;OVR-061,OGM-001,,,#typing-index,2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: added overlord row | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-089 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-092 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked OGMRefs to OGM-001 | 2026-09-16T21:46:16Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-061,2026-09-16T21:46:16Z,
+OVR-092,FILE,typing/stubs/riposte/release_guard.pyi,,External source-derived typing declarations,ReleaseConfig;ReleaseConfig.__post_init__;protect_release;temporal_energy,"from .coupled import Branch as Branch, _branches as _branches, _features as _features
+from .errors import RiposteError as RiposteError
+from .optimizer import _round_ste as _round_ste
+from .quality import QualityLimits as QualityLimits, quality_report as quality_report, spatial_budget as spatial_budget
+from .views import TRAIN_VIEWS as TRAIN_VIEWS, differentiable_view as differentiable_view, image_tensor as image_tensor, spectral_direction as spectral_direction, tensor_image as tensor_image
+from PIL import Image as Image
+from PIL.Image import Image as _Image
+from _riposte_types import EncoderT
+from _riposte_types import Progress as _Progress
+from _riposte_types import Report, ModelTensor, Encoder, InpaintProbe, TemporalProbe
+from dataclasses import dataclass",OVR-026;OVR-075;OVR-080;OVR-081;OVR-086;OVR-091;OVR-113,OVR-089;OVR-061,OGM-001,,,#typing-index,2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: added overlord row | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-089 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked OGMRefs to OGM-001 | 2026-09-16T21:46:16Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-061,2026-09-16T21:46:16Z,
+OVR-093,FILE,typing/stubs/riposte/runtime_probe.pyi,,External source-derived typing declarations,execute_local_probe;probe_encoder,"from .errors import RiposteError as RiposteError
+from _riposte_types import Progress as _Progress
+from _riposte_types import Report, Encoder
+from pathlib import Path
+from typing import Any",OVR-027;OVR-075;OVR-081,,OGM-001,,,#typing-index,2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: added overlord row | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked OGMRefs to OGM-001,2026-09-16T21:43:24Z,
+OVR-094,FILE,typing/stubs/riposte/sanitize.pyi,,External source-derived typing declarations,CleanImage;PNG_MAGIC;decode_clean;encode_clean;fresh_pixels;png_audit;social_render;timestamp_day,"from .errors import RiposteError as RiposteError
+from .policy import FORMAT_NAMES as FORMAT_NAMES, Policy as Policy, extract_day as extract_day, same_file_state as same_file_state, valid_day as valid_day
+from PIL import Image
+from _riposte_types import PngAudit
+from dataclasses import dataclass
+from pathlib import Path
+import os",OVR-028;OVR-075;OVR-081;OVR-088,OVR-078;OVR-082;OVR-083;OVR-087;OVR-089;OVR-090;OVR-095;OVR-096;OVR-061;OVR-062,OGM-001,,,#typing-index,2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: added overlord row | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-078 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-082 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-083 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-087 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-089 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-090 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-095 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-096 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked OGMRefs to OGM-001 | 2026-09-16T21:46:16Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-061 | 2026-09-16T21:46:16Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-062,2026-09-16T21:46:16Z,
+OVR-095,FILE,typing/stubs/riposte/server.pyi,,External source-derived typing declarations,CompareRequest;ExecutionRequest;ExportRequest;GenerationRequest;GuardRequest;Jobs;Jobs.__init__;Jobs.cancel;Jobs.close;Jobs.snapshot;Jobs.start;OrganizeRequest;PreflightRequest;PublishRequest;PublishReviewRequest;QualificationRequest;ResumePublishRequest;STATIC;StrictModel;create_app,"from .errors import RiposteError as RiposteError
+from .lab import compare_external as compare_external, create_candidate as create_candidate, export_candidate as export_candidate, trial_pixels as trial_pixels, trial_report as trial_report, trials as trials
+from .organizer import audit_workspace as audit_workspace, organize as organize, plan as plan
+from .policy import Policy as Policy
+from .sanitize import encode_clean as encode_clean, png_audit as png_audit
+from .store import catalog as catalog, check_root as check_root, find_image as find_image, legacy_workspace as legacy_workspace, safe_child as safe_child, state_relative as state_relative, upgrade_workspace as upgrade_workspace
+from _riposte_types import JobStarted, JobCancelled
+from _riposte_types import Report
+from concurrent.futures import ThreadPoolExecutor
+from fastapi import FastAPI, Request as Request
+from pathlib import Path
+from pydantic import BaseModel
+from pydantic import ConfigDict
+from typing import Any, Callable
+from typing import ClassVar
+from typing import Literal
+import threading",OVR-029;OVR-075;OVR-081;OVR-083;OVR-087;OVR-088;OVR-094;OVR-096,OVR-061,OGM-001,,,#typing-index,2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: added overlord row | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked OGMRefs to OGM-001 | 2026-09-16T21:46:16Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-061,2026-09-16T21:46:16Z,
+OVR-096,FILE,typing/stubs/riposte/store.pyi,,External source-derived typing declarations,LEGACY_SIGNATURE;SIGNATURE;atomic_clean_write;atomic_json_write;catalog;check_root;connect;find_image;legacy_workspace;record_image;safe_child;state_dir;state_name;state_relative;upgrade_workspace;workspace_lock;write_report,"from .errors import RiposteError as RiposteError
+from .policy import canonical_path as canonical_path, is_link as is_link
+from .sanitize import png_audit as png_audit, timestamp_day as timestamp_day
+from _riposte_types import PngAudit, CatalogRow, UpgradeReport
+from contextlib import AbstractContextManager
+from pathlib import Path
+from typing import Mapping
+import sqlite3",OVR-035;OVR-075;OVR-081;OVR-088;OVR-094,OVR-078;OVR-082;OVR-083;OVR-087;OVR-089;OVR-090;OVR-095;OVR-061,OGM-001,,,#typing-index,2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: added overlord row | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-078 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-082 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-083 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-087 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-089 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-090 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-095 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked OGMRefs to OGM-001 | 2026-09-16T21:46:16Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-061,2026-09-16T21:46:16Z,
+OVR-097,FILE,typing/stubs/riposte/temporal.pyi,,External source-derived typing declarations,LocalTemporalProbe;LocalTemporalProbe.__call__;LocalTemporalProbe.__init__;TemporalConfig;TemporalConfig.__post_init__;letterbox_tensor;v_prediction_original,"from .errors import RiposteError as RiposteError
+from .models import model_fingerprint as model_fingerprint, offline as offline, read_config as read_config, select_device as select_device
+from .policy import is_link as is_link
+from _riposte_types import Report, ModelTensor
+from dataclasses import dataclass
+from pathlib import Path
+from typing import Any",OVR-036;OVR-075;OVR-081;OVR-085;OVR-088,,OGM-001,,,#typing-index,2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: added overlord row | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked OGMRefs to OGM-001,2026-09-16T21:43:24Z,
+OVR-098,FILE,typing/stubs/riposte/terminal/__init__.pyi,,External source-derived typing declarations,,,OVR-037,,OGM-001,,,#typing-index,2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: added overlord row | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked OGMRefs to OGM-001,2026-09-16T21:43:24Z,
+OVR-099,FILE,typing/stubs/riposte/terminal/actions.pyi,,External source-derived typing declarations,ACTIONS;Action;Action.effect;BATCH;BY_KEY;DEVICE;EDGES;EPSILON;Field;IMAGE;INPAINT;ITEM;MAX_EDGE;MODEL;PUB_FIELDS;SEED;STEPS;TRIAL;VAE_FIELDS;VIDEO;WHITE;command_line;defaults;make_request;parse_value;request_argv,"from ..errors import RiposteError as RiposteError
+from .service import EFFECTS as EFFECTS, Request as Request
+from _riposte_types import FormValue
+from dataclasses import dataclass
+from pathlib import Path
+from typing import Any, Iterable, Mapping",OVR-038;OVR-075;OVR-081;OVR-109,OVR-101;OVR-108;OVR-111;OVR-061,OGM-001,,,#typing-index,2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: added overlord row | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-101 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-108 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-111 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked OGMRefs to OGM-001 | 2026-09-16T21:46:16Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-061,2026-09-16T21:46:16Z,
+OVR-100,FILE,typing/stubs/riposte/terminal/app.pyi,,External source-derived typing declarations,_launch;_line_command;launch;linear_session,"from ..errors import RiposteError as RiposteError
+from .controller import Controller as Controller
+from .keyboard import Key as Key, TerminalKeys as TerminalKeys
+from .output import Presentation as Presentation, error as error
+from .render import render as render, view_rows as view_rows
+from .signals import TerminationRequested as TerminationRequested, termination_guard as termination_guard
+from pathlib import Path
+from typing import TextIO",OVR-039;OVR-081;OVR-101;OVR-104;OVR-106;OVR-108;OVR-110,,OGM-001,,,#typing-index,2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: added overlord row | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked OGMRefs to OGM-001,2026-09-16T21:43:24Z,
+OVR-101,FILE,typing/stubs/riposte/terminal/controller.pyi,,External source-derived typing declarations,Controller;Controller.__init__;Controller._key;Controller.accept_editor;Controller.action;Controller.back;Controller.batch;Controller.batches;Controller.confirm;Controller.cycle_theme;Controller.edit_workspace;Controller.editor_key;Controller.field_edit;Controller.freeze_motion;Controller.inspect_asset;Controller.inspect_item;Controller.key;Controller.library;Controller.move;Controller.preferences;Controller.pump;Controller.refresh;Controller.reload_preview;Controller.request_from_form;Controller.require_workspace;Controller.run;Controller.run_form;Controller.save_model_session;Controller.selected_row;Controller.show;Controller.shutdown;Controller.toggle_selection,"from ..errors import RiposteError as RiposteError
+from ..metrics import TRANSFORMS as TRANSFORMS
+from .actions import ACTIONS as ACTIONS, BY_KEY as BY_KEY, Field as Field, defaults as defaults, make_request as make_request, parse_value as parse_value
+from .jobs import Operation as Operation, safe_code as safe_code
+from .keyboard import Key as Key
+from .output import Presentation as Presentation
+from .preview import make_preview as make_preview
+from .render import scroll_limit as scroll_limit, view_rows as view_rows
+from .service import Request as Request, execute as execute, image_bytes as image_bytes, root_of as root_of
+from .state import Editor as Editor, Page as Page, Session as Session
+from _riposte_types import Report, CatalogRow, PublicationItem, PublicationBatch
+from dataclasses import replace as replace
+from pathlib import Path
+from typing import Any, Callable, Mapping",OVR-040;OVR-075;OVR-081;OVR-084;OVR-099;OVR-103;OVR-104;OVR-106;OVR-107;OVR-108;OVR-109;OVR-111,OVR-100,OGM-001,,,#typing-index,2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: added overlord row | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-100 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked OGMRefs to OGM-001,2026-09-16T21:43:24Z,
+OVR-102,FILE,typing/stubs/riposte/terminal/help.pyi,,External source-derived typing declarations,RichCommand;RichCommand.format_help;RichGroup;RichGroup.format_help;format_help,"from typer._click import Context, HelpFormatter
+from typer.core import TyperCommand, TyperGroup",OVR-041,OVR-079,OGM-001,,,#typing-index,2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: added overlord row | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-079 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked OGMRefs to OGM-001,2026-09-16T21:43:24Z,
+OVR-103,FILE,typing/stubs/riposte/terminal/jobs.pyi,,External source-derived typing declarations,Operation;Operation.__init__;Operation._run;Operation.cancel;Operation.join;Operation.progress;Operation.snapshot;Operation.start;Snapshot;safe_code;safe_phase,"from ..errors import RiposteError as RiposteError
+from .service import CANCELLABLE as CANCELLABLE, Request as Request, execute as execute, result_exit_code as result_exit_code
+from _riposte_types import Progress as _Progress
+from _riposte_types import ProgressEvent
+from collections import deque
+from dataclasses import dataclass, field as field
+from typing import Callable, Self
+import threading",OVR-042;OVR-075;OVR-081;OVR-109,OVR-101;OVR-106;OVR-111;OVR-061;OVR-062,OGM-001,,,#typing-index,2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: added overlord row | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-101 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-106 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-111 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked OGMRefs to OGM-001 | 2026-09-16T21:46:16Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-061 | 2026-09-16T21:46:16Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-062,2026-09-16T21:46:16Z,
+OVR-104,FILE,typing/stubs/riposte/terminal/keyboard.pyi,,External source-derived typing declarations,Key;KeyDecoder;KeyDecoder.__init__;KeyDecoder.feed;KeyDecoder.next;SEQUENCES;SINGLE;TerminalKeys;TerminalKeys.__enter__;TerminalKeys.__exit__;TerminalKeys.__init__;TerminalKeys.read,"from dataclasses import dataclass
+from typing import Any, TextIO, Self
+import codecs",OVR-043,OVR-100;OVR-101;OVR-061,OGM-001,,,#typing-index,2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: added overlord row | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-100 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-101 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked OGMRefs to OGM-001 | 2026-09-16T21:46:16Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-061,2026-09-16T21:46:16Z,
+OVR-105,FILE,typing/stubs/riposte/terminal/material.pyi,,External source-derived typing declarations,LOGO;activity_trace;counterstroke,from .surface import Surface as Surface,OVR-044;OVR-112,OVR-106;OVR-108,OGM-001,,,#typing-index,2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: added overlord row | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-106 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-108 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked OGMRefs to OGM-001,2026-09-16T21:43:24Z,
+OVR-106,FILE,typing/stubs/riposte/terminal/output.pyi,,External source-derived typing declarations,Activity;Activity.__init__;Activity.__rich__;Presentation;Presentation.console;Presentation.machine;RECOVERY;_run_direct;emit;error;result_table;run_direct,"from .jobs import Operation as Operation, safe_code as safe_code
+from .material import activity_trace as activity_trace
+from .service import Request as Request
+from .signals import TerminationRequested as TerminationRequested, termination_guard as termination_guard
+from .surface import PALETTES as PALETTES, Surface as Surface, ascii_text as ascii_text
+from dataclasses import dataclass
+from rich.console import Console
+from rich.panel import Panel as Panel
+from rich.table import Table
+from typing import Sequence",OVR-045;OVR-103;OVR-105;OVR-109;OVR-110;OVR-112,OVR-079;OVR-100;OVR-101;OVR-108;OVR-111;OVR-061,OGM-001,,,#typing-index,2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: added overlord row | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-079 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-100 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-101 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-108 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-111 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked OGMRefs to OGM-001 | 2026-09-16T21:46:16Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-061,2026-09-16T21:46:16Z,
+OVR-107,FILE,typing/stubs/riposte/terminal/preview.pyi,,External source-derived typing declarations,Preview;make_preview;paint_preview,"from .surface import Surface as Surface
+from PIL import Image
+from dataclasses import dataclass, field",OVR-046;OVR-112,OVR-101;OVR-108;OVR-111,OGM-001,,,#typing-index,2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: added overlord row | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-101 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-108 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-111 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked OGMRefs to OGM-001,2026-09-16T21:43:24Z,
+OVR-108,FILE,typing/stubs/riposte/terminal/render.pyi,,External source-derived typing declarations,asset;batches;collection;command_page;confirm;editor_overlay;footer;form;header;help_page;home;item;job;page_window;preferences;render;result;scroll_limit;shown;view_rows;workshop,"from .actions import ACTIONS as ACTIONS, BY_KEY as BY_KEY, command_line as command_line
+from .material import LOGO as LOGO, activity_trace as activity_trace, counterstroke as counterstroke
+from .output import RECOVERY as RECOVERY
+from .preview import paint_preview as paint_preview
+from .state import HOME as HOME, Session as Session
+from .surface import Surface as Surface, ascii_text as ascii_text
+from _riposte_types import Report",OVR-047;OVR-075;OVR-099;OVR-105;OVR-106;OVR-107;OVR-111;OVR-112,OVR-100;OVR-101;OVR-061,OGM-001,,,#typing-index,2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: added overlord row | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-100 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-101 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked OGMRefs to OGM-001 | 2026-09-16T21:46:16Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-061,2026-09-16T21:46:16Z,
+OVR-109,FILE,typing/stubs/riposte/terminal/service.pyi,,External source-derived typing declarations,CANCELLABLE;EFFECTS;Progress;Request;_optional;_paths;execute;image_bytes;image_selection;parse_month;recipe;result_exit_code;root_of;select_rows;view_image,"from ..errors import RiposteError as RiposteError
+from ..policy import BINS as BINS, MONTHS as MONTHS, Policy as Policy, YEARS as YEARS
+from ..publication import PublishRecipe
+from _riposte_types import CatalogRow, ImageInfo, RequestValues
+from _riposte_types import Progress as _Progress
+from dataclasses import dataclass
+from pathlib import Path",OVR-048;OVR-075;OVR-081;OVR-088;OVR-089,OVR-079;OVR-099;OVR-101;OVR-103;OVR-106;OVR-111;OVR-061;OVR-062,OGM-001,,,#typing-index,2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: added overlord row | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-079 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-099 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-101 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-103 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-106 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-111 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked OGMRefs to OGM-001 | 2026-09-16T21:46:16Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-061 | 2026-09-16T21:46:16Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-062,2026-09-16T21:46:16Z,
+OVR-110,FILE,typing/stubs/riposte/terminal/signals.pyi,,External source-derived typing declarations,TerminationRequested;termination_guard,from contextlib import AbstractContextManager,OVR-049,OVR-100;OVR-106,OGM-001,,,#typing-index,2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: added overlord row | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-100 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-106 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked OGMRefs to OGM-001,2026-09-16T21:43:24Z,
+OVR-111,FILE,typing/stubs/riposte/terminal/state.pyi,,External source-derived typing declarations,Editor;HOME;Page;Session,"from .actions import Field as Field
+from .jobs import Operation
+from .output import Presentation as Presentation
+from .preview import Preview
+from .service import Request
+from _riposte_types import CatalogRow, PublicationSummary
+from dataclasses import dataclass, field
+from pathlib import Path
+from typing import Any",OVR-050;OVR-075;OVR-099;OVR-103;OVR-106;OVR-107;OVR-109,OVR-101;OVR-108;OVR-061,OGM-001,,,#typing-index,2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: added overlord row | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-101 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-108 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked OGMRefs to OGM-001 | 2026-09-16T21:46:16Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-061,2026-09-16T21:46:16Z,
+OVR-112,FILE,typing/stubs/riposte/terminal/surface.pyi,,External source-derived typing declarations,Cell;PALETTES;Surface;Surface.__init__;Surface.__rich_console__;Surface.fill;Surface.frame;Surface.plain;Surface.put;Surface.rule;Surface.text;Surface.wrap;_style;ascii_text,"from dataclasses import dataclass
+from rich.console import Console, ConsoleOptions
+from rich.segment import Segment
+from rich.style import Style
+from typing import Iterator",OVR-051,OVR-105;OVR-106;OVR-107;OVR-108;OVR-062,OGM-001,,,#typing-index,2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: added overlord row | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-105 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-106 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-107 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-108 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked OGMRefs to OGM-001 | 2026-09-16T21:46:16Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-062,2026-09-16T21:46:16Z,
+OVR-113,FILE,typing/stubs/riposte/views.pyi,,External source-derived typing declarations,HOLDOUT_VIEWS;MASKS;TRAIN_VIEWS;budget_map;differentiable_view;image_tensor;keep_mask;matched_control;publication_view;spectral_direction;tensor_image,"from .errors import RiposteError as RiposteError
+from PIL import Image
+from _riposte_types import ModelTensor",OVR-052;OVR-075;OVR-081,OVR-080;OVR-082;OVR-090;OVR-092,OGM-001,,,#typing-index,2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: added overlord row | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-080 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-082 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-090 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked RequiredBy to OVR-092 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked OGMRefs to OGM-001,2026-09-16T21:43:24Z,
+OVR-114,FILE,typing/stubtest-allowlist.txt,,"Typing validation input, evidence or development authority",,,,,OGM-001,,,#typing-index,2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: added overlord row | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked OGMRefs to OGM-001,2026-09-16T21:43:24Z,
+OVR-115,FILE,typing/uv.lock,,"Typing validation input, evidence or development authority",,,,,OGM-001,,,#typing-index,2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: added overlord row | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked OGMRefs to OGM-001,2026-09-16T21:43:24Z,
+OVR-116,FILE,uv.lock,,"Typing validation input, evidence or development authority",,,,,OGM-001,,,#typing-index,2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: added overlord row | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked OGMRefs to OGM-001,2026-09-16T21:43:24Z,
+OVR-117,FUNCTION,typing/pacer_inventory.py,definitions,PACER inventory tool function,,,OVR-071,,OGM-001,,,#typing-tool,2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: added overlord row | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked OGMRefs to OGM-001,2026-09-16T21:43:24Z,
+OVR-118,FUNCTION,typing/pacer_inventory.py,describe,PACER inventory tool function,,,OVR-071,,OGM-001,,,#typing-tool,2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: added overlord row | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked OGMRefs to OGM-001,2026-09-16T21:43:24Z,
+OVR-119,FUNCTION,typing/pacer_inventory.py,digest,PACER inventory tool function,,,OVR-071,,OGM-001,,,#typing-tool,2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: added overlord row | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked OGMRefs to OGM-001,2026-09-16T21:43:24Z,
+OVR-120,FUNCTION,typing/pacer_inventory.py,inventory,PACER inventory tool function,,,OVR-071,,OGM-001,,,#typing-tool,2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: added overlord row | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked OGMRefs to OGM-001,2026-09-16T21:43:24Z,
+OVR-121,FUNCTION,typing/pacer_inventory.py,main,PACER inventory tool function,,,OVR-071,,OGM-001,,,#typing-tool,2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: added overlord row | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked OGMRefs to OGM-001,2026-09-16T21:43:24Z,
+OVR-122,FUNCTION,typing/pacer_inventory.py,module_key,PACER inventory tool function,,,OVR-071,,OGM-001,,,#typing-tool,2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: added overlord row | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked OGMRefs to OGM-001,2026-09-16T21:43:24Z,
+OVR-123,FUNCTION,typing/pacer_inventory.py,reconcile,PACER inventory tool function,,,OVR-071,,OGM-001,,,#typing-tool,2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: added overlord row | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked OGMRefs to OGM-001,2026-09-16T21:43:24Z,
+OVR-124,FUNCTION,typing/pacer_inventory.py,scoped_paths,PACER inventory tool function,,,OVR-071,,OGM-001,,,#typing-tool,2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: added overlord row | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked OGMRefs to OGM-001,2026-09-16T21:43:24Z,
+OVR-125,FILE,typing/evidence/pacer-inventory.json,,Executed source and external typing inventory reconciliation,,,,,OGM-001,,NDL-001,#typing-evidence,2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: added overlord row | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked OGMRefs to OGM-001 | 2026-09-16T21:43:24Z MIVIM.spec mypy-engineer: linked NDLRefs to NDL-001,2026-09-16T21:43:24Z,
+OVR-126,FILE,typing/evidence/runtime-contracts.txt,,Executed nine-test offline contract fixture log; synthetic inputs only,,,,,OGM-001,,,#typing-evidence,2026-09-16T21:47:35Z MIVIM.spec mypy-engineer: added overlord row | 2026-09-16T21:47:35Z MIVIM.spec mypy-engineer: linked OGMRefs to OGM-001,2026-09-16T21:47:35Z,
+OVR-127,FILE,typing/evidence/pacer-acceptance.json,,"Executed, source-bound manual acceptance for typing stewardship OGM-001",,,,,,PAC-001,,#typing-evidence,2026-09-16T21:48:06Z MIVIM.spec mypy-engineer: added overlord row | 2026-09-16T21:48:06Z MIVIM.spec mypy-engineer: evidence for OGM-001,2026-09-16T21:48:06Z,OGM-001
