@@ -17,13 +17,19 @@ ROOT = Path(__file__).resolve().parents[1]
 HERE = ROOT / "typing"
 STUBS = HERE / "stubs" / "riposte"
 EVIDENCE = HERE / "evidence"
+CONTRACT_CONFIG = "typing/mypy-contracts.ini"
+
+
+def is_application_source(path: Path) -> bool:
+    """Exclude generated installation metadata and bytecode, not application files."""
+    return not any(part == "__pycache__" or part.endswith(".egg-info") for part in path.parts)
 
 
 def source_hashes() -> dict[str, str]:
     return {
         p.relative_to(ROOT).as_posix(): hashlib.sha256(p.read_bytes()).hexdigest()
         for p in sorted((ROOT / "src").rglob("*"))
-        if p.is_file() and "__pycache__" not in p.parts
+        if p.is_file() and is_application_source(p.relative_to(ROOT))
     }
 
 
@@ -99,12 +105,12 @@ def negative_check() -> tuple[bool, str]:
     path = HERE / ".cache" / "rejected.py"
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(template, encoding="utf-8")
-    expected = Counter()
+    expected: Counter[tuple[int, str]] = Counter()
     for line, text in enumerate(template.splitlines(), 1):
         if "# error: " in text:
             for code in text.split("# error: ", 1)[1].split(","):
                 expected[(line, code)] += 1
-    result = run("negative-consumers", ["-m", "mypy", "--config-file", "mypy.ini", str(path)])
+    result = run("negative-consumers", ["-m", "mypy", "--config-file", CONTRACT_CONFIG, str(path)])
     actual = Counter((int(line), code) for line, code in re.findall(
         r"rejected\.py:(\d+):\d+: error: .*\[([a-z][a-z-]+)\]\r?$", result.stdout, re.MULTILINE))
     other_errors = sum(": error:" in line for line in result.stdout.splitlines()) != sum(actual.values())
@@ -128,6 +134,8 @@ def dynamic_inventory() -> list[dict[str, object]]:
                 annotations = [node.annotation]
                 if ast.unparse(node.annotation) == "TypeAlias":
                     annotations.append(node.value)
+            else:
+                continue
             names = {part.id for annotation in annotations if annotation is not None
                      for part in ast.walk(annotation) if isinstance(part, ast.Name)}
             if names & {"Any", "Report", "ModelTensor"}:
@@ -149,6 +157,9 @@ def main() -> int:
 
     before = source_hashes()
     reviewed = json.loads((EVIDENCE / "source-before.json").read_text(encoding="utf-8"))
+    # Retain the original manifest, including its historical generated metadata.
+    # Dependency installation may regenerate egg-info without changing source.
+    reviewed = {path: value for path, value in reviewed.items() if is_application_source(Path(path))}
     drift = sorted(k for k in before.keys() | reviewed.keys() if before.get(k) != reviewed.get(k))
     issues, signatures, modules = check_parity()
     if drift:
@@ -160,9 +171,12 @@ def main() -> int:
 
     results = {}
     stages = [
-        ("mypy-contracts", ["-m", "mypy", "--config-file", "mypy.ini"]),
-        ("stubtest", ["-m", "mypy.stubtest", "--mypy-config-file", "mypy.ini", "--allowlist", "typing/stubtest-allowlist.txt", *modules]),
+        ("mypy-contracts", ["-m", "mypy", "--config-file", CONTRACT_CONFIG]),
+        ("mypy-tooling", ["-m", "mypy", "--config-file", CONTRACT_CONFIG,
+                          "typing/check.py", "typing/pacer_inventory.py", "typing/test_tooling.py"]),
+        ("stubtest", ["-m", "mypy.stubtest", "--mypy-config-file", CONTRACT_CONFIG, "--allowlist", "typing/stubtest-allowlist.txt", *modules]),
         ("runtime-contracts", [str(HERE / "runtime_contracts.py")]),
+        ("tooling-regressions", [str(HERE / "test_tooling.py")]),
     ]
     for name, arguments in stages:
         result = run(name, arguments)

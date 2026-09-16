@@ -3,19 +3,19 @@
   "result": "PASS",
   "issues": [],
   "counts": {
-    "source_files": 50,
+    "source_files": 44,
     "source_modules": 38,
     "paired_stubs": 38,
-    "indexed_files": 112,
+    "indexed_files": 117,
     "tool_functions": 8,
-    "static_definitions": 893,
-    "local_dependency_edges": 368
+    "static_definitions": 902,
+    "local_dependency_edges": 370
   },
   "sources": {
     "AGENTS.md": "83eb62043b6308360d494e15a9614ecc4bdacac2cf9e47d029e95bfaf1a5385e",
     "README.md": "4f9b80b80840390b7df16afa364a39b603cb28a7bb50e5cbd117be85a1e266c5",
-    "mypy.ini": "0310eadbba9651e4289ef9963002ad8d7621f1d96235930b3d6234410725ed90",
-    "pyproject.toml": "4828f0cc26e95f5a119d46a50daf00ab2aa17c63202ebb010218fb5a863a9f60",
+    "mypy.ini": "c0961208a99c02083a873c32a8bd5ca6a7ba1c88d601eb2210fb3f94c00d2d99",
+    "pyproject.toml": "8c5263728e85f6905fb3c21ce2c86a8d4ba0549819df69a41d5b3cf0f9f9f995",
     "src/riposte/__init__.py": "eb65180dccdd65e3624515fd019e24b5d80248421be7cb071a59da6f451d1df9",
     "src/riposte/__main__.py": "79ee6f134c5c5193377cf9b189cbdcc3e2095e49ba9cec310114441c15a917c4",
     "src/riposte/benchmark.py": "a7fbb359fb87d7ed6c5593a6fb0c194e5a34d20dfe0e9dd549200fe1007c7d68",
@@ -60,25 +60,29 @@
     "src/riposte/terminal/state.py": "02c9f20c569aca7d4398c4463e9f523de4f674acb1a1ab4b57f295d7cc19921e",
     "src/riposte/terminal/surface.py": "d934216e526fe9bccc905f46f8a3f4c02dbb899d31e501b39e40ca81f3722eca",
     "src/riposte/views.py": "901a71db135ce03b0c929d230de1bacb73542dcc1570df166f36013a906b90e7",
-    "src/riposte_studio.egg-info/PKG-INFO": "adc2e4dfa9ac98c89073c6e39f8183eeed8134438751e9261ff253f3779a1833",
+    "src/riposte_studio.egg-info/PKG-INFO": "7bd70bcd3b9974dbca5fd30170639eceb7bc6174fcf630720015e0c099a76c7e",
     "src/riposte_studio.egg-info/SOURCES.txt": "c0511ebfa78fce5f5d721e5f850cd7caaba4efc4523bfe30134ec59c7a947edd",
     "src/riposte_studio.egg-info/dependency_links.txt": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
     "src/riposte_studio.egg-info/entry_points.txt": "98b3e382efea4ca6b2491a4a8c44d047025ab2e4365d7e6950c2998a3624b70e",
-    "src/riposte_studio.egg-info/requires.txt": "d49f78b20a8e55d429821c69a7ae83df1424106ef32d4f1a73a6ce6edba7622d",
+    "src/riposte_studio.egg-info/requires.txt": "cf9a6d3665a40abc44b1c22dc989f0bffdc6a7252767478ee8602c3b2c70c563",
     "src/riposte_studio.egg-info/top_level.txt": "0c0ed5cd11dc3a90aeb6e75a4ca8a16adf2e2ee8d5e973d930c4bfc4372a0073",
-    "typing/README.md": "a5e403c57f7b348a93b259d1005a91a24ac939bf67e69b47aaa76d1d43e7ad31",
-    "typing/check.py": "29423584b8c3b01a0c0d93a0182ff4062159aa9ee13a4feab2536a8b4ec897d2",
+    "typing/README.md": "dde3164ab7b96108a789139f407412ca7f332118a507c075e8c08d2ab50695e1",
+    "typing/check.py": "5d8c67632c08b87b05b42503ba91ef0f179e04a45b4a7244378f2c0700f66819",
     "typing/checks/consumers.py": "be45c413acc5612b8b478bef817297c5222df7306e5fed9818dd226fb75401f7",
     "typing/checks/rejected.py.txt": "d4d0311fd0d7897e2aabce3ef23ff1c214f6d31d825aaf84b122a13a5718aebe",
     "typing/evidence/dynamic-boundaries.json": "c592d71d84ddb048de29f79628221ae145526bd91de4970b7a13e2e3033485b7",
+    "typing/evidence/mypy-tooling.txt": "281a094c39385b4d7b53e5db635f52158036861433c2a4975b9039e77a627a24",
+    "typing/evidence/source-after.json": "853f88137e518c0b37be06e5900a8f5d6c0acfd3cf10b234f4c78983c279bdf3",
     "typing/evidence/source-before.json": "d3fa8409db29ebf923523671b44fade9caf459f627bd4f16ea07a4ff6d094f8b",
     "typing/evidence/source-current-command.txt": "1e4d041bf375639ae5a0bcbd4f4c1cfa145c814580d0c4943ba1566596b4d38f",
     "typing/evidence/source-current.txt": "1e4d041bf375639ae5a0bcbd4f4c1cfa145c814580d0c4943ba1566596b4d38f",
-    "typing/evidence/verification.json": "4257d2408af32656b136965c691559bc769a474f06952a82d5de54287a0abdd8",
+    "typing/evidence/tooling-regressions.txt": "b572b00bdc30bf1e4152f44949b1fb741751d9731450ea980fb10b2ef9e55153",
+    "typing/evidence/verification.json": "decea0cb98ae6704f94a8aecf75fbfa7162d5e97930eca89d8542cbf6cf9917f",
     "typing/evidence/windows-stat-probe-app-py314.txt": "97906e27e8c02071c86c777f457a1e4460a7f68b008935c6adbb2908846bad69",
     "typing/evidence/windows-stat-probe.txt": "171d820928accb3d74ed7d3590d95165a10eda06ccc2338b8f24d56cd7efbacf",
+    "typing/mypy-contracts.ini": "78fddb2607c7cdb260de23c75b2570d07407dd9ba4aefeebccbfeb0b4c27e70e",
     "typing/mypy-source.ini": "f168d5874f12d6258a8e35311ea4fc90ebeab878a51fb1268cc1a89e8cb104bf",
-    "typing/pacer_inventory.py": "84661aa63bf3b5a0c52d16fa5351af1e38a43b00c4a4a9483137474145ebb7b6",
+    "typing/pacer_inventory.py": "7a0b58cb5d5ae87c78efa28c39570484cf552b9e34becdaf6f8241db92f50f3b",
     "typing/probe_windows_stat.py": "210e707483e1d8198689178b789580e1f23b26e49460c31ed5ddd059e5d5b142",
     "typing/pyproject.toml": "29e29b0dac5a0fb3dc6fb6db476f1d0cdf29970f5fe5e50c1b7e785e029fdcf2",
     "typing/runtime_contracts.py": "ffa4d4b37d79ad55c1c88674730a9e5c2f3971dbb70a40f9d6aab71a1329691d",
@@ -122,8 +126,9 @@
     "typing/stubs/riposte/terminal/surface.pyi": "59e1dfac67992f857bc1d6156126de776eec34046d61e724a4186776415020b8",
     "typing/stubs/riposte/views.pyi": "65c462a5a6ae73e831ad2d5779642ccda34d8e3d6925d77ad5e394e8128f6794",
     "typing/stubtest-allowlist.txt": "c7950826049d94b3519576c1a750b2a3335a19fa30f4d8e21e648e8c4fa62a03",
+    "typing/test_tooling.py": "30f5024c84f9a053b73e2f93e402258161a15487945bac4fdc81a966214b6597",
     "typing/uv.lock": "e682d8a8d94d24cd283abb58bb65205f94efd2f6f8aafaa0dac87ac1829013d4",
-    "uv.lock": "ea196a739c8bbf68c5cd0786981f191db660ee4507ae6a1e2d9096f6d9204ee6"
+    "uv.lock": "87ca0b6b0ec688e40d520cbb801d65b2e8a1beebc47b1b8d0fecd5215526a186"
   },
   "source_unchanged": true,
   "contracts_recorded_pass": true,
@@ -839,6 +844,7 @@
       "id": "OVR-060",
       "path": "typing/check.py",
       "definitions": [
+        "CONTRACT_CONFIG",
         "EVIDENCE",
         "HERE",
         "ROOT",
@@ -846,6 +852,7 @@
         "check_parity",
         "declarations",
         "dynamic_inventory",
+        "is_application_source",
         "main",
         "negative_check",
         "run",
@@ -882,6 +889,16 @@
       "definitions": []
     },
     {
+      "id": "OVR-128",
+      "path": "typing/evidence/mypy-tooling.txt",
+      "definitions": []
+    },
+    {
+      "id": "OVR-129",
+      "path": "typing/evidence/source-after.json",
+      "definitions": []
+    },
+    {
       "id": "OVR-064",
       "path": "typing/evidence/source-before.json",
       "definitions": []
@@ -897,6 +914,11 @@
       "definitions": []
     },
     {
+      "id": "OVR-130",
+      "path": "typing/evidence/tooling-regressions.txt",
+      "definitions": []
+    },
+    {
       "id": "OVR-067",
       "path": "typing/evidence/verification.json",
       "definitions": []
@@ -909,6 +931,11 @@
     {
       "id": "OVR-069",
       "path": "typing/evidence/windows-stat-probe.txt",
+      "definitions": []
+    },
+    {
+      "id": "OVR-131",
+      "path": "typing/mypy-contracts.ini",
       "definitions": []
     },
     {
@@ -1649,6 +1676,19 @@
       "id": "OVR-114",
       "path": "typing/stubtest-allowlist.txt",
       "definitions": []
+    },
+    {
+      "id": "OVR-132",
+      "path": "typing/test_tooling.py",
+      "definitions": [
+        "TypingToolingTests",
+        "TypingToolingTests.setUp",
+        "TypingToolingTests.test_added_application_file_is_detected",
+        "TypingToolingTests.test_changed_application_file_is_detected",
+        "TypingToolingTests.test_default_and_dot_reach_source_errors_despite_build_and_stub_copies",
+        "TypingToolingTests.test_generated_metadata_is_not_application_identity",
+        "TypingToolingTests.test_removed_application_file_is_detected"
+      ]
     },
     {
       "id": "OVR-115",

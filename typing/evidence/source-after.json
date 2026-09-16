@@ -42,11 +42,5 @@
   "src/riposte/terminal/signals.py": "dd7ef5eac1860b126ceebeecb6aa6c6151f14dd4813254870b061ce71470ce19",
   "src/riposte/terminal/state.py": "02c9f20c569aca7d4398c4463e9f523de4f674acb1a1ab4b57f295d7cc19921e",
   "src/riposte/terminal/surface.py": "d934216e526fe9bccc905f46f8a3f4c02dbb899d31e501b39e40ca81f3722eca",
-  "src/riposte/views.py": "901a71db135ce03b0c929d230de1bacb73542dcc1570df166f36013a906b90e7",
-  "src/riposte_studio.egg-info/dependency_links.txt": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
-  "src/riposte_studio.egg-info/entry_points.txt": "98b3e382efea4ca6b2491a4a8c44d047025ab2e4365d7e6950c2998a3624b70e",
-  "src/riposte_studio.egg-info/PKG-INFO": "adc2e4dfa9ac98c89073c6e39f8183eeed8134438751e9261ff253f3779a1833",
-  "src/riposte_studio.egg-info/requires.txt": "d49f78b20a8e55d429821c69a7ae83df1424106ef32d4f1a73a6ce6edba7622d",
-  "src/riposte_studio.egg-info/SOURCES.txt": "c0511ebfa78fce5f5d721e5f850cd7caaba4efc4523bfe30134ec59c7a947edd",
-  "src/riposte_studio.egg-info/top_level.txt": "0c0ed5cd11dc3a90aeb6e75a4ca8a16adf2e2ee8d5e973d930c4bfc4372a0073"
+  "src/riposte/views.py": "901a71db135ce03b0c929d230de1bacb73542dcc1570df166f36013a906b90e7"
 }

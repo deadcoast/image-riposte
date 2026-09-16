@@ -9,15 +9,17 @@
     "fastapi": "0.141.1",
     "rich": "15.0.0"
   },
-  "source_files": 50,
+  "source_files": 44,
   "source_signatures": 286,
   "stubtest_leaf_modules": 35,
   "stubtest_allowlist_entries": 4,
   "dynamic_declarations": 89,
   "results": {
     "mypy-contracts": true,
+    "mypy-tooling": true,
     "stubtest": true,
     "runtime-contracts": true,
+    "tooling-regressions": true,
     "negative-consumers": true,
     "source-stable": true
   }

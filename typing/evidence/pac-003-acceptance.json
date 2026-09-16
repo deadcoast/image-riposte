@@ -1,0 +1,114 @@
+{
+  "requirement": "OGM-002",
+  "meaning": "8356169c572e5c5f0dac0aa2771312133d25d807b3ff3840af5ec4c33ea27fa8",
+  "sources": {
+    "typing/test_tooling.py": "30f5024c84f9a053b73e2f93e402258161a15487945bac4fdc81a966214b6597",
+    "typing/check.py": "5d8c67632c08b87b05b42503ba91ef0f179e04a45b4a7244378f2c0700f66819",
+    "typing/evidence/pac-003-root-audit.json": "5c1555e201fe1dc7db6a8f14b53e33e2d48f8d098d5790cd627ef0fea5ff39c1",
+    "typing/evidence/pac-003-before.json": "062e2a21c61af2102001d5352a24ad73f93dc875d40d8db27660e90c9fd95ccb",
+    "typing/mypy-contracts.ini": "78fddb2607c7cdb260de23c75b2570d07407dd9ba4aefeebccbfeb0b4c27e70e",
+    "typing/evidence/tooling-regressions.txt": "b572b00bdc30bf1e4152f44949b1fb741751d9731450ea980fb10b2ef9e55153",
+    "typing/evidence/source-after.json": "853f88137e518c0b37be06e5900a8f5d6c0acfd3cf10b234f4c78983c279bdf3",
+    "typing/evidence/mypy-tooling.txt": "281a094c39385b4d7b53e5db635f52158036861433c2a4975b9039e77a627a24",
+    "typing/evidence/runtime-contracts.txt": "7add78132f260a72f1c16661e3f90fca1551c900ec372d9d7213febae9e45b7f",
+    "typing/evidence/pacer-inventory.json": "b1df5e0ca02354e1ef720b0c8c4c4f872c93e3b0a61fd08cc54f3716422f7e3d",
+    "typing/pacer_inventory.py": "7a0b58cb5d5ae87c78efa28c39570484cf552b9e34becdaf6f8241db92f50f3b",
+    "typing/mypy-source.ini": "f168d5874f12d6258a8e35311ea4fc90ebeab878a51fb1268cc1a89e8cb104bf",
+    "typing/evidence/verification.json": "decea0cb98ae6704f94a8aecf75fbfa7162d5e97930eca89d8542cbf6cf9917f",
+    "typing/evidence/source-before.json": "d3fa8409db29ebf923523671b44fade9caf459f627bd4f16ea07a4ff6d094f8b",
+    "typing/README.md": "dde3164ab7b96108a789139f407412ca7f332118a507c075e8c08d2ab50695e1",
+    "mypy.ini": "c0961208a99c02083a873c32a8bd5ca6a7ba1c88d601eb2210fb3f94c00d2d99"
+  },
+  "result": "PASS",
+  "command": [
+    "uv",
+    "run",
+    "--project",
+    "typing",
+    "--frozen",
+    "--offline",
+    "--cache-dir",
+    "typing/.cache/uv",
+    "python",
+    "typing/check.py"
+  ],
+  "recorded_at": "2026-09-16 23:49:53 UTC",
+  "scope": "PAC-003: source discovery, explicit contract checking, and precise application source identity.",
+  "checks": {
+    "full_contract_and_tooling_suite": {
+      "exit_code": 0,
+      "contract_files": 40,
+      "tooling_files": 3,
+      "offline_fixtures": 9,
+      "tooling_regressions": 5,
+      "source_signatures": 286,
+      "stubtest_leaf_modules": 35,
+      "expected_negative_diagnostics": 13
+    },
+    "root_default": {
+      "command": [
+        ".venv/Scripts/python.exe",
+        "-m",
+        "mypy"
+      ],
+      "runtime_python": "3.14.3",
+      "mypy": "2.3.1",
+      "configured_python_target": "3.13",
+      "exit_code": 1,
+      "expected_exit_code": 1,
+      "summary": "Found 817 errors in 34 files (checked 38 source files)"
+    },
+    "root_dot": {
+      "command": [
+        ".venv/Scripts/python.exe",
+        "-m",
+        "mypy",
+        "."
+      ],
+      "runtime_python": "3.14.3",
+      "mypy": "2.3.1",
+      "configured_python_target": "3.13",
+      "exit_code": 1,
+      "expected_exit_code": 1,
+      "summary": "Found 817 errors in 34 files (checked 38 source files)"
+    },
+    "root_outputs_identical": true,
+    "discovery_blocked": false,
+    "identity": {
+      "original_manifest_preserved": true,
+      "application_files_matching_review": 44,
+      "ignored_generated_metadata_entries": 6,
+      "changed_added_removed_source_regressions": "PASS"
+    },
+    "inventory": {
+      "command": [
+        "uv",
+        "run",
+        "--project",
+        "typing",
+        "--frozen",
+        "--offline",
+        "--cache-dir",
+        "typing/.cache/uv",
+        "python",
+        "typing/pacer_inventory.py"
+      ],
+      "exit_code": 0,
+      "indexed_files": 117,
+      "issues": []
+    }
+  },
+  "interpretation": "PASS means the commands reach their declared checks, external contracts pass, and source identity is correct. The raw-source audit intentionally remains nonzero; no implementation diagnostic was suppressed or repaired.",
+  "retained_evidence": [
+    "typing/evidence/pac-003-before.json",
+    "typing/evidence/pac-003-root-audit.json",
+    "typing/evidence/verification.json",
+    "typing/evidence/tooling-regressions.txt",
+    "typing/evidence/mypy-tooling.txt"
+  ],
+  "limits": [
+    "No application source, runtime tests, packaging or launcher edits.",
+    "Existing optional-model, live UI, visual-acceptance and efficacy boundaries remain unverified.",
+    "PAC-002 remains a pending source-owner proposal."
+  ]
+}

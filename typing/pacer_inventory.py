@@ -15,6 +15,8 @@ import hashlib
 import json
 from pathlib import Path
 
+from check import is_application_source
+
 ROOT = Path(__file__).resolve().parents[1]
 REPORT = ROOT / "typing/evidence/pacer-inventory.json"
 TAG = "#typing-index"
@@ -23,7 +25,10 @@ INPUTS = (
     "typing/README.md", "typing/pyproject.toml", "typing/uv.lock",
     "typing/check.py", "typing/runtime_contracts.py",
     "typing/probe_windows_stat.py", "typing/pacer_inventory.py",
-    "typing/mypy-source.ini", "typing/stubtest-allowlist.txt",
+    "typing/mypy-source.ini", "typing/mypy-contracts.ini", "typing/stubtest-allowlist.txt",
+    "typing/test_tooling.py",
+    "typing/evidence/mypy-tooling.txt", "typing/evidence/tooling-regressions.txt",
+    "typing/evidence/source-after.json",
     "typing/checks/consumers.py", "typing/checks/rejected.py.txt",
     "typing/evidence/source-before.json", "typing/evidence/verification.json",
     "typing/evidence/source-current.txt",
@@ -131,6 +136,8 @@ def describe(path: str, modules: dict[tuple[str, str], str]) -> dict[str, str]:
 def inventory() -> tuple[list[dict[str, str]], dict[str, str]]:
     paths = scoped_paths()
     modules = {key: path for path in paths if (key := module_key(path)) is not None}
+    modules.update({("source", Path(path).stem): path for path in paths
+                    if Path(path).parent.as_posix() == "typing" and path.endswith(".py")})
     return [describe(path, modules) for path in paths], {path: digest(ROOT / path) for path in paths}
 
 
@@ -186,8 +193,10 @@ def reconcile(plan: Path | None) -> bool:
     for row in registered:
         if "#typing-tool" in row.get("Tags", "").split() and row["Symbol"] not in tool_functions:
             issues.append(f"Retired tool function needs review: {row['Symbol']}")
-    source = {path: value for path, value in hashes.items() if path.startswith("src/")}
+    source = {path: value for path, value in hashes.items()
+              if path.startswith("src/") and is_application_source(Path(path))}
     baseline = json.loads((ROOT / "typing/evidence/source-before.json").read_text(encoding="utf-8"))
+    baseline = {path: value for path, value in baseline.items() if is_application_source(Path(path))}
     if source != baseline:
         issues.append("Application source differs from the reviewed source-before snapshot")
     source_modules = {key[1] for path in paths if (key := module_key(path)) and key[0] == "source"}
@@ -195,7 +204,7 @@ def reconcile(plan: Path | None) -> bool:
     if source_modules != stub_modules:
         issues.append("Source/stub module coverage differs")
     verification = json.loads((ROOT / "typing/evidence/verification.json").read_text(encoding="utf-8"))
-    expected_stages = {"mypy-contracts", "stubtest", "runtime-contracts", "negative-consumers", "source-stable"}
+    expected_stages = {"mypy-contracts", "mypy-tooling", "stubtest", "runtime-contracts", "tooling-regressions", "negative-consumers", "source-stable"}
     results = verification.get("results", {})
     if set(results) != expected_stages or any(value is not True for value in results.values()):
         issues.append("External contract verification is incomplete or failed; run typing/check.py")

@@ -21,14 +21,32 @@ empty optional model paths. Types do not confer model efficacy or visual approva
 | `models.py`, engine modules | Preflight/runtime records, configuration dataclasses, callable adapter protocols |
 | `terminal/`, `cli.py`, `server.py` | Request values, callbacks, worker/state/renderer APIs, CLI aliases, request models, job records |
 
-[`../mypy.ini`](../mypy.ini) integrates the stubs through `mypy_path` and enables
-strict checking of the declarations and static consumer fixture. This uses
+[`mypy-contracts.ini`](mypy-contracts.ini) integrates the stubs through `mypy_path`
+and enables strict checking of the declarations and static consumer fixture. This uses
 [mypy's documented external-stub mechanism](https://mypy.readthedocs.io/en/stable/stubs.html).
 The directory is not on Python's runtime import path, is not packaged into the
 application wheel, and does not add `py.typed` or claim installed-package support.
 Consumers that need helper records should import them inside `TYPE_CHECKING`.
 
-Run from the repository root:
+The default [`../mypy.ini`](../mypy.ini) checks application implementation.
+From the repository root, both commands reach the same 38 source modules:
+
+```powershell
+mypy
+mypy .
+```
+
+Recursive discovery excludes build/distribution/history copies and the separate
+tests, scripts and typing trees. No application module is excluded and the
+default configuration does not load the external stubs. The configured target
+remains Python 3.13, including when mypy runs in the Python 3.14 environment.
+Both commands currently exit 1 with 817 strict diagnostics in the existing core
+environment; this is an implementation audit, not a passing-contract shortcut.
+The before/after discovery results are retained in
+[`evidence/pac-003-before.json`](evidence/pac-003-before.json) and
+[`evidence/pac-003-root-audit.json`](evidence/pac-003-root-audit.json).
+
+Run the independent external contract suite from the repository root:
 
 ```powershell
 uv run --project typing --frozen --cache-dir typing/.cache/uv python typing/check.py
@@ -40,8 +58,12 @@ application environment, root `pyproject.toml`, and existing tests are untouched
 The inherited `VIRTUAL_ENV` warning is expected: do not use `--active`, which
 would select the application environment instead.
 
-The command checks source hashes and 286 source/stub signatures, runs strict
-mypy, checks 35 leaf modules with stubtest, verifies nine offline fixture tests,
+For only the declaration/consumer check, use
+`uv run --project typing --frozen --cache-dir typing/.cache/uv python -m mypy --config-file typing/mypy-contracts.ini`.
+
+The suite checks source hashes and 286 source/stub signatures, runs strict
+mypy on contracts and its three tooling modules, checks 35 leaf modules with
+stubtest, verifies nine offline fixture tests and five tooling regressions,
 and requires exactly 13 expected diagnostics from invalid consumers. The two
 package initializers and executable `__main__` are covered statically; they are
 not passed to recursive stubtest. Importing `__main__` would launch the app.
@@ -59,11 +81,13 @@ Current verification is recorded in [`evidence/verification.json`](evidence/veri
 | Check | Verified result |
 | --- | --- |
 | Strict declarations and consumer fixture | 40 files; no errors |
+| Strict typing of the checker, inventory and tooling tests | 3 files; no errors |
 | Source parameter parity | 286 signatures |
 | Runtime signature comparison | 35 leaf modules; four documented exceptions |
 | Incorrect consumer calls | All 13 expected errors; exact line and error-code match |
 | Offline record fixtures | 9 tests passed |
-| Application source identity | All 50 snapshotted files unchanged |
+| Tooling regressions | 5 tests passed, including real mypy discovery on synthetic source |
+| Application source identity | All 44 application files match the reviewed snapshot |
 
 The fixtures use temporary artwork only. Publication states and the export
 record use synthetic data; the export test injects ZIP bytes. They do not run
@@ -100,11 +124,16 @@ protocols check callable shape; `ModelTensor = Any` does not check tensor dtype,
 dimensions, gradients, or optional provider APIs. The service dispatcher and
 worker results are opaque `object` values that require caller narrowing.
 
-Source bodies remain authoritative. The runner rejects hashes that differ from
+Source bodies remain authoritative. The runner rejects application hashes that differ from
 [`evidence/source-before.json`](evidence/source-before.json), including changes
 made by the other active agent. Re-review affected declarations and fixtures
 before replacing that reviewed snapshot. Do not regenerate it merely to silence
-the drift check. `stubgen` output alone is not sufficient: this review corrected
+the drift check. The original manifest retains all 50 entries. Six are generated
+`.egg-info` files, which are excluded from application identity checks along with
+bytecode caches. Adding mypy regenerated two of those metadata files without
+changing any of the 44 application files. The manifest has not been replaced.
+Regression tests prove that changed, added and deleted application files still
+alter source identity. `stubgen` output alone is not sufficient: this review corrected
 omitted tuple-assigned fields, callback shapes, dictionary schemas, Pydantic
 defaults, enum constructors, preview-cache keys, and actual optional-path values.
 
@@ -141,7 +170,7 @@ plan was written. Renames and removed assets need explicit review.
 names; it is not a guarantee about Python's dynamic export behavior. The index
 excludes build/history trees and caches. Run the external contract checker before
 acceptance: a recorded pass read by the inventory is not a fresh test execution.
-The inherited 50-file identity snapshot includes six generated `.egg-info` files
-alongside 44 application files; the inventory labels those generated inputs.
+The inventory still registers and hashes generated `.egg-info` inputs separately;
+its application identity comparison uses the same 44-file scope as the checker.
 Existing source/stub definitions are indexed in FILE exports and the JSON report.
 The new inventory tool's functions also have individual overlord symbol rows.

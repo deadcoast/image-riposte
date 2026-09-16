@@ -1,0 +1,29 @@
+{
+  "runs": [
+    {
+      "command": [
+        ".venv/Scripts/python.exe",
+        "-m",
+        "mypy",
+        "."
+      ],
+      "exit_code": 2,
+      "stdout": "src\\riposte\\__init__.py: error: Duplicate module named \"riposte\" (also at \".\\build\\lib\\riposte\\__init__.py\")\nsrc\\riposte\\__init__.py: note: See https://mypy.readthedocs.io/en/stable/running_mypy.html#mapping-file-paths-to-modules for more info\nsrc\\riposte\\__init__.py: note: Common resolutions include:\nsrc\\riposte\\__init__.py: note:     a) using `--exclude` to avoid checking one of them,\nsrc\\riposte\\__init__.py: note:     b) adding `__init__.py` somewhere,\nsrc\\riposte\\__init__.py: note:     c) using `--explicit-package-bases` or adjusting `MYPYPATH`\nFound 1 error in 1 file (errors prevented further checking)\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "typing/.venv/Scripts/python.exe",
+        "typing/check.py"
+      ],
+      "exit_code": 1,
+      "stdout": "Source/stub parity: 286 signatures, 35 importable leaf modules\nSource differs from the reviewed snapshot; re-review these contracts: src/riposte_studio.egg-info/PKG-INFO, src/riposte_studio.egg-info/requires.txt\n",
+      "stderr": ""
+    }
+  ],
+  "changed_snapshot_paths": [
+    "src/riposte_studio.egg-info/PKG-INFO",
+    "src/riposte_studio.egg-info/requires.txt"
+  ],
+  "application_source_changed": false
+}
