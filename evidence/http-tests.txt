@@ -1,0 +1,26 @@
+{
+  "harness": "Uvicorn subprocess / real loopback HTTP / httpx trust_env=False",
+  "passed": 16,
+  "checks": [
+    "real listener serves RIPOSTE interface",
+    "real listener requires session token",
+    "authorized live catalog",
+    "no-store response policy",
+    "self-only application content policy",
+    "cross-origin requests rejected",
+    "unrecognized host rejected",
+    "cross-site fetch metadata rejected",
+    "served thumbnail independently date-only audited",
+    "live paired JPEG view independently audited",
+    "live organization checkpoint",
+    "live export acknowledgment gate",
+    "live source-removal acknowledgment gate",
+    "live runtime preflight",
+    "live scoped qualification evidence",
+    "live hash-bound generation frame independently audited"
+  ],
+  "browser": {
+    "status": "LOCALHOST_NAVIGATION_BLOCKED",
+    "fallback": "Chromium in-process backend transport separately tested"
+  }
+}

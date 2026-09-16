@@ -1,187 +1,210 @@
-# RIPOSTE — first executable release
+# RIPOSTE
+### Local artwork security workbench · v0.2.0
 
-I built **RIPOSTE v0.1.0**: a local application with an artwork browser, metadata cleansing and organization, a before/after protection lab, transport testing, and an experimental model-driven image optimizer.
+RIPOSTE continues the actual SHROUD v0.1.0 application. This release adds an image-first workbench, a coupled mask/codec optimization engine, noise-controlled qualification, and five-arm generation review. It is not a renamed screenshot or a replacement scaffold.
 
-**[Download RIPOSTE v0.1.0 — application, source, tests, and documentation](sandbox:/mnt/data/RIPOSTE_v0.1.0.zip)**
+**Clean your images; inspect the candidate; challenge the evidence.** No watermarks, audience authentication, licensing gates, artwork uploads, telemetry, or automatic model downloads. The core organizer runs without machine-learning models. Model-dependent operations fail closed when a compatible local model is unavailable.
 
-The important distinction: **the cleansing and organizer are implemented and tested; the anti-AI engine is implemented experimentally, but its effectiveness against pretrained models has not been demonstrated.** This environment could not install the optional model stack and has no CUDA device. I have not relabeled a noise filter—or passing software tests—as effective protection.
+**Release boundary:** sanitation, organization, state migration, numerical algorithms, API behavior and browser interactions were exercised. Pretrained VAE/diffusion/video models and CUDA were not run in this environment. Every protection candidate remains `UNVERIFIED`. The included screenshots and demonstration evidence use original synthetic fixtures and explicitly labeled test doubles, not customer artwork or evidence of real-model protection.
 
-The interface shown above is the running application, using clearly identified synthetic artwork. No images were supplied from your collection, so your actual files have not been touched.
+## Start on Windows
 
----
-
-## 1. The organization checkpoint is implemented
-
-RIPOSTE recursively processes the selected artwork folder, including existing nonconforming subfolders. It rebuilds supported images, assigns their date and resolution category, renames them, and places them into your structure:
-
-```text
-Artwork/
-├── 2026/
-│   └── September/
-│       ├── SML/
-│       │   ├── SML01.png
-│       │   └── SML02.png
-│       └── LRG/
-│           └── LRG01.png
-├── 2025/
-│   └── January/
-│       └── MED/
-│           └── MED01.png
-└── EVERYTHING_ELSE/
-    └── December/
-        └── XTL/
-            └── XTL01.png
-```
-
-**No empty calendar scaffold is created.** Months and size folders appear only when required. Empty former directories are removed. Numbering avoids collisions and continues beyond 99. Repeating the operation does not continually rename unchanged, already-clean files.
-
-### Size classifications
-
-The same thresholds apply to every month:
-
-| Folder  |  Total pixels: width × height |
-|---------|------------------------------:|
-| **SML** |               Below 1 million |
-| **MED** |  1 million to below 4 million |
-| **LRG** | 4 million to below 16 million |
-| **XTL** |            16 million or more |
-
-These are **resolution categories**, not unsupported judgments about artistic quality. Compressed file size is displayed separately.
-
-The default date basis is filesystem creation/birth time where available. Otherwise, modified time is used and explicitly labeled as a fallback—not presented as a known download date. Embedded-date and modified-date modes are also available.
-
-### Source replacement is explicit
-
-**Applying the migration removes each successfully processed original after its sanitized replacement has been written and verified.** No metadata-bearing backup, quarantine copy, or Trash copy is created.
-
-A read-only scan comes first. The interface requires explicit source-removal confirmation before applying changes.
-
-Unreadable images, unsupported formats, changing files, and unresolved non-image files remain untouched and keep the checkpoint **INCOMPLETE**. The application will not call a folder clean while silently leaving unprocessed material behind.
-
----
-
-## 2. Metadata cleansing reconstructs the image
-
-RIPOSTE does not merely delete a few EXIF tags. Its implemented sequence is:
-
-**Decode → apply orientation → convert usable color profile to sRGB → reconstruct fresh pixels → encode fresh PNG → independently audit.**
-
-The output retains **one date field: `YYYY-MM-DD`**. Source EXIF, GPS, XMP, comments, thumbnails, software information, embedded profiles, and unknown ancillary chunks are not copied. RGB values concealed behind fully transparent pixels are zeroed.
-
-The application also avoids persisting raw source metadata, source filenames, original paths, or raw-source hashes in its catalog. Hashes are calculated from the **cleaned output**.
-
-Known metadata sidecars can be explicitly discarded. Layered project formats, animations, unsupported bit depths, and other inputs that cannot satisfy the current reconstruction contract are blocked rather than silently damaged.
-
-**One deliberate format choice:** cleaned masters are uniform, lossless PNGs. That does not change your classification scheme into extension-based sorting.
-
-This removes the supported containers’ metadata—not information drawn into the visible picture, arbitrary pixel steganography, other copies elsewhere, or operating-system recovery traces. Those boundaries are documented rather than hidden behind “complete security.”
-
----
-
-## 3. Research: the relevant methods are not interchangeable
-
-The research dossier separates training interference, editing disruption, and video disruption. That distinction matters to your specific case.
-
-| Method             | Actual target and relevance                                                                                                                                                                                                                                    |
-|--------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Glaze**          | Artist-style mimicry. Its own current FAQ explicitly says it does **not** provide consistent protection against image-to-image editing, style transfer, or inpainting. It is not a complete answer to someone directly reusing your illustration. ([Glaze][1]) |
-| **Nightshade**     | Training-data poisoning. It acts through subsequent model training; it is not an immediate shield against an already-trained generator processing your uploaded image. ([arXiv][2])                                                                            |
-| **DiffusionGuard** | Unauthorized diffusion editing. Its early-stage diffusion objective and mask augmentation are relevant to edits that target only part of an illustration. ([arXiv][3])                                                                                         |
-| **DCT-Shield**     | Frequency-domain protection against editing, with JPEG robustness directly relevant to public image distribution. This is a more pertinent research direction than adding arbitrary grain. ([arXiv][4])                                                        |
-| **I2VShield**      | A July 2026 approach targeting transformer-based image-to-video systems through text-adaptive perturbations and multimodal-attention disruption. It is a video-specific research candidate, not an installed RIPOSTE engine. ([arXiv][5])                      |
-| **Anti-Prompt**    | Text-guided image-to-video protection, targeting the model’s text-conditioned interactions. This addresses a different mechanism from a still-image encoder defense. ([arXiv][6])                                                                              |
-
-The dossier additionally covers **PhotoGuard, Mist v2, I2VGuard, Vid-Freeze**, and evaluation literature. The application includes a **12-record research register**, not a misleading claim that twelve protection engines are installed.
-
-### The difficult evidence is included
-
-Glaze’s authors describe robust protection for their intended style-mimicry threat. Independent researchers, however, report successful removal or bypass attacks against the artist-protection methods they evaluated. Those findings concern the tested methods and versions—not proof that every future approach must fail. ([Glaze][1])
-
-For video, the August 2026 revision of **IPV-Bench** evaluated five methods across four generators. It reports poor transfer, frequent failure to outperform noise, and preprocessing failures in the effective cases. That makes matched noise controls, held-out models, and post-processing tests essential—not optional polish. ([arXiv][7])
-
-**My development decision is therefore to optimize and measure specific defenses, rather than stack named filters and assume their protection adds together.**
-
----
-
-## 4. The protection lab contains working implementation
-
-### Model-driven candidate generation
-
-The built-in experimental engine, **EOT-VAE**, optimizes pixel changes through one or more local variational autoencoders.
-
-Its implementation includes bounded per-channel changes, gradients through multiple transformed views, 8-bit quantization during optimization, reduced budgets around high-contrast edges, and preservation of white canvas where its mask applies. Multiple local encoders can be supplied through the CLI.
-
-**No model means no generated defense.** There is no fallback that adds random noise and calls the image protected.
-
-This is an original experimental baseline—not a reproduction of Glaze, DiffusionGuard, or DCT-Shield. Its objective targets encoder representations, not general visual understanding. Dedicated recognition, style-training, and temporal-defense objectives remain separate development work.
-
-### Real transport tests
-
-Every candidate is compared against its corresponding clean image after eight actual processing conditions:
-
-**Unchanged; JPEG 95, 85, and 70; 75% resize; 90% crop; mild blur; and resize followed by JPEG.**
-
-Both images receive the same transformation. The interface reports fidelity and remaining differences, with a before/after divider and amplified-difference view.
-
-These are generic transport tests, **not verified replicas of particular social platforms**. Nor does a surviving pixel difference prove that an AI model was prevented from copying the artwork.
-
-### External candidates and paired generation
-
-Images processed by other tools can be imported, sanitized again, inspected, and tested through the same comparison workflow.
-
-Optional editing and video benchmark adapters are also included. They use matched seeds and save sanitized output frames for review. Their orchestration was tested with stub generators; actual pretrained pipelines were not executed.
-
-Candidate exports remain explicitly **UNVERIFIED**. There is no fabricated “98% protected” indicator.
-
----
-
-## 5. Run it on Windows
-
-Extract RIPOSTE somewhere **separate from your artwork and model folders**. With Python installed, open PowerShell in the extracted project and run:
+Extract RIPOSTE separately from your artwork and model directories. Install Python 3.11 or newer; this release was tested with Python 3.13. Run from PowerShell in the extracted project:
 
 ```powershell
 .\START.ps1 -ArtworkFolder "D:\Artwork\SocialSamples"
 ```
 
-This creates a project-local environment, installs the core application, and opens the local interface. **Launching does not reorganize or delete your images.**
+The launcher creates a project-local virtual environment, installs the core package when absent or at another version, and starts the local browser interface. First installation needs package-index access. Launching never organizes or deletes artwork automatically. The artwork directory must already exist. Keep the terminal running; Ctrl+C stops the server. Native PowerShell execution was not available for this release's tests.
 
-The first workflow is:
+Manual alternative when local PowerShell policy blocks the launcher:
 
-**Scan & organize → read-only preview → inspect blockers → explicitly confirm source replacement → Apply → Audit.**
+```powershell
+py -3.13 -m venv .venv
+.\.venv\Scripts\python.exe -m pip install .
+.\.venv\Scripts\python.exe -m riposte serve "D:\Artwork\SocialSamples"
+```
 
-The model-dependent lab requires an additional installation and compatible local weights:
+On macOS/Linux, `bash START.sh "$HOME/Artwork/SocialSamples"` provides the same local workflow. The shell script passed syntax inspection; native macOS execution was not tested. Manual commands are `python3 -m venv .venv`, `.venv/bin/python -m pip install .`, and `.venv/bin/python -m riposte serve "$HOME/Artwork/SocialSamples"`.
+
+Only loopback is bound. The transient local session token secures editing controls; it is **not** an audience authentication requirement. No outside service is needed to view the interface after dependencies are installed.
+
+**Use a dedicated artwork directory, not your home directory, Downloads root, application directory, virtual environment, or model directory.** All contents of the chosen artwork root are in scope. Unknown files block a complete cleanup checkpoint rather than being silently ignored or deleted.
+
+## Existing SHROUD workspace
+
+RIPOSTE recognizes the old `.shroud` state directory without rewriting it on a read. The interface offers an explicit upgrade, or run:
+
+```powershell
+.\.venv\Scripts\python.exe -m riposte upgrade "D:\Artwork\SocialSamples"
+```
+
+This changes application state to `.riposte` and updates its marker. Clean master images, asset IDs, dates, trial IDs and filenames are preserved. Do not manually rename the artwork hierarchy. Conflicting `.shroud` and `.riposte` directories, invalid markers or linked state directories fail closed. An interrupted directory/marker upgrade can be resumed. Rollback to the old application is not an automated feature.
+
+## Workbench
+
+The **Clean → Organize → Guard → Challenge → Export** sequence connects the existing catalog to actual actions. The left navigator contains only the real year/month/size hierarchy. The artwork inspector supplies a before/after divider, clean/candidate/amplified-difference views, actual transport previews, synchronized pan, fit and native-pixel zoom. `F` fits the view; `+` and `-` change zoom. The divider and zoom controls work with the keyboard as well as a pointer.
+
+The right panel keeps Build, Challenge and Export adjacent to the image. Model challenge and generation review are distinct from the transport-fidelity table. Long jobs report their stage; model jobs can be cancelled at cooperative boundaries. Organizer source replacement is deliberately not cancellable from the interface halfway through a commit.
+
+Metadata status and AI evidence are separate. A date-only image is not labeled protected. A runtime preflight is not labeled model execution. An external candidate's unknown optimization protocol is not labeled held out.
+
+## First operation: scan, inspect, apply
+
+Click **Scan & organize**, select the date basis, and run the read-only preview. Review the destination counts and blocker codes. The source-removal confirmation must be selected before Apply becomes available.
+
+Or use the CLI:
+
+```powershell
+# Read-only: no files or folders created in a fresh workspace.
+.\.venv\Scripts\python.exe -m riposte organize "D:\Artwork\SocialSamples"
+
+# Explicitly authorize verified source replacement and known metadata-sidecar removal.
+.\.venv\Scripts\python.exe -m riposte organize "D:\Artwork\SocialSamples" --apply --discard-sidecars
+
+# Independent metadata/organization checkpoint.
+.\.venv\Scripts\python.exe -m riposte audit "D:\Artwork\SocialSamples"
+```
+
+**`--apply` removes each successfully migrated original after a fresh, sanitized PNG has been written and verified. No raw originals are copied to a backup, quarantine directory, or Trash.** This is intentionally destructive to original metadata and filenames. Cleaned masters remain. Unsupported, changing, or failed inputs are not deleted; the checkpoint stays `INCOMPLETE`. Inspect a representative set before a large migration.
+
+`--discard-sidecars` additionally authorizes deletion of `.xmp`, `.exif`, `.iptc`, `.aae`, `.DS_Store`, `Thumbs.db`, and `desktop.ini` files encountered in this dedicated artwork scope. Their contents are not retained. Without authorization they are blockers.
+
+### Your directory scheme
+
+```text
+SocialSamples/
+├── 2026/
+│   └── September/
+│       ├── SML/
+│       │   └── SML01.png
+│       └── LRG/
+│           └── LRG01.png
+├── 2025/
+│   └── December/
+│       └── MED/
+│           └── MED01.png
+└── .riposte/
+    ├── WORKSPACE
+    ├── catalog.sqlite3
+    ├── last-run.json
+    ├── lab/                 # Created only after a trial exists.
+    ├── generations/         # Created only after a controlled generation run.
+    ├── benchmarks/          # Earlier paired-runner compatibility outputs.
+    └── exports/             # Created only after an explicit export.
+```
+
+The diagram is illustrative, not a folder template. Only needed year/month/size directories exist. Year roots are exactly `2026`, `2025`, `2024`, and `EVERYTHING_ELSE`; other years share the last root, with their exact dates retained inside files. English month names are displayed in calendar order in the application. Files are never classified by extension.
+
+| Category | Total pixels, width × height | Example |
+|---|---:|---|
+| SML | Below 1,000,000 | 800 × 800 |
+| MED | 1,000,000 to below 4,000,000 | 1600 × 1600 |
+| LRG | 4,000,000 to below 16,000,000 | 3000 × 3000 |
+| XTL | 16,000,000 or more | 5000 × 5000 |
+
+These are consistent **resolution** categories, not judgments of artistic quality, sharpness, or AI resistance. Byte size is displayed separately. Filenames are collision-safe `SML01.png`, `SML02.png`, etc.; numbering expands beyond 99. Known, unchanged, clean catalog files are not renamed or re-encoded on repeated runs. Empty former directories are removed.
+
+### Date behavior
+
+Default `download` uses filesystem creation/birth time when available; otherwise it uses modified time and records that fallback. Filesystems do not always preserve the actual download date. This is not silently presented as known download history. `--date-mode modified` explicitly uses modified time. `--date-mode embedded` prefers supported embedded date fields before falling back.
+
+The retained value is only `YYYY-MM-DD`: no time of day, timezone, camera serial, author, GPS, thumbnail, software name, comment, or source filename. The date-basis label is local catalog information, not image metadata.
+
+## What the cleansing operation actually does
+
+It decodes the visible raster, applies EXIF orientation, converts a usable source color profile to sRGB, rebuilds a fresh RGB/RGBA image, and writes a new 8-bit PNG. It does not edit an old EXIF structure in place. RGB values concealed behind fully transparent pixels are zeroed. A second reader verifies chunk types, CRCs, the date field, decompression bounds, invisible RGB, and absence of trailing data.
+
+Only structural PNG chunks and one `Creation Time` date field are permitted. Embedded profiles, thumbnails, EXIF, XMP, comments and unknown ancillary chunks do not survive. Only **clean-output** hashes enter the catalog; raw source hashes, raw filenames, original paths and metadata dumps are never recorded by the application.
+
+Fresh PNG is the intentional uniform output format in this release; this is not a type-based folder scheme. Existing JPEG samples are decoded once and saved without another lossy JPEG encoding. Clean masters keep their native dimensions and transparency. Public lab candidates are flattened on white and may be downscaled to the selected maximum edge; they are never upscaled.
+
+Supported inputs: single-frame, supported 8-bit PNG, JPEG, WebP, BMP, TIFF, and GIF, identified by decoder content. High-bit-depth/HDR inputs, animations, layered project formats such as PSD, SVG, HEIC/AVIF/JXL, invalid color profiles, untagged CMYK/LAB, files above 512 MiB, and images above 60 million pixels require review. A failed input is not advertised as clean. Loss of layers, frames, bit depth, or color fidelity is not silently accepted.
+
+This does **not** prove removal of information encoded in visible artwork or arbitrary pixel steganography. It does not erase other copies, SSD recovery data, operating-system caches, shell history, swap or backups. See [threat boundaries](docs/THREAT-MODEL.md).
+
+## Install the optional laboratory
 
 ```powershell
 .\.venv\Scripts\python.exe -m pip install ".[lab]"
+.\.venv\Scripts\python.exe -m riposte doctor
 ```
 
-Weights are not bundled or automatically downloaded. The core organizer does not require them. Manual launch instructions are included for systems whose PowerShell policy blocks scripts.
+For NVIDIA acceleration, select a compatible PyTorch/CUDA installation using the [official PyTorch installer](https://pytorch.org/get-started/locally/). `doctor` reports the actual installed build and CUDA availability. Installing the lab extra alone does not guarantee a CUDA-enabled torch build or compatible GPU. Do not substitute an unverified CUDA wheel command.
 
----
+Weights are not bundled, fetched automatically or uploaded. Keep them outside the artwork folder. A supported local VAE directory contains `config.json` and safetensors weights. The new loader accepts fixed `AutoencoderKL` and `AutoencoderTiny` classes; Tiny is a distilled proxy, not a substitute for full-generator qualification. The optional early-edit probe needs a local Stable Diffusion **nine-channel inpainting** pipeline. Full generation adapters require the appropriate local pipeline components and CUDA.
 
-## 6. Validation and handoff
+```powershell
+.\.venv\Scripts\python.exe -m riposte doctor --vae "D:\Models\local-model\vae"
+```
 
-| Executed check                                            |                      Result |
-|-----------------------------------------------------------|----------------------------:|
-| Source test suite                                         |              **194 passed** |
-| Separately installed wheel, sharing existing dependencies |              **194 passed** |
-| Final delivered ZIP, freshly extracted                    |              **194 passed** |
-| Browser interaction/rendering checks                      |               **13 passed** |
-| Actual loopback HTTP checks                               |                **9 passed** |
-| Source/wheel package-file comparison                      | **17 byte-identical files** |
+`FILES_PRESENT_NOT_EXECUTED` means exactly that. File checks do not establish model compatibility, available GPU memory, useful gradients, or effective protection. No remote custom pipeline code or pickle-weight loading is requested by RIPOSTE. Use models from sources you trust and respect their separate license terms.
 
-The browser checks used Chromium with an in-process transport to the real backend; separate HTTP checks exercised the running server. Tests establish implementation behavior, **not adversarial effectiveness**. Native Windows execution, CUDA, pretrained-model performance, and independent security auditing remain unvalidated.
+## Generate a candidate: coupled engine
 
-The complete handoff is included in the ZIP and available individually:
+List image IDs and choose an organized image:
 
-**[Start guide](sandbox:/mnt/data/RIPOSTE/README.md)** · **[Development specification](sandbox:/mnt/data/RIPOSTE/docs/DEVELOPMENT-SPEC.md)** · **[Research dossier](sandbox:/mnt/data/RIPOSTE/docs/RESEARCH.md)** · **[Threat model](sandbox:/mnt/data/RIPOSTE/docs/THREAT-MODEL.md)** · **[Validation record](sandbox:/mnt/data/RIPOSTE/docs/VALIDATION.md)** · **[Final archive verification](sandbox:/mnt/data/RIPOSTE_v0.1.0_release_report.json)**
+```powershell
+.\.venv\Scripts\python.exe -m riposte list "D:\Artwork\SocialSamples"
+.\.venv\Scripts\python.exe -m riposte guard "D:\Artwork\SocialSamples" IMAGE_ID --vae "D:\Models\local-model\vae" --engine coupled --max-edge 1536 --epsilon 4 --steps 24 --device auto
+```
 
-**The next substantive milestone is real-model qualification, followed by combined editing/mask/compression defenses and genuine text-guided video protection.** The acceptance criterion is demonstrably reduced reuse after processing, at an illustration quality you approve—not merely altered pixels or a completed render.
+Replace `IMAGE_ID` and `TRIAL_ID` placeholders with the IDs returned by the application. Multiple `--vae` arguments provide an encoder ensemble. The UI exposes one optimization VAE and an optional early-inpainting pipeline. Add `--pipeline "D:\Models\local-inpaint"` to use that probe from the CLI.
 
-[1]: https://glaze.cs.uchicago.edu/faq.html "Glaze - Protecting Artists from Generative AI"
-[2]: https://arxiv.org/abs/2310.13828 "[2310.13828] Nightshade: Prompt-Specific Poisoning Attacks on Text-to-Image Generative Models"
-[3]: https://arxiv.org/abs/2410.05694 "[2410.05694] DiffusionGuard: A Robust Defense Against Malicious Diffusion-based Image Editing"
-[4]: https://arxiv.org/abs/2504.17894 "[2504.17894] DCT-Shield: A Robust Frequency Domain Defense against Malicious Image Editing"
-[5]: https://arxiv.org/abs/2607.25522 "[2607.25522] I2VShield: An Efficient Proactive Defense Framework against DiT-based Image-to-Video Models"
-[6]: https://arxiv.org/abs/2607.01499 "[2607.01499] Anti-Prompt: Image Protection against Text-Guided Image-to-Video Generation"
-[7]: https://arxiv.org/abs/2603.26154 "[2603.26154] IPV-Bench: Benchmarking Image Protection Methods under Diverse Image-to-Video Generation Scenarios"
+The original RIPOSTE `coupled-v1` experiment shares one constrained output raster across real JPEG-forward and resize views, masked encoder contexts, and optional early inpainting conditioning. It uses 8-bit quantization during optimization, integer spatial budgets, reduced edge changes, optional smooth-white preservation, and frequency-weighted search directions. The JPEG backward gradient is an explicit approximation, not a derivative of codec bitstreams. Default UI work is 24 iterations; the CLI retains its 48-iteration default unless `--steps` is supplied.
+
+The default channel cap is `4/255`, not a promise of invisibility. White preservation can be disabled with `--no-preserve-white`. Final encoded channels are checked against the budget. Models with absent, detached, nonfinite or unusable gradients cannot silently turn into a noise-only result. CPU execution is allowed for optimization/encoder qualification but can be impractically slow. Full GPU performance is unmeasured.
+
+`--engine encoder` retains the original EOT-VAE baseline for comparison. The new implementation is **not** a reproduction of DiffusionGuard, DCT-Shield, Glaze or any named paper. There is no built-in temporal or text-guided-video defense objective in v0.2.0. See [engine design](docs/ENGINE-v02.md).
+
+## Challenge the candidate, not just its appearance
+
+```powershell
+.\.venv\Scripts\python.exe -m riposte qualify "D:\Artwork\SocialSamples" TRIAL_ID --vae "D:\Models\evaluation-model\vae" --device auto
+```
+
+Qualification compares the candidate with **three sign-scrambled controls preserving every absolute channel change**. This preserves original-raster peak change and RMS exactly, including pixels near channel limits. These are matched perturbation controls, not independent Gaussian noise and not additional defenses.
+
+Each encoder is evaluated in 24 contexts: eight actual publication transforms × whole/right/bottom masks. Reports distinguish optimization transform families from held-out transform families only when that protocol is known. They distinguish identical model weights from different weights without asserting that different weights imply an unseen architecture. The strongest of the three controls is shown in each cell. These counts are descriptive; three controls do not establish a statistical security guarantee.
+
+The qualification transforms include stronger JPEG compression, a resize/JPEG chain, an offset crop and blur. The transport-fidelity inspector separately retains the original eight-view suite, including JPEG 95/85/70. Both apply the same operation to clean/candidate rasters. Neither suite is advertised as a replica of a social platform's current processing.
+
+## Review actual-generation experiments
+
+The new five-arm runner uses clean, candidate and three matched controls with the same generation seeds in each arm:
+
+```powershell
+.\.venv\Scripts\python.exe -m riposte challenge "D:\Artwork\SocialSamples" TRIAL_ID --model "D:\Models\local-sd-pipeline" --task edit
+.\.venv\Scripts\python.exe -m riposte challenge "D:\Artwork\SocialSamples" TRIAL_ID --model "D:\Models\local-inpaint-pipeline" --task inpaint
+.\.venv\Scripts\python.exe -m riposte challenge "D:\Artwork\SocialSamples" TRIAL_ID --model "D:\Models\local-svd-pipeline" --task video
+```
+
+Defaults are two seeds, identity and JPEG 70, and five arms: **20 generation calls**, not one lightweight render. Use `--seed 7 --view identity` for five calls while checking a new local installation. `--seed` and `--view` can be repeated. Generation is CUDA-only in this release.
+
+`edit` uses a reference SD img2img pipeline; `inpaint` uses a fixed nine-channel SD inpainting pipeline and reproducible right-region mask; `video` uses Stable Video Diffusion. These are reference baselines, not coverage of all modern generators. SVD is image-conditioned, **not text-guided video**. Output dimensions are standardized per task and recorded by the rendered frames; post-transform input fidelity is recorded separately because control equality need not survive codecs.
+
+Generation review offers all five outputs, run/view/seed selectors and synchronized frame scrubbing. Outputs are date-only PNG frame sequences, not an MP4 export. Each frame is bound to the committed report hash. When a pipeline reports a content-filter flag, it is retained as such; a filtered output is not evidence of adversarial success. Same-seed divergence, output RMSE and adjacent-frame RMSE are descriptive only. Human review must judge source preservation, task success, instruction following, useful motion and quality.
+
+The original `benchmark` command remains a two-arm compatibility path; prefer `challenge` for the controlled protocol. **Full pretrained pipelines were not exercised in this release environment.** Tests use explicit pipeline doubles and real tensor/mask/control-flow code.
+
+## External candidate and export
+
+```powershell
+.\.venv\Scripts\python.exe -m riposte compare "D:\Artwork\SocialSamples" IMAGE_ID "D:\Candidate\processed.png" --max-edge 1536 --method external
+.\.venv\Scripts\python.exe -m riposte export "D:\Artwork\SocialSamples" TRIAL_ID --acknowledge-unverified
+```
+
+Imported candidates are rebuilt and matched to the selected public raster, not blindly copied. The external input remains unchanged outside the workspace. A method name is a label, not proof that an upstream tool ran correctly. Unknown optimization settings remain unknown in evaluations.
+
+Export requires a complete workspace checkpoint, intact trial images, a date-only audit, and explicit unverified acknowledgment. The exported `.riposte/exports/TRIAL_ID/candidate.png` contains the raster and retained date—not the lab report, model names, paths, or analysis. Nothing is automatically published.
+
+## Development and evidence
+
+The distribution includes source, tests, a wheel, screenshots, source provenance and verification records. See [validation](docs/VALIDATION.md) for exact executed counts and limits; [source map/specification](docs/DEVELOPMENT-SPEC.md), [engine contract](docs/ENGINE-v02.md), [research](docs/RESEARCH.md), [privacy boundaries](docs/THREAT-MODEL.md), [UI design](docs/UI-DESIGN.md), and [next grouped milestone](docs/WAVE-02-PLAN.md).
+
+```bash
+python -m pip install ".[test]"
+python -m pytest -q
+```
+
+Numerical model tests need PyTorch and explicitly skip when it is absent. Browser QA additionally needs Playwright and Chromium. Test installation is optional and separate from the end-user core. There are no bundled font files or copied third-party reference artwork.

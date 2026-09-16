@@ -1,0 +1,400 @@
+{
+  "version": "0.2.0",
+  "date": "2026-09-14",
+  "baseline_archive": "SHROUD_v0.1.0.zip",
+  "baseline_archive_sha256": "97e2b613fe8e26fcae77c1688ec20ae8a3e6f9ccfccfbc88bdf14b1256c6038d",
+  "baseline_test_cases": 194,
+  "current_test_cases": 332,
+  "new_test_cases": 138,
+  "inherited_test_files": [
+    {
+      "file": "conftest.py",
+      "original_sha256": "f343e55b7e8d08b47fdf82580d05cef39cb11b7de3c87a0dabd94617e5c2762e",
+      "delivered_sha256": "f343e55b7e8d08b47fdf82580d05cef39cb11b7de3c87a0dabd94617e5c2762e",
+      "identical_after_identity_version_rename": true
+    },
+    {
+      "file": "test_benchmark.py",
+      "original_sha256": "1a3f2c842ad500e74f63678730918856f717c5975631bf4a231973bc5c5286a4",
+      "delivered_sha256": "1623ac30e0909d1660ad0ea41d0df4fafd8eadfca9af982d4c864fd0c873f26c",
+      "identical_after_identity_version_rename": true
+    },
+    {
+      "file": "test_lab.py",
+      "original_sha256": "8214dbd7f14575d3dc5a95fda6d19049ed026fad84e51ab634fc2d48c8fd4bc1",
+      "delivered_sha256": "962c5886ffe77ad935ee17478637a4bedf3a461693d97b92e6b86baabd39ad90",
+      "identical_after_identity_version_rename": true
+    },
+    {
+      "file": "test_optimizer.py",
+      "original_sha256": "973945a7fd6dd8bbe6d96139684655f2fc44365439e3aeb555bafdf1cc2321cd",
+      "delivered_sha256": "0c505e526377f0d45a9981530a72b3a869b56b972a2e8ca5fa60bd2b1656b62e",
+      "identical_after_identity_version_rename": true
+    },
+    {
+      "file": "test_organizer.py",
+      "original_sha256": "faadfa94d21eda7373ca6d32564a141c3c63fecaa4d4e37c954d87da4bed33b1",
+      "delivered_sha256": "bb9e901e0d62d3cbde1bf9de88584eee1e2e8c86b04866d25f1d2293fcd989e8",
+      "identical_after_identity_version_rename": true
+    },
+    {
+      "file": "test_policy.py",
+      "original_sha256": "03a72fdce93d4e2b5e737f2e285d79712140991922aacb107dc3ef2319b1ea7a",
+      "delivered_sha256": "2ee0bd200bbfa70495b67588a077105b9685973e8a4994e3277ce2681e563531",
+      "identical_after_identity_version_rename": true
+    },
+    {
+      "file": "test_sanitize.py",
+      "original_sha256": "e2f07041794d181bb912c32ead95f3342505cf1ae1d03f53794871e90bb78d22",
+      "delivered_sha256": "a9da860ddd24716c0c69decf1d68c2ba509a889756eaf58c38a59750f5b26c78",
+      "identical_after_identity_version_rename": true
+    },
+    {
+      "file": "test_server.py",
+      "original_sha256": "240801ee67f735b89c32e59b0c32edd9a56c3deac0c0bb3dfe6259dd68cd718e",
+      "delivered_sha256": "dd74afffa2a63f7cf1583a396aaad74a7f303312e2fe9d96a61f56967b0a1223",
+      "identical_after_identity_version_rename": true
+    }
+  ],
+  "package_files": [
+    {
+      "file": "riposte/__init__.py",
+      "sha256": "2054b07426f2eec978dba82045a4c812874b5a7c8f3aa21ce2e7a3362c8419b7",
+      "source_wheel_installed_equal": true
+    },
+    {
+      "file": "riposte/__main__.py",
+      "sha256": "79ee6f134c5c5193377cf9b189cbdcc3e2095e49ba9cec310114441c15a917c4",
+      "source_wheel_installed_equal": true
+    },
+    {
+      "file": "riposte/benchmark.py",
+      "sha256": "a7fbb359fb87d7ed6c5593a6fb0c194e5a34d20dfe0e9dd549200fe1007c7d68",
+      "source_wheel_installed_equal": true
+    },
+    {
+      "file": "riposte/cli.py",
+      "sha256": "cd0310e13d4454609a9165ffac51844386eaefd4669e2d0900104f20e7054505",
+      "source_wheel_installed_equal": true
+    },
+    {
+      "file": "riposte/coupled.py",
+      "sha256": "eca0afb9e0de03b740029864a5ddeeb7212cc9676c5e9cc191a6f4d1274641a8",
+      "source_wheel_installed_equal": true
+    },
+    {
+      "file": "riposte/errors.py",
+      "sha256": "7a9c08b799d1c713fbd82e30fd145a6dc3085c215848893e31d1ec066abc5244",
+      "source_wheel_installed_equal": true
+    },
+    {
+      "file": "riposte/generation.py",
+      "sha256": "97d3481d0d51cd95899c0c47b3a1e9aab1fc4bac09c1a39e791d79d74617515d",
+      "source_wheel_installed_equal": true
+    },
+    {
+      "file": "riposte/lab.py",
+      "sha256": "3845f3e3abedd03d1f0c200b84395e6b46f67b2ff120f6e8a8fc75a2d8c03093",
+      "source_wheel_installed_equal": true
+    },
+    {
+      "file": "riposte/methods.json",
+      "sha256": "4405d32fac499c6f3b7fbce0afa04abea62e2509e130844a20899c39a6283920",
+      "source_wheel_installed_equal": true
+    },
+    {
+      "file": "riposte/metrics.py",
+      "sha256": "0d873a0cb8972b5bdce14eb3cdc49ab391af31a297981fda1ad37603496c22eb",
+      "source_wheel_installed_equal": true
+    },
+    {
+      "file": "riposte/models.py",
+      "sha256": "19c774fff774c2c947a836ece9493168e71a20bec3a4f658853333d671c5a002",
+      "source_wheel_installed_equal": true
+    },
+    {
+      "file": "riposte/optimizer.py",
+      "sha256": "16367347cb57cfd8efba57a5002d2c313ce31106304d993dc0fba0d398ae4121",
+      "source_wheel_installed_equal": true
+    },
+    {
+      "file": "riposte/organizer.py",
+      "sha256": "249c082bce0872f6395f15ea7af6ac1df814002a635a15fb2d51d5fe23d62579",
+      "source_wheel_installed_equal": true
+    },
+    {
+      "file": "riposte/policy.py",
+      "sha256": "a4e0d5ab07a0b4aac2efcf518f7cdf19a1a9cdfa9c1fc7e263ef66545d2774e7",
+      "source_wheel_installed_equal": true
+    },
+    {
+      "file": "riposte/qualification.py",
+      "sha256": "4fc049f680adc31c34f02499d8dfe4ebed9af46f47fa1cd554f50ead273231ce",
+      "source_wheel_installed_equal": true
+    },
+    {
+      "file": "riposte/sanitize.py",
+      "sha256": "358ebd215602d8fe93aea4ab07931cfb84f9094202bec3ab34231ab193fb7001",
+      "source_wheel_installed_equal": true
+    },
+    {
+      "file": "riposte/server.py",
+      "sha256": "7cb1c44c29846406836d4d773e24833eb1d9304f4b30760c88e98a7d99fbd7ad",
+      "source_wheel_installed_equal": true
+    },
+    {
+      "file": "riposte/static/app.js",
+      "sha256": "32c814856e587080fe6a6c197487b04f74c7e18e5f3b0abaaeff12c4a999b472",
+      "source_wheel_installed_equal": true
+    },
+    {
+      "file": "riposte/static/index.html",
+      "sha256": "8cc9190596cbd151d3a76d97fe344cde7ba3c7599e62eddd81ad6f2a1b22a923",
+      "source_wheel_installed_equal": true
+    },
+    {
+      "file": "riposte/static/style.css",
+      "sha256": "932983321f7c1394a44750a05433f6b521262ffd84b0db71eb0c41556813e3a7",
+      "source_wheel_installed_equal": true
+    },
+    {
+      "file": "riposte/store.py",
+      "sha256": "f6a88c29653c26c58db9d69845a96dfa5e6b8071bce4578e29aa6932bd8e0b9a",
+      "source_wheel_installed_equal": true
+    },
+    {
+      "file": "riposte/views.py",
+      "sha256": "901a71db135ce03b0c929d230de1bacb73542dcc1570df166f36013a906b90e7",
+      "source_wheel_installed_equal": true
+    }
+  ],
+  "package_file_count": 22,
+  "package_python_count": 18,
+  "wheel_sha256": "3331cab435ceee1fb47554eb6053b737a9355e62985409c6c8e480dad2f7f753",
+  "package_change_map": [
+    {
+      "file": "__init__.py",
+      "status": "IDENTITY_ONLY",
+      "old_sha256": "123a896f482f97919983b00fbf8011a4c99737c385b403eb67a6a14b960ed204",
+      "new_sha256": "2054b07426f2eec978dba82045a4c812874b5a7c8f3aa21ce2e7a3362c8419b7"
+    },
+    {
+      "file": "__main__.py",
+      "status": "IDENTITY_ONLY",
+      "old_sha256": "79ee6f134c5c5193377cf9b189cbdcc3e2095e49ba9cec310114441c15a917c4",
+      "new_sha256": "79ee6f134c5c5193377cf9b189cbdcc3e2095e49ba9cec310114441c15a917c4"
+    },
+    {
+      "file": "benchmark.py",
+      "status": "MODIFIED",
+      "old_sha256": "ed9a0688c49e13b27d6e75c2d63aa397af448f2b4333b1ca32af092357982489",
+      "new_sha256": "a7fbb359fb87d7ed6c5593a6fb0c194e5a34d20dfe0e9dd549200fe1007c7d68"
+    },
+    {
+      "file": "cli.py",
+      "status": "MODIFIED",
+      "old_sha256": "5699185f8081345114843dd7d40ab0d590f610bc5ee6cba316643775f995ebb6",
+      "new_sha256": "cd0310e13d4454609a9165ffac51844386eaefd4669e2d0900104f20e7054505"
+    },
+    {
+      "file": "errors.py",
+      "status": "IDENTITY_ONLY",
+      "old_sha256": "e3983715aab0b4971d950ac44c4239bf47cf4d3d2d51e8ffce35f86b2418a2aa",
+      "new_sha256": "7a9c08b799d1c713fbd82e30fd145a6dc3085c215848893e31d1ec066abc5244"
+    },
+    {
+      "file": "lab.py",
+      "status": "MODIFIED",
+      "old_sha256": "274bdd979579478f9f810db8e2ce3f07513b6a544c28a4b890d858c1fcd74de8",
+      "new_sha256": "3845f3e3abedd03d1f0c200b84395e6b46f67b2ff120f6e8a8fc75a2d8c03093"
+    },
+    {
+      "file": "methods.json",
+      "status": "MODIFIED",
+      "old_sha256": "59c81fdf98c319b65d7124c906bd9274853d04536677d092c1c76801ae3eb967",
+      "new_sha256": "4405d32fac499c6f3b7fbce0afa04abea62e2509e130844a20899c39a6283920"
+    },
+    {
+      "file": "metrics.py",
+      "status": "IDENTITY_ONLY",
+      "old_sha256": "6023ed5946694d058c9f65ac0814bc623f839f7da48747c6e9a0529009c1f509",
+      "new_sha256": "0d873a0cb8972b5bdce14eb3cdc49ab391af31a297981fda1ad37603496c22eb"
+    },
+    {
+      "file": "optimizer.py",
+      "status": "IDENTITY_ONLY",
+      "old_sha256": "664343508fcb3bb0d823c4abc8decbc956b3c24912f4b4ac0a75930f342ffc89",
+      "new_sha256": "16367347cb57cfd8efba57a5002d2c313ce31106304d993dc0fba0d398ae4121"
+    },
+    {
+      "file": "organizer.py",
+      "status": "MODIFIED",
+      "old_sha256": "b57506379d1bb09db4e3c54815f68e701a361c63db0313b91344eac1b688a2fb",
+      "new_sha256": "249c082bce0872f6395f15ea7af6ac1df814002a635a15fb2d51d5fe23d62579"
+    },
+    {
+      "file": "policy.py",
+      "status": "IDENTITY_ONLY",
+      "old_sha256": "b2e61d59ac127bd3d3babdb2b85af54f8c0942635b06a63663f12408bdb80d74",
+      "new_sha256": "a4e0d5ab07a0b4aac2efcf518f7cdf19a1a9cdfa9c1fc7e263ef66545d2774e7"
+    },
+    {
+      "file": "sanitize.py",
+      "status": "IDENTITY_ONLY",
+      "old_sha256": "fc3831194312ccc201e4fb066d974ddb21b06d61915fe9f15a345f1af8a4a706",
+      "new_sha256": "358ebd215602d8fe93aea4ab07931cfb84f9094202bec3ab34231ab193fb7001"
+    },
+    {
+      "file": "server.py",
+      "status": "MODIFIED",
+      "old_sha256": "e2ae7265e61f844c95933089e561cc3e79bbe72fdda5692146b3ccf2b9f893c6",
+      "new_sha256": "7cb1c44c29846406836d4d773e24833eb1d9304f4b30760c88e98a7d99fbd7ad"
+    },
+    {
+      "file": "static/app.js",
+      "status": "MODIFIED",
+      "old_sha256": "1b6ef208f8578ca47c8b889710e67bf7bf87f996ee9daace9a38552d79ee3a64",
+      "new_sha256": "32c814856e587080fe6a6c197487b04f74c7e18e5f3b0abaaeff12c4a999b472"
+    },
+    {
+      "file": "static/index.html",
+      "status": "MODIFIED",
+      "old_sha256": "4cfd402ee9933518a990484fe407a2be370ee8ebafb420790908a65a928cf50f",
+      "new_sha256": "8cc9190596cbd151d3a76d97fe344cde7ba3c7599e62eddd81ad6f2a1b22a923"
+    },
+    {
+      "file": "static/style.css",
+      "status": "MODIFIED",
+      "old_sha256": "70e41cc5f6c4c789ad86b0e6311fc07b3fb615b347dfaf7c8c556f5a92a02655",
+      "new_sha256": "932983321f7c1394a44750a05433f6b521262ffd84b0db71eb0c41556813e3a7"
+    },
+    {
+      "file": "store.py",
+      "status": "MODIFIED",
+      "old_sha256": "424dedd122dae50f03d6ddc0abcd8d199ea6f1dc322430f0dfda1b8e7193221d",
+      "new_sha256": "f6a88c29653c26c58db9d69845a96dfa5e6b8071bce4578e29aa6932bd8e0b9a"
+    },
+    {
+      "file": "coupled.py",
+      "status": "NEW",
+      "new_sha256": "eca0afb9e0de03b740029864a5ddeeb7212cc9676c5e9cc191a6f4d1274641a8"
+    },
+    {
+      "file": "generation.py",
+      "status": "NEW",
+      "new_sha256": "97d3481d0d51cd95899c0c47b3a1e9aab1fc4bac09c1a39e791d79d74617515d"
+    },
+    {
+      "file": "models.py",
+      "status": "NEW",
+      "new_sha256": "19c774fff774c2c947a836ece9493168e71a20bec3a4f658853333d671c5a002"
+    },
+    {
+      "file": "qualification.py",
+      "status": "NEW",
+      "new_sha256": "4fc049f680adc31c34f02499d8dfe4ebed9af46f47fa1cd554f50ead273231ce"
+    },
+    {
+      "file": "views.py",
+      "status": "NEW",
+      "new_sha256": "901a71db135ce03b0c929d230de1bacb73542dcc1570df166f36013a906b90e7"
+    }
+  ],
+  "environment": {
+    "python": "3.13.5",
+    "platform": "Linux",
+    "versions": {
+      "torch": "2.10.0+cpu",
+      "Pillow": "12.3.0",
+      "numpy": "2.3.5",
+      "fastapi": "0.128.2",
+      "uvicorn": "0.48.0",
+      "httpx": "0.28.1",
+      "pytest": "9.0.2",
+      "setuptools": "82.0.1",
+      "safetensors": "0.7.0"
+    },
+    "cuda": false,
+    "pretrained_model_execution": false
+  },
+  "verification": {
+    "source": {
+      "passed": 332,
+      "log": "source-tests.txt"
+    },
+    "installed_wheel": {
+      "passed": 332,
+      "log": "installed-wheel-tests.txt",
+      "isolation": "Separate target directory and working directory; host dependencies shared."
+    },
+    "browser": {
+      "harness": "In-process FastAPI transport / Chromium about:blank rendering",
+      "passed": 30,
+      "checks": [
+        "live catalog renders six fixture images",
+        "selection populates inspector",
+        "application rename reaches rendered interface",
+        "synthetic demo status is explicit",
+        "calendar navigator only exposes populated months",
+        "live size filtering",
+        "canonical date search",
+        "actual artwork double-click opens lab without losing second click",
+        "real trial measurements populate lab",
+        "before-after split control",
+        "zoom and pan stay synchronized between actual image layers",
+        "fit and native-raster inspection controls operate",
+        "publication view selects actual paired codec output",
+        "measurement rows drive the inspector",
+        "comparison divider is keyboard-operable",
+        "difference view",
+        "real synthetic-oracle qualification report renders with its evidence boundary",
+        "five-arm review labels synthetic generator honestly",
+        "video review frame slider synchronizes every control arm",
+        "generation review selects paired publication view and seed",
+        "read-only runtime preflight uses real backend",
+        "export is separately acknowledged and reports audited output",
+        "12 primary-source method records",
+        "live workspace audit",
+        "read-only migration preview and explicit source-removal gate",
+        "no library horizontal overflow at 1024px",
+        "no generation-review horizontal overflow at 1024px",
+        "no library horizontal overflow at 390px",
+        "no generation-review horizontal overflow at 390px",
+        "no browser JavaScript errors"
+      ],
+      "errors": [],
+      "fixture": "Synthetic geometric images, real gradients through a toy oracle, and stub generation frames. None is pretrained-model efficacy evidence."
+    },
+    "http": {
+      "harness": "Uvicorn subprocess / real loopback HTTP / httpx trust_env=False",
+      "passed": 16,
+      "checks": [
+        "real listener serves RIPOSTE interface",
+        "real listener requires session token",
+        "authorized live catalog",
+        "no-store response policy",
+        "self-only application content policy",
+        "cross-origin requests rejected",
+        "unrecognized host rejected",
+        "cross-site fetch metadata rejected",
+        "served thumbnail independently date-only audited",
+        "live paired JPEG view independently audited",
+        "live organization checkpoint",
+        "live export acknowledgment gate",
+        "live source-removal acknowledgment gate",
+        "live runtime preflight",
+        "live scoped qualification evidence",
+        "live hash-bound generation frame independently audited"
+      ],
+      "browser": {
+        "status": "LOCALHOST_NAVIGATION_BLOCKED",
+        "fallback": "Chromium in-process backend transport separately tested"
+      }
+    },
+    "syntax": {
+      "javascript": "node --check src/riposte/static/app.js: PASS",
+      "shell": "bash -n START.sh: PASS",
+      "native_powershell": "NOT_EXECUTED"
+    }
+  }
+}

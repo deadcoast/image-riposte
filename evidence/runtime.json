@@ -1,0 +1,20 @@
+{
+  "runtime": {
+    "versions": {
+      "torch": "2.10.0+cpu",
+      "safetensors": "0.7.0"
+    },
+    "missing": [
+      "diffusers",
+      "transformers",
+      "accelerate"
+    ],
+    "cpu": true,
+    "cuda": false,
+    "mps": false,
+    "recommended_device": "cpu",
+    "model_loading": "EXPLICIT_LOCAL_ONLY",
+    "privacy": "NO_IMAGE_UPLOADS",
+    "pretrained_qualification": "NOT_IMPLIED_BY_PREFLIGHT"
+  }
+}

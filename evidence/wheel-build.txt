@@ -1,0 +1,10 @@
+WARNING: The directory '<RUNTIME_HOME>/.cache/pip' or its parent directory is not owned or is not writable by the current user. The cache has been disabled. Check the permissions and owner of that directory. If executing pip with sudo, you should use sudo's -H flag.
+Processing <SOURCE>
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Building wheels for collected packages: riposte-studio
+  Building wheel for riposte-studio (pyproject.toml): started
+  Building wheel for riposte-studio (pyproject.toml): finished with status 'done'
+  Created wheel for riposte-studio: filename=riposte_studio-0.2.0-py3-none-any.whl size=85538 sha256=3331cab435ceee1fb47554eb6053b737a9355e62985409c6c8e480dad2f7f753
+  Stored in directory: <TEMP_BUILD_DIRECTORY>
+Successfully built riposte-studio
