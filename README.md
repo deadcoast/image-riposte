@@ -69,7 +69,7 @@ COUNTERSTROKE is an authored depth-resolved lamellar image-plane material with m
 Working screens have different compositions: selected artwork, editable protection fields, real batch outputs, explicit source-replacement confirmation, operation activity and full result inspection. Colour ASCII previews help identify an illustration; **they are not substitutes for full-resolution visual review**. Press `v` in an image inspector to hand audited PNG bytes to a local image viewer. The handoff does not approve the image.
 
 | Key | Behaviour |
-|---|---|
+| --- | --- |
 | Arrows or `j` / `k`, Enter | Move focus, open an action, edit a field |
 | Space | Select an image or toggle a checkbox |
 | `/` | Search visible actions, clean catalog or batches |

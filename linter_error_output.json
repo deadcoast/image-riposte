@@ -1,0 +1,1803 @@
+[{
+	"resource": "/c:/Users/ryanf/github/_new/image-riposte/scripts/capture_terminal.py",
+	"owner": "_generated_diagnostic_collection_name_#21",
+	"code": {
+		"value": "no-untyped-def",
+		"target": {
+			"$mid": 1,
+			"path": "/en/latest/_refs.html",
+			"scheme": "https",
+			"authority": "mypy.readthedocs.io",
+			"fragment": "code-no-untyped-def"
+		}
+	},
+	"severity": 8,
+	"message": "Function is missing a type annotation",
+	"source": "Mypy",
+	"startLineNumber": 14,
+	"startColumn": 1,
+	"endLineNumber": 19,
+	"endColumn": 48,
+	"modelVersionId": 1,
+	"origin": "extHost1"
+},{
+	"resource": "/c:/Users/ryanf/github/_new/image-riposte/scripts/capture_terminal.py",
+	"owner": "_generated_diagnostic_collection_name_#21",
+	"code": {
+		"value": "no-untyped-call",
+		"target": {
+			"$mid": 1,
+			"path": "/en/latest/_refs.html",
+			"scheme": "https",
+			"authority": "mypy.readthedocs.io",
+			"fragment": "code-no-untyped-call"
+		}
+	},
+	"severity": 8,
+	"message": "Call to untyped function \"draw_fixture\" in typed context",
+	"source": "Mypy",
+	"startLineNumber": 17,
+	"startColumn": 38,
+	"endLineNumber": 17,
+	"endColumn": 53,
+	"modelVersionId": 1,
+	"origin": "extHost1"
+},{
+	"resource": "/c:/Users/ryanf/github/_new/image-riposte/scripts/capture_terminal.py",
+	"owner": "_generated_diagnostic_collection_name_#21",
+	"code": {
+		"value": "no-untyped-def",
+		"target": {
+			"$mid": 1,
+			"path": "/en/latest/_refs.html",
+			"scheme": "https",
+			"authority": "mypy.readthedocs.io",
+			"fragment": "code-no-untyped-def"
+		}
+	},
+	"severity": 8,
+	"message": "Function is missing a type annotation",
+	"source": "Mypy",
+	"startLineNumber": 22,
+	"startColumn": 1,
+	"endLineNumber": 32,
+	"endColumn": 15,
+	"modelVersionId": 1,
+	"origin": "extHost1"
+},{
+	"resource": "/c:/Users/ryanf/github/_new/image-riposte/scripts/capture_terminal.py",
+	"owner": "_generated_diagnostic_collection_name_#21",
+	"code": {
+		"value": "no-untyped-def",
+		"target": {
+			"$mid": 1,
+			"path": "/en/latest/_refs.html",
+			"scheme": "https",
+			"authority": "mypy.readthedocs.io",
+			"fragment": "code-no-untyped-def"
+		}
+	},
+	"severity": 8,
+	"message": "Function is missing a type annotation",
+	"source": "Mypy",
+	"startLineNumber": 35,
+	"startColumn": 1,
+	"endLineNumber": 50,
+	"endColumn": 17,
+	"modelVersionId": 1,
+	"origin": "extHost1"
+},{
+	"resource": "/c:/Users/ryanf/github/_new/image-riposte/scripts/capture_terminal.py",
+	"owner": "_generated_diagnostic_collection_name_#21",
+	"code": {
+		"value": "no-untyped-def",
+		"target": {
+			"$mid": 1,
+			"path": "/en/latest/_refs.html",
+			"scheme": "https",
+			"authority": "mypy.readthedocs.io",
+			"fragment": "code-no-untyped-def"
+		}
+	},
+	"severity": 8,
+	"message": "Function is missing a type annotation",
+	"source": "Mypy",
+	"startLineNumber": 38,
+	"startColumn": 5,
+	"endLineNumber": 40,
+	"endColumn": 61,
+	"modelVersionId": 1,
+	"origin": "extHost1"
+},{
+	"resource": "/c:/Users/ryanf/github/_new/image-riposte/scripts/capture_terminal.py",
+	"owner": "_generated_diagnostic_collection_name_#21",
+	"code": {
+		"value": "no-untyped-call",
+		"target": {
+			"$mid": 1,
+			"path": "/en/latest/_refs.html",
+			"scheme": "https",
+			"authority": "mypy.readthedocs.io",
+			"fragment": "code-no-untyped-call"
+		}
+	},
+	"severity": 8,
+	"message": "Call to untyped function \"raster\" in typed context",
+	"source": "Mypy",
+	"startLineNumber": 39,
+	"startColumn": 33,
+	"endLineNumber": 39,
+	"endColumn": 48,
+	"modelVersionId": 1,
+	"origin": "extHost1"
+},{
+	"resource": "/c:/Users/ryanf/github/_new/image-riposte/scripts/capture_terminal.py",
+	"owner": "_generated_diagnostic_collection_name_#21",
+	"code": {
+		"value": "no-untyped-call",
+		"target": {
+			"$mid": 1,
+			"path": "/en/latest/_refs.html",
+			"scheme": "https",
+			"authority": "mypy.readthedocs.io",
+			"fragment": "code-no-untyped-call"
+		}
+	},
+	"severity": 8,
+	"message": "Call to untyped function \"save\" in typed context",
+	"source": "Mypy",
+	"startLineNumber": 41,
+	"startColumn": 5,
+	"endLineNumber": 41,
+	"endColumn": 26,
+	"modelVersionId": 1,
+	"origin": "extHost1"
+},{
+	"resource": "/c:/Users/ryanf/github/_new/image-riposte/scripts/capture_terminal.py",
+	"owner": "_generated_diagnostic_collection_name_#21",
+	"code": {
+		"value": "no-untyped-call",
+		"target": {
+			"$mid": 1,
+			"path": "/en/latest/_refs.html",
+			"scheme": "https",
+			"authority": "mypy.readthedocs.io",
+			"fragment": "code-no-untyped-call"
+		}
+	},
+	"severity": 8,
+	"message": "Call to untyped function \"raster\" in typed context",
+	"source": "Mypy",
+	"startLineNumber": 42,
+	"startColumn": 13,
+	"endLineNumber": 42,
+	"endColumn": 42,
+	"modelVersionId": 1,
+	"origin": "extHost1"
+},{
+	"resource": "/c:/Users/ryanf/github/_new/image-riposte/scripts/capture_terminal.py",
+	"owner": "_generated_diagnostic_collection_name_#21",
+	"code": {
+		"value": "no-untyped-call",
+		"target": {
+			"$mid": 1,
+			"path": "/en/latest/_refs.html",
+			"scheme": "https",
+			"authority": "mypy.readthedocs.io",
+			"fragment": "code-no-untyped-call"
+		}
+	},
+	"severity": 8,
+	"message": "Call to untyped function \"save\" in typed context",
+	"source": "Mypy",
+	"startLineNumber": 44,
+	"startColumn": 82,
+	"endLineNumber": 44,
+	"endColumn": 106,
+	"modelVersionId": 1,
+	"origin": "extHost1"
+},{
+	"resource": "/c:/Users/ryanf/github/_new/image-riposte/scripts/capture_terminal.py",
+	"owner": "_generated_diagnostic_collection_name_#21",
+	"code": {
+		"value": "no-untyped-call",
+		"target": {
+			"$mid": 1,
+			"path": "/en/latest/_refs.html",
+			"scheme": "https",
+			"authority": "mypy.readthedocs.io",
+			"fragment": "code-no-untyped-call"
+		}
+	},
+	"severity": 8,
+	"message": "Call to untyped function \"save\" in typed context",
+	"source": "Mypy",
+	"startLineNumber": 45,
+	"startColumn": 25,
+	"endLineNumber": 45,
+	"endColumn": 49,
+	"modelVersionId": 1,
+	"origin": "extHost1"
+},{
+	"resource": "/c:/Users/ryanf/github/_new/image-riposte/scripts/capture_terminal.py",
+	"owner": "_generated_diagnostic_collection_name_#21",
+	"code": {
+		"value": "no-untyped-call",
+		"target": {
+			"$mid": 1,
+			"path": "/en/latest/_refs.html",
+			"scheme": "https",
+			"authority": "mypy.readthedocs.io",
+			"fragment": "code-no-untyped-call"
+		}
+	},
+	"severity": 8,
+	"message": "Call to untyped function \"save\" in typed context",
+	"source": "Mypy",
+	"startLineNumber": 46,
+	"startColumn": 25,
+	"endLineNumber": 46,
+	"endColumn": 49,
+	"modelVersionId": 1,
+	"origin": "extHost1"
+},{
+	"resource": "/c:/Users/ryanf/github/_new/image-riposte/scripts/capture_terminal.py",
+	"owner": "_generated_diagnostic_collection_name_#21",
+	"code": {
+		"value": "no-untyped-call",
+		"target": {
+			"$mid": 1,
+			"path": "/en/latest/_refs.html",
+			"scheme": "https",
+			"authority": "mypy.readthedocs.io",
+			"fragment": "code-no-untyped-call"
+		}
+	},
+	"severity": 8,
+	"message": "Call to untyped function \"save\" in typed context",
+	"source": "Mypy",
+	"startLineNumber": 47,
+	"startColumn": 44,
+	"endLineNumber": 47,
+	"endColumn": 66,
+	"modelVersionId": 1,
+	"origin": "extHost1"
+},{
+	"resource": "/c:/Users/ryanf/github/_new/image-riposte/scripts/capture_terminal.py",
+	"owner": "_generated_diagnostic_collection_name_#21",
+	"code": {
+		"value": "no-untyped-call",
+		"target": {
+			"$mid": 1,
+			"path": "/en/latest/_refs.html",
+			"scheme": "https",
+			"authority": "mypy.readthedocs.io",
+			"fragment": "code-no-untyped-call"
+		}
+	},
+	"severity": 8,
+	"message": "Call to untyped function \"save\" in typed context",
+	"source": "Mypy",
+	"startLineNumber": 48,
+	"startColumn": 61,
+	"endLineNumber": 48,
+	"endColumn": 83,
+	"modelVersionId": 1,
+	"origin": "extHost1"
+},{
+	"resource": "/c:/Users/ryanf/github/_new/image-riposte/scripts/capture_terminal.py",
+	"owner": "_generated_diagnostic_collection_name_#21",
+	"code": {
+		"value": "no-untyped-call",
+		"target": {
+			"$mid": 1,
+			"path": "/en/latest/_refs.html",
+			"scheme": "https",
+			"authority": "mypy.readthedocs.io",
+			"fragment": "code-no-untyped-call"
+		}
+	},
+	"severity": 8,
+	"message": "Call to untyped function \"save\" in typed context",
+	"source": "Mypy",
+	"startLineNumber": 49,
+	"startColumn": 37,
+	"endLineNumber": 49,
+	"endColumn": 76,
+	"modelVersionId": 1,
+	"origin": "extHost1"
+},{
+	"resource": "/c:/Users/ryanf/github/_new/image-riposte/scripts/capture_terminal.py",
+	"owner": "_generated_diagnostic_collection_name_#21",
+	"code": {
+		"value": "no-untyped-call",
+		"target": {
+			"$mid": 1,
+			"path": "/en/latest/_refs.html",
+			"scheme": "https",
+			"authority": "mypy.readthedocs.io",
+			"fragment": "code-no-untyped-call"
+		}
+	},
+	"severity": 8,
+	"message": "Call to untyped function \"make_art\" in typed context",
+	"source": "Mypy",
+	"startLineNumber": 54,
+	"startColumn": 22,
+	"endLineNumber": 54,
+	"endColumn": 38,
+	"modelVersionId": 1,
+	"origin": "extHost1"
+},{
+	"resource": "/c:/Users/ryanf/github/_new/image-riposte/scripts/capture_terminal.py",
+	"owner": "_generated_diagnostic_collection_name_#21",
+	"code": {
+		"value": "no-untyped-call",
+		"target": {
+			"$mid": 1,
+			"path": "/en/latest/_refs.html",
+			"scheme": "https",
+			"authority": "mypy.readthedocs.io",
+			"fragment": "code-no-untyped-call"
+		}
+	},
+	"severity": 8,
+	"message": "Call to untyped function \"capture\" in typed context",
+	"source": "Mypy",
+	"startLineNumber": 55,
+	"startColumn": 5,
+	"endLineNumber": 55,
+	"endColumn": 29,
+	"modelVersionId": 1,
+	"origin": "extHost1"
+},{
+	"resource": "/c:/Users/ryanf/github/_new/image-riposte/typing/runtime_contracts.py",
+	"owner": "_generated_diagnostic_collection_name_#21",
+	"code": {
+		"value": "no-untyped-def",
+		"target": {
+			"$mid": 1,
+			"path": "/en/latest/_refs.html",
+			"scheme": "https",
+			"authority": "mypy.readthedocs.io",
+			"fragment": "code-no-untyped-def"
+		}
+	},
+	"severity": 8,
+	"message": "Function is missing a return type annotation",
+	"source": "Mypy",
+	"startLineNumber": 29,
+	"startColumn": 1,
+	"endLineNumber": 40,
+	"endColumn": 18,
+	"modelVersionId": 1,
+	"origin": "extHost1"
+},{
+	"resource": "/c:/Users/ryanf/github/_new/image-riposte/typing/runtime_contracts.py",
+	"owner": "_generated_diagnostic_collection_name_#21",
+	"code": {
+		"value": "no-untyped-call",
+		"target": {
+			"$mid": 1,
+			"path": "/en/latest/_refs.html",
+			"scheme": "https",
+			"authority": "mypy.readthedocs.io",
+			"fragment": "code-no-untyped-call"
+		}
+	},
+	"severity": 8,
+	"message": "Call to untyped function \"load_records\" in typed context",
+	"source": "Mypy",
+	"startLineNumber": 43,
+	"startColumn": 11,
+	"endLineNumber": 43,
+	"endColumn": 25,
+	"modelVersionId": 1,
+	"origin": "extHost1"
+},{
+	"resource": "/c:/Users/ryanf/github/_new/image-riposte/typing/runtime_contracts.py",
+	"owner": "_generated_diagnostic_collection_name_#21",
+	"code": {
+		"value": "no-untyped-def",
+		"target": {
+			"$mid": 1,
+			"path": "/en/latest/_refs.html",
+			"scheme": "https",
+			"authority": "mypy.readthedocs.io",
+			"fragment": "code-no-untyped-def"
+		}
+	},
+	"severity": 8,
+	"message": "Function is missing a type annotation",
+	"source": "Mypy",
+	"startLineNumber": 46,
+	"startColumn": 1,
+	"endLineNumber": 94,
+	"endColumn": 50,
+	"modelVersionId": 1,
+	"origin": "extHost1"
+},{
+	"resource": "/c:/Users/ryanf/github/_new/image-riposte/typing/runtime_contracts.py",
+	"owner": "_generated_diagnostic_collection_name_#21",
+	"code": {
+		"value": "no-untyped-call",
+		"target": {
+			"$mid": 1,
+			"path": "/en/latest/_refs.html",
+			"scheme": "https",
+			"authority": "mypy.readthedocs.io",
+			"fragment": "code-no-untyped-call"
+		}
+	},
+	"severity": 8,
+	"message": "Call to untyped function \"matches\" in typed context",
+	"source": "Mypy",
+	"startLineNumber": 56,
+	"startColumn": 13,
+	"endLineNumber": 56,
+	"endColumn": 56,
+	"modelVersionId": 1,
+	"origin": "extHost1"
+},{
+	"resource": "/c:/Users/ryanf/github/_new/image-riposte/typing/runtime_contracts.py",
+	"owner": "_generated_diagnostic_collection_name_#21",
+	"code": {
+		"value": "no-untyped-call",
+		"target": {
+			"$mid": 1,
+			"path": "/en/latest/_refs.html",
+			"scheme": "https",
+			"authority": "mypy.readthedocs.io",
+			"fragment": "code-no-untyped-call"
+		}
+	},
+	"severity": 8,
+	"message": "Call to untyped function \"matches\" in typed context",
+	"source": "Mypy",
+	"startLineNumber": 60,
+	"startColumn": 16,
+	"endLineNumber": 60,
+	"endColumn": 46,
+	"modelVersionId": 1,
+	"origin": "extHost1"
+},{
+	"resource": "/c:/Users/ryanf/github/_new/image-riposte/typing/runtime_contracts.py",
+	"owner": "_generated_diagnostic_collection_name_#21",
+	"code": {
+		"value": "no-untyped-call",
+		"target": {
+			"$mid": 1,
+			"path": "/en/latest/_refs.html",
+			"scheme": "https",
+			"authority": "mypy.readthedocs.io",
+			"fragment": "code-no-untyped-call"
+		}
+	},
+	"severity": 8,
+	"message": "Call to untyped function \"matches\" in typed context",
+	"source": "Mypy",
+	"startLineNumber": 64,
+	"startColumn": 17,
+	"endLineNumber": 64,
+	"endColumn": 49,
+	"modelVersionId": 1,
+	"origin": "extHost1"
+},{
+	"resource": "/c:/Users/ryanf/github/_new/image-riposte/typing/runtime_contracts.py",
+	"owner": "_generated_diagnostic_collection_name_#21",
+	"code": {
+		"value": "no-untyped-call",
+		"target": {
+			"$mid": 1,
+			"path": "/en/latest/_refs.html",
+			"scheme": "https",
+			"authority": "mypy.readthedocs.io",
+			"fragment": "code-no-untyped-call"
+		}
+	},
+	"severity": 8,
+	"message": "Call to untyped function \"matches\" in typed context",
+	"source": "Mypy",
+	"startLineNumber": 74,
+	"startColumn": 13,
+	"endLineNumber": 74,
+	"endColumn": 42,
+	"modelVersionId": 1,
+	"origin": "extHost1"
+},{
+	"resource": "/c:/Users/ryanf/github/_new/image-riposte/typing/runtime_contracts.py",
+	"owner": "_generated_diagnostic_collection_name_#21",
+	"code": {
+		"value": "no-untyped-call",
+		"target": {
+			"$mid": 1,
+			"path": "/en/latest/_refs.html",
+			"scheme": "https",
+			"authority": "mypy.readthedocs.io",
+			"fragment": "code-no-untyped-call"
+		}
+	},
+	"severity": 8,
+	"message": "Call to untyped function \"matches\" in typed context",
+	"source": "Mypy",
+	"startLineNumber": 79,
+	"startColumn": 17,
+	"endLineNumber": 79,
+	"endColumn": 46,
+	"modelVersionId": 1,
+	"origin": "extHost1"
+},{
+	"resource": "/c:/Users/ryanf/github/_new/image-riposte/typing/runtime_contracts.py",
+	"owner": "_generated_diagnostic_collection_name_#21",
+	"code": {
+		"value": "no-untyped-call",
+		"target": {
+			"$mid": 1,
+			"path": "/en/latest/_refs.html",
+			"scheme": "https",
+			"authority": "mypy.readthedocs.io",
+			"fragment": "code-no-untyped-call"
+		}
+	},
+	"severity": 8,
+	"message": "Call to untyped function \"matches\" in typed context",
+	"source": "Mypy",
+	"startLineNumber": 83,
+	"startColumn": 17,
+	"endLineNumber": 83,
+	"endColumn": 43,
+	"modelVersionId": 1,
+	"origin": "extHost1"
+},{
+	"resource": "/c:/Users/ryanf/github/_new/image-riposte/typing/runtime_contracts.py",
+	"owner": "_generated_diagnostic_collection_name_#21",
+	"code": {
+		"value": "no-untyped-call",
+		"target": {
+			"$mid": 1,
+			"path": "/en/latest/_refs.html",
+			"scheme": "https",
+			"authority": "mypy.readthedocs.io",
+			"fragment": "code-no-untyped-call"
+		}
+	},
+	"severity": 8,
+	"message": "Call to untyped function \"matches\" in typed context",
+	"source": "Mypy",
+	"startLineNumber": 87,
+	"startColumn": 13,
+	"endLineNumber": 87,
+	"endColumn": 41,
+	"modelVersionId": 1,
+	"origin": "extHost1"
+},{
+	"resource": "/c:/Users/ryanf/github/_new/image-riposte/typing/runtime_contracts.py",
+	"owner": "_generated_diagnostic_collection_name_#21",
+	"code": {
+		"value": "no-untyped-call",
+		"target": {
+			"$mid": 1,
+			"path": "/en/latest/_refs.html",
+			"scheme": "https",
+			"authority": "mypy.readthedocs.io",
+			"fragment": "code-no-untyped-call"
+		}
+	},
+	"severity": 8,
+	"message": "Call to untyped function \"matches\" in typed context",
+	"source": "Mypy",
+	"startLineNumber": 88,
+	"startColumn": 13,
+	"endLineNumber": 88,
+	"endColumn": 42,
+	"modelVersionId": 1,
+	"origin": "extHost1"
+},{
+	"resource": "/c:/Users/ryanf/github/_new/image-riposte/typing/runtime_contracts.py",
+	"owner": "_generated_diagnostic_collection_name_#21",
+	"code": {
+		"value": "no-untyped-def",
+		"target": {
+			"$mid": 1,
+			"path": "/en/latest/_refs.html",
+			"scheme": "https",
+			"authority": "mypy.readthedocs.io",
+			"fragment": "code-no-untyped-def"
+		}
+	},
+	"severity": 8,
+	"message": "Function is missing a return type annotation",
+	"source": "Mypy",
+	"startLineNumber": 98,
+	"startColumn": 5,
+	"endLineNumber": 102,
+	"endColumn": 63,
+	"modelVersionId": 1,
+	"origin": "extHost1"
+},{
+	"resource": "/c:/Users/ryanf/github/_new/image-riposte/typing/runtime_contracts.py",
+	"owner": "_generated_diagnostic_collection_name_#21",
+	"code": {
+		"value": "no-untyped-def",
+		"target": {
+			"$mid": 1,
+			"path": "/en/latest/_refs.html",
+			"scheme": "https",
+			"authority": "mypy.readthedocs.io",
+			"fragment": "code-no-untyped-def"
+		}
+	},
+	"severity": 8,
+	"message": "Function is missing a return type annotation",
+	"source": "Mypy",
+	"startLineNumber": 104,
+	"startColumn": 5,
+	"endLineNumber": 119,
+	"endColumn": 23,
+	"modelVersionId": 1,
+	"origin": "extHost1"
+},{
+	"resource": "/c:/Users/ryanf/github/_new/image-riposte/typing/runtime_contracts.py",
+	"owner": "_generated_diagnostic_collection_name_#21",
+	"code": {
+		"value": "no-untyped-call",
+		"target": {
+			"$mid": 1,
+			"path": "/en/latest/_refs.html",
+			"scheme": "https",
+			"authority": "mypy.readthedocs.io",
+			"fragment": "code-no-untyped-call"
+		}
+	},
+	"severity": 8,
+	"message": "Call to untyped function \"matches\" in typed context",
+	"source": "Mypy",
+	"startLineNumber": 106,
+	"startColumn": 9,
+	"endLineNumber": 106,
+	"endColumn": 69,
+	"modelVersionId": 1,
+	"origin": "extHost1"
+},{
+	"resource": "/c:/Users/ryanf/github/_new/image-riposte/typing/runtime_contracts.py",
+	"owner": "_generated_diagnostic_collection_name_#21",
+	"code": {
+		"value": "no-untyped-call",
+		"target": {
+			"$mid": 1,
+			"path": "/en/latest/_refs.html",
+			"scheme": "https",
+			"authority": "mypy.readthedocs.io",
+			"fragment": "code-no-untyped-call"
+		}
+	},
+	"severity": 8,
+	"message": "Call to untyped function \"matches\" in typed context",
+	"source": "Mypy",
+	"startLineNumber": 108,
+	"startColumn": 9,
+	"endLineNumber": 108,
+	"endColumn": 52,
+	"modelVersionId": 1,
+	"origin": "extHost1"
+},{
+	"resource": "/c:/Users/ryanf/github/_new/image-riposte/typing/runtime_contracts.py",
+	"owner": "_generated_diagnostic_collection_name_#21",
+	"code": {
+		"value": "no-untyped-call",
+		"target": {
+			"$mid": 1,
+			"path": "/en/latest/_refs.html",
+			"scheme": "https",
+			"authority": "mypy.readthedocs.io",
+			"fragment": "code-no-untyped-call"
+		}
+	},
+	"severity": 8,
+	"message": "Call to untyped function \"matches\" in typed context",
+	"source": "Mypy",
+	"startLineNumber": 118,
+	"startColumn": 9,
+	"endLineNumber": 118,
+	"endColumn": 45,
+	"modelVersionId": 1,
+	"origin": "extHost1"
+},{
+	"resource": "/c:/Users/ryanf/github/_new/image-riposte/typing/runtime_contracts.py",
+	"owner": "_generated_diagnostic_collection_name_#21",
+	"code": {
+		"value": "no-untyped-def",
+		"target": {
+			"$mid": 1,
+			"path": "/en/latest/_refs.html",
+			"scheme": "https",
+			"authority": "mypy.readthedocs.io",
+			"fragment": "code-no-untyped-def"
+		}
+	},
+	"severity": 8,
+	"message": "Function is missing a return type annotation",
+	"source": "Mypy",
+	"startLineNumber": 121,
+	"startColumn": 5,
+	"endLineNumber": 140,
+	"endColumn": 49,
+	"modelVersionId": 1,
+	"origin": "extHost1"
+},{
+	"resource": "/c:/Users/ryanf/github/_new/image-riposte/typing/runtime_contracts.py",
+	"owner": "_generated_diagnostic_collection_name_#21",
+	"code": {
+		"value": "no-untyped-call",
+		"target": {
+			"$mid": 1,
+			"path": "/en/latest/_refs.html",
+			"scheme": "https",
+			"authority": "mypy.readthedocs.io",
+			"fragment": "code-no-untyped-call"
+		}
+	},
+	"severity": 8,
+	"message": "Call to untyped function \"matches\" in typed context",
+	"source": "Mypy",
+	"startLineNumber": 123,
+	"startColumn": 9,
+	"endLineNumber": 123,
+	"endColumn": 59,
+	"modelVersionId": 1,
+	"origin": "extHost1"
+},{
+	"resource": "/c:/Users/ryanf/github/_new/image-riposte/typing/runtime_contracts.py",
+	"owner": "_generated_diagnostic_collection_name_#21",
+	"code": {
+		"value": "no-untyped-call",
+		"target": {
+			"$mid": 1,
+			"path": "/en/latest/_refs.html",
+			"scheme": "https",
+			"authority": "mypy.readthedocs.io",
+			"fragment": "code-no-untyped-call"
+		}
+	},
+	"severity": 8,
+	"message": "Call to untyped function \"matches\" in typed context",
+	"source": "Mypy",
+	"startLineNumber": 125,
+	"startColumn": 9,
+	"endLineNumber": 125,
+	"endColumn": 46,
+	"modelVersionId": 1,
+	"origin": "extHost1"
+},{
+	"resource": "/c:/Users/ryanf/github/_new/image-riposte/typing/runtime_contracts.py",
+	"owner": "_generated_diagnostic_collection_name_#21",
+	"code": {
+		"value": "no-untyped-call",
+		"target": {
+			"$mid": 1,
+			"path": "/en/latest/_refs.html",
+			"scheme": "https",
+			"authority": "mypy.readthedocs.io",
+			"fragment": "code-no-untyped-call"
+		}
+	},
+	"severity": 8,
+	"message": "Call to untyped function \"matches\" in typed context",
+	"source": "Mypy",
+	"startLineNumber": 129,
+	"startColumn": 9,
+	"endLineNumber": 129,
+	"endColumn": 49,
+	"modelVersionId": 1,
+	"origin": "extHost1"
+},{
+	"resource": "/c:/Users/ryanf/github/_new/image-riposte/typing/runtime_contracts.py",
+	"owner": "_generated_diagnostic_collection_name_#21",
+	"code": {
+		"value": "no-untyped-call",
+		"target": {
+			"$mid": 1,
+			"path": "/en/latest/_refs.html",
+			"scheme": "https",
+			"authority": "mypy.readthedocs.io",
+			"fragment": "code-no-untyped-call"
+		}
+	},
+	"severity": 8,
+	"message": "Call to untyped function \"matches\" in typed context",
+	"source": "Mypy",
+	"startLineNumber": 131,
+	"startColumn": 9,
+	"endLineNumber": 131,
+	"endColumn": 86,
+	"modelVersionId": 1,
+	"origin": "extHost1"
+},{
+	"resource": "/c:/Users/ryanf/github/_new/image-riposte/typing/runtime_contracts.py",
+	"owner": "_generated_diagnostic_collection_name_#21",
+	"code": {
+		"value": "no-untyped-call",
+		"target": {
+			"$mid": 1,
+			"path": "/en/latest/_refs.html",
+			"scheme": "https",
+			"authority": "mypy.readthedocs.io",
+			"fragment": "code-no-untyped-call"
+		}
+	},
+	"severity": 8,
+	"message": "Call to untyped function \"matches\" in typed context",
+	"source": "Mypy",
+	"startLineNumber": 133,
+	"startColumn": 9,
+	"endLineNumber": 133,
+	"endColumn": 47,
+	"modelVersionId": 1,
+	"origin": "extHost1"
+},{
+	"resource": "/c:/Users/ryanf/github/_new/image-riposte/typing/runtime_contracts.py",
+	"owner": "_generated_diagnostic_collection_name_#21",
+	"code": {
+		"value": "no-untyped-call",
+		"target": {
+			"$mid": 1,
+			"path": "/en/latest/_refs.html",
+			"scheme": "https",
+			"authority": "mypy.readthedocs.io",
+			"fragment": "code-no-untyped-call"
+		}
+	},
+	"severity": 8,
+	"message": "Call to untyped function \"matches\" in typed context",
+	"source": "Mypy",
+	"startLineNumber": 136,
+	"startColumn": 9,
+	"endLineNumber": 136,
+	"endColumn": 48,
+	"modelVersionId": 1,
+	"origin": "extHost1"
+},{
+	"resource": "/c:/Users/ryanf/github/_new/image-riposte/typing/runtime_contracts.py",
+	"owner": "_generated_diagnostic_collection_name_#21",
+	"code": {
+		"value": "no-untyped-def",
+		"target": {
+			"$mid": 1,
+			"path": "/en/latest/_refs.html",
+			"scheme": "https",
+			"authority": "mypy.readthedocs.io",
+			"fragment": "code-no-untyped-def"
+		}
+	},
+	"severity": 8,
+	"message": "Function is missing a return type annotation",
+	"source": "Mypy",
+	"startLineNumber": 142,
+	"startColumn": 5,
+	"endLineNumber": 154,
+	"endColumn": 36,
+	"modelVersionId": 1,
+	"origin": "extHost1"
+},{
+	"resource": "/c:/Users/ryanf/github/_new/image-riposte/typing/runtime_contracts.py",
+	"owner": "_generated_diagnostic_collection_name_#21",
+	"code": {
+		"value": "no-untyped-call",
+		"target": {
+			"$mid": 1,
+			"path": "/en/latest/_refs.html",
+			"scheme": "https",
+			"authority": "mypy.readthedocs.io",
+			"fragment": "code-no-untyped-call"
+		}
+	},
+	"severity": 8,
+	"message": "Call to untyped function \"organized\" in typed context",
+	"source": "Mypy",
+	"startLineNumber": 143,
+	"startColumn": 15,
+	"endLineNumber": 143,
+	"endColumn": 31,
+	"modelVersionId": 1,
+	"origin": "extHost1"
+},{
+	"resource": "/c:/Users/ryanf/github/_new/image-riposte/typing/runtime_contracts.py",
+	"owner": "_generated_diagnostic_collection_name_#21",
+	"code": {
+		"value": "no-untyped-call",
+		"target": {
+			"$mid": 1,
+			"path": "/en/latest/_refs.html",
+			"scheme": "https",
+			"authority": "mypy.readthedocs.io",
+			"fragment": "code-no-untyped-call"
+		}
+	},
+	"severity": 8,
+	"message": "Call to untyped function \"matches\" in typed context",
+	"source": "Mypy",
+	"startLineNumber": 144,
+	"startColumn": 9,
+	"endLineNumber": 144,
+	"endColumn": 78,
+	"modelVersionId": 1,
+	"origin": "extHost1"
+},{
+	"resource": "/c:/Users/ryanf/github/_new/image-riposte/typing/runtime_contracts.py",
+	"owner": "_generated_diagnostic_collection_name_#21",
+	"code": {
+		"value": "no-untyped-call",
+		"target": {
+			"$mid": 1,
+			"path": "/en/latest/_refs.html",
+			"scheme": "https",
+			"authority": "mypy.readthedocs.io",
+			"fragment": "code-no-untyped-call"
+		}
+	},
+	"severity": 8,
+	"message": "Call to untyped function \"matches\" in typed context",
+	"source": "Mypy",
+	"startLineNumber": 145,
+	"startColumn": 9,
+	"endLineNumber": 145,
+	"endColumn": 76,
+	"modelVersionId": 1,
+	"origin": "extHost1"
+},{
+	"resource": "/c:/Users/ryanf/github/_new/image-riposte/typing/runtime_contracts.py",
+	"owner": "_generated_diagnostic_collection_name_#21",
+	"code": {
+		"value": "no-untyped-call",
+		"target": {
+			"$mid": 1,
+			"path": "/en/latest/_refs.html",
+			"scheme": "https",
+			"authority": "mypy.readthedocs.io",
+			"fragment": "code-no-untyped-call"
+		}
+	},
+	"severity": 8,
+	"message": "Call to untyped function \"matches\" in typed context",
+	"source": "Mypy",
+	"startLineNumber": 149,
+	"startColumn": 9,
+	"endLineNumber": 149,
+	"endColumn": 42,
+	"modelVersionId": 1,
+	"origin": "extHost1"
+},{
+	"resource": "/c:/Users/ryanf/github/_new/image-riposte/typing/runtime_contracts.py",
+	"owner": "_generated_diagnostic_collection_name_#21",
+	"code": {
+		"value": "no-untyped-def",
+		"target": {
+			"$mid": 1,
+			"path": "/en/latest/_refs.html",
+			"scheme": "https",
+			"authority": "mypy.readthedocs.io",
+			"fragment": "code-no-untyped-def"
+		}
+	},
+	"severity": 8,
+	"message": "Function is missing a return type annotation",
+	"source": "Mypy",
+	"startLineNumber": 156,
+	"startColumn": 5,
+	"endLineNumber": 164,
+	"endColumn": 78,
+	"modelVersionId": 1,
+	"origin": "extHost1"
+},{
+	"resource": "/c:/Users/ryanf/github/_new/image-riposte/typing/runtime_contracts.py",
+	"owner": "_generated_diagnostic_collection_name_#21",
+	"code": {
+		"value": "no-untyped-call",
+		"target": {
+			"$mid": 1,
+			"path": "/en/latest/_refs.html",
+			"scheme": "https",
+			"authority": "mypy.readthedocs.io",
+			"fragment": "code-no-untyped-call"
+		}
+	},
+	"severity": 8,
+	"message": "Call to untyped function \"matches\" in typed context",
+	"source": "Mypy",
+	"startLineNumber": 159,
+	"startColumn": 9,
+	"endLineNumber": 159,
+	"endColumn": 51,
+	"modelVersionId": 1,
+	"origin": "extHost1"
+},{
+	"resource": "/c:/Users/ryanf/github/_new/image-riposte/typing/runtime_contracts.py",
+	"owner": "_generated_diagnostic_collection_name_#21",
+	"code": {
+		"value": "no-untyped-call",
+		"target": {
+			"$mid": 1,
+			"path": "/en/latest/_refs.html",
+			"scheme": "https",
+			"authority": "mypy.readthedocs.io",
+			"fragment": "code-no-untyped-call"
+		}
+	},
+	"severity": 8,
+	"message": "Call to untyped function \"matches\" in typed context",
+	"source": "Mypy",
+	"startLineNumber": 162,
+	"startColumn": 9,
+	"endLineNumber": 162,
+	"endColumn": 52,
+	"modelVersionId": 1,
+	"origin": "extHost1"
+},{
+	"resource": "/c:/Users/ryanf/github/_new/image-riposte/typing/runtime_contracts.py",
+	"owner": "_generated_diagnostic_collection_name_#21",
+	"code": {
+		"value": "no-untyped-call",
+		"target": {
+			"$mid": 1,
+			"path": "/en/latest/_refs.html",
+			"scheme": "https",
+			"authority": "mypy.readthedocs.io",
+			"fragment": "code-no-untyped-call"
+		}
+	},
+	"severity": 8,
+	"message": "Call to untyped function \"matches\" in typed context",
+	"source": "Mypy",
+	"startLineNumber": 164,
+	"startColumn": 9,
+	"endLineNumber": 164,
+	"endColumn": 78,
+	"modelVersionId": 1,
+	"origin": "extHost1"
+},{
+	"resource": "/c:/Users/ryanf/github/_new/image-riposte/typing/runtime_contracts.py",
+	"owner": "_generated_diagnostic_collection_name_#21",
+	"code": {
+		"value": "no-untyped-def",
+		"target": {
+			"$mid": 1,
+			"path": "/en/latest/_refs.html",
+			"scheme": "https",
+			"authority": "mypy.readthedocs.io",
+			"fragment": "code-no-untyped-def"
+		}
+	},
+	"severity": 8,
+	"message": "Function is missing a return type annotation",
+	"source": "Mypy",
+	"startLineNumber": 166,
+	"startColumn": 5,
+	"endLineNumber": 175,
+	"endColumn": 66,
+	"modelVersionId": 1,
+	"origin": "extHost1"
+},{
+	"resource": "/c:/Users/ryanf/github/_new/image-riposte/typing/runtime_contracts.py",
+	"owner": "_generated_diagnostic_collection_name_#21",
+	"code": {
+		"value": "no-untyped-call",
+		"target": {
+			"$mid": 1,
+			"path": "/en/latest/_refs.html",
+			"scheme": "https",
+			"authority": "mypy.readthedocs.io",
+			"fragment": "code-no-untyped-call"
+		}
+	},
+	"severity": 8,
+	"message": "Call to untyped function \"matches\" in typed context",
+	"source": "Mypy",
+	"startLineNumber": 168,
+	"startColumn": 9,
+	"endLineNumber": 168,
+	"endColumn": 48,
+	"modelVersionId": 1,
+	"origin": "extHost1"
+},{
+	"resource": "/c:/Users/ryanf/github/_new/image-riposte/typing/runtime_contracts.py",
+	"owner": "_generated_diagnostic_collection_name_#21",
+	"code": {
+		"value": "no-untyped-call",
+		"target": {
+			"$mid": 1,
+			"path": "/en/latest/_refs.html",
+			"scheme": "https",
+			"authority": "mypy.readthedocs.io",
+			"fragment": "code-no-untyped-call"
+		}
+	},
+	"severity": 8,
+	"message": "Call to untyped function \"matches\" in typed context",
+	"source": "Mypy",
+	"startLineNumber": 174,
+	"startColumn": 9,
+	"endLineNumber": 174,
+	"endColumn": 49,
+	"modelVersionId": 1,
+	"origin": "extHost1"
+},{
+	"resource": "/c:/Users/ryanf/github/_new/image-riposte/typing/runtime_contracts.py",
+	"owner": "_generated_diagnostic_collection_name_#21",
+	"code": {
+		"value": "no-untyped-def",
+		"target": {
+			"$mid": 1,
+			"path": "/en/latest/_refs.html",
+			"scheme": "https",
+			"authority": "mypy.readthedocs.io",
+			"fragment": "code-no-untyped-def"
+		}
+	},
+	"severity": 8,
+	"message": "Function is missing a return type annotation",
+	"source": "Mypy",
+	"startLineNumber": 177,
+	"startColumn": 5,
+	"endLineNumber": 198,
+	"endColumn": 41,
+	"modelVersionId": 1,
+	"origin": "extHost1"
+},{
+	"resource": "/c:/Users/ryanf/github/_new/image-riposte/typing/runtime_contracts.py",
+	"owner": "_generated_diagnostic_collection_name_#21",
+	"code": {
+		"value": "no-untyped-call",
+		"target": {
+			"$mid": 1,
+			"path": "/en/latest/_refs.html",
+			"scheme": "https",
+			"authority": "mypy.readthedocs.io",
+			"fragment": "code-no-untyped-call"
+		}
+	},
+	"severity": 8,
+	"message": "Call to untyped function \"matches\" in typed context",
+	"source": "Mypy",
+	"startLineNumber": 185,
+	"startColumn": 9,
+	"endLineNumber": 185,
+	"endColumn": 55,
+	"modelVersionId": 1,
+	"origin": "extHost1"
+},{
+	"resource": "/c:/Users/ryanf/github/_new/image-riposte/typing/runtime_contracts.py",
+	"owner": "_generated_diagnostic_collection_name_#21",
+	"code": {
+		"value": "no-untyped-call",
+		"target": {
+			"$mid": 1,
+			"path": "/en/latest/_refs.html",
+			"scheme": "https",
+			"authority": "mypy.readthedocs.io",
+			"fragment": "code-no-untyped-call"
+		}
+	},
+	"severity": 8,
+	"message": "Call to untyped function \"matches\" in typed context",
+	"source": "Mypy",
+	"startLineNumber": 188,
+	"startColumn": 9,
+	"endLineNumber": 188,
+	"endColumn": 50,
+	"modelVersionId": 1,
+	"origin": "extHost1"
+},{
+	"resource": "/c:/Users/ryanf/github/_new/image-riposte/typing/runtime_contracts.py",
+	"owner": "_generated_diagnostic_collection_name_#21",
+	"code": {
+		"value": "no-untyped-def",
+		"target": {
+			"$mid": 1,
+			"path": "/en/latest/_refs.html",
+			"scheme": "https",
+			"authority": "mypy.readthedocs.io",
+			"fragment": "code-no-untyped-def"
+		}
+	},
+	"severity": 8,
+	"message": "Function is missing a return type annotation",
+	"source": "Mypy",
+	"startLineNumber": 200,
+	"startColumn": 5,
+	"endLineNumber": 210,
+	"endColumn": 84,
+	"modelVersionId": 1,
+	"origin": "extHost1"
+},{
+	"resource": "/c:/Users/ryanf/github/_new/image-riposte/typing/runtime_contracts.py",
+	"owner": "_generated_diagnostic_collection_name_#21",
+	"code": {
+		"value": "no-untyped-call",
+		"target": {
+			"$mid": 1,
+			"path": "/en/latest/_refs.html",
+			"scheme": "https",
+			"authority": "mypy.readthedocs.io",
+			"fragment": "code-no-untyped-call"
+		}
+	},
+	"severity": 8,
+	"message": "Call to untyped function \"fixture_batch\" in typed context",
+	"source": "Mypy",
+	"startLineNumber": 201,
+	"startColumn": 37,
+	"endLineNumber": 201,
+	"endColumn": 57,
+	"modelVersionId": 1,
+	"origin": "extHost1"
+},{
+	"resource": "/c:/Users/ryanf/github/_new/image-riposte/typing/runtime_contracts.py",
+	"owner": "_generated_diagnostic_collection_name_#21",
+	"code": {
+		"value": "no-untyped-call",
+		"target": {
+			"$mid": 1,
+			"path": "/en/latest/_refs.html",
+			"scheme": "https",
+			"authority": "mypy.readthedocs.io",
+			"fragment": "code-no-untyped-call"
+		}
+	},
+	"severity": 8,
+	"message": "Call to untyped function \"matches\" in typed context",
+	"source": "Mypy",
+	"startLineNumber": 203,
+	"startColumn": 9,
+	"endLineNumber": 203,
+	"endColumn": 49,
+	"modelVersionId": 1,
+	"origin": "extHost1"
+},{
+	"resource": "/c:/Users/ryanf/github/_new/image-riposte/typing/runtime_contracts.py",
+	"owner": "_generated_diagnostic_collection_name_#21",
+	"code": {
+		"value": "no-untyped-call",
+		"target": {
+			"$mid": 1,
+			"path": "/en/latest/_refs.html",
+			"scheme": "https",
+			"authority": "mypy.readthedocs.io",
+			"fragment": "code-no-untyped-call"
+		}
+	},
+	"severity": 8,
+	"message": "Call to untyped function \"matches\" in typed context",
+	"source": "Mypy",
+	"startLineNumber": 208,
+	"startColumn": 9,
+	"endLineNumber": 208,
+	"endColumn": 50,
+	"modelVersionId": 1,
+	"origin": "extHost1"
+},{
+	"resource": "/c:/Users/ryanf/github/_new/image-riposte/typing/runtime_contracts.py",
+	"owner": "_generated_diagnostic_collection_name_#21",
+	"code": {
+		"value": "no-untyped-call",
+		"target": {
+			"$mid": 1,
+			"path": "/en/latest/_refs.html",
+			"scheme": "https",
+			"authority": "mypy.readthedocs.io",
+			"fragment": "code-no-untyped-call"
+		}
+	},
+	"severity": 8,
+	"message": "Call to untyped function \"matches\" in typed context",
+	"source": "Mypy",
+	"startLineNumber": 210,
+	"startColumn": 9,
+	"endLineNumber": 210,
+	"endColumn": 84,
+	"modelVersionId": 1,
+	"origin": "extHost1"
+},{
+	"resource": "/c:/Users/ryanf/github/_new/image-riposte/typing/runtime_contracts.py",
+	"owner": "_generated_diagnostic_collection_name_#21",
+	"code": {
+		"value": "no-untyped-def",
+		"target": {
+			"$mid": 1,
+			"path": "/en/latest/_refs.html",
+			"scheme": "https",
+			"authority": "mypy.readthedocs.io",
+			"fragment": "code-no-untyped-def"
+		}
+	},
+	"severity": 8,
+	"message": "Function is missing a return type annotation",
+	"source": "Mypy",
+	"startLineNumber": 212,
+	"startColumn": 5,
+	"endLineNumber": 228,
+	"endColumn": 53,
+	"modelVersionId": 1,
+	"origin": "extHost1"
+},{
+	"resource": "/c:/Users/ryanf/github/_new/image-riposte/typing/runtime_contracts.py",
+	"owner": "_generated_diagnostic_collection_name_#21",
+	"code": {
+		"value": "no-untyped-call",
+		"target": {
+			"$mid": 1,
+			"path": "/en/latest/_refs.html",
+			"scheme": "https",
+			"authority": "mypy.readthedocs.io",
+			"fragment": "code-no-untyped-call"
+		}
+	},
+	"severity": 8,
+	"message": "Call to untyped function \"fixture_batch\" in typed context",
+	"source": "Mypy",
+	"startLineNumber": 213,
+	"startColumn": 37,
+	"endLineNumber": 213,
+	"endColumn": 57,
+	"modelVersionId": 1,
+	"origin": "extHost1"
+},{
+	"resource": "/c:/Users/ryanf/github/_new/image-riposte/typing/runtime_contracts.py",
+	"owner": "_generated_diagnostic_collection_name_#21",
+	"code": {
+		"value": "no-untyped-call",
+		"target": {
+			"$mid": 1,
+			"path": "/en/latest/_refs.html",
+			"scheme": "https",
+			"authority": "mypy.readthedocs.io",
+			"fragment": "code-no-untyped-call"
+		}
+	},
+	"severity": 8,
+	"message": "Call to untyped function \"matches\" in typed context",
+	"source": "Mypy",
+	"startLineNumber": 222,
+	"startColumn": 9,
+	"endLineNumber": 222,
+	"endColumn": 49,
+	"modelVersionId": 1,
+	"origin": "extHost1"
+},{
+	"resource": "/c:/Users/ryanf/github/_new/image-riposte/typing/runtime_contracts.py",
+	"owner": "_generated_diagnostic_collection_name_#21",
+	"code": {
+		"value": "no-untyped-call",
+		"target": {
+			"$mid": 1,
+			"path": "/en/latest/_refs.html",
+			"scheme": "https",
+			"authority": "mypy.readthedocs.io",
+			"fragment": "code-no-untyped-call"
+		}
+	},
+	"severity": 8,
+	"message": "Call to untyped function \"matches\" in typed context",
+	"source": "Mypy",
+	"startLineNumber": 228,
+	"startColumn": 9,
+	"endLineNumber": 228,
+	"endColumn": 53,
+	"modelVersionId": 1,
+	"origin": "extHost1"
+},{
+	"resource": "/c:/Users/ryanf/github/_new/image-riposte/typing/runtime_contracts.py",
+	"owner": "_generated_diagnostic_collection_name_#21",
+	"code": {
+		"value": "no-untyped-def",
+		"target": {
+			"$mid": 1,
+			"path": "/en/latest/_refs.html",
+			"scheme": "https",
+			"authority": "mypy.readthedocs.io",
+			"fragment": "code-no-untyped-def"
+		}
+	},
+	"severity": 8,
+	"message": "Function is missing a return type annotation",
+	"source": "Mypy",
+	"startLineNumber": 230,
+	"startColumn": 5,
+	"endLineNumber": 241,
+	"endColumn": 61,
+	"modelVersionId": 1,
+	"origin": "extHost1"
+},{
+	"resource": "/c:/Users/ryanf/github/_new/image-riposte/typing/runtime_contracts.py",
+	"owner": "_generated_diagnostic_collection_name_#21",
+	"code": {
+		"value": "no-untyped-call",
+		"target": {
+			"$mid": 1,
+			"path": "/en/latest/_refs.html",
+			"scheme": "https",
+			"authority": "mypy.readthedocs.io",
+			"fragment": "code-no-untyped-call"
+		}
+	},
+	"severity": 8,
+	"message": "Call to untyped function \"matches\" in typed context",
+	"source": "Mypy",
+	"startLineNumber": 231,
+	"startColumn": 9,
+	"endLineNumber": 231,
+	"endColumn": 76,
+	"modelVersionId": 1,
+	"origin": "extHost1"
+},{
+	"resource": "/c:/Users/ryanf/github/_new/image-riposte/typing/runtime_contracts.py",
+	"owner": "_generated_diagnostic_collection_name_#21",
+	"code": {
+		"value": "no-untyped-call",
+		"target": {
+			"$mid": 1,
+			"path": "/en/latest/_refs.html",
+			"scheme": "https",
+			"authority": "mypy.readthedocs.io",
+			"fragment": "code-no-untyped-call"
+		}
+	},
+	"severity": 8,
+	"message": "Call to untyped function \"matches\" in typed context",
+	"source": "Mypy",
+	"startLineNumber": 237,
+	"startColumn": 9,
+	"endLineNumber": 237,
+	"endColumn": 47,
+	"modelVersionId": 1,
+	"origin": "extHost1"
+},{
+	"resource": "/c:/Users/ryanf/github/_new/image-riposte/typing/runtime_contracts.py",
+	"owner": "_generated_diagnostic_collection_name_#21",
+	"code": {
+		"value": "no-untyped-call",
+		"target": {
+			"$mid": 1,
+			"path": "/en/latest/_refs.html",
+			"scheme": "https",
+			"authority": "mypy.readthedocs.io",
+			"fragment": "code-no-untyped-call"
+		}
+	},
+	"severity": 8,
+	"message": "Call to untyped function \"matches\" in typed context",
+	"source": "Mypy",
+	"startLineNumber": 240,
+	"startColumn": 9,
+	"endLineNumber": 240,
+	"endColumn": 47,
+	"modelVersionId": 1,
+	"origin": "extHost1"
+},{
+	"resource": "/c:/Users/ryanf/github/_new/image-riposte/typing/runtime_contracts.py",
+	"owner": "_generated_diagnostic_collection_name_#21",
+	"code": {
+		"value": "no-untyped-def",
+		"target": {
+			"$mid": 1,
+			"path": "/en/latest/_refs.html",
+			"scheme": "https",
+			"authority": "mypy.readthedocs.io",
+			"fragment": "code-no-untyped-def"
+		}
+	},
+	"severity": 8,
+	"message": "Function is missing a return type annotation",
+	"source": "Mypy",
+	"startLineNumber": 243,
+	"startColumn": 5,
+	"endLineNumber": 262,
+	"endColumn": 72,
+	"modelVersionId": 1,
+	"origin": "extHost1"
+},{
+	"resource": "/c:/Users/ryanf/github/_new/image-riposte/typing/runtime_contracts.py",
+	"owner": "_generated_diagnostic_collection_name_#21",
+	"code": {
+		"value": "no-untyped-def",
+		"target": {
+			"$mid": 1,
+			"path": "/en/latest/_refs.html",
+			"scheme": "https",
+			"authority": "mypy.readthedocs.io",
+			"fragment": "code-no-untyped-def"
+		}
+	},
+	"severity": 8,
+	"message": "Function is missing a type annotation",
+	"source": "Mypy",
+	"startLineNumber": 244,
+	"startColumn": 9,
+	"endLineNumber": 249,
+	"endColumn": 46,
+	"modelVersionId": 1,
+	"origin": "extHost1"
+},{
+	"resource": "/c:/Users/ryanf/github/_new/image-riposte/typing/runtime_contracts.py",
+	"owner": "_generated_diagnostic_collection_name_#21",
+	"code": {
+		"value": "no-untyped-call",
+		"target": {
+			"$mid": 1,
+			"path": "/en/latest/_refs.html",
+			"scheme": "https",
+			"authority": "mypy.readthedocs.io",
+			"fragment": "code-no-untyped-call"
+		}
+	},
+	"severity": 8,
+	"message": "Call to untyped function \"matches\" in typed context",
+	"source": "Mypy",
+	"startLineNumber": 247,
+	"startColumn": 13,
+	"endLineNumber": 247,
+	"endColumn": 50,
+	"modelVersionId": 1,
+	"origin": "extHost1"
+},{
+	"resource": "/c:/Users/ryanf/github/_new/image-riposte/typing/runtime_contracts.py",
+	"owner": "_generated_diagnostic_collection_name_#21",
+	"code": {
+		"value": "func-returns-value",
+		"target": {
+			"$mid": 1,
+			"path": "/en/latest/_refs.html",
+			"scheme": "https",
+			"authority": "mypy.readthedocs.io",
+			"fragment": "code-func-returns-value"
+		}
+	},
+	"severity": 8,
+	"message": "\"feed\" of \"KeyDecoder\" does not return a value (it only ever returns None)",
+	"source": "Mypy",
+	"startLineNumber": 254,
+	"startColumn": 27,
+	"endLineNumber": 254,
+	"endColumn": 44,
+	"modelVersionId": 1,
+	"origin": "extHost1"
+},{
+	"resource": "/c:/Users/ryanf/github/_new/image-riposte/typing/runtime_contracts.py",
+	"owner": "_generated_diagnostic_collection_name_#21",
+	"code": {
+		"value": "union-attr",
+		"target": {
+			"$mid": 1,
+			"path": "/en/latest/_refs.html",
+			"scheme": "https",
+			"authority": "mypy.readthedocs.io",
+			"fragment": "code-union-attr"
+		}
+	},
+	"severity": 8,
+	"message": "Item \"None\" of \"Key | None\" has no attribute \"text\"",
+	"source": "Mypy",
+	"startLineNumber": 255,
+	"startColumn": 26,
+	"endLineNumber": 255,
+	"endColumn": 45,
+	"modelVersionId": 1,
+	"origin": "extHost1"
+},{
+	"resource": "/c:/Users/ryanf/github/_new/image-riposte/typing/runtime_contracts.py",
+	"owner": "_generated_diagnostic_collection_name_#21",
+	"code": {
+		"value": "no-untyped-call",
+		"target": {
+			"$mid": 1,
+			"path": "/en/latest/_refs.html",
+			"scheme": "https",
+			"authority": "mypy.readthedocs.io",
+			"fragment": "code-no-untyped-call"
+		}
+	},
+	"severity": 8,
+	"message": "Call to untyped function \"matches\" in typed context",
+	"source": "Mypy",
+	"startLineNumber": 258,
+	"startColumn": 9,
+	"endLineNumber": 258,
+	"endColumn": 55,
+	"modelVersionId": 1,
+	"origin": "extHost1"
+},{
+	"resource": "/c:/Users/ryanf/github/_new/image-riposte/typing/runtime_contracts.py",
+	"owner": "_generated_diagnostic_collection_name_#21",
+	"code": {
+		"value": "no-untyped-call",
+		"target": {
+			"$mid": 1,
+			"path": "/en/latest/_refs.html",
+			"scheme": "https",
+			"authority": "mypy.readthedocs.io",
+			"fragment": "code-no-untyped-call"
+		}
+	},
+	"severity": 8,
+	"message": "Call to untyped function \"matches\" in typed context",
+	"source": "Mypy",
+	"startLineNumber": 262,
+	"startColumn": 13,
+	"endLineNumber": 262,
+	"endColumn": 72,
+	"modelVersionId": 1,
+	"origin": "extHost1"
+},{
+	"resource": "/c:/Users/ryanf/github/_new/image-riposte/typing/runtime_contracts.py",
+	"owner": "_generated_diagnostic_collection_name_#21",
+	"code": {
+		"value": "no-untyped-def",
+		"target": {
+			"$mid": 1,
+			"path": "/en/latest/_refs.html",
+			"scheme": "https",
+			"authority": "mypy.readthedocs.io",
+			"fragment": "code-no-untyped-def"
+		}
+	},
+	"severity": 8,
+	"message": "Function is missing a return type annotation",
+	"source": "Mypy",
+	"startLineNumber": 264,
+	"startColumn": 5,
+	"endLineNumber": 272,
+	"endColumn": 47,
+	"modelVersionId": 1,
+	"origin": "extHost1"
+},{
+	"resource": "/c:/Users/ryanf/github/_new/image-riposte/typing/runtime_contracts.py",
+	"owner": "_generated_diagnostic_collection_name_#21",
+	"code": {
+		"value": "no-untyped-call",
+		"target": {
+			"$mid": 1,
+			"path": "/en/latest/_refs.html",
+			"scheme": "https",
+			"authority": "mypy.readthedocs.io",
+			"fragment": "code-no-untyped-call"
+		}
+	},
+	"severity": 8,
+	"message": "Call to untyped function \"matches\" in typed context",
+	"source": "Mypy",
+	"startLineNumber": 268,
+	"startColumn": 13,
+	"endLineNumber": 268,
+	"endColumn": 47,
+	"modelVersionId": 1,
+	"origin": "extHost1"
+},{
+	"resource": "/c:/Users/ryanf/github/_new/image-riposte/typing/runtime_contracts.py",
+	"owner": "_generated_diagnostic_collection_name_#21",
+	"code": {
+		"value": "no-untyped-call",
+		"target": {
+			"$mid": 1,
+			"path": "/en/latest/_refs.html",
+			"scheme": "https",
+			"authority": "mypy.readthedocs.io",
+			"fragment": "code-no-untyped-call"
+		}
+	},
+	"severity": 8,
+	"message": "Call to untyped function \"matches\" in typed context",
+	"source": "Mypy",
+	"startLineNumber": 272,
+	"startColumn": 13,
+	"endLineNumber": 272,
+	"endColumn": 47,
+	"modelVersionId": 1,
+	"origin": "extHost1"
+},{
+	"resource": "/c:/Users/ryanf/github/_new/image-riposte/typing/runtime_contracts.py",
+	"owner": "_generated_diagnostic_collection_name_#21",
+	"severity": 2,
+	"message": "Use \"-> None\" if function does not return a value",
+	"source": "Mypy",
+	"startLineNumber": 98,
+	"startColumn": 5,
+	"endLineNumber": 102,
+	"endColumn": 63,
+	"modelVersionId": 1,
+	"origin": "extHost1"
+},{
+	"resource": "/c:/Users/ryanf/github/_new/image-riposte/typing/runtime_contracts.py",
+	"owner": "_generated_diagnostic_collection_name_#21",
+	"severity": 2,
+	"message": "Use \"-> None\" if function does not return a value",
+	"source": "Mypy",
+	"startLineNumber": 121,
+	"startColumn": 5,
+	"endLineNumber": 140,
+	"endColumn": 49,
+	"modelVersionId": 1,
+	"origin": "extHost1"
+},{
+	"resource": "/c:/Users/ryanf/github/_new/image-riposte/typing/runtime_contracts.py",
+	"owner": "_generated_diagnostic_collection_name_#21",
+	"severity": 2,
+	"message": "Use \"-> None\" if function does not return a value",
+	"source": "Mypy",
+	"startLineNumber": 142,
+	"startColumn": 5,
+	"endLineNumber": 154,
+	"endColumn": 36,
+	"modelVersionId": 1,
+	"origin": "extHost1"
+},{
+	"resource": "/c:/Users/ryanf/github/_new/image-riposte/typing/runtime_contracts.py",
+	"owner": "_generated_diagnostic_collection_name_#21",
+	"severity": 2,
+	"message": "Use \"-> None\" if function does not return a value",
+	"source": "Mypy",
+	"startLineNumber": 156,
+	"startColumn": 5,
+	"endLineNumber": 164,
+	"endColumn": 78,
+	"modelVersionId": 1,
+	"origin": "extHost1"
+},{
+	"resource": "/c:/Users/ryanf/github/_new/image-riposte/typing/runtime_contracts.py",
+	"owner": "_generated_diagnostic_collection_name_#21",
+	"severity": 2,
+	"message": "Use \"-> None\" if function does not return a value",
+	"source": "Mypy",
+	"startLineNumber": 166,
+	"startColumn": 5,
+	"endLineNumber": 175,
+	"endColumn": 66,
+	"modelVersionId": 1,
+	"origin": "extHost1"
+},{
+	"resource": "/c:/Users/ryanf/github/_new/image-riposte/typing/runtime_contracts.py",
+	"owner": "_generated_diagnostic_collection_name_#21",
+	"severity": 2,
+	"message": "Use \"-> None\" if function does not return a value",
+	"source": "Mypy",
+	"startLineNumber": 200,
+	"startColumn": 5,
+	"endLineNumber": 210,
+	"endColumn": 84,
+	"modelVersionId": 1,
+	"origin": "extHost1"
+},{
+	"resource": "/c:/Users/ryanf/github/_new/image-riposte/typing/runtime_contracts.py",
+	"owner": "_generated_diagnostic_collection_name_#21",
+	"severity": 2,
+	"message": "Use \"-> None\" if function does not return a value",
+	"source": "Mypy",
+	"startLineNumber": 212,
+	"startColumn": 5,
+	"endLineNumber": 228,
+	"endColumn": 53,
+	"modelVersionId": 1,
+	"origin": "extHost1"
+},{
+	"resource": "/c:/Users/ryanf/github/_new/image-riposte/typing/runtime_contracts.py",
+	"owner": "_generated_diagnostic_collection_name_#21",
+	"severity": 2,
+	"message": "Use \"-> None\" if function does not return a value",
+	"source": "Mypy",
+	"startLineNumber": 230,
+	"startColumn": 5,
+	"endLineNumber": 241,
+	"endColumn": 61,
+	"modelVersionId": 1,
+	"origin": "extHost1"
+},{
+	"resource": "/c:/Users/ryanf/github/_new/image-riposte/typing/runtime_contracts.py",
+	"owner": "_generated_diagnostic_collection_name_#21",
+	"severity": 2,
+	"message": "Use \"-> None\" if function does not return a value",
+	"source": "Mypy",
+	"startLineNumber": 264,
+	"startColumn": 5,
+	"endLineNumber": 272,
+	"endColumn": 47,
+	"modelVersionId": 1,
+	"origin": "extHost1"
+}]
