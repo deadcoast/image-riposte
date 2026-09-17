@@ -1,0 +1,532 @@
+{
+  "schema": 1,
+  "recorded_utc": "2026-09-17T01:50:38.949442+00:00",
+  "scope": "PAC-007 bounded review across eight product domains, not product certification or repair",
+  "disposition": "REVIEW_WITH_OPEN_DEFECTS_AND_UNVERIFIED_CLAIMS",
+  "git_head": "126bd6c52af945a56e119d7387298ca36da51427",
+  "environment": {
+    "python": "3.14.3 (tags/v3.14.3:323c59a, Feb  3 2026, 16:04:56) [MSC v.1944 64 bit (AMD64)]",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "preferred_encoding": "cp1252"
+  },
+  "identity": {
+    "checked_files": 71,
+    "changed_files": [],
+    "index_unchanged": true,
+    "source_after": "evidence/development-audit/source-after.json"
+  },
+  "domains": [
+    {
+      "domain": "Sanitation and storage",
+      "evidence": "`sanitize`, `policy`, `store`, `organizer`; full suite; repeated dated-file imports",
+      "boundary": "26 sanitation cases pass; real PNG audit and date-only ZIP controls pass. Organizer retry/idempotence is defective. No hostile filesystem-race or forensic-erasure claim is established."
+    },
+    {
+      "domain": "Publishing lifecycle",
+      "evidence": "Plan, model setup, task commit, status, review, resume checks, serving and pack source; synthetic exact-byte review/ZIP probe",
+      "boundary": "Candidate corruption is blocked at serving/packing. Status and rejection have the separate defect above. No real-model publishing run occurred."
+    },
+    {
+      "domain": "Models and optimization",
+      "evidence": "`models`, `runtime_probe`, `optimizer`, `coupled`, `release_guard`, `temporal`, `qualification`, `generation`, `benchmark`; optional-loader instrumentation",
+      "boundary": "Source distinguishes proxy metrics from effectiveness. Optional pre-commit probing is incomplete; old optimizer zero-gradient behavior remains a runtime hypothesis. No pretrained/CUDA/MPS/full-video result was produced."
+    },
+    {
+      "domain": "API and browser",
+      "evidence": "Server and JS flows; existing server tests; authenticated ASGI requests; isolated JS callback",
+      "boundary": "Homepage, body bound, job state and audit badge defects reproduced. Full DOM/browser, real TCP listener and external origin environments were not rerun."
+    },
+    {
+      "domain": "CLI and terminal",
+      "evidence": "CLI/service/controller, operation lifecycle, keyboard/line input and relevant tests",
+      "boundary": "120 terminal-core and 49 revision cases pass; line-form focus fails. Native Windows console, desktop viewer and actual POSIX terminal behavior were not tested in this audit."
+    },
+    {
+      "domain": "Packaging and launchers",
+      "evidence": "`pyproject.toml`, launchers, offline sdist-to-wheel build, isolated target install, imports and byte comparison",
+      "boundary": "All 47 application files agree in source, sdist, wheel and installed target. Dependencies were reused from `.venv`; clean-machine bootstrap and Python 3.11 compatibility were not established."
+    },
+    {
+      "domain": "Tests and historical evidence",
+      "evidence": "Current full suite, test substitutions, old test logs, package equality manifest, browser QA scripts",
+      "boundary": "Historical logs contain 667-pass source/wheel results, with synthetic/native limitations documented. Ten historical package hashes differ from current files; those old results do not validate this checkout. Test counts are not feature coverage."
+    },
+    {
+      "domain": "Roadmap and PACER completion",
+      "evidence": "`DEVELOPMENT-SPEC`, `WAVE-03-HANDOFF`, `WAVE-04`, `VALIDATION`, current PACER registers and prior completion audit",
+      "boundary": "Native/pretrained qualification, artist judgments, actual platform derivatives and modern text-conditioned/video efficacy remain pending or partial in the documents themselves. Narrow completed tasks cannot establish the whole roadmap is complete. PAC-015 retains the missing qualification scope."
+    }
+  ],
+  "findings": [
+    {
+      "id": "D01",
+      "priority_and_evidence": "High; real filesystem reproduction",
+      "finding": "A dated PNG has different `st_ctime_ns` through `fstat` and `Path.stat`. Organization reports `SOURCE_CHANGED_OUTPUT_RETAINED`; three retries leave the source and create three catalog entries. A newly saved, unmodified control completes. This is conditional, not a claim that every import fails.",
+      "source_and_repair": "`policy.py:91`, `organizer.py:139`; PAC-002"
+    },
+    {
+      "id": "D02",
+      "priority_and_evidence": "High; real ASGI request and existing failing test",
+      "finding": "Browser `/` returns HTTP 500 on this Windows environment. UTF-8 HTML is read using cp1252; byte 0x81 raises `UnicodeDecodeError`.",
+      "source_and_repair": "`server.py:214`; PAC-008"
+    },
+    {
+      "id": "D03",
+      "priority_and_evidence": "Medium; real ASGI job",
+      "finding": "An organization job with an unsupported text file returns `checkpoint: INCOMPLETE`, but the enclosing job says `state: done`, `phase: Complete`. Terminal workers correctly classify incomplete results as needing attention.",
+      "source_and_repair": "`server.py:135`; PAC-009"
+    },
+    {
+      "id": "D04",
+      "priority_and_evidence": "High; exact JS function executed with substituted DOM collaborators",
+      "finding": "Publishing completion unconditionally replaces the workspace audit with `checkpoint: COMPLETE`. A preexisting incomplete audit becomes complete even for a blocked batch, without another audit call. This is an isolated function reproduction, not a live browser session.",
+      "source_and_repair": "`static/publish.js:73`; PAC-009"
+    },
+    {
+      "id": "D05",
+      "priority_and_evidence": "Medium; real review/status/export functions, synthetic committed records",
+      "finding": "After approving a valid candidate and changing its bytes, status still reports `READY_FOR_REVIEW / ACCEPTED`. Rejecting it fails with `PUBLICATION_ARTIFACT_CHANGED`, leaving the acceptance receipt. Serving and ZIP export correctly reject the changed artifact; this is stale status and blocked revocation, not an export bypass.",
+      "source_and_repair": "`publication.py:268`, `publication.py:311`; PAC-010"
+    },
+    {
+      "id": "D06",
+      "priority_and_evidence": "Medium; real authenticated ASGI requests",
+      "finding": "The same 40,015-byte JSON request is rejected with 413 when Content-Length is present but accepted with 200 when sent chunked. The advertised 32 KiB check only inspects the header. Authentication remains enforced; this is not an unauthenticated remote exploit demonstration.",
+      "source_and_repair": "`server.py:192`; PAC-011"
+    },
+    {
+      "id": "D07",
+      "priority_and_evidence": "Medium; real controller/parser",
+      "finding": "`focus 3` in a six-field doctor form leaves cursor at field 1. `focus` counts page rows, while forms use a separate field list. The `down` control reaches field 2.",
+      "source_and_repair": "`terminal/app.py:31`; PAC-012"
+    },
+    {
+      "id": "D08",
+      "priority_and_evidence": "Medium; source plus controlled call-order instrumentation",
+      "finding": "The publishing contract says models pass a numerical input-gradient probe before request commit. Only encoders are probed. Optional inpainting and temporal adapters are instantiated but not executed before `request.json` is written. Instrumented deliberately non-executable optional adapters reach that commit boundary. This does not test real model numerics.",
+      "source_and_repair": "`publication.py:131`, `docs/PUBLISHING.md:15`; PAC-013"
+    },
+    {
+      "id": "D09",
+      "priority_and_evidence": "Low; live API read plus source",
+      "finding": "The installed package is 0.5.0, while `/api/state` reports 0.3.0. Generation reports also hardcode `application_version: 0.2.0` (source inspection only). Version evidence can therefore identify the wrong application release.",
+      "source_and_repair": "`server.py:219`, `generation.py:201`; PAC-009"
+    },
+    {
+      "id": "D10",
+      "priority_and_evidence": "Medium; current suite failures/skips",
+      "finding": "Three independent test assumptions fail on Windows: a fake stat object lacks `st_ctime`; migration snapshots use backslashes while the assertion replaces slashes; a symlink test assumes creation privileges. Eight entire modules skip at collection without Torch, including publication/API tests. Passing the remaining suite cannot certify those paths.",
+      "source_and_repair": "`test_policy.py:21`, `test_v02_migration.py:31`, `test_v02_models.py:34`; PAC-014"
+    },
+    {
+      "id": "D11",
+      "priority_and_evidence": "Investigate; source only",
+      "finding": "Legacy `optimizer.protect`, reachable through the encoder engine, starts with random noise, accepts finite zero gradients and returns without a positive-objective check. A differentiable constant encoder appears able to return random-start pixels. The production release guard has stronger checks. Torch is unavailable here, so this hypothesis requires a real-autograd reproduction before being called runtime-confirmed.",
+      "source_and_repair": "`optimizer.py:137`, `optimizer.py:157`, `optimizer.py:189`; PAC-013"
+    }
+  ],
+  "tests": {
+    "command": {
+      "command": [
+        "C:\\Users\\ryanf\\github\\_new\\image-riposte\\.venv\\Scripts\\python.exe",
+        "-m",
+        "pytest",
+        "-q",
+        "--basetemp=typing/.cache/development-audit/pytest-corrected",
+        "--junitxml=evidence/development-audit/full-suite-corrected.xml"
+      ],
+      "exit_code": 1
+    },
+    "suite": {
+      "name": "pytest",
+      "errors": "9",
+      "failures": "10",
+      "skipped": "30",
+      "tests": "506",
+      "time": "7.775",
+      "timestamp": "2026-09-16T18:34:35.317735-07:00",
+      "hostname": "homeone"
+    },
+    "passed": 457,
+    "failures": [
+      {
+        "test": "tests.test_benchmark::test_runner_invalid_parameters[kwargs0]",
+        "kind": "error",
+        "message": "failed on setup with \"riposte.errors.RiposteError: ORGANIZATION_CHECKPOINT_REQUIRED\""
+      },
+      {
+        "test": "tests.test_benchmark::test_runner_invalid_parameters[kwargs1]",
+        "kind": "error",
+        "message": "failed on setup with \"riposte.errors.RiposteError: ORGANIZATION_CHECKPOINT_REQUIRED\""
+      },
+      {
+        "test": "tests.test_benchmark::test_runner_requires_clean_checkpoint",
+        "kind": "error",
+        "message": "failed on setup with \"riposte.errors.RiposteError: ORGANIZATION_CHECKPOINT_REQUIRED\""
+      },
+      {
+        "test": "tests.test_lab::test_candidate_tamper_rejected",
+        "kind": "failure",
+        "message": "riposte.errors.RiposteError: ORGANIZATION_CHECKPOINT_REQUIRED"
+      },
+      {
+        "test": "tests.test_organizer::test_full_migration_idempotence",
+        "kind": "failure",
+        "message": "AssertionError: assert 'INCOMPLETE' == 'COMPLETE'\n  \n  - COMPLETE\n  + INCOMPLETE\n  ? ++"
+      },
+      {
+        "test": "tests.test_organizer::test_sidecars_never_imported[.aae]",
+        "kind": "failure",
+        "message": "AssertionError: assert 'INCOMPLETE' == 'COMPLETE'\n  \n  - COMPLETE\n  + INCOMPLETE\n  ? ++"
+      },
+      {
+        "test": "tests.test_policy::test_modified_fallback",
+        "kind": "failure",
+        "message": "AttributeError: 'types.SimpleNamespace' object has no attribute 'st_ctime'. Did you mean: 'st_mtime'?"
+      },
+      {
+        "test": "tests.test_server::test_ui_is_self_contained",
+        "kind": "failure",
+        "message": "UnicodeDecodeError: 'charmap' codec can't decode byte 0x81 in position 1500: character maps to <undefined>"
+      },
+      {
+        "test": "tests.test_v02_api_cli::test_real_trial_view_routes_validate_clean_pair",
+        "kind": "error",
+        "message": "failed on setup with \"riposte.errors.RiposteError: ORGANIZATION_CHECKPOINT_REQUIRED\""
+      },
+      {
+        "test": "tests.test_v02_generation::test_five_arm_generation_has_matched_seeds_date_only_frames[video]",
+        "kind": "error",
+        "message": "failed on setup with \"riposte.errors.RiposteError: ORGANIZATION_CHECKPOINT_REQUIRED\""
+      },
+      {
+        "test": "tests.test_v02_generation::test_generation_real_codec_then_resize_records_mismatch",
+        "kind": "error",
+        "message": "failed on setup with \"riposte.errors.RiposteError: ORGANIZATION_CHECKPOINT_REQUIRED\""
+      },
+      {
+        "test": "tests.test_v02_generation::test_cancel_after_write_rolls_back_run",
+        "kind": "error",
+        "message": "failed on setup with \"riposte.errors.RiposteError: ORGANIZATION_CHECKPOINT_REQUIRED\""
+      },
+      {
+        "test": "tests.test_v02_generation::test_invalid_generation_parameters[kwargs0]",
+        "kind": "error",
+        "message": "failed on setup with \"riposte.errors.RiposteError: ORGANIZATION_CHECKPOINT_REQUIRED\""
+      },
+      {
+        "test": "tests.test_v02_generation::test_invalid_generation_parameters[kwargs1]",
+        "kind": "error",
+        "message": "failed on setup with \"riposte.errors.RiposteError: ORGANIZATION_CHECKPOINT_REQUIRED\""
+      },
+      {
+        "test": "tests.test_v02_migration::test_legacy_read_is_nonmutating_then_upgrade_keeps_art_ids",
+        "kind": "failure",
+        "message": "KeyError: '.shroud\\\\catalog.sqlite3'"
+      },
+      {
+        "test": "tests.test_v02_models::test_symlink_weights_rejected",
+        "kind": "failure",
+        "message": "OSError: [WinError 1314] A required privilege is not held by the client: 'C:\\\\Users\\\\ryanf\\\\github\\\\_new\\\\image-riposte\\\\typing\\\\.cache\\\\development-audit\\\\pytest-corrected\\\\test_symlink_weights_rejected0\\\\not-a-model' -> 'C:\\\\Users\\\\ryanf\\\\github\\\\_new\\\\image-riposte\\\\typing\\\\.cache\\\\development-audit\\\\pytest-corrected\\\\test_symlink_weights_rejected0\\\\model\\\\diffusion_pytorch_model.safetensors'"
+      },
+      {
+        "test": "tests.test_v04_product_terminal::test_interactive_clean_preview_confirmation_and_audit",
+        "kind": "failure",
+        "message": "AssertionError: assert (not True)\n +  where True = exists()\n +    where exists = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/development-audit/pytest-corrected/test_interactive_clean_preview0/workspace/nested/input.png').exists"
+      },
+      {
+        "test": "tests.test_v04_product_terminal::test_failed_publish_is_an_error_not_noise",
+        "kind": "failure",
+        "message": "AssertionError: assert (not True)\n +  where True = exists()\n +    where exists = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/development-audit/pytest-corrected/test_failed_publish_is_an_erro0/workspace/nested/input.png').exists"
+      },
+      {
+        "test": "tests.test_v04_typer::test_readonly_targeting_and_plan_no_files",
+        "kind": "failure",
+        "message": "AssertionError: assert 2 == 0\n +  where 2 = <function main at 0x00000203472F83B0>(['--json', 'publish', 'C:\\\\Users\\\\ryanf\\\\github\\\\_new\\\\image-riposte\\\\typing\\\\.cache\\\\development-audit\\\\pytest-corrected\\\\test_readonly_targeting_and_pl0\\\\workspace', '--all', '--year', '2026', ...])\n +    where <function main at 0x00000203472F83B0> = cli.main"
+      }
+    ],
+    "skips": [
+      {
+        "test": "::tests.test_optimizer",
+        "message": "collection skipped"
+      },
+      {
+        "test": "::tests.test_v02_coupled",
+        "message": "collection skipped"
+      },
+      {
+        "test": "::tests.test_v02_qualification",
+        "message": "collection skipped"
+      },
+      {
+        "test": "::tests.test_v02_views",
+        "message": "collection skipped"
+      },
+      {
+        "test": "::tests.test_v03_api_cli",
+        "message": "collection skipped"
+      },
+      {
+        "test": "::tests.test_v03_publication",
+        "message": "collection skipped"
+      },
+      {
+        "test": "::tests.test_v03_quality_guard",
+        "message": "collection skipped"
+      },
+      {
+        "test": "::tests.test_v03_temporal",
+        "message": "collection skipped"
+      },
+      {
+        "test": "tests.test_benchmark::test_paired_runner_control_flow[edit]",
+        "message": "could not import 'torch': No module named 'torch'"
+      },
+      {
+        "test": "tests.test_benchmark::test_paired_runner_control_flow[video]",
+        "message": "could not import 'torch': No module named 'torch'"
+      },
+      {
+        "test": "tests.test_benchmark::test_runner_requires_cuda",
+        "message": "could not import 'torch': No module named 'torch'"
+      },
+      {
+        "test": "tests.test_benchmark::test_runner_invalid_parameters[kwargs2]",
+        "message": "could not import 'torch': No module named 'torch'"
+      },
+      {
+        "test": "tests.test_benchmark::test_runner_invalid_parameters[kwargs3]",
+        "message": "could not import 'torch': No module named 'torch'"
+      },
+      {
+        "test": "tests.test_benchmark::test_runner_rejects_changed_candidate",
+        "message": "could not import 'torch': No module named 'torch'"
+      },
+      {
+        "test": "tests.test_organizer::test_symlink_not_followed",
+        "message": "Symlinks unavailable"
+      },
+      {
+        "test": "tests.test_v02_generation::test_fixed_local_generation_loader_with_stub_components[edit]",
+        "message": "could not import 'torch': No module named 'torch'"
+      },
+      {
+        "test": "tests.test_v02_generation::test_fixed_local_generation_loader_with_stub_components[inpaint]",
+        "message": "could not import 'torch': No module named 'torch'"
+      },
+      {
+        "test": "tests.test_v02_generation::test_fixed_local_generation_loader_with_stub_components[video]",
+        "message": "could not import 'torch': No module named 'torch'"
+      },
+      {
+        "test": "tests.test_v02_models::test_fixed_encoder_loader_and_gradient_with_stub_model[AutoencoderKL]",
+        "message": "could not import 'torch': No module named 'torch'"
+      },
+      {
+        "test": "tests.test_v02_models::test_fixed_encoder_loader_and_gradient_with_stub_model[AutoencoderTiny]",
+        "message": "could not import 'torch': No module named 'torch'"
+      },
+      {
+        "test": "tests.test_v02_models::test_probe_real_tensor_conditioning_shape_noise_seed_and_gradient",
+        "message": "could not import 'torch': No module named 'torch'"
+      },
+      {
+        "test": "tests.test_v02_models::test_explicit_device_unavailable_and_runtime_safe",
+        "message": "could not import 'torch': No module named 'torch'"
+      },
+      {
+        "test": "tests.test_v04_product_terminal::test_main_menu_to_real_candidate_review_and_pack",
+        "message": "could not import 'torch': No module named 'torch'"
+      },
+      {
+        "test": "tests.test_v04_product_terminal::test_review_cannot_skip_the_two_actual_acks",
+        "message": "could not import 'torch': No module named 'torch'"
+      },
+      {
+        "test": "tests.test_v04_product_terminal::test_viewer_explicit_handoff_does_not_approve",
+        "message": "could not import 'torch': No module named 'torch'"
+      },
+      {
+        "test": "tests.test_v04_product_terminal::test_ascii_inspection_uses_bound_pixel_hash",
+        "message": "could not import 'torch': No module named 'torch'"
+      },
+      {
+        "test": "tests.test_v04_terminal_host::test_actual_native_rich_pty_restores_terminal[q]",
+        "message": "POSIX pseudo-terminal contract"
+      },
+      {
+        "test": "tests.test_v04_terminal_host::test_actual_native_rich_pty_restores_terminal[interrupt]",
+        "message": "POSIX pseudo-terminal contract"
+      },
+      {
+        "test": "tests.test_v04_terminal_host::test_actual_native_rich_pty_restores_terminal[sigterm]",
+        "message": "POSIX pseudo-terminal contract"
+      },
+      {
+        "test": "tests.test_v04_terminal_host::test_actual_native_rich_pty_restores_terminal[resize]",
+        "message": "POSIX pseudo-terminal contract"
+      }
+    ],
+    "module_counts": {
+      "": {
+        "skipped": 8
+      },
+      "tests.test_benchmark": {
+        "skipped": 6,
+        "error": 3
+      },
+      "tests.test_lab": {
+        "passed": 13,
+        "failure": 1
+      },
+      "tests.test_organizer": {
+        "passed": 20,
+        "failure": 2,
+        "skipped": 1
+      },
+      "tests.test_policy": {
+        "passed": 84,
+        "failure": 1
+      },
+      "tests.test_sanitize": {
+        "passed": 26
+      },
+      "tests.test_server": {
+        "failure": 1,
+        "passed": 10
+      },
+      "tests.test_v02_api_cli": {
+        "passed": 13,
+        "error": 1
+      },
+      "tests.test_v02_generation": {
+        "passed": 16,
+        "error": 5,
+        "skipped": 3
+      },
+      "tests.test_v02_migration": {
+        "failure": 1,
+        "passed": 7
+      },
+      "tests.test_v02_models": {
+        "passed": 12,
+        "failure": 1,
+        "skipped": 4
+      },
+      "tests.test_v04_product_terminal": {
+        "failure": 2,
+        "skipped": 4,
+        "passed": 1
+      },
+      "tests.test_v04_terminal_core": {
+        "passed": 120
+      },
+      "tests.test_v04_terminal_host": {
+        "skipped": 4,
+        "passed": 7
+      },
+      "tests.test_v04_typer": {
+        "passed": 79,
+        "failure": 1
+      },
+      "tests.test_v05_revision": {
+        "passed": 49
+      }
+    },
+    "interpretation": "15 organizer-related failures/setup errors, one homepage decoding failure, three portability/environment failures. Eight skipped modules conceal additional uncollected parametrized cases."
+  },
+  "audit_harness_failure": {
+    "output": "evidence/development-audit/full-suite.txt",
+    "cause": "Missing parent directory for custom pytest basetemp; 276 errors are audit setup errors, not application failures",
+    "corrected_output": "evidence/development-audit/full-suite-corrected.txt"
+  },
+  "probes": {
+    "command": [
+      "C:\\Users\\ryanf\\github\\_new\\image-riposte\\.venv\\Scripts\\python.exe",
+      "scripts/audit_development.py"
+    ],
+    "report": "evidence/development-audit/probes.json",
+    "completed": 6,
+    "harness_errors": [],
+    "meaning": "Zero script exit means harness completed, not application passed."
+  },
+  "packaging": {
+    "build_command": [
+      "uv",
+      "build",
+      "--offline",
+      "--cache-dir",
+      "typing/.cache/uv",
+      "--out-dir",
+      "evidence/development-audit/dist"
+    ],
+    "build_exit_code": 0,
+    "build_boundary": "sdist then wheel built from sdist",
+    "install_command": [
+      "uv",
+      "pip",
+      "install",
+      "--offline",
+      "--no-deps",
+      "--cache-dir",
+      "typing/.cache/uv",
+      "--target",
+      "typing/.cache/development-audit/installed-wheel",
+      "evidence\\development-audit\\dist\\riposte_studio-0.5.0-py3-none-any.whl"
+    ],
+    "install_exit_code": 0,
+    "dependency_boundary": "isolated target install, application dependencies reused from existing .venv; not fresh dependency resolution",
+    "package_files": 47,
+    "all_equal": true,
+    "archive_sha256": {
+      "riposte_studio-0.5.0-py3-none-any.whl": "6f6bb3ef72ecf72f201393bf883b7d085e745220c01c2b86dd6b7a9c267b664c",
+      "riposte_studio-0.5.0.tar.gz": "d2acfcc3020b285eebf088c164a5219d352366b53245de2d076e3d85fb3ba4eb"
+    },
+    "import_command": [
+      "C:\\Users\\ryanf\\github\\_new\\image-riposte\\.venv\\Scripts\\python.exe",
+      "-I",
+      "-c",
+      "import sys,json;sys.path.insert(0,sys.argv[1]);import riposte,riposte.server,riposte.terminal.interaction;print(json.dumps({\"module\":riposte.__file__,\"version\":riposte.__version__,\"server\":riposte.server.__file__,\"terminal\":riposte.terminal.interaction.__file__}))",
+      "C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\development-audit\\installed-wheel"
+    ],
+    "import_exit_code": 0,
+    "import_stdout": "{\"module\": \"C:\\\\Users\\\\ryanf\\\\github\\\\_new\\\\image-riposte\\\\typing\\\\.cache\\\\development-audit\\\\installed-wheel\\\\riposte\\\\__init__.py\", \"version\": \"0.5.0\", \"server\": \"C:\\\\Users\\\\ryanf\\\\github\\\\_new\\\\image-riposte\\\\typing\\\\.cache\\\\development-audit\\\\installed-wheel\\\\riposte\\\\server.py\", \"terminal\": \"C:\\\\Users\\\\ryanf\\\\github\\\\_new\\\\image-riposte\\\\typing\\\\.cache\\\\development-audit\\\\installed-wheel\\\\riposte\\\\terminal\\\\interaction.py\"}\n",
+    "import_stderr": ""
+  },
+  "historical_evidence": {
+    "source_tests_last_line": "667 passed, 4 warnings in 21.88s",
+    "wheel_tests_last_line": "667 passed, 4 warnings in 27.10s",
+    "package_manifest_changed_files": [
+      "riposte/__init__.py",
+      "riposte/cli.py",
+      "riposte/terminal/output.py",
+      "riposte/terminal/app.py",
+      "riposte/terminal/surface.py",
+      "riposte/terminal/controller.py",
+      "riposte/terminal/help.py",
+      "riposte/terminal/state.py",
+      "riposte/terminal/preview.py",
+      "riposte/terminal/render.py"
+    ],
+    "meaning": "Historical logs contain results and documented synthetic/native limitations; they are not validation of changed current source and do not establish deliberate fabrication."
+  },
+  "prior_typing_audit": {
+    "artifact": "evidence/completion-audit.json",
+    "raw_source_mypy_errors": 962,
+    "missing_public_symbol_rows": 232,
+    "freshly_reexecuted_here": false
+  },
+  "archived_v050_sha256": "97541fba8ce1fd9095080140eef596b0ec80d4c46f590a2adb1f78826fe8547b",
+  "unverified": [
+    "Real pretrained model loading, numerical gradients and efficacy",
+    "GPU and MPS execution, memory and performance",
+    "Native Windows console and macOS/POSIX execution in this audit",
+    "Artist-approved visual quality",
+    "Actual platform upload/download and adaptive attacks",
+    "Full dependency and Python version matrix including minimum Python 3.11",
+    "Exhaustive malformed-state and crash recovery",
+    "Legacy optimizer zero-gradient runtime reproduction"
+  ],
+  "repairs_applied": false,
+  "organism_requirements_completed": []
+}

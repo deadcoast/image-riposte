@@ -1,0 +1,685 @@
+sssEEsssE.............F.F.....F............s............................ [ 14%]
+.......................................................F................ [ 28%]
+.............F................E.........E.E..E.EE..........sssF......... [ 43%]
+.....F.....ssssFsssFs................................................... [ 57%]
+......................................................................ss [ 72%]
+ss...................................................................... [ 86%]
+...........F......................................................       [100%]
+=================================== ERRORS ====================================
+__________ ERROR at setup of test_runner_invalid_parameters[kwargs0] __________
+
+root = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/development-audit/pytest-corrected/test_runner_invalid_parameters0/workspace')
+tmp_path = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/development-audit/pytest-corrected/test_runner_invalid_parameters0')
+make_image = <function make_image.<locals>.create at 0x000002034757CD50>
+
+    @pytest.fixture
+    def trial(root,tmp_path,make_image):
+        make_image(root/'input.png');organize(root,Policy(date_mode='modified'))
+        candidate=make_image(tmp_path/'candidate.png',color=(31,91,151))
+>       return compare_external(root,catalog(root)[0]['id'],candidate)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_benchmark.py:18: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\riposte\lab.py:54: in compare_external
+    row, master = _master(root, identifier)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+root = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/development-audit/pytest-corrected/test_runner_invalid_parameters0/workspace')
+identifier = 'b90d1b4fe2d140d6b244b368fa47f100'
+
+    def _master(root: Path, identifier: str):
+        from .organizer import audit_workspace
+        if audit_workspace(root)["checkpoint"] != "COMPLETE":
+>           raise RiposteError("ORGANIZATION_CHECKPOINT_REQUIRED")
+E           riposte.errors.RiposteError: ORGANIZATION_CHECKPOINT_REQUIRED
+
+src\riposte\lab.py:19: RiposteError
+__________ ERROR at setup of test_runner_invalid_parameters[kwargs1] __________
+
+root = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/development-audit/pytest-corrected/test_runner_invalid_parameters1/workspace')
+tmp_path = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/development-audit/pytest-corrected/test_runner_invalid_parameters1')
+make_image = <function make_image.<locals>.create at 0x000002034757DB10>
+
+    @pytest.fixture
+    def trial(root,tmp_path,make_image):
+        make_image(root/'input.png');organize(root,Policy(date_mode='modified'))
+        candidate=make_image(tmp_path/'candidate.png',color=(31,91,151))
+>       return compare_external(root,catalog(root)[0]['id'],candidate)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_benchmark.py:18: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\riposte\lab.py:54: in compare_external
+    row, master = _master(root, identifier)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+root = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/development-audit/pytest-corrected/test_runner_invalid_parameters1/workspace')
+identifier = 'f0d40b59232e4f5bbf52d8c075fe11b1'
+
+    def _master(root: Path, identifier: str):
+        from .organizer import audit_workspace
+        if audit_workspace(root)["checkpoint"] != "COMPLETE":
+>           raise RiposteError("ORGANIZATION_CHECKPOINT_REQUIRED")
+E           riposte.errors.RiposteError: ORGANIZATION_CHECKPOINT_REQUIRED
+
+src\riposte\lab.py:19: RiposteError
+___________ ERROR at setup of test_runner_requires_clean_checkpoint ___________
+
+root = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/development-audit/pytest-corrected/test_runner_requires_clean_che0/workspace')
+tmp_path = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/development-audit/pytest-corrected/test_runner_requires_clean_che0')
+make_image = <function make_image.<locals>.create at 0x000002034757ECF0>
+
+    @pytest.fixture
+    def trial(root,tmp_path,make_image):
+        make_image(root/'input.png');organize(root,Policy(date_mode='modified'))
+        candidate=make_image(tmp_path/'candidate.png',color=(31,91,151))
+>       return compare_external(root,catalog(root)[0]['id'],candidate)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_benchmark.py:18: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\riposte\lab.py:54: in compare_external
+    row, master = _master(root, identifier)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+root = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/development-audit/pytest-corrected/test_runner_requires_clean_che0/workspace')
+identifier = '06cbbb190ec44376926e0aefc6db2446'
+
+    def _master(root: Path, identifier: str):
+        from .organizer import audit_workspace
+        if audit_workspace(root)["checkpoint"] != "COMPLETE":
+>           raise RiposteError("ORGANIZATION_CHECKPOINT_REQUIRED")
+E           riposte.errors.RiposteError: ORGANIZATION_CHECKPOINT_REQUIRED
+
+src\riposte\lab.py:19: RiposteError
+______ ERROR at setup of test_real_trial_view_routes_validate_clean_pair ______
+
+root = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/development-audit/pytest-corrected/test_real_trial_view_routes_va0/workspace')
+tmp_path = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/development-audit/pytest-corrected/test_real_trial_view_routes_va0')
+make_image = <function make_image.<locals>.create at 0x0000020348182FB0>
+
+    @pytest.fixture
+    def trial(root,tmp_path,make_image):
+        make_image(root/'a.png');organize(root,Policy(date_mode='modified'))
+>       return compare_external(root,catalog(root)[0]['id'],make_image(tmp_path/'candidate.png',color=(31,91,151)))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_v02_api_cli.py:17: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\riposte\lab.py:54: in compare_external
+    row, master = _master(root, identifier)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+root = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/development-audit/pytest-corrected/test_real_trial_view_routes_va0/workspace')
+identifier = 'f94a2bdf35304ab2b77748334b9e0624'
+
+    def _master(root: Path, identifier: str):
+        from .organizer import audit_workspace
+        if audit_workspace(root)["checkpoint"] != "COMPLETE":
+>           raise RiposteError("ORGANIZATION_CHECKPOINT_REQUIRED")
+E           riposte.errors.RiposteError: ORGANIZATION_CHECKPOINT_REQUIRED
+
+src\riposte\lab.py:19: RiposteError
+_ ERROR at setup of test_five_arm_generation_has_matched_seeds_date_only_frames[video] _
+
+root = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/development-audit/pytest-corrected/test_five_arm_generation_has_m2/workspace')
+tmp_path = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/development-audit/pytest-corrected/test_five_arm_generation_has_m2')
+make_image = <function make_image.<locals>.create at 0x0000020347EBC460>
+
+    @pytest.fixture
+    def trial(root,tmp_path,make_image):
+        make_image(root/'a.png',size=(32,24));organize(root,Policy(date_mode='modified'))
+        path=make_image(tmp_path/'candidate.png',size=(32,24),color=(33,93,153))
+>       return compare_external(root,catalog(root)[0]['id'],path)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_v02_generation.py:18: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\riposte\lab.py:54: in compare_external
+    row, master = _master(root, identifier)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+root = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/development-audit/pytest-corrected/test_five_arm_generation_has_m2/workspace')
+identifier = '033da518c7e74c549fb0a502fa05e191'
+
+    def _master(root: Path, identifier: str):
+        from .organizer import audit_workspace
+        if audit_workspace(root)["checkpoint"] != "COMPLETE":
+>           raise RiposteError("ORGANIZATION_CHECKPOINT_REQUIRED")
+E           riposte.errors.RiposteError: ORGANIZATION_CHECKPOINT_REQUIRED
+
+src\riposte\lab.py:19: RiposteError
+__ ERROR at setup of test_generation_real_codec_then_resize_records_mismatch __
+
+root = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/development-audit/pytest-corrected/test_generation_real_codec_the0/workspace')
+tmp_path = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/development-audit/pytest-corrected/test_generation_real_codec_the0')
+make_image = <function make_image.<locals>.create at 0x0000020347EBD590>
+
+    @pytest.fixture
+    def trial(root,tmp_path,make_image):
+        make_image(root/'a.png',size=(32,24));organize(root,Policy(date_mode='modified'))
+        path=make_image(tmp_path/'candidate.png',size=(32,24),color=(33,93,153))
+>       return compare_external(root,catalog(root)[0]['id'],path)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_v02_generation.py:18: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\riposte\lab.py:54: in compare_external
+    row, master = _master(root, identifier)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+root = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/development-audit/pytest-corrected/test_generation_real_codec_the0/workspace')
+identifier = '86e51c1a0bc44edf8e30043d51ecdb43'
+
+    def _master(root: Path, identifier: str):
+        from .organizer import audit_workspace
+        if audit_workspace(root)["checkpoint"] != "COMPLETE":
+>           raise RiposteError("ORGANIZATION_CHECKPOINT_REQUIRED")
+E           riposte.errors.RiposteError: ORGANIZATION_CHECKPOINT_REQUIRED
+
+src\riposte\lab.py:19: RiposteError
+__________ ERROR at setup of test_cancel_after_write_rolls_back_run ___________
+
+root = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/development-audit/pytest-corrected/test_cancel_after_write_rolls_0/workspace')
+tmp_path = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/development-audit/pytest-corrected/test_cancel_after_write_rolls_0')
+make_image = <function make_image.<locals>.create at 0x0000020347EBE4B0>
+
+    @pytest.fixture
+    def trial(root,tmp_path,make_image):
+        make_image(root/'a.png',size=(32,24));organize(root,Policy(date_mode='modified'))
+        path=make_image(tmp_path/'candidate.png',size=(32,24),color=(33,93,153))
+>       return compare_external(root,catalog(root)[0]['id'],path)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_v02_generation.py:18: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\riposte\lab.py:54: in compare_external
+    row, master = _master(root, identifier)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+root = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/development-audit/pytest-corrected/test_cancel_after_write_rolls_0/workspace')
+identifier = '52982e3b64db4a7dbba48d9faf427ecd'
+
+    def _master(root: Path, identifier: str):
+        from .organizer import audit_workspace
+        if audit_workspace(root)["checkpoint"] != "COMPLETE":
+>           raise RiposteError("ORGANIZATION_CHECKPOINT_REQUIRED")
+E           riposte.errors.RiposteError: ORGANIZATION_CHECKPOINT_REQUIRED
+
+src\riposte\lab.py:19: RiposteError
+________ ERROR at setup of test_invalid_generation_parameters[kwargs0] ________
+
+root = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/development-audit/pytest-corrected/test_invalid_generation_parame0/workspace')
+tmp_path = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/development-audit/pytest-corrected/test_invalid_generation_parame0')
+make_image = <function make_image.<locals>.create at 0x0000020347EBF270>
+
+    @pytest.fixture
+    def trial(root,tmp_path,make_image):
+        make_image(root/'a.png',size=(32,24));organize(root,Policy(date_mode='modified'))
+        path=make_image(tmp_path/'candidate.png',size=(32,24),color=(33,93,153))
+>       return compare_external(root,catalog(root)[0]['id'],path)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_v02_generation.py:18: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\riposte\lab.py:54: in compare_external
+    row, master = _master(root, identifier)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+root = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/development-audit/pytest-corrected/test_invalid_generation_parame0/workspace')
+identifier = '0c33c68e7082480aaaca01b3b983a28c'
+
+    def _master(root: Path, identifier: str):
+        from .organizer import audit_workspace
+        if audit_workspace(root)["checkpoint"] != "COMPLETE":
+>           raise RiposteError("ORGANIZATION_CHECKPOINT_REQUIRED")
+E           riposte.errors.RiposteError: ORGANIZATION_CHECKPOINT_REQUIRED
+
+src\riposte\lab.py:19: RiposteError
+________ ERROR at setup of test_invalid_generation_parameters[kwargs1] ________
+
+root = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/development-audit/pytest-corrected/test_invalid_generation_parame1/workspace')
+tmp_path = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/development-audit/pytest-corrected/test_invalid_generation_parame1')
+make_image = <function make_image.<locals>.create at 0x0000020347EBFED0>
+
+    @pytest.fixture
+    def trial(root,tmp_path,make_image):
+        make_image(root/'a.png',size=(32,24));organize(root,Policy(date_mode='modified'))
+        path=make_image(tmp_path/'candidate.png',size=(32,24),color=(33,93,153))
+>       return compare_external(root,catalog(root)[0]['id'],path)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_v02_generation.py:18: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\riposte\lab.py:54: in compare_external
+    row, master = _master(root, identifier)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+root = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/development-audit/pytest-corrected/test_invalid_generation_parame1/workspace')
+identifier = '0f6f320f1fd24686bc39d9e4d845f484'
+
+    def _master(root: Path, identifier: str):
+        from .organizer import audit_workspace
+        if audit_workspace(root)["checkpoint"] != "COMPLETE":
+>           raise RiposteError("ORGANIZATION_CHECKPOINT_REQUIRED")
+E           riposte.errors.RiposteError: ORGANIZATION_CHECKPOINT_REQUIRED
+
+src\riposte\lab.py:19: RiposteError
+================================== FAILURES ===================================
+_______________________ test_candidate_tamper_rejected ________________________
+
+root = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/development-audit/pytest-corrected/test_candidate_tamper_rejected0/workspace')
+tmp_path = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/development-audit/pytest-corrected/test_candidate_tamper_rejected0')
+make_image = <function make_image.<locals>.create at 0x00000203475E5220>
+
+    def test_candidate_tamper_rejected(root,tmp_path,make_image):
+        make_image(root/'a.png');organize(root,Policy(date_mode='modified'));row=catalog(root)[0]
+>       external=make_image(tmp_path/'candidate.png');report=compare_external(root,row['id'],external)
+                                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_lab.py:40: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\riposte\lab.py:54: in compare_external
+    row, master = _master(root, identifier)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+root = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/development-audit/pytest-corrected/test_candidate_tamper_rejected0/workspace')
+identifier = 'e3547f7ec00a4ac7a44ae49619ed28b5'
+
+    def _master(root: Path, identifier: str):
+        from .organizer import audit_workspace
+        if audit_workspace(root)["checkpoint"] != "COMPLETE":
+>           raise RiposteError("ORGANIZATION_CHECKPOINT_REQUIRED")
+E           riposte.errors.RiposteError: ORGANIZATION_CHECKPOINT_REQUIRED
+
+src\riposte\lab.py:19: RiposteError
+_______________________ test_full_migration_idempotence _______________________
+
+root = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/development-audit/pytest-corrected/test_full_migration_idempotenc0/workspace')
+make_image = <function make_image.<locals>.create at 0x00000203475E6820>
+
+    def test_full_migration_idempotence(root,make_image):
+        make_image(root/'old'/'private_filename.png');make_image(root/'random.jpg',day='2024-01-01');make_image(root/'other'/'extless',fmt='PNG',day='2023-12-01')
+>       r=organize(root,POLICY);assert r['checkpoint']=='COMPLETE';assert r['counts']['migrated']==3
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AssertionError: assert 'INCOMPLETE' == 'COMPLETE'
+E         
+E         - COMPLETE
+E         + INCOMPLETE
+E         ? ++
+
+tests\test_organizer.py:16: AssertionError
+_____________________ test_sidecars_never_imported[.aae] ______________________
+
+root = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/development-audit/pytest-corrected/test_sidecars_never_imported__3/workspace')
+make_image = <function make_image.<locals>.create at 0x0000020347654460>
+suffix = '.aae'
+
+    @pytest.mark.parametrize('suffix',['.xmp','.exif','.iptc','.aae'])
+    def test_sidecars_never_imported(root,make_image,suffix):
+        make_image(root/'x.png');side=root/('x'+suffix);side.write_text('PRIVATE_FIXTURE_PAYLOAD')
+        assert organize(root,POLICY)['checkpoint']=='INCOMPLETE';assert side.exists()
+>       r=organize(root,Policy(date_mode='modified',discard_sidecars=True));assert r['checkpoint']=='COMPLETE';assert not side.exists()
+                                                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AssertionError: assert 'INCOMPLETE' == 'COMPLETE'
+E         
+E         - COMPLETE
+E         + INCOMPLETE
+E         ? ++
+
+tests\test_organizer.py:35: AssertionError
+___________________________ test_modified_fallback ____________________________
+
+    def test_modified_fallback():
+        stamp=dt.datetime(2024,1,12,12).timestamp()
+>       day,source=extract_day(Image.new("RGB",(1,1)),SimpleNamespace(st_mtime=stamp),"modified")
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_policy.py:23: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+image = <PIL.Image.Image image mode=RGB size=1x1 at 0x203473A07D0>
+stat = namespace(st_mtime=1705089600.0), mode = 'modified'
+
+    def extract_day(image, stat, mode: str) -> tuple[str, str]:
+        """Read only date values. No EXIF dictionary is serialized, logged, or hashed."""
+        if mode == "embedded":
+            candidates = []
+            try:
+                exif = image.getexif()
+                for key in (36867, 306, 36868):
+                    candidates.append(exif.get(key))
+                # Original dates are often in the Exif sub-IFD, not the root IFD.
+                if 34665 in exif:
+                    sub = exif.get_ifd(34665)
+                    candidates.extend(sub.get(key) for key in (36867, 36868))
+            except Exception:
+                pass
+            candidates.append(image.info.get("Creation Time"))
+            for candidate in candidates:
+                if isinstance(candidate, str):
+                    token = candidate[:10].replace(":", "-")
+                    try:
+                        return valid_day(token), "embedded"
+                    except RiposteError:
+                        pass
+        birth = getattr(stat, "st_birthtime", None)
+        # Python 3.11 Windows exposes creation time as ctime, not POSIX ctime.
+        if birth is None and os.name == "nt":
+>           birth = stat.st_ctime
+                    ^^^^^^^^^^^^^
+E           AttributeError: 'types.SimpleNamespace' object has no attribute 'st_ctime'. Did you mean: 'st_mtime'?
+
+src\riposte\policy.py:70: AttributeError
+__________________________ test_ui_is_self_contained __________________________
+
+client = <starlette.testclient.TestClient object at 0x00000203478D0440>
+
+    def test_ui_is_self_contained(client):
+>       r=client.get('/');assert r.status_code==200;assert 'RIPOSTE' in r.text;assert r.headers['cache-control']=='no-store';assert "frame-ancestors 'none'" in r.headers['content-security-policy']
+          ^^^^^^^^^^^^^^^
+
+tests\test_server.py:17: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+.venv\Lib\site-packages\starlette\testclient.py:483: in get
+    return super().get(
+.venv\Lib\site-packages\httpx\_client.py:1053: in get
+    return self.request(
+.venv\Lib\site-packages\starlette\testclient.py:455: in request
+    return super().request(
+.venv\Lib\site-packages\httpx\_client.py:825: in request
+    return self.send(request, auth=auth, follow_redirects=follow_redirects)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\httpx\_client.py:914: in send
+    response = self._send_handling_auth(
+.venv\Lib\site-packages\httpx\_client.py:942: in _send_handling_auth
+    response = self._send_handling_redirects(
+.venv\Lib\site-packages\httpx\_client.py:979: in _send_handling_redirects
+    response = self._send_single_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\httpx\_client.py:1014: in _send_single_request
+    response = transport.handle_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\starlette\testclient.py:354: in handle_request
+    raise exc
+.venv\Lib\site-packages\starlette\testclient.py:351: in handle_request
+    portal.call(self.app, scope, receive, send)
+.venv\Lib\site-packages\anyio\from_thread.py:340: in call
+    return cast(T_Retval, self.start_task_soon(func, *args).result())
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Python314\Lib\concurrent\futures\_base.py:450: in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+C:\Python314\Lib\concurrent\futures\_base.py:395: in __get_result
+    raise self._exception
+.venv\Lib\site-packages\anyio\from_thread.py:265: in _call_func
+    retval = await retval_or_awaitable
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\fastapi\applications.py:1163: in __call__
+    await super().__call__(scope, receive, send)
+.venv\Lib\site-packages\starlette\applications.py:96: in __call__
+    await self.middleware_stack(scope, receive, send)
+.venv\Lib\site-packages\starlette\middleware\errors.py:186: in __call__
+    raise exc
+.venv\Lib\site-packages\starlette\middleware\errors.py:164: in __call__
+    await self.app(scope, receive, _send)
+.venv\Lib\site-packages\starlette\middleware\base.py:193: in __call__
+    response = await self.dispatch_func(request, call_next)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\riposte\server.py:195: in security
+    response=await call_next(request)
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\starlette\middleware\base.py:168: in call_next
+    raise app_exc from app_exc.__cause__ or app_exc.__context__
+.venv\Lib\site-packages\starlette\middleware\base.py:144: in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+.venv\Lib\site-packages\starlette\middleware\exceptions.py:63: in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+.venv\Lib\site-packages\starlette\_exception_handler.py:53: in wrapped_app
+    raise exc
+.venv\Lib\site-packages\starlette\_exception_handler.py:42: in wrapped_app
+    await app(scope, receive, sender)
+.venv\Lib\site-packages\fastapi\middleware\asyncexitstack.py:18: in __call__
+    await self.app(scope, receive, send)
+.venv\Lib\site-packages\starlette\routing.py:670: in __call__
+    await self.middleware_stack(scope, receive, send)
+.venv\Lib\site-packages\fastapi\routing.py:2734: in app
+    await route.handle(scope, receive, send)
+.venv\Lib\site-packages\fastapi\routing.py:1281: in handle
+    await super().handle(scope, receive, send)
+.venv\Lib\site-packages\starlette\routing.py:280: in handle
+    await self.app(scope, receive, send)
+.venv\Lib\site-packages\fastapi\routing.py:158: in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+.venv\Lib\site-packages\starlette\_exception_handler.py:53: in wrapped_app
+    raise exc
+.venv\Lib\site-packages\starlette\_exception_handler.py:42: in wrapped_app
+    await app(scope, receive, sender)
+.venv\Lib\site-packages\fastapi\routing.py:144: in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\fastapi\routing.py:706: in app
+    raw_response = await run_endpoint_function(
+.venv\Lib\site-packages\fastapi\routing.py:354: in run_endpoint_function
+    return await run_in_threadpool(dependant.call, **values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\starlette\concurrency.py:34: in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\anyio\to_thread.py:65: in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+.venv\Lib\site-packages\anyio\_backends\_asyncio.py:2706: in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+.venv\Lib\site-packages\anyio\_backends\_asyncio.py:1100: in run
+    result = context.run(func, *args)
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+src\riposte\server.py:214: in home
+    return (STATIC/"index.html").read_text()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Python314\Lib\pathlib\__init__.py:788: in read_text
+    return f.read()
+           ^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <encodings.cp1252.IncrementalDecoder object at 0x00000203479147D0>
+input = b'<!doctype html>\n<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initi...ialog>\n\n<script src="/static/app.js" defer></script><script src="/static/publish.js" defer></script></body></html>\n'
+final = True
+
+    def decode(self, input, final=False):
+>       return codecs.charmap_decode(input,self.errors,decoding_table)[0]
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       UnicodeDecodeError: 'charmap' codec can't decode byte 0x81 in position 1500: character maps to <undefined>
+
+C:\Python314\Lib\encodings\cp1252.py:23: UnicodeDecodeError
+_________ test_legacy_read_is_nonmutating_then_upgrade_keeps_art_ids __________
+
+root = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/development-audit/pytest-corrected/test_legacy_read_is_nonmutatin0/workspace')
+tmp_path = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/development-audit/pytest-corrected/test_legacy_read_is_nonmutatin0')
+make_image = <function make_image.<locals>.create at 0x0000020347F27950>
+
+    def test_legacy_read_is_nonmutating_then_upgrade_keeps_art_ids(root,tmp_path,make_image):
+        make_image(root/'former/a.png');organize(root,Policy(date_mode='modified'))
+        candidate=make_image(tmp_path/'external.png',color=(31,91,150))
+        original=catalog(root);trial=compare_external(root,original[0]['id'],candidate);legacy(root)
+        before=snapshot(root)
+        assert legacy_workspace(root) and state_relative(root,'lab').startswith('.shroud/')
+        assert catalog(root)==original and trials(root)[0]['id']==trial['id']
+        assert trial_pixels(root,trial['id'],'candidate')
+        plan(root,Policy(date_mode='modified'));assert snapshot(root)==before
+        result=upgrade_workspace(root)
+        assert result['artwork_rewritten']==0 and not legacy_workspace(root)
+        assert catalog(root)==original and trials(root)[0]['id']==trial['id']
+        after=snapshot(root)
+        for name,digest in before.items():
+>           if name!='.shroud/WORKSPACE':assert after[name.replace('.shroud/','.riposte/')]==digest
+                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           KeyError: '.shroud\\catalog.sqlite3'
+
+tests\test_v02_migration.py:31: KeyError
+________________________ test_symlink_weights_rejected ________________________
+
+tmp_path = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/development-audit/pytest-corrected/test_symlink_weights_rejected0')
+
+    def test_symlink_weights_rejected(tmp_path):
+        p=folder(tmp_path);q=p/'diffusion_pytorch_model.safetensors';q.unlink()
+>       real=tmp_path/'not-a-model';real.write_bytes(b'content');q.symlink_to(real)
+                                                                 ^^^^^^^^^^^^^^^^^^
+
+tests\test_v02_models.py:34: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/development-audit/pytest-corrected/test_symlink_weights_rejected0/model/diffusion_pytorch_model.safetensors')
+target = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/development-audit/pytest-corrected/test_symlink_weights_rejected0/not-a-model')
+target_is_directory = False
+
+    def symlink_to(self, target, target_is_directory=False):
+        """
+        Make this path a symlink pointing to the target path.
+        Note the order of arguments (link, target) is the reverse of os.symlink.
+        """
+>       os.symlink(target, self, target_is_directory)
+E       OSError: [WinError 1314] A required privilege is not held by the client: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\development-audit\\pytest-corrected\\test_symlink_weights_rejected0\\not-a-model' -> 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\development-audit\\pytest-corrected\\test_symlink_weights_rejected0\\model\\diffusion_pytorch_model.safetensors'
+
+C:\Python314\Lib\pathlib\__init__.py:1213: OSError
+____________ test_interactive_clean_preview_confirmation_and_audit ____________
+
+root = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/development-audit/pytest-corrected/test_interactive_clean_preview0/workspace')
+make_image = <function make_image.<locals>.create at 0x0000020347F29900>
+
+    def test_interactive_clean_preview_confirmation_and_audit(root,make_image):
+>       c=cleaned_controller(root,make_image)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_v04_product_terminal.py:66: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+root = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/development-audit/pytest-corrected/test_interactive_clean_preview0/workspace')
+make_image = <function make_image.<locals>.create at 0x0000020347F29900>
+
+    def cleaned_controller(root,make_image):
+        raw=make_image(root/'nested'/'input.png',size=(96,80));before=raw.read_bytes()
+        c=Controller(root,Presentation());c.action('organize');c.state.page.values['date_mode']='modified'
+        c.key(Key('char','p'));p=settle(c)
+        assert p.request.name=='organize' and raw.read_bytes()==before
+        c.key(Key('char','a'));assert c.state.page.name=='confirm'
+        type_confirm(c,'WRONG');assert c.state.operation is None and raw.exists()
+        c.state.page.values['confirmation']='';type_confirm(c,'REPLACE');settle(c)
+>       assert not raw.exists() and len(catalog(root))==1
+E       AssertionError: assert (not True)
+E        +  where True = exists()
+E        +    where exists = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/development-audit/pytest-corrected/test_interactive_clean_preview0/workspace/nested/input.png').exists
+
+tests\test_v04_product_terminal.py:51: AssertionError
+__________________ test_failed_publish_is_an_error_not_noise __________________
+
+root = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/development-audit/pytest-corrected/test_failed_publish_is_an_erro0/workspace')
+make_image = <function make_image.<locals>.create at 0x0000020347F2B060>
+
+    def test_failed_publish_is_an_error_not_noise(root,make_image):
+>       c=cleaned_controller(root,make_image);c.library();c.key(Key('char',' '));c.action('publish')
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_v04_product_terminal.py:117: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+root = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/development-audit/pytest-corrected/test_failed_publish_is_an_erro0/workspace')
+make_image = <function make_image.<locals>.create at 0x0000020347F2B060>
+
+    def cleaned_controller(root,make_image):
+        raw=make_image(root/'nested'/'input.png',size=(96,80));before=raw.read_bytes()
+        c=Controller(root,Presentation());c.action('organize');c.state.page.values['date_mode']='modified'
+        c.key(Key('char','p'));p=settle(c)
+        assert p.request.name=='organize' and raw.read_bytes()==before
+        c.key(Key('char','a'));assert c.state.page.name=='confirm'
+        type_confirm(c,'WRONG');assert c.state.operation is None and raw.exists()
+        c.state.page.values['confirmation']='';type_confirm(c,'REPLACE');settle(c)
+>       assert not raw.exists() and len(catalog(root))==1
+E       AssertionError: assert (not True)
+E        +  where True = exists()
+E        +    where exists = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/development-audit/pytest-corrected/test_failed_publish_is_an_erro0/workspace/nested/input.png').exists
+
+tests\test_v04_product_terminal.py:51: AssertionError
+__________________ test_readonly_targeting_and_plan_no_files __________________
+
+root = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/development-audit/pytest-corrected/test_readonly_targeting_and_pl0/workspace')
+make_image = <function make_image.<locals>.create at 0x0000020349C7D9B0>
+capsys = <_pytest.capture.CaptureFixture object at 0x0000020349C9C0D0>
+
+    def test_readonly_targeting_and_plan_no_files(root,make_image,capsys):
+        make_image(root/'raw.png',day='2026-09-10');organize(root,Policy(date_mode='modified'))
+        before={str(f.relative_to(root)):f.read_bytes() for f in root.rglob('*') if f.is_file()}
+        assert cli.main(['--json','list',str(root),'--year','2026','--month','sep','--size','SML'])==0
+        rows=json.loads(capsys.readouterr().out);assert len(rows)==1
+>       assert cli.main(['--json','publish',str(root),'--all','--year','2026','--month','9','--size','SML','--plan'])==0
+E       AssertionError: assert 2 == 0
+E        +  where 2 = <function main at 0x00000203472F83B0>(['--json', 'publish', 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\development-audit\\pytest-corrected\\test_readonly_targeting_and_pl0\\workspace', '--all', '--year', '2026', ...])
+E        +    where <function main at 0x00000203472F83B0> = cli.main
+
+tests\test_v04_typer.py:75: AssertionError
+---------------------------- Captured stderr call -----------------------------
+{"error": "ORGANIZATION_CHECKPOINT_REQUIRED"}
+============================== warnings summary ===============================
+.venv\Lib\site-packages\fastapi\testclient.py:1
+  C:\Users\ryanf\github\_new\image-riposte\.venv\Lib\site-packages\fastapi\testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    from starlette.testclient import TestClient as TestClient  # noqa
+
+.venv\Lib\site-packages\starlette\testclient.py:53
+  C:\Users\ryanf\github\_new\image-riposte\.venv\Lib\site-packages\starlette\testclient.py:53: DeprecationWarning: The anyio.abc.BlockingPortal alias is deprecated, use anyio.from_thread.BlockingPortal instead.
+    _PortalFactoryType = Callable[[], AbstractContextManager[anyio.abc.BlockingPortal]]
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ===========================
+SKIPPED [1] tests\test_optimizer.py:7: could not import 'torch': No module named 'torch'
+SKIPPED [1] tests\test_v02_coupled.py:8: could not import 'torch': No module named 'torch'
+SKIPPED [1] tests\test_v02_qualification.py:14: could not import 'torch': No module named 'torch'
+SKIPPED [1] tests\test_v02_views.py:8: could not import 'torch': No module named 'torch'
+SKIPPED [1] tests\test_v03_api_cli.py:5: could not import 'torch': No module named 'torch'
+SKIPPED [1] tests\test_v03_publication.py:6: could not import 'torch': No module named 'torch'
+SKIPPED [1] tests\test_v03_quality_guard.py:4: could not import 'torch': No module named 'torch'
+SKIPPED [1] tests\test_v03_temporal.py:3: could not import 'torch': No module named 'torch'
+SKIPPED [2] tests\test_benchmark.py:45: could not import 'torch': No module named 'torch'
+SKIPPED [1] tests\test_benchmark.py:57: could not import 'torch': No module named 'torch'
+SKIPPED [2] tests\test_benchmark.py:63: could not import 'torch': No module named 'torch'
+SKIPPED [1] tests\test_benchmark.py:68: could not import 'torch': No module named 'torch'
+SKIPPED [1] tests\test_organizer.py:67: Symlinks unavailable
+SKIPPED [3] tests\test_v02_generation.py:107: could not import 'torch': No module named 'torch'
+SKIPPED [2] tests\test_v02_models.py:48: could not import 'torch': No module named 'torch'
+SKIPPED [1] tests\test_v02_models.py:63: could not import 'torch': No module named 'torch'
+SKIPPED [1] tests\test_v02_models.py:81: could not import 'torch': No module named 'torch'
+SKIPPED [1] tests\test_v04_product_terminal.py:72: could not import 'torch': No module named 'torch'
+SKIPPED [1] tests\test_v04_product_terminal.py:93: could not import 'torch': No module named 'torch'
+SKIPPED [1] tests\test_v04_product_terminal.py:101: could not import 'torch': No module named 'torch'
+SKIPPED [1] tests\test_v04_product_terminal.py:123: could not import 'torch': No module named 'torch'
+SKIPPED [4] tests\test_v04_terminal_host.py:8: POSIX pseudo-terminal contract
+ERROR tests/test_benchmark.py::test_runner_invalid_parameters[kwargs0] - ripo...
+ERROR tests/test_benchmark.py::test_runner_invalid_parameters[kwargs1] - ripo...
+ERROR tests/test_benchmark.py::test_runner_requires_clean_checkpoint - ripost...
+ERROR tests/test_v02_api_cli.py::test_real_trial_view_routes_validate_clean_pair
+ERROR tests/test_v02_generation.py::test_five_arm_generation_has_matched_seeds_date_only_frames[video]
+ERROR tests/test_v02_generation.py::test_generation_real_codec_then_resize_records_mismatch
+ERROR tests/test_v02_generation.py::test_cancel_after_write_rolls_back_run - ...
+ERROR tests/test_v02_generation.py::test_invalid_generation_parameters[kwargs0]
+ERROR tests/test_v02_generation.py::test_invalid_generation_parameters[kwargs1]
+FAILED tests/test_lab.py::test_candidate_tamper_rejected - riposte.errors.Rip...
+FAILED tests/test_organizer.py::test_full_migration_idempotence - AssertionEr...
+FAILED tests/test_organizer.py::test_sidecars_never_imported[.aae] - Assertio...
+FAILED tests/test_policy.py::test_modified_fallback - AttributeError: 'types....
+FAILED tests/test_server.py::test_ui_is_self_contained - UnicodeDecodeError: ...
+FAILED tests/test_v02_migration.py::test_legacy_read_is_nonmutating_then_upgrade_keeps_art_ids
+FAILED tests/test_v02_models.py::test_symlink_weights_rejected - OSError: [Wi...
+FAILED tests/test_v04_product_terminal.py::test_interactive_clean_preview_confirmation_and_audit
+FAILED tests/test_v04_product_terminal.py::test_failed_publish_is_an_error_not_noise
+FAILED tests/test_v04_typer.py::test_readonly_targeting_and_plan_no_files - A...
+10 failed, 457 passed, 30 skipped, 2 warnings, 9 errors in 7.81s

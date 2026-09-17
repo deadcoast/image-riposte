@@ -1,0 +1,327 @@
+{
+  "build_command": [
+    "uv",
+    "build",
+    "--offline",
+    "--cache-dir",
+    "typing/.cache/uv",
+    "--out-dir",
+    "evidence/development-audit/dist"
+  ],
+  "build_exit_code": 0,
+  "build_boundary": "sdist then wheel built from sdist",
+  "install_command": [
+    "uv",
+    "pip",
+    "install",
+    "--offline",
+    "--no-deps",
+    "--cache-dir",
+    "typing/.cache/uv",
+    "--target",
+    "typing/.cache/development-audit/installed-wheel",
+    "evidence\\development-audit\\dist\\riposte_studio-0.5.0-py3-none-any.whl"
+  ],
+  "install_exit_code": 0,
+  "dependency_boundary": "isolated target install, application dependencies reused from existing .venv; not fresh dependency resolution",
+  "package_files": 47,
+  "all_equal": true,
+  "archive_sha256": {
+    "riposte_studio-0.5.0-py3-none-any.whl": "6f6bb3ef72ecf72f201393bf883b7d085e745220c01c2b86dd6b7a9c267b664c",
+    "riposte_studio-0.5.0.tar.gz": "d2acfcc3020b285eebf088c164a5219d352366b53245de2d076e3d85fb3ba4eb"
+  },
+  "import_command": [
+    "C:\\Users\\ryanf\\github\\_new\\image-riposte\\.venv\\Scripts\\python.exe",
+    "-I",
+    "-c",
+    "import sys,json;sys.path.insert(0,sys.argv[1]);import riposte,riposte.server,riposte.terminal.interaction;print(json.dumps({\"module\":riposte.__file__,\"version\":riposte.__version__,\"server\":riposte.server.__file__,\"terminal\":riposte.terminal.interaction.__file__}))",
+    "C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\development-audit\\installed-wheel"
+  ],
+  "import_exit_code": 0,
+  "import_stdout": "{\"module\": \"C:\\\\Users\\\\ryanf\\\\github\\\\_new\\\\image-riposte\\\\typing\\\\.cache\\\\development-audit\\\\installed-wheel\\\\riposte\\\\__init__.py\", \"version\": \"0.5.0\", \"server\": \"C:\\\\Users\\\\ryanf\\\\github\\\\_new\\\\image-riposte\\\\typing\\\\.cache\\\\development-audit\\\\installed-wheel\\\\riposte\\\\server.py\", \"terminal\": \"C:\\\\Users\\\\ryanf\\\\github\\\\_new\\\\image-riposte\\\\typing\\\\.cache\\\\development-audit\\\\installed-wheel\\\\riposte\\\\terminal\\\\interaction.py\"}\n",
+  "import_stderr": "",
+  "files": {
+    "riposte/benchmark.py": {
+      "sha256": "a7fbb359fb87d7ed6c5593a6fb0c194e5a34d20dfe0e9dd549200fe1007c7d68",
+      "wheel_match": true,
+      "sdist_match": true,
+      "installed_match": true
+    },
+    "riposte/cli.py": {
+      "sha256": "729a1f6b899f11312cd1eb99b103aad508bd1f4ce4dc567aa32d1edabf42711b",
+      "wheel_match": true,
+      "sdist_match": true,
+      "installed_match": true
+    },
+    "riposte/coupled.py": {
+      "sha256": "eca0afb9e0de03b740029864a5ddeeb7212cc9676c5e9cc191a6f4d1274641a8",
+      "wheel_match": true,
+      "sdist_match": true,
+      "installed_match": true
+    },
+    "riposte/errors.py": {
+      "sha256": "7a9c08b799d1c713fbd82e30fd145a6dc3085c215848893e31d1ec066abc5244",
+      "wheel_match": true,
+      "sdist_match": true,
+      "installed_match": true
+    },
+    "riposte/generation.py": {
+      "sha256": "97d3481d0d51cd95899c0c47b3a1e9aab1fc4bac09c1a39e791d79d74617515d",
+      "wheel_match": true,
+      "sdist_match": true,
+      "installed_match": true
+    },
+    "riposte/lab.py": {
+      "sha256": "3845f3e3abedd03d1f0c200b84395e6b46f67b2ff120f6e8a8fc75a2d8c03093",
+      "wheel_match": true,
+      "sdist_match": true,
+      "installed_match": true
+    },
+    "riposte/methods.json": {
+      "sha256": "4405d32fac499c6f3b7fbce0afa04abea62e2509e130844a20899c39a6283920",
+      "wheel_match": true,
+      "sdist_match": true,
+      "installed_match": true
+    },
+    "riposte/metrics.py": {
+      "sha256": "0d873a0cb8972b5bdce14eb3cdc49ab391af31a297981fda1ad37603496c22eb",
+      "wheel_match": true,
+      "sdist_match": true,
+      "installed_match": true
+    },
+    "riposte/models.py": {
+      "sha256": "19c774fff774c2c947a836ece9493168e71a20bec3a4f658853333d671c5a002",
+      "wheel_match": true,
+      "sdist_match": true,
+      "installed_match": true
+    },
+    "riposte/optimizer.py": {
+      "sha256": "16367347cb57cfd8efba57a5002d2c313ce31106304d993dc0fba0d398ae4121",
+      "wheel_match": true,
+      "sdist_match": true,
+      "installed_match": true
+    },
+    "riposte/organizer.py": {
+      "sha256": "249c082bce0872f6395f15ea7af6ac1df814002a635a15fb2d51d5fe23d62579",
+      "wheel_match": true,
+      "sdist_match": true,
+      "installed_match": true
+    },
+    "riposte/policy.py": {
+      "sha256": "a4e0d5ab07a0b4aac2efcf518f7cdf19a1a9cdfa9c1fc7e263ef66545d2774e7",
+      "wheel_match": true,
+      "sdist_match": true,
+      "installed_match": true
+    },
+    "riposte/publication.py": {
+      "sha256": "f3120bca31c8c851206e46a803b0a93cb83f99eed08a62f1e40dc15511b013bd",
+      "wheel_match": true,
+      "sdist_match": true,
+      "installed_match": true
+    },
+    "riposte/qualification.py": {
+      "sha256": "4fc049f680adc31c34f02499d8dfe4ebed9af46f47fa1cd554f50ead273231ce",
+      "wheel_match": true,
+      "sdist_match": true,
+      "installed_match": true
+    },
+    "riposte/quality.py": {
+      "sha256": "3af92838360f5f9ce65d69973eef37a6dd006d733f56c376443a2228d3c9656d",
+      "wheel_match": true,
+      "sdist_match": true,
+      "installed_match": true
+    },
+    "riposte/release_guard.py": {
+      "sha256": "673fcfc83602e074d774b4ccfeddf4f481f784887a72986dbce8d9abf150245e",
+      "wheel_match": true,
+      "sdist_match": true,
+      "installed_match": true
+    },
+    "riposte/runtime_probe.py": {
+      "sha256": "63d28c72b3d7aaeca6e503ae6ac7f8965fb8ed862d4a423cdd4fe981614bb339",
+      "wheel_match": true,
+      "sdist_match": true,
+      "installed_match": true
+    },
+    "riposte/sanitize.py": {
+      "sha256": "358ebd215602d8fe93aea4ab07931cfb84f9094202bec3ab34231ab193fb7001",
+      "wheel_match": true,
+      "sdist_match": true,
+      "installed_match": true
+    },
+    "riposte/server.py": {
+      "sha256": "fd4336c40f67189e953256980a18dab6ef4edf342ac5cdb87279d2cad240af6a",
+      "wheel_match": true,
+      "sdist_match": true,
+      "installed_match": true
+    },
+    "riposte/store.py": {
+      "sha256": "f6a88c29653c26c58db9d69845a96dfa5e6b8071bce4578e29aa6932bd8e0b9a",
+      "wheel_match": true,
+      "sdist_match": true,
+      "installed_match": true
+    },
+    "riposte/temporal.py": {
+      "sha256": "22fb7b410ebfbe906816267d9d049e9413bc65a5e515bfa1af9c5749ba09ade9",
+      "wheel_match": true,
+      "sdist_match": true,
+      "installed_match": true
+    },
+    "riposte/views.py": {
+      "sha256": "901a71db135ce03b0c929d230de1bacb73542dcc1570df166f36013a906b90e7",
+      "wheel_match": true,
+      "sdist_match": true,
+      "installed_match": true
+    },
+    "riposte/__init__.py": {
+      "sha256": "a9e9d2abdceaac2c47ed5846a874787f47337c407e2b2aa8064a32b53489f28d",
+      "wheel_match": true,
+      "sdist_match": true,
+      "installed_match": true
+    },
+    "riposte/__main__.py": {
+      "sha256": "79ee6f134c5c5193377cf9b189cbdcc3e2095e49ba9cec310114441c15a917c4",
+      "wheel_match": true,
+      "sdist_match": true,
+      "installed_match": true
+    },
+    "riposte/static/app.js": {
+      "sha256": "a27663ef2e214bd14d956987081c039ecfc878c972abe17f2806679daec612a4",
+      "wheel_match": true,
+      "sdist_match": true,
+      "installed_match": true
+    },
+    "riposte/static/index.html": {
+      "sha256": "c294c3ecdb09ccd2dd582460d051255c08cc9156a4c750b53ed8ca416aa37971",
+      "wheel_match": true,
+      "sdist_match": true,
+      "installed_match": true
+    },
+    "riposte/static/publish.css": {
+      "sha256": "3194ff34f6648c32432a8a85fcd7cbe8d2103f4fe0e4506e5af3e759c460261b",
+      "wheel_match": true,
+      "sdist_match": true,
+      "installed_match": true
+    },
+    "riposte/static/publish.js": {
+      "sha256": "446685b4373385fea701c61148559e88a81b6e9db060f34dcc92ea246cf7aeae",
+      "wheel_match": true,
+      "sdist_match": true,
+      "installed_match": true
+    },
+    "riposte/static/style.css": {
+      "sha256": "932983321f7c1394a44750a05433f6b521262ffd84b0db71eb0c41556813e3a7",
+      "wheel_match": true,
+      "sdist_match": true,
+      "installed_match": true
+    },
+    "riposte/terminal/actions.py": {
+      "sha256": "c8bef2ea12fc14f0f2d2f88e104e01d47da920fa9bc1383a3bcbffef3705f04c",
+      "wheel_match": true,
+      "sdist_match": true,
+      "installed_match": true
+    },
+    "riposte/terminal/app.py": {
+      "sha256": "7aa2187ed6d096ee086cf714040123d9b2dd6174f466f1a27331ed2146385d51",
+      "wheel_match": true,
+      "sdist_match": true,
+      "installed_match": true
+    },
+    "riposte/terminal/controller.py": {
+      "sha256": "589fd7b4b73a717bf1597ea837b3e702d05b21a63152b935ef17429e4e736b0b",
+      "wheel_match": true,
+      "sdist_match": true,
+      "installed_match": true
+    },
+    "riposte/terminal/help.py": {
+      "sha256": "8c24dd8a762ad4eb7df97df2d541a7b3ddbaf27ba8d7cf08ae44e3eb73e24bde",
+      "wheel_match": true,
+      "sdist_match": true,
+      "installed_match": true
+    },
+    "riposte/terminal/interaction.py": {
+      "sha256": "0a836c051568058c14ea00b42342f63a18de436f283b900467b4ab4fecfc32fe",
+      "wheel_match": true,
+      "sdist_match": true,
+      "installed_match": true
+    },
+    "riposte/terminal/jobs.py": {
+      "sha256": "c3e7f2ab8d53ba9d2319c9021a059af816e246272f9001e7bbe0eb3ea5f2633b",
+      "wheel_match": true,
+      "sdist_match": true,
+      "installed_match": true
+    },
+    "riposte/terminal/keyboard.py": {
+      "sha256": "5506f92c9999aad2658ed012f808c90043c4ea830cc1c6f6e32871518c83a4e0",
+      "wheel_match": true,
+      "sdist_match": true,
+      "installed_match": true
+    },
+    "riposte/terminal/material.py": {
+      "sha256": "522d5080177faae021905b94851bf3836bb2c18805a38d0a1d56b8402f5cebeb",
+      "wheel_match": true,
+      "sdist_match": true,
+      "installed_match": true
+    },
+    "riposte/terminal/output.py": {
+      "sha256": "cfd18cad392a24443e158e1ce83c59f5b90793aa52aa7ae87b3225abd592e417",
+      "wheel_match": true,
+      "sdist_match": true,
+      "installed_match": true
+    },
+    "riposte/terminal/palette.py": {
+      "sha256": "ab05080d75402a964ce73e25755fb3476b693ab8b79ab10982b4f74f42ee3e41",
+      "wheel_match": true,
+      "sdist_match": true,
+      "installed_match": true
+    },
+    "riposte/terminal/preview.py": {
+      "sha256": "446b57630ee54c99070082b28f67e6d1d647b201577fb55d9ff5fb39259a67bc",
+      "wheel_match": true,
+      "sdist_match": true,
+      "installed_match": true
+    },
+    "riposte/terminal/render.py": {
+      "sha256": "2be4a31ac3793c31ba129b150a0cb80808b45a7eebaf65a82e09d50ce613b78a",
+      "wheel_match": true,
+      "sdist_match": true,
+      "installed_match": true
+    },
+    "riposte/terminal/reports.py": {
+      "sha256": "4fe6d0a03b7627aedf0d6ac946791df7a688c258cc4e329014502fc310ac72f5",
+      "wheel_match": true,
+      "sdist_match": true,
+      "installed_match": true
+    },
+    "riposte/terminal/service.py": {
+      "sha256": "040ada5a2749e3abe041094e3094d5345aafaf8f6586a702d2eb19a349188bff",
+      "wheel_match": true,
+      "sdist_match": true,
+      "installed_match": true
+    },
+    "riposte/terminal/signals.py": {
+      "sha256": "dd7ef5eac1860b126ceebeecb6aa6c6151f14dd4813254870b061ce71470ce19",
+      "wheel_match": true,
+      "sdist_match": true,
+      "installed_match": true
+    },
+    "riposte/terminal/state.py": {
+      "sha256": "01ac2fe1a02ac55caaadcf91c62303289cc9cb8a2cbb7da287ecf47437d21bf8",
+      "wheel_match": true,
+      "sdist_match": true,
+      "installed_match": true
+    },
+    "riposte/terminal/surface.py": {
+      "sha256": "8088e77ab12aa16868beb09dcae60a2e3b67de64f106e7ea0b0245646bb110d1",
+      "wheel_match": true,
+      "sdist_match": true,
+      "installed_match": true
+    },
+    "riposte/terminal/__init__.py": {
+      "sha256": "3205c2b37274b4a78cad648f40635e4b02474f77515b94e506510e521ec79fa2",
+      "wheel_match": true,
+      "sdist_match": true,
+      "installed_match": true
+    }
+  }
+}

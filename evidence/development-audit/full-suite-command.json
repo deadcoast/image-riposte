@@ -1,0 +1,11 @@
+{
+  "command": [
+    "C:\\Users\\ryanf\\github\\_new\\image-riposte\\.venv\\Scripts\\python.exe",
+    "-m",
+    "pytest",
+    "-q",
+    "--basetemp=typing/.cache/development-audit/pytest",
+    "--junitxml=evidence/development-audit/full-suite.xml"
+  ],
+  "exit_code": 1
+}

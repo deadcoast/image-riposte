@@ -1,0 +1,323 @@
+{
+  "python": "3.14.3 (tags/v3.14.3:323c59a, Feb  3 2026, 16:04:56) [MSC v.1944 64 bit (AMD64)]",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "preferred_encoding": "cp1252",
+  "git_head": "126bd6c52af945a56e119d7387298ca36da51427",
+  "command": [
+    "C:\\Users\\ryanf\\github\\_new\\image-riposte\\.venv\\Scripts\\python.exe",
+    "scripts/audit_development.py"
+  ],
+  "probes": [
+    {
+      "probe": "server",
+      "execution": "COMPLETED",
+      "boundary": "Real FastAPI ASGI requests; no real TCP socket or browser",
+      "homepage": {
+        "status": 500,
+        "error": {
+          "code": "OPERATION_FAILED"
+        }
+      },
+      "incomplete_organization_job": {
+        "id": "6e5dd829ba2f421480546453e8d3acba",
+        "state": "done",
+        "phase": "Complete",
+        "cancellable": false,
+        "cancel_requested": false,
+        "processed": 1,
+        "total": 1,
+        "result": {
+          "mode": "APPLY",
+          "counts": {},
+          "blockers": {
+            "NONIMAGE_REQUIRES_REVIEW": 1
+          },
+          "unmanaged_or_changed_remaining": 1,
+          "checkpoint": "INCOMPLETE",
+          "metadata_policy": "DATE_ONLY",
+          "source_backups": "NONE"
+        }
+      },
+      "body_limit": {
+        "bytes": 40015,
+        "fixed_status": 413,
+        "chunked_status": 200,
+        "chunked_request_headers": {
+          "host": "testserver",
+          "accept": "*/*",
+          "accept-encoding": "gzip, deflate",
+          "connection": "keep-alive",
+          "user-agent": "testclient",
+          "x-riposte-token": "audit-fixture-token",
+          "content-type": "application/json",
+          "transfer-encoding": "chunked"
+        },
+        "chunked_finished": true
+      },
+      "api_version": "0.3.0"
+    },
+    {
+      "probe": "publication_review",
+      "execution": "COMPLETED",
+      "boundary": "Synthetic committed publication; real storage, review, status, PNG verification and ZIP paths; no model generation",
+      "control_checkpoint": "COMPLETE",
+      "control_accepted": 1,
+      "control_zip_entries": [
+        "2026/September/SML/SML01.png"
+      ],
+      "after_candidate_changed": {
+        "mode": "PUBLICATION_BATCH",
+        "id": "e4d66848cfbc483da467646d2e910b7e",
+        "sequence": 1,
+        "status": "FINISHED",
+        "items": [
+          {
+            "id": "ace6fd8825204a1b911babce362391a5",
+            "image_id": "b1fed8a6c2e541c19ce95ea34bd7244e",
+            "max_edge": 64,
+            "date": "2026-09-10",
+            "status": "READY_FOR_REVIEW",
+            "review": "ACCEPTED",
+            "relative": "2026/September/SML/SML01.png",
+            "width": 64,
+            "height": 64,
+            "quality": {
+              "status": "PASS",
+              "policy": {
+                "epsilon_255": 4,
+                "preserve_white": true,
+                "rms_fraction": 0.95,
+                "delta_e76_p95": 6.0,
+                "tile_size": 32
+              },
+              "blockers": [],
+              "psnr_db": 89.02562,
+              "identical_pixels": false,
+              "rmse_255": 0.009021,
+              "max_channel_delta_255": 1,
+              "mean_channel_delta_255": 8.1e-05,
+              "edge_error_255": 0.000165,
+              "worst_tile_rmse_255": 0.018042,
+              "delta_e76_p95": 0.0,
+              "budget_violating_pixels": 0,
+              "protected_pixels_changed": 0,
+              "visual_approval": "REQUIRED",
+              "ai_protection": "UNVERIFIED",
+              "scope": "NUMERIC_FIDELITY_ONLY; Delta E 1976, not CIEDE2000 or an imperceptibility certificate."
+            },
+            "artifact_sha256": {
+              "clean": "9f12b570b7d5079d8aadf3cc30715b536aa41835021507e3ede795ed5609191f",
+              "candidate": "e9dfd15c812cc4dd6513ddc2473a6712dfecf42d300d9622c4b5edab70085cd0"
+            },
+            "transport": {
+              "evidence_level": "PIXEL_TRANSPORT_ONLY",
+              "ai_protection": "UNVERIFIED",
+              "profiles": "Generic stress tests; not claims about any platform's current encoder.",
+              "rows": [
+                {
+                  "transform": "identity",
+                  "psnr_db": 89.02562,
+                  "identical_pixels": false,
+                  "rmse_255": 0.009021,
+                  "max_channel_delta_255": 1,
+                  "mean_channel_delta_255": 8.1e-05,
+                  "edge_error_255": 0.000165
+                },
+                {
+                  "transform": "jpeg95",
+                  "psnr_db": null,
+                  "identical_pixels": true,
+                  "rmse_255": 0.0,
+                  "max_channel_delta_255": 0,
+                  "mean_channel_delta_255": 0.0,
+                  "edge_error_255": 0.0
+                },
+                {
+                  "transform": "jpeg85",
+                  "psnr_db": null,
+                  "identical_pixels": true,
+                  "rmse_255": 0.0,
+                  "max_channel_delta_255": 0,
+                  "mean_channel_delta_255": 0.0,
+                  "edge_error_255": 0.0
+                },
+                {
+                  "transform": "jpeg70",
+                  "psnr_db": null,
+                  "identical_pixels": true,
+                  "rmse_255": 0.0,
+                  "max_channel_delta_255": 0,
+                  "mean_channel_delta_255": 0.0,
+                  "edge_error_255": 0.0
+                },
+                {
+                  "transform": "resize75",
+                  "psnr_db": 86.52684,
+                  "identical_pixels": false,
+                  "rmse_255": 0.012028,
+                  "max_channel_delta_255": 1,
+                  "mean_channel_delta_255": 0.000145,
+                  "edge_error_255": 0.000296
+                },
+                {
+                  "transform": "crop90",
+                  "psnr_db": 89.02562,
+                  "identical_pixels": false,
+                  "rmse_255": 0.009021,
+                  "max_channel_delta_255": 1,
+                  "mean_channel_delta_255": 8.1e-05,
+                  "edge_error_255": 0.000165
+                },
+                {
+                  "transform": "blur06",
+                  "psnr_db": 89.02562,
+                  "identical_pixels": false,
+                  "rmse_255": 0.009021,
+                  "max_channel_delta_255": 1,
+                  "mean_channel_delta_255": 8.1e-05,
+                  "edge_error_255": 0.000165
+                },
+                {
+                  "transform": "resize75-jpeg85",
+                  "psnr_db": null,
+                  "identical_pixels": true,
+                  "rmse_255": 0.0,
+                  "max_channel_delta_255": 0,
+                  "mean_channel_delta_255": 0.0,
+                  "edge_error_255": 0.0
+                }
+              ]
+            }
+          }
+        ],
+        "counts": {
+          "PENDING": 0,
+          "READY_FOR_REVIEW": 1,
+          "BLOCKED": 0,
+          "ACCEPTED": 1
+        },
+        "recipe": {
+          "edges": [
+            64
+          ],
+          "guard": {
+            "steps": 24,
+            "restarts": 2,
+            "seed": 7,
+            "step_255": 0.75,
+            "checkpoint_every": 4,
+            "frequency_weight": 0.65
+          },
+          "quality": {
+            "epsilon_255": 4,
+            "preserve_white": true,
+            "rms_fraction": 0.95,
+            "delta_e76_p95": 6.0,
+            "tile_size": 32
+          }
+        },
+        "master_changes": 0,
+        "duplicate_renders_avoided": 0,
+        "ai_protection": "UNVERIFIED"
+      },
+      "reject_changed_candidate": "PUBLICATION_ARTIFACT_CHANGED",
+      "serve_changed_candidate": "PUBLICATION_ARTIFACT_CHANGED",
+      "pack_changed_candidate": "PUBLICATION_ARTIFACT_CHANGED"
+    },
+    {
+      "probe": "terminal_focus",
+      "execution": "COMPLETED",
+      "boundary": "Real controller and line-command parser; no native terminal host",
+      "page": "form",
+      "field_names": [
+        "vae1",
+        "vae2",
+        "vae3",
+        "vae4",
+        "device",
+        "execute"
+      ],
+      "requested_zero_based_index": 2,
+      "cursor_after_focus_3": 0,
+      "cursor_after_down_control": 1
+    },
+    {
+      "probe": "optional_model_preflight",
+      "execution": "COMPLETED",
+      "boundary": "Controlled loader and execution instrumentation; proves call order only, not numerical model behavior",
+      "request_committed_before_optional_execution": true,
+      "calls_at_request_commit": {
+        "encoder_probe": 1,
+        "inpaint_calls": 0,
+        "temporal_calls": 0
+      }
+    },
+    {
+      "probe": "organizer_retry",
+      "execution": "COMPLETED",
+      "boundary": "Real Windows filesystem and organizer, synthetic PNG; no mocked stat results",
+      "immediate_control_checkpoint": "COMPLETE",
+      "dated_fixture_setup": "Save PNG, wait 20ms, set atime/mtime to a historical timestamp, then organize",
+      "fstat": {
+        "st_dev": 12892123235189360693,
+        "st_ino": 844424934559644,
+        "st_size": 161,
+        "st_mtime_ns": 1725984000000000000,
+        "st_ctime_ns": 1789609566943255400
+      },
+      "stat": {
+        "st_dev": 12892123235189360693,
+        "st_ino": 844424934559644,
+        "st_size": 161,
+        "st_mtime_ns": 1725984000000000000,
+        "st_ctime_ns": 1789609566922507100
+      },
+      "same_file_state": false,
+      "successive_runs": [
+        {
+          "checkpoint": "INCOMPLETE",
+          "blockers": {
+            "SOURCE_CHANGED_OUTPUT_RETAINED": 1
+          },
+          "catalog_images": 1,
+          "raw_source_present": true
+        },
+        {
+          "checkpoint": "INCOMPLETE",
+          "blockers": {
+            "SOURCE_CHANGED_OUTPUT_RETAINED": 1
+          },
+          "catalog_images": 2,
+          "raw_source_present": true
+        },
+        {
+          "checkpoint": "INCOMPLETE",
+          "blockers": {
+            "SOURCE_CHANGED_OUTPUT_RETAINED": 1
+          },
+          "catalog_images": 3,
+          "raw_source_present": true
+        }
+      ]
+    },
+    {
+      "probe": "browser_checkpoint",
+      "execution": "COMPLETED",
+      "boundary": "Exact completed() source function in Node VM; DOM collaborators substituted; not browser acceptance",
+      "before": {
+        "checkpoint": "INCOMPLETE",
+        "unmanaged": 1
+      },
+      "command": [
+        "node",
+        "-e",
+        "\nconst fs = require('fs'), vm = require('vm');\nconst source = fs.readFileSync(process.argv[1], 'utf8');\nconst match = source.match(/function completed\\(result\\)\\{[^\\n]*\\}/);\nif (!match) throw new Error('Expected function not found; review changed source');\nlet renders=0;\nconst context={current:'',batch:null,state:{audit:{checkpoint:'INCOMPLETE',unmanaged:1}},\n renderAuditBadge:()=>renders++,renderBatch:()=>{},setView:()=>{}};\nvm.createContext(context);vm.runInContext(match[0],context);\ncontext.completed({id:'synthetic-blocked-batch',mode:'PUBLICATION_BATCH',counts:{BLOCKED:1}});\nprocess.stdout.write(JSON.stringify({after:context.state.audit,badge_renders:renders}));\n",
+        "C:\\Users\\ryanf\\github\\_new\\image-riposte\\src\\riposte\\static\\publish.js"
+      ],
+      "after": {
+        "checkpoint": "COMPLETE"
+      },
+      "badge_renders": 1
+    }
+  ]
+}
