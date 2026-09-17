@@ -1,0 +1,34 @@
+...........ss.sssssssssssssssss.......sssssssss.sss..................... [ 85%]
+............                                                             [100%]
+============================== warnings summary ===============================
+.venv\Lib\site-packages\fastapi\testclient.py:1
+  C:\Users\ryanf\github\_new\image-riposte\.venv\Lib\site-packages\fastapi\testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    from starlette.testclient import TestClient as TestClient  # noqa
+
+.venv\Lib\site-packages\starlette\testclient.py:53
+  C:\Users\ryanf\github\_new\image-riposte\.venv\Lib\site-packages\starlette\testclient.py:53: DeprecationWarning: The anyio.abc.BlockingPortal alias is deprecated, use anyio.from_thread.BlockingPortal instead.
+    _PortalFactoryType = Callable[[], AbstractContextManager[anyio.abc.BlockingPortal]]
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ===========================
+SKIPPED [1] tests\test_v03_publication.py:64: could not import 'torch': Torch intentionally unavailable in this coverage probe
+SKIPPED [1] tests\test_v03_publication.py:72: could not import 'torch': Torch intentionally unavailable in this coverage probe
+SKIPPED [1] tests\test_v03_publication.py:83: could not import 'torch': Torch intentionally unavailable in this coverage probe
+SKIPPED [1] tests\test_v03_publication.py:96: could not import 'torch': Torch intentionally unavailable in this coverage probe
+SKIPPED [1] tests\test_v03_publication.py:108: could not import 'torch': Torch intentionally unavailable in this coverage probe
+SKIPPED [1] tests\test_v03_publication.py:117: could not import 'torch': Torch intentionally unavailable in this coverage probe
+SKIPPED [3] tests\test_v03_publication.py:123: could not import 'torch': Torch intentionally unavailable in this coverage probe
+SKIPPED [1] tests\test_v03_publication.py:127: could not import 'torch': Torch intentionally unavailable in this coverage probe
+SKIPPED [1] tests\test_v03_publication.py:141: could not import 'torch': Torch intentionally unavailable in this coverage probe
+SKIPPED [1] tests\test_v03_publication.py:146: could not import 'torch': Torch intentionally unavailable in this coverage probe
+SKIPPED [2] tests\test_v03_publication.py:152: could not import 'torch': Torch intentionally unavailable in this coverage probe
+SKIPPED [1] tests\test_v03_publication.py:160: could not import 'torch': Torch intentionally unavailable in this coverage probe
+SKIPPED [1] tests\test_v03_publication.py:167: could not import 'torch': Torch intentionally unavailable in this coverage probe
+SKIPPED [1] tests\test_v03_publication.py:173: could not import 'torch': Torch intentionally unavailable in this coverage probe
+SKIPPED [1] tests\test_v03_publication.py:178: could not import 'torch': Torch intentionally unavailable in this coverage probe
+SKIPPED [1] tests\test_v03_publication.py:184: could not import 'torch': Torch intentionally unavailable in this coverage probe
+SKIPPED [9] tests\test_v03_api_cli.py:35: could not import 'torch': Torch intentionally unavailable in this coverage probe
+SKIPPED [1] tests\test_v03_api_cli.py:82: could not import 'torch': Torch intentionally unavailable in this coverage probe
+SKIPPED [1] tests\test_v03_api_cli.py:89: could not import 'torch': Torch intentionally unavailable in this coverage probe
+SKIPPED [1] tests\test_v03_api_cli.py:103: could not import 'torch': Torch intentionally unavailable in this coverage probe
+53 passed, 31 skipped, 2 warnings in 6.99s

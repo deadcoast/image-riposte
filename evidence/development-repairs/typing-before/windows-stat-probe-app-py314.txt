@@ -1,0 +1,12 @@
+{"case": 0, "differences": {"st_ctime_ns": [1789592526178039800, 1789592526177038700]}}
+{"case": 0, "fixed_timestamp_differences": {"st_ctime_ns": [1789592526187122000, 1789592526177038700]}}
+{"case": 1, "differences": {"st_ctime_ns": [1789592526188122300, 1789592526187122000]}}
+{"case": 1, "fixed_timestamp_differences": {"st_ctime_ns": [1789592526189123100, 1789592526187122000]}}
+{"case": 2, "differences": {}}
+{"case": 2, "fixed_timestamp_differences": {"st_ctime_ns": [1789592526191124500, 1789592526190123400]}}
+{"case": 3, "differences": {}}
+{"case": 3, "fixed_timestamp_differences": {"st_ctime_ns": [1789592526193215300, 1789592526192122600]}}
+{"case": 4, "differences": {}}
+{"case": 4, "fixed_timestamp_differences": {"st_ctime_ns": [1789592526195219900, 1789592526194219400]}}
+{"case": 5, "differences": {}}
+{"case": 5, "fixed_timestamp_differences": {"st_ctime_ns": [1789592526198468100, 1789592526196467300]}}

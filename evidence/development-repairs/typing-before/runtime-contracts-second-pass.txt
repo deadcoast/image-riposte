@@ -1,0 +1,47 @@
+test_incomplete_organization_records (__main__.ContractFixtures.test_incomplete_organization_records) ... ok
+test_operation_callback_and_form_contracts (__main__.ContractFixtures.test_operation_callback_and_form_contracts) ... ok
+test_organization_catalog_and_image_selection (__main__.ContractFixtures.test_organization_catalog_and_image_selection) ... FAIL
+test_png_fidelity_quality_and_budget (__main__.ContractFixtures.test_png_fidelity_quality_and_budget) ... ok
+test_runtime_and_preflight_shapes_without_model_loading (__main__.ContractFixtures.test_runtime_and_preflight_shapes_without_model_loading) ... ok
+test_synthetic_publication_pending_and_blocked_shapes (__main__.ContractFixtures.test_synthetic_publication_pending_and_blocked_shapes) ... FAIL
+test_synthetic_publication_ready_and_export_shape (__main__.ContractFixtures.test_synthetic_publication_ready_and_export_shape) ... ok
+test_upgrade_optional_fields (__main__.ContractFixtures.test_upgrade_optional_fields) ... ok
+test_validator_rejects_drift (__main__.ContractFixtures.test_validator_rejects_drift) ... ok
+
+======================================================================
+FAIL: test_organization_catalog_and_image_selection (__main__.ContractFixtures.test_organization_catalog_and_image_selection)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ryanf\github\_new\image-riposte\typing\runtime_contracts.py", line 137, in test_organization_catalog_and_image_selection
+    row = self.organized()
+  File "C:\Users\ryanf\github\_new\image-riposte\typing\runtime_contracts.py", line 109, in organized
+    self.assertEqual(report["checkpoint"], "COMPLETE", report)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'INCOMPLETE' != 'COMPLETE'
+- INCOMPLETE
+? --
++ COMPLETE
+ : {'mode': 'APPLY', 'counts': {}, 'blockers': {'SOURCE_CHANGED_OUTPUT_RETAINED': 1}, 'unmanaged_or_changed_remaining': 1, 'checkpoint': 'INCOMPLETE', 'metadata_policy': 'DATE_ONLY', 'source_backups': 'NONE'}
+
+======================================================================
+FAIL: test_synthetic_publication_pending_and_blocked_shapes (__main__.ContractFixtures.test_synthetic_publication_pending_and_blocked_shapes)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ryanf\github\_new\image-riposte\typing\runtime_contracts.py", line 190, in test_synthetic_publication_pending_and_blocked_shapes
+    batch_id, item_id, prefix = self.fixture_batch()
+                                ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\ryanf\github\_new\image-riposte\typing\runtime_contracts.py", line 172, in fixture_batch
+    row = self.organized()
+  File "C:\Users\ryanf\github\_new\image-riposte\typing\runtime_contracts.py", line 109, in organized
+    self.assertEqual(report["checkpoint"], "COMPLETE", report)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'INCOMPLETE' != 'COMPLETE'
+- INCOMPLETE
+? --
++ COMPLETE
+ : {'mode': 'APPLY', 'counts': {}, 'blockers': {'SOURCE_CHANGED_OUTPUT_RETAINED': 1}, 'unmanaged_or_changed_remaining': 1, 'checkpoint': 'INCOMPLETE', 'metadata_policy': 'DATE_ONLY', 'source_backups': 'NONE'}
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.496s
+
+FAILED (failures=2)

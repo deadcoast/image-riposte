@@ -5,6 +5,8 @@ Exports records statically declared names (including class methods), not Python'
 dynamic public API. Imports includes conditional and function-local statements.
 Requires resolves local static modules and source/stub ownership, not dynamic
 imports, optional-provider availability, or execution order.
+Source symbols include module declarations and direct class methods. Nested
+implementation closures and external declarations remain under their owner.
 """
 from __future__ import annotations
 
@@ -32,8 +34,11 @@ INPUTS = (
     "typing/checks/consumers.py", "typing/checks/rejected.py.txt",
     "typing/evidence/source-before.json", "typing/evidence/verification.json",
     "typing/evidence/source-reviewed-v050.json",
+    "typing/evidence/source-reviewed-repairs.json",
     "typing/evidence/source-current.txt",
     "typing/evidence/source-current-command.txt",
+    "typing/evidence/source-environment.json",
+    "typing/evidence/source-current-command.json",
     "typing/evidence/dynamic-boundaries.json",
     "typing/evidence/windows-stat-probe.txt",
     "typing/evidence/windows-stat-probe-app-py314.txt",
@@ -150,12 +155,85 @@ def inventory() -> tuple[list[dict[str, str]], dict[str, str]]:
     return [describe(path, modules) for path in paths], {path: digest(ROOT / path) for path in paths}
 
 
-def reconcile(plan: Path | None) -> bool:
+def symbol_inventory(paths: list[str]) -> list[dict[str, str]]:
+    """Index declarations and statically named references without importing code."""
+    modules = {module_info[1]: path for path in paths
+               if (module_info := module_key(path)) is not None and module_info[0] == "source"}
+    modules["pacer_inventory"] = "typing/pacer_inventory.py"
+    owners: dict[str, tuple[str, ast.AST, str]] = {}
+    trees: dict[str, ast.Module] = {}
+    for path in sorted(set(modules.values())):
+        tree = ast.parse((ROOT / path).read_text(encoding="utf-8"))
+        trees[path] = tree
+        for node in tree.body:
+            if isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef, ast.ClassDef)):
+                owners[f"{path}:{node.name}"] = (path, node, "")
+                if isinstance(node, ast.ClassDef):
+                    for child in node.body:
+                        if isinstance(child, (ast.FunctionDef, ast.AsyncFunctionDef)):
+                            owners[f"{path}:{node.name}.{child.name}"] = (path, child, node.name)
+            elif path.startswith("src/"):
+                for name in definitions(ast.Module(body=[node], type_ignores=[])):
+                    owners[f"{path}:{name}"] = (path, node, "")
+    records = []
+    for key, (path, declaration, class_name) in sorted(owners.items()):
+        symbol = key.split(":", 1)[1]
+        package_key = module_key(path)
+        package = package_key[1].split(".") if package_key else []
+        if Path(path).stem != "__init__":
+            package = package[:-1]
+        bindings: dict[str, str] = {}
+        # Top-level bindings plus imports within this declaration. A sibling
+        # function's local imports cannot leak into this symbol's dependencies.
+        imports = [part for part in trees[path].body if isinstance(part, (ast.Import, ast.ImportFrom))]
+        imports += [part for part in ast.walk(declaration) if isinstance(part, (ast.Import, ast.ImportFrom))]
+        for imported in imports:
+            if isinstance(imported, ast.Import):
+                for alias in imported.names:
+                    if alias.name in modules:
+                        bindings[alias.asname or alias.name] = modules[alias.name]
+            else:
+                base = package[:len(package) - imported.level + 1] if imported.level else []
+                if imported.module:
+                    base += imported.module.split(".")
+                module = ".".join(base)
+                for alias in imported.names:
+                    target = f"{modules[module]}:{alias.name}" if module in modules else ""
+                    if target in owners:
+                        bindings[alias.asname or alias.name] = target
+                    elif f"{module}.{alias.name}" in modules:
+                        bindings[alias.asname or alias.name] = modules[f"{module}.{alias.name}"]
+        shadowed: set[str] = set()
+        if isinstance(declaration, (ast.FunctionDef, ast.AsyncFunctionDef)):
+            shadowed.update(arg.arg for arg in (*declaration.args.posonlyargs, *declaration.args.args, *declaration.args.kwonlyargs))
+            shadowed.update(arg.arg for arg in (declaration.args.vararg, declaration.args.kwarg) if arg)
+            shadowed.update(part.id for part in ast.walk(declaration) if isinstance(part, ast.Name) and isinstance(part.ctx, ast.Store))
+        dependencies = {path}
+        for part in ast.walk(declaration):
+            reference = ""
+            if isinstance(part, ast.Name) and isinstance(part.ctx, ast.Load) and part.id not in shadowed:
+                reference = bindings.get(part.id, f"{path}:{part.id}")
+            elif isinstance(part, ast.Attribute) and isinstance(part.value, ast.Name):
+                if class_name and part.value.id in {"self", "cls"}:
+                    reference = f"{path}:{class_name}.{part.attr}"
+                elif part.value.id not in shadowed and part.value.id in bindings:
+                    reference = f"{bindings[part.value.id]}:{part.attr}"
+            if reference in owners and reference != key:
+                dependencies.add(reference)
+        # PACER represents module data declarations with its CONFIG asset type.
+        kind = "CLASS" if isinstance(declaration, ast.ClassDef) else "FUNCTION" if isinstance(declaration, (ast.FunctionDef, ast.AsyncFunctionDef)) else "CONFIG"
+        records.append({"AssetType": kind, "Path": path, "Symbol": symbol,
+                        "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+                        "Requires": ";".join(sorted(dependencies)), "Tags": "#source-symbol"})
+    return records
+
+
+def reconcile(plan: Path | None = None) -> bool:
     desired, hashes = inventory()
     with (ROOT / "overlord.PACER.csv").open(encoding="utf-8-sig", newline="") as handle:
         registered = list(csv.DictReader(handle))
     files = {row["Path"]: row for row in registered if row["AssetType"] == "FILE"}
-    next_id = max(int(row["ID"].split("-")[1]) for row in registered if row["ID"].split("-")[1].isdigit()) + 1
+    next_id = max((int(row["ID"].split("-")[1]) for row in registered if row["ID"].split("-")[1].isdigit()), default=0) + 1
     ids = {path: row["ID"] for path, row in files.items()}
     for row in desired:
         if row["Path"] not in ids:
@@ -183,33 +261,49 @@ def reconcile(plan: Path | None) -> bool:
     for row in registered:
         if TAG in row.get("Tags", "").split() and row["AssetType"] == "FILE" and row["Path"] not in paths:
             issues.append(f"Retired indexed path needs review: {row['Path']}")
-    # The new tool's callable symbols receive individual OVR rows. Existing
-    # application/stub definitions remain in their FILE Exports and this report.
-    tool_path = "typing/pacer_inventory.py"
-    tool_tree = ast.parse((ROOT / tool_path).read_text(encoding="utf-8"))
-    tool_functions = {node.name for node in tool_tree.body if isinstance(node, ast.FunctionDef)}
-    for name in sorted(tool_functions):
-        matches = [row for row in registered if row["Path"] == tool_path and row["Symbol"] == name]
-        fields = {"AssetType": "FUNCTION", "Path": tool_path, "Symbol": name,
-                  "Requires": ids[tool_path], "Tags": "#typing-tool"}
-        if not matches:
-            issues.append(f"Unregistered tool function: {name}")
-            operations.append({"op": "add", "register": "overlord", "row": {
-                "ID": f"OVR-{next_id:03}", "Purpose": "PACER inventory tool function", **fields}})
+    symbols = symbol_inventory(sorted(paths))
+    symbol_ids = {f"{row['Path']}:{row['Symbol']}": row["ID"] for row in registered if row["Symbol"]}
+    expected_keys = {f"{row['Path']}:{row['Symbol']}" for row in symbols}
+    for key in sorted(expected_keys):
+        if key not in symbol_ids:
+            symbol_ids[key] = f"OVR-{next_id:03}"
             next_id += 1
-        elif len(matches) != 1 or any(matches[0].get(key, "") != value for key, value in fields.items()):
-            issues.append(f"Tool function metadata needs review: {name}")
+    reference_ids = ids | symbol_ids
+    for row in symbols:
+        key = f"{row['Path']}:{row['Symbol']}"
+        matches = [old for old in registered if old["Path"] == row["Path"] and old["Symbol"] == row["Symbol"]]
+        row["ID"] = symbol_ids[key]
+        required = {reference_ids[part] for part in row["Requires"].split(";")}
+        row["Requires"] = ";".join(sorted(required))
+        if not matches:
+            issues.append(f"Unregistered symbol: {key}")
+            operations.append({"op": "add", "register": "overlord", "row": row})
+        elif len(matches) != 1:
+            issues.append(f"Duplicate symbol: {key}")
+        else:
+            old = matches[0]
+            fields = {}
+            if old["AssetType"] != row["AssetType"]:
+                fields["AssetType"] = row["AssetType"]
+            # Keep additional reviewed edges; demand every derived dependency.
+            existing_edges = set(filter(None, old["Requires"].split(";")))
+            if not required <= existing_edges:
+                fields["Requires"] = ";".join(sorted(existing_edges | required))
+            if fields:
+                issues.append(f"Stale symbol: {key}: {', '.join(sorted(fields))}")
+                operations.append({"op": "set", "id": old["ID"], "fields": fields})
     for row in registered:
-        if "#typing-tool" in row.get("Tags", "").split() and row["Symbol"] not in tool_functions:
-            issues.append(f"Retired tool function needs review: {row['Symbol']}")
+        key = f"{row['Path']}:{row['Symbol']}"
+        if "#source-symbol" in row.get("Tags", "").split() and key not in expected_keys:
+            issues.append(f"Retired symbol needs review: {key}")
     source = {path: value for path, value in hashes.items()
               if path.startswith("src/") and is_application_source(Path(path))}
     baseline = json.loads(REVIEWED_SOURCE.read_text(encoding="utf-8"))
     baseline = {path: value for path, value in baseline.items() if is_application_source(Path(path))}
     if source != baseline:
         issues.append("Application source differs from the reviewed source snapshot")
-    source_modules = {key[1] for path in paths if (key := module_key(path)) and key[0] == "source"}
-    stub_modules = {key[1] for path in paths if (key := module_key(path)) and key[0] == "stub" and key[1] != "_riposte_types"}
+    source_modules = {module[1] for path in paths if (module := module_key(path)) and module[0] == "source"}
+    stub_modules = {module[1] for path in paths if (module := module_key(path)) and module[0] == "stub" and module[1] != "_riposte_types"}
     if source_modules != stub_modules:
         issues.append("Source/stub module coverage differs")
     verification = json.loads((ROOT / "typing/evidence/verification.json").read_text(encoding="utf-8"))
@@ -223,16 +317,20 @@ def reconcile(plan: Path | None) -> bool:
         "scope": __doc__, "result": "FAIL" if issues else "PASS", "issues": issues,
         "counts": {"source_files": len(source), "source_modules": len(source_modules),
                    "paired_stubs": len(stub_modules), "indexed_files": len(desired),
-                   "tool_functions": len(tool_functions),
+                   "source_symbols": sum(row["Path"].startswith("src/") for row in symbols),
+                   "tool_functions": sum(row["Path"] == "typing/pacer_inventory.py" for row in symbols),
+                   "symbol_dependency_edges": sum(len(row["Requires"].split(";")) for row in symbols),
                    "static_definitions": sum(len(row["Exports"].split(";")) for row in desired if row["Exports"]),
                    "local_dependency_edges": sum(len(row["Requires"].split(";")) for row in desired if row["Requires"])},
         "sources": hashes, "source_unchanged": source == baseline,
         "contracts_recorded_pass": not any(value is not True for value in results.values()) and set(results) == expected_stages,
         "files": [{"id": ids[row["Path"]], "path": row["Path"], "definitions": row["Exports"].split(";") if row["Exports"] else []} for row in desired],
+        "symbols": symbols,
         "limits": ["Run typing/check.py immediately before acceptance; reading its old report is not a fresh test.",
                    "Static imports do not establish optional providers or dynamic dependency completeness.",
                    "Definition names are syntactic declarations; annotations and bodies require separate review.",
-                   "Raw-source mypy errors and Windows stat finding are unresolved; no source repair is claimed."]}
+                   "Nested local closures and external-library declarations are represented by their owning declarations.",
+                   "Source/stub pairing covers external declarations; symbol records describe application source only."]}
     REPORT.write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
     if plan is not None:
         plan.parent.mkdir(parents=True, exist_ok=True)

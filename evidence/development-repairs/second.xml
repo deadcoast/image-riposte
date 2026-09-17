@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="2" skipped="0" tests="33" time="2.015" timestamp="2026-09-16T19:09:46.000523-07:00" hostname="homeone"><testcase classname="tests.test_development_repairs" name="test_organization_retries_are_idempotent[False]" time="0.060" /><testcase classname="tests.test_development_repairs" name="test_organization_retries_are_idempotent[True]" time="0.075" /><testcase classname="tests.test_development_repairs" name="test_changed_source_is_retained_at_commit[replace]" time="0.055" /><testcase classname="tests.test_development_repairs" name="test_changed_source_is_retained_at_commit[write_restore_mtime]" time="0.058" /><testcase classname="tests.test_development_repairs" name="test_path_change_during_decode_is_rejected" time="0.003" /><testcase classname="tests.test_development_repairs" name="test_homepage_uses_utf8_and_keeps_headers" time="0.037" /><testcase classname="tests.test_development_repairs" name="test_job_results_remain_visible[result0-incomplete]" time="0.010" /><testcase classname="tests.test_development_repairs" name="test_job_results_remain_visible[result1-incomplete]" time="0.009" /><testcase classname="tests.test_development_repairs" name="test_job_results_remain_visible[result2-incomplete]" time="0.009" /><testcase classname="tests.test_development_repairs" name="test_job_results_remain_visible[result3-incomplete]" time="0.010" /><testcase classname="tests.test_development_repairs" name="test_job_results_remain_visible[result4-done]" time="0.009" /><testcase classname="tests.test_development_repairs" name="test_job_results_remain_visible[result5-done]" time="0.010" /><testcase classname="tests.test_development_repairs" name="test_request_limit_counts_body_bytes[fixed-32768]" time="0.011" /><testcase classname="tests.test_development_repairs" name="test_request_limit_counts_body_bytes[fixed-32769]" time="0.010" /><testcase classname="tests.test_development_repairs" name="test_request_limit_counts_body_bytes[fixed-40015]" time="0.009" /><testcase classname="tests.test_development_repairs" name="test_request_limit_counts_body_bytes[chunked-32768]" time="0.011" /><testcase classname="tests.test_development_repairs" name="test_request_limit_counts_body_bytes[chunked-32769]" time="0.010" /><testcase classname="tests.test_development_repairs" name="test_request_limit_counts_body_bytes[chunked-40015]" time="0.010" /><testcase classname="tests.test_development_repairs" name="test_request_limit_counts_body_bytes[false_length-32768]" time="0.010" /><testcase classname="tests.test_development_repairs" name="test_request_limit_counts_body_bytes[false_length-32769]" time="0.010" /><testcase classname="tests.test_development_repairs" name="test_request_limit_counts_body_bytes[false_length-40015]" time="0.009" /><testcase classname="tests.test_development_repairs" name="test_stream_stops_at_bound_and_authentication_precedes_consumption[headers0-401-0]" time="0.009" /><testcase classname="tests.test_development_repairs" name="test_stream_stops_at_bound_and_authentication_precedes_consumption[headers1-403-0]" time="0.008" /><testcase classname="tests.test_development_repairs" name="test_stream_stops_at_bound_and_authentication_precedes_consumption[headers2-413-3]" time="0.008" /><testcase classname="tests.test_development_repairs" name="test_changed_approval_can_be_revoked_without_serving[change-candidate.png]" time="0.180"><failure message="AssertionError: Regex pattern did not match.&#10;  Expected regex: 'NO_APPROVED'&#10;  Actual message: 'ORGANIZATION_CHECKPOINT_REQUIRED'">root = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/development-repairs/second/test_changed_approval_can_be_r0/workspace')
+committed = ('e533bb77aeff44f38e163257fc9edc2a', '4b0b46369b2543c1932d9d10d177be28', WindowsPath('C:/Users/ryanf/github/_new/image...oval_can_be_r0/workspace/.riposte/publishing/e533bb77aeff44f38e163257fc9edc2a/items/4b0b46369b2543c1932d9d10d177be28'))
+kind = 'candidate.png', damage = 'change'
+
+    @pytest.mark.parametrize('kind', ['candidate.png', 'clean.png', 'report.json'])
+    @pytest.mark.parametrize('damage', ['change', 'missing'])
+    def test_changed_approval_can_be_revoked_without_serving(root, committed, kind, damage):
+        batch, item, folder = committed
+        assert p.review_publication(root, batch, [item], 'ACCEPTED', True, True)['counts']['ACCEPTED'] == 1
+        assert p.publication_zip(root, batch)
+        target = folder / kind
+        if damage == 'missing':
+            target.unlink()
+        else:
+            target.write_bytes(b'corrupted')
+        status = p.publication_status(root, batch)
+        assert status['counts']['ACCEPTED'] == 0
+        assert status['items'][0]['status'] == 'BLOCKED'
+        assert status['items'][0]['review'] == 'STALE'
+        for operation in [lambda: p.publication_pixels(root, batch, item),
+                          lambda: p.publication_zip(root, batch),
+                          lambda: p.review_publication(root, batch, [item], 'ACCEPTED', True, True)]:
+            with pytest.raises(RiposteError):
+                operation()
+        rejected = p.review_publication(root, batch, [item], 'REJECTED')
+        assert rejected['counts']['ACCEPTED'] == 0
+        assert rejected['items'][0]['review'] == 'REJECTED'
+&gt;       with pytest.raises(RiposteError, match='NO_APPROVED'):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AssertionError: Regex pattern did not match.
+E         Expected regex: 'NO_APPROVED'
+E         Actual message: 'ORGANIZATION_CHECKPOINT_REQUIRED'
+
+tests\test_development_repairs.py:225: AssertionError</failure></testcase><testcase classname="tests.test_development_repairs" name="test_changed_approval_can_be_revoked_without_serving[change-clean.png]" time="0.166"><failure message="AssertionError: Regex pattern did not match.&#10;  Expected regex: 'NO_APPROVED'&#10;  Actual message: 'ORGANIZATION_CHECKPOINT_REQUIRED'">root = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/development-repairs/second/test_changed_approval_can_be_r1/workspace')
+committed = ('1f729184b9ff41d89b3abdeba0aa7091', '676a81e4d6354865aebc565f14c4b759', WindowsPath('C:/Users/ryanf/github/_new/image...oval_can_be_r1/workspace/.riposte/publishing/1f729184b9ff41d89b3abdeba0aa7091/items/676a81e4d6354865aebc565f14c4b759'))
+kind = 'clean.png', damage = 'change'
+
+    @pytest.mark.parametrize('kind', ['candidate.png', 'clean.png', 'report.json'])
+    @pytest.mark.parametrize('damage', ['change', 'missing'])
+    def test_changed_approval_can_be_revoked_without_serving(root, committed, kind, damage):
+        batch, item, folder = committed
+        assert p.review_publication(root, batch, [item], 'ACCEPTED', True, True)['counts']['ACCEPTED'] == 1
+        assert p.publication_zip(root, batch)
+        target = folder / kind
+        if damage == 'missing':
+            target.unlink()
+        else:
+            target.write_bytes(b'corrupted')
+        status = p.publication_status(root, batch)
+        assert status['counts']['ACCEPTED'] == 0
+        assert status['items'][0]['status'] == 'BLOCKED'
+        assert status['items'][0]['review'] == 'STALE'
+        for operation in [lambda: p.publication_pixels(root, batch, item),
+                          lambda: p.publication_zip(root, batch),
+                          lambda: p.review_publication(root, batch, [item], 'ACCEPTED', True, True)]:
+            with pytest.raises(RiposteError):
+                operation()
+        rejected = p.review_publication(root, batch, [item], 'REJECTED')
+        assert rejected['counts']['ACCEPTED'] == 0
+        assert rejected['items'][0]['review'] == 'REJECTED'
+&gt;       with pytest.raises(RiposteError, match='NO_APPROVED'):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AssertionError: Regex pattern did not match.
+E         Expected regex: 'NO_APPROVED'
+E         Actual message: 'ORGANIZATION_CHECKPOINT_REQUIRED'
+
+tests\test_development_repairs.py:225: AssertionError</failure></testcase><testcase classname="tests.test_development_repairs" name="test_changed_approval_can_be_revoked_without_serving[change-report.json]" time="0.162" /><testcase classname="tests.test_development_repairs" name="test_changed_approval_can_be_revoked_without_serving[missing-candidate.png]" time="0.172" /><testcase classname="tests.test_development_repairs" name="test_changed_approval_can_be_revoked_without_serving[missing-clean.png]" time="0.171" /><testcase classname="tests.test_development_repairs" name="test_changed_approval_can_be_revoked_without_serving[missing-report.json]" time="0.167" /><testcase classname="tests.test_development_repairs" name="test_browser_completion_uses_actual_audit[audit0]" time="0.038" /><testcase classname="tests.test_development_repairs" name="test_browser_completion_uses_actual_audit[audit1]" time="0.037" /><testcase classname="tests.test_development_repairs" name="test_browser_completion_uses_actual_audit[None]" time="0.040" /></testsuite></testsuites>

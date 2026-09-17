@@ -121,9 +121,17 @@ def test_loader_architecture_and_normalization_allowlists(local_tree,loaders,fil
     with pytest.raises(RiposteError,match=code):LocalTemporalProbe(local_tree,'cpu')
     assert not loaders
 
-def test_loader_requires_safetensors_and_rejects_linked_components(local_tree,loaders,tmp_path):
+def test_loader_requires_safetensors(local_tree,loaders):
     (local_tree/'vae/diffusion_pytorch_model.safetensors').unlink()
     with pytest.raises(RiposteError,match='SAFETENSORS'):LocalTemporalProbe(local_tree,'cpu')
-    (local_tree/'vae/link').symlink_to(tmp_path)
+    assert not loaders
+
+def test_loader_rejects_linked_components(local_tree,loaders,tmp_path):
+    try:
+        (local_tree/'vae/link').symlink_to(tmp_path,target_is_directory=True)
+    except OSError as exc:
+        if getattr(exc,'winerror',None)==1314:
+            pytest.skip('Windows account lacks symlink privilege')
+        raise
     with pytest.raises(RiposteError,match='DIRECTORY'):LocalTemporalProbe(local_tree,'cpu')
     assert not loaders

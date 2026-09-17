@@ -132,6 +132,8 @@ def protect(image: Image.Image, encoders: list, config: GuardConfig = GuardConfi
         mask = torch.where((x.min(1,keepdim=True).values > .97) & (detail < .005), 0., mask)
     # Integer budgets keep exported 8-bit pixels inside the true per-pixel bound.
     budget = (mask * config.epsilon_255).floor()/255
+    if not bool((budget > 0).any()):
+        raise RiposteError("NO_EDITABLE_PIXEL_BUDGET")
     low, high = (x-budget).clamp(0,1), (x+budget).clamp(0,1)
     generator = torch.Generator(device=device).manual_seed(config.seed)
     noise = (torch.rand(x.shape, generator=generator, device=device)*2-1)*budget
@@ -144,6 +146,7 @@ def protect(image: Image.Image, encoders: list, config: GuardConfig = GuardConfi
                 z = model(eot(x, name)).detach()
                 baselines.append((model, name, z, z.square().mean().clamp_min(1e-6)))
     trace = []
+    had_gradient = False
     for step in range(config.steps):
         candidate = candidate.detach().requires_grad_(True)
         losses = []
@@ -157,9 +160,14 @@ def protect(image: Image.Image, encoders: list, config: GuardConfig = GuardConfi
         objective = -temperature * (torch.logsumexp(-values/temperature,0)-math.log(len(losses)))
         if not torch.isfinite(objective):
             raise RiposteError("OPTIMIZER_NONFINITE")
-        grad = torch.autograd.grad(objective,candidate)[0]
+        if not objective.requires_grad:
+            raise RiposteError("ZERO_GRADIENT_NO_CANDIDATE")
+        grad = torch.autograd.grad(objective,candidate,allow_unused=True)[0]
+        if grad is None:
+            raise RiposteError("ZERO_GRADIENT_NO_CANDIDATE")
         if not torch.isfinite(grad).all():
             raise RiposteError("OPTIMIZER_NONFINITE")
+        had_gradient |= bool(((grad != 0) & (budget > 0)).any())
         candidate = (candidate + config.step_255/255*grad.sign()).detach()
         candidate = torch.maximum(torch.minimum(candidate,high),low)
         if step % max(1,config.steps//12) == 0 or step == config.steps-1:
@@ -167,6 +175,8 @@ def protect(image: Image.Image, encoders: list, config: GuardConfig = GuardConfi
             trace.append(point)
             if progress:
                 progress({"phase":"Optimizing experimental candidate", "processed":step+1, "total":config.steps})
+    if not had_gradient:
+        raise RiposteError("ZERO_GRADIENT_NO_CANDIDATE")
     quantized = candidate.detach().mul(255).round().clamp(0,255)
     output = Image.fromarray(quantized[0].permute(1,2,0).cpu().numpy().astype(np.uint8))
     final = []
@@ -176,6 +186,8 @@ def protect(image: Image.Image, encoders: list, config: GuardConfig = GuardConfi
             if not math.isfinite(score):
                 raise RiposteError("OPTIMIZER_NONFINITE")
             final.append({"encoder":i//len(names)+1, "transform":name, "relative_feature_mse":score})
+    if min(item['relative_feature_mse'] for item in final) <= 0:
+        raise RiposteError("NO_USEFUL_CANDIDATE")
     quality = fidelity(image,output)
     if quality["max_channel_delta_255"] > config.epsilon_255:
         raise RiposteError("PERTURBATION_BUDGET_VIOLATED")

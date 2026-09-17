@@ -1,0 +1,36 @@
+warning: `VIRTUAL_ENV=.venv` does not match the project environment path `typing\.venv` and will be ignored; use `--active` to target the active environment instead
+Source/stub parity: 318 signatures, 38 importable leaf modules
+mypy-contracts: PASS
+mypy-tooling: PASS
+stubtest: PASS
+runtime-contracts: PASS
+tooling-regressions: FAIL
+test_added_application_file_is_detected (__main__.TypingToolingTests.test_added_application_file_is_detected) ... ok
+test_changed_application_file_is_detected (__main__.TypingToolingTests.test_changed_application_file_is_detected) ... ok
+test_default_and_dot_reach_source_errors_despite_build_and_stub_copies (__main__.TypingToolingTests.test_default_and_dot_reach_source_errors_despite_build_and_stub_copies) ... ok
+test_generated_metadata_is_not_application_identity (__main__.TypingToolingTests.test_generated_metadata_is_not_application_identity) ... ok
+test_reconciliation_rejects_missing_symbol_and_dependency (__main__.TypingToolingTests.test_reconciliation_rejects_missing_symbol_and_dependency) ... ERROR
+test_removed_application_file_is_detected (__main__.TypingToolingTests.test_removed_application_file_is_detected) ... ok
+test_source_audit_uses_project_environment_and_explicit_override (__main__.TypingToolingTests.test_source_audit_uses_project_environment_and_explicit_override) ... ok
+test_structured_report_is_not_a_dynamic_report_alias (__main__.TypingToolingTests.test_structured_report_is_not_a_dynamic_report_alias) ... ok
+test_symbol_local_shadow_does_not_invent_import_dependency (__main__.TypingToolingTests.test_symbol_local_shadow_does_not_invent_import_dependency) ... ok
+test_symbols_cover_public_private_class_and_async_dependencies (__main__.TypingToolingTests.test_symbols_cover_public_private_class_and_async_dependencies) ... ok
+
+======================================================================
+ERROR: test_reconciliation_rejects_missing_symbol_and_dependency (__main__.TypingToolingTests.test_reconciliation_rejects_missing_symbol_and_dependency)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ryanf\github\_new\image-riposte\typing\test_tooling.py", line 176, in test_reconciliation_rejects_missing_symbol_and_dependency
+    self.assertFalse(inventory.reconcile(plan))
+                     ~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\ryanf\github\_new\image-riposte\typing\pacer_inventory.py", line 235, in reconcile
+    next_id = max(int(row["ID"].split("-")[1]) for row in registered if row["ID"].split("-")[1].isdigit()) + 1
+              ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: max() iterable argument is empty
+
+----------------------------------------------------------------------
+Ran 10 tests in 1.855s
+
+FAILED (errors=1)
+
+negative-consumers: 13/13 expected diagnostics; exact line/code match=True

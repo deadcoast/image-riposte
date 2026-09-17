@@ -1,0 +1,193 @@
+{
+  "scope": "CPU search regressions with deterministic synthetic differentiable encoders, real codec views and real numerical quality gates",
+  "configurations": {
+    "before": {
+      "checkpoint_1": {
+        "status": "PASS",
+        "selection": {
+          "restart": 1,
+          "step": 3,
+          "initial_min_context_score": 0.002582880202680826
+        },
+        "minimum_context_score": 0.014881721697747707,
+        "quality": {
+          "status": "PASS",
+          "policy": {
+            "epsilon_255": 4,
+            "preserve_white": true,
+            "rms_fraction": 0.95,
+            "delta_e76_p95": 6.0,
+            "tile_size": 32
+          },
+          "blockers": [],
+          "psnr_db": 36.67815,
+          "identical_pixels": false,
+          "rmse_255": 3.737944,
+          "max_channel_delta_255": 4,
+          "mean_channel_delta_255": 3.599537,
+          "edge_error_255": 1.788949,
+          "worst_tile_rmse_255": 3.737944,
+          "delta_e76_p95": 5.398729,
+          "budget_violating_pixels": 0,
+          "protected_pixels_changed": 0,
+          "visual_approval": "REQUIRED",
+          "ai_protection": "UNVERIFIED",
+          "scope": "NUMERIC_FIDELITY_ONLY; Delta E 1976, not CIEDE2000 or an imperceptibility certificate."
+        },
+        "pixels_sha256": "e960f6735af757bdd5f4198ab82fa5b5106e346b8ea8e95b81b69d863113f2a1"
+      },
+      "checkpoint_4": {
+        "status": "PASS",
+        "selection": {
+          "restart": 1,
+          "step": 1,
+          "initial_min_context_score": 0.002582880202680826
+        },
+        "minimum_context_score": 0.006348812952637672,
+        "quality": {
+          "status": "PASS",
+          "policy": {
+            "epsilon_255": 4,
+            "preserve_white": true,
+            "rms_fraction": 0.95,
+            "delta_e76_p95": 6.0,
+            "tile_size": 32
+          },
+          "blockers": [],
+          "psnr_db": 38.02823,
+          "identical_pixels": false,
+          "rmse_255": 3.199844,
+          "max_channel_delta_255": 4,
+          "mean_channel_delta_255": 2.910301,
+          "edge_error_255": 2.881039,
+          "worst_tile_rmse_255": 3.199844,
+          "delta_e76_p95": 5.276205,
+          "budget_violating_pixels": 0,
+          "protected_pixels_changed": 0,
+          "visual_approval": "REQUIRED",
+          "ai_protection": "UNVERIFIED",
+          "scope": "NUMERIC_FIDELITY_ONLY; Delta E 1976, not CIEDE2000 or an imperceptibility certificate."
+        },
+        "pixels_sha256": "ad77a11901800b66e9389a495d7fa1af4e02f14c2ec968a4145a79234f563984"
+      },
+      "oversized_step": {
+        "status": "BLOCKED",
+        "code": "NO_IMPROVED_FIDELITY_ACCEPTABLE_CANDIDATE"
+      }
+    },
+    "after": {
+      "checkpoint_1": {
+        "status": "PASS",
+        "selection": {
+          "restart": 1,
+          "step": 4,
+          "initial_min_context_score": 0.002582880202680826,
+          "step_255": 1.0,
+          "backtracks": 1
+        },
+        "minimum_context_score": 0.016587048768997192,
+        "quality": {
+          "status": "PASS",
+          "policy": {
+            "epsilon_255": 4,
+            "preserve_white": true,
+            "rms_fraction": 0.95,
+            "delta_e76_p95": 6.0,
+            "tile_size": 32
+          },
+          "blockers": [],
+          "psnr_db": 36.59336,
+          "identical_pixels": false,
+          "rmse_255": 3.774611,
+          "max_channel_delta_255": 4,
+          "mean_channel_delta_255": 3.672454,
+          "edge_error_255": 1.596316,
+          "worst_tile_rmse_255": 3.774611,
+          "delta_e76_p95": 5.154173,
+          "budget_violating_pixels": 0,
+          "protected_pixels_changed": 0,
+          "visual_approval": "REQUIRED",
+          "ai_protection": "UNVERIFIED",
+          "scope": "NUMERIC_FIDELITY_ONLY; Delta E 1976, not CIEDE2000 or an imperceptibility certificate."
+        },
+        "pixels_sha256": "8146db83ac9bcac5e854118289e99f26f1fdea33445e052c8601540fa6129a35"
+      },
+      "checkpoint_4": {
+        "status": "PASS",
+        "selection": {
+          "restart": 1,
+          "step": 4,
+          "initial_min_context_score": 0.002582880202680826,
+          "step_255": 1.0,
+          "backtracks": 1
+        },
+        "minimum_context_score": 0.016587048768997192,
+        "quality": {
+          "status": "PASS",
+          "policy": {
+            "epsilon_255": 4,
+            "preserve_white": true,
+            "rms_fraction": 0.95,
+            "delta_e76_p95": 6.0,
+            "tile_size": 32
+          },
+          "blockers": [],
+          "psnr_db": 36.59336,
+          "identical_pixels": false,
+          "rmse_255": 3.774611,
+          "max_channel_delta_255": 4,
+          "mean_channel_delta_255": 3.672454,
+          "edge_error_255": 1.596316,
+          "worst_tile_rmse_255": 3.774611,
+          "delta_e76_p95": 5.154173,
+          "budget_violating_pixels": 0,
+          "protected_pixels_changed": 0,
+          "visual_approval": "REQUIRED",
+          "ai_protection": "UNVERIFIED",
+          "scope": "NUMERIC_FIDELITY_ONLY; Delta E 1976, not CIEDE2000 or an imperceptibility certificate."
+        },
+        "pixels_sha256": "8146db83ac9bcac5e854118289e99f26f1fdea33445e052c8601540fa6129a35"
+      },
+      "oversized_step": {
+        "status": "PASS",
+        "selection": {
+          "restart": 1,
+          "step": 1,
+          "initial_min_context_score": 0.00014456182543653995,
+          "step_255": 4.0,
+          "backtracks": 1
+        },
+        "minimum_context_score": 0.0011017312062904239,
+        "quality": {
+          "status": "PASS",
+          "policy": {
+            "epsilon_255": 4,
+            "preserve_white": true,
+            "rms_fraction": 0.95,
+            "delta_e76_p95": 6.0,
+            "tile_size": 32
+          },
+          "blockers": [],
+          "psnr_db": 36.67822,
+          "identical_pixels": false,
+          "rmse_255": 3.737915,
+          "max_channel_delta_255": 4,
+          "mean_channel_delta_255": 3.642578,
+          "edge_error_255": 2.69338,
+          "worst_tile_rmse_255": 3.737915,
+          "delta_e76_p95": 5.864449,
+          "budget_violating_pixels": 0,
+          "protected_pixels_changed": 0,
+          "visual_approval": "REQUIRED",
+          "ai_protection": "UNVERIFIED",
+          "scope": "NUMERIC_FIDELITY_ONLY; Delta E 1976, not CIEDE2000 or an imperceptibility certificate."
+        },
+        "pixels_sha256": "52fbe2419fc0f6f4f8be357f225416458c04782ab9ae7aa723f195541a7aaeae"
+      }
+    }
+  },
+  "sources": {
+    "before_reviewed_sha256": "673fcfc83602e074d774b4ccfeddf4f481f784887a72986dbce8d9abf150245e",
+    "after_sha256": "52787a6620ccab6efdd1446cb469d8e966212ae2fad0f6bd8219aebe031cd391"
+  }
+}

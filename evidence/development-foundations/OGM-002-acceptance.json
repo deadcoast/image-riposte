@@ -1,0 +1,40 @@
+{
+  "requirement": "OGM-002",
+  "meaning": "cab61136ee7f1dff1d0e65666500efbc1441552cdc2c5fb577823694afa8c75a",
+  "sources": {
+    "typing/test_tooling.py": "06936eeb2cfcf156bcea0d296abd91ff316e6c6dc398a4c4e9960509b2e57724",
+    "typing/check.py": "d7b7081e4ef261baa0884abd6701074d5c2222ff5899f3792ec59227fca66c7a",
+    "typing/pacer_inventory.py": "073f19fc101f66f25620a4e43acc14d20463cd60e7d25e91c9762d94f50a0124",
+    "typing/evidence/source-environment.json": "bbd297d0f095bc207e6537810c0ea1e971a78b6a874cee5af286877e40241cb8",
+    "typing/evidence/source-current-command.json": "93c978167ab5344bf406b7b9314124af3712fa6c10c58635278e16540409a2af",
+    "evidence/patch-v050/root-mypy.json": "c87bf9475086557b10f0d5d7b2a165ba8972400e030b467fe62e9d6e1cdc9e64",
+    "evidence/patch-v050/root-mypy-dot.txt": "78a3b1c0f5395e6487e5ae4d5a3d270a9286ae431c094b0f3763f8acfa4b31f2",
+    "evidence/patch-v050/root-mypy-default.txt": "78a3b1c0f5395e6487e5ae4d5a3d270a9286ae431c094b0f3763f8acfa4b31f2",
+    "typing/evidence/source-reviewed-v050.json": "0b62c31d7fc3e617bbc418ee56b962aeba0c03699103e94d90e5d52a5a0ac966",
+    "typing/evidence/pac-003-root-audit.json": "5c1555e201fe1dc7db6a8f14b53e33e2d48f8d098d5790cd627ef0fea5ff39c1",
+    "typing/evidence/pac-003-before.json": "062e2a21c61af2102001d5352a24ad73f93dc875d40d8db27660e90c9fd95ccb",
+    "typing/mypy-contracts.ini": "78fddb2607c7cdb260de23c75b2570d07407dd9ba4aefeebccbfeb0b4c27e70e",
+    "typing/evidence/tooling-regressions.txt": "b2021da8c5c7a1a3dfa5da9b266d16eac027f7e53f1eb13295711113e7e46db1",
+    "typing/evidence/source-after.json": "6b6f89f3c11c08761cf18d64305869e5cda0b2db44ecdd2a7209a72fd85ed451",
+    "typing/evidence/mypy-tooling.txt": "281a094c39385b4d7b53e5db635f52158036861433c2a4975b9039e77a627a24",
+    "typing/evidence/runtime-contracts.txt": "721f9d62c271496e7d889f3a1f66b3717eae496ce0c9c7be43a50e8f372c3039",
+    "typing/evidence/pacer-inventory.json": "6c6b126c646eeeb6eedae6ebe98891059900fe032cd72d09b71be0fd77f75188",
+    "typing/mypy-source.ini": "f168d5874f12d6258a8e35311ea4fc90ebeab878a51fb1268cc1a89e8cb104bf",
+    "typing/evidence/verification.json": "623d37a38659b41e99dbb6e21305e3e61f300e79623746217c91c605fe3e4014",
+    "typing/evidence/source-before.json": "d3fa8409db29ebf923523671b44fade9caf459f627bd4f16ea07a4ff6d094f8b",
+    "typing/README.md": "40b6d1ff3ef0d057f8685dc34e02fc7ce31131f5bea6c6866cabcb898171a5f6",
+    "mypy.ini": "c0961208a99c02083a873c32a8bd5ca6a7ba1c88d601eb2210fb3f94c00d2d99"
+  },
+  "result": "PASS",
+  "command": [
+    "uv run --project typing --frozen --cache-dir typing/.cache/uv python typing/check.py",
+    "uv run --project typing --frozen --cache-dir typing/.cache/uv python typing/pacer_inventory.py",
+    "uv run --project typing --frozen --cache-dir typing/.cache/uv python typing/check.py --source"
+  ],
+  "observations": [
+    "Source audit explicitly uses application .venv and records versions, command and source hashes.",
+    "Root default, dot and explicit source discovery verified by fixture with duplicate build/stub copies.",
+    "Generated metadata ignored by identity while changed, added and deleted application files are detected.",
+    "Actual application source audit exits 1 with 973 annotation diagnostics; this acceptance covers discovery and evidence attribution, not annotation cleanliness."
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "returned_candidate": true,
+  "changed": true,
+  "proxy_evaluation": [
+    {
+      "encoder": 1,
+      "transform": "identity",
+      "relative_feature_mse": 0.0
+    },
+    {
+      "encoder": 1,
+      "transform": "resize75",
+      "relative_feature_mse": 0.0
+    },
+    {
+      "encoder": 1,
+      "transform": "jpeg85",
+      "relative_feature_mse": 0.0
+    },
+    {
+      "encoder": 1,
+      "transform": "crop90",
+      "relative_feature_mse": 0.0
+    }
+  ]
+}

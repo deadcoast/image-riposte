@@ -1,15 +1,17 @@
 {
-  "scope": "Reconcile the PACER source/typing file index without importing the application.\n\n--plan writes proposed guarded operations; it never writes the canonical CSVs.\nExports records statically declared names (including class methods), not Python's\ndynamic public API. Imports includes conditional and function-local statements.\nRequires resolves local static modules and source/stub ownership, not dynamic\nimports, optional-provider availability, or execution order.\n",
+  "scope": "Reconcile the PACER source/typing file index without importing the application.\n\n--plan writes proposed guarded operations; it never writes the canonical CSVs.\nExports records statically declared names (including class methods), not Python's\ndynamic public API. Imports includes conditional and function-local statements.\nRequires resolves local static modules and source/stub ownership, not dynamic\nimports, optional-provider availability, or execution order.\nSource symbols include module declarations and direct class methods. Nested\nimplementation closures and external declarations remain under their owner.\n",
   "result": "PASS",
   "issues": [],
   "counts": {
     "source_files": 47,
     "source_modules": 41,
     "paired_stubs": 41,
-    "indexed_files": 140,
-    "tool_functions": 8,
-    "static_definitions": 1008,
-    "local_dependency_edges": 422
+    "indexed_files": 143,
+    "source_symbols": 440,
+    "tool_functions": 9,
+    "symbol_dependency_edges": 1723,
+    "static_definitions": 1026,
+    "local_dependency_edges": 429
   },
   "sources": {
     "AGENTS.md": "a6d4ea1860b088946e9eca107b77105876a405391e4fdc708c2312755505be3b",
@@ -35,31 +37,31 @@
     "src/riposte/cli.py": "729a1f6b899f11312cd1eb99b103aad508bd1f4ce4dc567aa32d1edabf42711b",
     "src/riposte/coupled.py": "eca0afb9e0de03b740029864a5ddeeb7212cc9676c5e9cc191a6f4d1274641a8",
     "src/riposte/errors.py": "7a9c08b799d1c713fbd82e30fd145a6dc3085c215848893e31d1ec066abc5244",
-    "src/riposte/generation.py": "97d3481d0d51cd95899c0c47b3a1e9aab1fc4bac09c1a39e791d79d74617515d",
+    "src/riposte/generation.py": "674e942d9781c2ef640a65b39873b484336d08e99251f12eb3277b5e333c5525",
     "src/riposte/lab.py": "3845f3e3abedd03d1f0c200b84395e6b46f67b2ff120f6e8a8fc75a2d8c03093",
     "src/riposte/methods.json": "4405d32fac499c6f3b7fbce0afa04abea62e2509e130844a20899c39a6283920",
     "src/riposte/metrics.py": "0d873a0cb8972b5bdce14eb3cdc49ab391af31a297981fda1ad37603496c22eb",
     "src/riposte/models.py": "19c774fff774c2c947a836ece9493168e71a20bec3a4f658853333d671c5a002",
-    "src/riposte/optimizer.py": "16367347cb57cfd8efba57a5002d2c313ce31106304d993dc0fba0d398ae4121",
-    "src/riposte/organizer.py": "249c082bce0872f6395f15ea7af6ac1df814002a635a15fb2d51d5fe23d62579",
+    "src/riposte/optimizer.py": "c41b3ee66835aea8feab01985434844ee9fb96b217f19ecf0ec8d47a1a047918",
+    "src/riposte/organizer.py": "1e92fb1a6ebcb3220dd859048b5d40d100311f62a975eb03d35bddd8006505bc",
     "src/riposte/policy.py": "a4e0d5ab07a0b4aac2efcf518f7cdf19a1a9cdfa9c1fc7e263ef66545d2774e7",
-    "src/riposte/publication.py": "f3120bca31c8c851206e46a803b0a93cb83f99eed08a62f1e40dc15511b013bd",
+    "src/riposte/publication.py": "8ed8f050b2fa4010b1427a963a7c9877b5564d020810d0d6eaad154fe7c9394c",
     "src/riposte/qualification.py": "4fc049f680adc31c34f02499d8dfe4ebed9af46f47fa1cd554f50ead273231ce",
     "src/riposte/quality.py": "3af92838360f5f9ce65d69973eef37a6dd006d733f56c376443a2228d3c9656d",
-    "src/riposte/release_guard.py": "673fcfc83602e074d774b4ccfeddf4f481f784887a72986dbce8d9abf150245e",
-    "src/riposte/runtime_probe.py": "63d28c72b3d7aaeca6e503ae6ac7f8965fb8ed862d4a423cdd4fe981614bb339",
-    "src/riposte/sanitize.py": "358ebd215602d8fe93aea4ab07931cfb84f9094202bec3ab34231ab193fb7001",
-    "src/riposte/server.py": "fd4336c40f67189e953256980a18dab6ef4edf342ac5cdb87279d2cad240af6a",
-    "src/riposte/static/app.js": "a27663ef2e214bd14d956987081c039ecfc878c972abe17f2806679daec612a4",
+    "src/riposte/release_guard.py": "52787a6620ccab6efdd1446cb469d8e966212ae2fad0f6bd8219aebe031cd391",
+    "src/riposte/runtime_probe.py": "67178701646b2d6e144b42400398394c85c14963a27f3e4a359d0942221f712d",
+    "src/riposte/sanitize.py": "8233e398cf90f403d0fad458b83ddddefb873234183c1610348501d5383f90c2",
+    "src/riposte/server.py": "46d60d3b380cdd0cb8ab2147108177b45dce7220a47271ef2c74d2d8afb6a54d",
+    "src/riposte/static/app.js": "485ee956ff360163d5817306280373bc9d3f2cc7af7bafa42a8f7227ca8c8dda",
     "src/riposte/static/index.html": "c294c3ecdb09ccd2dd582460d051255c08cc9156a4c750b53ed8ca416aa37971",
     "src/riposte/static/publish.css": "3194ff34f6648c32432a8a85fcd7cbe8d2103f4fe0e4506e5af3e759c460261b",
-    "src/riposte/static/publish.js": "446685b4373385fea701c61148559e88a81b6e9db060f34dcc92ea246cf7aeae",
+    "src/riposte/static/publish.js": "8004f04dbaf5e45f2ef9d86b82f18c1a2588f3d418e4759f5ad10702665f37fd",
     "src/riposte/static/style.css": "932983321f7c1394a44750a05433f6b521262ffd84b0db71eb0c41556813e3a7",
     "src/riposte/store.py": "f6a88c29653c26c58db9d69845a96dfa5e6b8071bce4578e29aa6932bd8e0b9a",
     "src/riposte/temporal.py": "22fb7b410ebfbe906816267d9d049e9413bc65a5e515bfa1af9c5749ba09ade9",
     "src/riposte/terminal/__init__.py": "3205c2b37274b4a78cad648f40635e4b02474f77515b94e506510e521ec79fa2",
     "src/riposte/terminal/actions.py": "c8bef2ea12fc14f0f2d2f88e104e01d47da920fa9bc1383a3bcbffef3705f04c",
-    "src/riposte/terminal/app.py": "7aa2187ed6d096ee086cf714040123d9b2dd6174f466f1a27331ed2146385d51",
+    "src/riposte/terminal/app.py": "a3bda851fc681a51f5ca0f4a5333d7e9604ea9122fbaac92077f7a28486a5557",
     "src/riposte/terminal/controller.py": "589fd7b4b73a717bf1597ea837b3e702d05b21a63152b935ef17429e4e736b0b",
     "src/riposte/terminal/help.py": "8c24dd8a762ad4eb7df97df2d541a7b3ddbaf27ba8d7cf08ae44e3eb73e24bde",
     "src/riposte/terminal/interaction.py": "0a836c051568058c14ea00b42342f63a18de436f283b900467b4ab4fecfc32fe",
@@ -83,29 +85,32 @@
     "src/riposte_studio.egg-info/requires.txt": "cf9a6d3665a40abc44b1c22dc989f0bffdc6a7252767478ee8602c3b2c70c563",
     "src/riposte_studio.egg-info/top_level.txt": "0c0ed5cd11dc3a90aeb6e75a4ca8a16adf2e2ee8d5e973d930c4bfc4372a0073",
     "tests/test_v05_revision.py": "b69369329c97a6be9a392d9b6e2e1f200b1fe0b471c10b7d006d388698a05798",
-    "typing/README.md": "64f9539350903310a109f1ad9b7ce0ddb8c6979fe1a9726a200c9a5b8d78ebfb",
-    "typing/check.py": "955644e9d7ca53b3e8c20c2b61506294f71b8f69b81fc59da1663c5f7907e6ea",
+    "typing/README.md": "40b6d1ff3ef0d057f8685dc34e02fc7ce31131f5bea6c6866cabcb898171a5f6",
+    "typing/check.py": "d7b7081e4ef261baa0884abd6701074d5c2222ff5899f3792ec59227fca66c7a",
     "typing/checks/consumers.py": "e1b3e5053c12086baddbf41e49346d876aba70de638b675dec81ce7a0f777892",
     "typing/checks/rejected.py.txt": "d4d0311fd0d7897e2aabce3ef23ff1c214f6d31d825aaf84b122a13a5718aebe",
-    "typing/evidence/dynamic-boundaries.json": "32d75702a527352205df6a9c58355f2acc77f6768ad7e32e705f4556f04e80a7",
+    "typing/evidence/dynamic-boundaries.json": "b36317401e50cc68dca148e419ba1f529bbc5c667a1abd116d2d99ed7d7efa8c",
     "typing/evidence/mypy-contracts.txt": "889dc4713d3c435dcb8cd60312ac6fe989302a34ed326393190be18eaa28e310",
     "typing/evidence/mypy-tooling.txt": "281a094c39385b4d7b53e5db635f52158036861433c2a4975b9039e77a627a24",
-    "typing/evidence/source-after.json": "0b62c31d7fc3e617bbc418ee56b962aeba0c03699103e94d90e5d52a5a0ac966",
+    "typing/evidence/source-after.json": "a9f8bc743bc963eb220912f246e5b68536a8c75c478fd3017a3f62cde9aa37d1",
     "typing/evidence/source-before.json": "d3fa8409db29ebf923523671b44fade9caf459f627bd4f16ea07a4ff6d094f8b",
+    "typing/evidence/source-current-command.json": "93c978167ab5344bf406b7b9314124af3712fa6c10c58635278e16540409a2af",
     "typing/evidence/source-current-command.txt": "1e4d041bf375639ae5a0bcbd4f4c1cfa145c814580d0c4943ba1566596b4d38f",
-    "typing/evidence/source-current.txt": "78a3b1c0f5395e6487e5ae4d5a3d270a9286ae431c094b0f3763f8acfa4b31f2",
+    "typing/evidence/source-current.txt": "d058ea3b4895cda98f0dc18f7d1ca94f535eff9b040906242dfc84a426795c92",
+    "typing/evidence/source-environment.json": "bbd297d0f095bc207e6537810c0ea1e971a78b6a874cee5af286877e40241cb8",
+    "typing/evidence/source-reviewed-repairs.json": "a9f8bc743bc963eb220912f246e5b68536a8c75c478fd3017a3f62cde9aa37d1",
     "typing/evidence/source-reviewed-v050.json": "0b62c31d7fc3e617bbc418ee56b962aeba0c03699103e94d90e5d52a5a0ac966",
     "typing/evidence/stubtest.txt": "89932f2b0308bd1a126b7876e833d13bd2f0f279a44b82edd8ab42a7388ebe8f",
-    "typing/evidence/tooling-regressions.txt": "e31e6c9515c27e74d388607de2af0cf56d1987535a913f6a17973aac1872d851",
-    "typing/evidence/verification.json": "feb23e16c1cfbda65dab253fe6df84b78030c494b9657b7da1ff9dbe30ca891e",
+    "typing/evidence/tooling-regressions.txt": "f6230f6e2e59c6a8384c222595e730bc80937e0082120d257f291ef0dcec2a23",
+    "typing/evidence/verification.json": "623d37a38659b41e99dbb6e21305e3e61f300e79623746217c91c605fe3e4014",
     "typing/evidence/windows-stat-probe-app-py314.txt": "97906e27e8c02071c86c777f457a1e4460a7f68b008935c6adbb2908846bad69",
     "typing/evidence/windows-stat-probe.txt": "171d820928accb3d74ed7d3590d95165a10eda06ccc2338b8f24d56cd7efbacf",
     "typing/mypy-contracts.ini": "78fddb2607c7cdb260de23c75b2570d07407dd9ba4aefeebccbfeb0b4c27e70e",
     "typing/mypy-source.ini": "f168d5874f12d6258a8e35311ea4fc90ebeab878a51fb1268cc1a89e8cb104bf",
-    "typing/pacer_inventory.py": "c24b09b07505fc13e08246e7fb5628fbfd6fe5ce924ecd3e29c5c7d4193ae93a",
+    "typing/pacer_inventory.py": "073f19fc101f66f25620a4e43acc14d20463cd60e7d25e91c9762d94f50a0124",
     "typing/probe_windows_stat.py": "210e707483e1d8198689178b789580e1f23b26e49460c31ed5ddd059e5d5b142",
     "typing/pyproject.toml": "29e29b0dac5a0fb3dc6fb6db476f1d0cdf29970f5fe5e50c1b7e785e029fdcf2",
-    "typing/runtime_contracts.py": "ffa4d4b37d79ad55c1c88674730a9e5c2f3971dbb70a40f9d6aab71a1329691d",
+    "typing/runtime_contracts.py": "fa2d0ea24279099649159d217a4333d3e85568d5977ff03817bda3ed2ddc373d",
     "typing/stubs/_riposte_types.pyi": "162c961e3147843c094dc8b2b747c49e7f209937039542edf5a15dc6873db370",
     "typing/stubs/riposte/__init__.pyi": "b572e2c4973b7500c42501d3e0d44c4a27d8fd35c6f7af6aaf1219357afcdf5d",
     "typing/stubs/riposte/__main__.pyi": "2f159ea3d0f9b62e80f64cbdf2bff8cd42a52fc8f4f709465e15bb1fcbce5ce0",
@@ -113,7 +118,7 @@
     "typing/stubs/riposte/cli.pyi": "e6d27b4c57c7c972b181f59a15ce6d4f32c1efa9e4d3b85f88ca70e8295c53f0",
     "typing/stubs/riposte/coupled.pyi": "fc1da15312c0e65852796b327f2b5fca6ad2ef97be34b6b7dabcf5c18a00495f",
     "typing/stubs/riposte/errors.pyi": "09294254fa034c3b927925cf853a7004f3bf02c75cf4129065b285e8268cdc0f",
-    "typing/stubs/riposte/generation.pyi": "a3c0f86ee79a9bafa42ba078bb290864aca9ea6baf345d25caaf7c15d439630e",
+    "typing/stubs/riposte/generation.pyi": "a8033d6e2a713a55f506532840b1301c4ea36de75fe77930ce4b80535e65cd06",
     "typing/stubs/riposte/lab.pyi": "dbfc1c582d8b7223ff61c4970f219d10fa438897d5770208cd4eee71d8dd8af2",
     "typing/stubs/riposte/metrics.pyi": "c062241120b5a53dc44709cb8f9ab605629e74af93a54f678b606cdc1bacb71a",
     "typing/stubs/riposte/models.pyi": "42d06047478d211f31e329cdf2fe54757360662579209745d90d8823bbbe9f83",
@@ -124,9 +129,9 @@
     "typing/stubs/riposte/qualification.pyi": "3160462ef5bf3909f0c1ec24131496d20ba755d66de97a0796986fa9f60b3eb0",
     "typing/stubs/riposte/quality.pyi": "3b04366e1973b69021f96cbd7a1ee05929b95dc5fd1fd242116713c1cb6f62f9",
     "typing/stubs/riposte/release_guard.pyi": "9a8cdc6b88f7622f4c424fc1d9b91928c53946bbb48705e8a5abd9ced78eb9fe",
-    "typing/stubs/riposte/runtime_probe.pyi": "389652c537a17b5682f3a67a95ff809d74ce087c0a575469e7d69a96116b8281",
+    "typing/stubs/riposte/runtime_probe.pyi": "b2bbd20ba850122e7aa35eea8d7bed18ab70ede61034b4b60b1401f269ee7040",
     "typing/stubs/riposte/sanitize.pyi": "7389450202abf94d5a6dd7bf2582bcd00d8fe851265a845db8844b8aa37d3381",
-    "typing/stubs/riposte/server.pyi": "714eb58ea122d9816b7023368a839142f807e7ec8deb3862fcfac8fd8a16e677",
+    "typing/stubs/riposte/server.pyi": "7c29e89dcb91419f1f42dea3f3d6582d53da5dafa5d4c8d36302e38fb6f6b675",
     "typing/stubs/riposte/store.pyi": "dfc1448e34ed913b109202457fd651fa0a21dd1c8b61a0fa151128cc9938db88",
     "typing/stubs/riposte/temporal.pyi": "7fb9bdbc1583b08bd92dc5fb37f8fb21ab4630f4ae31861db4f0b771415d7295",
     "typing/stubs/riposte/terminal/__init__.pyi": "17022212ba4ef7ca2de53e12cd9398edc248af0cd389c9e23e34ec6c641518dc",
@@ -149,7 +154,7 @@
     "typing/stubs/riposte/terminal/surface.pyi": "f5eeea647607c1d35349bc8eaade051be6d075d590fe323591c7dd3a8b3129f2",
     "typing/stubs/riposte/views.pyi": "65c462a5a6ae73e831ad2d5779642ccda34d8e3d6925d77ad5e394e8128f6794",
     "typing/stubtest-allowlist.txt": "c7950826049d94b3519576c1a750b2a3335a19fa30f4d8e21e648e8c4fa62a03",
-    "typing/test_tooling.py": "ead2a06a1ecc4335e82c5e488fc3a4e1a8a5bb6f05d5e74fe0ec316a327cc514",
+    "typing/test_tooling.py": "06936eeb2cfcf156bcea0d296abd91ff316e6c6dc398a4c4e9960509b2e57724",
     "typing/uv.lock": "e682d8a8d94d24cd283abb58bb65205f94efd2f6f8aafaa0dac87ac1829013d4",
     "uv.lock": "dec04c91b56fd94be11a9818a9c93a18abac8374a42dcb73fa7ae8334bed648c"
   },
@@ -532,8 +537,11 @@
       "id": "OVR-027",
       "path": "src/riposte/runtime_probe.py",
       "definitions": [
+        "_probe_gradient",
         "execute_local_probe",
-        "probe_encoder"
+        "probe_encoder",
+        "probe_inpaint",
+        "probe_temporal"
       ]
     },
     {
@@ -573,6 +581,9 @@
         "ResumePublishRequest",
         "STATIC",
         "StrictModel",
+        "_BodyLimitMiddleware",
+        "_BodyLimitMiddleware.__call__",
+        "_BodyLimitMiddleware.__init__",
         "create_app"
       ]
     },
@@ -1038,7 +1049,8 @@
         "negative_check",
         "run",
         "signature",
-        "source_hashes"
+        "source_hashes",
+        "source_interpreter"
       ]
     },
     {
@@ -1090,6 +1102,11 @@
       "definitions": []
     },
     {
+      "id": "OVR-329",
+      "path": "typing/evidence/source-current-command.json",
+      "definitions": []
+    },
+    {
       "id": "OVR-065",
       "path": "typing/evidence/source-current-command.txt",
       "definitions": []
@@ -1097,6 +1114,16 @@
     {
       "id": "OVR-066",
       "path": "typing/evidence/source-current.txt",
+      "definitions": []
+    },
+    {
+      "id": "OVR-330",
+      "path": "typing/evidence/source-environment.json",
+      "definitions": []
+    },
+    {
+      "id": "OVR-237",
+      "path": "typing/evidence/source-reviewed-repairs.json",
       "definitions": []
     },
     {
@@ -1154,7 +1181,8 @@
         "main",
         "module_key",
         "reconcile",
-        "scoped_paths"
+        "scoped_paths",
+        "symbol_inventory"
       ]
     },
     {
@@ -1518,8 +1546,11 @@
       "id": "OVR-093",
       "path": "typing/stubs/riposte/runtime_probe.pyi",
       "definitions": [
+        "_probe_gradient",
         "execute_local_probe",
-        "probe_encoder"
+        "probe_encoder",
+        "probe_inpaint",
+        "probe_temporal"
       ]
     },
     {
@@ -1559,6 +1590,9 @@
         "ResumePublishRequest",
         "STATIC",
         "StrictModel",
+        "_BodyLimitMiddleware",
+        "_BodyLimitMiddleware.__call__",
+        "_BodyLimitMiddleware.__init__",
         "create_app"
       ]
     },
@@ -1941,8 +1975,12 @@
         "TypingToolingTests.test_changed_application_file_is_detected",
         "TypingToolingTests.test_default_and_dot_reach_source_errors_despite_build_and_stub_copies",
         "TypingToolingTests.test_generated_metadata_is_not_application_identity",
+        "TypingToolingTests.test_reconciliation_rejects_missing_symbol_and_dependency",
         "TypingToolingTests.test_removed_application_file_is_detected",
-        "TypingToolingTests.test_structured_report_is_not_a_dynamic_report_alias"
+        "TypingToolingTests.test_source_audit_uses_project_environment_and_explicit_override",
+        "TypingToolingTests.test_structured_report_is_not_a_dynamic_report_alias",
+        "TypingToolingTests.test_symbol_local_shadow_does_not_invent_import_dependency",
+        "TypingToolingTests.test_symbols_cover_public_private_class_and_async_dependencies"
       ]
     },
     {
@@ -1956,10 +1994,4054 @@
       "definitions": []
     }
   ],
+  "symbols": [
+    {
+      "AssetType": "CONFIG",
+      "Path": "src/riposte/__init__.py",
+      "Symbol": "__version__",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-009",
+      "Tags": "#source-symbol",
+      "ID": "OVR-331"
+    },
+    {
+      "AssetType": "CONFIG",
+      "Path": "src/riposte/benchmark.py",
+      "Symbol": "PROMPTS",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-011",
+      "Tags": "#source-symbol",
+      "ID": "OVR-332"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/benchmark.py",
+      "Symbol": "run_benchmark",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-011;OVR-332;OVR-380;OVR-400;OVR-404;OVR-405;OVR-434;OVR-492;OVR-494;OVR-495;OVR-517;OVR-525;OVR-528;OVR-530",
+      "Tags": "#source-symbol",
+      "ID": "OVR-333"
+    },
+    {
+      "AssetType": "CLASS",
+      "Path": "src/riposte/cli.py",
+      "Symbol": "DateMode",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-012",
+      "Tags": "#source-symbol",
+      "ID": "OVR-334"
+    },
+    {
+      "AssetType": "CLASS",
+      "Path": "src/riposte/cli.py",
+      "Symbol": "Decision",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-012",
+      "Tags": "#source-symbol",
+      "ID": "OVR-335"
+    },
+    {
+      "AssetType": "CLASS",
+      "Path": "src/riposte/cli.py",
+      "Symbol": "Device",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-012",
+      "Tags": "#source-symbol",
+      "ID": "OVR-336"
+    },
+    {
+      "AssetType": "CLASS",
+      "Path": "src/riposte/cli.py",
+      "Symbol": "Engine",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-012",
+      "Tags": "#source-symbol",
+      "ID": "OVR-337"
+    },
+    {
+      "AssetType": "CONFIG",
+      "Path": "src/riposte/cli.py",
+      "Symbol": "Root",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-012",
+      "Tags": "#source-symbol",
+      "ID": "OVR-338"
+    },
+    {
+      "AssetType": "CLASS",
+      "Path": "src/riposte/cli.py",
+      "Symbol": "Task",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-012",
+      "Tags": "#source-symbol",
+      "ID": "OVR-339"
+    },
+    {
+      "AssetType": "CLASS",
+      "Path": "src/riposte/cli.py",
+      "Symbol": "Theme",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-012",
+      "Tags": "#source-symbol",
+      "ID": "OVR-340"
+    },
+    {
+      "AssetType": "CONFIG",
+      "Path": "src/riposte/cli.py",
+      "Symbol": "Vae",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-012",
+      "Tags": "#source-symbol",
+      "ID": "OVR-341"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/cli.py",
+      "Symbol": "_version",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-012;OVR-331",
+      "Tags": "#source-symbol",
+      "ID": "OVR-342"
+    },
+    {
+      "AssetType": "CONFIG",
+      "Path": "src/riposte/cli.py",
+      "Symbol": "app",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-012;OVR-602",
+      "Tags": "#source-symbol",
+      "ID": "OVR-343"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/cli.py",
+      "Symbol": "audit",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-012;OVR-338;OVR-347;OVR-349",
+      "Tags": "#source-symbol",
+      "ID": "OVR-344"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/cli.py",
+      "Symbol": "benchmark",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-012;OVR-338;OVR-339;OVR-347;OVR-349;OVR-380",
+      "Tags": "#source-symbol",
+      "ID": "OVR-345"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/cli.py",
+      "Symbol": "challenge",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-012;OVR-338;OVR-339;OVR-347;OVR-349",
+      "Tags": "#source-symbol",
+      "ID": "OVR-346"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/cli.py",
+      "Symbol": "command",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-012;OVR-343;OVR-600",
+      "Tags": "#source-symbol",
+      "ID": "OVR-347"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/cli.py",
+      "Symbol": "compare",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-012;OVR-338;OVR-347;OVR-349",
+      "Tags": "#source-symbol",
+      "ID": "OVR-348"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/cli.py",
+      "Symbol": "dispatch",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-012;OVR-635;OVR-643;OVR-696",
+      "Tags": "#source-symbol",
+      "ID": "OVR-349"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/cli.py",
+      "Symbol": "doctor",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-012;OVR-336;OVR-341;OVR-347;OVR-349",
+      "Tags": "#source-symbol",
+      "ID": "OVR-350"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/cli.py",
+      "Symbol": "evaluations",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-012;OVR-338;OVR-347;OVR-349",
+      "Tags": "#source-symbol",
+      "ID": "OVR-351"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/cli.py",
+      "Symbol": "export",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-012;OVR-338;OVR-347;OVR-349",
+      "Tags": "#source-symbol",
+      "ID": "OVR-352"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/cli.py",
+      "Symbol": "frame",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-012;OVR-338;OVR-347;OVR-349",
+      "Tags": "#source-symbol",
+      "ID": "OVR-353"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/cli.py",
+      "Symbol": "generation",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-012;OVR-338;OVR-347;OVR-349",
+      "Tags": "#source-symbol",
+      "ID": "OVR-354"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/cli.py",
+      "Symbol": "generations",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-012;OVR-338;OVR-347;OVR-349",
+      "Tags": "#source-symbol",
+      "ID": "OVR-355"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/cli.py",
+      "Symbol": "guard",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-012;OVR-336;OVR-337;OVR-338;OVR-341;OVR-347;OVR-349",
+      "Tags": "#source-symbol",
+      "ID": "OVR-356"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/cli.py",
+      "Symbol": "image",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-012;OVR-338;OVR-347;OVR-349;OVR-380",
+      "Tags": "#source-symbol",
+      "ID": "OVR-357"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/cli.py",
+      "Symbol": "inspect",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-012;OVR-338;OVR-347;OVR-349",
+      "Tags": "#source-symbol",
+      "ID": "OVR-358"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/cli.py",
+      "Symbol": "list_images",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-012;OVR-338;OVR-347;OVR-349",
+      "Tags": "#source-symbol",
+      "ID": "OVR-359"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/cli.py",
+      "Symbol": "main",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-012;OVR-343;OVR-380;OVR-635;OVR-641",
+      "Tags": "#source-symbol",
+      "ID": "OVR-360"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/cli.py",
+      "Symbol": "organize",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-012;OVR-334;OVR-338;OVR-347;OVR-349",
+      "Tags": "#source-symbol",
+      "ID": "OVR-361"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/cli.py",
+      "Symbol": "package",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-012;OVR-338;OVR-347;OVR-349",
+      "Tags": "#source-symbol",
+      "ID": "OVR-362"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/cli.py",
+      "Symbol": "publications",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-012;OVR-338;OVR-347;OVR-349",
+      "Tags": "#source-symbol",
+      "ID": "OVR-363"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/cli.py",
+      "Symbol": "publish",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-012;OVR-336;OVR-338;OVR-341;OVR-347;OVR-349",
+      "Tags": "#source-symbol",
+      "ID": "OVR-364"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/cli.py",
+      "Symbol": "qualify",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-012;OVR-336;OVR-338;OVR-341;OVR-347;OVR-349",
+      "Tags": "#source-symbol",
+      "ID": "OVR-365"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/cli.py",
+      "Symbol": "resume",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-012;OVR-336;OVR-338;OVR-341;OVR-347;OVR-349",
+      "Tags": "#source-symbol",
+      "ID": "OVR-366"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/cli.py",
+      "Symbol": "review",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-012;OVR-335;OVR-338;OVR-347;OVR-349",
+      "Tags": "#source-symbol",
+      "ID": "OVR-367"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/cli.py",
+      "Symbol": "root_callback",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-012;OVR-340;OVR-342;OVR-343;OVR-380;OVR-566;OVR-635",
+      "Tags": "#source-symbol",
+      "ID": "OVR-368"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/cli.py",
+      "Symbol": "serve",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-012;OVR-325;OVR-338;OVR-347",
+      "Tags": "#source-symbol",
+      "ID": "OVR-369"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/cli.py",
+      "Symbol": "trials",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-012;OVR-338;OVR-347;OVR-349",
+      "Tags": "#source-symbol",
+      "ID": "OVR-370"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/cli.py",
+      "Symbol": "ui",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-012;OVR-347;OVR-566",
+      "Tags": "#source-symbol",
+      "ID": "OVR-371"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/cli.py",
+      "Symbol": "upgrade",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-012;OVR-338;OVR-347;OVR-349",
+      "Tags": "#source-symbol",
+      "ID": "OVR-372"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/cli.py",
+      "Symbol": "workshop",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-012;OVR-338;OVR-347;OVR-349;OVR-380;OVR-566",
+      "Tags": "#source-symbol",
+      "ID": "OVR-373"
+    },
+    {
+      "AssetType": "CLASS",
+      "Path": "src/riposte/coupled.py",
+      "Symbol": "Branch",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-013",
+      "Tags": "#source-symbol",
+      "ID": "OVR-374"
+    },
+    {
+      "AssetType": "CLASS",
+      "Path": "src/riposte/coupled.py",
+      "Symbol": "CoupledConfig",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-013;OVR-380",
+      "Tags": "#source-symbol",
+      "ID": "OVR-375"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/coupled.py",
+      "Symbol": "CoupledConfig.__post_init__",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-013;OVR-380",
+      "Tags": "#source-symbol",
+      "ID": "OVR-376"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/coupled.py",
+      "Symbol": "_branches",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-013;OVR-374;OVR-729",
+      "Tags": "#source-symbol",
+      "ID": "OVR-377"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/coupled.py",
+      "Symbol": "_features",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-013;OVR-731;OVR-733",
+      "Tags": "#source-symbol",
+      "ID": "OVR-378"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/coupled.py",
+      "Symbol": "protect_coupled",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-013;OVR-375;OVR-377;OVR-378;OVR-380;OVR-404;OVR-428;OVR-729;OVR-730;OVR-732;OVR-736;OVR-737",
+      "Tags": "#source-symbol",
+      "ID": "OVR-379"
+    },
+    {
+      "AssetType": "CLASS",
+      "Path": "src/riposte/errors.py",
+      "Symbol": "RiposteError",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-014",
+      "Tags": "#source-symbol",
+      "ID": "OVR-380"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/errors.py",
+      "Symbol": "RiposteError.__init__",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-014",
+      "Tags": "#source-symbol",
+      "ID": "OVR-381"
+    },
+    {
+      "AssetType": "CONFIG",
+      "Path": "src/riposte/generation.py",
+      "Symbol": "ALLOWED_COMPONENTS",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-015",
+      "Tags": "#source-symbol",
+      "ID": "OVR-382"
+    },
+    {
+      "AssetType": "CLASS",
+      "Path": "src/riposte/generation.py",
+      "Symbol": "LocalGenerator",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-015;OVR-380;OVR-382;OVR-418;OVR-419;OVR-420;OVR-451;OVR-733",
+      "Tags": "#source-symbol",
+      "ID": "OVR-383"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/generation.py",
+      "Symbol": "LocalGenerator.__call__",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-015;OVR-733",
+      "Tags": "#source-symbol",
+      "ID": "OVR-384"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/generation.py",
+      "Symbol": "LocalGenerator.__init__",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-015;OVR-380;OVR-382;OVR-418;OVR-419;OVR-420;OVR-451",
+      "Tags": "#source-symbol",
+      "ID": "OVR-385"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/generation.py",
+      "Symbol": "_execute",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-015;OVR-331;OVR-380;OVR-388;OVR-391;OVR-392;OVR-404;OVR-473;OVR-492;OVR-494;OVR-517;OVR-518;OVR-525;OVR-528;OVR-734;OVR-735",
+      "Tags": "#source-symbol",
+      "ID": "OVR-386"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/generation.py",
+      "Symbol": "_validate",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-015;OVR-380;OVR-727;OVR-729",
+      "Tags": "#source-symbol",
+      "ID": "OVR-387"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/generation.py",
+      "Symbol": "controlled_generation",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-015;OVR-380;OVR-383;OVR-386;OVR-387;OVR-434;OVR-475;OVR-530",
+      "Tags": "#source-symbol",
+      "ID": "OVR-309"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/generation.py",
+      "Symbol": "frame_motion",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-015;OVR-404",
+      "Tags": "#source-symbol",
+      "ID": "OVR-388"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/generation.py",
+      "Symbol": "generation_frame",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-015;OVR-380;OVR-390;OVR-494;OVR-525;OVR-528",
+      "Tags": "#source-symbol",
+      "ID": "OVR-389"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/generation.py",
+      "Symbol": "generation_report",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-015;OVR-380;OVR-400;OVR-525;OVR-528",
+      "Tags": "#source-symbol",
+      "ID": "OVR-390"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/generation.py",
+      "Symbol": "generation_runs",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-015;OVR-380;OVR-390;OVR-400;OVR-525;OVR-528",
+      "Tags": "#source-symbol",
+      "ID": "OVR-391"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/generation.py",
+      "Symbol": "prepare_input",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-015;OVR-380;OVR-495",
+      "Tags": "#source-symbol",
+      "ID": "OVR-392"
+    },
+    {
+      "AssetType": "CONFIG",
+      "Path": "src/riposte/lab.py",
+      "Symbol": "METHODS",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-016",
+      "Tags": "#source-symbol",
+      "ID": "OVR-393"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/lab.py",
+      "Symbol": "_master",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-016;OVR-380;OVR-434;OVR-522;OVR-525",
+      "Tags": "#source-symbol",
+      "ID": "OVR-394"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/lab.py",
+      "Symbol": "_store_trial",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-016;OVR-401;OVR-403;OVR-404;OVR-406;OVR-492;OVR-494;OVR-517;OVR-518;OVR-525;OVR-528",
+      "Tags": "#source-symbol",
+      "ID": "OVR-395"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/lab.py",
+      "Symbol": "compare_external",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-016;OVR-307;OVR-380;OVR-393;OVR-394;OVR-395;OVR-444;OVR-495;OVR-530",
+      "Tags": "#source-symbol",
+      "ID": "OVR-396"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/lab.py",
+      "Symbol": "create_candidate",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-016;OVR-310;OVR-375;OVR-379;OVR-380;OVR-394;OVR-395;OVR-408;OVR-411;OVR-423;OVR-495;OVR-530",
+      "Tags": "#source-symbol",
+      "ID": "OVR-397"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/lab.py",
+      "Symbol": "export_candidate",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-016;OVR-380;OVR-400;OVR-434;OVR-494;OVR-517;OVR-525;OVR-528;OVR-530",
+      "Tags": "#source-symbol",
+      "ID": "OVR-398"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/lab.py",
+      "Symbol": "trial_pixels",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-016;OVR-380;OVR-403;OVR-405;OVR-475;OVR-492;OVR-727;OVR-729;OVR-735",
+      "Tags": "#source-symbol",
+      "ID": "OVR-399"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/lab.py",
+      "Symbol": "trial_report",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-016;OVR-380;OVR-525;OVR-528",
+      "Tags": "#source-symbol",
+      "ID": "OVR-400"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/lab.py",
+      "Symbol": "trials",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-016;OVR-380;OVR-400;OVR-520;OVR-525;OVR-528",
+      "Tags": "#source-symbol",
+      "ID": "OVR-401"
+    },
+    {
+      "AssetType": "CONFIG",
+      "Path": "src/riposte/metrics.py",
+      "Symbol": "TRANSFORMS",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-018",
+      "Tags": "#source-symbol",
+      "ID": "OVR-402"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/metrics.py",
+      "Symbol": "difference_image",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-018;OVR-380",
+      "Tags": "#source-symbol",
+      "ID": "OVR-403"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/metrics.py",
+      "Symbol": "fidelity",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-018;OVR-380",
+      "Tags": "#source-symbol",
+      "ID": "OVR-404"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/metrics.py",
+      "Symbol": "transform",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-018;OVR-380;OVR-402",
+      "Tags": "#source-symbol",
+      "ID": "OVR-405"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/metrics.py",
+      "Symbol": "transport_report",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-018;OVR-402;OVR-404;OVR-405",
+      "Tags": "#source-symbol",
+      "ID": "OVR-406"
+    },
+    {
+      "AssetType": "CONFIG",
+      "Path": "src/riposte/models.py",
+      "Symbol": "DEPENDENCIES",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-019",
+      "Tags": "#source-symbol",
+      "ID": "OVR-407"
+    },
+    {
+      "AssetType": "CLASS",
+      "Path": "src/riposte/models.py",
+      "Symbol": "LocalEncoder",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-019;OVR-380;OVR-417;OVR-419;OVR-422",
+      "Tags": "#source-symbol",
+      "ID": "OVR-408"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/models.py",
+      "Symbol": "LocalEncoder.__call__",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-019",
+      "Tags": "#source-symbol",
+      "ID": "OVR-409"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/models.py",
+      "Symbol": "LocalEncoder.__init__",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-019;OVR-380;OVR-417;OVR-419;OVR-422",
+      "Tags": "#source-symbol",
+      "ID": "OVR-410"
+    },
+    {
+      "AssetType": "CLASS",
+      "Path": "src/riposte/models.py",
+      "Symbol": "LocalInpaintProbe",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-019;OVR-380;OVR-414;OVR-418;OVR-419;OVR-420;OVR-422;OVR-451",
+      "Tags": "#source-symbol",
+      "ID": "OVR-411"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/models.py",
+      "Symbol": "LocalInpaintProbe.__call__",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-019;OVR-380",
+      "Tags": "#source-symbol",
+      "ID": "OVR-412"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/models.py",
+      "Symbol": "LocalInpaintProbe.__init__",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-019;OVR-380;OVR-414;OVR-418;OVR-419;OVR-420;OVR-422;OVR-451",
+      "Tags": "#source-symbol",
+      "ID": "OVR-413"
+    },
+    {
+      "AssetType": "CONFIG",
+      "Path": "src/riposte/models.py",
+      "Symbol": "PROMPTS",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-019",
+      "Tags": "#source-symbol",
+      "ID": "OVR-414"
+    },
+    {
+      "AssetType": "CONFIG",
+      "Path": "src/riposte/models.py",
+      "Symbol": "VAE_CLASSES",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-019",
+      "Tags": "#source-symbol",
+      "ID": "OVR-415"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/models.py",
+      "Symbol": "_weights",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-019;OVR-380;OVR-420;OVR-451",
+      "Tags": "#source-symbol",
+      "ID": "OVR-416"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/models.py",
+      "Symbol": "inspect_vae",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-019;OVR-380;OVR-415;OVR-416;OVR-418;OVR-420",
+      "Tags": "#source-symbol",
+      "ID": "OVR-417"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/models.py",
+      "Symbol": "model_fingerprint",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-019;OVR-416",
+      "Tags": "#source-symbol",
+      "ID": "OVR-418"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/models.py",
+      "Symbol": "offline",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-019",
+      "Tags": "#source-symbol",
+      "ID": "OVR-419"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/models.py",
+      "Symbol": "read_config",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-019;OVR-380;OVR-451",
+      "Tags": "#source-symbol",
+      "ID": "OVR-420"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/models.py",
+      "Symbol": "runtime_capabilities",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-019;OVR-407",
+      "Tags": "#source-symbol",
+      "ID": "OVR-421"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/models.py",
+      "Symbol": "select_device",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-019;OVR-380",
+      "Tags": "#source-symbol",
+      "ID": "OVR-422"
+    },
+    {
+      "AssetType": "CLASS",
+      "Path": "src/riposte/optimizer.py",
+      "Symbol": "GuardConfig",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-020;OVR-380",
+      "Tags": "#source-symbol",
+      "ID": "OVR-423"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/optimizer.py",
+      "Symbol": "GuardConfig.__post_init__",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-020;OVR-380",
+      "Tags": "#source-symbol",
+      "ID": "OVR-424"
+    },
+    {
+      "AssetType": "CLASS",
+      "Path": "src/riposte/optimizer.py",
+      "Symbol": "LocalVAE",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-020;OVR-380",
+      "Tags": "#source-symbol",
+      "ID": "OVR-425"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/optimizer.py",
+      "Symbol": "LocalVAE.__call__",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-020",
+      "Tags": "#source-symbol",
+      "ID": "OVR-426"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/optimizer.py",
+      "Symbol": "LocalVAE.__init__",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-020;OVR-380",
+      "Tags": "#source-symbol",
+      "ID": "OVR-427"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/optimizer.py",
+      "Symbol": "_round_ste",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-020",
+      "Tags": "#source-symbol",
+      "ID": "OVR-428"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/optimizer.py",
+      "Symbol": "eot",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-020;OVR-380;OVR-430",
+      "Tags": "#source-symbol",
+      "ID": "OVR-429"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/optimizer.py",
+      "Symbol": "jpeg_surrogate",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-020;OVR-380;OVR-428",
+      "Tags": "#source-symbol",
+      "ID": "OVR-430"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/optimizer.py",
+      "Symbol": "protect",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-020;OVR-380;OVR-404;OVR-423;OVR-428;OVR-429",
+      "Tags": "#source-symbol",
+      "ID": "OVR-310"
+    },
+    {
+      "AssetType": "CONFIG",
+      "Path": "src/riposte/organizer.py",
+      "Symbol": "Progress",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-021",
+      "Tags": "#source-symbol",
+      "ID": "OVR-431"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/organizer.py",
+      "Symbol": "_next_relative",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-021;OVR-525",
+      "Tags": "#source-symbol",
+      "ID": "OVR-432"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/organizer.py",
+      "Symbol": "_validate_managed",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-021;OVR-380;OVR-494",
+      "Tags": "#source-symbol",
+      "ID": "OVR-433"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/organizer.py",
+      "Symbol": "audit_workspace",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-021;OVR-380;OVR-433;OVR-435;OVR-437;OVR-450;OVR-451;OVR-494;OVR-520;OVR-527",
+      "Tags": "#source-symbol",
+      "ID": "OVR-434"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/organizer.py",
+      "Symbol": "known_good",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-021;OVR-519",
+      "Tags": "#source-symbol",
+      "ID": "OVR-435"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/organizer.py",
+      "Symbol": "organize",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-021;OVR-307;OVR-380;OVR-431;OVR-432;OVR-433;OVR-435;OVR-437;OVR-444;OVR-450;OVR-451;OVR-452;OVR-492;OVR-494;OVR-517;OVR-520;OVR-524;OVR-527;OVR-530;OVR-531",
+      "Tags": "#source-symbol",
+      "ID": "OVR-308"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/organizer.py",
+      "Symbol": "plan",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-021;OVR-307;OVR-380;OVR-431;OVR-433;OVR-435;OVR-437;OVR-444;OVR-450;OVR-520",
+      "Tags": "#source-symbol",
+      "ID": "OVR-436"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/organizer.py",
+      "Symbol": "walk_inputs",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-021;OVR-439;OVR-442;OVR-446;OVR-451;OVR-520;OVR-527",
+      "Tags": "#source-symbol",
+      "ID": "OVR-437"
+    },
+    {
+      "AssetType": "CONFIG",
+      "Path": "src/riposte/policy.py",
+      "Symbol": "BINS",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-022",
+      "Tags": "#source-symbol",
+      "ID": "OVR-438"
+    },
+    {
+      "AssetType": "CONFIG",
+      "Path": "src/riposte/policy.py",
+      "Symbol": "CACHE_NAMES",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-022",
+      "Tags": "#source-symbol",
+      "ID": "OVR-439"
+    },
+    {
+      "AssetType": "CONFIG",
+      "Path": "src/riposte/policy.py",
+      "Symbol": "CANONICAL",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-022;OVR-443",
+      "Tags": "#source-symbol",
+      "ID": "OVR-440"
+    },
+    {
+      "AssetType": "CONFIG",
+      "Path": "src/riposte/policy.py",
+      "Symbol": "FORMAT_NAMES",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-022",
+      "Tags": "#source-symbol",
+      "ID": "OVR-441"
+    },
+    {
+      "AssetType": "CONFIG",
+      "Path": "src/riposte/policy.py",
+      "Symbol": "IMAGE_SUFFIXES",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-022",
+      "Tags": "#source-symbol",
+      "ID": "OVR-442"
+    },
+    {
+      "AssetType": "CONFIG",
+      "Path": "src/riposte/policy.py",
+      "Symbol": "MONTHS",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-022",
+      "Tags": "#source-symbol",
+      "ID": "OVR-443"
+    },
+    {
+      "AssetType": "CLASS",
+      "Path": "src/riposte/policy.py",
+      "Symbol": "Policy",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-022;OVR-380",
+      "Tags": "#source-symbol",
+      "ID": "OVR-444"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/policy.py",
+      "Symbol": "Policy.__post_init__",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-022;OVR-380",
+      "Tags": "#source-symbol",
+      "ID": "OVR-445"
+    },
+    {
+      "AssetType": "CONFIG",
+      "Path": "src/riposte/policy.py",
+      "Symbol": "SIDECAR_SUFFIXES",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-022",
+      "Tags": "#source-symbol",
+      "ID": "OVR-446"
+    },
+    {
+      "AssetType": "CONFIG",
+      "Path": "src/riposte/policy.py",
+      "Symbol": "YEARS",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-022",
+      "Tags": "#source-symbol",
+      "ID": "OVR-447"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/policy.py",
+      "Symbol": "canonical_path",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-022;OVR-380;OVR-440",
+      "Tags": "#source-symbol",
+      "ID": "OVR-448"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/policy.py",
+      "Symbol": "extract_day",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-022;OVR-380;OVR-454",
+      "Tags": "#source-symbol",
+      "ID": "OVR-449"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/policy.py",
+      "Symbol": "folder_for",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-022;OVR-443;OVR-447;OVR-453;OVR-454",
+      "Tags": "#source-symbol",
+      "ID": "OVR-450"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/policy.py",
+      "Symbol": "is_link",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-022",
+      "Tags": "#source-symbol",
+      "ID": "OVR-451"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/policy.py",
+      "Symbol": "same_file_state",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-022",
+      "Tags": "#source-symbol",
+      "ID": "OVR-452"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/policy.py",
+      "Symbol": "size_bin",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-022;OVR-380",
+      "Tags": "#source-symbol",
+      "ID": "OVR-453"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/policy.py",
+      "Symbol": "valid_day",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-022;OVR-380",
+      "Tags": "#source-symbol",
+      "ID": "OVR-454"
+    },
+    {
+      "AssetType": "CLASS",
+      "Path": "src/riposte/publication.py",
+      "Symbol": "PublishRecipe",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-023;OVR-380;OVR-479;OVR-485",
+      "Tags": "#source-symbol",
+      "ID": "OVR-455"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/publication.py",
+      "Symbol": "PublishRecipe.__post_init__",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-023;OVR-380;OVR-479;OVR-485",
+      "Tags": "#source-symbol",
+      "ID": "OVR-456"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/publication.py",
+      "Symbol": "PublishRecipe.from_dict",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-023;OVR-380;OVR-479;OVR-485",
+      "Tags": "#source-symbol",
+      "ID": "OVR-457"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/publication.py",
+      "Symbol": "PublishRecipe.public",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-023",
+      "Tags": "#source-symbol",
+      "ID": "OVR-458"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/publication.py",
+      "Symbol": "_checkpoint",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-023;OVR-380;OVR-434",
+      "Tags": "#source-symbol",
+      "ID": "OVR-459"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/publication.py",
+      "Symbol": "_id",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-023;OVR-380",
+      "Tags": "#source-symbol",
+      "ID": "OVR-460"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/publication.py",
+      "Symbol": "_models",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-023;OVR-312;OVR-313;OVR-314;OVR-380;OVR-408;OVR-411;OVR-532",
+      "Tags": "#source-symbol",
+      "ID": "OVR-315"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/publication.py",
+      "Symbol": "_prefix",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-023;OVR-460;OVR-528",
+      "Tags": "#source-symbol",
+      "ID": "OVR-461"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/publication.py",
+      "Symbol": "_publication_zip_locked",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-023;OVR-318;OVR-380;OVR-459;OVR-461;OVR-463;OVR-465;OVR-525",
+      "Tags": "#source-symbol",
+      "ID": "OVR-462"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/publication.py",
+      "Symbol": "_read",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-023;OVR-380;OVR-525",
+      "Tags": "#source-symbol",
+      "ID": "OVR-463"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/publication.py",
+      "Symbol": "_replace_json",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-023;OVR-525",
+      "Tags": "#source-symbol",
+      "ID": "OVR-464"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/publication.py",
+      "Symbol": "_request",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-023;OVR-380;OVR-454;OVR-455;OVR-460;OVR-461;OVR-463",
+      "Tags": "#source-symbol",
+      "ID": "OVR-465"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/publication.py",
+      "Symbol": "_run",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-023;OVR-319;OVR-380;OVR-406;OVR-450;OVR-455;OVR-461;OVR-464;OVR-483;OVR-487;OVR-492;OVR-494;OVR-495;OVR-517;OVR-518;OVR-522;OVR-525",
+      "Tags": "#source-symbol",
+      "ID": "OVR-466"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/publication.py",
+      "Symbol": "_verified_item",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-023;OVR-380;OVR-448;OVR-450;OVR-455;OVR-461;OVR-463;OVR-483;OVR-492;OVR-494;OVR-495;OVR-522;OVR-525",
+      "Tags": "#source-symbol",
+      "ID": "OVR-318"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/publication.py",
+      "Symbol": "export_publication",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-023;OVR-460;OVR-462;OVR-525;OVR-528;OVR-530",
+      "Tags": "#source-symbol",
+      "ID": "OVR-467"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/publication.py",
+      "Symbol": "open_in_workshop",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-023;OVR-318;OVR-380;OVR-395;OVR-401;OVR-459;OVR-460;OVR-465;OVR-522;OVR-530",
+      "Tags": "#source-symbol",
+      "ID": "OVR-468"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/publication.py",
+      "Symbol": "publication_pixels",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-023;OVR-318;OVR-380;OVR-402;OVR-403;OVR-405;OVR-460;OVR-465;OVR-492",
+      "Tags": "#source-symbol",
+      "ID": "OVR-469"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/publication.py",
+      "Symbol": "publication_plan",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-023;OVR-380;OVR-455;OVR-459;OVR-460;OVR-520;OVR-522",
+      "Tags": "#source-symbol",
+      "ID": "OVR-470"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/publication.py",
+      "Symbol": "publication_status",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-023;OVR-318;OVR-380;OVR-461;OVR-463;OVR-465;OVR-525",
+      "Tags": "#source-symbol",
+      "ID": "OVR-319"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/publication.py",
+      "Symbol": "publication_zip",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-023;OVR-462;OVR-530",
+      "Tags": "#source-symbol",
+      "ID": "OVR-471"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/publication.py",
+      "Symbol": "publications",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-023;OVR-319;OVR-380;OVR-525;OVR-528",
+      "Tags": "#source-symbol",
+      "ID": "OVR-472"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/publication.py",
+      "Symbol": "resume_publication",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-023;OVR-315;OVR-318;OVR-380;OVR-459;OVR-461;OVR-465;OVR-466;OVR-522;OVR-525;OVR-530",
+      "Tags": "#source-symbol",
+      "ID": "OVR-317"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/publication.py",
+      "Symbol": "review_publication",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-023;OVR-318;OVR-319;OVR-380;OVR-461;OVR-464;OVR-465;OVR-530",
+      "Tags": "#source-symbol",
+      "ID": "OVR-320"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/publication.py",
+      "Symbol": "start_publication",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-023;OVR-315;OVR-455;OVR-461;OVR-466;OVR-470;OVR-472;OVR-518;OVR-530",
+      "Tags": "#source-symbol",
+      "ID": "OVR-316"
+    },
+    {
+      "AssetType": "CONFIG",
+      "Path": "src/riposte/qualification.py",
+      "Symbol": "CONTROL_SEEDS",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-024",
+      "Tags": "#source-symbol",
+      "ID": "OVR-473"
+    },
+    {
+      "AssetType": "CONFIG",
+      "Path": "src/riposte/qualification.py",
+      "Symbol": "EVAL_MASKS",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-024",
+      "Tags": "#source-symbol",
+      "ID": "OVR-474"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/qualification.py",
+      "Symbol": "_verified_pair",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-024;OVR-380;OVR-400;OVR-494;OVR-525;OVR-528",
+      "Tags": "#source-symbol",
+      "ID": "OVR-475"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/qualification.py",
+      "Symbol": "evaluate_pair",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-024;OVR-380;OVR-404;OVR-473;OVR-474;OVR-727;OVR-729;OVR-732;OVR-733;OVR-734;OVR-735",
+      "Tags": "#source-symbol",
+      "ID": "OVR-476"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/qualification.py",
+      "Symbol": "evaluations",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-024;OVR-400;OVR-525;OVR-528",
+      "Tags": "#source-symbol",
+      "ID": "OVR-477"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/qualification.py",
+      "Symbol": "qualify_trial",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-024;OVR-380;OVR-408;OVR-434;OVR-473;OVR-475;OVR-476;OVR-477;OVR-492;OVR-517;OVR-518;OVR-525;OVR-528;OVR-530;OVR-734",
+      "Tags": "#source-symbol",
+      "ID": "OVR-478"
+    },
+    {
+      "AssetType": "CLASS",
+      "Path": "src/riposte/quality.py",
+      "Symbol": "QualityLimits",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-025;OVR-380",
+      "Tags": "#source-symbol",
+      "ID": "OVR-479"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/quality.py",
+      "Symbol": "QualityLimits.__post_init__",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-025;OVR-380",
+      "Tags": "#source-symbol",
+      "ID": "OVR-480"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/quality.py",
+      "Symbol": "QualityLimits.public",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-025",
+      "Tags": "#source-symbol",
+      "ID": "OVR-481"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/quality.py",
+      "Symbol": "_lab",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-025",
+      "Tags": "#source-symbol",
+      "ID": "OVR-482"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/quality.py",
+      "Symbol": "quality_report",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-025;OVR-380;OVR-404;OVR-479;OVR-482;OVR-484",
+      "Tags": "#source-symbol",
+      "ID": "OVR-483"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/quality.py",
+      "Symbol": "spatial_budget",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-025;OVR-479",
+      "Tags": "#source-symbol",
+      "ID": "OVR-484"
+    },
+    {
+      "AssetType": "CLASS",
+      "Path": "src/riposte/release_guard.py",
+      "Symbol": "ReleaseConfig",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-026;OVR-380",
+      "Tags": "#source-symbol",
+      "ID": "OVR-485"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/release_guard.py",
+      "Symbol": "ReleaseConfig.__post_init__",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-026;OVR-380",
+      "Tags": "#source-symbol",
+      "ID": "OVR-486"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/release_guard.py",
+      "Symbol": "protect_release",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-026;OVR-374;OVR-377;OVR-378;OVR-380;OVR-428;OVR-479;OVR-483;OVR-484;OVR-485;OVR-488;OVR-729;OVR-731;OVR-732;OVR-736;OVR-737",
+      "Tags": "#source-symbol",
+      "ID": "OVR-487"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/release_guard.py",
+      "Symbol": "temporal_energy",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-026;OVR-380",
+      "Tags": "#source-symbol",
+      "ID": "OVR-488"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/runtime_probe.py",
+      "Symbol": "_probe_gradient",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-027;OVR-380",
+      "Tags": "#source-symbol",
+      "ID": "OVR-311"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/runtime_probe.py",
+      "Symbol": "execute_local_probe",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-027;OVR-312;OVR-380;OVR-408;OVR-421",
+      "Tags": "#source-symbol",
+      "ID": "OVR-489"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/runtime_probe.py",
+      "Symbol": "probe_encoder",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-027;OVR-311",
+      "Tags": "#source-symbol",
+      "ID": "OVR-312"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/runtime_probe.py",
+      "Symbol": "probe_inpaint",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-027;OVR-311;OVR-733",
+      "Tags": "#source-symbol",
+      "ID": "OVR-313"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/runtime_probe.py",
+      "Symbol": "probe_temporal",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-027;OVR-311;OVR-380;OVR-488",
+      "Tags": "#source-symbol",
+      "ID": "OVR-314"
+    },
+    {
+      "AssetType": "CLASS",
+      "Path": "src/riposte/sanitize.py",
+      "Symbol": "CleanImage",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-028",
+      "Tags": "#source-symbol",
+      "ID": "OVR-490"
+    },
+    {
+      "AssetType": "CONFIG",
+      "Path": "src/riposte/sanitize.py",
+      "Symbol": "PNG_MAGIC",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-028",
+      "Tags": "#source-symbol",
+      "ID": "OVR-491"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/sanitize.py",
+      "Symbol": "decode_clean",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-028;OVR-380;OVR-441;OVR-444;OVR-449;OVR-452;OVR-490;OVR-491;OVR-493",
+      "Tags": "#source-symbol",
+      "ID": "OVR-307"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/sanitize.py",
+      "Symbol": "encode_clean",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-028;OVR-380;OVR-454;OVR-493;OVR-494",
+      "Tags": "#source-symbol",
+      "ID": "OVR-492"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/sanitize.py",
+      "Symbol": "fresh_pixels",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-028",
+      "Tags": "#source-symbol",
+      "ID": "OVR-493"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/sanitize.py",
+      "Symbol": "png_audit",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-028;OVR-380;OVR-454;OVR-491",
+      "Tags": "#source-symbol",
+      "ID": "OVR-494"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/sanitize.py",
+      "Symbol": "social_render",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-028;OVR-380;OVR-493",
+      "Tags": "#source-symbol",
+      "ID": "OVR-495"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/sanitize.py",
+      "Symbol": "timestamp_day",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-028",
+      "Tags": "#source-symbol",
+      "ID": "OVR-496"
+    },
+    {
+      "AssetType": "CLASS",
+      "Path": "src/riposte/server.py",
+      "Symbol": "CompareRequest",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-029;OVR-513",
+      "Tags": "#source-symbol",
+      "ID": "OVR-497"
+    },
+    {
+      "AssetType": "CLASS",
+      "Path": "src/riposte/server.py",
+      "Symbol": "ExecutionRequest",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-029;OVR-513",
+      "Tags": "#source-symbol",
+      "ID": "OVR-498"
+    },
+    {
+      "AssetType": "CLASS",
+      "Path": "src/riposte/server.py",
+      "Symbol": "ExportRequest",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-029;OVR-513",
+      "Tags": "#source-symbol",
+      "ID": "OVR-499"
+    },
+    {
+      "AssetType": "CLASS",
+      "Path": "src/riposte/server.py",
+      "Symbol": "GenerationRequest",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-029;OVR-513",
+      "Tags": "#source-symbol",
+      "ID": "OVR-500"
+    },
+    {
+      "AssetType": "CLASS",
+      "Path": "src/riposte/server.py",
+      "Symbol": "GuardRequest",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-029;OVR-513",
+      "Tags": "#source-symbol",
+      "ID": "OVR-501"
+    },
+    {
+      "AssetType": "CLASS",
+      "Path": "src/riposte/server.py",
+      "Symbol": "Jobs",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-029;OVR-380",
+      "Tags": "#source-symbol",
+      "ID": "OVR-321"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/server.py",
+      "Symbol": "Jobs.__init__",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-029",
+      "Tags": "#source-symbol",
+      "ID": "OVR-502"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/server.py",
+      "Symbol": "Jobs.cancel",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-029;OVR-380",
+      "Tags": "#source-symbol",
+      "ID": "OVR-503"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/server.py",
+      "Symbol": "Jobs.close",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-029",
+      "Tags": "#source-symbol",
+      "ID": "OVR-504"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/server.py",
+      "Symbol": "Jobs.snapshot",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-029",
+      "Tags": "#source-symbol",
+      "ID": "OVR-505"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/server.py",
+      "Symbol": "Jobs.start",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-029;OVR-380",
+      "Tags": "#source-symbol",
+      "ID": "OVR-322"
+    },
+    {
+      "AssetType": "CLASS",
+      "Path": "src/riposte/server.py",
+      "Symbol": "OrganizeRequest",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-029;OVR-513",
+      "Tags": "#source-symbol",
+      "ID": "OVR-506"
+    },
+    {
+      "AssetType": "CLASS",
+      "Path": "src/riposte/server.py",
+      "Symbol": "PreflightRequest",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-029;OVR-513",
+      "Tags": "#source-symbol",
+      "ID": "OVR-507"
+    },
+    {
+      "AssetType": "CLASS",
+      "Path": "src/riposte/server.py",
+      "Symbol": "PublishRequest",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-029;OVR-513",
+      "Tags": "#source-symbol",
+      "ID": "OVR-508"
+    },
+    {
+      "AssetType": "CLASS",
+      "Path": "src/riposte/server.py",
+      "Symbol": "PublishReviewRequest",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-029;OVR-513",
+      "Tags": "#source-symbol",
+      "ID": "OVR-509"
+    },
+    {
+      "AssetType": "CLASS",
+      "Path": "src/riposte/server.py",
+      "Symbol": "QualificationRequest",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-029;OVR-513",
+      "Tags": "#source-symbol",
+      "ID": "OVR-510"
+    },
+    {
+      "AssetType": "CLASS",
+      "Path": "src/riposte/server.py",
+      "Symbol": "ResumePublishRequest",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-029;OVR-513",
+      "Tags": "#source-symbol",
+      "ID": "OVR-511"
+    },
+    {
+      "AssetType": "CONFIG",
+      "Path": "src/riposte/server.py",
+      "Symbol": "STATIC",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-029",
+      "Tags": "#source-symbol",
+      "ID": "OVR-512"
+    },
+    {
+      "AssetType": "CLASS",
+      "Path": "src/riposte/server.py",
+      "Symbol": "StrictModel",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-029",
+      "Tags": "#source-symbol",
+      "ID": "OVR-513"
+    },
+    {
+      "AssetType": "CLASS",
+      "Path": "src/riposte/server.py",
+      "Symbol": "_BodyLimitMiddleware",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-029",
+      "Tags": "#source-symbol",
+      "ID": "OVR-323"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/server.py",
+      "Symbol": "_BodyLimitMiddleware.__call__",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-029",
+      "Tags": "#source-symbol",
+      "ID": "OVR-324"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/server.py",
+      "Symbol": "_BodyLimitMiddleware.__init__",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-029",
+      "Tags": "#source-symbol",
+      "ID": "OVR-514"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/server.py",
+      "Symbol": "create_app",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-029;OVR-308;OVR-309;OVR-316;OVR-317;OVR-319;OVR-320;OVR-321;OVR-323;OVR-331;OVR-380;OVR-389;OVR-391;OVR-396;OVR-397;OVR-398;OVR-399;OVR-401;OVR-417;OVR-421;OVR-434;OVR-436;OVR-444;OVR-455;OVR-468;OVR-469;OVR-470;OVR-471;OVR-472;OVR-477;OVR-478;OVR-479;OVR-485;OVR-489;OVR-492;OVR-497;OVR-498;OVR-499;OVR-500;OVR-501;OVR-506;OVR-507;OVR-508;OVR-509;OVR-510;OVR-511;OVR-512;OVR-519;OVR-520;OVR-522;OVR-523;OVR-525;OVR-528;OVR-529",
+      "Tags": "#source-symbol",
+      "ID": "OVR-325"
+    },
+    {
+      "AssetType": "CONFIG",
+      "Path": "src/riposte/store.py",
+      "Symbol": "LEGACY_SIGNATURE",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-035",
+      "Tags": "#source-symbol",
+      "ID": "OVR-515"
+    },
+    {
+      "AssetType": "CONFIG",
+      "Path": "src/riposte/store.py",
+      "Symbol": "SIGNATURE",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-035",
+      "Tags": "#source-symbol",
+      "ID": "OVR-516"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/store.py",
+      "Symbol": "atomic_clean_write",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-035;OVR-380;OVR-494;OVR-496;OVR-525",
+      "Tags": "#source-symbol",
+      "ID": "OVR-517"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/store.py",
+      "Symbol": "atomic_json_write",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-035;OVR-380;OVR-525",
+      "Tags": "#source-symbol",
+      "ID": "OVR-518"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/store.py",
+      "Symbol": "catalog",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-035;OVR-448;OVR-520;OVR-525;OVR-528",
+      "Tags": "#source-symbol",
+      "ID": "OVR-519"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/store.py",
+      "Symbol": "check_root",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-035;OVR-380;OVR-451;OVR-515;OVR-516",
+      "Tags": "#source-symbol",
+      "ID": "OVR-520"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/store.py",
+      "Symbol": "connect",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-035;OVR-380;OVR-451;OVR-526",
+      "Tags": "#source-symbol",
+      "ID": "OVR-521"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/store.py",
+      "Symbol": "find_image",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-035;OVR-380;OVR-448;OVR-494;OVR-519;OVR-525",
+      "Tags": "#source-symbol",
+      "ID": "OVR-522"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/store.py",
+      "Symbol": "legacy_workspace",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-035;OVR-515;OVR-520;OVR-527",
+      "Tags": "#source-symbol",
+      "ID": "OVR-523"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/store.py",
+      "Symbol": "record_image",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-035;OVR-448;OVR-521",
+      "Tags": "#source-symbol",
+      "ID": "OVR-524"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/store.py",
+      "Symbol": "safe_child",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-035;OVR-380;OVR-451;OVR-520",
+      "Tags": "#source-symbol",
+      "ID": "OVR-525"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/store.py",
+      "Symbol": "state_dir",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-035;OVR-516;OVR-520;OVR-527",
+      "Tags": "#source-symbol",
+      "ID": "OVR-526"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/store.py",
+      "Symbol": "state_name",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-035",
+      "Tags": "#source-symbol",
+      "ID": "OVR-527"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/store.py",
+      "Symbol": "state_relative",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-035;OVR-527",
+      "Tags": "#source-symbol",
+      "ID": "OVR-528"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/store.py",
+      "Symbol": "upgrade_workspace",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-035;OVR-380;OVR-516;OVR-520;OVR-523;OVR-527",
+      "Tags": "#source-symbol",
+      "ID": "OVR-529"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/store.py",
+      "Symbol": "workspace_lock",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-035;OVR-380;OVR-451;OVR-526",
+      "Tags": "#source-symbol",
+      "ID": "OVR-530"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/store.py",
+      "Symbol": "write_report",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-035;OVR-380;OVR-451;OVR-526",
+      "Tags": "#source-symbol",
+      "ID": "OVR-531"
+    },
+    {
+      "AssetType": "CLASS",
+      "Path": "src/riposte/temporal.py",
+      "Symbol": "LocalTemporalProbe",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-036;OVR-380;OVR-418;OVR-419;OVR-420;OVR-422;OVR-451;OVR-535;OVR-537;OVR-538",
+      "Tags": "#source-symbol",
+      "ID": "OVR-532"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/temporal.py",
+      "Symbol": "LocalTemporalProbe.__call__",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-036;OVR-380;OVR-537;OVR-538",
+      "Tags": "#source-symbol",
+      "ID": "OVR-533"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/temporal.py",
+      "Symbol": "LocalTemporalProbe.__init__",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-036;OVR-380;OVR-418;OVR-419;OVR-420;OVR-422;OVR-451;OVR-535",
+      "Tags": "#source-symbol",
+      "ID": "OVR-534"
+    },
+    {
+      "AssetType": "CLASS",
+      "Path": "src/riposte/temporal.py",
+      "Symbol": "TemporalConfig",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-036;OVR-380",
+      "Tags": "#source-symbol",
+      "ID": "OVR-535"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/temporal.py",
+      "Symbol": "TemporalConfig.__post_init__",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-036;OVR-380",
+      "Tags": "#source-symbol",
+      "ID": "OVR-536"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/temporal.py",
+      "Symbol": "letterbox_tensor",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-036",
+      "Tags": "#source-symbol",
+      "ID": "OVR-537"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/temporal.py",
+      "Symbol": "v_prediction_original",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-036",
+      "Tags": "#source-symbol",
+      "ID": "OVR-538"
+    },
+    {
+      "AssetType": "CONFIG",
+      "Path": "src/riposte/terminal/actions.py",
+      "Symbol": "ACTIONS",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-038;OVR-540;OVR-542;OVR-544;OVR-546;OVR-547;OVR-548;OVR-549;OVR-550;OVR-551;OVR-552;OVR-553;OVR-554;OVR-556;OVR-557;OVR-558;OVR-559",
+      "Tags": "#source-symbol",
+      "ID": "OVR-539"
+    },
+    {
+      "AssetType": "CLASS",
+      "Path": "src/riposte/terminal/actions.py",
+      "Symbol": "Action",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-038;OVR-547;OVR-694",
+      "Tags": "#source-symbol",
+      "ID": "OVR-540"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/actions.py",
+      "Symbol": "Action.effect",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-038;OVR-694",
+      "Tags": "#source-symbol",
+      "ID": "OVR-541"
+    },
+    {
+      "AssetType": "CONFIG",
+      "Path": "src/riposte/terminal/actions.py",
+      "Symbol": "BATCH",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-038;OVR-547",
+      "Tags": "#source-symbol",
+      "ID": "OVR-542"
+    },
+    {
+      "AssetType": "CONFIG",
+      "Path": "src/riposte/terminal/actions.py",
+      "Symbol": "BY_KEY",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-038;OVR-539",
+      "Tags": "#source-symbol",
+      "ID": "OVR-543"
+    },
+    {
+      "AssetType": "CONFIG",
+      "Path": "src/riposte/terminal/actions.py",
+      "Symbol": "DEVICE",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-038;OVR-547",
+      "Tags": "#source-symbol",
+      "ID": "OVR-544"
+    },
+    {
+      "AssetType": "CONFIG",
+      "Path": "src/riposte/terminal/actions.py",
+      "Symbol": "EDGES",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-038;OVR-547",
+      "Tags": "#source-symbol",
+      "ID": "OVR-545"
+    },
+    {
+      "AssetType": "CONFIG",
+      "Path": "src/riposte/terminal/actions.py",
+      "Symbol": "EPSILON",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-038;OVR-547",
+      "Tags": "#source-symbol",
+      "ID": "OVR-546"
+    },
+    {
+      "AssetType": "CLASS",
+      "Path": "src/riposte/terminal/actions.py",
+      "Symbol": "Field",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-038",
+      "Tags": "#source-symbol",
+      "ID": "OVR-547"
+    },
+    {
+      "AssetType": "CONFIG",
+      "Path": "src/riposte/terminal/actions.py",
+      "Symbol": "IMAGE",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-038;OVR-547",
+      "Tags": "#source-symbol",
+      "ID": "OVR-548"
+    },
+    {
+      "AssetType": "CONFIG",
+      "Path": "src/riposte/terminal/actions.py",
+      "Symbol": "INPAINT",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-038;OVR-547",
+      "Tags": "#source-symbol",
+      "ID": "OVR-549"
+    },
+    {
+      "AssetType": "CONFIG",
+      "Path": "src/riposte/terminal/actions.py",
+      "Symbol": "ITEM",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-038;OVR-547",
+      "Tags": "#source-symbol",
+      "ID": "OVR-550"
+    },
+    {
+      "AssetType": "CONFIG",
+      "Path": "src/riposte/terminal/actions.py",
+      "Symbol": "MAX_EDGE",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-038;OVR-547",
+      "Tags": "#source-symbol",
+      "ID": "OVR-551"
+    },
+    {
+      "AssetType": "CONFIG",
+      "Path": "src/riposte/terminal/actions.py",
+      "Symbol": "MODEL",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-038;OVR-547",
+      "Tags": "#source-symbol",
+      "ID": "OVR-552"
+    },
+    {
+      "AssetType": "CONFIG",
+      "Path": "src/riposte/terminal/actions.py",
+      "Symbol": "PUB_FIELDS",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-038;OVR-544;OVR-545;OVR-546;OVR-547;OVR-549;OVR-554;OVR-555;OVR-557;OVR-558;OVR-559",
+      "Tags": "#source-symbol",
+      "ID": "OVR-553"
+    },
+    {
+      "AssetType": "CONFIG",
+      "Path": "src/riposte/terminal/actions.py",
+      "Symbol": "SEED",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-038;OVR-547",
+      "Tags": "#source-symbol",
+      "ID": "OVR-554"
+    },
+    {
+      "AssetType": "CONFIG",
+      "Path": "src/riposte/terminal/actions.py",
+      "Symbol": "STEPS",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-038;OVR-547",
+      "Tags": "#source-symbol",
+      "ID": "OVR-555"
+    },
+    {
+      "AssetType": "CONFIG",
+      "Path": "src/riposte/terminal/actions.py",
+      "Symbol": "TRIAL",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-038;OVR-547",
+      "Tags": "#source-symbol",
+      "ID": "OVR-556"
+    },
+    {
+      "AssetType": "CONFIG",
+      "Path": "src/riposte/terminal/actions.py",
+      "Symbol": "VAE_FIELDS",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-038;OVR-547",
+      "Tags": "#source-symbol",
+      "ID": "OVR-557"
+    },
+    {
+      "AssetType": "CONFIG",
+      "Path": "src/riposte/terminal/actions.py",
+      "Symbol": "VIDEO",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-038;OVR-547",
+      "Tags": "#source-symbol",
+      "ID": "OVR-558"
+    },
+    {
+      "AssetType": "CONFIG",
+      "Path": "src/riposte/terminal/actions.py",
+      "Symbol": "WHITE",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-038;OVR-547",
+      "Tags": "#source-symbol",
+      "ID": "OVR-559"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/actions.py",
+      "Symbol": "command_line",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-038;OVR-564;OVR-696",
+      "Tags": "#source-symbol",
+      "ID": "OVR-560"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/actions.py",
+      "Symbol": "defaults",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-038;OVR-540",
+      "Tags": "#source-symbol",
+      "ID": "OVR-561"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/actions.py",
+      "Symbol": "make_request",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-038;OVR-543;OVR-563;OVR-696",
+      "Tags": "#source-symbol",
+      "ID": "OVR-562"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/actions.py",
+      "Symbol": "parse_value",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-038;OVR-380;OVR-547",
+      "Tags": "#source-symbol",
+      "ID": "OVR-563"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/actions.py",
+      "Symbol": "request_argv",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-038;OVR-696",
+      "Tags": "#source-symbol",
+      "ID": "OVR-564"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/app.py",
+      "Symbol": "_launch",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-039;OVR-360;OVR-380;OVR-567;OVR-568;OVR-617;OVR-624;OVR-635;OVR-641;OVR-668;OVR-708",
+      "Tags": "#source-symbol",
+      "ID": "OVR-565"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/app.py",
+      "Symbol": "_line_command",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-039;OVR-194;OVR-380;OVR-563;OVR-568;OVR-617;OVR-672",
+      "Tags": "#source-symbol",
+      "ID": "OVR-326"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/app.py",
+      "Symbol": "launch",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-039;OVR-565;OVR-635;OVR-709",
+      "Tags": "#source-symbol",
+      "ID": "OVR-566"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/app.py",
+      "Symbol": "linear_session",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-039;OVR-326;OVR-617;OVR-668",
+      "Tags": "#source-symbol",
+      "ID": "OVR-567"
+    },
+    {
+      "AssetType": "CLASS",
+      "Path": "src/riposte/terminal/controller.py",
+      "Symbol": "Controller",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-040;OVR-194;OVR-197;OVR-380;OVR-402;OVR-543;OVR-547;OVR-561;OVR-562;OVR-563;OVR-606;OVR-615;OVR-617;OVR-635;OVR-649;OVR-670;OVR-672;OVR-696;OVR-699;OVR-700;OVR-705;OVR-710;OVR-712;OVR-713",
+      "Tags": "#source-symbol",
+      "ID": "OVR-568"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/controller.py",
+      "Symbol": "Controller.__init__",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-040;OVR-578;OVR-589;OVR-597;OVR-606;OVR-635;OVR-696;OVR-705;OVR-712;OVR-713",
+      "Tags": "#source-symbol",
+      "ID": "OVR-569"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/controller.py",
+      "Symbol": "Controller._key",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-040;OVR-194;OVR-197;OVR-380;OVR-402;OVR-547;OVR-572;OVR-573;OVR-574;OVR-575;OVR-576;OVR-577;OVR-578;OVR-579;OVR-580;OVR-581;OVR-582;OVR-583;OVR-586;OVR-590;OVR-591;OVR-592;OVR-593;OVR-594;OVR-596;OVR-597;OVR-599;OVR-672;OVR-696;OVR-710;OVR-712",
+      "Tags": "#source-symbol",
+      "ID": "OVR-570"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/controller.py",
+      "Symbol": "Controller.accept_editor",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-040;OVR-380;OVR-563;OVR-572;OVR-587;OVR-589;OVR-696;OVR-705;OVR-712",
+      "Tags": "#source-symbol",
+      "ID": "OVR-571"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/controller.py",
+      "Symbol": "Controller.action",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-040;OVR-543;OVR-561;OVR-575;OVR-576;OVR-585;OVR-587;OVR-592;OVR-593;OVR-597;OVR-696;OVR-712",
+      "Tags": "#source-symbol",
+      "ID": "OVR-572"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/controller.py",
+      "Symbol": "Controller.back",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-040;OVR-712",
+      "Tags": "#source-symbol",
+      "ID": "OVR-573"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/controller.py",
+      "Symbol": "Controller.batch",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-040;OVR-597;OVR-696;OVR-699;OVR-712",
+      "Tags": "#source-symbol",
+      "ID": "OVR-574"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/controller.py",
+      "Symbol": "Controller.batches",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-040;OVR-589;OVR-592;OVR-597;OVR-712",
+      "Tags": "#source-symbol",
+      "ID": "OVR-575"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/controller.py",
+      "Symbol": "Controller.confirm",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-040;OVR-597;OVR-712",
+      "Tags": "#source-symbol",
+      "ID": "OVR-576"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/controller.py",
+      "Symbol": "Controller.cycle_theme",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-040;OVR-587",
+      "Tags": "#source-symbol",
+      "ID": "OVR-577"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/controller.py",
+      "Symbol": "Controller.edit_workspace",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-040;OVR-547;OVR-710",
+      "Tags": "#source-symbol",
+      "ID": "OVR-578"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/controller.py",
+      "Symbol": "Controller.editor_key",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-040;OVR-571",
+      "Tags": "#source-symbol",
+      "ID": "OVR-579"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/controller.py",
+      "Symbol": "Controller.field_edit",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-040;OVR-194;OVR-594;OVR-710",
+      "Tags": "#source-symbol",
+      "ID": "OVR-580"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/controller.py",
+      "Symbol": "Controller.freeze_motion",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-040;OVR-587",
+      "Tags": "#source-symbol",
+      "ID": "OVR-581"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/controller.py",
+      "Symbol": "Controller.inspect_asset",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-040;OVR-597;OVR-649;OVR-696;OVR-699;OVR-700;OVR-712",
+      "Tags": "#source-symbol",
+      "ID": "OVR-582"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/controller.py",
+      "Symbol": "Controller.inspect_item",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-040;OVR-597;OVR-649;OVR-700;OVR-712",
+      "Tags": "#source-symbol",
+      "ID": "OVR-583"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/controller.py",
+      "Symbol": "Controller.key",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-040;OVR-380;OVR-570;OVR-597;OVR-615;OVR-617;OVR-712",
+      "Tags": "#source-symbol",
+      "ID": "OVR-584"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/controller.py",
+      "Symbol": "Controller.library",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-040;OVR-589;OVR-592;OVR-597;OVR-712",
+      "Tags": "#source-symbol",
+      "ID": "OVR-585"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/controller.py",
+      "Symbol": "Controller.move",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-040;OVR-194;OVR-670;OVR-672",
+      "Tags": "#source-symbol",
+      "ID": "OVR-586"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/controller.py",
+      "Symbol": "Controller.preferences",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-040;OVR-597;OVR-712",
+      "Tags": "#source-symbol",
+      "ID": "OVR-587"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/controller.py",
+      "Symbol": "Controller.pump",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-040;OVR-380;OVR-573;OVR-574;OVR-589;OVR-597;OVR-615;OVR-712",
+      "Tags": "#source-symbol",
+      "ID": "OVR-588"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/controller.py",
+      "Symbol": "Controller.refresh",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-040;OVR-696;OVR-699",
+      "Tags": "#source-symbol",
+      "ID": "OVR-589"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/controller.py",
+      "Symbol": "Controller.reload_preview",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-040;OVR-649;OVR-700",
+      "Tags": "#source-symbol",
+      "ID": "OVR-590"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/controller.py",
+      "Symbol": "Controller.request_from_form",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-040;OVR-562",
+      "Tags": "#source-symbol",
+      "ID": "OVR-591"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/controller.py",
+      "Symbol": "Controller.require_workspace",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-040;OVR-578",
+      "Tags": "#source-symbol",
+      "ID": "OVR-592"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/controller.py",
+      "Symbol": "Controller.run",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-040;OVR-380;OVR-597;OVR-712",
+      "Tags": "#source-symbol",
+      "ID": "OVR-593"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/controller.py",
+      "Symbol": "Controller.run_form",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-040;OVR-576;OVR-591;OVR-593;OVR-595;OVR-696",
+      "Tags": "#source-symbol",
+      "ID": "OVR-594"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/controller.py",
+      "Symbol": "Controller.save_model_session",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-040",
+      "Tags": "#source-symbol",
+      "ID": "OVR-595"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/controller.py",
+      "Symbol": "Controller.selected_row",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-040;OVR-672",
+      "Tags": "#source-symbol",
+      "ID": "OVR-596"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/controller.py",
+      "Symbol": "Controller.show",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-040",
+      "Tags": "#source-symbol",
+      "ID": "OVR-597"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/controller.py",
+      "Symbol": "Controller.shutdown",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-040",
+      "Tags": "#source-symbol",
+      "ID": "OVR-598"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/controller.py",
+      "Symbol": "Controller.toggle_selection",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-040",
+      "Tags": "#source-symbol",
+      "ID": "OVR-599"
+    },
+    {
+      "AssetType": "CLASS",
+      "Path": "src/riposte/terminal/help.py",
+      "Symbol": "RichCommand",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-041;OVR-604",
+      "Tags": "#source-symbol",
+      "ID": "OVR-600"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/help.py",
+      "Symbol": "RichCommand.format_help",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-041;OVR-604",
+      "Tags": "#source-symbol",
+      "ID": "OVR-601"
+    },
+    {
+      "AssetType": "CLASS",
+      "Path": "src/riposte/terminal/help.py",
+      "Symbol": "RichGroup",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-041;OVR-604",
+      "Tags": "#source-symbol",
+      "ID": "OVR-602"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/help.py",
+      "Symbol": "RichGroup.format_help",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-041;OVR-604",
+      "Tags": "#source-symbol",
+      "ID": "OVR-603"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/help.py",
+      "Symbol": "format_help",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-041;OVR-645",
+      "Tags": "#source-symbol",
+      "ID": "OVR-604"
+    },
+    {
+      "AssetType": "CONFIG",
+      "Path": "src/riposte/terminal/interaction.py",
+      "Symbol": "GLOBAL",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-160;OVR-193",
+      "Tags": "#source-symbol",
+      "ID": "OVR-605"
+    },
+    {
+      "AssetType": "CLASS",
+      "Path": "src/riposte/terminal/interaction.py",
+      "Symbol": "Hint",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-160",
+      "Tags": "#source-symbol",
+      "ID": "OVR-193"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/interaction.py",
+      "Symbol": "context",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-160;OVR-194;OVR-543",
+      "Tags": "#source-symbol",
+      "ID": "OVR-196"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/interaction.py",
+      "Symbol": "contextual_help",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-160;OVR-195;OVR-196;OVR-605",
+      "Tags": "#source-symbol",
+      "ID": "OVR-197"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/interaction.py",
+      "Symbol": "fields_for",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-160;OVR-543",
+      "Tags": "#source-symbol",
+      "ID": "OVR-194"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/interaction.py",
+      "Symbol": "hints",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-160;OVR-193;OVR-194;OVR-543",
+      "Tags": "#source-symbol",
+      "ID": "OVR-195"
+    },
+    {
+      "AssetType": "CLASS",
+      "Path": "src/riposte/terminal/jobs.py",
+      "Symbol": "Operation",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-042;OVR-380;OVR-614;OVR-615;OVR-616;OVR-693;OVR-696;OVR-699;OVR-704",
+      "Tags": "#source-symbol",
+      "ID": "OVR-606"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/jobs.py",
+      "Symbol": "Operation.__init__",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-042;OVR-608;OVR-614;OVR-693;OVR-696;OVR-699",
+      "Tags": "#source-symbol",
+      "ID": "OVR-607"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/jobs.py",
+      "Symbol": "Operation._run",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-042;OVR-380;OVR-611;OVR-615;OVR-704",
+      "Tags": "#source-symbol",
+      "ID": "OVR-608"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/jobs.py",
+      "Symbol": "Operation.cancel",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-042",
+      "Tags": "#source-symbol",
+      "ID": "OVR-609"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/jobs.py",
+      "Symbol": "Operation.join",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-042",
+      "Tags": "#source-symbol",
+      "ID": "OVR-610"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/jobs.py",
+      "Symbol": "Operation.progress",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-042;OVR-380;OVR-616",
+      "Tags": "#source-symbol",
+      "ID": "OVR-611"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/jobs.py",
+      "Symbol": "Operation.snapshot",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-042;OVR-614",
+      "Tags": "#source-symbol",
+      "ID": "OVR-612"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/jobs.py",
+      "Symbol": "Operation.start",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-042",
+      "Tags": "#source-symbol",
+      "ID": "OVR-613"
+    },
+    {
+      "AssetType": "CLASS",
+      "Path": "src/riposte/terminal/jobs.py",
+      "Symbol": "Snapshot",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-042",
+      "Tags": "#source-symbol",
+      "ID": "OVR-614"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/jobs.py",
+      "Symbol": "safe_code",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-042",
+      "Tags": "#source-symbol",
+      "ID": "OVR-615"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/jobs.py",
+      "Symbol": "safe_phase",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-042",
+      "Tags": "#source-symbol",
+      "ID": "OVR-616"
+    },
+    {
+      "AssetType": "CLASS",
+      "Path": "src/riposte/terminal/keyboard.py",
+      "Symbol": "Key",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-043",
+      "Tags": "#source-symbol",
+      "ID": "OVR-617"
+    },
+    {
+      "AssetType": "CLASS",
+      "Path": "src/riposte/terminal/keyboard.py",
+      "Symbol": "KeyDecoder",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-043;OVR-617;OVR-622;OVR-623",
+      "Tags": "#source-symbol",
+      "ID": "OVR-618"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/keyboard.py",
+      "Symbol": "KeyDecoder.__init__",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-043",
+      "Tags": "#source-symbol",
+      "ID": "OVR-619"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/keyboard.py",
+      "Symbol": "KeyDecoder.feed",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-043",
+      "Tags": "#source-symbol",
+      "ID": "OVR-620"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/keyboard.py",
+      "Symbol": "KeyDecoder.next",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-043;OVR-617;OVR-622;OVR-623",
+      "Tags": "#source-symbol",
+      "ID": "OVR-621"
+    },
+    {
+      "AssetType": "CONFIG",
+      "Path": "src/riposte/terminal/keyboard.py",
+      "Symbol": "SEQUENCES",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-043",
+      "Tags": "#source-symbol",
+      "ID": "OVR-622"
+    },
+    {
+      "AssetType": "CONFIG",
+      "Path": "src/riposte/terminal/keyboard.py",
+      "Symbol": "SINGLE",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-043",
+      "Tags": "#source-symbol",
+      "ID": "OVR-623"
+    },
+    {
+      "AssetType": "CLASS",
+      "Path": "src/riposte/terminal/keyboard.py",
+      "Symbol": "TerminalKeys",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-043;OVR-617;OVR-618",
+      "Tags": "#source-symbol",
+      "ID": "OVR-624"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/keyboard.py",
+      "Symbol": "TerminalKeys.__enter__",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-043;OVR-626",
+      "Tags": "#source-symbol",
+      "ID": "OVR-625"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/keyboard.py",
+      "Symbol": "TerminalKeys.__exit__",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-043",
+      "Tags": "#source-symbol",
+      "ID": "OVR-626"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/keyboard.py",
+      "Symbol": "TerminalKeys.__init__",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-043;OVR-618",
+      "Tags": "#source-symbol",
+      "ID": "OVR-627"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/keyboard.py",
+      "Symbol": "TerminalKeys.read",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-043;OVR-617",
+      "Tags": "#source-symbol",
+      "ID": "OVR-628"
+    },
+    {
+      "AssetType": "CONFIG",
+      "Path": "src/riposte/terminal/material.py",
+      "Symbol": "LOGO",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-044",
+      "Tags": "#source-symbol",
+      "ID": "OVR-629"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/material.py",
+      "Symbol": "activity_trace",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-044",
+      "Tags": "#source-symbol",
+      "ID": "OVR-630"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/material.py",
+      "Symbol": "counterstroke",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-044;OVR-715",
+      "Tags": "#source-symbol",
+      "ID": "OVR-631"
+    },
+    {
+      "AssetType": "CLASS",
+      "Path": "src/riposte/terminal/output.py",
+      "Symbol": "Activity",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-045;OVR-630;OVR-715",
+      "Tags": "#source-symbol",
+      "ID": "OVR-632"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/output.py",
+      "Symbol": "Activity.__init__",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-045",
+      "Tags": "#source-symbol",
+      "ID": "OVR-633"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/output.py",
+      "Symbol": "Activity.__rich__",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-045;OVR-630;OVR-715",
+      "Tags": "#source-symbol",
+      "ID": "OVR-634"
+    },
+    {
+      "AssetType": "CLASS",
+      "Path": "src/riposte/terminal/output.py",
+      "Symbol": "Presentation",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-045",
+      "Tags": "#source-symbol",
+      "ID": "OVR-635"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/output.py",
+      "Symbol": "Presentation.console",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-045",
+      "Tags": "#source-symbol",
+      "ID": "OVR-636"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/output.py",
+      "Symbol": "Presentation.machine",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-045",
+      "Tags": "#source-symbol",
+      "ID": "OVR-637"
+    },
+    {
+      "AssetType": "CONFIG",
+      "Path": "src/riposte/terminal/output.py",
+      "Symbol": "RECOVERY",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-045",
+      "Tags": "#source-symbol",
+      "ID": "OVR-638"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/output.py",
+      "Symbol": "_run_direct",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-045;OVR-606;OVR-632;OVR-635;OVR-640;OVR-641;OVR-696;OVR-708",
+      "Tags": "#source-symbol",
+      "ID": "OVR-639"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/output.py",
+      "Symbol": "emit",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-045;OVR-202;OVR-204;OVR-635",
+      "Tags": "#source-symbol",
+      "ID": "OVR-640"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/output.py",
+      "Symbol": "error",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-045;OVR-615;OVR-635;OVR-638",
+      "Tags": "#source-symbol",
+      "ID": "OVR-641"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/output.py",
+      "Symbol": "result_table",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-045;OVR-726",
+      "Tags": "#source-symbol",
+      "ID": "OVR-642"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/output.py",
+      "Symbol": "run_direct",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-045;OVR-635;OVR-639;OVR-696;OVR-709",
+      "Tags": "#source-symbol",
+      "ID": "OVR-643"
+    },
+    {
+      "AssetType": "CONFIG",
+      "Path": "src/riposte/terminal/palette.py",
+      "Symbol": "GOKS",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-161",
+      "Tags": "#source-symbol",
+      "ID": "OVR-644"
+    },
+    {
+      "AssetType": "CONFIG",
+      "Path": "src/riposte/terminal/palette.py",
+      "Symbol": "PALETTES",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-161;OVR-644;OVR-647",
+      "Tags": "#source-symbol",
+      "ID": "OVR-645"
+    },
+    {
+      "AssetType": "CONFIG",
+      "Path": "src/riposte/terminal/palette.py",
+      "Symbol": "THEMES",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-161;OVR-645",
+      "Tags": "#source-symbol",
+      "ID": "OVR-646"
+    },
+    {
+      "AssetType": "CONFIG",
+      "Path": "src/riposte/terminal/palette.py",
+      "Symbol": "_COMMON",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-161",
+      "Tags": "#source-symbol",
+      "ID": "OVR-647"
+    },
+    {
+      "AssetType": "CLASS",
+      "Path": "src/riposte/terminal/preview.py",
+      "Symbol": "Preview",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-046",
+      "Tags": "#source-symbol",
+      "ID": "OVR-648"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/preview.py",
+      "Symbol": "make_preview",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-046;OVR-648",
+      "Tags": "#source-symbol",
+      "ID": "OVR-649"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/preview.py",
+      "Symbol": "paint_preview",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-046;OVR-648;OVR-715",
+      "Tags": "#source-symbol",
+      "ID": "OVR-650"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/render.py",
+      "Symbol": "_help_lines",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-047;OVR-201;OVR-605",
+      "Tags": "#source-symbol",
+      "ID": "OVR-651"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/render.py",
+      "Symbol": "_report_data",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-047;OVR-202;OVR-204",
+      "Tags": "#source-symbol",
+      "ID": "OVR-652"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/render.py",
+      "Symbol": "asset",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-047;OVR-650;OVR-659;OVR-671",
+      "Tags": "#source-symbol",
+      "ID": "OVR-653"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/render.py",
+      "Symbol": "batches",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-047;OVR-659;OVR-666;OVR-672",
+      "Tags": "#source-symbol",
+      "ID": "OVR-654"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/render.py",
+      "Symbol": "collection",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-047;OVR-659;OVR-666;OVR-672",
+      "Tags": "#source-symbol",
+      "ID": "OVR-655"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/render.py",
+      "Symbol": "command_page",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-047;OVR-560;OVR-659",
+      "Tags": "#source-symbol",
+      "ID": "OVR-656"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/render.py",
+      "Symbol": "confirm",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-047;OVR-659",
+      "Tags": "#source-symbol",
+      "ID": "OVR-657"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/render.py",
+      "Symbol": "editor_overlay",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-047",
+      "Tags": "#source-symbol",
+      "ID": "OVR-658"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/render.py",
+      "Symbol": "footer",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-047;OVR-195;OVR-196;OVR-605",
+      "Tags": "#source-symbol",
+      "ID": "OVR-659"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/render.py",
+      "Symbol": "form",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-047;OVR-194;OVR-543;OVR-659;OVR-666;OVR-671",
+      "Tags": "#source-symbol",
+      "ID": "OVR-660"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/render.py",
+      "Symbol": "header",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-047;OVR-331",
+      "Tags": "#source-symbol",
+      "ID": "OVR-661"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/render.py",
+      "Symbol": "help_page",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-047;OVR-205;OVR-651;OVR-659",
+      "Tags": "#source-symbol",
+      "ID": "OVR-662"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/render.py",
+      "Symbol": "home",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-047;OVR-543;OVR-629;OVR-631;OVR-659;OVR-666;OVR-672",
+      "Tags": "#source-symbol",
+      "ID": "OVR-663"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/render.py",
+      "Symbol": "item",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-047;OVR-650;OVR-659;OVR-671",
+      "Tags": "#source-symbol",
+      "ID": "OVR-664"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/render.py",
+      "Symbol": "job",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-047;OVR-630;OVR-631;OVR-659",
+      "Tags": "#source-symbol",
+      "ID": "OVR-665"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/render.py",
+      "Symbol": "page_window",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-047",
+      "Tags": "#source-symbol",
+      "ID": "OVR-666"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/render.py",
+      "Symbol": "preferences",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-047;OVR-659;OVR-666",
+      "Tags": "#source-symbol",
+      "ID": "OVR-667"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/render.py",
+      "Symbol": "render",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-047;OVR-653;OVR-654;OVR-655;OVR-656;OVR-657;OVR-658;OVR-660;OVR-661;OVR-662;OVR-663;OVR-664;OVR-665;OVR-667;OVR-669;OVR-673;OVR-713;OVR-715",
+      "Tags": "#source-symbol",
+      "ID": "OVR-668"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/render.py",
+      "Symbol": "result",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-047;OVR-205;OVR-638;OVR-652;OVR-659;OVR-687",
+      "Tags": "#source-symbol",
+      "ID": "OVR-669"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/render.py",
+      "Symbol": "scroll_limit",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-047;OVR-560;OVR-651;OVR-652",
+      "Tags": "#source-symbol",
+      "ID": "OVR-670"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/render.py",
+      "Symbol": "shown",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-047",
+      "Tags": "#source-symbol",
+      "ID": "OVR-671"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/render.py",
+      "Symbol": "view_rows",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-047;OVR-539;OVR-711",
+      "Tags": "#source-symbol",
+      "ID": "OVR-672"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/render.py",
+      "Symbol": "workshop",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-047;OVR-659;OVR-666;OVR-672",
+      "Tags": "#source-symbol",
+      "ID": "OVR-673"
+    },
+    {
+      "AssetType": "CONFIG",
+      "Path": "src/riposte/terminal/reports.py",
+      "Symbol": "LABELS",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-162",
+      "Tags": "#source-symbol",
+      "ID": "OVR-674"
+    },
+    {
+      "AssetType": "CLASS",
+      "Path": "src/riposte/terminal/reports.py",
+      "Symbol": "Line",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-162;OVR-198",
+      "Tags": "#source-symbol",
+      "ID": "OVR-199"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/reports.py",
+      "Symbol": "Line.plain",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-162",
+      "Tags": "#source-symbol",
+      "ID": "OVR-675"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/reports.py",
+      "Symbol": "Line.rich",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-162",
+      "Tags": "#source-symbol",
+      "ID": "OVR-676"
+    },
+    {
+      "AssetType": "CLASS",
+      "Path": "src/riposte/terminal/reports.py",
+      "Symbol": "Report",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-162;OVR-199",
+      "Tags": "#source-symbol",
+      "ID": "OVR-200"
+    },
+    {
+      "AssetType": "CLASS",
+      "Path": "src/riposte/terminal/reports.py",
+      "Symbol": "Run",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-162",
+      "Tags": "#source-symbol",
+      "ID": "OVR-198"
+    },
+    {
+      "AssetType": "CLASS",
+      "Path": "src/riposte/terminal/reports.py",
+      "Symbol": "Writer",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-162;OVR-198;OVR-199;OVR-674;OVR-686;OVR-687;OVR-689;OVR-690;OVR-726",
+      "Tags": "#source-symbol",
+      "ID": "OVR-201"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/reports.py",
+      "Symbol": "Writer.__init__",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-162",
+      "Tags": "#source-symbol",
+      "ID": "OVR-677"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/reports.py",
+      "Symbol": "Writer.add",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-162;OVR-199;OVR-686",
+      "Tags": "#source-symbol",
+      "ID": "OVR-678"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/reports.py",
+      "Symbol": "Writer.blank",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-162;OVR-199",
+      "Tags": "#source-symbol",
+      "ID": "OVR-679"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/reports.py",
+      "Symbol": "Writer.pair",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-162;OVR-198;OVR-674;OVR-678;OVR-687;OVR-689;OVR-690",
+      "Tags": "#source-symbol",
+      "ID": "OVR-680"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/reports.py",
+      "Symbol": "Writer.rows",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-162;OVR-198;OVR-678;OVR-683;OVR-689;OVR-726",
+      "Tags": "#source-symbol",
+      "ID": "OVR-681"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/reports.py",
+      "Symbol": "Writer.section",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-162;OVR-198;OVR-678;OVR-679;OVR-726",
+      "Tags": "#source-symbol",
+      "ID": "OVR-682"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/reports.py",
+      "Symbol": "Writer.text",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-162;OVR-198;OVR-678;OVR-726",
+      "Tags": "#source-symbol",
+      "ID": "OVR-683"
+    },
+    {
+      "AssetType": "CONFIG",
+      "Path": "src/riposte/terminal/reports.py",
+      "Symbol": "_JSON",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-162",
+      "Tags": "#source-symbol",
+      "ID": "OVR-684"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/reports.py",
+      "Symbol": "blockers",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-162;OVR-198;OVR-638;OVR-687",
+      "Tags": "#source-symbol",
+      "ID": "OVR-685"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/reports.py",
+      "Symbol": "fold",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-162;OVR-198;OVR-199",
+      "Tags": "#source-symbol",
+      "ID": "OVR-686"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/reports.py",
+      "Symbol": "label",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-162;OVR-674;OVR-726",
+      "Tags": "#source-symbol",
+      "ID": "OVR-687"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/reports.py",
+      "Symbol": "line",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-162;OVR-198;OVR-199;OVR-726",
+      "Tags": "#source-symbol",
+      "ID": "OVR-688"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/reports.py",
+      "Symbol": "overview",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-162;OVR-198;OVR-200;OVR-201;OVR-685;OVR-687;OVR-689;OVR-691;OVR-692",
+      "Tags": "#source-symbol",
+      "ID": "OVR-202"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/reports.py",
+      "Symbol": "paint_lines",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-162",
+      "Tags": "#source-symbol",
+      "ID": "OVR-205"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/reports.py",
+      "Symbol": "raw_lines",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-162;OVR-198;OVR-199;OVR-684;OVR-686",
+      "Tags": "#source-symbol",
+      "ID": "OVR-203"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/reports.py",
+      "Symbol": "report_lines",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-162;OVR-198;OVR-201;OVR-203;OVR-692",
+      "Tags": "#source-symbol",
+      "ID": "OVR-204"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/reports.py",
+      "Symbol": "role",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-162",
+      "Tags": "#source-symbol",
+      "ID": "OVR-689"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/reports.py",
+      "Symbol": "scalar",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-162;OVR-726",
+      "Tags": "#source-symbol",
+      "ID": "OVR-690"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/reports.py",
+      "Symbol": "size",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-162;OVR-690",
+      "Tags": "#source-symbol",
+      "ID": "OVR-691"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/reports.py",
+      "Symbol": "tree",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-162;OVR-201;OVR-687;OVR-689;OVR-690",
+      "Tags": "#source-symbol",
+      "ID": "OVR-692"
+    },
+    {
+      "AssetType": "CONFIG",
+      "Path": "src/riposte/terminal/service.py",
+      "Symbol": "CANCELLABLE",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-048",
+      "Tags": "#source-symbol",
+      "ID": "OVR-693"
+    },
+    {
+      "AssetType": "CONFIG",
+      "Path": "src/riposte/terminal/service.py",
+      "Symbol": "EFFECTS",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-048",
+      "Tags": "#source-symbol",
+      "ID": "OVR-694"
+    },
+    {
+      "AssetType": "CONFIG",
+      "Path": "src/riposte/terminal/service.py",
+      "Symbol": "Progress",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-048",
+      "Tags": "#source-symbol",
+      "ID": "OVR-695"
+    },
+    {
+      "AssetType": "CLASS",
+      "Path": "src/riposte/terminal/service.py",
+      "Symbol": "Request",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-048",
+      "Tags": "#source-symbol",
+      "ID": "OVR-696"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/service.py",
+      "Symbol": "_optional",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-048",
+      "Tags": "#source-symbol",
+      "ID": "OVR-697"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/service.py",
+      "Symbol": "_paths",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-048;OVR-380",
+      "Tags": "#source-symbol",
+      "ID": "OVR-698"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/service.py",
+      "Symbol": "execute",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-048;OVR-308;OVR-309;OVR-316;OVR-317;OVR-319;OVR-320;OVR-333;OVR-380;OVR-390;OVR-391;OVR-396;OVR-397;OVR-398;OVR-400;OVR-401;OVR-417;OVR-421;OVR-434;OVR-436;OVR-444;OVR-467;OVR-468;OVR-470;OVR-472;OVR-477;OVR-478;OVR-489;OVR-494;OVR-522;OVR-525;OVR-529;OVR-694;OVR-695;OVR-696;OVR-697;OVR-698;OVR-701;OVR-703;OVR-705;OVR-706;OVR-707",
+      "Tags": "#source-symbol",
+      "ID": "OVR-699"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/service.py",
+      "Symbol": "image_bytes",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-048;OVR-380;OVR-389;OVR-399;OVR-469;OVR-494;OVR-522;OVR-525",
+      "Tags": "#source-symbol",
+      "ID": "OVR-700"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/service.py",
+      "Symbol": "image_selection",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-048;OVR-380;OVR-706",
+      "Tags": "#source-symbol",
+      "ID": "OVR-701"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/service.py",
+      "Symbol": "parse_month",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-048;OVR-380;OVR-443",
+      "Tags": "#source-symbol",
+      "ID": "OVR-702"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/service.py",
+      "Symbol": "recipe",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-048;OVR-455;OVR-479;OVR-485",
+      "Tags": "#source-symbol",
+      "ID": "OVR-703"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/service.py",
+      "Symbol": "result_exit_code",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-048",
+      "Tags": "#source-symbol",
+      "ID": "OVR-704"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/service.py",
+      "Symbol": "root_of",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-048;OVR-380;OVR-520;OVR-696",
+      "Tags": "#source-symbol",
+      "ID": "OVR-705"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/service.py",
+      "Symbol": "select_rows",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-048;OVR-380;OVR-438;OVR-447;OVR-519;OVR-702",
+      "Tags": "#source-symbol",
+      "ID": "OVR-706"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/service.py",
+      "Symbol": "view_image",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-048;OVR-380;OVR-494;OVR-517;OVR-522;OVR-525;OVR-528;OVR-530;OVR-700",
+      "Tags": "#source-symbol",
+      "ID": "OVR-707"
+    },
+    {
+      "AssetType": "CLASS",
+      "Path": "src/riposte/terminal/signals.py",
+      "Symbol": "TerminationRequested",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-049",
+      "Tags": "#source-symbol",
+      "ID": "OVR-708"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/signals.py",
+      "Symbol": "termination_guard",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-049;OVR-708",
+      "Tags": "#source-symbol",
+      "ID": "OVR-709"
+    },
+    {
+      "AssetType": "CLASS",
+      "Path": "src/riposte/terminal/state.py",
+      "Symbol": "Editor",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-050;OVR-547",
+      "Tags": "#source-symbol",
+      "ID": "OVR-710"
+    },
+    {
+      "AssetType": "CONFIG",
+      "Path": "src/riposte/terminal/state.py",
+      "Symbol": "HOME",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-050",
+      "Tags": "#source-symbol",
+      "ID": "OVR-711"
+    },
+    {
+      "AssetType": "CLASS",
+      "Path": "src/riposte/terminal/state.py",
+      "Symbol": "Page",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-050",
+      "Tags": "#source-symbol",
+      "ID": "OVR-712"
+    },
+    {
+      "AssetType": "CLASS",
+      "Path": "src/riposte/terminal/state.py",
+      "Symbol": "Session",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-050;OVR-635;OVR-710;OVR-712",
+      "Tags": "#source-symbol",
+      "ID": "OVR-713"
+    },
+    {
+      "AssetType": "CLASS",
+      "Path": "src/riposte/terminal/surface.py",
+      "Symbol": "Cell",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-051",
+      "Tags": "#source-symbol",
+      "ID": "OVR-714"
+    },
+    {
+      "AssetType": "CLASS",
+      "Path": "src/riposte/terminal/surface.py",
+      "Symbol": "Surface",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-051;OVR-645;OVR-714;OVR-725;OVR-726",
+      "Tags": "#source-symbol",
+      "ID": "OVR-715"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/surface.py",
+      "Symbol": "Surface.__init__",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-051;OVR-645;OVR-714",
+      "Tags": "#source-symbol",
+      "ID": "OVR-716"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/surface.py",
+      "Symbol": "Surface.__rich_console__",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-051;OVR-725",
+      "Tags": "#source-symbol",
+      "ID": "OVR-717"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/surface.py",
+      "Symbol": "Surface.fill",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-051;OVR-714",
+      "Tags": "#source-symbol",
+      "ID": "OVR-718"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/surface.py",
+      "Symbol": "Surface.frame",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-051;OVR-718;OVR-721;OVR-723",
+      "Tags": "#source-symbol",
+      "ID": "OVR-719"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/surface.py",
+      "Symbol": "Surface.plain",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-051",
+      "Tags": "#source-symbol",
+      "ID": "OVR-720"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/surface.py",
+      "Symbol": "Surface.put",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-051;OVR-714;OVR-726",
+      "Tags": "#source-symbol",
+      "ID": "OVR-721"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/surface.py",
+      "Symbol": "Surface.rule",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-051;OVR-723",
+      "Tags": "#source-symbol",
+      "ID": "OVR-722"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/surface.py",
+      "Symbol": "Surface.text",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-051;OVR-721;OVR-726",
+      "Tags": "#source-symbol",
+      "ID": "OVR-723"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/surface.py",
+      "Symbol": "Surface.wrap",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-051;OVR-723;OVR-726",
+      "Tags": "#source-symbol",
+      "ID": "OVR-724"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/surface.py",
+      "Symbol": "_style",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-051",
+      "Tags": "#source-symbol",
+      "ID": "OVR-725"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/surface.py",
+      "Symbol": "ascii_text",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-051",
+      "Tags": "#source-symbol",
+      "ID": "OVR-726"
+    },
+    {
+      "AssetType": "CONFIG",
+      "Path": "src/riposte/views.py",
+      "Symbol": "HOLDOUT_VIEWS",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-052",
+      "Tags": "#source-symbol",
+      "ID": "OVR-727"
+    },
+    {
+      "AssetType": "CONFIG",
+      "Path": "src/riposte/views.py",
+      "Symbol": "MASKS",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-052",
+      "Tags": "#source-symbol",
+      "ID": "OVR-728"
+    },
+    {
+      "AssetType": "CONFIG",
+      "Path": "src/riposte/views.py",
+      "Symbol": "TRAIN_VIEWS",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-052",
+      "Tags": "#source-symbol",
+      "ID": "OVR-729"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/views.py",
+      "Symbol": "budget_map",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-052;OVR-380",
+      "Tags": "#source-symbol",
+      "ID": "OVR-730"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/views.py",
+      "Symbol": "differentiable_view",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-052;OVR-380;OVR-430;OVR-729;OVR-732;OVR-735;OVR-737",
+      "Tags": "#source-symbol",
+      "ID": "OVR-731"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/views.py",
+      "Symbol": "image_tensor",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-052",
+      "Tags": "#source-symbol",
+      "ID": "OVR-732"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/views.py",
+      "Symbol": "keep_mask",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-052;OVR-380;OVR-728",
+      "Tags": "#source-symbol",
+      "ID": "OVR-733"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/views.py",
+      "Symbol": "matched_control",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-052;OVR-380",
+      "Tags": "#source-symbol",
+      "ID": "OVR-734"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/views.py",
+      "Symbol": "publication_view",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-052;OVR-380;OVR-727;OVR-729",
+      "Tags": "#source-symbol",
+      "ID": "OVR-735"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/views.py",
+      "Symbol": "spectral_direction",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-052;OVR-380",
+      "Tags": "#source-symbol",
+      "ID": "OVR-736"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/views.py",
+      "Symbol": "tensor_image",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-052",
+      "Tags": "#source-symbol",
+      "ID": "OVR-737"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "typing/pacer_inventory.py",
+      "Symbol": "definitions",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-071",
+      "Tags": "#source-symbol",
+      "ID": "OVR-117"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "typing/pacer_inventory.py",
+      "Symbol": "describe",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-071;OVR-117;OVR-122",
+      "Tags": "#source-symbol",
+      "ID": "OVR-118"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "typing/pacer_inventory.py",
+      "Symbol": "digest",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-071",
+      "Tags": "#source-symbol",
+      "ID": "OVR-119"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "typing/pacer_inventory.py",
+      "Symbol": "inventory",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-071;OVR-118;OVR-119;OVR-122;OVR-124",
+      "Tags": "#source-symbol",
+      "ID": "OVR-120"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "typing/pacer_inventory.py",
+      "Symbol": "main",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-071;OVR-123",
+      "Tags": "#source-symbol",
+      "ID": "OVR-121"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "typing/pacer_inventory.py",
+      "Symbol": "module_key",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-071",
+      "Tags": "#source-symbol",
+      "ID": "OVR-122"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "typing/pacer_inventory.py",
+      "Symbol": "reconcile",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-071;OVR-120;OVR-122;OVR-738",
+      "Tags": "#source-symbol",
+      "ID": "OVR-123"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "typing/pacer_inventory.py",
+      "Symbol": "scoped_paths",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-071",
+      "Tags": "#source-symbol",
+      "ID": "OVR-124"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "typing/pacer_inventory.py",
+      "Symbol": "symbol_inventory",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-071;OVR-117;OVR-122",
+      "Tags": "#source-symbol",
+      "ID": "OVR-738"
+    }
+  ],
   "limits": [
     "Run typing/check.py immediately before acceptance; reading its old report is not a fresh test.",
     "Static imports do not establish optional providers or dynamic dependency completeness.",
     "Definition names are syntactic declarations; annotations and bodies require separate review.",
-    "Raw-source mypy errors and Windows stat finding are unresolved; no source repair is claimed."
+    "Nested local closures and external-library declarations are represented by their owning declarations.",
+    "Source/stub pairing covers external declarations; symbol records describe application source only."
   ]
 }

@@ -1,0 +1,15 @@
+{
+  "preview": false,
+  "changed_ids": [
+    "NDL-003"
+  ],
+  "changed_files": [
+    "nodule.PACER.csv"
+  ],
+  "validation": {
+    "valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "revision": "238136f74bda416129038e55bb57b2bd83baa36ca37f55e975a242b463401678"
+}

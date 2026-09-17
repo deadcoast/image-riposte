@@ -12,7 +12,7 @@ def legacy(root):
     (root/'.riposte').rename(root/'.shroud');(root/'.shroud/WORKSPACE').write_text(LEGACY_SIGNATURE)
 
 def snapshot(root):
-    return {str(p.relative_to(root)):hashlib.sha256(p.read_bytes()).hexdigest() for p in root.rglob('*') if p.is_file()}
+    return {p.relative_to(root).as_posix():hashlib.sha256(p.read_bytes()).hexdigest() for p in root.rglob('*') if p.is_file()}
 
 def test_legacy_read_is_nonmutating_then_upgrade_keeps_art_ids(root,tmp_path,make_image):
     make_image(root/'former/a.png');organize(root,Policy(date_mode='modified'))

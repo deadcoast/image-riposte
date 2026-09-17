@@ -29,7 +29,7 @@ Positive values mean component displacement, not inability to recognize or reuse
 
 A frozen clean reference is held on CPU. Each update scores all contexts without retaining their graphs, computes detached soft-min weights `softmax(-d / max(mean(abs(d)),1e-6))`, and then recomputes each branch's gradient individually. A DCT frequency weighting modifies the combined search direction. It does not impose a strict frequency-support constraint on the final image. The projected sign step is bounded by the shared spatial map.
 
-## Restarts, checkpoint selection and refusal
+## Restarts, candidate selection and refusal
 
 Each restart has a deterministic CPU-seeded random initialization inside C(x). The initializer is only a search starting point and cannot become an output. A checked iterate is eligible only if:
 
@@ -37,7 +37,9 @@ Each restart has a deterministic CPU-seeded random initialization inside C(x). T
 - Its minimum context score is positive and improves over that restart's initial minimum score by more than 1e-12.
 - The quantized candidate passes all numerical fidelity limits.
 
-Among eligible checkpoints across all restarts, the solver maximizes `(minimum context score, mean context score)` lexicographically. The selected restart/step and every examined checkpoint are recorded. Two nonimproving checkpoint intervals halve the step, down to 0.05/255. Initial, intermediate or final candidates are not automatically exported merely because a loop finished.
+Every iteration is checked for eligibility. Across all restarts, the solver maximizes `(minimum context score, mean context score)` lexicographically. `checkpoint_every` controls trace logging only; every newly selected candidate is also recorded, even between checkpoints. Changing trace cadence does not change the search or selected pixels. Two nonimproving iterations halve the step, down to 0.05/255.
+
+Before committing an update, the solver checks its exact quantized pixels against the numerical quality limits. A failing proposal is retried from the same previous iterate with half the step, at most eight reductions and never below 0.05/255. Rejected proposals do not replace the current iterate or trigger model scoring. Cancellation is checked before each reduction. The report records the accepted step size and reduction count; exhausted retries retain the previous iterate without making it eligible. Initial, intermediate or final candidates are not automatically exported merely because a loop finished.
 
 No eligible result means `NO_IMPROVED_FIDELITY_ACCEPTABLE_CANDIDATE`. Missing models, all-zero editable budgets, detached/zero/nonfinite gradients, device mismatch or unsuitable dimensions stop rather than silently adding noise. The optimizer's selected views were used for development and selection; they are **not held-out evaluation**.
 

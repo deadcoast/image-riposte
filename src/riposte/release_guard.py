@@ -120,30 +120,46 @@ def protect_release(image: Image.Image, encoders: list, config: ReleaseConfig = 
             gradient = spectral_direction(gradient, config.frequency_weight)
             useful = bool(((gradient != 0) & (budget > 0)).any())
             had_gradient |= useful
-            candidate = torch.maximum(torch.minimum(candidate + step_size / 255 * gradient.sign(), high), low).detach()
-            q = candidate.mul(255).round() / 255
-            values = scores(q, restart, step)
-            if step == 1 or step % config.checkpoint_every == 0 or step == config.steps:
+            # Check the exact output pixels before committing an update. Retry
+            # from the same iterate so an oversized step does not consume the
+            # entire search budget or push subsequent gradients out of bounds.
+            accepted = False
+            for backtracks in range(9):
+                proposal = torch.maximum(torch.minimum(candidate + step_size / 255 * gradient.sign(), high), low).detach()
+                q = proposal.mul(255).round() / 255
                 output = tensor_image(q)
                 quality = quality_report(image, output, limits)
-                key = (min(values), sum(values) / len(values))
-                # A random start is never eligible; require an actual useful update
-                # and improved worst context compared with that restart's seed.
-                eligible = useful and key[0] > max(initial_min + 1e-12, 1e-12) and quality["status"] == "PASS"
-                improved = eligible and (best_key is None or key > best_key)
+                if quality["status"] == "PASS":
+                    values = scores(q, restart, step)
+                    candidate, accepted = proposal, True
+                    break
+                if step_size <= .05 or backtracks == 8:
+                    break
+                notify("Reducing publishing step for image quality", restart, step)
+                step_size = max(.05, step_size / 2)
+            key = (min(values), sum(values) / len(values))
+            # A random start is never eligible; require an accepted useful update
+            # and improved worst context compared with that restart's seed.
+            eligible = accepted and useful and key[0] > max(initial_min + 1e-12, 1e-12)
+            improved = eligible and (best_key is None or key > best_key)
+            # Checkpoint cadence controls reporting only. Never discard a better
+            # feasible iterate just because it falls between trace checkpoints.
+            if improved or backtracks or not accepted or step == 1 or step % config.checkpoint_every == 0 or step == config.steps:
                 trace.append({"restart": restart + 1, "step": step, "min_context_score": key[0],
                               "mean_context_score": key[1], "numeric_quality": quality["status"],
-                              "eligible": eligible, "selected": improved, "step_255": step_size})
-                if improved:
-                    best, best_key = output.copy(), key
-                    best_info = {"restart": restart + 1, "step": step, "scores": list(values),
-                                 "initial_min_context_score": initial_min, "quality": quality}
-                if restart_best is None or key > restart_best:
-                    restart_best, stale = key, 0
-                else:
-                    stale += 1
-                    if stale >= 2:
-                        step_size, stale = max(.05, step_size / 2), 0
+                              "eligible": eligible, "selected": improved, "step_255": step_size,
+                              "backtracks": backtracks, "update_accepted": accepted})
+            if improved:
+                best, best_key = output.copy(), key
+                best_info = {"restart": restart + 1, "step": step, "scores": list(values),
+                             "initial_min_context_score": initial_min, "quality": quality,
+                             "step_255": step_size, "backtracks": backtracks}
+            if accepted and (restart_best is None or key > restart_best):
+                restart_best, stale = key, 0
+            else:
+                stale += 1
+                if stale >= 2:
+                    step_size, stale = max(.05, step_size / 2), 0
     if not had_gradient: raise RiposteError("ZERO_GRADIENT_NO_CANDIDATE")
     if best is None: raise RiposteError("NO_IMPROVED_FIDELITY_ACCEPTABLE_CANDIDATE")
     notify("Auditing selected final pixels", config.restarts - 1, config.steps)
@@ -156,6 +172,8 @@ def protect_release(image: Image.Image, encoders: list, config: ReleaseConfig = 
                   "ai_protection": "UNVERIFIED", "evidence_level": "TEMPORAL_AND_IMAGE_COMPONENT_PROXY" if temporal else "IMAGE_COMPONENT_PROXY",
                   "config": asdict(config), "quality": quality, "selection": {k: v for k, v in best_info.items() if k != "quality"},
                   "trace": trace, "contexts": rows, "optimization_views": list(TRAIN_VIEWS),
+                  "search_policy": {"selection": "EVERY_ACCEPTED_ITERATE", "quality_backtracks": 8,
+                                    "minimum_step_255": .05, "checkpoint_every": "TRACE_ONLY"},
                   "optimization_masks": ["whole", "center", "left"], "selection_is_heldout": False,
                   "models": [getattr(e, "identity", {"kind": "UNIDENTIFIED_LOCAL_ORACLE"}) for e in encoders],
                   "probe_model": getattr(probe, "identity", None), "temporal_model": getattr(temporal, "identity", None),

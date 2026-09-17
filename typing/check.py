@@ -18,7 +18,7 @@ HERE = ROOT / "typing"
 STUBS = HERE / "stubs" / "riposte"
 EVIDENCE = HERE / "evidence"
 CONTRACT_CONFIG = "typing/mypy-contracts.ini"
-REVIEWED_SOURCE = EVIDENCE / "source-reviewed-v050.json"
+REVIEWED_SOURCE = EVIDENCE / "source-reviewed-repairs.json"
 
 
 def is_application_source(path: Path) -> bool:
@@ -87,18 +87,28 @@ def check_parity() -> tuple[list[str], int, list[str]]:
     return issues, count, modules
 
 
-def run(name: str, arguments: list[str]) -> subprocess.CompletedProcess[str]:
+def run(name: str, arguments: list[str], *, executable: Path | None = None,
+        timeout: int = 120) -> subprocess.CompletedProcess[str]:
     env = os.environ.copy()
     env.pop("MYPYPATH", None)
     env["PYTHONPATH"] = str(ROOT / "src")
     env["PYTHONIOENCODING"] = "utf-8"
     result = subprocess.run(
-        [sys.executable, *arguments], cwd=ROOT, env=env,
+        [str(executable) if executable else sys.executable, *arguments], cwd=ROOT, env=env,
         text=True, encoding="utf-8", errors="replace", capture_output=True,
-        check=False, timeout=120,
+        check=False, timeout=timeout,
     )
     (EVIDENCE / f"{name}.txt").write_text(result.stdout + result.stderr, encoding="utf-8")
     return result
+
+
+def source_interpreter(explicit: Path | None = None) -> Path:
+    """Audit implementation in the application environment, independent of runner."""
+    candidate = explicit or ROOT / ".venv" / ("Scripts/python.exe" if os.name == "nt" else "bin/python")
+    candidate = candidate.absolute()
+    if not candidate.is_file():
+        raise ValueError("Application Python is missing; synchronize the existing uv project or pass --source-python.")
+    return candidate
 
 
 def negative_check() -> tuple[bool, str]:
@@ -154,19 +164,41 @@ def dynamic_inventory() -> list[dict[str, object]]:
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--source", action="store_true", help="Audit implementation bodies without the stub path; existing errors remain nonzero.")
+    parser.add_argument("--source", action="store_true", help="Audit implementation bodies using the application .venv, without external stubs.")
+    parser.add_argument("--source-python", type=Path, help="Explicit interpreter for --source comparisons; defaults to the application .venv.")
     args = parser.parse_args()
+    if args.source_python and not args.source:
+        parser.error("--source-python requires --source")
     EVIDENCE.mkdir(parents=True, exist_ok=True)
     if args.source:
-        result = run("source-current", ["-m", "mypy", "--config-file", "typing/mypy-source.ini", "--python-version", "3.13", "src/riposte"])
+        try:
+            executable = source_interpreter(args.source_python)
+        except ValueError as exc:
+            parser.error(str(exc))
+        environment = run("source-environment", ["-c",
+            "import sys,json,importlib.metadata as m; "
+            "names=('mypy','numpy','Pillow','torch','diffusers','transformers'); "
+            "installed={d.metadata['Name'].lower():d.version for d in m.distributions()}; "
+            "print(json.dumps({'executable':sys.executable,'prefix':sys.prefix,'python':sys.version,"
+            "'dependencies':{n:installed.get(n.lower()) for n in names}},indent=2))"], executable=executable)
+        if environment.returncode:
+            print(environment.stderr, file=sys.stderr)
+            return environment.returncode
+        (EVIDENCE / "source-environment.json").write_text(environment.stdout, encoding="utf-8")
+        arguments = ["-m", "mypy", "--config-file", "typing/mypy-source.ini", "--python-version", "3.13", "src/riposte"]
+        result = run("source-current", arguments, executable=executable, timeout=300)
+        (EVIDENCE / "source-current-command.json").write_text(json.dumps({
+            "command": [str(executable), *arguments], "exit_code": result.returncode,
+            "environment": json.loads(environment.stdout), "sources": source_hashes(),
+        }, indent=2) + "\n", encoding="utf-8")
         print(result.stdout, end="")
         print(result.stderr, end="", file=sys.stderr)
         return result.returncode
 
     before = source_hashes()
     reviewed = json.loads(REVIEWED_SOURCE.read_text(encoding="utf-8"))
-    # PAC-004 explicitly reviewed the terminal revision and its matching stubs.
-    # The original source-before.json remains intact as historical evidence.
+    # The audit repairs explicitly reviewed affected declarations and fixtures.
+    # Original and v0.5 patch snapshots remain intact as historical evidence.
     reviewed = {path: value for path, value in reviewed.items() if is_application_source(Path(path))}
     drift = sorted(k for k in before.keys() | reviewed.keys() if before.get(k) != reviewed.get(k))
     issues, signatures, modules = check_parity()

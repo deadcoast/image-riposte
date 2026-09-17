@@ -6,6 +6,7 @@ SD img2img, 9-channel SD inpainting and SVD are reference baselines,
 not modern-family coverage. Local pretrained integration is not qualified.
 """
 from __future__ import annotations
+from . import __version__
 import json
 import math
 import re
@@ -198,7 +199,7 @@ def _execute(root, trial, pair, generator, task, seeds, views, steps, progress):
             progress({'phase': 'Committing generation review', 'processed': total, 'total': total})
         report = {'id': run_id, 'trial_id': trial['id'], 'date': trial['date'], 'candidate_sha256': trial['artifact_sha256']['candidate'],
                   'sequence': max((r.get('sequence', 0) for r in generation_runs(root, trial['id'])), default=0) + 1,
-                  'protocol': 'riposte-five-arm-v1', 'application_version': '0.2.0',
+                  'protocol': 'riposte-five-arm-v1', 'application_version': __version__,
                   'task': task, 'conditioning': {'mask_family':'right','mask_seed':'generation_seed',
                     'prompt': 'Preserve the main illustration and add a patterned background.', 'strength': .65, 'guidance_scale': 7.5} if task=='inpaint' else
                     {'mask_family':None, 'prompt': 'Preserve the main illustration and add a patterned background.', 'strength': .65, 'guidance_scale': 7.5} if task=='edit' else

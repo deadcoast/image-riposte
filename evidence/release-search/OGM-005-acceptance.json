@@ -1,0 +1,36 @@
+{
+  "requirement": "OGM-005",
+  "meaning": "ba9c476a19be01e219bc6b65d1d97653ea57e4b227598b10c44e11962467c61f",
+  "result": "PASS",
+  "sources": {
+    "docs/ENGINE-v03.md": "02860e1332e51d5208ec08a1c7a927dbe5b64b48595420665183491b1e7dc8d9",
+    "evidence/release-search/README.md": "ead2a841952f424a29602dca66491882c42b24231be95bef3918805bd623026f",
+    "tests/test_release_search.py": "4348f9e8bd3dd9fbea721b0194158ec9c11df3f3c1eefbab87ca73576d62077b",
+    "src/riposte/release_guard.py": "52787a6620ccab6efdd1446cb469d8e966212ae2fad0f6bd8219aebe031cd391",
+    "src/riposte/views.py": "901a71db135ce03b0c929d230de1bacb73542dcc1570df166f36013a906b90e7",
+    "src/riposte/optimizer.py": "c41b3ee66835aea8feab01985434844ee9fb96b217f19ecf0ec8d47a1a047918",
+    "src/riposte/metrics.py": "0d873a0cb8972b5bdce14eb3cdc49ab391af31a297981fda1ad37603496c22eb",
+    "src/riposte/errors.py": "7a9c08b799d1c713fbd82e30fd145a6dc3085c215848893e31d1ec066abc5244",
+    "src/riposte/quality.py": "3af92838360f5f9ce65d69973eef37a6dd006d733f56c376443a2228d3c9656d",
+    "src/riposte/coupled.py": "eca0afb9e0de03b740029864a5ddeeb7212cc9676c5e9cc191a6f4d1274641a8"
+  },
+  "command": [
+    "uv run --frozen --no-sync --cache-dir typing/.cache/uv python -m pytest tests/test_release_search.py tests/test_v03_quality_guard.py tests/test_v03_publication.py -q --basetemp typing/.cache/release-search/focused3 -o cache_dir=typing/.cache/release-search/pytest-cache",
+    "uv run --frozen --no-sync --cache-dir typing/.cache/uv python -m pytest -q --basetemp typing/.cache/release-search/full -o cache_dir=typing/.cache/release-search/pytest-cache"
+  ],
+  "observations": [
+    "OBSERVED: 77 focused tests pass; full application suite 768 passed and 7 platform skips.",
+    "OBSERVED: The synthetic nonlinear regression improves from 0.00634881295 to 0.01658704877 minimum context score under the same quality limits; trace cadence does not affect output.",
+    "OBSERVED: Oversized step recovers after one reduction, persists reviewable output, and exports exact accepted pixels without changing the master.",
+    "OBSERVED: Determinism, RNG isolation, cancellation, retry bound, pixel caps and refusal after exhausted retries pass.",
+    "External declarations reviewed; contracts and source inventory pass. Previous source snapshot and failed evidence retained."
+  ],
+  "evidence": [
+    "evidence/release-search/README.md",
+    "evidence/release-search/comparison.json",
+    "evidence/release-search/focused.txt",
+    "evidence/release-search/full-suite.txt",
+    "evidence/release-search/contracts.txt",
+    "evidence/release-search/inventory.txt"
+  ]
+}

@@ -1,0 +1,23 @@
+warning: `VIRTUAL_ENV=.venv` does not match the project environment path `typing\.venv` and will be ignored; use `--active` to target the active environment instead
+{
+  "python": "3.13.9 (main, Oct 14 2025, 21:22:32) [MSC v.1944 64 bit (AMD64)]",
+  "platform": "win32",
+  "cases": [
+    {
+      "case": "immediate",
+      "result": "PASS"
+    },
+    {
+      "case": "dated",
+      "result": "PASS"
+    },
+    {
+      "case": "replace",
+      "result": "PASS"
+    },
+    {
+      "case": "write_restore_mtime",
+      "result": "PASS"
+    }
+  ]
+}

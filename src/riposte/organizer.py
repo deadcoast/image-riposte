@@ -136,7 +136,17 @@ def organize(root: Path, policy: Policy = Policy(), progress: Progress | None = 
                 # No metadata-bearing source path or source hash goes into this row.
                 row = record_image(root, relative, result, len(data), clean.date_source)
                 managed[relative] = row
-                if is_link(path) or not same_file_state(clean.source_stat, path.stat()):
+                # Use fstat on both sides: Windows Path.stat and fstat do not
+                # consistently expose the same ctime. Keep ctime change checks,
+                # including edits that restore mtime, and bind the path to the
+                # reopened descriptor before removing the verified source.
+                with path.open("rb") as source:
+                    current = os.fstat(source.fileno())
+                    unchanged = same_file_state(clean.source_stat, current)
+                    path_state = path.stat()
+                    unchanged = unchanged and os.path.samestat(current, path_state)
+                if (is_link(path) or not unchanged
+                    or not same_file_state(path_state, path.stat())):
                     raise RiposteError("SOURCE_CHANGED_OUTPUT_RETAINED")
                 path.unlink()  # Deliberately does not send contaminated originals to Trash.
                 counts["migrated"] += 1

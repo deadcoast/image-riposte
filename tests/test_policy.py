@@ -20,7 +20,7 @@ def test_bad_canonical(value):
     with pytest.raises(RiposteError):canonical_path(value)
 def test_modified_fallback():
     stamp=dt.datetime(2024,1,12,12).timestamp()
-    day,source=extract_day(Image.new("RGB",(1,1)),SimpleNamespace(st_mtime=stamp),"modified")
+    day,source=extract_day(Image.new("RGB",(1,1)),SimpleNamespace(st_mtime=stamp,st_ctime=stamp),"modified")
     assert (day,source)==("2024-01-12","filesystem_modified")
 def test_birth_precedence():
     s=SimpleNamespace(st_mtime=dt.datetime(2024,1,12,12).timestamp(),st_birthtime=dt.datetime(2025,3,12,12).timestamp())

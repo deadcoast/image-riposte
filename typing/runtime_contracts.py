@@ -106,13 +106,8 @@ class ContractFixtures(unittest.TestCase):
         matches(organizer.plan(self.root), RECORDS.OrganizationPlan)
         report = organizer.organize(self.root)
         matches(report, RECORDS.OrganizationReport)
-        # The source may retain the input when Windows fstat/stat disagree.
-        # Both outcomes are part of the actual OrganizationReport contract.
-        if report["checkpoint"] == "INCOMPLETE":
-            self.assertIn("SOURCE_CHANGED_OUTPUT_RETAINED", report["blockers"])
-            self.assertTrue((self.root / "fixture.png").exists())
-        else:
-            self.assertFalse((self.root / "fixture.png").exists())
+        self.assertEqual(report["checkpoint"], "COMPLETE")
+        self.assertFalse((self.root / "fixture.png").exists())
         rows = store.catalog(self.root)
         self.assertEqual(len(rows), 1)
         matches(rows[0], RECORDS.CatalogRow)
@@ -211,11 +206,21 @@ class ContractFixtures(unittest.TestCase):
 
     def test_synthetic_publication_ready_and_export_shape(self):
         batch_id, item_id, prefix = self.fixture_batch()
+        row = store.catalog(self.root)[0]
+        candidate = self.image.copy()
+        candidate.putpixel((12, 12), (81, 90, 100))
+        artifacts = {}
+        for name, pixels in (("clean", self.image), ("candidate", candidate)):
+            data = sanitize.encode_clean(pixels, "2026-09-16")
+            artifacts[name] = sanitize.png_audit(data)["sha256"]
+            store.atomic_clean_write(self.root, prefix + f"/items/{item_id}/{name}.png", data)
         report = {
+            "id": item_id, "batch_id": batch_id, "image_id": row["id"], "date": "2026-09-16",
+            "max_edge": 64, "source_clean_sha256": row["sha256"],
             "relative": "2026/September/SML/SML01.png", "width": 64, "height": 64,
-            "quality": quality.quality_report(self.image, self.image),
-            "artifact_sha256": {"clean": "0" * 64, "candidate": "1" * 64},
-            "transport": metrics.transport_report(self.image, self.image),
+            "quality": quality.quality_report(self.image, candidate),
+            "artifact_sha256": artifacts,
+            "transport": metrics.transport_report(self.image, candidate),
         }
         store.atomic_json_write(self.root, prefix + f"/items/{item_id}/report.json", report)
         ready = publication.publication_status(self.root, batch_id)
@@ -226,6 +231,14 @@ class ContractFixtures(unittest.TestCase):
         with patch.object(publication, "_publication_zip_locked", return_value=b"synthetic fixture"):
             exported = publication.export_publication(self.root, batch_id)
         matches(exported, RECORDS.PublicationExport)
+        publication.review_publication(self.root, batch_id, [item_id], "ACCEPTED", True, True)
+        (self.root / prefix / "items" / item_id / "candidate.png").unlink()
+        stale = publication.publication_status(self.root, batch_id)
+        matches(stale, RECORDS.PublicationBatch)
+        self.assertEqual(stale['items'][0]['review'], 'STALE')
+        rejected = publication.review_publication(self.root, batch_id, [item_id], "REJECTED")
+        matches(rejected, RECORDS.PublicationBatch)
+        self.assertEqual(rejected['items'][0]['review'], 'REJECTED')
 
     def test_runtime_and_preflight_shapes_without_model_loading(self):
         matches(models.runtime_capabilities(), RECORDS.RuntimeCapabilities)

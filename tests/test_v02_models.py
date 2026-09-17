@@ -31,7 +31,12 @@ def test_large_config_rejected(tmp_path):
 
 def test_symlink_weights_rejected(tmp_path):
     p=folder(tmp_path);q=p/'diffusion_pytorch_model.safetensors';q.unlink()
-    real=tmp_path/'not-a-model';real.write_bytes(b'content');q.symlink_to(real)
+    real=tmp_path/'not-a-model';real.write_bytes(b'content')
+    try:q.symlink_to(real)
+    except OSError as exc:
+        if getattr(exc, 'winerror', None) == 1314:
+            pytest.skip('Windows symlink creation privilege unavailable')
+        raise
     with pytest.raises(RiposteError,match='SAFETENSORS'):inspect_vae(p)
 
 @pytest.mark.parametrize('value',['../elsewhere.safetensors','..\\elsewhere.safetensors','not-present.safetensors',None])

@@ -16,6 +16,8 @@ from .store import catalog as catalog, check_root as check_root, find_image as f
 from fastapi import FastAPI, Request as Request
 from pydantic import BaseModel
 from typing import Literal
+from starlette.types import ASGIApp, Scope, Receive, Send
+from . import __version__ as __version__
 STATIC: Path
 
 class StrictModel(BaseModel):
@@ -110,5 +112,10 @@ class Jobs:
     def snapshot(self) -> list[Report]: ...
 
     def close(self) -> None: ...
+
+class _BodyLimitMiddleware:
+    app: ASGIApp
+    def __init__(self, app: ASGIApp) -> None: ...
+    async def __call__(self, scope: Scope, receive: Receive, send: Send) -> None: ...
 
 def create_app(root: Path, token: str | None=None) -> FastAPI: ...

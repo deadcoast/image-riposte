@@ -110,9 +110,17 @@ def decode_clean(path: Path, policy: Policy = Policy()) -> CleanImage:
     try:
         with warnings.catch_warnings():
             warnings.simplefilter("error", Image.DecompressionBombWarning)
+            path_before = path.stat()
             with path.open("rb") as stream:
                 import os
                 before = os.fstat(stream.fileno())
+                # Windows fstat/stat can expose different ctime meanings. Match
+                # the opened file by identity/size/mtime, then compare ctime only
+                # between snapshots obtained through the same API.
+                if (not os.path.samestat(path_before, before)
+                    or path_before.st_size != before.st_size
+                    or path_before.st_mtime_ns != before.st_mtime_ns):
+                    raise RiposteError("SOURCE_CHANGED")
                 if before.st_nlink > 1:
                     raise RiposteError("HARDLINK_REQUIRES_REVIEW")
                 if before.st_size > policy.max_file_bytes:
@@ -156,6 +164,8 @@ def decode_clean(path: Path, policy: Policy = Policy()) -> CleanImage:
                     pixels = fresh_pixels(oriented)
                 after = os.fstat(stream.fileno())
                 if not same_file_state(before, after):
+                    raise RiposteError("SOURCE_CHANGED")
+                if not same_file_state(path_before, path.stat()):
                     raise RiposteError("SOURCE_CHANGED")
         return CleanImage(pixels, day, date_source, fmt, after)
     except RiposteError:

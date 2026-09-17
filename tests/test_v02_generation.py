@@ -3,6 +3,7 @@ import json
 from pathlib import Path
 import pytest
 from PIL import Image
+from riposte import __version__
 from riposte.errors import RiposteError
 from riposte.organizer import organize
 from riposte.policy import Policy
@@ -33,6 +34,7 @@ def stub(monkeypatch):
 @pytest.mark.parametrize('task',['edit','inpaint','video'])
 def test_five_arm_generation_has_matched_seeds_date_only_frames(root,tmp_path,trial,stub,task):
     result=controlled_generation(root,trial['id'],tmp_path,task,seeds=(7,),views=('identity','jpeg70'),steps=1)
+    assert result['application_version'] == __version__
     assert result['evidence_level']=='CONTROLLED_GENERATIONS_UNSCORED' and result['ai_protection']=='UNVERIFIED'
     assert len(result['groups'])==2 and len(stub)==10
     assert all(call[0]==7 for call in stub)

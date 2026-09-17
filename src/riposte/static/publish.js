@@ -70,7 +70,12 @@ window.RipostePublish = (() => {
   }
   function chooseCurrent(){if(state.selected)selected.add(state.selected.id);renderSources(true);}
   function activate(){renderSources();if(!selected.size&&state.selected){selected.add(state.selected.id);renderSources(true);}if(current)loadBatch();}
-  function completed(result){current=result.id;batch=result;state.audit={checkpoint:'COMPLETE'};renderAuditBadge();renderBatch();setView('publish');}
+  async function completed(result){
+    current=result.id;batch=result;renderBatch();setView('publish');
+    state.audit=null;renderAuditBadge();
+    try{state.audit=await api('audit');}catch(e){error(e);}
+    renderAuditBadge();
+  }
   async function openReview(item,batchID){
     review={item,batchID};difference=false;native=false;
     $('pub-review-title').textContent=item.relative;$('pub-review-view').value='identity';$('pub-review-quality').checked=false;$('pub-review-ack').checked=false;

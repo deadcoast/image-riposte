@@ -1,4 +1,5 @@
 # Source-derived external stub; see typing/README.md for scope.
+from . import __version__ as __version__
 from typing import Any
 from pathlib import Path
 from PIL.Image import Image as _Image

@@ -51,32 +51,32 @@
   },
   {
     "file": "typing/stubs/riposte/generation.pyi",
-    "line": 34,
+    "line": 35,
     "declaration": "def controlled_generation(root: Path, trial_id: str, model_dir: Path, task: str='edit', seeds: tuple[int, ...]=(7, 19), views: tuple[str, ...]=('identity', 'jpeg70'), steps: int=25, progress: _Progress | None=None) -> dict[str, Any]:"
   },
   {
     "file": "typing/stubs/riposte/generation.pyi",
-    "line": 36,
+    "line": 37,
     "declaration": "def _execute(root: Path, trial: Report, pair: dict[str, _Image], generator: LocalGenerator, task: str, seeds: tuple[int, ...], views: tuple[str, ...], steps: int, progress: _Progress | None) -> Report:"
   },
   {
     "file": "typing/stubs/riposte/generation.pyi",
-    "line": 38,
+    "line": 39,
     "declaration": "def generation_report(root: Path, identifier: str) -> dict[str, Any]:"
   },
   {
     "file": "typing/stubs/riposte/generation.pyi",
-    "line": 40,
+    "line": 41,
     "declaration": "def generation_runs(root: Path, trial_id: str) -> list[dict[str, Any]]:"
   },
   {
     "file": "typing/stubs/riposte/generation.pyi",
-    "line": 19,
+    "line": 20,
     "declaration": "pipeline: Any"
   },
   {
     "file": "typing/stubs/riposte/generation.pyi",
-    "line": 21,
+    "line": 22,
     "declaration": "identity: Report"
   },
   {
@@ -277,21 +277,36 @@
   {
     "file": "typing/stubs/riposte/runtime_probe.pyi",
     "line": 10,
+    "declaration": "def _probe_gradient(model: Encoder | InpaintProbe | TemporalProbe, forward: Callable[[ModelTensor], ModelTensor], objective: Callable[[ModelTensor], ModelTensor]) -> Report:"
+  },
+  {
+    "file": "typing/stubs/riposte/runtime_probe.pyi",
+    "line": 12,
+    "declaration": "def probe_inpaint(probe: InpaintProbe) -> Report:"
+  },
+  {
+    "file": "typing/stubs/riposte/runtime_probe.pyi",
+    "line": 14,
+    "declaration": "def probe_temporal(probe: TemporalProbe) -> Report:"
+  },
+  {
+    "file": "typing/stubs/riposte/runtime_probe.pyi",
+    "line": 16,
     "declaration": "def execute_local_probe(vae_dirs: list[Path], device: str='auto', progress: _Progress | None=None) -> dict[str, Any]:"
   },
   {
     "file": "typing/stubs/riposte/server.pyi",
-    "line": 101,
+    "line": 103,
     "declaration": "data: dict[str, Report]"
   },
   {
     "file": "typing/stubs/riposte/server.pyi",
-    "line": 106,
+    "line": 108,
     "declaration": "def start(self, fn: Callable[..., object], cancellable: bool=True, **kwargs: Any) -> JobStarted:"
   },
   {
     "file": "typing/stubs/riposte/server.pyi",
-    "line": 110,
+    "line": 112,
     "declaration": "def snapshot(self) -> list[Report]:"
   },
   {

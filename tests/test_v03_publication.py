@@ -3,7 +3,6 @@ from pathlib import Path
 from zipfile import ZipFile
 import numpy as np
 import pytest
-pytest.importorskip("torch")
 from PIL import Image
 from riposte import publication as p
 from riposte.errors import RiposteError
@@ -27,6 +26,7 @@ def prepared(root,make_image):
 
 @pytest.fixture
 def loaded(monkeypatch):
+    pytest.importorskip('torch')
     import riposte.models as models
     calls=[]
     def load(folder,device):

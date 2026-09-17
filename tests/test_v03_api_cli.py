@@ -2,7 +2,6 @@ import io,json,time
 from pathlib import Path
 from zipfile import ZipFile
 import pytest
-pytest.importorskip("torch")
 from fastapi.testclient import TestClient
 from riposte.server import create_app
 from riposte.cli import main
@@ -33,6 +32,7 @@ def wait(c,key):
     pytest.fail('job did not finish')
 
 def run_batch(client,fixture):
+    pytest.importorskip('torch')
     r=client.post('/api/publish',json={'image_ids':[fixture],'vae_directories':['LOCAL_TEST'],'edges':[64],'steps':2,'restarts':1})
     assert r.status_code==200
     j=wait(client,r.json()['job_id']);assert j['state']=='done',j
@@ -79,12 +79,14 @@ def test_invalid_bodies_and_error_codes_do_not_echo_paths(client,fixture):
     assert r.status_code==400 and 'LOCAL_MODEL' in r.text
 
 def test_actual_model_execution_api(client,fixture):
+    pytest.importorskip('torch')
     r=client.post('/api/execute-model',json={'vae_directories':['SYNTHETIC_FIXTURE']})
     j=wait(client,r.json()['job_id'])
     assert j['state']=='done' and j['result']['models'][0]['nonzero_gradient']
     assert j['result']['evidence_level']=='EXECUTION_ONLY'
 
 def test_cli_publication_plan_create_review_package(root,fixture,capsys):
+    pytest.importorskip('torch')
     assert main(['publish',str(root),'--all','--edge','64','--plan'])==0
     assert json.loads(capsys.readouterr().out)['mode']=='PUBLICATION_PLAN'
     assert main(['publish',str(root),'--image',fixture,'--vae','SYNTHETIC_TEST','--edge','64','--steps','2','--restarts','1'])==0
@@ -98,5 +100,6 @@ def test_cli_publication_plan_create_review_package(root,fixture,capsys):
     assert json.loads(capsys.readouterr().out)['ai_protection']=='UNVERIFIED'
 
 def test_doctor_execute_is_distinct_from_file_presence(fixture,capsys):
+    pytest.importorskip('torch')
     assert main(['doctor','--vae','SYNTHETIC_TEST','--execute'])==0
     assert json.loads(capsys.readouterr().out)['mode']=='LOCAL_MODEL_EXECUTION'

@@ -130,7 +130,7 @@ def _request(root, batch_id):
 
 def _models(vae_dirs, device, pipeline_dir, temporal_dir, progress=None):
     from .models import LocalEncoder, LocalInpaintProbe
-    from .runtime_probe import probe_encoder
+    from .runtime_probe import probe_encoder, probe_inpaint, probe_temporal
     from .temporal import LocalTemporalProbe
     if not 1 <= len(vae_dirs) <= 4: raise RiposteError("NO_MODEL_NO_PROTECTION")
     encoders, probes = [], []
@@ -139,7 +139,13 @@ def _models(vae_dirs, device, pipeline_dir, temporal_dir, progress=None):
         model = LocalEncoder(path, device)
         probes.append(probe_encoder(model)); encoders.append(model)
     probe = LocalInpaintProbe(pipeline_dir, encoders[0].device) if pipeline_dir else None
+    if probe is not None:
+        if progress: progress({"phase": "Executing selected inpainting input gradients"})
+        probes.append(probe_inpaint(probe))
     temporal = LocalTemporalProbe(temporal_dir, encoders[0].device) if temporal_dir else None
+    if temporal is not None:
+        if progress: progress({"phase": "Executing selected temporal input gradient"})
+        probes.append(probe_temporal(temporal))
     identities = {"encoders": [e.identity for e in encoders], "inpaint": getattr(probe, "identity", None),
                   "temporal": getattr(temporal, "identity", None)}
     return encoders, probe, temporal, identities, probes
@@ -240,7 +246,10 @@ def _verified_item(root, request, task):
     canonical_path(report.get("relative", ""))
     images, raw = {}, {}
     for kind in ("clean", "candidate"):
-        data = safe_child(root, prefix + f"/{kind}.png").read_bytes()
+        try:
+            data = safe_child(root, prefix + f"/{kind}.png").read_bytes()
+        except OSError:
+            raise RiposteError("PUBLICATION_ARTIFACT_UNREADABLE") from None
         audit = png_audit(data)
         if audit["sha256"] != report.get("artifact_sha256", {}).get(kind) or audit["date"] != task["date"]:
             raise RiposteError("PUBLICATION_ARTIFACT_CHANGED")
@@ -273,16 +282,31 @@ def publication_status(root, batch_id):
         entry = {"id": task["id"], "image_id": task["image_id"], "max_edge": task["max_edge"],
                  "date": task["date"], "status": "PENDING", "review": "PENDING"}
         report_path = f'{prefix}/items/{task["id"]}/report.json'
-        if safe_child(root, report_path).is_file():
-            item = _read(root, report_path)
-            entry.update({k: item[k] for k in ("relative", "width", "height", "quality", "artifact_sha256", "transport")})
-            entry["status"] = "READY_FOR_REVIEW"
-            review_path = f'{prefix}/reviews/{task["id"]}.json'
-            if safe_child(root, review_path).is_file():
+        review_path = f'{prefix}/reviews/{task["id"]}.json'
+        decision = {}
+        has_review = safe_child(root, review_path).is_file()
+        if has_review:
+            try:
                 decision = _read(root, review_path)
+            except RiposteError:
+                entry['review'] = 'STALE'
+        if safe_child(root, report_path).is_file() or has_review:
+            try:
+                item, _, _, digest = _verified_item(root, request, task)
+                entry.update({k: item[k] for k in ("relative", "width", "height", "quality", "artifact_sha256", "transport")})
+                entry["status"] = "READY_FOR_REVIEW"
                 bound = (decision.get("candidate_sha256") == item["artifact_sha256"]["candidate"]
-                         and decision.get("report_sha256") == hashlib.sha256(safe_child(root, report_path).read_bytes()).hexdigest())
-                entry["review"] = decision.get("decision", "PENDING") if bound else "STALE"
+                         and decision.get("report_sha256") == digest)
+                if has_review:
+                    entry["review"] = decision.get("decision", "PENDING") if bound else "STALE"
+            except (RiposteError, OSError, KeyError, TypeError, ValueError) as exc:
+                entry.update(status='BLOCKED', code=exc.code if isinstance(exc, RiposteError) else 'PUBLICATION_ARTIFACT_UNREADABLE')
+                if has_review:
+                    entry['review'] = 'STALE'
+            # Revocation is an instruction to exclude an item, independent of
+            # whether the bytes that were once accepted still exist.
+            if decision.get('decision') == 'REJECTED':
+                entry['review'] = 'REJECTED'
         elif safe_child(root, f'{prefix}/failures/{task["id"]}.json').is_file():
             entry.update(status="BLOCKED", code=_read(root, f'{prefix}/failures/{task["id"]}.json')["code"])
         records.append(entry)
@@ -318,6 +342,11 @@ def review_publication(root, batch_id, item_ids, decision="ACCEPTED", visual_acc
         request = _request(root, batch_id)
         tasks = {t["id"]: t for t in request["tasks"]}
         if any(i not in tasks for i in item_ids): raise RiposteError("PUBLICATION_ITEM_NOT_FOUND")
+        if decision == 'REJECTED':
+            for identifier in item_ids:
+                _replace_json(root, _prefix(root, batch_id) + f"/reviews/{identifier}.json",
+                              {'decision': 'REJECTED', 'ai_protection': 'UNVERIFIED'})
+            return publication_status(root, batch_id)
         # Validate the full review selection before recording any acceptance.
         checked = [(i, _verified_item(root, request, tasks[i])) for i in item_ids]
         for identifier, (item, _, _, digest) in checked:

@@ -100,12 +100,12 @@ async function refresh(){if(refreshing)return;refreshing=true;try{const data=awa
   if(state.selected)state.selected=state.images.find(i=>i.id===state.selected.id)||null;if(!state.selected&&state.images.length){state.selected=state.images[0];state.trial=state.trials.find(t=>t.image_id===state.selected.id)||null;}
   $('image-count').textContent=String(state.images.length);$('nav-count').textContent=String(state.images.length);$('trial-count').textContent=String(state.trials.length);$('candidate-count').textContent=String(state.trials.length);
   const running=data.jobs.find(j=>['queued','running'].includes(j.state));busyJob=running?.id||null;if(running)jobFooter(running);
-  for(const job of data.jobs){if(['done','error','cancelled'].includes(job.state)&&!lastJobs.has(job.id)){lastJobs.add(job.id);jobFooter(job);if(job.state!=='done'){error(new Error(job.code));continue;}const result=job.result;
+  for(const job of data.jobs){if(['done','incomplete','error','cancelled'].includes(job.state)&&!lastJobs.has(job.id)){lastJobs.add(job.id);jobFooter(job);if(!['done','incomplete'].includes(job.state)){error(new Error(job.code));continue;}const result=job.result;
     if(result.mode==='READ_ONLY'){$('plan-result').textContent=JSON.stringify(result,null,2);state.plan=true;planSummary(result);}
     else if(result.mode==='APPLY'){$('plan-result').textContent=JSON.stringify(result,null,2);planSummary(result);state.plan=false;state.audit=result;renderAuditBadge();toast('Organization checkpoint: '+result.checkpoint);}
     else if(result.mode==='ENCODER_QUALIFICATION'){state.evaluations.delete(result.trial_id);await loadEvaluations(true);setResults('qualification');toast('Controlled encoder challenge complete. Generation-level resistance remains unverified.');}
     else if(result.evidence_level==='CONTROLLED_GENERATIONS_UNSCORED'){state.generations.delete(result.trial_id);await loadGenerations(true);setResults('generation');toast('Five-arm generation review ready. Inspect all arms; no automatic success judgment was made.');}
-    else if(result.mode==='PUBLICATION_BATCH'){window.RipostePublish?.completed(result);toast('Publishing batch finished. Review each output before exporting.');}
+    else if(result.mode==='PUBLICATION_BATCH'){await window.RipostePublish?.completed(result);toast(job.state==='incomplete'?'Publishing batch needs attention. Review blocked or unfinished items.':'Publishing batch finished. Review each output before exporting.');}
     else if(result.mode==='LOCAL_MODEL_EXECUTION'){showReport('Local model execution — not an efficacy test',result);}
     else if(result.image_id){state.selected=state.images.find(i=>i.id===result.image_id)||null;state.trial=result;state.transport='identity';$('transport-view').value='identity';setView('lab');setResults('transport');toast('Candidate ready for inspection. AI protection remains unverified.');}
   }}

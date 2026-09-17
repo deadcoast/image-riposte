@@ -1,10 +1,16 @@
 # Source-derived external stub; see typing/README.md for scope.
-from typing import Any
+from typing import Any, Callable
 from pathlib import Path
-from _riposte_types import Report, Encoder
+from _riposte_types import Report, Encoder, InpaintProbe, TemporalProbe, ModelTensor
 from _riposte_types import Progress as _Progress
 from .errors import RiposteError as RiposteError
 
 def probe_encoder(encoder: Encoder) -> Report: ...
+
+def _probe_gradient(model: Encoder | InpaintProbe | TemporalProbe, forward: Callable[[ModelTensor], ModelTensor], objective: Callable[[ModelTensor], ModelTensor]) -> Report: ...
+
+def probe_inpaint(probe: InpaintProbe) -> Report: ...
+
+def probe_temporal(probe: TemporalProbe) -> Report: ...
 
 def execute_local_probe(vae_dirs: list[Path], device: str='auto', progress: _Progress | None=None) -> dict[str, Any]: ...

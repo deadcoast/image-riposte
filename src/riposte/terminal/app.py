@@ -29,7 +29,9 @@ def _line_command(controller: Controller, line: str):
     head, _, rest = line.partition(" ")
     if head == "search": state.page.query=rest;state.page.cursor=0;return
     if head == "focus":
-        try: state.page.cursor=max(0,min(len(view_rows(state))-1,int(rest)-1))
+        try:
+            rows = fields_for(state.page) if state.page.name == "form" else view_rows(state)
+            state.page.cursor=max(0,min(len(rows)-1,int(rest)-1))
         except ValueError: state.notice="Use focus followed by a row number."
         return
     if head == "edit" and state.page.name == "form":

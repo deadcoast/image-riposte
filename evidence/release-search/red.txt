@@ -1,0 +1,319 @@
+FFFFF                                                                    [100%]
+================================== FAILURES ===================================
+_ test_selection_retains_intermediate_iterates_independently_of_trace_cadence _
+
+    def test_selection_retains_intermediate_iterates_independently_of_trace_cadence():
+        image = Image.new("RGB", (24, 24), (90, 120, 150))
+        config = ReleaseConfig(steps=4, restarts=1, step_255=2, checkpoint_every=1)
+        dense, dense_report = protect_release(image, [NonlinearEncoder()], config)
+        sparse, sparse_report = protect_release(image, [NonlinearEncoder()], replace(config, checkpoint_every=4))
+>       assert dense.tobytes() == sparse.tobytes()
+E       AssertionError: assert b'^|\x9aZ|\x9...a]|\x9a^|\x92' == b'\\|\x9aV|\x...aY|\x99Zz\x94'
+E         
+E         At index 0 diff: b'^' != b'\\'
+E         Use -v to get more diff
+
+tests\test_release_search.py:34: AssertionError
+___ test_oversized_step_recovers_without_loosening_quality_or_pixel_budget ____
+
+    def test_oversized_step_recovers_without_loosening_quality_or_pixel_budget():
+        image = Image.new("RGB", (32, 32), (90, 120, 150))
+        before = image.tobytes()
+        config = ReleaseConfig(steps=1, restarts=1, step_255=8)
+>       output, report = protect_release(image, [Encoder()], config)
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_release_search.py:44: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+image = <PIL.Image.Image image mode=RGB size=32x32 at 0x2918AB77350>
+encoders = [<test_release_search.Encoder object at 0x000002918AB4FB60>]
+config = ReleaseConfig(steps=1, restarts=1, seed=7, step_255=8, checkpoint_every=4, frequency_weight=0.65)
+limits = QualityLimits(epsilon_255=4, preserve_white=True, rms_fraction=0.95, delta_e76_p95=6.0, tile_size=32)
+probe = None, temporal = None, progress = None
+
+    def protect_release(image: Image.Image, encoders: list, config: ReleaseConfig = ReleaseConfig(),
+                        limits: QualityLimits = QualityLimits(), probe=None, temporal=None, progress=None):
+        import torch
+        if not encoders: raise RiposteError("NO_MODEL_NO_PROTECTION")
+        if min(image.size) < 16 or max(image.size) > 4096: raise RiposteError("GUARD_DIMENSIONS_INVALID")
+        device = getattr(encoders[0], "device", "cpu")
+        if any(getattr(m, "device", "cpu") != device for m in encoders + [m for m in (probe, temporal) if m is not None]):
+            raise RiposteError("ENSEMBLE_DEVICE_MISMATCH")
+        x = image_tensor(image, device)
+        caps = spatial_budget(image, limits)
+        budget = torch.from_numpy(caps.astype(np.float32))[None, None].to(device) / 255
+        if not bool((budget > 0).any()): raise RiposteError("NO_EDITABLE_PIXEL_BUDGET")
+        low, high = (x - budget).clamp(0, 1), (x + budget).clamp(0, 1)
+        branches = _branches(encoders, probe, config.seed)
+        if temporal is not None:
+            branches += [Branch("temporal", 0, v, "whole", (config.seed + 1709) % 2**32) for v in ("identity", "jpeg85")]
+    
+        def notify(phase, restart=0, step=0, branch=0):
+            if progress:
+                progress({"phase": phase, "processed": restart * config.steps + step,
+                          "total": config.steps * config.restarts, "branch": branch, "branches": len(branches)})
+    
+        def feature(q, branch):
+            return (temporal(differentiable_view(q, branch.view), branch.seed) if branch.kind == "temporal"
+                    else _features(q, branch, encoders, probe))
+    
+        refs = []
+        with torch.no_grad():
+            for i, branch in enumerate(branches):
+                notify("Preparing protection contexts", branch=i + 1)
+                z = feature(x, branch).detach()
+                if not bool(torch.isfinite(z).all()): raise RiposteError("OPTIMIZER_NONFINITE")
+                if branch.kind == "temporal":
+                    energy = float(temporal_energy(z).cpu())
+                    if energy <= 1e-12: raise RiposteError("TEMPORAL_REFERENCE_HAS_NO_SIGNAL")
+                    refs.append((None, energy))
+                else:
+                    refs.append((z.cpu(), max(float(z.square().mean().cpu()), 1e-6)))
+    
+        def score(q, branch, ref):
+            z = feature(q, branch)
+            val = (1 - temporal_energy(z) / ref[1] if branch.kind == "temporal"
+                   else (z - ref[0].to(device)).square().mean() / ref[1])
+            if not bool(torch.isfinite(val)): raise RiposteError("OPTIMIZER_NONFINITE")
+            return val
+    
+        def scores(q, restart, step):
+            with torch.no_grad():
+                values = []
+                for i, (branch, ref) in enumerate(zip(branches, refs, strict=True)):
+                    notify("Measuring quantized protection contexts", restart, step, i + 1)
+                    values.append(float(score(q, branch, ref).cpu()))
+                return values
+    
+        best, best_key, best_info, trace, had_gradient = None, None, None, [], False
+        for restart in range(config.restarts):
+            rng = torch.Generator("cpu").manual_seed((config.seed + restart * 104729) % 2**32)
+            candidate = torch.maximum(torch.minimum(x + (torch.rand(x.shape, generator=rng).to(device) * 2 - 1) * budget, high), low).detach()
+            step_size, stale, restart_best = config.step_255, 0, None
+            initial_scores = scores(candidate.mul(255).round() / 255, restart, 0)
+            initial_min = min(initial_scores)
+            values = initial_scores
+            for step in range(1, config.steps + 1):
+                numbers = torch.tensor(values, device=device, dtype=x.dtype)
+                tau = numbers.abs().mean().clamp_min(1e-6)
+                weights = torch.softmax(-numbers / tau, dim=0).detach()
+                gradient = torch.zeros_like(x)
+                for index, (branch, ref) in enumerate(zip(branches, refs, strict=True)):
+                    notify("Optimizing publishing raster", restart, step, index + 1)
+                    leaf = candidate.detach().requires_grad_(True)
+                    value = score(_round_ste(leaf * 255) / 255, branch, ref)
+                    if not value.requires_grad: raise RiposteError("MODEL_GRADIENT_UNAVAILABLE")
+                    g = torch.autograd.grad(value, leaf, allow_unused=True)[0]
+                    if g is None: raise RiposteError("MODEL_GRADIENT_UNAVAILABLE")
+                    if not bool(torch.isfinite(g).all()): raise RiposteError("OPTIMIZER_NONFINITE")
+                    gradient.add_(g.detach() * weights[index])
+                    del g, leaf, value
+                gradient = spectral_direction(gradient, config.frequency_weight)
+                useful = bool(((gradient != 0) & (budget > 0)).any())
+                had_gradient |= useful
+                candidate = torch.maximum(torch.minimum(candidate + step_size / 255 * gradient.sign(), high), low).detach()
+                q = candidate.mul(255).round() / 255
+                values = scores(q, restart, step)
+                if step == 1 or step % config.checkpoint_every == 0 or step == config.steps:
+                    output = tensor_image(q)
+                    quality = quality_report(image, output, limits)
+                    key = (min(values), sum(values) / len(values))
+                    # A random start is never eligible; require an actual useful update
+                    # and improved worst context compared with that restart's seed.
+                    eligible = useful and key[0] > max(initial_min + 1e-12, 1e-12) and quality["status"] == "PASS"
+                    improved = eligible and (best_key is None or key > best_key)
+                    trace.append({"restart": restart + 1, "step": step, "min_context_score": key[0],
+                                  "mean_context_score": key[1], "numeric_quality": quality["status"],
+                                  "eligible": eligible, "selected": improved, "step_255": step_size})
+                    if improved:
+                        best, best_key = output.copy(), key
+                        best_info = {"restart": restart + 1, "step": step, "scores": list(values),
+                                     "initial_min_context_score": initial_min, "quality": quality}
+                    if restart_best is None or key > restart_best:
+                        restart_best, stale = key, 0
+                    else:
+                        stale += 1
+                        if stale >= 2:
+                            step_size, stale = max(.05, step_size / 2), 0
+        if not had_gradient: raise RiposteError("ZERO_GRADIENT_NO_CANDIDATE")
+>       if best is None: raise RiposteError("NO_IMPROVED_FIDELITY_ACCEPTABLE_CANDIDATE")
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       riposte.errors.RiposteError: NO_IMPROVED_FIDELITY_ACCEPTABLE_CANDIDATE
+
+src\riposte\release_guard.py:148: RiposteError
+_______ test_recovery_is_deterministic_and_does_not_consume_global_rng ________
+
+    def test_recovery_is_deterministic_and_does_not_consume_global_rng():
+        image = Image.new("RGB", (32, 32), (90, 120, 150))
+        config = ReleaseConfig(steps=3, restarts=2, step_255=8)
+        before = torch.get_rng_state().clone()
+>       a, ar = protect_release(image, [Encoder()], config)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_release_search.py:59: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+image = <PIL.Image.Image image mode=RGB size=32x32 at 0x2918AB77B90>
+encoders = [<test_release_search.Encoder object at 0x000002918AD69590>]
+config = ReleaseConfig(steps=3, restarts=2, seed=7, step_255=8, checkpoint_every=4, frequency_weight=0.65)
+limits = QualityLimits(epsilon_255=4, preserve_white=True, rms_fraction=0.95, delta_e76_p95=6.0, tile_size=32)
+probe = None, temporal = None, progress = None
+
+    def protect_release(image: Image.Image, encoders: list, config: ReleaseConfig = ReleaseConfig(),
+                        limits: QualityLimits = QualityLimits(), probe=None, temporal=None, progress=None):
+        import torch
+        if not encoders: raise RiposteError("NO_MODEL_NO_PROTECTION")
+        if min(image.size) < 16 or max(image.size) > 4096: raise RiposteError("GUARD_DIMENSIONS_INVALID")
+        device = getattr(encoders[0], "device", "cpu")
+        if any(getattr(m, "device", "cpu") != device for m in encoders + [m for m in (probe, temporal) if m is not None]):
+            raise RiposteError("ENSEMBLE_DEVICE_MISMATCH")
+        x = image_tensor(image, device)
+        caps = spatial_budget(image, limits)
+        budget = torch.from_numpy(caps.astype(np.float32))[None, None].to(device) / 255
+        if not bool((budget > 0).any()): raise RiposteError("NO_EDITABLE_PIXEL_BUDGET")
+        low, high = (x - budget).clamp(0, 1), (x + budget).clamp(0, 1)
+        branches = _branches(encoders, probe, config.seed)
+        if temporal is not None:
+            branches += [Branch("temporal", 0, v, "whole", (config.seed + 1709) % 2**32) for v in ("identity", "jpeg85")]
+    
+        def notify(phase, restart=0, step=0, branch=0):
+            if progress:
+                progress({"phase": phase, "processed": restart * config.steps + step,
+                          "total": config.steps * config.restarts, "branch": branch, "branches": len(branches)})
+    
+        def feature(q, branch):
+            return (temporal(differentiable_view(q, branch.view), branch.seed) if branch.kind == "temporal"
+                    else _features(q, branch, encoders, probe))
+    
+        refs = []
+        with torch.no_grad():
+            for i, branch in enumerate(branches):
+                notify("Preparing protection contexts", branch=i + 1)
+                z = feature(x, branch).detach()
+                if not bool(torch.isfinite(z).all()): raise RiposteError("OPTIMIZER_NONFINITE")
+                if branch.kind == "temporal":
+                    energy = float(temporal_energy(z).cpu())
+                    if energy <= 1e-12: raise RiposteError("TEMPORAL_REFERENCE_HAS_NO_SIGNAL")
+                    refs.append((None, energy))
+                else:
+                    refs.append((z.cpu(), max(float(z.square().mean().cpu()), 1e-6)))
+    
+        def score(q, branch, ref):
+            z = feature(q, branch)
+            val = (1 - temporal_energy(z) / ref[1] if branch.kind == "temporal"
+                   else (z - ref[0].to(device)).square().mean() / ref[1])
+            if not bool(torch.isfinite(val)): raise RiposteError("OPTIMIZER_NONFINITE")
+            return val
+    
+        def scores(q, restart, step):
+            with torch.no_grad():
+                values = []
+                for i, (branch, ref) in enumerate(zip(branches, refs, strict=True)):
+                    notify("Measuring quantized protection contexts", restart, step, i + 1)
+                    values.append(float(score(q, branch, ref).cpu()))
+                return values
+    
+        best, best_key, best_info, trace, had_gradient = None, None, None, [], False
+        for restart in range(config.restarts):
+            rng = torch.Generator("cpu").manual_seed((config.seed + restart * 104729) % 2**32)
+            candidate = torch.maximum(torch.minimum(x + (torch.rand(x.shape, generator=rng).to(device) * 2 - 1) * budget, high), low).detach()
+            step_size, stale, restart_best = config.step_255, 0, None
+            initial_scores = scores(candidate.mul(255).round() / 255, restart, 0)
+            initial_min = min(initial_scores)
+            values = initial_scores
+            for step in range(1, config.steps + 1):
+                numbers = torch.tensor(values, device=device, dtype=x.dtype)
+                tau = numbers.abs().mean().clamp_min(1e-6)
+                weights = torch.softmax(-numbers / tau, dim=0).detach()
+                gradient = torch.zeros_like(x)
+                for index, (branch, ref) in enumerate(zip(branches, refs, strict=True)):
+                    notify("Optimizing publishing raster", restart, step, index + 1)
+                    leaf = candidate.detach().requires_grad_(True)
+                    value = score(_round_ste(leaf * 255) / 255, branch, ref)
+                    if not value.requires_grad: raise RiposteError("MODEL_GRADIENT_UNAVAILABLE")
+                    g = torch.autograd.grad(value, leaf, allow_unused=True)[0]
+                    if g is None: raise RiposteError("MODEL_GRADIENT_UNAVAILABLE")
+                    if not bool(torch.isfinite(g).all()): raise RiposteError("OPTIMIZER_NONFINITE")
+                    gradient.add_(g.detach() * weights[index])
+                    del g, leaf, value
+                gradient = spectral_direction(gradient, config.frequency_weight)
+                useful = bool(((gradient != 0) & (budget > 0)).any())
+                had_gradient |= useful
+                candidate = torch.maximum(torch.minimum(candidate + step_size / 255 * gradient.sign(), high), low).detach()
+                q = candidate.mul(255).round() / 255
+                values = scores(q, restart, step)
+                if step == 1 or step % config.checkpoint_every == 0 or step == config.steps:
+                    output = tensor_image(q)
+                    quality = quality_report(image, output, limits)
+                    key = (min(values), sum(values) / len(values))
+                    # A random start is never eligible; require an actual useful update
+                    # and improved worst context compared with that restart's seed.
+                    eligible = useful and key[0] > max(initial_min + 1e-12, 1e-12) and quality["status"] == "PASS"
+                    improved = eligible and (best_key is None or key > best_key)
+                    trace.append({"restart": restart + 1, "step": step, "min_context_score": key[0],
+                                  "mean_context_score": key[1], "numeric_quality": quality["status"],
+                                  "eligible": eligible, "selected": improved, "step_255": step_size})
+                    if improved:
+                        best, best_key = output.copy(), key
+                        best_info = {"restart": restart + 1, "step": step, "scores": list(values),
+                                     "initial_min_context_score": initial_min, "quality": quality}
+                    if restart_best is None or key > restart_best:
+                        restart_best, stale = key, 0
+                    else:
+                        stale += 1
+                        if stale >= 2:
+                            step_size, stale = max(.05, step_size / 2), 0
+        if not had_gradient: raise RiposteError("ZERO_GRADIENT_NO_CANDIDATE")
+>       if best is None: raise RiposteError("NO_IMPROVED_FIDELITY_ACCEPTABLE_CANDIDATE")
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       riposte.errors.RiposteError: NO_IMPROVED_FIDELITY_ACCEPTABLE_CANDIDATE
+
+src\riposte\release_guard.py:148: RiposteError
+______________ test_cancellation_interrupts_quality_backtracking ______________
+
+    def test_cancellation_interrupts_quality_backtracking():
+        image = Image.new("RGB", (32, 32), (90, 120, 150))
+        events = []
+    
+        def progress(update):
+            if update["phase"] == "Reducing publishing step for image quality":
+                events.append(update)
+                raise RiposteError("JOB_CANCELLED")
+    
+>       with pytest.raises(RiposteError, match="JOB_CANCELLED"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AssertionError: Regex pattern did not match.
+E         Expected regex: 'JOB_CANCELLED'
+E         Actual message: 'NO_IMPROVED_FIDELITY_ACCEPTABLE_CANDIDATE'
+
+tests\test_release_search.py:74: AssertionError
+_________________ test_publishing_uses_recovered_exact_pixels _________________
+
+root = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/release-search/red/test_publishing_uses_recovered0/workspace')
+make_image = <function make_image.<locals>.create at 0x000002918AE98E00>
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000002918AD03E10>
+
+    def test_publishing_uses_recovered_exact_pixels(root, make_image, monkeypatch):
+        from riposte import models, publication
+        from riposte.organizer import organize
+        from riposte.policy import Policy
+        from riposte.store import catalog
+    
+        make_image(root / "art.png", size=(32, 32), color=(90, 120, 150))
+        organize(root, Policy(date_mode="modified"))
+        image_id = catalog(root)[0]["id"]
+        monkeypatch.setattr(models, "LocalEncoder", lambda *args: Encoder())
+        recipe = publication.PublishRecipe((64,), ReleaseConfig(steps=1, restarts=1, step_255=8))
+        batch = publication.start_publication(root, [image_id], [Path("SYNTHETIC_LOCAL_ENCODER")], recipe)
+>       assert batch["counts"]["READY_FOR_REVIEW"] == 1
+E       assert 0 == 1
+
+tests\test_release_search.py:91: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/test_release_search.py::test_selection_retains_intermediate_iterates_independently_of_trace_cadence
+FAILED tests/test_release_search.py::test_oversized_step_recovers_without_loosening_quality_or_pixel_budget
+FAILED tests/test_release_search.py::test_recovery_is_deterministic_and_does_not_consume_global_rng
+FAILED tests/test_release_search.py::test_cancellation_interrupts_quality_backtracking
+FAILED tests/test_release_search.py::test_publishing_uses_recovered_exact_pixels
+5 failed in 1.46s

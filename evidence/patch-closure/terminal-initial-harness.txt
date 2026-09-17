@@ -1,0 +1,2027 @@
+.EEEEEEEEEEEEEEEEEEEEEEEEEEEE.EE.EEEEEE.........E....................... [ 37%]
+...........EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE [ 75%]
+EEEEEEEEEEEEEEEEEEEEEEEEEssss.......EEEEEEEEEEE                          [100%]
+=================================== ERRORS ====================================
+_ ERROR at setup of test_all_terminal_surfaces_reject_background_fill[home-goks] _
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+_ ERROR at setup of test_all_terminal_surfaces_reject_background_fill[home-dark] _
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+_ ERROR at setup of test_all_terminal_surfaces_reject_background_fill[home-light] _
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+_ ERROR at setup of test_all_terminal_surfaces_reject_background_fill[home-mono] _
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+_ ERROR at setup of test_all_terminal_surfaces_reject_background_fill[library-goks] _
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+_ ERROR at setup of test_all_terminal_surfaces_reject_background_fill[library-dark] _
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+_ ERROR at setup of test_all_terminal_surfaces_reject_background_fill[library-light] _
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+_ ERROR at setup of test_all_terminal_surfaces_reject_background_fill[library-mono] _
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+_ ERROR at setup of test_all_terminal_surfaces_reject_background_fill[form-goks] _
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+_ ERROR at setup of test_all_terminal_surfaces_reject_background_fill[form-dark] _
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+_ ERROR at setup of test_all_terminal_surfaces_reject_background_fill[form-light] _
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+_ ERROR at setup of test_all_terminal_surfaces_reject_background_fill[form-mono] _
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+_ ERROR at setup of test_all_terminal_surfaces_reject_background_fill[result-goks] _
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+_ ERROR at setup of test_all_terminal_surfaces_reject_background_fill[result-dark] _
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+_ ERROR at setup of test_all_terminal_surfaces_reject_background_fill[result-light] _
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+_ ERROR at setup of test_all_terminal_surfaces_reject_background_fill[result-mono] _
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+_ ERROR at setup of test_all_terminal_surfaces_reject_background_fill[preferences-goks] _
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+_ ERROR at setup of test_all_terminal_surfaces_reject_background_fill[preferences-dark] _
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+_ ERROR at setup of test_all_terminal_surfaces_reject_background_fill[preferences-light] _
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+_ ERROR at setup of test_all_terminal_surfaces_reject_background_fill[preferences-mono] _
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+_ ERROR at setup of test_all_terminal_surfaces_reject_background_fill[help-goks] _
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+_ ERROR at setup of test_all_terminal_surfaces_reject_background_fill[help-dark] _
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+_ ERROR at setup of test_all_terminal_surfaces_reject_background_fill[help-light] _
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+_ ERROR at setup of test_all_terminal_surfaces_reject_background_fill[help-mono] _
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+_ ERROR at setup of test_all_terminal_surfaces_reject_background_fill[confirm-goks] _
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+_ ERROR at setup of test_all_terminal_surfaces_reject_background_fill[confirm-dark] _
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+_ ERROR at setup of test_all_terminal_surfaces_reject_background_fill[confirm-light] _
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+_ ERROR at setup of test_all_terminal_surfaces_reject_background_fill[confirm-mono] _
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+____ ERROR at setup of test_enter_select_i_inspect_and_space_compatibility ____
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+_ ERROR at setup of test_report_overview_is_not_json_and_details_are_complete _
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+_ ERROR at setup of test_report_draw_uses_actual_viewport_and_can_scroll[79-24] _
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+_ ERROR at setup of test_report_draw_uses_actual_viewport_and_can_scroll[100-34] _
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+_ ERROR at setup of test_report_draw_uses_actual_viewport_and_can_scroll[132-46] _
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+___ ERROR at setup of test_enter_from_migration_plan_still_requires_replace ___
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+______ ERROR at setup of test_advanced_disclosure_preserves_all_settings ______
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+____ ERROR at setup of test_contextual_help_describes_the_focused_setting _____
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+___________________ ERROR at setup of test_cli_accepts_goks ___________________
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+_ ERROR at setup of test_every_scene_ascii_and_bounded[home-dark-dimensions0] _
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+_ ERROR at setup of test_every_scene_ascii_and_bounded[home-dark-dimensions1] _
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+_ ERROR at setup of test_every_scene_ascii_and_bounded[home-dark-dimensions2] _
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+_ ERROR at setup of test_every_scene_ascii_and_bounded[home-light-dimensions0] _
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+_ ERROR at setup of test_every_scene_ascii_and_bounded[home-light-dimensions1] _
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+_ ERROR at setup of test_every_scene_ascii_and_bounded[home-light-dimensions2] _
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+_ ERROR at setup of test_every_scene_ascii_and_bounded[home-mono-dimensions0] _
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+_ ERROR at setup of test_every_scene_ascii_and_bounded[home-mono-dimensions1] _
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+_ ERROR at setup of test_every_scene_ascii_and_bounded[home-mono-dimensions2] _
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+_ ERROR at setup of test_every_scene_ascii_and_bounded[library-dark-dimensions0] _
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+_ ERROR at setup of test_every_scene_ascii_and_bounded[library-dark-dimensions1] _
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+_ ERROR at setup of test_every_scene_ascii_and_bounded[library-dark-dimensions2] _
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+_ ERROR at setup of test_every_scene_ascii_and_bounded[library-light-dimensions0] _
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+_ ERROR at setup of test_every_scene_ascii_and_bounded[library-light-dimensions1] _
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+_ ERROR at setup of test_every_scene_ascii_and_bounded[library-light-dimensions2] _
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+_ ERROR at setup of test_every_scene_ascii_and_bounded[library-mono-dimensions0] _
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+_ ERROR at setup of test_every_scene_ascii_and_bounded[library-mono-dimensions1] _
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+_ ERROR at setup of test_every_scene_ascii_and_bounded[library-mono-dimensions2] _
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+_ ERROR at setup of test_every_scene_ascii_and_bounded[form-dark-dimensions0] _
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+_ ERROR at setup of test_every_scene_ascii_and_bounded[form-dark-dimensions1] _
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+_ ERROR at setup of test_every_scene_ascii_and_bounded[form-dark-dimensions2] _
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+_ ERROR at setup of test_every_scene_ascii_and_bounded[form-light-dimensions0] _
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+_ ERROR at setup of test_every_scene_ascii_and_bounded[form-light-dimensions1] _
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+_ ERROR at setup of test_every_scene_ascii_and_bounded[form-light-dimensions2] _
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+_ ERROR at setup of test_every_scene_ascii_and_bounded[form-mono-dimensions0] _
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+_ ERROR at setup of test_every_scene_ascii_and_bounded[form-mono-dimensions1] _
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+_ ERROR at setup of test_every_scene_ascii_and_bounded[form-mono-dimensions2] _
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+_ ERROR at setup of test_every_scene_ascii_and_bounded[preferences-dark-dimensions0] _
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+_ ERROR at setup of test_every_scene_ascii_and_bounded[preferences-dark-dimensions1] _
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+_ ERROR at setup of test_every_scene_ascii_and_bounded[preferences-dark-dimensions2] _
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+_ ERROR at setup of test_every_scene_ascii_and_bounded[preferences-light-dimensions0] _
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+_ ERROR at setup of test_every_scene_ascii_and_bounded[preferences-light-dimensions1] _
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+_ ERROR at setup of test_every_scene_ascii_and_bounded[preferences-light-dimensions2] _
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+_ ERROR at setup of test_every_scene_ascii_and_bounded[preferences-mono-dimensions0] _
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+_ ERROR at setup of test_every_scene_ascii_and_bounded[preferences-mono-dimensions1] _
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+_ ERROR at setup of test_every_scene_ascii_and_bounded[preferences-mono-dimensions2] _
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+_ ERROR at setup of test_every_scene_ascii_and_bounded[help-dark-dimensions0] _
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+_ ERROR at setup of test_every_scene_ascii_and_bounded[help-dark-dimensions1] _
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+_ ERROR at setup of test_every_scene_ascii_and_bounded[help-dark-dimensions2] _
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+_ ERROR at setup of test_every_scene_ascii_and_bounded[help-light-dimensions0] _
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+_ ERROR at setup of test_every_scene_ascii_and_bounded[help-light-dimensions1] _
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+_ ERROR at setup of test_every_scene_ascii_and_bounded[help-light-dimensions2] _
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+_ ERROR at setup of test_every_scene_ascii_and_bounded[help-mono-dimensions0] _
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+_ ERROR at setup of test_every_scene_ascii_and_bounded[help-mono-dimensions1] _
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+_ ERROR at setup of test_every_scene_ascii_and_bounded[help-mono-dimensions2] _
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+_ ERROR at setup of test_every_scene_ascii_and_bounded[confirm-dark-dimensions0] _
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+_ ERROR at setup of test_every_scene_ascii_and_bounded[confirm-dark-dimensions1] _
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+_ ERROR at setup of test_every_scene_ascii_and_bounded[confirm-dark-dimensions2] _
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+_ ERROR at setup of test_every_scene_ascii_and_bounded[confirm-light-dimensions0] _
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+_ ERROR at setup of test_every_scene_ascii_and_bounded[confirm-light-dimensions1] _
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+_ ERROR at setup of test_every_scene_ascii_and_bounded[confirm-light-dimensions2] _
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+_ ERROR at setup of test_every_scene_ascii_and_bounded[confirm-mono-dimensions0] _
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+_ ERROR at setup of test_every_scene_ascii_and_bounded[confirm-mono-dimensions1] _
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+_ ERROR at setup of test_every_scene_ascii_and_bounded[confirm-mono-dimensions2] _
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+_ ERROR at setup of test_every_scene_ascii_and_bounded[workshop-dark-dimensions0] _
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+_ ERROR at setup of test_every_scene_ascii_and_bounded[workshop-dark-dimensions1] _
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+_ ERROR at setup of test_every_scene_ascii_and_bounded[workshop-dark-dimensions2] _
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+_ ERROR at setup of test_every_scene_ascii_and_bounded[workshop-light-dimensions0] _
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+_ ERROR at setup of test_every_scene_ascii_and_bounded[workshop-light-dimensions1] _
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+_ ERROR at setup of test_every_scene_ascii_and_bounded[workshop-light-dimensions2] _
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+_ ERROR at setup of test_every_scene_ascii_and_bounded[workshop-mono-dimensions0] _
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+_ ERROR at setup of test_every_scene_ascii_and_bounded[workshop-mono-dimensions1] _
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+_ ERROR at setup of test_every_scene_ascii_and_bounded[workshop-mono-dimensions2] _
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+_ ERROR at setup of test_every_scene_ascii_and_bounded[result-dark-dimensions0] _
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+_ ERROR at setup of test_every_scene_ascii_and_bounded[result-dark-dimensions1] _
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+_ ERROR at setup of test_every_scene_ascii_and_bounded[result-dark-dimensions2] _
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+_ ERROR at setup of test_every_scene_ascii_and_bounded[result-light-dimensions0] _
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+_ ERROR at setup of test_every_scene_ascii_and_bounded[result-light-dimensions1] _
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+_ ERROR at setup of test_every_scene_ascii_and_bounded[result-light-dimensions2] _
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+_ ERROR at setup of test_every_scene_ascii_and_bounded[result-mono-dimensions0] _
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+_ ERROR at setup of test_every_scene_ascii_and_bounded[result-mono-dimensions1] _
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+_ ERROR at setup of test_every_scene_ascii_and_bounded[result-mono-dimensions2] _
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+_ ERROR at setup of test_every_scene_ascii_and_bounded[command-dark-dimensions0] _
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+_ ERROR at setup of test_every_scene_ascii_and_bounded[command-dark-dimensions1] _
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+_ ERROR at setup of test_every_scene_ascii_and_bounded[command-dark-dimensions2] _
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+_ ERROR at setup of test_every_scene_ascii_and_bounded[command-light-dimensions0] _
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+_ ERROR at setup of test_every_scene_ascii_and_bounded[command-light-dimensions1] _
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+_ ERROR at setup of test_every_scene_ascii_and_bounded[command-light-dimensions2] _
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+_ ERROR at setup of test_every_scene_ascii_and_bounded[command-mono-dimensions0] _
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+_ ERROR at setup of test_every_scene_ascii_and_bounded[command-mono-dimensions1] _
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+_ ERROR at setup of test_every_scene_ascii_and_bounded[command-mono-dimensions2] _
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+________ ERROR at setup of test_end_scroll_is_bounded_and_up_recovers _________
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+____ ERROR at setup of test_motion_and_freeze_do_not_alter_operation_state ____
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+_____ ERROR at setup of test_small_terminal_cannot_activate_hidden_write ______
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+____________ ERROR at setup of test_model_path_editor_session_only ____________
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+_________ ERROR at setup of test_linear_input_is_selection_not_shell __________
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+___ ERROR at setup of test_interactive_clean_preview_confirmation_and_audit ___
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+_____ ERROR at setup of test_main_menu_to_real_candidate_review_and_pack ______
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+________ ERROR at setup of test_review_cannot_skip_the_two_actual_acks ________
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+_______ ERROR at setup of test_viewer_explicit_handoff_does_not_approve _______
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+_________ ERROR at setup of test_failed_publish_is_an_error_not_noise _________
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+________ ERROR at setup of test_ascii_inspection_uses_bound_pixel_hash ________
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+_ ERROR at setup of test_model_free_fresh_workspace_choosing_exiting_is_read_only _
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+_____ ERROR at setup of test_focus_uses_visible_form_fields[doctor-False] _____
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+____ ERROR at setup of test_focus_uses_visible_form_fields[publish-False] _____
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+_____ ERROR at setup of test_focus_uses_visible_form_fields[publish-True] _____
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+___________ ERROR at setup of test_non_form_focus_keeps_row_bounds ____________
+
+self = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/patch-closure/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\patch-closure\\pytest'
+
+C:\Python314\Lib\pathlib\__init__.py:1011: FileNotFoundError
+============================== warnings summary ===============================
+.venv\Lib\site-packages\_pytest\cacheprovider.py:469
+  C:\Users\ryanf\github\_new\image-riposte\.venv\Lib\site-packages\_pytest\cacheprovider.py:469: PytestCacheWarning: could not create cache path C:\Users\ryanf\github\_new\image-riposte\.pytest_cache\v\cache\nodeids: [WinError 183] Cannot create a file when that file already exists: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\.pytest_cache\\v\\cache'
+    config.cache.set("cache/nodeids", sorted(self.cached_nodeids))
+
+.venv\Lib\site-packages\_pytest\cacheprovider.py:423
+  C:\Users\ryanf\github\_new\image-riposte\.venv\Lib\site-packages\_pytest\cacheprovider.py:423: PytestCacheWarning: could not create cache path C:\Users\ryanf\github\_new\image-riposte\.pytest_cache\v\cache\lastfailed: [WinError 183] Cannot create a file when that file already exists: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\.pytest_cache\\v\\cache'
+    config.cache.set("cache/lastfailed", self.lastfailed)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ===========================
+SKIPPED [4] tests\test_v04_terminal_host.py:8: POSIX pseudo-terminal contract
+ERROR tests/test_v05_revision.py::test_all_terminal_surfaces_reject_background_fill[home-goks]
+ERROR tests/test_v05_revision.py::test_all_terminal_surfaces_reject_background_fill[home-dark]
+ERROR tests/test_v05_revision.py::test_all_terminal_surfaces_reject_background_fill[home-light]
+ERROR tests/test_v05_revision.py::test_all_terminal_surfaces_reject_background_fill[home-mono]
+ERROR tests/test_v05_revision.py::test_all_terminal_surfaces_reject_background_fill[library-goks]
+ERROR tests/test_v05_revision.py::test_all_terminal_surfaces_reject_background_fill[library-dark]
+ERROR tests/test_v05_revision.py::test_all_terminal_surfaces_reject_background_fill[library-light]
+ERROR tests/test_v05_revision.py::test_all_terminal_surfaces_reject_background_fill[library-mono]
+ERROR tests/test_v05_revision.py::test_all_terminal_surfaces_reject_background_fill[form-goks]
+ERROR tests/test_v05_revision.py::test_all_terminal_surfaces_reject_background_fill[form-dark]
+ERROR tests/test_v05_revision.py::test_all_terminal_surfaces_reject_background_fill[form-light]
+ERROR tests/test_v05_revision.py::test_all_terminal_surfaces_reject_background_fill[form-mono]
+ERROR tests/test_v05_revision.py::test_all_terminal_surfaces_reject_background_fill[result-goks]
+ERROR tests/test_v05_revision.py::test_all_terminal_surfaces_reject_background_fill[result-dark]
+ERROR tests/test_v05_revision.py::test_all_terminal_surfaces_reject_background_fill[result-light]
+ERROR tests/test_v05_revision.py::test_all_terminal_surfaces_reject_background_fill[result-mono]
+ERROR tests/test_v05_revision.py::test_all_terminal_surfaces_reject_background_fill[preferences-goks]
+ERROR tests/test_v05_revision.py::test_all_terminal_surfaces_reject_background_fill[preferences-dark]
+ERROR tests/test_v05_revision.py::test_all_terminal_surfaces_reject_background_fill[preferences-light]
+ERROR tests/test_v05_revision.py::test_all_terminal_surfaces_reject_background_fill[preferences-mono]
+ERROR tests/test_v05_revision.py::test_all_terminal_surfaces_reject_background_fill[help-goks]
+ERROR tests/test_v05_revision.py::test_all_terminal_surfaces_reject_background_fill[help-dark]
+ERROR tests/test_v05_revision.py::test_all_terminal_surfaces_reject_background_fill[help-light]
+ERROR tests/test_v05_revision.py::test_all_terminal_surfaces_reject_background_fill[help-mono]
+ERROR tests/test_v05_revision.py::test_all_terminal_surfaces_reject_background_fill[confirm-goks]
+ERROR tests/test_v05_revision.py::test_all_terminal_surfaces_reject_background_fill[confirm-dark]
+ERROR tests/test_v05_revision.py::test_all_terminal_surfaces_reject_background_fill[confirm-light]
+ERROR tests/test_v05_revision.py::test_all_terminal_surfaces_reject_background_fill[confirm-mono]
+ERROR tests/test_v05_revision.py::test_enter_select_i_inspect_and_space_compatibility
+ERROR tests/test_v05_revision.py::test_report_overview_is_not_json_and_details_are_complete
+ERROR tests/test_v05_revision.py::test_report_draw_uses_actual_viewport_and_can_scroll[79-24]
+ERROR tests/test_v05_revision.py::test_report_draw_uses_actual_viewport_and_can_scroll[100-34]
+ERROR tests/test_v05_revision.py::test_report_draw_uses_actual_viewport_and_can_scroll[132-46]
+ERROR tests/test_v05_revision.py::test_enter_from_migration_plan_still_requires_replace
+ERROR tests/test_v05_revision.py::test_advanced_disclosure_preserves_all_settings
+ERROR tests/test_v05_revision.py::test_contextual_help_describes_the_focused_setting
+ERROR tests/test_v05_revision.py::test_cli_accepts_goks - FileNotFoundError: ...
+ERROR tests/test_v04_terminal_core.py::test_every_scene_ascii_and_bounded[home-dark-dimensions0]
+ERROR tests/test_v04_terminal_core.py::test_every_scene_ascii_and_bounded[home-dark-dimensions1]
+ERROR tests/test_v04_terminal_core.py::test_every_scene_ascii_and_bounded[home-dark-dimensions2]
+ERROR tests/test_v04_terminal_core.py::test_every_scene_ascii_and_bounded[home-light-dimensions0]
+ERROR tests/test_v04_terminal_core.py::test_every_scene_ascii_and_bounded[home-light-dimensions1]
+ERROR tests/test_v04_terminal_core.py::test_every_scene_ascii_and_bounded[home-light-dimensions2]
+ERROR tests/test_v04_terminal_core.py::test_every_scene_ascii_and_bounded[home-mono-dimensions0]
+ERROR tests/test_v04_terminal_core.py::test_every_scene_ascii_and_bounded[home-mono-dimensions1]
+ERROR tests/test_v04_terminal_core.py::test_every_scene_ascii_and_bounded[home-mono-dimensions2]
+ERROR tests/test_v04_terminal_core.py::test_every_scene_ascii_and_bounded[library-dark-dimensions0]
+ERROR tests/test_v04_terminal_core.py::test_every_scene_ascii_and_bounded[library-dark-dimensions1]
+ERROR tests/test_v04_terminal_core.py::test_every_scene_ascii_and_bounded[library-dark-dimensions2]
+ERROR tests/test_v04_terminal_core.py::test_every_scene_ascii_and_bounded[library-light-dimensions0]
+ERROR tests/test_v04_terminal_core.py::test_every_scene_ascii_and_bounded[library-light-dimensions1]
+ERROR tests/test_v04_terminal_core.py::test_every_scene_ascii_and_bounded[library-light-dimensions2]
+ERROR tests/test_v04_terminal_core.py::test_every_scene_ascii_and_bounded[library-mono-dimensions0]
+ERROR tests/test_v04_terminal_core.py::test_every_scene_ascii_and_bounded[library-mono-dimensions1]
+ERROR tests/test_v04_terminal_core.py::test_every_scene_ascii_and_bounded[library-mono-dimensions2]
+ERROR tests/test_v04_terminal_core.py::test_every_scene_ascii_and_bounded[form-dark-dimensions0]
+ERROR tests/test_v04_terminal_core.py::test_every_scene_ascii_and_bounded[form-dark-dimensions1]
+ERROR tests/test_v04_terminal_core.py::test_every_scene_ascii_and_bounded[form-dark-dimensions2]
+ERROR tests/test_v04_terminal_core.py::test_every_scene_ascii_and_bounded[form-light-dimensions0]
+ERROR tests/test_v04_terminal_core.py::test_every_scene_ascii_and_bounded[form-light-dimensions1]
+ERROR tests/test_v04_terminal_core.py::test_every_scene_ascii_and_bounded[form-light-dimensions2]
+ERROR tests/test_v04_terminal_core.py::test_every_scene_ascii_and_bounded[form-mono-dimensions0]
+ERROR tests/test_v04_terminal_core.py::test_every_scene_ascii_and_bounded[form-mono-dimensions1]
+ERROR tests/test_v04_terminal_core.py::test_every_scene_ascii_and_bounded[form-mono-dimensions2]
+ERROR tests/test_v04_terminal_core.py::test_every_scene_ascii_and_bounded[preferences-dark-dimensions0]
+ERROR tests/test_v04_terminal_core.py::test_every_scene_ascii_and_bounded[preferences-dark-dimensions1]
+ERROR tests/test_v04_terminal_core.py::test_every_scene_ascii_and_bounded[preferences-dark-dimensions2]
+ERROR tests/test_v04_terminal_core.py::test_every_scene_ascii_and_bounded[preferences-light-dimensions0]
+ERROR tests/test_v04_terminal_core.py::test_every_scene_ascii_and_bounded[preferences-light-dimensions1]
+ERROR tests/test_v04_terminal_core.py::test_every_scene_ascii_and_bounded[preferences-light-dimensions2]
+ERROR tests/test_v04_terminal_core.py::test_every_scene_ascii_and_bounded[preferences-mono-dimensions0]
+ERROR tests/test_v04_terminal_core.py::test_every_scene_ascii_and_bounded[preferences-mono-dimensions1]
+ERROR tests/test_v04_terminal_core.py::test_every_scene_ascii_and_bounded[preferences-mono-dimensions2]
+ERROR tests/test_v04_terminal_core.py::test_every_scene_ascii_and_bounded[help-dark-dimensions0]
+ERROR tests/test_v04_terminal_core.py::test_every_scene_ascii_and_bounded[help-dark-dimensions1]
+ERROR tests/test_v04_terminal_core.py::test_every_scene_ascii_and_bounded[help-dark-dimensions2]
+ERROR tests/test_v04_terminal_core.py::test_every_scene_ascii_and_bounded[help-light-dimensions0]
+ERROR tests/test_v04_terminal_core.py::test_every_scene_ascii_and_bounded[help-light-dimensions1]
+ERROR tests/test_v04_terminal_core.py::test_every_scene_ascii_and_bounded[help-light-dimensions2]
+ERROR tests/test_v04_terminal_core.py::test_every_scene_ascii_and_bounded[help-mono-dimensions0]
+ERROR tests/test_v04_terminal_core.py::test_every_scene_ascii_and_bounded[help-mono-dimensions1]
+ERROR tests/test_v04_terminal_core.py::test_every_scene_ascii_and_bounded[help-mono-dimensions2]
+ERROR tests/test_v04_terminal_core.py::test_every_scene_ascii_and_bounded[confirm-dark-dimensions0]
+ERROR tests/test_v04_terminal_core.py::test_every_scene_ascii_and_bounded[confirm-dark-dimensions1]
+ERROR tests/test_v04_terminal_core.py::test_every_scene_ascii_and_bounded[confirm-dark-dimensions2]
+ERROR tests/test_v04_terminal_core.py::test_every_scene_ascii_and_bounded[confirm-light-dimensions0]
+ERROR tests/test_v04_terminal_core.py::test_every_scene_ascii_and_bounded[confirm-light-dimensions1]
+ERROR tests/test_v04_terminal_core.py::test_every_scene_ascii_and_bounded[confirm-light-dimensions2]
+ERROR tests/test_v04_terminal_core.py::test_every_scene_ascii_and_bounded[confirm-mono-dimensions0]
+ERROR tests/test_v04_terminal_core.py::test_every_scene_ascii_and_bounded[confirm-mono-dimensions1]
+ERROR tests/test_v04_terminal_core.py::test_every_scene_ascii_and_bounded[confirm-mono-dimensions2]
+ERROR tests/test_v04_terminal_core.py::test_every_scene_ascii_and_bounded[workshop-dark-dimensions0]
+ERROR tests/test_v04_terminal_core.py::test_every_scene_ascii_and_bounded[workshop-dark-dimensions1]
+ERROR tests/test_v04_terminal_core.py::test_every_scene_ascii_and_bounded[workshop-dark-dimensions2]
+ERROR tests/test_v04_terminal_core.py::test_every_scene_ascii_and_bounded[workshop-light-dimensions0]
+ERROR tests/test_v04_terminal_core.py::test_every_scene_ascii_and_bounded[workshop-light-dimensions1]
+ERROR tests/test_v04_terminal_core.py::test_every_scene_ascii_and_bounded[workshop-light-dimensions2]
+ERROR tests/test_v04_terminal_core.py::test_every_scene_ascii_and_bounded[workshop-mono-dimensions0]
+ERROR tests/test_v04_terminal_core.py::test_every_scene_ascii_and_bounded[workshop-mono-dimensions1]
+ERROR tests/test_v04_terminal_core.py::test_every_scene_ascii_and_bounded[workshop-mono-dimensions2]
+ERROR tests/test_v04_terminal_core.py::test_every_scene_ascii_and_bounded[result-dark-dimensions0]
+ERROR tests/test_v04_terminal_core.py::test_every_scene_ascii_and_bounded[result-dark-dimensions1]
+ERROR tests/test_v04_terminal_core.py::test_every_scene_ascii_and_bounded[result-dark-dimensions2]
+ERROR tests/test_v04_terminal_core.py::test_every_scene_ascii_and_bounded[result-light-dimensions0]
+ERROR tests/test_v04_terminal_core.py::test_every_scene_ascii_and_bounded[result-light-dimensions1]
+ERROR tests/test_v04_terminal_core.py::test_every_scene_ascii_and_bounded[result-light-dimensions2]
+ERROR tests/test_v04_terminal_core.py::test_every_scene_ascii_and_bounded[result-mono-dimensions0]
+ERROR tests/test_v04_terminal_core.py::test_every_scene_ascii_and_bounded[result-mono-dimensions1]
+ERROR tests/test_v04_terminal_core.py::test_every_scene_ascii_and_bounded[result-mono-dimensions2]
+ERROR tests/test_v04_terminal_core.py::test_every_scene_ascii_and_bounded[command-dark-dimensions0]
+ERROR tests/test_v04_terminal_core.py::test_every_scene_ascii_and_bounded[command-dark-dimensions1]
+ERROR tests/test_v04_terminal_core.py::test_every_scene_ascii_and_bounded[command-dark-dimensions2]
+ERROR tests/test_v04_terminal_core.py::test_every_scene_ascii_and_bounded[command-light-dimensions0]
+ERROR tests/test_v04_terminal_core.py::test_every_scene_ascii_and_bounded[command-light-dimensions1]
+ERROR tests/test_v04_terminal_core.py::test_every_scene_ascii_and_bounded[command-light-dimensions2]
+ERROR tests/test_v04_terminal_core.py::test_every_scene_ascii_and_bounded[command-mono-dimensions0]
+ERROR tests/test_v04_terminal_core.py::test_every_scene_ascii_and_bounded[command-mono-dimensions1]
+ERROR tests/test_v04_terminal_core.py::test_every_scene_ascii_and_bounded[command-mono-dimensions2]
+ERROR tests/test_v04_terminal_core.py::test_end_scroll_is_bounded_and_up_recovers
+ERROR tests/test_v04_terminal_core.py::test_motion_and_freeze_do_not_alter_operation_state
+ERROR tests/test_v04_terminal_core.py::test_small_terminal_cannot_activate_hidden_write
+ERROR tests/test_v04_terminal_core.py::test_model_path_editor_session_only - ...
+ERROR tests/test_v04_terminal_core.py::test_linear_input_is_selection_not_shell
+ERROR tests/test_v04_product_terminal.py::test_interactive_clean_preview_confirmation_and_audit
+ERROR tests/test_v04_product_terminal.py::test_main_menu_to_real_candidate_review_and_pack
+ERROR tests/test_v04_product_terminal.py::test_review_cannot_skip_the_two_actual_acks
+ERROR tests/test_v04_product_terminal.py::test_viewer_explicit_handoff_does_not_approve
+ERROR tests/test_v04_product_terminal.py::test_failed_publish_is_an_error_not_noise
+ERROR tests/test_v04_product_terminal.py::test_ascii_inspection_uses_bound_pixel_hash
+ERROR tests/test_v04_product_terminal.py::test_model_free_fresh_workspace_choosing_exiting_is_read_only
+ERROR tests/test_linear_focus.py::test_focus_uses_visible_form_fields[doctor-False]
+ERROR tests/test_linear_focus.py::test_focus_uses_visible_form_fields[publish-False]
+ERROR tests/test_linear_focus.py::test_focus_uses_visible_form_fields[publish-True]
+ERROR tests/test_linear_focus.py::test_non_form_focus_keeps_row_bounds - File...
+53 passed, 4 skipped, 2 warnings, 134 errors in 1.96s

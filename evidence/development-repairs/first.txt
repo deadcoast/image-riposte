@@ -1,0 +1,338 @@
+...F............FF.FF..FFFFFFF...                                        [100%]
+================================== FAILURES ===================================
+_______ test_changed_source_is_retained_at_commit[write_restore_mtime] ________
+
+root = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/development-repairs/first/test_changed_source_is_retaine1/workspace')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x0000018967887820>
+change = 'write_restore_mtime'
+
+    @pytest.mark.parametrize('change', ['replace', 'write_restore_mtime'])
+    def test_changed_source_is_retained_at_commit(root, monkeypatch, change):
+        source = root / 'input.png'
+        Image.new('RGB', (64, 48), (30, 90, 150)).save(source)
+        original = record_image
+    
+        def commit(*args, **kwargs):
+            row = original(*args, **kwargs)
+            before = source.stat()
+            time.sleep(.02)
+            if change == 'replace':
+                replacement = root / 'replacement.png'
+                replacement.write_bytes(source.read_bytes())
+                os.replace(replacement, source)
+            else:
+                data = bytearray(source.read_bytes())
+                data[-1] ^= 1
+                source.write_bytes(data)
+            os.utime(source, ns=(before.st_atime_ns, before.st_mtime_ns))
+            return row
+    
+        monkeypatch.setattr('riposte.organizer.record_image', commit)
+        result = organize(root, Policy(date_mode='modified'))
+>       assert result['checkpoint'] == 'INCOMPLETE'
+E       AssertionError: assert 'COMPLETE' == 'INCOMPLETE'
+E         
+E         - INCOMPLETE
+E         ? --
+E         + COMPLETE
+
+tests\test_development_repairs.py:71: AssertionError
+_____________ test_request_limit_counts_body_bytes[chunked-32769] _____________
+
+root = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/development-repairs/first/test_request_limit_counts_body4/workspace')
+length = 32769, transfer = 'chunked'
+
+    @pytest.mark.parametrize('length', [32768, 32769, 40015])
+    @pytest.mark.parametrize('transfer', ['fixed', 'chunked', 'false_length'])
+    def test_request_limit_counts_body_bytes(root, length, transfer):
+        body = b' ' * (length - 2) + b'{}'
+        headers = {'x-riposte-token': 'fixture', 'content-type': 'application/json'}
+        if transfer == 'false_length':
+            headers['content-length'] = '2'
+        with TestClient(create_app(root, 'fixture')) as client:
+            response = client.post('/api/organize', headers=headers,
+                                   content=body if transfer == 'fixed' else iter([body[:100], body[100:]]))
+>           assert response.status_code == (200 if length <= 32768 else 413)
+E           assert 200 == 413
+E            +  where 200 = <Response [200 OK]>.status_code
+
+tests\test_development_repairs.py:141: AssertionError
+_____________ test_request_limit_counts_body_bytes[chunked-40015] _____________
+
+root = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/development-repairs/first/test_request_limit_counts_body5/workspace')
+length = 40015, transfer = 'chunked'
+
+    @pytest.mark.parametrize('length', [32768, 32769, 40015])
+    @pytest.mark.parametrize('transfer', ['fixed', 'chunked', 'false_length'])
+    def test_request_limit_counts_body_bytes(root, length, transfer):
+        body = b' ' * (length - 2) + b'{}'
+        headers = {'x-riposte-token': 'fixture', 'content-type': 'application/json'}
+        if transfer == 'false_length':
+            headers['content-length'] = '2'
+        with TestClient(create_app(root, 'fixture')) as client:
+            response = client.post('/api/organize', headers=headers,
+                                   content=body if transfer == 'fixed' else iter([body[:100], body[100:]]))
+>           assert response.status_code == (200 if length <= 32768 else 413)
+E           assert 200 == 413
+E            +  where 200 = <Response [200 OK]>.status_code
+
+tests\test_development_repairs.py:141: AssertionError
+__________ test_request_limit_counts_body_bytes[false_length-32769] ___________
+
+root = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/development-repairs/first/test_request_limit_counts_body7/workspace')
+length = 32769, transfer = 'false_length'
+
+    @pytest.mark.parametrize('length', [32768, 32769, 40015])
+    @pytest.mark.parametrize('transfer', ['fixed', 'chunked', 'false_length'])
+    def test_request_limit_counts_body_bytes(root, length, transfer):
+        body = b' ' * (length - 2) + b'{}'
+        headers = {'x-riposte-token': 'fixture', 'content-type': 'application/json'}
+        if transfer == 'false_length':
+            headers['content-length'] = '2'
+        with TestClient(create_app(root, 'fixture')) as client:
+            response = client.post('/api/organize', headers=headers,
+                                   content=body if transfer == 'fixed' else iter([body[:100], body[100:]]))
+>           assert response.status_code == (200 if length <= 32768 else 413)
+E           assert 200 == 413
+E            +  where 200 = <Response [200 OK]>.status_code
+
+tests\test_development_repairs.py:141: AssertionError
+__________ test_request_limit_counts_body_bytes[false_length-40015] ___________
+
+root = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/development-repairs/first/test_request_limit_counts_body8/workspace')
+length = 40015, transfer = 'false_length'
+
+    @pytest.mark.parametrize('length', [32768, 32769, 40015])
+    @pytest.mark.parametrize('transfer', ['fixed', 'chunked', 'false_length'])
+    def test_request_limit_counts_body_bytes(root, length, transfer):
+        body = b' ' * (length - 2) + b'{}'
+        headers = {'x-riposte-token': 'fixture', 'content-type': 'application/json'}
+        if transfer == 'false_length':
+            headers['content-length'] = '2'
+        with TestClient(create_app(root, 'fixture')) as client:
+            response = client.post('/api/organize', headers=headers,
+                                   content=body if transfer == 'fixed' else iter([body[:100], body[100:]]))
+>           assert response.status_code == (200 if length <= 32768 else 413)
+E           assert 200 == 413
+E            +  where 200 = <Response [200 OK]>.status_code
+
+tests\test_development_repairs.py:141: AssertionError
+_ test_stream_stops_at_bound_and_authentication_precedes_consumption[headers2-413-3] _
+
+root = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/development-repairs/first/test_stream_stops_at_bound_and2/workspace')
+headers = [(b'x-riposte-token', b'fixture')], status = 413, reads = 3
+
+    @pytest.mark.parametrize('headers,status,reads', [
+        ([], 401, 0),
+        ([(b'x-riposte-token', b'fixture'), (b'origin', b'https://invalid.example')], 403, 0),
+        ([(b'x-riposte-token', b'fixture')], 413, 3),
+    ])
+    def test_stream_stops_at_bound_and_authentication_precedes_consumption(root, headers, status, reads):
+        app = create_app(root, 'fixture')
+        received, sent = [], []
+    
+        async def receive():
+            received.append(1)
+            assert len(received) <= 3, 'oversized stream must not be drained'
+            return {'type': 'http.request', 'body': b' ' * 16000, 'more_body': True}
+    
+        async def send(message):
+            sent.append(message)
+    
+        scope = {'type': 'http', 'asgi': {'version': '3.0'}, 'http_version': '1.1',
+                 'method': 'POST', 'scheme': 'http', 'path': '/api/organize', 'raw_path': b'/api/organize',
+                 'query_string': b'', 'root_path': '', 'server': ('testserver', 80), 'client': ('127.0.0.1', 1),
+                 'headers': [(b'host', b'testserver'), (b'content-type', b'application/json'), *headers]}
+        asyncio.run(app(scope, receive, send))
+>       assert next(m for m in sent if m['type'] == 'http.response.start')['status'] == status
+E       assert 400 == 413
+
+tests\test_development_repairs.py:166: AssertionError
+_ test_changed_approval_can_be_revoked_without_serving[change-candidate.png] __
+
+root = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/development-repairs/first/test_changed_approval_can_be_r0/workspace')
+committed = ('57a8be0ca2924ef4b1ca5d1b39506130', '1cd4827bbb184a29b19e0eaa9bc2ad59', WindowsPath('C:/Users/ryanf/github/_new/image...oval_can_be_r0/workspace/.riposte/publishing/57a8be0ca2924ef4b1ca5d1b39506130/items/1cd4827bbb184a29b19e0eaa9bc2ad59'))
+kind = 'candidate.png', damage = 'change'
+
+    @pytest.mark.parametrize('kind', ['candidate.png', 'clean.png', 'report.json'])
+    @pytest.mark.parametrize('damage', ['change', 'missing'])
+    def test_changed_approval_can_be_revoked_without_serving(root, committed, kind, damage):
+        batch, item, folder = committed
+        assert p.review_publication(root, batch, [item], 'ACCEPTED', True, True)['counts']['ACCEPTED'] == 1
+        assert p.publication_zip(root, batch)
+        target = folder / kind
+        if damage == 'missing':
+            target.unlink()
+        else:
+            target.write_bytes(b'corrupted')
+        status = p.publication_status(root, batch)
+>       assert status['counts']['ACCEPTED'] == 0
+E       assert 1 == 0
+
+tests\test_development_repairs.py:214: AssertionError
+___ test_changed_approval_can_be_revoked_without_serving[change-clean.png] ____
+
+root = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/development-repairs/first/test_changed_approval_can_be_r1/workspace')
+committed = ('1820977cdc794b7c9cc917782ef58b7e', '1c3f63aa8ea447c0a4e76c18969f1764', WindowsPath('C:/Users/ryanf/github/_new/image...oval_can_be_r1/workspace/.riposte/publishing/1820977cdc794b7c9cc917782ef58b7e/items/1c3f63aa8ea447c0a4e76c18969f1764'))
+kind = 'clean.png', damage = 'change'
+
+    @pytest.mark.parametrize('kind', ['candidate.png', 'clean.png', 'report.json'])
+    @pytest.mark.parametrize('damage', ['change', 'missing'])
+    def test_changed_approval_can_be_revoked_without_serving(root, committed, kind, damage):
+        batch, item, folder = committed
+        assert p.review_publication(root, batch, [item], 'ACCEPTED', True, True)['counts']['ACCEPTED'] == 1
+        assert p.publication_zip(root, batch)
+        target = folder / kind
+        if damage == 'missing':
+            target.unlink()
+        else:
+            target.write_bytes(b'corrupted')
+        status = p.publication_status(root, batch)
+>       assert status['counts']['ACCEPTED'] == 0
+E       assert 1 == 0
+
+tests\test_development_repairs.py:214: AssertionError
+__ test_changed_approval_can_be_revoked_without_serving[change-report.json] ___
+
+root = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/development-repairs/first/test_changed_approval_can_be_r2/workspace')
+committed = ('618f1b7237f549eaaf0a239ea261b49c', 'b291ddc15efb4b7ebf9f4fd8e88986ad', WindowsPath('C:/Users/ryanf/github/_new/image...oval_can_be_r2/workspace/.riposte/publishing/618f1b7237f549eaaf0a239ea261b49c/items/b291ddc15efb4b7ebf9f4fd8e88986ad'))
+kind = 'report.json', damage = 'change'
+
+    @pytest.mark.parametrize('kind', ['candidate.png', 'clean.png', 'report.json'])
+    @pytest.mark.parametrize('damage', ['change', 'missing'])
+    def test_changed_approval_can_be_revoked_without_serving(root, committed, kind, damage):
+        batch, item, folder = committed
+        assert p.review_publication(root, batch, [item], 'ACCEPTED', True, True)['counts']['ACCEPTED'] == 1
+        assert p.publication_zip(root, batch)
+        target = folder / kind
+        if damage == 'missing':
+            target.unlink()
+        else:
+            target.write_bytes(b'corrupted')
+>       status = p.publication_status(root, batch)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_development_repairs.py:213: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\riposte\publication.py:277: in publication_status
+    item = _read(root, report_path)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+root = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/development-repairs/first/test_changed_approval_can_be_r2/workspace')
+relative = '.riposte/publishing/618f1b7237f549eaaf0a239ea261b49c/items/b291ddc15efb4b7ebf9f4fd8e88986ad/report.json'
+
+    def _read(root, relative):
+        path = safe_child(root, relative)
+        try:
+            if path.stat().st_size > 8_388_608: raise RiposteError("PUBLICATION_RECORD_INVALID")
+            data = json.loads(path.read_text(encoding="utf-8"))
+            if not isinstance(data, dict): raise RiposteError("PUBLICATION_RECORD_INVALID")
+            return data
+>       except (ValueError, OSError): raise RiposteError("PUBLICATION_RECORD_UNREADABLE") from None
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       riposte.errors.RiposteError: PUBLICATION_RECORD_UNREADABLE
+
+src\riposte\publication.py:68: RiposteError
+_ test_changed_approval_can_be_revoked_without_serving[missing-candidate.png] _
+
+root = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/development-repairs/first/test_changed_approval_can_be_r3/workspace')
+committed = ('690d6ee4bea84e9b9420eed7a238083a', 'eb9140ad37cb44988d50b7e0396ae4fc', WindowsPath('C:/Users/ryanf/github/_new/image...oval_can_be_r3/workspace/.riposte/publishing/690d6ee4bea84e9b9420eed7a238083a/items/eb9140ad37cb44988d50b7e0396ae4fc'))
+kind = 'candidate.png', damage = 'missing'
+
+    @pytest.mark.parametrize('kind', ['candidate.png', 'clean.png', 'report.json'])
+    @pytest.mark.parametrize('damage', ['change', 'missing'])
+    def test_changed_approval_can_be_revoked_without_serving(root, committed, kind, damage):
+        batch, item, folder = committed
+        assert p.review_publication(root, batch, [item], 'ACCEPTED', True, True)['counts']['ACCEPTED'] == 1
+        assert p.publication_zip(root, batch)
+        target = folder / kind
+        if damage == 'missing':
+            target.unlink()
+        else:
+            target.write_bytes(b'corrupted')
+        status = p.publication_status(root, batch)
+>       assert status['counts']['ACCEPTED'] == 0
+E       assert 1 == 0
+
+tests\test_development_repairs.py:214: AssertionError
+___ test_changed_approval_can_be_revoked_without_serving[missing-clean.png] ___
+
+root = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/development-repairs/first/test_changed_approval_can_be_r4/workspace')
+committed = ('4db1280d3c30497f990b796f0d34223b', '453389eb1c714995bae303efdfe898b5', WindowsPath('C:/Users/ryanf/github/_new/image...oval_can_be_r4/workspace/.riposte/publishing/4db1280d3c30497f990b796f0d34223b/items/453389eb1c714995bae303efdfe898b5'))
+kind = 'clean.png', damage = 'missing'
+
+    @pytest.mark.parametrize('kind', ['candidate.png', 'clean.png', 'report.json'])
+    @pytest.mark.parametrize('damage', ['change', 'missing'])
+    def test_changed_approval_can_be_revoked_without_serving(root, committed, kind, damage):
+        batch, item, folder = committed
+        assert p.review_publication(root, batch, [item], 'ACCEPTED', True, True)['counts']['ACCEPTED'] == 1
+        assert p.publication_zip(root, batch)
+        target = folder / kind
+        if damage == 'missing':
+            target.unlink()
+        else:
+            target.write_bytes(b'corrupted')
+        status = p.publication_status(root, batch)
+>       assert status['counts']['ACCEPTED'] == 0
+E       assert 1 == 0
+
+tests\test_development_repairs.py:214: AssertionError
+__ test_changed_approval_can_be_revoked_without_serving[missing-report.json] __
+
+root = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/development-repairs/first/test_changed_approval_can_be_r5/workspace')
+committed = ('87b7d84b4e25455eb702af0d952f4ebd', '02358082c0ef4b9aa0c919ec7d9389af', WindowsPath('C:/Users/ryanf/github/_new/image...oval_can_be_r5/workspace/.riposte/publishing/87b7d84b4e25455eb702af0d952f4ebd/items/02358082c0ef4b9aa0c919ec7d9389af'))
+kind = 'report.json', damage = 'missing'
+
+    @pytest.mark.parametrize('kind', ['candidate.png', 'clean.png', 'report.json'])
+    @pytest.mark.parametrize('damage', ['change', 'missing'])
+    def test_changed_approval_can_be_revoked_without_serving(root, committed, kind, damage):
+        batch, item, folder = committed
+        assert p.review_publication(root, batch, [item], 'ACCEPTED', True, True)['counts']['ACCEPTED'] == 1
+        assert p.publication_zip(root, batch)
+        target = folder / kind
+        if damage == 'missing':
+            target.unlink()
+        else:
+            target.write_bytes(b'corrupted')
+        status = p.publication_status(root, batch)
+        assert status['counts']['ACCEPTED'] == 0
+>       assert status['items'][0]['status'] == 'BLOCKED'
+E       AssertionError: assert 'PENDING' == 'BLOCKED'
+E         
+E         - BLOCKED
+E         + PENDING
+
+tests\test_development_repairs.py:215: AssertionError
+============================== warnings summary ===============================
+.venv\Lib\site-packages\fastapi\testclient.py:1
+  C:\Users\ryanf\github\_new\image-riposte\.venv\Lib\site-packages\fastapi\testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    from starlette.testclient import TestClient as TestClient  # noqa
+
+.venv\Lib\site-packages\starlette\testclient.py:53
+  C:\Users\ryanf\github\_new\image-riposte\.venv\Lib\site-packages\starlette\testclient.py:53: DeprecationWarning: The anyio.abc.BlockingPortal alias is deprecated, use anyio.from_thread.BlockingPortal instead.
+    _PortalFactoryType = Callable[[], AbstractContextManager[anyio.abc.BlockingPortal]]
+
+.venv\Lib\site-packages\_pytest\cacheprovider.py:469
+  C:\Users\ryanf\github\_new\image-riposte\.venv\Lib\site-packages\_pytest\cacheprovider.py:469: PytestCacheWarning: could not create cache path C:\Users\ryanf\github\_new\image-riposte\.pytest_cache\v\cache\nodeids: [WinError 183] Cannot create a file when that file already exists: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\.pytest_cache\\v\\cache'
+    config.cache.set("cache/nodeids", sorted(self.cached_nodeids))
+
+.venv\Lib\site-packages\_pytest\cacheprovider.py:423
+  C:\Users\ryanf\github\_new\image-riposte\.venv\Lib\site-packages\_pytest\cacheprovider.py:423: PytestCacheWarning: could not create cache path C:\Users\ryanf\github\_new\image-riposte\.pytest_cache\v\cache\lastfailed: [WinError 183] Cannot create a file when that file already exists: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\.pytest_cache\\v\\cache'
+    config.cache.set("cache/lastfailed", self.lastfailed)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ===========================
+FAILED tests/test_development_repairs.py::test_changed_source_is_retained_at_commit[write_restore_mtime]
+FAILED tests/test_development_repairs.py::test_request_limit_counts_body_bytes[chunked-32769]
+FAILED tests/test_development_repairs.py::test_request_limit_counts_body_bytes[chunked-40015]
+FAILED tests/test_development_repairs.py::test_request_limit_counts_body_bytes[false_length-32769]
+FAILED tests/test_development_repairs.py::test_request_limit_counts_body_bytes[false_length-40015]
+FAILED tests/test_development_repairs.py::test_stream_stops_at_bound_and_authentication_precedes_consumption[headers2-413-3]
+FAILED tests/test_development_repairs.py::test_changed_approval_can_be_revoked_without_serving[change-candidate.png]
+FAILED tests/test_development_repairs.py::test_changed_approval_can_be_revoked_without_serving[change-clean.png]
+FAILED tests/test_development_repairs.py::test_changed_approval_can_be_revoked_without_serving[change-report.json]
+FAILED tests/test_development_repairs.py::test_changed_approval_can_be_revoked_without_serving[missing-candidate.png]
+FAILED tests/test_development_repairs.py::test_changed_approval_can_be_revoked_without_serving[missing-clean.png]
+FAILED tests/test_development_repairs.py::test_changed_approval_can_be_revoked_without_serving[missing-report.json]
+12 failed, 21 passed, 4 warnings in 1.83s

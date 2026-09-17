@@ -1,4 +1,5 @@
 from __future__ import annotations
+from . import __version__
 import concurrent.futures
 import io
 import json
@@ -132,7 +133,12 @@ class Jobs:
             try:
                 progress({"state": "running"})
                 result = fn(progress=progress, **kwargs)
-                finish({"state": "done", "phase": "Complete", "result": result})
+                incomplete = isinstance(result, dict) and (
+                    result.get("checkpoint") == "INCOMPLETE" or result.get("ready") is False
+                    or (result.get("mode") == "PUBLICATION_BATCH" and any(
+                        result.get("counts", {}).get(key, 0) for key in ("BLOCKED", "PENDING"))))
+                finish({"state": "incomplete" if incomplete else "done",
+                        "phase": "Needs attention" if incomplete else "Complete", "result": result})
             except RiposteError as exc:
                 finish({"state": "cancelled" if exc.code == "JOB_CANCELLED" else "error",
                         "phase": "Cancelled safely" if exc.code == "JOB_CANCELLED" else "Stopped", "code": exc.code})
@@ -163,6 +169,38 @@ class Jobs:
                     self.events[key].set()
         self.pool.shutdown(wait=False, cancel_futures=True)
 
+class _BodyLimitMiddleware:
+    """Bound consumed API bytes before JSON parsing, including streamed bodies."""
+    def __init__(self, app):
+        self.app = app
+
+    async def __call__(self, scope, receive, send):
+        if scope['type'] != 'http' or not scope['path'].startswith('/api/'):
+            return await self.app(scope, receive, send)
+        body = bytearray()
+        while True:
+            message = await receive()
+            if message['type'] == 'http.disconnect':
+                return
+            chunk = message.get('body', b'')
+            if len(body) + len(chunk) > 32768:
+                response = JSONResponse({'code': 'REQUEST_TOO_LARGE'}, status_code=413)
+                return await response(scope, receive, send)
+            body.extend(chunk)
+            if not message.get('more_body', False):
+                break
+        delivered = False
+
+        async def bounded_receive():
+            nonlocal delivered
+            if not delivered:
+                delivered = True
+                return {'type': 'http.request', 'body': bytes(body), 'more_body': False}
+            return await receive()
+
+        return await self.app(scope, bounded_receive, send)
+
+
 def create_app(root: Path, token: str | None = None) -> FastAPI:
     root=check_root(root)
     from contextlib import asynccontextmanager
@@ -172,6 +210,8 @@ def create_app(root: Path, token: str | None = None) -> FastAPI:
         yield
         jobs.close()
     app=FastAPI(docs_url=None,redoc_url=None,openapi_url=None, lifespan=lifespan)
+    # Registered before security so authentication runs before consuming a body.
+    app.add_middleware(_BodyLimitMiddleware)
     app.state.token=token or secrets.token_urlsafe(32)
     app.state.jobs=jobs
 
@@ -211,16 +251,16 @@ def create_app(root: Path, token: str | None = None) -> FastAPI:
     app.mount("/static",StaticFiles(directory=STATIC),name="static")
     @app.get("/",response_class=HTMLResponse)
     def home():
-        return (STATIC/"index.html").read_text()
+        return (STATIC/"index.html").read_text(encoding="utf-8")
     @app.get("/api/state")
     def state():
         images=catalog(root)
         from .publication import publications
-        return {"version":"0.3.0","images":images,"trials":trials(root),"jobs":app.state.jobs.snapshot(),"publications":publications(root),
+        return {"version":__version__,"images":images,"trials":trials(root),"jobs":app.state.jobs.snapshot(),"publications":publications(root),
                 "privacy":"Local only • no telemetry • date-only image metadata","root_label":"Active artwork folder", "legacy_workspace":legacy_workspace(root), "demo":safe_child(root, state_relative(root,"DEMO")).is_file()}
     @app.get("/api/methods")
     def methods():
-        return json.loads((Path(__file__).parent/"methods.json").read_text())
+        return json.loads((Path(__file__).parent/"methods.json").read_text(encoding="utf-8"))
     @app.post("/api/organize")
     def organize_endpoint(body:OrganizeRequest):
         if body.apply and not body.acknowledge_source_removal:

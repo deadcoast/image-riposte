@@ -1,0 +1,1965 @@
+{
+  "scope": "Reconcile the PACER source/typing file index without importing the application.\n\n--plan writes proposed guarded operations; it never writes the canonical CSVs.\nExports records statically declared names (including class methods), not Python's\ndynamic public API. Imports includes conditional and function-local statements.\nRequires resolves local static modules and source/stub ownership, not dynamic\nimports, optional-provider availability, or execution order.\n",
+  "result": "PASS",
+  "issues": [],
+  "counts": {
+    "source_files": 47,
+    "source_modules": 41,
+    "paired_stubs": 41,
+    "indexed_files": 140,
+    "tool_functions": 8,
+    "static_definitions": 1008,
+    "local_dependency_edges": 422
+  },
+  "sources": {
+    "AGENTS.md": "a6d4ea1860b088946e9eca107b77105876a405391e4fdc708c2312755505be3b",
+    "README.md": "4db6d7506adf93e0054cb28100b725be7c4ddbfbb3b20d3d476a4ccaaf12fe05",
+    "START.ps1": "7e6f880ee8a3309db63936525483a728296a38c9dedc347420b1ef0dbe3f9fa1",
+    "START.sh": "7c8011d321be441a8046747bf1ed26166b5fa0a64bd577293949111705724d19",
+    "docs/CHANGELOG.md": "acde9b0de8aa8c1ede711ecaeb861859a621aafc125a9a6243c60b54085d2718",
+    "docs/CLI.md": "574b088d31531f9ffc3b765082f5e62cfd395f36f0b00976260b8fdc59f38537",
+    "docs/PATCH-v05-MERGE.md": "5d11de4515dd8de4a88e57750b87e6499af5084d02b1ae7c2ea397a48fc6b240",
+    "docs/REBUILD.md": "dc7c8f3ff07c9b34c47a8356d32613ef5763b19624971d19ba4e4802238158ac",
+    "docs/REVISION-v05.md": "9328dc46b8da0b327dc13918a530f3a25c355b21c82b3f37db2222017c6ea261",
+    "docs/TERMINAL-DESIGN.spec.md": "3a60eb03893af5b2a0635d76ef19d17f3c36a6c3a05ad0ab49a8e6c5ad9b36d1",
+    "docs/VALIDATION.md": "cbc6ed660a472ad4dc5afd547930cc8323c8acd26b36af38f55ae54df10d90a3",
+    "mypy.ini": "c0961208a99c02083a873c32a8bd5ca6a7ba1c88d601eb2210fb3f94c00d2d99",
+    "pyproject.toml": "148b82b91aa49ebfb6ff3038acebea00a352e1a837bd0d4a5632cb435bed8262",
+    "scripts/capture_revision.py": "b84943a73c525c0b4c68325c4d5552500c7375dc0abd2b20122fe06676fec136",
+    "scripts/capture_terminal.py": "45f930fc9cdebf09d864defd1cd4e74aca29d8a390bcd3b95f643adc7c5e758e",
+    "scripts/record_terminal.py": "5244236f34fbff23d3a5b0393193209269139a8b6492fcc38c08577fa123d656",
+    "scripts/verify_v05_merge.py": "a911704c1c63768315f618edef7d8078000f0567108a923e2db51086fdfb33c3",
+    "src/riposte/__init__.py": "a9e9d2abdceaac2c47ed5846a874787f47337c407e2b2aa8064a32b53489f28d",
+    "src/riposte/__main__.py": "79ee6f134c5c5193377cf9b189cbdcc3e2095e49ba9cec310114441c15a917c4",
+    "src/riposte/benchmark.py": "a7fbb359fb87d7ed6c5593a6fb0c194e5a34d20dfe0e9dd549200fe1007c7d68",
+    "src/riposte/cli.py": "729a1f6b899f11312cd1eb99b103aad508bd1f4ce4dc567aa32d1edabf42711b",
+    "src/riposte/coupled.py": "eca0afb9e0de03b740029864a5ddeeb7212cc9676c5e9cc191a6f4d1274641a8",
+    "src/riposte/errors.py": "7a9c08b799d1c713fbd82e30fd145a6dc3085c215848893e31d1ec066abc5244",
+    "src/riposte/generation.py": "97d3481d0d51cd95899c0c47b3a1e9aab1fc4bac09c1a39e791d79d74617515d",
+    "src/riposte/lab.py": "3845f3e3abedd03d1f0c200b84395e6b46f67b2ff120f6e8a8fc75a2d8c03093",
+    "src/riposte/methods.json": "4405d32fac499c6f3b7fbce0afa04abea62e2509e130844a20899c39a6283920",
+    "src/riposte/metrics.py": "0d873a0cb8972b5bdce14eb3cdc49ab391af31a297981fda1ad37603496c22eb",
+    "src/riposte/models.py": "19c774fff774c2c947a836ece9493168e71a20bec3a4f658853333d671c5a002",
+    "src/riposte/optimizer.py": "16367347cb57cfd8efba57a5002d2c313ce31106304d993dc0fba0d398ae4121",
+    "src/riposte/organizer.py": "249c082bce0872f6395f15ea7af6ac1df814002a635a15fb2d51d5fe23d62579",
+    "src/riposte/policy.py": "a4e0d5ab07a0b4aac2efcf518f7cdf19a1a9cdfa9c1fc7e263ef66545d2774e7",
+    "src/riposte/publication.py": "f3120bca31c8c851206e46a803b0a93cb83f99eed08a62f1e40dc15511b013bd",
+    "src/riposte/qualification.py": "4fc049f680adc31c34f02499d8dfe4ebed9af46f47fa1cd554f50ead273231ce",
+    "src/riposte/quality.py": "3af92838360f5f9ce65d69973eef37a6dd006d733f56c376443a2228d3c9656d",
+    "src/riposte/release_guard.py": "673fcfc83602e074d774b4ccfeddf4f481f784887a72986dbce8d9abf150245e",
+    "src/riposte/runtime_probe.py": "63d28c72b3d7aaeca6e503ae6ac7f8965fb8ed862d4a423cdd4fe981614bb339",
+    "src/riposte/sanitize.py": "358ebd215602d8fe93aea4ab07931cfb84f9094202bec3ab34231ab193fb7001",
+    "src/riposte/server.py": "fd4336c40f67189e953256980a18dab6ef4edf342ac5cdb87279d2cad240af6a",
+    "src/riposte/static/app.js": "a27663ef2e214bd14d956987081c039ecfc878c972abe17f2806679daec612a4",
+    "src/riposte/static/index.html": "c294c3ecdb09ccd2dd582460d051255c08cc9156a4c750b53ed8ca416aa37971",
+    "src/riposte/static/publish.css": "3194ff34f6648c32432a8a85fcd7cbe8d2103f4fe0e4506e5af3e759c460261b",
+    "src/riposte/static/publish.js": "446685b4373385fea701c61148559e88a81b6e9db060f34dcc92ea246cf7aeae",
+    "src/riposte/static/style.css": "932983321f7c1394a44750a05433f6b521262ffd84b0db71eb0c41556813e3a7",
+    "src/riposte/store.py": "f6a88c29653c26c58db9d69845a96dfa5e6b8071bce4578e29aa6932bd8e0b9a",
+    "src/riposte/temporal.py": "22fb7b410ebfbe906816267d9d049e9413bc65a5e515bfa1af9c5749ba09ade9",
+    "src/riposte/terminal/__init__.py": "3205c2b37274b4a78cad648f40635e4b02474f77515b94e506510e521ec79fa2",
+    "src/riposte/terminal/actions.py": "c8bef2ea12fc14f0f2d2f88e104e01d47da920fa9bc1383a3bcbffef3705f04c",
+    "src/riposte/terminal/app.py": "7aa2187ed6d096ee086cf714040123d9b2dd6174f466f1a27331ed2146385d51",
+    "src/riposte/terminal/controller.py": "589fd7b4b73a717bf1597ea837b3e702d05b21a63152b935ef17429e4e736b0b",
+    "src/riposte/terminal/help.py": "8c24dd8a762ad4eb7df97df2d541a7b3ddbaf27ba8d7cf08ae44e3eb73e24bde",
+    "src/riposte/terminal/interaction.py": "0a836c051568058c14ea00b42342f63a18de436f283b900467b4ab4fecfc32fe",
+    "src/riposte/terminal/jobs.py": "c3e7f2ab8d53ba9d2319c9021a059af816e246272f9001e7bbe0eb3ea5f2633b",
+    "src/riposte/terminal/keyboard.py": "5506f92c9999aad2658ed012f808c90043c4ea830cc1c6f6e32871518c83a4e0",
+    "src/riposte/terminal/material.py": "522d5080177faae021905b94851bf3836bb2c18805a38d0a1d56b8402f5cebeb",
+    "src/riposte/terminal/output.py": "cfd18cad392a24443e158e1ce83c59f5b90793aa52aa7ae87b3225abd592e417",
+    "src/riposte/terminal/palette.py": "ab05080d75402a964ce73e25755fb3476b693ab8b79ab10982b4f74f42ee3e41",
+    "src/riposte/terminal/preview.py": "446b57630ee54c99070082b28f67e6d1d647b201577fb55d9ff5fb39259a67bc",
+    "src/riposte/terminal/render.py": "2be4a31ac3793c31ba129b150a0cb80808b45a7eebaf65a82e09d50ce613b78a",
+    "src/riposte/terminal/reports.py": "4fe6d0a03b7627aedf0d6ac946791df7a688c258cc4e329014502fc310ac72f5",
+    "src/riposte/terminal/service.py": "040ada5a2749e3abe041094e3094d5345aafaf8f6586a702d2eb19a349188bff",
+    "src/riposte/terminal/signals.py": "dd7ef5eac1860b126ceebeecb6aa6c6151f14dd4813254870b061ce71470ce19",
+    "src/riposte/terminal/state.py": "01ac2fe1a02ac55caaadcf91c62303289cc9cb8a2cbb7da287ecf47437d21bf8",
+    "src/riposte/terminal/surface.py": "8088e77ab12aa16868beb09dcae60a2e3b67de64f106e7ea0b0245646bb110d1",
+    "src/riposte/views.py": "901a71db135ce03b0c929d230de1bacb73542dcc1570df166f36013a906b90e7",
+    "src/riposte_studio.egg-info/PKG-INFO": "7923a9002925aa33d5ad1ad36f96ecd6ee56d95291b37ca048bd3d3c359aae75",
+    "src/riposte_studio.egg-info/SOURCES.txt": "0c7c0a12334239d884d53e53fc99450d91acffdc134b3ff2f4bd4867eeb14e73",
+    "src/riposte_studio.egg-info/dependency_links.txt": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+    "src/riposte_studio.egg-info/entry_points.txt": "98b3e382efea4ca6b2491a4a8c44d047025ab2e4365d7e6950c2998a3624b70e",
+    "src/riposte_studio.egg-info/requires.txt": "cf9a6d3665a40abc44b1c22dc989f0bffdc6a7252767478ee8602c3b2c70c563",
+    "src/riposte_studio.egg-info/top_level.txt": "0c0ed5cd11dc3a90aeb6e75a4ca8a16adf2e2ee8d5e973d930c4bfc4372a0073",
+    "tests/test_v05_revision.py": "b69369329c97a6be9a392d9b6e2e1f200b1fe0b471c10b7d006d388698a05798",
+    "typing/README.md": "64f9539350903310a109f1ad9b7ce0ddb8c6979fe1a9726a200c9a5b8d78ebfb",
+    "typing/check.py": "955644e9d7ca53b3e8c20c2b61506294f71b8f69b81fc59da1663c5f7907e6ea",
+    "typing/checks/consumers.py": "e1b3e5053c12086baddbf41e49346d876aba70de638b675dec81ce7a0f777892",
+    "typing/checks/rejected.py.txt": "d4d0311fd0d7897e2aabce3ef23ff1c214f6d31d825aaf84b122a13a5718aebe",
+    "typing/evidence/dynamic-boundaries.json": "32d75702a527352205df6a9c58355f2acc77f6768ad7e32e705f4556f04e80a7",
+    "typing/evidence/mypy-contracts.txt": "889dc4713d3c435dcb8cd60312ac6fe989302a34ed326393190be18eaa28e310",
+    "typing/evidence/mypy-tooling.txt": "281a094c39385b4d7b53e5db635f52158036861433c2a4975b9039e77a627a24",
+    "typing/evidence/source-after.json": "0b62c31d7fc3e617bbc418ee56b962aeba0c03699103e94d90e5d52a5a0ac966",
+    "typing/evidence/source-before.json": "d3fa8409db29ebf923523671b44fade9caf459f627bd4f16ea07a4ff6d094f8b",
+    "typing/evidence/source-current-command.txt": "1e4d041bf375639ae5a0bcbd4f4c1cfa145c814580d0c4943ba1566596b4d38f",
+    "typing/evidence/source-current.txt": "78a3b1c0f5395e6487e5ae4d5a3d270a9286ae431c094b0f3763f8acfa4b31f2",
+    "typing/evidence/source-reviewed-v050.json": "0b62c31d7fc3e617bbc418ee56b962aeba0c03699103e94d90e5d52a5a0ac966",
+    "typing/evidence/stubtest.txt": "89932f2b0308bd1a126b7876e833d13bd2f0f279a44b82edd8ab42a7388ebe8f",
+    "typing/evidence/tooling-regressions.txt": "e31e6c9515c27e74d388607de2af0cf56d1987535a913f6a17973aac1872d851",
+    "typing/evidence/verification.json": "feb23e16c1cfbda65dab253fe6df84b78030c494b9657b7da1ff9dbe30ca891e",
+    "typing/evidence/windows-stat-probe-app-py314.txt": "97906e27e8c02071c86c777f457a1e4460a7f68b008935c6adbb2908846bad69",
+    "typing/evidence/windows-stat-probe.txt": "171d820928accb3d74ed7d3590d95165a10eda06ccc2338b8f24d56cd7efbacf",
+    "typing/mypy-contracts.ini": "78fddb2607c7cdb260de23c75b2570d07407dd9ba4aefeebccbfeb0b4c27e70e",
+    "typing/mypy-source.ini": "f168d5874f12d6258a8e35311ea4fc90ebeab878a51fb1268cc1a89e8cb104bf",
+    "typing/pacer_inventory.py": "c24b09b07505fc13e08246e7fb5628fbfd6fe5ce924ecd3e29c5c7d4193ae93a",
+    "typing/probe_windows_stat.py": "210e707483e1d8198689178b789580e1f23b26e49460c31ed5ddd059e5d5b142",
+    "typing/pyproject.toml": "29e29b0dac5a0fb3dc6fb6db476f1d0cdf29970f5fe5e50c1b7e785e029fdcf2",
+    "typing/runtime_contracts.py": "ffa4d4b37d79ad55c1c88674730a9e5c2f3971dbb70a40f9d6aab71a1329691d",
+    "typing/stubs/_riposte_types.pyi": "162c961e3147843c094dc8b2b747c49e7f209937039542edf5a15dc6873db370",
+    "typing/stubs/riposte/__init__.pyi": "b572e2c4973b7500c42501d3e0d44c4a27d8fd35c6f7af6aaf1219357afcdf5d",
+    "typing/stubs/riposte/__main__.pyi": "2f159ea3d0f9b62e80f64cbdf2bff8cd42a52fc8f4f709465e15bb1fcbce5ce0",
+    "typing/stubs/riposte/benchmark.pyi": "45fc6c5448fb1aa21618fcdaea41277a0a54b57810b42d63995188e0b9630b6f",
+    "typing/stubs/riposte/cli.pyi": "e6d27b4c57c7c972b181f59a15ce6d4f32c1efa9e4d3b85f88ca70e8295c53f0",
+    "typing/stubs/riposte/coupled.pyi": "fc1da15312c0e65852796b327f2b5fca6ad2ef97be34b6b7dabcf5c18a00495f",
+    "typing/stubs/riposte/errors.pyi": "09294254fa034c3b927925cf853a7004f3bf02c75cf4129065b285e8268cdc0f",
+    "typing/stubs/riposte/generation.pyi": "a3c0f86ee79a9bafa42ba078bb290864aca9ea6baf345d25caaf7c15d439630e",
+    "typing/stubs/riposte/lab.pyi": "dbfc1c582d8b7223ff61c4970f219d10fa438897d5770208cd4eee71d8dd8af2",
+    "typing/stubs/riposte/metrics.pyi": "c062241120b5a53dc44709cb8f9ab605629e74af93a54f678b606cdc1bacb71a",
+    "typing/stubs/riposte/models.pyi": "42d06047478d211f31e329cdf2fe54757360662579209745d90d8823bbbe9f83",
+    "typing/stubs/riposte/optimizer.pyi": "4826e402f6445ad4d10d240eccfb34f7a572867f5f1f7467daedea1afbd08d93",
+    "typing/stubs/riposte/organizer.pyi": "f413f7a39fa18f29aac04e7f4cc0902a7331b6ed08115861ad5e87462ad2cc07",
+    "typing/stubs/riposte/policy.pyi": "660e601bb650eca817179655425d97cf28280d380cbfe5b18e211d43c1633d92",
+    "typing/stubs/riposte/publication.pyi": "51b6abab7c8a650921207fb9ebfb5e2a0b425172f75cef8d5e7b42e921b08fd1",
+    "typing/stubs/riposte/qualification.pyi": "3160462ef5bf3909f0c1ec24131496d20ba755d66de97a0796986fa9f60b3eb0",
+    "typing/stubs/riposte/quality.pyi": "3b04366e1973b69021f96cbd7a1ee05929b95dc5fd1fd242116713c1cb6f62f9",
+    "typing/stubs/riposte/release_guard.pyi": "9a8cdc6b88f7622f4c424fc1d9b91928c53946bbb48705e8a5abd9ced78eb9fe",
+    "typing/stubs/riposte/runtime_probe.pyi": "389652c537a17b5682f3a67a95ff809d74ce087c0a575469e7d69a96116b8281",
+    "typing/stubs/riposte/sanitize.pyi": "7389450202abf94d5a6dd7bf2582bcd00d8fe851265a845db8844b8aa37d3381",
+    "typing/stubs/riposte/server.pyi": "714eb58ea122d9816b7023368a839142f807e7ec8deb3862fcfac8fd8a16e677",
+    "typing/stubs/riposte/store.pyi": "dfc1448e34ed913b109202457fd651fa0a21dd1c8b61a0fa151128cc9938db88",
+    "typing/stubs/riposte/temporal.pyi": "7fb9bdbc1583b08bd92dc5fb37f8fb21ab4630f4ae31861db4f0b771415d7295",
+    "typing/stubs/riposte/terminal/__init__.pyi": "17022212ba4ef7ca2de53e12cd9398edc248af0cd389c9e23e34ec6c641518dc",
+    "typing/stubs/riposte/terminal/actions.pyi": "78f7dee055cf39ebf80f29339d4bc26ff546e98bd2e3423efe1ee53c59cd5004",
+    "typing/stubs/riposte/terminal/app.pyi": "85ef2f4db7f8ae9bb30df113cdbb7a5a62858b6c9e41acd2f790ec80e16620ec",
+    "typing/stubs/riposte/terminal/controller.pyi": "0f7a4d892a32fd77d4219739554c570ccdc742c89b6789b090dea92e4af91e36",
+    "typing/stubs/riposte/terminal/help.pyi": "d3fed65d5cfa8c33fbd87af9e65ad9a0dc47dc836a55452aaa1389fcc4cd0726",
+    "typing/stubs/riposte/terminal/interaction.pyi": "a45c882b885b7eeaf07f020dff51406897b58d1804853fcd92b1be145640fd16",
+    "typing/stubs/riposte/terminal/jobs.pyi": "46d2821083900ef022cc98588597ead676272d3e1c57fed7992fa362696c7e35",
+    "typing/stubs/riposte/terminal/keyboard.pyi": "ba172f115da3daf97b937bdb31bac7741ced3fc127a95e1cf56ea0d9ba9aca56",
+    "typing/stubs/riposte/terminal/material.pyi": "0bd62cdfda2ab15b3b61f0babd99969a0e61888ad8b9a2df61785e95e2679628",
+    "typing/stubs/riposte/terminal/output.pyi": "3b636c4230d643c7f01de1195ab6c3a8eb77dd8239ded118c0f70164c61eec5c",
+    "typing/stubs/riposte/terminal/palette.pyi": "4cb52a84c9c9d2fbb725b590532aa6bcd683cf56378f49d4dfca3f3b28876ba2",
+    "typing/stubs/riposte/terminal/preview.pyi": "6a3a4ac74cae2524bb2985e0a0ef7a71998d6c444c00b1101069132a9ab41671",
+    "typing/stubs/riposte/terminal/render.pyi": "182b4e0cd3c360c99d2b6205766983896752bffeac83126a05a413eb51e8e604",
+    "typing/stubs/riposte/terminal/reports.pyi": "46acc5c58ebe1e87321a3eab7d74e61070e1abda185e74ec6ebc5c1fad92a244",
+    "typing/stubs/riposte/terminal/service.pyi": "97009079186d4edaf618ef68ac3e39cc06b1197a1ec00f55ec64c183f656e649",
+    "typing/stubs/riposte/terminal/signals.pyi": "87116e0ebd0dcf3299f183a6f609d272907a3075f44fdfdc0759ee2c6d91d059",
+    "typing/stubs/riposte/terminal/state.pyi": "fa2525235a2a8cdad8a78c44abb15920717a76d3ce36a13d76a1503e471d532a",
+    "typing/stubs/riposte/terminal/surface.pyi": "f5eeea647607c1d35349bc8eaade051be6d075d590fe323591c7dd3a8b3129f2",
+    "typing/stubs/riposte/views.pyi": "65c462a5a6ae73e831ad2d5779642ccda34d8e3d6925d77ad5e394e8128f6794",
+    "typing/stubtest-allowlist.txt": "c7950826049d94b3519576c1a750b2a3335a19fa30f4d8e21e648e8c4fa62a03",
+    "typing/test_tooling.py": "ead2a06a1ecc4335e82c5e488fc3a4e1a8a5bb6f05d5e74fe0ec316a327cc514",
+    "typing/uv.lock": "e682d8a8d94d24cd283abb58bb65205f94efd2f6f8aafaa0dac87ac1829013d4",
+    "uv.lock": "dec04c91b56fd94be11a9818a9c93a18abac8374a42dcb73fa7ae8334bed648c"
+  },
+  "source_unchanged": true,
+  "contracts_recorded_pass": true,
+  "files": [
+    {
+      "id": "OVR-002",
+      "path": "AGENTS.md",
+      "definitions": []
+    },
+    {
+      "id": "OVR-001",
+      "path": "README.md",
+      "definitions": []
+    },
+    {
+      "id": "OVR-148",
+      "path": "START.ps1",
+      "definitions": []
+    },
+    {
+      "id": "OVR-149",
+      "path": "START.sh",
+      "definitions": []
+    },
+    {
+      "id": "OVR-150",
+      "path": "docs/CHANGELOG.md",
+      "definitions": []
+    },
+    {
+      "id": "OVR-151",
+      "path": "docs/CLI.md",
+      "definitions": []
+    },
+    {
+      "id": "OVR-152",
+      "path": "docs/PATCH-v05-MERGE.md",
+      "definitions": []
+    },
+    {
+      "id": "OVR-153",
+      "path": "docs/REBUILD.md",
+      "definitions": []
+    },
+    {
+      "id": "OVR-154",
+      "path": "docs/REVISION-v05.md",
+      "definitions": []
+    },
+    {
+      "id": "OVR-155",
+      "path": "docs/TERMINAL-DESIGN.spec.md",
+      "definitions": []
+    },
+    {
+      "id": "OVR-156",
+      "path": "docs/VALIDATION.md",
+      "definitions": []
+    },
+    {
+      "id": "OVR-007",
+      "path": "mypy.ini",
+      "definitions": []
+    },
+    {
+      "id": "OVR-008",
+      "path": "pyproject.toml",
+      "definitions": []
+    },
+    {
+      "id": "OVR-157",
+      "path": "scripts/capture_revision.py",
+      "definitions": [
+        "capture"
+      ]
+    },
+    {
+      "id": "OVR-158",
+      "path": "scripts/capture_terminal.py",
+      "definitions": [
+        "capture",
+        "make_art",
+        "raster"
+      ]
+    },
+    {
+      "id": "OVR-159",
+      "path": "scripts/record_terminal.py",
+      "definitions": [
+        "record"
+      ]
+    },
+    {
+      "id": "OVR-192",
+      "path": "scripts/verify_v05_merge.py",
+      "definitions": [
+        "HERE",
+        "ROOT",
+        "digest",
+        "main",
+        "test_report"
+      ]
+    },
+    {
+      "id": "OVR-009",
+      "path": "src/riposte/__init__.py",
+      "definitions": [
+        "__version__"
+      ]
+    },
+    {
+      "id": "OVR-010",
+      "path": "src/riposte/__main__.py",
+      "definitions": []
+    },
+    {
+      "id": "OVR-011",
+      "path": "src/riposte/benchmark.py",
+      "definitions": [
+        "PROMPTS",
+        "run_benchmark"
+      ]
+    },
+    {
+      "id": "OVR-012",
+      "path": "src/riposte/cli.py",
+      "definitions": [
+        "DateMode",
+        "Decision",
+        "Device",
+        "Engine",
+        "Root",
+        "Task",
+        "Theme",
+        "Vae",
+        "_version",
+        "app",
+        "audit",
+        "benchmark",
+        "challenge",
+        "command",
+        "compare",
+        "dispatch",
+        "doctor",
+        "evaluations",
+        "export",
+        "frame",
+        "generation",
+        "generations",
+        "guard",
+        "image",
+        "inspect",
+        "list_images",
+        "main",
+        "organize",
+        "package",
+        "publications",
+        "publish",
+        "qualify",
+        "resume",
+        "review",
+        "root_callback",
+        "serve",
+        "trials",
+        "ui",
+        "upgrade",
+        "workshop"
+      ]
+    },
+    {
+      "id": "OVR-013",
+      "path": "src/riposte/coupled.py",
+      "definitions": [
+        "Branch",
+        "CoupledConfig",
+        "CoupledConfig.__post_init__",
+        "_branches",
+        "_features",
+        "protect_coupled"
+      ]
+    },
+    {
+      "id": "OVR-014",
+      "path": "src/riposte/errors.py",
+      "definitions": [
+        "RiposteError",
+        "RiposteError.__init__"
+      ]
+    },
+    {
+      "id": "OVR-015",
+      "path": "src/riposte/generation.py",
+      "definitions": [
+        "ALLOWED_COMPONENTS",
+        "LocalGenerator",
+        "LocalGenerator.__call__",
+        "LocalGenerator.__init__",
+        "_execute",
+        "_validate",
+        "controlled_generation",
+        "frame_motion",
+        "generation_frame",
+        "generation_report",
+        "generation_runs",
+        "prepare_input"
+      ]
+    },
+    {
+      "id": "OVR-016",
+      "path": "src/riposte/lab.py",
+      "definitions": [
+        "METHODS",
+        "_master",
+        "_store_trial",
+        "compare_external",
+        "create_candidate",
+        "export_candidate",
+        "trial_pixels",
+        "trial_report",
+        "trials"
+      ]
+    },
+    {
+      "id": "OVR-017",
+      "path": "src/riposte/methods.json",
+      "definitions": []
+    },
+    {
+      "id": "OVR-018",
+      "path": "src/riposte/metrics.py",
+      "definitions": [
+        "TRANSFORMS",
+        "difference_image",
+        "fidelity",
+        "transform",
+        "transport_report"
+      ]
+    },
+    {
+      "id": "OVR-019",
+      "path": "src/riposte/models.py",
+      "definitions": [
+        "DEPENDENCIES",
+        "LocalEncoder",
+        "LocalEncoder.__call__",
+        "LocalEncoder.__init__",
+        "LocalInpaintProbe",
+        "LocalInpaintProbe.__call__",
+        "LocalInpaintProbe.__init__",
+        "PROMPTS",
+        "VAE_CLASSES",
+        "_weights",
+        "inspect_vae",
+        "model_fingerprint",
+        "offline",
+        "read_config",
+        "runtime_capabilities",
+        "select_device"
+      ]
+    },
+    {
+      "id": "OVR-020",
+      "path": "src/riposte/optimizer.py",
+      "definitions": [
+        "GuardConfig",
+        "GuardConfig.__post_init__",
+        "LocalVAE",
+        "LocalVAE.__call__",
+        "LocalVAE.__init__",
+        "_round_ste",
+        "eot",
+        "jpeg_surrogate",
+        "protect"
+      ]
+    },
+    {
+      "id": "OVR-021",
+      "path": "src/riposte/organizer.py",
+      "definitions": [
+        "Progress",
+        "_next_relative",
+        "_validate_managed",
+        "audit_workspace",
+        "known_good",
+        "organize",
+        "plan",
+        "walk_inputs"
+      ]
+    },
+    {
+      "id": "OVR-022",
+      "path": "src/riposte/policy.py",
+      "definitions": [
+        "BINS",
+        "CACHE_NAMES",
+        "CANONICAL",
+        "FORMAT_NAMES",
+        "IMAGE_SUFFIXES",
+        "MONTHS",
+        "Policy",
+        "Policy.__post_init__",
+        "SIDECAR_SUFFIXES",
+        "YEARS",
+        "canonical_path",
+        "extract_day",
+        "folder_for",
+        "is_link",
+        "same_file_state",
+        "size_bin",
+        "valid_day"
+      ]
+    },
+    {
+      "id": "OVR-023",
+      "path": "src/riposte/publication.py",
+      "definitions": [
+        "PublishRecipe",
+        "PublishRecipe.__post_init__",
+        "PublishRecipe.from_dict",
+        "PublishRecipe.public",
+        "_checkpoint",
+        "_id",
+        "_models",
+        "_prefix",
+        "_publication_zip_locked",
+        "_read",
+        "_replace_json",
+        "_request",
+        "_run",
+        "_verified_item",
+        "export_publication",
+        "open_in_workshop",
+        "publication_pixels",
+        "publication_plan",
+        "publication_status",
+        "publication_zip",
+        "publications",
+        "resume_publication",
+        "review_publication",
+        "start_publication"
+      ]
+    },
+    {
+      "id": "OVR-024",
+      "path": "src/riposte/qualification.py",
+      "definitions": [
+        "CONTROL_SEEDS",
+        "EVAL_MASKS",
+        "_verified_pair",
+        "evaluate_pair",
+        "evaluations",
+        "qualify_trial"
+      ]
+    },
+    {
+      "id": "OVR-025",
+      "path": "src/riposte/quality.py",
+      "definitions": [
+        "QualityLimits",
+        "QualityLimits.__post_init__",
+        "QualityLimits.public",
+        "_lab",
+        "quality_report",
+        "spatial_budget"
+      ]
+    },
+    {
+      "id": "OVR-026",
+      "path": "src/riposte/release_guard.py",
+      "definitions": [
+        "ReleaseConfig",
+        "ReleaseConfig.__post_init__",
+        "protect_release",
+        "temporal_energy"
+      ]
+    },
+    {
+      "id": "OVR-027",
+      "path": "src/riposte/runtime_probe.py",
+      "definitions": [
+        "execute_local_probe",
+        "probe_encoder"
+      ]
+    },
+    {
+      "id": "OVR-028",
+      "path": "src/riposte/sanitize.py",
+      "definitions": [
+        "CleanImage",
+        "PNG_MAGIC",
+        "decode_clean",
+        "encode_clean",
+        "fresh_pixels",
+        "png_audit",
+        "social_render",
+        "timestamp_day"
+      ]
+    },
+    {
+      "id": "OVR-029",
+      "path": "src/riposte/server.py",
+      "definitions": [
+        "CompareRequest",
+        "ExecutionRequest",
+        "ExportRequest",
+        "GenerationRequest",
+        "GuardRequest",
+        "Jobs",
+        "Jobs.__init__",
+        "Jobs.cancel",
+        "Jobs.close",
+        "Jobs.snapshot",
+        "Jobs.start",
+        "OrganizeRequest",
+        "PreflightRequest",
+        "PublishRequest",
+        "PublishReviewRequest",
+        "QualificationRequest",
+        "ResumePublishRequest",
+        "STATIC",
+        "StrictModel",
+        "create_app"
+      ]
+    },
+    {
+      "id": "OVR-030",
+      "path": "src/riposte/static/app.js",
+      "definitions": []
+    },
+    {
+      "id": "OVR-031",
+      "path": "src/riposte/static/index.html",
+      "definitions": []
+    },
+    {
+      "id": "OVR-032",
+      "path": "src/riposte/static/publish.css",
+      "definitions": []
+    },
+    {
+      "id": "OVR-033",
+      "path": "src/riposte/static/publish.js",
+      "definitions": []
+    },
+    {
+      "id": "OVR-034",
+      "path": "src/riposte/static/style.css",
+      "definitions": []
+    },
+    {
+      "id": "OVR-035",
+      "path": "src/riposte/store.py",
+      "definitions": [
+        "LEGACY_SIGNATURE",
+        "SIGNATURE",
+        "atomic_clean_write",
+        "atomic_json_write",
+        "catalog",
+        "check_root",
+        "connect",
+        "find_image",
+        "legacy_workspace",
+        "record_image",
+        "safe_child",
+        "state_dir",
+        "state_name",
+        "state_relative",
+        "upgrade_workspace",
+        "workspace_lock",
+        "write_report"
+      ]
+    },
+    {
+      "id": "OVR-036",
+      "path": "src/riposte/temporal.py",
+      "definitions": [
+        "LocalTemporalProbe",
+        "LocalTemporalProbe.__call__",
+        "LocalTemporalProbe.__init__",
+        "TemporalConfig",
+        "TemporalConfig.__post_init__",
+        "letterbox_tensor",
+        "v_prediction_original"
+      ]
+    },
+    {
+      "id": "OVR-037",
+      "path": "src/riposte/terminal/__init__.py",
+      "definitions": []
+    },
+    {
+      "id": "OVR-038",
+      "path": "src/riposte/terminal/actions.py",
+      "definitions": [
+        "ACTIONS",
+        "Action",
+        "Action.effect",
+        "BATCH",
+        "BY_KEY",
+        "DEVICE",
+        "EDGES",
+        "EPSILON",
+        "Field",
+        "IMAGE",
+        "INPAINT",
+        "ITEM",
+        "MAX_EDGE",
+        "MODEL",
+        "PUB_FIELDS",
+        "SEED",
+        "STEPS",
+        "TRIAL",
+        "VAE_FIELDS",
+        "VIDEO",
+        "WHITE",
+        "command_line",
+        "defaults",
+        "make_request",
+        "parse_value",
+        "request_argv"
+      ]
+    },
+    {
+      "id": "OVR-039",
+      "path": "src/riposte/terminal/app.py",
+      "definitions": [
+        "_launch",
+        "_line_command",
+        "launch",
+        "linear_session"
+      ]
+    },
+    {
+      "id": "OVR-040",
+      "path": "src/riposte/terminal/controller.py",
+      "definitions": [
+        "Controller",
+        "Controller.__init__",
+        "Controller._key",
+        "Controller.accept_editor",
+        "Controller.action",
+        "Controller.back",
+        "Controller.batch",
+        "Controller.batches",
+        "Controller.confirm",
+        "Controller.cycle_theme",
+        "Controller.edit_workspace",
+        "Controller.editor_key",
+        "Controller.field_edit",
+        "Controller.freeze_motion",
+        "Controller.inspect_asset",
+        "Controller.inspect_item",
+        "Controller.key",
+        "Controller.library",
+        "Controller.move",
+        "Controller.preferences",
+        "Controller.pump",
+        "Controller.refresh",
+        "Controller.reload_preview",
+        "Controller.request_from_form",
+        "Controller.require_workspace",
+        "Controller.run",
+        "Controller.run_form",
+        "Controller.save_model_session",
+        "Controller.selected_row",
+        "Controller.show",
+        "Controller.shutdown",
+        "Controller.toggle_selection"
+      ]
+    },
+    {
+      "id": "OVR-041",
+      "path": "src/riposte/terminal/help.py",
+      "definitions": [
+        "RichCommand",
+        "RichCommand.format_help",
+        "RichGroup",
+        "RichGroup.format_help",
+        "format_help"
+      ]
+    },
+    {
+      "id": "OVR-160",
+      "path": "src/riposte/terminal/interaction.py",
+      "definitions": [
+        "GLOBAL",
+        "Hint",
+        "context",
+        "contextual_help",
+        "fields_for",
+        "hints"
+      ]
+    },
+    {
+      "id": "OVR-042",
+      "path": "src/riposte/terminal/jobs.py",
+      "definitions": [
+        "Operation",
+        "Operation.__init__",
+        "Operation._run",
+        "Operation.cancel",
+        "Operation.join",
+        "Operation.progress",
+        "Operation.snapshot",
+        "Operation.start",
+        "Snapshot",
+        "safe_code",
+        "safe_phase"
+      ]
+    },
+    {
+      "id": "OVR-043",
+      "path": "src/riposte/terminal/keyboard.py",
+      "definitions": [
+        "Key",
+        "KeyDecoder",
+        "KeyDecoder.__init__",
+        "KeyDecoder.feed",
+        "KeyDecoder.next",
+        "SEQUENCES",
+        "SINGLE",
+        "TerminalKeys",
+        "TerminalKeys.__enter__",
+        "TerminalKeys.__exit__",
+        "TerminalKeys.__init__",
+        "TerminalKeys.read"
+      ]
+    },
+    {
+      "id": "OVR-044",
+      "path": "src/riposte/terminal/material.py",
+      "definitions": [
+        "LOGO",
+        "activity_trace",
+        "counterstroke"
+      ]
+    },
+    {
+      "id": "OVR-045",
+      "path": "src/riposte/terminal/output.py",
+      "definitions": [
+        "Activity",
+        "Activity.__init__",
+        "Activity.__rich__",
+        "Presentation",
+        "Presentation.console",
+        "Presentation.machine",
+        "RECOVERY",
+        "_run_direct",
+        "emit",
+        "error",
+        "result_table",
+        "run_direct"
+      ]
+    },
+    {
+      "id": "OVR-161",
+      "path": "src/riposte/terminal/palette.py",
+      "definitions": [
+        "GOKS",
+        "PALETTES",
+        "THEMES",
+        "_COMMON"
+      ]
+    },
+    {
+      "id": "OVR-046",
+      "path": "src/riposte/terminal/preview.py",
+      "definitions": [
+        "Preview",
+        "make_preview",
+        "paint_preview"
+      ]
+    },
+    {
+      "id": "OVR-047",
+      "path": "src/riposte/terminal/render.py",
+      "definitions": [
+        "_help_lines",
+        "_report_data",
+        "asset",
+        "batches",
+        "collection",
+        "command_page",
+        "confirm",
+        "editor_overlay",
+        "footer",
+        "form",
+        "header",
+        "help_page",
+        "home",
+        "item",
+        "job",
+        "page_window",
+        "preferences",
+        "render",
+        "result",
+        "scroll_limit",
+        "shown",
+        "view_rows",
+        "workshop"
+      ]
+    },
+    {
+      "id": "OVR-162",
+      "path": "src/riposte/terminal/reports.py",
+      "definitions": [
+        "LABELS",
+        "Line",
+        "Line.plain",
+        "Line.rich",
+        "Report",
+        "Run",
+        "Writer",
+        "Writer.__init__",
+        "Writer.add",
+        "Writer.blank",
+        "Writer.pair",
+        "Writer.rows",
+        "Writer.section",
+        "Writer.text",
+        "_JSON",
+        "blockers",
+        "fold",
+        "label",
+        "line",
+        "overview",
+        "paint_lines",
+        "raw_lines",
+        "report_lines",
+        "role",
+        "scalar",
+        "size",
+        "tree"
+      ]
+    },
+    {
+      "id": "OVR-048",
+      "path": "src/riposte/terminal/service.py",
+      "definitions": [
+        "CANCELLABLE",
+        "EFFECTS",
+        "Progress",
+        "Request",
+        "_optional",
+        "_paths",
+        "execute",
+        "image_bytes",
+        "image_selection",
+        "parse_month",
+        "recipe",
+        "result_exit_code",
+        "root_of",
+        "select_rows",
+        "view_image"
+      ]
+    },
+    {
+      "id": "OVR-049",
+      "path": "src/riposte/terminal/signals.py",
+      "definitions": [
+        "TerminationRequested",
+        "termination_guard"
+      ]
+    },
+    {
+      "id": "OVR-050",
+      "path": "src/riposte/terminal/state.py",
+      "definitions": [
+        "Editor",
+        "HOME",
+        "Page",
+        "Session"
+      ]
+    },
+    {
+      "id": "OVR-051",
+      "path": "src/riposte/terminal/surface.py",
+      "definitions": [
+        "Cell",
+        "Surface",
+        "Surface.__init__",
+        "Surface.__rich_console__",
+        "Surface.fill",
+        "Surface.frame",
+        "Surface.plain",
+        "Surface.put",
+        "Surface.rule",
+        "Surface.text",
+        "Surface.wrap",
+        "_style",
+        "ascii_text"
+      ]
+    },
+    {
+      "id": "OVR-052",
+      "path": "src/riposte/views.py",
+      "definitions": [
+        "HOLDOUT_VIEWS",
+        "MASKS",
+        "TRAIN_VIEWS",
+        "budget_map",
+        "differentiable_view",
+        "image_tensor",
+        "keep_mask",
+        "matched_control",
+        "publication_view",
+        "spectral_direction",
+        "tensor_image"
+      ]
+    },
+    {
+      "id": "OVR-053",
+      "path": "src/riposte_studio.egg-info/PKG-INFO",
+      "definitions": []
+    },
+    {
+      "id": "OVR-054",
+      "path": "src/riposte_studio.egg-info/SOURCES.txt",
+      "definitions": []
+    },
+    {
+      "id": "OVR-055",
+      "path": "src/riposte_studio.egg-info/dependency_links.txt",
+      "definitions": []
+    },
+    {
+      "id": "OVR-056",
+      "path": "src/riposte_studio.egg-info/entry_points.txt",
+      "definitions": []
+    },
+    {
+      "id": "OVR-057",
+      "path": "src/riposte_studio.egg-info/requires.txt",
+      "definitions": []
+    },
+    {
+      "id": "OVR-058",
+      "path": "src/riposte_studio.egg-info/top_level.txt",
+      "definitions": []
+    },
+    {
+      "id": "OVR-163",
+      "path": "tests/test_v05_revision.py",
+      "definitions": [
+        "PLAN",
+        "TOKENS",
+        "test_advanced_disclosure_preserves_all_settings",
+        "test_all_terminal_surfaces_reject_background_fill",
+        "test_cli_accepts_goks",
+        "test_complete_tree_retains_unknown_nested_data_without_braces",
+        "test_contextual_help_describes_the_focused_setting",
+        "test_dedicated_report_types",
+        "test_enter_from_migration_plan_still_requires_replace",
+        "test_enter_select_i_inspect_and_space_compatibility",
+        "test_explicit_cell_colour_cannot_overwrite_host_background",
+        "test_human_vs_automation_result_contract",
+        "test_json_syntax_roles_and_lossless_unwrap",
+        "test_palette_exact_and_terminal_owned",
+        "test_report_draw_uses_actual_viewport_and_can_scroll",
+        "test_report_overview_is_not_json_and_details_are_complete"
+      ]
+    },
+    {
+      "id": "OVR-059",
+      "path": "typing/README.md",
+      "definitions": []
+    },
+    {
+      "id": "OVR-060",
+      "path": "typing/check.py",
+      "definitions": [
+        "CONTRACT_CONFIG",
+        "EVIDENCE",
+        "HERE",
+        "REVIEWED_SOURCE",
+        "ROOT",
+        "STUBS",
+        "check_parity",
+        "declarations",
+        "dynamic_inventory",
+        "is_application_source",
+        "main",
+        "negative_check",
+        "run",
+        "signature",
+        "source_hashes"
+      ]
+    },
+    {
+      "id": "OVR-061",
+      "path": "typing/checks/consumers.py",
+      "definitions": [
+        "ExampleEncoder",
+        "ExampleEncoder.__call__",
+        "consume",
+        "encoder_contracts",
+        "operation",
+        "progress",
+        "terminal_contracts"
+      ]
+    },
+    {
+      "id": "OVR-062",
+      "path": "typing/checks/rejected.py.txt",
+      "definitions": [
+        "event",
+        "package",
+        "root",
+        "size"
+      ]
+    },
+    {
+      "id": "OVR-063",
+      "path": "typing/evidence/dynamic-boundaries.json",
+      "definitions": []
+    },
+    {
+      "id": "OVR-164",
+      "path": "typing/evidence/mypy-contracts.txt",
+      "definitions": []
+    },
+    {
+      "id": "OVR-128",
+      "path": "typing/evidence/mypy-tooling.txt",
+      "definitions": []
+    },
+    {
+      "id": "OVR-129",
+      "path": "typing/evidence/source-after.json",
+      "definitions": []
+    },
+    {
+      "id": "OVR-064",
+      "path": "typing/evidence/source-before.json",
+      "definitions": []
+    },
+    {
+      "id": "OVR-065",
+      "path": "typing/evidence/source-current-command.txt",
+      "definitions": []
+    },
+    {
+      "id": "OVR-066",
+      "path": "typing/evidence/source-current.txt",
+      "definitions": []
+    },
+    {
+      "id": "OVR-165",
+      "path": "typing/evidence/source-reviewed-v050.json",
+      "definitions": []
+    },
+    {
+      "id": "OVR-166",
+      "path": "typing/evidence/stubtest.txt",
+      "definitions": []
+    },
+    {
+      "id": "OVR-130",
+      "path": "typing/evidence/tooling-regressions.txt",
+      "definitions": []
+    },
+    {
+      "id": "OVR-067",
+      "path": "typing/evidence/verification.json",
+      "definitions": []
+    },
+    {
+      "id": "OVR-068",
+      "path": "typing/evidence/windows-stat-probe-app-py314.txt",
+      "definitions": []
+    },
+    {
+      "id": "OVR-069",
+      "path": "typing/evidence/windows-stat-probe.txt",
+      "definitions": []
+    },
+    {
+      "id": "OVR-131",
+      "path": "typing/mypy-contracts.ini",
+      "definitions": []
+    },
+    {
+      "id": "OVR-070",
+      "path": "typing/mypy-source.ini",
+      "definitions": []
+    },
+    {
+      "id": "OVR-071",
+      "path": "typing/pacer_inventory.py",
+      "definitions": [
+        "INPUTS",
+        "REPORT",
+        "ROOT",
+        "TAG",
+        "definitions",
+        "describe",
+        "digest",
+        "inventory",
+        "main",
+        "module_key",
+        "reconcile",
+        "scoped_paths"
+      ]
+    },
+    {
+      "id": "OVR-072",
+      "path": "typing/probe_windows_stat.py",
+      "definitions": [
+        "keys"
+      ]
+    },
+    {
+      "id": "OVR-073",
+      "path": "typing/pyproject.toml",
+      "definitions": []
+    },
+    {
+      "id": "OVR-074",
+      "path": "typing/runtime_contracts.py",
+      "definitions": [
+        "ContractFixtures",
+        "ContractFixtures.fixture_batch",
+        "ContractFixtures.organized",
+        "ContractFixtures.setUp",
+        "ContractFixtures.test_incomplete_organization_records",
+        "ContractFixtures.test_operation_callback_and_form_contracts",
+        "ContractFixtures.test_organization_catalog_and_image_selection",
+        "ContractFixtures.test_png_fidelity_quality_and_budget",
+        "ContractFixtures.test_runtime_and_preflight_shapes_without_model_loading",
+        "ContractFixtures.test_synthetic_publication_pending_and_blocked_shapes",
+        "ContractFixtures.test_synthetic_publication_ready_and_export_shape",
+        "ContractFixtures.test_upgrade_optional_fields",
+        "ContractFixtures.test_validator_rejects_drift",
+        "RECORDS",
+        "ROOT",
+        "load_records",
+        "matches"
+      ]
+    },
+    {
+      "id": "OVR-075",
+      "path": "typing/stubs/_riposte_types.pyi",
+      "definitions": [
+        "CatalogRow",
+        "ContentFilterFlags",
+        "DateSource",
+        "Encoder",
+        "Encoder.__call__",
+        "EncoderT",
+        "FidelityReport",
+        "FormValue",
+        "ImageInfo",
+        "InpaintProbe",
+        "InpaintProbe.__call__",
+        "JSONValue",
+        "JobCancelled",
+        "JobStarted",
+        "ModelTensor",
+        "OrganizationPlan",
+        "OrganizationReport",
+        "PngAudit",
+        "Progress",
+        "ProgressEvent",
+        "PublicationBatch",
+        "PublicationExport",
+        "PublicationItem",
+        "PublicationPlan",
+        "PublicationSummary",
+        "PublicationTask",
+        "QualityPolicy",
+        "QualityReport",
+        "RecipeRecord",
+        "ReleaseSettings",
+        "Report",
+        "RequestValues",
+        "RuntimeCapabilities",
+        "SizeBin",
+        "TemporalProbe",
+        "TemporalProbe.__call__",
+        "TransportReport",
+        "TransportRow",
+        "UpgradeReport",
+        "VaeInspection",
+        "WorkspaceAudit"
+      ]
+    },
+    {
+      "id": "OVR-076",
+      "path": "typing/stubs/riposte/__init__.pyi",
+      "definitions": [
+        "__version__"
+      ]
+    },
+    {
+      "id": "OVR-077",
+      "path": "typing/stubs/riposte/__main__.pyi",
+      "definitions": []
+    },
+    {
+      "id": "OVR-078",
+      "path": "typing/stubs/riposte/benchmark.pyi",
+      "definitions": [
+        "PROMPTS",
+        "run_benchmark"
+      ]
+    },
+    {
+      "id": "OVR-079",
+      "path": "typing/stubs/riposte/cli.pyi",
+      "definitions": [
+        "DateMode",
+        "DateMode.__new__",
+        "Decision",
+        "Decision.__new__",
+        "Device",
+        "Device.__new__",
+        "Engine",
+        "Engine.__new__",
+        "Root",
+        "Task",
+        "Task.__new__",
+        "Theme",
+        "Theme.__new__",
+        "Vae",
+        "_F",
+        "_version",
+        "app",
+        "audit",
+        "benchmark",
+        "challenge",
+        "command",
+        "compare",
+        "dispatch",
+        "doctor",
+        "evaluations",
+        "export",
+        "frame",
+        "generation",
+        "generations",
+        "guard",
+        "image",
+        "inspect",
+        "list_images",
+        "main",
+        "organize",
+        "package",
+        "publications",
+        "publish",
+        "qualify",
+        "resume",
+        "review",
+        "root_callback",
+        "serve",
+        "trials",
+        "ui",
+        "upgrade",
+        "workshop"
+      ]
+    },
+    {
+      "id": "OVR-080",
+      "path": "typing/stubs/riposte/coupled.pyi",
+      "definitions": [
+        "Branch",
+        "CoupledConfig",
+        "CoupledConfig.__post_init__",
+        "_branches",
+        "_features",
+        "protect_coupled"
+      ]
+    },
+    {
+      "id": "OVR-081",
+      "path": "typing/stubs/riposte/errors.pyi",
+      "definitions": [
+        "RiposteError",
+        "RiposteError.__init__"
+      ]
+    },
+    {
+      "id": "OVR-082",
+      "path": "typing/stubs/riposte/generation.pyi",
+      "definitions": [
+        "ALLOWED_COMPONENTS",
+        "LocalGenerator",
+        "LocalGenerator.__call__",
+        "LocalGenerator.__init__",
+        "_execute",
+        "_validate",
+        "controlled_generation",
+        "frame_motion",
+        "generation_frame",
+        "generation_report",
+        "generation_runs",
+        "prepare_input"
+      ]
+    },
+    {
+      "id": "OVR-083",
+      "path": "typing/stubs/riposte/lab.pyi",
+      "definitions": [
+        "METHODS",
+        "_master",
+        "_store_trial",
+        "compare_external",
+        "create_candidate",
+        "export_candidate",
+        "trial_pixels",
+        "trial_report",
+        "trials"
+      ]
+    },
+    {
+      "id": "OVR-084",
+      "path": "typing/stubs/riposte/metrics.pyi",
+      "definitions": [
+        "TRANSFORMS",
+        "difference_image",
+        "fidelity",
+        "transform",
+        "transport_report"
+      ]
+    },
+    {
+      "id": "OVR-085",
+      "path": "typing/stubs/riposte/models.pyi",
+      "definitions": [
+        "DEPENDENCIES",
+        "LocalEncoder",
+        "LocalEncoder.__call__",
+        "LocalEncoder.__init__",
+        "LocalInpaintProbe",
+        "LocalInpaintProbe.__call__",
+        "LocalInpaintProbe.__init__",
+        "PROMPTS",
+        "VAE_CLASSES",
+        "_weights",
+        "inspect_vae",
+        "model_fingerprint",
+        "offline",
+        "read_config",
+        "runtime_capabilities",
+        "select_device"
+      ]
+    },
+    {
+      "id": "OVR-086",
+      "path": "typing/stubs/riposte/optimizer.pyi",
+      "definitions": [
+        "GuardConfig",
+        "GuardConfig.__post_init__",
+        "LocalVAE",
+        "LocalVAE.__call__",
+        "LocalVAE.__init__",
+        "_round_ste",
+        "eot",
+        "jpeg_surrogate",
+        "protect"
+      ]
+    },
+    {
+      "id": "OVR-087",
+      "path": "typing/stubs/riposte/organizer.pyi",
+      "definitions": [
+        "Progress",
+        "_next_relative",
+        "_validate_managed",
+        "audit_workspace",
+        "known_good",
+        "organize",
+        "plan",
+        "walk_inputs"
+      ]
+    },
+    {
+      "id": "OVR-088",
+      "path": "typing/stubs/riposte/policy.pyi",
+      "definitions": [
+        "BINS",
+        "CACHE_NAMES",
+        "CANONICAL",
+        "FORMAT_NAMES",
+        "IMAGE_SUFFIXES",
+        "MONTHS",
+        "Policy",
+        "Policy.__post_init__",
+        "SIDECAR_SUFFIXES",
+        "YEARS",
+        "canonical_path",
+        "extract_day",
+        "folder_for",
+        "is_link",
+        "same_file_state",
+        "size_bin",
+        "valid_day"
+      ]
+    },
+    {
+      "id": "OVR-089",
+      "path": "typing/stubs/riposte/publication.pyi",
+      "definitions": [
+        "PublishRecipe",
+        "PublishRecipe.__post_init__",
+        "PublishRecipe.from_dict",
+        "PublishRecipe.public",
+        "_checkpoint",
+        "_id",
+        "_models",
+        "_prefix",
+        "_publication_zip_locked",
+        "_read",
+        "_replace_json",
+        "_request",
+        "_run",
+        "_verified_item",
+        "export_publication",
+        "open_in_workshop",
+        "publication_pixels",
+        "publication_plan",
+        "publication_status",
+        "publication_zip",
+        "publications",
+        "resume_publication",
+        "review_publication",
+        "start_publication"
+      ]
+    },
+    {
+      "id": "OVR-090",
+      "path": "typing/stubs/riposte/qualification.pyi",
+      "definitions": [
+        "CONTROL_SEEDS",
+        "EVAL_MASKS",
+        "_verified_pair",
+        "evaluate_pair",
+        "evaluations",
+        "qualify_trial"
+      ]
+    },
+    {
+      "id": "OVR-091",
+      "path": "typing/stubs/riposte/quality.pyi",
+      "definitions": [
+        "QualityLimits",
+        "QualityLimits.__post_init__",
+        "QualityLimits.public",
+        "_lab",
+        "quality_report",
+        "spatial_budget"
+      ]
+    },
+    {
+      "id": "OVR-092",
+      "path": "typing/stubs/riposte/release_guard.pyi",
+      "definitions": [
+        "ReleaseConfig",
+        "ReleaseConfig.__post_init__",
+        "protect_release",
+        "temporal_energy"
+      ]
+    },
+    {
+      "id": "OVR-093",
+      "path": "typing/stubs/riposte/runtime_probe.pyi",
+      "definitions": [
+        "execute_local_probe",
+        "probe_encoder"
+      ]
+    },
+    {
+      "id": "OVR-094",
+      "path": "typing/stubs/riposte/sanitize.pyi",
+      "definitions": [
+        "CleanImage",
+        "PNG_MAGIC",
+        "decode_clean",
+        "encode_clean",
+        "fresh_pixels",
+        "png_audit",
+        "social_render",
+        "timestamp_day"
+      ]
+    },
+    {
+      "id": "OVR-095",
+      "path": "typing/stubs/riposte/server.pyi",
+      "definitions": [
+        "CompareRequest",
+        "ExecutionRequest",
+        "ExportRequest",
+        "GenerationRequest",
+        "GuardRequest",
+        "Jobs",
+        "Jobs.__init__",
+        "Jobs.cancel",
+        "Jobs.close",
+        "Jobs.snapshot",
+        "Jobs.start",
+        "OrganizeRequest",
+        "PreflightRequest",
+        "PublishRequest",
+        "PublishReviewRequest",
+        "QualificationRequest",
+        "ResumePublishRequest",
+        "STATIC",
+        "StrictModel",
+        "create_app"
+      ]
+    },
+    {
+      "id": "OVR-096",
+      "path": "typing/stubs/riposte/store.pyi",
+      "definitions": [
+        "LEGACY_SIGNATURE",
+        "SIGNATURE",
+        "atomic_clean_write",
+        "atomic_json_write",
+        "catalog",
+        "check_root",
+        "connect",
+        "find_image",
+        "legacy_workspace",
+        "record_image",
+        "safe_child",
+        "state_dir",
+        "state_name",
+        "state_relative",
+        "upgrade_workspace",
+        "workspace_lock",
+        "write_report"
+      ]
+    },
+    {
+      "id": "OVR-097",
+      "path": "typing/stubs/riposte/temporal.pyi",
+      "definitions": [
+        "LocalTemporalProbe",
+        "LocalTemporalProbe.__call__",
+        "LocalTemporalProbe.__init__",
+        "TemporalConfig",
+        "TemporalConfig.__post_init__",
+        "letterbox_tensor",
+        "v_prediction_original"
+      ]
+    },
+    {
+      "id": "OVR-098",
+      "path": "typing/stubs/riposte/terminal/__init__.pyi",
+      "definitions": []
+    },
+    {
+      "id": "OVR-099",
+      "path": "typing/stubs/riposte/terminal/actions.pyi",
+      "definitions": [
+        "ACTIONS",
+        "Action",
+        "Action.effect",
+        "BATCH",
+        "BY_KEY",
+        "DEVICE",
+        "EDGES",
+        "EPSILON",
+        "Field",
+        "IMAGE",
+        "INPAINT",
+        "ITEM",
+        "MAX_EDGE",
+        "MODEL",
+        "PUB_FIELDS",
+        "SEED",
+        "STEPS",
+        "TRIAL",
+        "VAE_FIELDS",
+        "VIDEO",
+        "WHITE",
+        "command_line",
+        "defaults",
+        "make_request",
+        "parse_value",
+        "request_argv"
+      ]
+    },
+    {
+      "id": "OVR-100",
+      "path": "typing/stubs/riposte/terminal/app.pyi",
+      "definitions": [
+        "_launch",
+        "_line_command",
+        "launch",
+        "linear_session"
+      ]
+    },
+    {
+      "id": "OVR-101",
+      "path": "typing/stubs/riposte/terminal/controller.pyi",
+      "definitions": [
+        "Controller",
+        "Controller.__init__",
+        "Controller._key",
+        "Controller.accept_editor",
+        "Controller.action",
+        "Controller.back",
+        "Controller.batch",
+        "Controller.batches",
+        "Controller.confirm",
+        "Controller.cycle_theme",
+        "Controller.edit_workspace",
+        "Controller.editor_key",
+        "Controller.field_edit",
+        "Controller.freeze_motion",
+        "Controller.inspect_asset",
+        "Controller.inspect_item",
+        "Controller.key",
+        "Controller.library",
+        "Controller.move",
+        "Controller.preferences",
+        "Controller.pump",
+        "Controller.refresh",
+        "Controller.reload_preview",
+        "Controller.request_from_form",
+        "Controller.require_workspace",
+        "Controller.run",
+        "Controller.run_form",
+        "Controller.save_model_session",
+        "Controller.selected_row",
+        "Controller.show",
+        "Controller.shutdown",
+        "Controller.toggle_selection"
+      ]
+    },
+    {
+      "id": "OVR-102",
+      "path": "typing/stubs/riposte/terminal/help.pyi",
+      "definitions": [
+        "RichCommand",
+        "RichCommand.format_help",
+        "RichGroup",
+        "RichGroup.format_help",
+        "format_help"
+      ]
+    },
+    {
+      "id": "OVR-167",
+      "path": "typing/stubs/riposte/terminal/interaction.pyi",
+      "definitions": [
+        "GLOBAL",
+        "Hint",
+        "_ContextRecord",
+        "_HintRecord",
+        "context",
+        "contextual_help",
+        "fields_for",
+        "hints"
+      ]
+    },
+    {
+      "id": "OVR-103",
+      "path": "typing/stubs/riposte/terminal/jobs.pyi",
+      "definitions": [
+        "Operation",
+        "Operation.__init__",
+        "Operation._run",
+        "Operation.cancel",
+        "Operation.join",
+        "Operation.progress",
+        "Operation.snapshot",
+        "Operation.start",
+        "Snapshot",
+        "safe_code",
+        "safe_phase"
+      ]
+    },
+    {
+      "id": "OVR-104",
+      "path": "typing/stubs/riposte/terminal/keyboard.pyi",
+      "definitions": [
+        "Key",
+        "KeyDecoder",
+        "KeyDecoder.__init__",
+        "KeyDecoder.feed",
+        "KeyDecoder.next",
+        "SEQUENCES",
+        "SINGLE",
+        "TerminalKeys",
+        "TerminalKeys.__enter__",
+        "TerminalKeys.__exit__",
+        "TerminalKeys.__init__",
+        "TerminalKeys.read"
+      ]
+    },
+    {
+      "id": "OVR-105",
+      "path": "typing/stubs/riposte/terminal/material.pyi",
+      "definitions": [
+        "LOGO",
+        "activity_trace",
+        "counterstroke"
+      ]
+    },
+    {
+      "id": "OVR-106",
+      "path": "typing/stubs/riposte/terminal/output.pyi",
+      "definitions": [
+        "Activity",
+        "Activity.__init__",
+        "Activity.__rich__",
+        "Presentation",
+        "Presentation.console",
+        "Presentation.machine",
+        "RECOVERY",
+        "_run_direct",
+        "emit",
+        "error",
+        "result_table",
+        "run_direct"
+      ]
+    },
+    {
+      "id": "OVR-168",
+      "path": "typing/stubs/riposte/terminal/palette.pyi",
+      "definitions": [
+        "GOKS",
+        "PALETTES",
+        "THEMES",
+        "_COMMON"
+      ]
+    },
+    {
+      "id": "OVR-107",
+      "path": "typing/stubs/riposte/terminal/preview.pyi",
+      "definitions": [
+        "Preview",
+        "make_preview",
+        "paint_preview"
+      ]
+    },
+    {
+      "id": "OVR-108",
+      "path": "typing/stubs/riposte/terminal/render.pyi",
+      "definitions": [
+        "_help_lines",
+        "_report_data",
+        "asset",
+        "batches",
+        "collection",
+        "command_page",
+        "confirm",
+        "editor_overlay",
+        "footer",
+        "form",
+        "header",
+        "help_page",
+        "home",
+        "item",
+        "job",
+        "page_window",
+        "preferences",
+        "render",
+        "result",
+        "scroll_limit",
+        "shown",
+        "view_rows",
+        "workshop"
+      ]
+    },
+    {
+      "id": "OVR-169",
+      "path": "typing/stubs/riposte/terminal/reports.pyi",
+      "definitions": [
+        "LABELS",
+        "Line",
+        "Line.plain",
+        "Line.rich",
+        "Report",
+        "Run",
+        "Writer",
+        "Writer.__init__",
+        "Writer.add",
+        "Writer.blank",
+        "Writer.pair",
+        "Writer.rows",
+        "Writer.section",
+        "Writer.text",
+        "_JSON",
+        "blockers",
+        "fold",
+        "label",
+        "line",
+        "overview",
+        "paint_lines",
+        "raw_lines",
+        "report_lines",
+        "role",
+        "scalar",
+        "size",
+        "tree"
+      ]
+    },
+    {
+      "id": "OVR-109",
+      "path": "typing/stubs/riposte/terminal/service.pyi",
+      "definitions": [
+        "CANCELLABLE",
+        "EFFECTS",
+        "Progress",
+        "Request",
+        "_optional",
+        "_paths",
+        "execute",
+        "image_bytes",
+        "image_selection",
+        "parse_month",
+        "recipe",
+        "result_exit_code",
+        "root_of",
+        "select_rows",
+        "view_image"
+      ]
+    },
+    {
+      "id": "OVR-110",
+      "path": "typing/stubs/riposte/terminal/signals.pyi",
+      "definitions": [
+        "TerminationRequested",
+        "termination_guard"
+      ]
+    },
+    {
+      "id": "OVR-111",
+      "path": "typing/stubs/riposte/terminal/state.pyi",
+      "definitions": [
+        "Editor",
+        "HOME",
+        "Page",
+        "Session"
+      ]
+    },
+    {
+      "id": "OVR-112",
+      "path": "typing/stubs/riposte/terminal/surface.pyi",
+      "definitions": [
+        "Cell",
+        "Surface",
+        "Surface.__init__",
+        "Surface.__rich_console__",
+        "Surface.fill",
+        "Surface.frame",
+        "Surface.plain",
+        "Surface.put",
+        "Surface.rule",
+        "Surface.text",
+        "Surface.wrap",
+        "_style",
+        "ascii_text"
+      ]
+    },
+    {
+      "id": "OVR-113",
+      "path": "typing/stubs/riposte/views.pyi",
+      "definitions": [
+        "HOLDOUT_VIEWS",
+        "MASKS",
+        "TRAIN_VIEWS",
+        "budget_map",
+        "differentiable_view",
+        "image_tensor",
+        "keep_mask",
+        "matched_control",
+        "publication_view",
+        "spectral_direction",
+        "tensor_image"
+      ]
+    },
+    {
+      "id": "OVR-114",
+      "path": "typing/stubtest-allowlist.txt",
+      "definitions": []
+    },
+    {
+      "id": "OVR-132",
+      "path": "typing/test_tooling.py",
+      "definitions": [
+        "TypingToolingTests",
+        "TypingToolingTests.setUp",
+        "TypingToolingTests.test_added_application_file_is_detected",
+        "TypingToolingTests.test_changed_application_file_is_detected",
+        "TypingToolingTests.test_default_and_dot_reach_source_errors_despite_build_and_stub_copies",
+        "TypingToolingTests.test_generated_metadata_is_not_application_identity",
+        "TypingToolingTests.test_removed_application_file_is_detected",
+        "TypingToolingTests.test_structured_report_is_not_a_dynamic_report_alias"
+      ]
+    },
+    {
+      "id": "OVR-115",
+      "path": "typing/uv.lock",
+      "definitions": []
+    },
+    {
+      "id": "OVR-116",
+      "path": "uv.lock",
+      "definitions": []
+    }
+  ],
+  "limits": [
+    "Run typing/check.py immediately before acceptance; reading its old report is not a fresh test.",
+    "Static imports do not establish optional providers or dynamic dependency completeness.",
+    "Definition names are syntactic declarations; annotations and bodies require separate review.",
+    "Raw-source mypy errors and Windows stat finding are unresolved; no source repair is claimed."
+  ]
+}
