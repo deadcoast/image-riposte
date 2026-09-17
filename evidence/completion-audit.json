@@ -1,0 +1,1301 @@
+{
+  "scope": "Audit of completion claims, not application completion or new feature implementation.",
+  "reviewed_commit": "398d6c871732e4e408059db3138ae9d3b1e64244",
+  "initial_status": {
+    "tasks_done": [
+      "PAC-001",
+      "PAC-003",
+      "PAC-004"
+    ],
+    "tasks_open": [
+      "PAC-002"
+    ],
+    "nodules_absorbed": [
+      "NDL-001",
+      "NDL-002"
+    ],
+    "nodules_active": [
+      "NDL-003"
+    ]
+  },
+  "fresh_checks": {
+    "external_contracts": {
+      "scope": "External declarations, consumer typing, signatures, and offline record fixtures; not source-body or model-execution certification",
+      "python": "3.13.9 (main, Oct 14 2025, 21:22:32) [MSC v.1944 64 bit (AMD64)]",
+      "versions": {
+        "mypy": "2.3.1",
+        "numpy": "2.5.3",
+        "Pillow": "12.3.0",
+        "typer": "0.26.8",
+        "fastapi": "0.141.1",
+        "rich": "15.0.0"
+      },
+      "source_files": 47,
+      "source_signatures": 313,
+      "stubtest_leaf_modules": 38,
+      "stubtest_allowlist_entries": 4,
+      "dynamic_declarations": 89,
+      "results": {
+        "mypy-contracts": true,
+        "mypy-tooling": true,
+        "stubtest": true,
+        "runtime-contracts": true,
+        "tooling-regressions": true,
+        "negative-consumers": true,
+        "source-stable": true
+      }
+    },
+    "inventory": {
+      "result": "PASS",
+      "issues": [],
+      "counts": {
+        "source_files": 47,
+        "source_modules": 41,
+        "paired_stubs": 41,
+        "indexed_files": 140,
+        "tool_functions": 8,
+        "static_definitions": 1008,
+        "local_dependency_edges": 422
+      },
+      "source_unchanged": true,
+      "limits": [
+        "Run typing/check.py immediately before acceptance; reading its old report is not a fresh test.",
+        "Static imports do not establish optional providers or dynamic dependency completeness.",
+        "Definition names are syntactic declarations; annotations and bodies require separate review.",
+        "Raw-source mypy errors and Windows stat finding are unresolved; no source repair is claimed."
+      ]
+    },
+    "revision_pytest": {
+      "command": [
+        ".venv/Scripts/python.exe",
+        "-m",
+        "pytest",
+        "tests/test_v05_revision.py",
+        "-q",
+        "--basetemp=typing/.cache/completion-audit/pytest-tmp",
+        "--junitxml=typing/.cache/completion-audit/revision.xml"
+      ],
+      "exit_code": 0,
+      "suite": {
+        "name": "pytest",
+        "errors": "0",
+        "failures": "0",
+        "skipped": "0",
+        "tests": "49",
+        "time": "0.583",
+        "timestamp": "2026-09-16T18:20:37.485737-07:00",
+        "hostname": "homeone"
+      }
+    },
+    "raw_source_mypy": {
+      "command": [
+        ".venv/Scripts/python.exe",
+        "-m",
+        "mypy",
+        "."
+      ],
+      "exit_code": 1,
+      "summary": "Found 962 errors in 36 files (checked 41 source files)",
+      "duplicate_module": false
+    },
+    "archive_sha256": "97541fba8ce1fd9095080140eef596b0ec80d4c46f590a2adb1f78826fe8547b"
+  },
+  "execution_notes": [
+    "Contract checker imported and executed via its main() in the locked typing environment, with EVIDENCE redirected to typing/.cache/completion-audit/contracts to preserve prior evidence.",
+    "Inventory imported and executed via main() with REPORT redirected to the audit cache; initial harness import failed because typing was not on sys.path, corrected without changing the inventory.",
+    "Full application pytest was not rerun in this audit. Its retained merged-full.xml contains 455 passes, 9 failures, 14 setup errors and 28 skips."
+  ],
+  "findings": [
+    {
+      "id": "A1",
+      "claim": "Complete source inventory / OGM-001 acceptance",
+      "result": "INCOMPLETE",
+      "evidence": "232 public top-level classes/functions lack individual symbol rows; the inventory only enforces file exports and its own tool-function rows. Changed CLI and Controller have only FILE rows. PACER requires public/cross-file symbol records.",
+      "remaining": "Review which symbols are consumed or required, add their records and edges, and extend the reconciliation guard to catch omissions."
+    },
+    {
+      "id": "A2",
+      "claim": "PAC-004 DONE / patch workflow closure",
+      "result": "PREMATURE_CLOSURE",
+      "evidence": "NDL-003 is ACTIVE with malformed NewAssets, while PAC-004 is DONE with NextAction resolve.",
+      "remaining": "Correct admitted asset encoding through a supported history-preserving workflow, finish acceptance review and absorption. Preserve the successful selective merge and exact ZIP archive."
+    },
+    {
+      "id": "A3",
+      "claim": "Application or source typing is complete",
+      "result": "NOT_ESTABLISHED",
+      "evidence": "Fresh source mypy still reports 962 diagnostics; 89 external declarations retain explicit dynamic types. Contract success checks signatures and selected fixtures, not all implementation return values or optional models.",
+      "remaining": "Source-owner typing and runtime work remains; it was never completed by these contract tasks."
+    },
+    {
+      "id": "A4",
+      "claim": "Register completion represents the product roadmap",
+      "result": "NOT_ESTABLISHED",
+      "evidence": "Only four narrow tasks existed. docs/WAVE-04.md continues with publishing recipes/targeting, spatial budgets, temporal/text-conditioned engine work, and native packaging/navigation. No current feature-by-feature acceptance establishes completion of those groups.",
+      "remaining": "Review roadmap against source before claiming completion or creating implementation scope; do not infer that every listed feature is absent."
+    }
+  ],
+  "missing_public_top_level_symbol_rows": [
+    {
+      "path": "src/riposte/benchmark.py",
+      "symbol": "run_benchmark",
+      "line": 21
+    },
+    {
+      "path": "src/riposte/cli.py",
+      "symbol": "Device",
+      "line": 24
+    },
+    {
+      "path": "src/riposte/cli.py",
+      "symbol": "DateMode",
+      "line": 25
+    },
+    {
+      "path": "src/riposte/cli.py",
+      "symbol": "Theme",
+      "line": 26
+    },
+    {
+      "path": "src/riposte/cli.py",
+      "symbol": "Engine",
+      "line": 27
+    },
+    {
+      "path": "src/riposte/cli.py",
+      "symbol": "Task",
+      "line": 28
+    },
+    {
+      "path": "src/riposte/cli.py",
+      "symbol": "Decision",
+      "line": 29
+    },
+    {
+      "path": "src/riposte/cli.py",
+      "symbol": "root_callback",
+      "line": 39
+    },
+    {
+      "path": "src/riposte/cli.py",
+      "symbol": "command",
+      "line": 60
+    },
+    {
+      "path": "src/riposte/cli.py",
+      "symbol": "dispatch",
+      "line": 64
+    },
+    {
+      "path": "src/riposte/cli.py",
+      "symbol": "ui",
+      "line": 71
+    },
+    {
+      "path": "src/riposte/cli.py",
+      "symbol": "organize",
+      "line": 79
+    },
+    {
+      "path": "src/riposte/cli.py",
+      "symbol": "audit",
+      "line": 88
+    },
+    {
+      "path": "src/riposte/cli.py",
+      "symbol": "list_images",
+      "line": 94
+    },
+    {
+      "path": "src/riposte/cli.py",
+      "symbol": "inspect",
+      "line": 106
+    },
+    {
+      "path": "src/riposte/cli.py",
+      "symbol": "publish",
+      "line": 112
+    },
+    {
+      "path": "src/riposte/cli.py",
+      "symbol": "publications",
+      "line": 143
+    },
+    {
+      "path": "src/riposte/cli.py",
+      "symbol": "resume",
+      "line": 149
+    },
+    {
+      "path": "src/riposte/cli.py",
+      "symbol": "review",
+      "line": 156
+    },
+    {
+      "path": "src/riposte/cli.py",
+      "symbol": "package",
+      "line": 167
+    },
+    {
+      "path": "src/riposte/cli.py",
+      "symbol": "image",
+      "line": 173
+    },
+    {
+      "path": "src/riposte/cli.py",
+      "symbol": "doctor",
+      "line": 189
+    },
+    {
+      "path": "src/riposte/cli.py",
+      "symbol": "upgrade",
+      "line": 197
+    },
+    {
+      "path": "src/riposte/cli.py",
+      "symbol": "serve",
+      "line": 203
+    },
+    {
+      "path": "src/riposte/cli.py",
+      "symbol": "guard",
+      "line": 224
+    },
+    {
+      "path": "src/riposte/cli.py",
+      "symbol": "compare",
+      "line": 239
+    },
+    {
+      "path": "src/riposte/cli.py",
+      "symbol": "qualify",
+      "line": 245
+    },
+    {
+      "path": "src/riposte/cli.py",
+      "symbol": "challenge",
+      "line": 251
+    },
+    {
+      "path": "src/riposte/cli.py",
+      "symbol": "benchmark",
+      "line": 261
+    },
+    {
+      "path": "src/riposte/cli.py",
+      "symbol": "export",
+      "line": 268
+    },
+    {
+      "path": "src/riposte/cli.py",
+      "symbol": "trials",
+      "line": 275
+    },
+    {
+      "path": "src/riposte/cli.py",
+      "symbol": "evaluations",
+      "line": 281
+    },
+    {
+      "path": "src/riposte/cli.py",
+      "symbol": "generations",
+      "line": 287
+    },
+    {
+      "path": "src/riposte/cli.py",
+      "symbol": "generation",
+      "line": 293
+    },
+    {
+      "path": "src/riposte/cli.py",
+      "symbol": "frame",
+      "line": 299
+    },
+    {
+      "path": "src/riposte/cli.py",
+      "symbol": "workshop",
+      "line": 307
+    },
+    {
+      "path": "src/riposte/cli.py",
+      "symbol": "main",
+      "line": 316
+    },
+    {
+      "path": "src/riposte/coupled.py",
+      "symbol": "CoupledConfig",
+      "line": 22
+    },
+    {
+      "path": "src/riposte/coupled.py",
+      "symbol": "Branch",
+      "line": 41
+    },
+    {
+      "path": "src/riposte/coupled.py",
+      "symbol": "protect_coupled",
+      "line": 72
+    },
+    {
+      "path": "src/riposte/errors.py",
+      "symbol": "RiposteError",
+      "line": 2
+    },
+    {
+      "path": "src/riposte/generation.py",
+      "symbol": "LocalGenerator",
+      "line": 36
+    },
+    {
+      "path": "src/riposte/generation.py",
+      "symbol": "prepare_input",
+      "line": 113
+    },
+    {
+      "path": "src/riposte/generation.py",
+      "symbol": "frame_motion",
+      "line": 123
+    },
+    {
+      "path": "src/riposte/generation.py",
+      "symbol": "controlled_generation",
+      "line": 139
+    },
+    {
+      "path": "src/riposte/generation.py",
+      "symbol": "generation_report",
+      "line": 220
+    },
+    {
+      "path": "src/riposte/generation.py",
+      "symbol": "generation_runs",
+      "line": 235
+    },
+    {
+      "path": "src/riposte/generation.py",
+      "symbol": "generation_frame",
+      "line": 253
+    },
+    {
+      "path": "src/riposte/lab.py",
+      "symbol": "compare_external",
+      "line": 50
+    },
+    {
+      "path": "src/riposte/lab.py",
+      "symbol": "create_candidate",
+      "line": 64
+    },
+    {
+      "path": "src/riposte/lab.py",
+      "symbol": "trial_report",
+      "line": 96
+    },
+    {
+      "path": "src/riposte/lab.py",
+      "symbol": "trials",
+      "line": 105
+    },
+    {
+      "path": "src/riposte/lab.py",
+      "symbol": "export_candidate",
+      "line": 119
+    },
+    {
+      "path": "src/riposte/lab.py",
+      "symbol": "trial_pixels",
+      "line": 142
+    },
+    {
+      "path": "src/riposte/metrics.py",
+      "symbol": "transform",
+      "line": 10
+    },
+    {
+      "path": "src/riposte/metrics.py",
+      "symbol": "fidelity",
+      "line": 32
+    },
+    {
+      "path": "src/riposte/metrics.py",
+      "symbol": "transport_report",
+      "line": 49
+    },
+    {
+      "path": "src/riposte/metrics.py",
+      "symbol": "difference_image",
+      "line": 59
+    },
+    {
+      "path": "src/riposte/models.py",
+      "symbol": "offline",
+      "line": 22
+    },
+    {
+      "path": "src/riposte/models.py",
+      "symbol": "read_config",
+      "line": 27
+    },
+    {
+      "path": "src/riposte/models.py",
+      "symbol": "model_fingerprint",
+      "line": 55
+    },
+    {
+      "path": "src/riposte/models.py",
+      "symbol": "inspect_vae",
+      "line": 67
+    },
+    {
+      "path": "src/riposte/models.py",
+      "symbol": "runtime_capabilities",
+      "line": 84
+    },
+    {
+      "path": "src/riposte/models.py",
+      "symbol": "select_device",
+      "line": 107
+    },
+    {
+      "path": "src/riposte/models.py",
+      "symbol": "LocalEncoder",
+      "line": 122
+    },
+    {
+      "path": "src/riposte/models.py",
+      "symbol": "LocalInpaintProbe",
+      "line": 159
+    },
+    {
+      "path": "src/riposte/optimizer.py",
+      "symbol": "GuardConfig",
+      "line": 17
+    },
+    {
+      "path": "src/riposte/optimizer.py",
+      "symbol": "LocalVAE",
+      "line": 29
+    },
+    {
+      "path": "src/riposte/optimizer.py",
+      "symbol": "jpeg_surrogate",
+      "line": 64
+    },
+    {
+      "path": "src/riposte/optimizer.py",
+      "symbol": "eot",
+      "line": 95
+    },
+    {
+      "path": "src/riposte/optimizer.py",
+      "symbol": "protect",
+      "line": 111
+    },
+    {
+      "path": "src/riposte/organizer.py",
+      "symbol": "walk_inputs",
+      "line": 14
+    },
+    {
+      "path": "src/riposte/organizer.py",
+      "symbol": "known_good",
+      "line": 43
+    },
+    {
+      "path": "src/riposte/organizer.py",
+      "symbol": "plan",
+      "line": 53
+    },
+    {
+      "path": "src/riposte/organizer.py",
+      "symbol": "organize",
+      "line": 102
+    },
+    {
+      "path": "src/riposte/organizer.py",
+      "symbol": "audit_workspace",
+      "line": 172
+    },
+    {
+      "path": "src/riposte/policy.py",
+      "symbol": "Policy",
+      "line": 19
+    },
+    {
+      "path": "src/riposte/policy.py",
+      "symbol": "size_bin",
+      "line": 30
+    },
+    {
+      "path": "src/riposte/policy.py",
+      "symbol": "valid_day",
+      "line": 37
+    },
+    {
+      "path": "src/riposte/policy.py",
+      "symbol": "extract_day",
+      "line": 45
+    },
+    {
+      "path": "src/riposte/policy.py",
+      "symbol": "folder_for",
+      "line": 79
+    },
+    {
+      "path": "src/riposte/policy.py",
+      "symbol": "is_link",
+      "line": 84
+    },
+    {
+      "path": "src/riposte/policy.py",
+      "symbol": "same_file_state",
+      "line": 91
+    },
+    {
+      "path": "src/riposte/policy.py",
+      "symbol": "canonical_path",
+      "line": 94
+    },
+    {
+      "path": "src/riposte/publication.py",
+      "symbol": "PublishRecipe",
+      "line": 30
+    },
+    {
+      "path": "src/riposte/publication.py",
+      "symbol": "publication_plan",
+      "line": 90
+    },
+    {
+      "path": "src/riposte/publication.py",
+      "symbol": "start_publication",
+      "line": 148
+    },
+    {
+      "path": "src/riposte/publication.py",
+      "symbol": "resume_publication",
+      "line": 163
+    },
+    {
+      "path": "src/riposte/publication.py",
+      "symbol": "publication_status",
+      "line": 268
+    },
+    {
+      "path": "src/riposte/publication.py",
+      "symbol": "publications",
+      "line": 298
+    },
+    {
+      "path": "src/riposte/publication.py",
+      "symbol": "review_publication",
+      "line": 311
+    },
+    {
+      "path": "src/riposte/publication.py",
+      "symbol": "publication_pixels",
+      "line": 331
+    },
+    {
+      "path": "src/riposte/publication.py",
+      "symbol": "publication_zip",
+      "line": 349
+    },
+    {
+      "path": "src/riposte/publication.py",
+      "symbol": "export_publication",
+      "line": 386
+    },
+    {
+      "path": "src/riposte/publication.py",
+      "symbol": "open_in_workshop",
+      "line": 401
+    },
+    {
+      "path": "src/riposte/qualification.py",
+      "symbol": "evaluate_pair",
+      "line": 22
+    },
+    {
+      "path": "src/riposte/qualification.py",
+      "symbol": "qualify_trial",
+      "line": 122
+    },
+    {
+      "path": "src/riposte/qualification.py",
+      "symbol": "evaluations",
+      "line": 156
+    },
+    {
+      "path": "src/riposte/quality.py",
+      "symbol": "QualityLimits",
+      "line": 11
+    },
+    {
+      "path": "src/riposte/quality.py",
+      "symbol": "spatial_budget",
+      "line": 29
+    },
+    {
+      "path": "src/riposte/quality.py",
+      "symbol": "quality_report",
+      "line": 53
+    },
+    {
+      "path": "src/riposte/release_guard.py",
+      "symbol": "ReleaseConfig",
+      "line": 19
+    },
+    {
+      "path": "src/riposte/release_guard.py",
+      "symbol": "temporal_energy",
+      "line": 37
+    },
+    {
+      "path": "src/riposte/release_guard.py",
+      "symbol": "protect_release",
+      "line": 43
+    },
+    {
+      "path": "src/riposte/runtime_probe.py",
+      "symbol": "probe_encoder",
+      "line": 6
+    },
+    {
+      "path": "src/riposte/runtime_probe.py",
+      "symbol": "execute_local_probe",
+      "line": 27
+    },
+    {
+      "path": "src/riposte/sanitize.py",
+      "symbol": "CleanImage",
+      "line": 22
+    },
+    {
+      "path": "src/riposte/sanitize.py",
+      "symbol": "png_audit",
+      "line": 32
+    },
+    {
+      "path": "src/riposte/sanitize.py",
+      "symbol": "fresh_pixels",
+      "line": 101
+    },
+    {
+      "path": "src/riposte/sanitize.py",
+      "symbol": "decode_clean",
+      "line": 109
+    },
+    {
+      "path": "src/riposte/sanitize.py",
+      "symbol": "encode_clean",
+      "line": 168
+    },
+    {
+      "path": "src/riposte/sanitize.py",
+      "symbol": "timestamp_day",
+      "line": 181
+    },
+    {
+      "path": "src/riposte/sanitize.py",
+      "symbol": "social_render",
+      "line": 187
+    },
+    {
+      "path": "src/riposte/server.py",
+      "symbol": "StrictModel",
+      "line": 25
+    },
+    {
+      "path": "src/riposte/server.py",
+      "symbol": "OrganizeRequest",
+      "line": 28
+    },
+    {
+      "path": "src/riposte/server.py",
+      "symbol": "GuardRequest",
+      "line": 34
+    },
+    {
+      "path": "src/riposte/server.py",
+      "symbol": "PreflightRequest",
+      "line": 46
+    },
+    {
+      "path": "src/riposte/server.py",
+      "symbol": "QualificationRequest",
+      "line": 49
+    },
+    {
+      "path": "src/riposte/server.py",
+      "symbol": "GenerationRequest",
+      "line": 54
+    },
+    {
+      "path": "src/riposte/server.py",
+      "symbol": "CompareRequest",
+      "line": 60
+    },
+    {
+      "path": "src/riposte/server.py",
+      "symbol": "ExportRequest",
+      "line": 66
+    },
+    {
+      "path": "src/riposte/server.py",
+      "symbol": "PublishRequest",
+      "line": 70
+    },
+    {
+      "path": "src/riposte/server.py",
+      "symbol": "ResumePublishRequest",
+      "line": 86
+    },
+    {
+      "path": "src/riposte/server.py",
+      "symbol": "PublishReviewRequest",
+      "line": 92
+    },
+    {
+      "path": "src/riposte/server.py",
+      "symbol": "ExecutionRequest",
+      "line": 98
+    },
+    {
+      "path": "src/riposte/server.py",
+      "symbol": "Jobs",
+      "line": 102
+    },
+    {
+      "path": "src/riposte/server.py",
+      "symbol": "create_app",
+      "line": 166
+    },
+    {
+      "path": "src/riposte/store.py",
+      "symbol": "state_name",
+      "line": 16
+    },
+    {
+      "path": "src/riposte/store.py",
+      "symbol": "state_relative",
+      "line": 21
+    },
+    {
+      "path": "src/riposte/store.py",
+      "symbol": "check_root",
+      "line": 25
+    },
+    {
+      "path": "src/riposte/store.py",
+      "symbol": "state_dir",
+      "line": 48
+    },
+    {
+      "path": "src/riposte/store.py",
+      "symbol": "legacy_workspace",
+      "line": 57
+    },
+    {
+      "path": "src/riposte/store.py",
+      "symbol": "upgrade_workspace",
+      "line": 63
+    },
+    {
+      "path": "src/riposte/store.py",
+      "symbol": "safe_child",
+      "line": 100
+    },
+    {
+      "path": "src/riposte/store.py",
+      "symbol": "workspace_lock",
+      "line": 116
+    },
+    {
+      "path": "src/riposte/store.py",
+      "symbol": "connect",
+      "line": 130
+    },
+    {
+      "path": "src/riposte/store.py",
+      "symbol": "catalog",
+      "line": 142
+    },
+    {
+      "path": "src/riposte/store.py",
+      "symbol": "record_image",
+      "line": 153
+    },
+    {
+      "path": "src/riposte/store.py",
+      "symbol": "find_image",
+      "line": 163
+    },
+    {
+      "path": "src/riposte/store.py",
+      "symbol": "atomic_clean_write",
+      "line": 178
+    },
+    {
+      "path": "src/riposte/store.py",
+      "symbol": "write_report",
+      "line": 202
+    },
+    {
+      "path": "src/riposte/store.py",
+      "symbol": "atomic_json_write",
+      "line": 216
+    },
+    {
+      "path": "src/riposte/temporal.py",
+      "symbol": "TemporalConfig",
+      "line": 17
+    },
+    {
+      "path": "src/riposte/temporal.py",
+      "symbol": "letterbox_tensor",
+      "line": 38
+    },
+    {
+      "path": "src/riposte/temporal.py",
+      "symbol": "v_prediction_original",
+      "line": 48
+    },
+    {
+      "path": "src/riposte/temporal.py",
+      "symbol": "LocalTemporalProbe",
+      "line": 53
+    },
+    {
+      "path": "src/riposte/terminal/actions.py",
+      "symbol": "Field",
+      "line": 13
+    },
+    {
+      "path": "src/riposte/terminal/actions.py",
+      "symbol": "Action",
+      "line": 26
+    },
+    {
+      "path": "src/riposte/terminal/actions.py",
+      "symbol": "defaults",
+      "line": 104
+    },
+    {
+      "path": "src/riposte/terminal/actions.py",
+      "symbol": "parse_value",
+      "line": 111
+    },
+    {
+      "path": "src/riposte/terminal/actions.py",
+      "symbol": "make_request",
+      "line": 153
+    },
+    {
+      "path": "src/riposte/terminal/actions.py",
+      "symbol": "request_argv",
+      "line": 165
+    },
+    {
+      "path": "src/riposte/terminal/actions.py",
+      "symbol": "command_line",
+      "line": 195
+    },
+    {
+      "path": "src/riposte/terminal/app.py",
+      "symbol": "linear_session",
+      "line": 63
+    },
+    {
+      "path": "src/riposte/terminal/app.py",
+      "symbol": "launch",
+      "line": 95
+    },
+    {
+      "path": "src/riposte/terminal/controller.py",
+      "symbol": "Controller",
+      "line": 19
+    },
+    {
+      "path": "src/riposte/terminal/help.py",
+      "symbol": "format_help",
+      "line": 14
+    },
+    {
+      "path": "src/riposte/terminal/help.py",
+      "symbol": "RichCommand",
+      "line": 47
+    },
+    {
+      "path": "src/riposte/terminal/help.py",
+      "symbol": "RichGroup",
+      "line": 51
+    },
+    {
+      "path": "src/riposte/terminal/jobs.py",
+      "symbol": "safe_code",
+      "line": 17
+    },
+    {
+      "path": "src/riposte/terminal/jobs.py",
+      "symbol": "safe_phase",
+      "line": 21
+    },
+    {
+      "path": "src/riposte/terminal/jobs.py",
+      "symbol": "Snapshot",
+      "line": 32
+    },
+    {
+      "path": "src/riposte/terminal/jobs.py",
+      "symbol": "Operation",
+      "line": 47
+    },
+    {
+      "path": "src/riposte/terminal/keyboard.py",
+      "symbol": "Key",
+      "line": 15
+    },
+    {
+      "path": "src/riposte/terminal/keyboard.py",
+      "symbol": "KeyDecoder",
+      "line": 30
+    },
+    {
+      "path": "src/riposte/terminal/keyboard.py",
+      "symbol": "TerminalKeys",
+      "line": 85
+    },
+    {
+      "path": "src/riposte/terminal/material.py",
+      "symbol": "counterstroke",
+      "line": 19
+    },
+    {
+      "path": "src/riposte/terminal/material.py",
+      "symbol": "activity_trace",
+      "line": 79
+    },
+    {
+      "path": "src/riposte/terminal/output.py",
+      "symbol": "Presentation",
+      "line": 22
+    },
+    {
+      "path": "src/riposte/terminal/output.py",
+      "symbol": "error",
+      "line": 68
+    },
+    {
+      "path": "src/riposte/terminal/output.py",
+      "symbol": "result_table",
+      "line": 78
+    },
+    {
+      "path": "src/riposte/terminal/output.py",
+      "symbol": "emit",
+      "line": 98
+    },
+    {
+      "path": "src/riposte/terminal/output.py",
+      "symbol": "Activity",
+      "line": 117
+    },
+    {
+      "path": "src/riposte/terminal/output.py",
+      "symbol": "run_direct",
+      "line": 137
+    },
+    {
+      "path": "src/riposte/terminal/preview.py",
+      "symbol": "Preview",
+      "line": 10
+    },
+    {
+      "path": "src/riposte/terminal/preview.py",
+      "symbol": "make_preview",
+      "line": 15
+    },
+    {
+      "path": "src/riposte/terminal/preview.py",
+      "symbol": "paint_preview",
+      "line": 25
+    },
+    {
+      "path": "src/riposte/terminal/render.py",
+      "symbol": "view_rows",
+      "line": 16
+    },
+    {
+      "path": "src/riposte/terminal/render.py",
+      "symbol": "shown",
+      "line": 29
+    },
+    {
+      "path": "src/riposte/terminal/render.py",
+      "symbol": "page_window",
+      "line": 36
+    },
+    {
+      "path": "src/riposte/terminal/render.py",
+      "symbol": "header",
+      "line": 43
+    },
+    {
+      "path": "src/riposte/terminal/render.py",
+      "symbol": "footer",
+      "line": 57
+    },
+    {
+      "path": "src/riposte/terminal/render.py",
+      "symbol": "home",
+      "line": 87
+    },
+    {
+      "path": "src/riposte/terminal/render.py",
+      "symbol": "collection",
+      "line": 130
+    },
+    {
+      "path": "src/riposte/terminal/render.py",
+      "symbol": "asset",
+      "line": 152
+    },
+    {
+      "path": "src/riposte/terminal/render.py",
+      "symbol": "form",
+      "line": 168
+    },
+    {
+      "path": "src/riposte/terminal/render.py",
+      "symbol": "batches",
+      "line": 209
+    },
+    {
+      "path": "src/riposte/terminal/render.py",
+      "symbol": "item",
+      "line": 229
+    },
+    {
+      "path": "src/riposte/terminal/render.py",
+      "symbol": "workshop",
+      "line": 248
+    },
+    {
+      "path": "src/riposte/terminal/render.py",
+      "symbol": "scroll_limit",
+      "line": 285
+    },
+    {
+      "path": "src/riposte/terminal/render.py",
+      "symbol": "result",
+      "line": 293
+    },
+    {
+      "path": "src/riposte/terminal/render.py",
+      "symbol": "job",
+      "line": 326
+    },
+    {
+      "path": "src/riposte/terminal/render.py",
+      "symbol": "preferences",
+      "line": 346
+    },
+    {
+      "path": "src/riposte/terminal/render.py",
+      "symbol": "help_page",
+      "line": 362
+    },
+    {
+      "path": "src/riposte/terminal/render.py",
+      "symbol": "command_page",
+      "line": 369
+    },
+    {
+      "path": "src/riposte/terminal/render.py",
+      "symbol": "confirm",
+      "line": 381
+    },
+    {
+      "path": "src/riposte/terminal/render.py",
+      "symbol": "editor_overlay",
+      "line": 392
+    },
+    {
+      "path": "src/riposte/terminal/render.py",
+      "symbol": "render",
+      "line": 409
+    },
+    {
+      "path": "src/riposte/terminal/reports.py",
+      "symbol": "label",
+      "line": 63
+    },
+    {
+      "path": "src/riposte/terminal/reports.py",
+      "symbol": "scalar",
+      "line": 67
+    },
+    {
+      "path": "src/riposte/terminal/reports.py",
+      "symbol": "size",
+      "line": 74
+    },
+    {
+      "path": "src/riposte/terminal/reports.py",
+      "symbol": "role",
+      "line": 81
+    },
+    {
+      "path": "src/riposte/terminal/reports.py",
+      "symbol": "line",
+      "line": 90
+    },
+    {
+      "path": "src/riposte/terminal/reports.py",
+      "symbol": "fold",
+      "line": 93
+    },
+    {
+      "path": "src/riposte/terminal/reports.py",
+      "symbol": "tree",
+      "line": 145
+    },
+    {
+      "path": "src/riposte/terminal/reports.py",
+      "symbol": "blockers",
+      "line": 164
+    },
+    {
+      "path": "src/riposte/terminal/service.py",
+      "symbol": "Request",
+      "line": 24
+    },
+    {
+      "path": "src/riposte/terminal/service.py",
+      "symbol": "root_of",
+      "line": 46
+    },
+    {
+      "path": "src/riposte/terminal/service.py",
+      "symbol": "parse_month",
+      "line": 53
+    },
+    {
+      "path": "src/riposte/terminal/service.py",
+      "symbol": "select_rows",
+      "line": 65
+    },
+    {
+      "path": "src/riposte/terminal/service.py",
+      "symbol": "recipe",
+      "line": 86
+    },
+    {
+      "path": "src/riposte/terminal/service.py",
+      "symbol": "image_selection",
+      "line": 99
+    },
+    {
+      "path": "src/riposte/terminal/service.py",
+      "symbol": "execute",
+      "line": 121
+    },
+    {
+      "path": "src/riposte/terminal/service.py",
+      "symbol": "image_bytes",
+      "line": 224
+    },
+    {
+      "path": "src/riposte/terminal/service.py",
+      "symbol": "view_image",
+      "line": 246
+    },
+    {
+      "path": "src/riposte/terminal/service.py",
+      "symbol": "result_exit_code",
+      "line": 282
+    },
+    {
+      "path": "src/riposte/terminal/signals.py",
+      "symbol": "TerminationRequested",
+      "line": 11
+    },
+    {
+      "path": "src/riposte/terminal/signals.py",
+      "symbol": "termination_guard",
+      "line": 16
+    },
+    {
+      "path": "src/riposte/terminal/state.py",
+      "symbol": "Page",
+      "line": 20
+    },
+    {
+      "path": "src/riposte/terminal/state.py",
+      "symbol": "Editor",
+      "line": 48
+    },
+    {
+      "path": "src/riposte/terminal/state.py",
+      "symbol": "Session",
+      "line": 56
+    },
+    {
+      "path": "src/riposte/terminal/surface.py",
+      "symbol": "ascii_text",
+      "line": 17
+    },
+    {
+      "path": "src/riposte/terminal/surface.py",
+      "symbol": "Cell",
+      "line": 23
+    },
+    {
+      "path": "src/riposte/terminal/surface.py",
+      "symbol": "Surface",
+      "line": 35
+    },
+    {
+      "path": "src/riposte/views.py",
+      "symbol": "publication_view",
+      "line": 18
+    },
+    {
+      "path": "src/riposte/views.py",
+      "symbol": "tensor_image",
+      "line": 42
+    },
+    {
+      "path": "src/riposte/views.py",
+      "symbol": "image_tensor",
+      "line": 46
+    },
+    {
+      "path": "src/riposte/views.py",
+      "symbol": "differentiable_view",
+      "line": 51
+    },
+    {
+      "path": "src/riposte/views.py",
+      "symbol": "keep_mask",
+      "line": 66
+    },
+    {
+      "path": "src/riposte/views.py",
+      "symbol": "budget_map",
+      "line": 93
+    },
+    {
+      "path": "src/riposte/views.py",
+      "symbol": "spectral_direction",
+      "line": 107
+    },
+    {
+      "path": "src/riposte/views.py",
+      "symbol": "matched_control",
+      "line": 128
+    }
+  ],
+  "scope_boundary": "PASS artifacts are agent-authored assertions tied to source identities. Hash freshness and CSV validation do not independently establish behavioral truth. No source implementation was changed by this audit."
+}
