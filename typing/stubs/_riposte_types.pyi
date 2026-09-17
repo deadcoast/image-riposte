@@ -264,6 +264,7 @@ class VaeInspection(TypedDict):
     preflight: Literal["FILES_PRESENT_NOT_EXECUTED"]
     ai_protection: Literal["UNVERIFIED"]
     weights_sha256: NotRequired[str]
+    configuration_sha256: NotRequired[str]
 
 class RuntimeCapabilities(TypedDict):
     versions: dict[str, str]

@@ -249,9 +249,11 @@ class ContractFixtures(unittest.TestCase):
         report = models.inspect_vae(folder)
         matches(report, RECORDS.VaeInspection)
         self.assertNotIn("weights_sha256", report)
+        self.assertNotIn("configuration_sha256", report)
         report = models.inspect_vae(folder, fingerprint=True)
         matches(report, RECORDS.VaeInspection)
         self.assertIsInstance(report["weights_sha256"], str)
+        self.assertEqual(len(report["configuration_sha256"]), 64)
 
     def test_operation_callback_and_form_contracts(self):
         def function(request, progress):

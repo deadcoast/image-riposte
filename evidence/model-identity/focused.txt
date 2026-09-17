@@ -1,0 +1,6 @@
+.........................s....................................s......... [ 76%]
+......................                                                   [100%]
+=========================== short test summary info ===========================
+SKIPPED [1] tests\test_v02_models.py:38: Windows symlink creation privilege unavailable
+SKIPPED [1] tests\test_v03_temporal.py:134: Windows account lacks symlink privilege
+92 passed, 2 skipped in 24.49s

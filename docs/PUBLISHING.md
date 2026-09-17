@@ -32,7 +32,11 @@ The in-memory pack limit is 512 MiB of accepted PNG data; a larger batch must be
 
 One serialized job runs per application instance; the workspace lock also rejects conflicting writers. Cancellation is cooperative at model/iteration/item boundaries, not mid-kernel preemption. The current output is not committed after a cancellation check fires. Already committed outputs remain available, including when the UI job itself is marked cancelled.
 
-Resume repeats input/committed-artifact validation, reconstructs the original recipe, reloads caller-selected local models and compares their safe identities with the recorded selection. Matching paths are not required; matching model identities are. Recomputed tasks use the original index-derived seed. Completed files are not regenerated or renamed. Model hashes identify selected weight bytes, not all possible library/kernel/configuration effects; this is not a reproducibility or transfer certificate.
+Resume repeats input/committed-artifact validation, reconstructs the original recipe, reloads caller-selected local models and compares their safe identities with the recorded selection. Matching paths are not required; matching model identities are. Recomputed tasks use the original index-derived seed. Completed files are not regenerated or renamed.
+
+Model identities bind the selected weight bytes and the names and bytes of JSON configuration and tokenizer text files in the selected component directories. The adapters compare configuration fingerprints before and after loading, rejecting a detected change. Moving an unchanged bundle preserves its identity. Changed model configuration, tokenizer vocabulary/merges, scheduler settings, or temporal image normalization requires a new batch. Library and kernel versions are outside this file identity.
+
+Older unfinished batches without configuration fingerprints cannot establish the new identity match and must be restarted as a new batch. Their already committed candidates remain available for review and export.
 
 A stale process lock following a system crash requires stopping all RIPOSTE processes and confirming that no operation remains active before manual removal. No unsafe automatic unlock was added. A committed-but-corrupted result is not quietly replaced. Failed model loads or unavailable GPU memory remain explicit failures rather than triggers to drop the requested defense objective.
 

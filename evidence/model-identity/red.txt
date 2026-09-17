@@ -1,0 +1,341 @@
+FFFFFFFFFFF.F                                                            [100%]
+================================== FAILURES ===================================
+_____ test_encoder_config_edit_changes_identity_without_changing_weights ______
+
+bundle = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/model-identity/red/test_encoder_config_edit_chang0/local-model')
+components = []
+
+    def test_encoder_config_edit_changes_identity_without_changing_weights(bundle, components):
+        before = models.LocalEncoder(bundle, "cpu").identity
+        config = json.loads((bundle / "config.json").read_text())
+        config["scaling_factor"] = .36
+        write_json(bundle / "config.json", config)
+        after = models.LocalEncoder(bundle, "cpu").identity
+        assert before["weights_sha256"] == after["weights_sha256"]
+>       assert before != after
+E       AssertionError: assert {'kind': 'AutoencoderKL', 'weights_format': 'safetensors', 'weight_files': 1, 'weight_bytes': 27, ...} != {'kind': 'AutoencoderKL', 'weights_format': 'safetensors', 'weight_files': 1, 'weight_bytes': 27, ...}
+
+tests\test_model_configuration_identity.py:119: AssertionError
+_ test_pipeline_configuration_changes_identity[inpaint-tokenizer/merges.txt] __
+
+pipeline = <function pipeline.<locals>.create at 0x0000024A901EA8D0>
+components = [], kind = 'inpaint', relative = 'tokenizer/merges.txt'
+
+    @pytest.mark.parametrize("kind,relative", [("inpaint", "tokenizer/merges.txt"),
+        ("inpaint", "tokenizer/vocab.json"), ("inpaint", "scheduler/scheduler_config.json"),
+        ("inpaint", "vae/config.json"), ("temporal", "feature_extractor/preprocessor_config.json"),
+        ("temporal", "scheduler/scheduler_config.json"), ("temporal", "image_encoder/config.json")])
+    def test_pipeline_configuration_changes_identity(pipeline, components, kind, relative):
+        from riposte.temporal import LocalTemporalProbe
+        folder = pipeline(kind)
+        adapter = LocalTemporalProbe if kind == "temporal" else models.LocalInpaintProbe
+        before = adapter(folder, "cpu").identity
+        path = folder / relative
+        if relative.endswith(".txt"):
+            path.write_text("#version: 0.2\nb c\n", encoding="utf-8")
+        else:
+            config = json.loads(path.read_text())
+            key, value = (("image_mean", [.1, .2, .3]) if "preprocessor" in relative else
+                          ("num_train_timesteps", 900) if "scheduler" in relative else
+                          ("word", 2) if "vocab" in relative else ("hidden_act", "relu"))
+            config[key] = value
+            write_json(path, config)
+        after = adapter(folder, "cpu").identity
+        assert before["component_sha256"] == after["component_sha256"]
+>       assert before != after
+E       AssertionError: assert {'kind': 'SD_9CHANNEL_EARLY_CONDITIONING', 'component_sha256': {'vae': '1cc13d4f4169c3179b723a32c3ba8139b04f58ec1b5c02...c3179b723a32c3ba8139b04f58ec1b5c026a194ec1e6c414c3dd'}, 'scope': 'EARLY_DENOISER_PROXY', 'ai_protection': 'UNVERIFIED'} != {'kind': 'SD_9CHANNEL_EARLY_CONDITIONING', 'component_sha256': {'vae': '1cc13d4f4169c3179b723a32c3ba8139b04f58ec1b5c02...c3179b723a32c3ba8139b04f58ec1b5c026a194ec1e6c414c3dd'}, 'scope': 'EARLY_DENOISER_PROXY', 'ai_protection': 'UNVERIFIED'}
+
+tests\test_model_configuration_identity.py:144: AssertionError
+_ test_pipeline_configuration_changes_identity[inpaint-tokenizer/vocab.json] __
+
+pipeline = <function pipeline.<locals>.create at 0x0000024A901EB110>
+components = [], kind = 'inpaint', relative = 'tokenizer/vocab.json'
+
+    @pytest.mark.parametrize("kind,relative", [("inpaint", "tokenizer/merges.txt"),
+        ("inpaint", "tokenizer/vocab.json"), ("inpaint", "scheduler/scheduler_config.json"),
+        ("inpaint", "vae/config.json"), ("temporal", "feature_extractor/preprocessor_config.json"),
+        ("temporal", "scheduler/scheduler_config.json"), ("temporal", "image_encoder/config.json")])
+    def test_pipeline_configuration_changes_identity(pipeline, components, kind, relative):
+        from riposte.temporal import LocalTemporalProbe
+        folder = pipeline(kind)
+        adapter = LocalTemporalProbe if kind == "temporal" else models.LocalInpaintProbe
+        before = adapter(folder, "cpu").identity
+        path = folder / relative
+        if relative.endswith(".txt"):
+            path.write_text("#version: 0.2\nb c\n", encoding="utf-8")
+        else:
+            config = json.loads(path.read_text())
+            key, value = (("image_mean", [.1, .2, .3]) if "preprocessor" in relative else
+                          ("num_train_timesteps", 900) if "scheduler" in relative else
+                          ("word", 2) if "vocab" in relative else ("hidden_act", "relu"))
+            config[key] = value
+            write_json(path, config)
+        after = adapter(folder, "cpu").identity
+        assert before["component_sha256"] == after["component_sha256"]
+>       assert before != after
+E       AssertionError: assert {'kind': 'SD_9CHANNEL_EARLY_CONDITIONING', 'component_sha256': {'vae': '1cc13d4f4169c3179b723a32c3ba8139b04f58ec1b5c02...c3179b723a32c3ba8139b04f58ec1b5c026a194ec1e6c414c3dd'}, 'scope': 'EARLY_DENOISER_PROXY', 'ai_protection': 'UNVERIFIED'} != {'kind': 'SD_9CHANNEL_EARLY_CONDITIONING', 'component_sha256': {'vae': '1cc13d4f4169c3179b723a32c3ba8139b04f58ec1b5c02...c3179b723a32c3ba8139b04f58ec1b5c026a194ec1e6c414c3dd'}, 'scope': 'EARLY_DENOISER_PROXY', 'ai_protection': 'UNVERIFIED'}
+
+tests\test_model_configuration_identity.py:144: AssertionError
+_ test_pipeline_configuration_changes_identity[inpaint-scheduler/scheduler_config.json] _
+
+pipeline = <function pipeline.<locals>.create at 0x0000024A9021C880>
+components = [], kind = 'inpaint', relative = 'scheduler/scheduler_config.json'
+
+    @pytest.mark.parametrize("kind,relative", [("inpaint", "tokenizer/merges.txt"),
+        ("inpaint", "tokenizer/vocab.json"), ("inpaint", "scheduler/scheduler_config.json"),
+        ("inpaint", "vae/config.json"), ("temporal", "feature_extractor/preprocessor_config.json"),
+        ("temporal", "scheduler/scheduler_config.json"), ("temporal", "image_encoder/config.json")])
+    def test_pipeline_configuration_changes_identity(pipeline, components, kind, relative):
+        from riposte.temporal import LocalTemporalProbe
+        folder = pipeline(kind)
+        adapter = LocalTemporalProbe if kind == "temporal" else models.LocalInpaintProbe
+        before = adapter(folder, "cpu").identity
+        path = folder / relative
+        if relative.endswith(".txt"):
+            path.write_text("#version: 0.2\nb c\n", encoding="utf-8")
+        else:
+            config = json.loads(path.read_text())
+            key, value = (("image_mean", [.1, .2, .3]) if "preprocessor" in relative else
+                          ("num_train_timesteps", 900) if "scheduler" in relative else
+                          ("word", 2) if "vocab" in relative else ("hidden_act", "relu"))
+            config[key] = value
+            write_json(path, config)
+        after = adapter(folder, "cpu").identity
+        assert before["component_sha256"] == after["component_sha256"]
+>       assert before != after
+E       AssertionError: assert {'kind': 'SD_9CHANNEL_EARLY_CONDITIONING', 'component_sha256': {'vae': '1cc13d4f4169c3179b723a32c3ba8139b04f58ec1b5c02...c3179b723a32c3ba8139b04f58ec1b5c026a194ec1e6c414c3dd'}, 'scope': 'EARLY_DENOISER_PROXY', 'ai_protection': 'UNVERIFIED'} != {'kind': 'SD_9CHANNEL_EARLY_CONDITIONING', 'component_sha256': {'vae': '1cc13d4f4169c3179b723a32c3ba8139b04f58ec1b5c02...c3179b723a32c3ba8139b04f58ec1b5c026a194ec1e6c414c3dd'}, 'scope': 'EARLY_DENOISER_PROXY', 'ai_protection': 'UNVERIFIED'}
+
+tests\test_model_configuration_identity.py:144: AssertionError
+____ test_pipeline_configuration_changes_identity[inpaint-vae/config.json] ____
+
+pipeline = <function pipeline.<locals>.create at 0x0000024A9021D0C0>
+components = [], kind = 'inpaint', relative = 'vae/config.json'
+
+    @pytest.mark.parametrize("kind,relative", [("inpaint", "tokenizer/merges.txt"),
+        ("inpaint", "tokenizer/vocab.json"), ("inpaint", "scheduler/scheduler_config.json"),
+        ("inpaint", "vae/config.json"), ("temporal", "feature_extractor/preprocessor_config.json"),
+        ("temporal", "scheduler/scheduler_config.json"), ("temporal", "image_encoder/config.json")])
+    def test_pipeline_configuration_changes_identity(pipeline, components, kind, relative):
+        from riposte.temporal import LocalTemporalProbe
+        folder = pipeline(kind)
+        adapter = LocalTemporalProbe if kind == "temporal" else models.LocalInpaintProbe
+        before = adapter(folder, "cpu").identity
+        path = folder / relative
+        if relative.endswith(".txt"):
+            path.write_text("#version: 0.2\nb c\n", encoding="utf-8")
+        else:
+            config = json.loads(path.read_text())
+            key, value = (("image_mean", [.1, .2, .3]) if "preprocessor" in relative else
+                          ("num_train_timesteps", 900) if "scheduler" in relative else
+                          ("word", 2) if "vocab" in relative else ("hidden_act", "relu"))
+            config[key] = value
+            write_json(path, config)
+        after = adapter(folder, "cpu").identity
+        assert before["component_sha256"] == after["component_sha256"]
+>       assert before != after
+E       AssertionError: assert {'kind': 'SD_9CHANNEL_EARLY_CONDITIONING', 'component_sha256': {'vae': '1cc13d4f4169c3179b723a32c3ba8139b04f58ec1b5c02...c3179b723a32c3ba8139b04f58ec1b5c026a194ec1e6c414c3dd'}, 'scope': 'EARLY_DENOISER_PROXY', 'ai_protection': 'UNVERIFIED'} != {'kind': 'SD_9CHANNEL_EARLY_CONDITIONING', 'component_sha256': {'vae': '1cc13d4f4169c3179b723a32c3ba8139b04f58ec1b5c02...c3179b723a32c3ba8139b04f58ec1b5c026a194ec1e6c414c3dd'}, 'scope': 'EARLY_DENOISER_PROXY', 'ai_protection': 'UNVERIFIED'}
+
+tests\test_model_configuration_identity.py:144: AssertionError
+_ test_pipeline_configuration_changes_identity[temporal-feature_extractor/preprocessor_config.json] _
+
+pipeline = <function pipeline.<locals>.create at 0x0000024A9021DB10>
+components = [], kind = 'temporal'
+relative = 'feature_extractor/preprocessor_config.json'
+
+    @pytest.mark.parametrize("kind,relative", [("inpaint", "tokenizer/merges.txt"),
+        ("inpaint", "tokenizer/vocab.json"), ("inpaint", "scheduler/scheduler_config.json"),
+        ("inpaint", "vae/config.json"), ("temporal", "feature_extractor/preprocessor_config.json"),
+        ("temporal", "scheduler/scheduler_config.json"), ("temporal", "image_encoder/config.json")])
+    def test_pipeline_configuration_changes_identity(pipeline, components, kind, relative):
+        from riposte.temporal import LocalTemporalProbe
+        folder = pipeline(kind)
+        adapter = LocalTemporalProbe if kind == "temporal" else models.LocalInpaintProbe
+        before = adapter(folder, "cpu").identity
+        path = folder / relative
+        if relative.endswith(".txt"):
+            path.write_text("#version: 0.2\nb c\n", encoding="utf-8")
+        else:
+            config = json.loads(path.read_text())
+            key, value = (("image_mean", [.1, .2, .3]) if "preprocessor" in relative else
+                          ("num_train_timesteps", 900) if "scheduler" in relative else
+                          ("word", 2) if "vocab" in relative else ("hidden_act", "relu"))
+            config[key] = value
+            write_json(path, config)
+        after = adapter(folder, "cpu").identity
+        assert before["component_sha256"] == after["component_sha256"]
+>       assert before != after
+E       AssertionError: assert {'kind': 'SVD_EARLY_TEMPORAL_ENERGY', 'component_sha256': {'vae': '1cc13d4f4169c3179b723a32c3ba8139b04f58ec1b5c026a194...1e6c414c3dd'}, 'settings': {'width': 512, 'height': 288, 'frames': 14, 'generation_steps': 25, ...}, 'sigma': 5.0, ...} != {'kind': 'SVD_EARLY_TEMPORAL_ENERGY', 'component_sha256': {'vae': '1cc13d4f4169c3179b723a32c3ba8139b04f58ec1b5c026a194...1e6c414c3dd'}, 'settings': {'width': 512, 'height': 288, 'frames': 14, 'generation_steps': 25, ...}, 'sigma': 5.0, ...}
+
+tests\test_model_configuration_identity.py:144: AssertionError
+_ test_pipeline_configuration_changes_identity[temporal-scheduler/scheduler_config.json] _
+
+pipeline = <function pipeline.<locals>.create at 0x0000024A9021D220>
+components = [], kind = 'temporal', relative = 'scheduler/scheduler_config.json'
+
+    @pytest.mark.parametrize("kind,relative", [("inpaint", "tokenizer/merges.txt"),
+        ("inpaint", "tokenizer/vocab.json"), ("inpaint", "scheduler/scheduler_config.json"),
+        ("inpaint", "vae/config.json"), ("temporal", "feature_extractor/preprocessor_config.json"),
+        ("temporal", "scheduler/scheduler_config.json"), ("temporal", "image_encoder/config.json")])
+    def test_pipeline_configuration_changes_identity(pipeline, components, kind, relative):
+        from riposte.temporal import LocalTemporalProbe
+        folder = pipeline(kind)
+        adapter = LocalTemporalProbe if kind == "temporal" else models.LocalInpaintProbe
+        before = adapter(folder, "cpu").identity
+        path = folder / relative
+        if relative.endswith(".txt"):
+            path.write_text("#version: 0.2\nb c\n", encoding="utf-8")
+        else:
+            config = json.loads(path.read_text())
+            key, value = (("image_mean", [.1, .2, .3]) if "preprocessor" in relative else
+                          ("num_train_timesteps", 900) if "scheduler" in relative else
+                          ("word", 2) if "vocab" in relative else ("hidden_act", "relu"))
+            config[key] = value
+            write_json(path, config)
+        after = adapter(folder, "cpu").identity
+        assert before["component_sha256"] == after["component_sha256"]
+>       assert before != after
+E       AssertionError: assert {'kind': 'SVD_EARLY_TEMPORAL_ENERGY', 'component_sha256': {'vae': '1cc13d4f4169c3179b723a32c3ba8139b04f58ec1b5c026a194...1e6c414c3dd'}, 'settings': {'width': 512, 'height': 288, 'frames': 14, 'generation_steps': 25, ...}, 'sigma': 5.0, ...} != {'kind': 'SVD_EARLY_TEMPORAL_ENERGY', 'component_sha256': {'vae': '1cc13d4f4169c3179b723a32c3ba8139b04f58ec1b5c026a194...1e6c414c3dd'}, 'settings': {'width': 512, 'height': 288, 'frames': 14, 'generation_steps': 25, ...}, 'sigma': 5.0, ...}
+
+tests\test_model_configuration_identity.py:144: AssertionError
+_ test_pipeline_configuration_changes_identity[temporal-image_encoder/config.json] _
+
+pipeline = <function pipeline.<locals>.create at 0x0000024A9021ECF0>
+components = [], kind = 'temporal', relative = 'image_encoder/config.json'
+
+    @pytest.mark.parametrize("kind,relative", [("inpaint", "tokenizer/merges.txt"),
+        ("inpaint", "tokenizer/vocab.json"), ("inpaint", "scheduler/scheduler_config.json"),
+        ("inpaint", "vae/config.json"), ("temporal", "feature_extractor/preprocessor_config.json"),
+        ("temporal", "scheduler/scheduler_config.json"), ("temporal", "image_encoder/config.json")])
+    def test_pipeline_configuration_changes_identity(pipeline, components, kind, relative):
+        from riposte.temporal import LocalTemporalProbe
+        folder = pipeline(kind)
+        adapter = LocalTemporalProbe if kind == "temporal" else models.LocalInpaintProbe
+        before = adapter(folder, "cpu").identity
+        path = folder / relative
+        if relative.endswith(".txt"):
+            path.write_text("#version: 0.2\nb c\n", encoding="utf-8")
+        else:
+            config = json.loads(path.read_text())
+            key, value = (("image_mean", [.1, .2, .3]) if "preprocessor" in relative else
+                          ("num_train_timesteps", 900) if "scheduler" in relative else
+                          ("word", 2) if "vocab" in relative else ("hidden_act", "relu"))
+            config[key] = value
+            write_json(path, config)
+        after = adapter(folder, "cpu").identity
+        assert before["component_sha256"] == after["component_sha256"]
+>       assert before != after
+E       AssertionError: assert {'kind': 'SVD_EARLY_TEMPORAL_ENERGY', 'component_sha256': {'vae': '1cc13d4f4169c3179b723a32c3ba8139b04f58ec1b5c026a194...1e6c414c3dd'}, 'settings': {'width': 512, 'height': 288, 'frames': 14, 'generation_steps': 25, ...}, 'sigma': 5.0, ...} != {'kind': 'SVD_EARLY_TEMPORAL_ENERGY', 'component_sha256': {'vae': '1cc13d4f4169c3179b723a32c3ba8139b04f58ec1b5c026a194...1e6c414c3dd'}, 'settings': {'width': 512, 'height': 288, 'frames': 14, 'generation_steps': 25, ...}, 'sigma': 5.0, ...}
+
+tests\test_model_configuration_identity.py:144: AssertionError
+_______ test_configuration_mutated_during_loading_is_rejected[encoder] ________
+
+bundle = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/model-identity/red/test_configuration_mutated_dur0/local-model')
+pipeline = <function pipeline.<locals>.create at 0x0000024A9021F8A0>
+components = [], kind = 'encoder'
+
+    @pytest.mark.parametrize("kind", ["encoder", "inpaint", "temporal"])
+    def test_configuration_mutated_during_loading_is_rejected(bundle, pipeline, components, kind):
+        from riposte.temporal import LocalTemporalProbe
+        folder = bundle if kind == "encoder" else pipeline(kind)
+        adapter = {"encoder": models.LocalEncoder, "inpaint": models.LocalInpaintProbe, "temporal": LocalTemporalProbe}[kind]
+        path = folder / ("config.json" if kind == "encoder" else "scheduler/scheduler_config.json")
+        config = json.loads(path.read_text())
+        config["changed_during_load"] = True
+        components.append(lambda: write_json(path, config))
+>       with pytest.raises(RiposteError, match="MODEL_CONFIGURATION_CHANGED"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE RiposteError
+
+tests\test_model_configuration_identity.py:156: Failed
+_______ test_configuration_mutated_during_loading_is_rejected[inpaint] ________
+
+bundle = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/model-identity/red/test_configuration_mutated_dur1/local-model')
+pipeline = <function pipeline.<locals>.create at 0x0000024A9023CA90>
+components = [], kind = 'inpaint'
+
+    @pytest.mark.parametrize("kind", ["encoder", "inpaint", "temporal"])
+    def test_configuration_mutated_during_loading_is_rejected(bundle, pipeline, components, kind):
+        from riposte.temporal import LocalTemporalProbe
+        folder = bundle if kind == "encoder" else pipeline(kind)
+        adapter = {"encoder": models.LocalEncoder, "inpaint": models.LocalInpaintProbe, "temporal": LocalTemporalProbe}[kind]
+        path = folder / ("config.json" if kind == "encoder" else "scheduler/scheduler_config.json")
+        config = json.loads(path.read_text())
+        config["changed_during_load"] = True
+        components.append(lambda: write_json(path, config))
+>       with pytest.raises(RiposteError, match="MODEL_CONFIGURATION_CHANGED"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE RiposteError
+
+tests\test_model_configuration_identity.py:156: Failed
+_______ test_configuration_mutated_during_loading_is_rejected[temporal] _______
+
+bundle = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/model-identity/red/test_configuration_mutated_dur2/local-model')
+pipeline = <function pipeline.<locals>.create at 0x0000024A9023D6F0>
+components = [], kind = 'temporal'
+
+    @pytest.mark.parametrize("kind", ["encoder", "inpaint", "temporal"])
+    def test_configuration_mutated_during_loading_is_rejected(bundle, pipeline, components, kind):
+        from riposte.temporal import LocalTemporalProbe
+        folder = bundle if kind == "encoder" else pipeline(kind)
+        adapter = {"encoder": models.LocalEncoder, "inpaint": models.LocalInpaintProbe, "temporal": LocalTemporalProbe}[kind]
+        path = folder / ("config.json" if kind == "encoder" else "scheduler/scheduler_config.json")
+        config = json.loads(path.read_text())
+        config["changed_during_load"] = True
+        components.append(lambda: write_json(path, config))
+>       with pytest.raises(RiposteError, match="MODEL_CONFIGURATION_CHANGED"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE RiposteError
+
+tests\test_model_configuration_identity.py:156: Failed
+_______ test_interrupted_publication_resume_checks_configuration[True] ________
+
+root = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/model-identity/red/test_interrupted_publication_r1/workspace')
+make_image = <function make_image.<locals>.create at 0x0000024A9023E560>
+bundle = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/model-identity/red/test_interrupted_publication_r1/local-model')
+components = []
+tmp_path = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/model-identity/red/test_interrupted_publication_r1')
+change = True
+
+    @pytest.mark.parametrize("change", [False, True])
+    def test_interrupted_publication_resume_checks_configuration(root, make_image, bundle, components, tmp_path, change):
+        for name in ("first.png", "second.png"):
+            make_image(root / name, size=(32, 32), color=(90, 120, 150))
+        organize(root, Policy(date_mode="modified"))
+        ids = [row["id"] for row in catalog(root)]
+        recipe = publication.PublishRecipe((64,), ReleaseConfig(steps=3, restarts=1))
+    
+        def stop(update):
+            if update.get("item") == 2:
+                raise RiposteError("JOB_CANCELLED")
+    
+        with pytest.raises(RiposteError, match="JOB_CANCELLED"):
+            publication.start_publication(root, ids, [bundle], recipe, device="cpu", progress=stop)
+        batch = publication.publication_status(root, publication.publications(root)[0]["id"])
+        assert batch["counts"]["READY_FOR_REVIEW"] == 1
+        committed = root / state_relative(root, f"publishing/{batch['id']}/items/{batch['items'][0]['id']}")
+        before = {p.name: p.read_bytes() for p in committed.iterdir()}
+        relocated = tmp_path / "relocated-model"
+        shutil.copytree(bundle, relocated)
+        if change:
+            config = json.loads((relocated / "config.json").read_text())
+            config["scaling_factor"] = .36
+            write_json(relocated / "config.json", config)
+>           with pytest.raises(RiposteError, match="PUBLICATION_RESUME_MODEL_MISMATCH"):
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           Failed: DID NOT RAISE RiposteError
+
+tests\test_model_configuration_identity.py:184: Failed
+=========================== short test summary info ===========================
+FAILED tests/test_model_configuration_identity.py::test_encoder_config_edit_changes_identity_without_changing_weights
+FAILED tests/test_model_configuration_identity.py::test_pipeline_configuration_changes_identity[inpaint-tokenizer/merges.txt]
+FAILED tests/test_model_configuration_identity.py::test_pipeline_configuration_changes_identity[inpaint-tokenizer/vocab.json]
+FAILED tests/test_model_configuration_identity.py::test_pipeline_configuration_changes_identity[inpaint-scheduler/scheduler_config.json]
+FAILED tests/test_model_configuration_identity.py::test_pipeline_configuration_changes_identity[inpaint-vae/config.json]
+FAILED tests/test_model_configuration_identity.py::test_pipeline_configuration_changes_identity[temporal-feature_extractor/preprocessor_config.json]
+FAILED tests/test_model_configuration_identity.py::test_pipeline_configuration_changes_identity[temporal-scheduler/scheduler_config.json]
+FAILED tests/test_model_configuration_identity.py::test_pipeline_configuration_changes_identity[temporal-image_encoder/config.json]
+FAILED tests/test_model_configuration_identity.py::test_configuration_mutated_during_loading_is_rejected[encoder]
+FAILED tests/test_model_configuration_identity.py::test_configuration_mutated_during_loading_is_rejected[inpaint]
+FAILED tests/test_model_configuration_identity.py::test_configuration_mutated_during_loading_is_rejected[temporal]
+FAILED tests/test_model_configuration_identity.py::test_interrupted_publication_resume_checks_configuration[True]
+12 failed, 1 passed in 2.98s

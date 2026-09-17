@@ -10,7 +10,7 @@ from dataclasses import asdict, dataclass
 import math
 from pathlib import Path
 from .errors import RiposteError
-from .models import offline, read_config, model_fingerprint, select_device
+from .models import offline, read_config, model_fingerprint, configuration_fingerprint, select_device
 from .policy import is_link
 
 @dataclass(frozen=True)
@@ -60,6 +60,8 @@ class LocalTemporalProbe:
         except ImportError:
             raise RiposteError("INSTALL_LAB_DEPENDENCIES") from None
         self.config, self.device = config, select_device(device)
+        components = ("vae", "unet", "image_encoder", "scheduler", "feature_extractor")
+        configuration = configuration_fingerprint(folder, components)
         index = read_config(folder / "model_index.json")
         expected = {"vae": ["diffusers", "AutoencoderKLTemporalDecoder"],
                     "unet": ["diffusers", "UNetSpatioTemporalConditionModel"],
@@ -109,7 +111,10 @@ class LocalTemporalProbe:
                 raise RiposteError("TEMPORAL_COMPONENT_SHAPE_UNSUPPORTED")
         except RiposteError: raise
         except Exception: raise RiposteError("LOCAL_TEMPORAL_LOAD_FAILED") from None
+        if configuration_fingerprint(folder, components) != configuration:
+            raise RiposteError("MODEL_CONFIGURATION_CHANGED")
         self.identity = {"kind": "SVD_EARLY_TEMPORAL_ENERGY", "component_sha256": hashes,
+                         "configuration_sha256": configuration,
                          "settings": asdict(config), "sigma": self.sigma, "initial_sigma": self.initial_sigma,
                          "unet_precision": "float16" if self.device == "cuda" else "float32", "vae_precision": "float32",
                          "scope": "FIRST_STEP_PREDICTED_LATENTS_NOT_GENERATED_VIDEO", "text_conditioned": False,

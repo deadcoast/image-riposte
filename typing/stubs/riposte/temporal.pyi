@@ -4,6 +4,7 @@ from pathlib import Path
 from _riposte_types import Report, ModelTensor
 from .errors import RiposteError as RiposteError
 from .models import model_fingerprint as model_fingerprint, offline as offline, read_config as read_config, select_device as select_device
+from .models import configuration_fingerprint as configuration_fingerprint
 from .policy import is_link as is_link
 from dataclasses import dataclass
 

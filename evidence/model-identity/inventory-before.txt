@@ -1,0 +1,29 @@
+{
+  "result": "FAIL",
+  "counts": {
+    "source_files": 47,
+    "source_modules": 41,
+    "paired_stubs": 41,
+    "indexed_files": 143,
+    "source_symbols": 441,
+    "tool_functions": 9,
+    "symbol_dependency_edges": 1733,
+    "static_definitions": 1028,
+    "local_dependency_edges": 429
+  },
+  "source_unchanged": true,
+  "issues": [
+    "Stale index: src/riposte/models.py: Exports",
+    "Stale index: src/riposte/temporal.py: Imports",
+    "Stale index: typing/stubs/riposte/models.pyi: Exports",
+    "Stale index: typing/stubs/riposte/temporal.pyi: Imports",
+    "Stale symbol: src/riposte/models.py:LocalEncoder: Requires",
+    "Stale symbol: src/riposte/models.py:LocalEncoder.__init__: Requires",
+    "Stale symbol: src/riposte/models.py:LocalInpaintProbe: Requires",
+    "Stale symbol: src/riposte/models.py:LocalInpaintProbe.__init__: Requires",
+    "Unregistered symbol: src/riposte/models.py:configuration_fingerprint",
+    "Stale symbol: src/riposte/models.py:inspect_vae: Requires",
+    "Stale symbol: src/riposte/temporal.py:LocalTemporalProbe: Requires",
+    "Stale symbol: src/riposte/temporal.py:LocalTemporalProbe.__init__: Requires"
+  ]
+}

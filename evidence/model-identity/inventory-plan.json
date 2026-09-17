@@ -1,0 +1,92 @@
+[
+  {
+    "op": "set",
+    "id": "OVR-019",
+    "fields": {
+      "Exports": "DEPENDENCIES;LocalEncoder;LocalEncoder.__call__;LocalEncoder.__init__;LocalInpaintProbe;LocalInpaintProbe.__call__;LocalInpaintProbe.__init__;PROMPTS;VAE_CLASSES;_weights;configuration_fingerprint;inspect_vae;model_fingerprint;offline;read_config;runtime_capabilities;select_device"
+    }
+  },
+  {
+    "op": "set",
+    "id": "OVR-036",
+    "fields": {
+      "Imports": "from .errors import RiposteError\nfrom .models import offline, read_config, model_fingerprint, configuration_fingerprint, select_device\nfrom .policy import is_link\nfrom __future__ import annotations\nfrom dataclasses import asdict, dataclass\nfrom diffusers import AutoencoderKLTemporalDecoder, UNetSpatioTemporalConditionModel, EulerDiscreteScheduler\nfrom pathlib import Path\nfrom transformers import CLIPVisionModelWithProjection\nimport math\nimport torch\nimport torch.nn.functional as F"
+    }
+  },
+  {
+    "op": "set",
+    "id": "OVR-085",
+    "fields": {
+      "Exports": "DEPENDENCIES;LocalEncoder;LocalEncoder.__call__;LocalEncoder.__init__;LocalInpaintProbe;LocalInpaintProbe.__call__;LocalInpaintProbe.__init__;PROMPTS;VAE_CLASSES;_weights;configuration_fingerprint;inspect_vae;model_fingerprint;offline;read_config;runtime_capabilities;select_device"
+    }
+  },
+  {
+    "op": "set",
+    "id": "OVR-097",
+    "fields": {
+      "Imports": "from .errors import RiposteError as RiposteError\nfrom .models import configuration_fingerprint as configuration_fingerprint\nfrom .models import model_fingerprint as model_fingerprint, offline as offline, read_config as read_config, select_device as select_device\nfrom .policy import is_link as is_link\nfrom _riposte_types import Report, ModelTensor\nfrom dataclasses import dataclass\nfrom pathlib import Path\nfrom typing import Any"
+    }
+  },
+  {
+    "op": "set",
+    "id": "OVR-408",
+    "fields": {
+      "Requires": "OVR-019;OVR-380;OVR-417;OVR-419;OVR-422;OVR-779"
+    }
+  },
+  {
+    "op": "set",
+    "id": "OVR-410",
+    "fields": {
+      "Requires": "OVR-019;OVR-380;OVR-417;OVR-419;OVR-422;OVR-779"
+    }
+  },
+  {
+    "op": "set",
+    "id": "OVR-411",
+    "fields": {
+      "Requires": "OVR-019;OVR-380;OVR-414;OVR-418;OVR-419;OVR-420;OVR-422;OVR-451;OVR-779"
+    }
+  },
+  {
+    "op": "set",
+    "id": "OVR-413",
+    "fields": {
+      "Requires": "OVR-019;OVR-380;OVR-414;OVR-418;OVR-419;OVR-420;OVR-422;OVR-451;OVR-779"
+    }
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/models.py",
+      "Symbol": "configuration_fingerprint",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-019;OVR-380;OVR-451",
+      "Tags": "#source-symbol",
+      "ID": "OVR-779"
+    }
+  },
+  {
+    "op": "set",
+    "id": "OVR-417",
+    "fields": {
+      "Requires": "OVR-019;OVR-380;OVR-415;OVR-416;OVR-418;OVR-420;OVR-779"
+    }
+  },
+  {
+    "op": "set",
+    "id": "OVR-532",
+    "fields": {
+      "Requires": "OVR-036;OVR-380;OVR-418;OVR-419;OVR-420;OVR-422;OVR-451;OVR-535;OVR-537;OVR-538;OVR-779"
+    }
+  },
+  {
+    "op": "set",
+    "id": "OVR-534",
+    "fields": {
+      "Requires": "OVR-036;OVR-380;OVR-418;OVR-419;OVR-420;OVR-422;OVR-451;OVR-535;OVR-779"
+    }
+  }
+]

@@ -1,0 +1,44 @@
+{
+  "requirement": "OGM-006",
+  "meaning": "95632225c08108ae3b3a9c0d968d82d0621dda358897002c2578ae25dabda1f0",
+  "sources": {
+    "docs/PUBLISHING.md": "5432ded9def5d4342c6bb0597e6f1241ed170ede08b36219ab13e13d1e5063f3",
+    "evidence/model-identity/README.md": "2c7863a68c8125433b52bad56bc97f47aaf26a3371040118ed5f90be574ca6e8",
+    "tests/test_model_configuration_identity.py": "4532304b99168dff8be51056eaeecd9418576b26db2d8975008f10f10de0dbaa",
+    "src/riposte/publication.py": "8ed8f050b2fa4010b1427a963a7c9877b5564d020810d0d6eaad154fe7c9394c",
+    "src/riposte/temporal.py": "e224555e5fdd1f98fcf030d5c66d99ee38440a0154959e63a2fe434fe42bbef9",
+    "src/riposte/policy.py": "a4e0d5ab07a0b4aac2efcf518f7cdf19a1a9cdfa9c1fc7e263ef66545d2774e7",
+    "src/riposte/errors.py": "7a9c08b799d1c713fbd82e30fd145a6dc3085c215848893e31d1ec066abc5244",
+    "src/riposte/models.py": "cd6d2fd05c0288e270879bc260dcd299a3fcbe378bc564b571826ad1992c1fcf",
+    "src/riposte/store.py": "f6a88c29653c26c58db9d69845a96dfa5e6b8071bce4578e29aa6932bd8e0b9a",
+    "src/riposte/sanitize.py": "8233e398cf90f403d0fad458b83ddddefb873234183c1610348501d5383f90c2",
+    "src/riposte/runtime_probe.py": "67178701646b2d6e144b42400398394c85c14963a27f3e4a359d0942221f712d",
+    "src/riposte/views.py": "901a71db135ce03b0c929d230de1bacb73542dcc1570df166f36013a906b90e7",
+    "src/riposte/optimizer.py": "c41b3ee66835aea8feab01985434844ee9fb96b217f19ecf0ec8d47a1a047918",
+    "src/riposte/metrics.py": "0d873a0cb8972b5bdce14eb3cdc49ab391af31a297981fda1ad37603496c22eb",
+    "src/riposte/release_guard.py": "52787a6620ccab6efdd1446cb469d8e966212ae2fad0f6bd8219aebe031cd391",
+    "src/riposte/quality.py": "3af92838360f5f9ce65d69973eef37a6dd006d733f56c376443a2228d3c9656d",
+    "src/riposte/coupled.py": "eca0afb9e0de03b740029864a5ddeeb7212cc9676c5e9cc191a6f4d1274641a8",
+    "src/riposte/organizer.py": "1e92fb1a6ebcb3220dd859048b5d40d100311f62a975eb03d35bddd8006505bc",
+    "src/riposte/lab.py": "3845f3e3abedd03d1f0c200b84395e6b46f67b2ff120f6e8a8fc75a2d8c03093",
+    "src/riposte/qualification.py": "4fc049f680adc31c34f02499d8dfe4ebed9af46f47fa1cd554f50ead273231ce",
+    "src/riposte/static/index.html": "c294c3ecdb09ccd2dd582460d051255c08cc9156a4c750b53ed8ca416aa37971"
+  },
+  "result": "PASS",
+  "command": [
+    "uv run --frozen --no-sync --cache-dir typing/.cache/uv python -m pytest tests/test_model_configuration_identity.py tests/test_v02_models.py tests/test_v03_temporal.py tests/test_v03_publication.py -q --basetemp typing/.cache/model-identity/focused-final -o cache_dir=typing/.cache/model-identity/pytest-cache",
+    "uv run --frozen --no-sync --cache-dir typing/.cache/uv python -m pytest -q --basetemp typing/.cache/model-identity/full -o cache_dir=typing/.cache/model-identity/pytest-cache",
+    "uv run --project typing --frozen --cache-dir typing/.cache/uv python typing/check.py",
+    "uv run --project typing --frozen --cache-dir typing/.cache/uv python typing/pacer_inventory.py"
+  ],
+  "observations": [
+    "OBSERVED: Before source repair, 12 regressions failed and unchanged relocation passed.",
+    "OBSERVED: 18 new regression cases pass; focused suite 92 passed, 2 platform skips; full suite 786 passed, 7 platform skips.",
+    "OBSERVED: Real installed AutoencoderKL loading of a locally initialized fixture changes features and configuration identity after activation-only edit, with equal weight identity and finite nonzero input gradients.",
+    "OBSERVED: Interrupted publication rejects configuration-only changes, resumes unchanged relocated bundles, and preserves committed bytes.",
+    "OBSERVED: Encoder, inpainting and temporal adapters reject configuration mutation during loading. File addition/removal/rename and link checks pass.",
+    "OBSERVED: Contract checks pass for 319 signatures; source inventory passes for 441 symbols and 1733 symbol dependency edges.",
+    "Compatibility: Previously unfinished real-model batches lacking configuration fingerprints require a new batch; committed candidates remain reviewable and exportable."
+  ],
+  "evidence": "evidence/model-identity/README.md"
+}

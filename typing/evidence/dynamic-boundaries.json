@@ -116,52 +116,52 @@
   },
   {
     "file": "typing/stubs/riposte/models.pyi",
-    "line": 26,
+    "line": 28,
     "declaration": "identity: Report"
   },
   {
     "file": "typing/stubs/riposte/models.pyi",
-    "line": 29,
+    "line": 31,
     "declaration": "model: Any"
   },
   {
     "file": "typing/stubs/riposte/models.pyi",
-    "line": 34,
+    "line": 36,
     "declaration": "def __call__(self, x: ModelTensor) -> ModelTensor:"
   },
   {
     "file": "typing/stubs/riposte/models.pyi",
-    "line": 39,
+    "line": 41,
     "declaration": "vae: Any"
   },
   {
     "file": "typing/stubs/riposte/models.pyi",
-    "line": 40,
+    "line": 42,
     "declaration": "unet: Any"
   },
   {
     "file": "typing/stubs/riposte/models.pyi",
-    "line": 41,
+    "line": 43,
     "declaration": "scheduler: Any"
   },
   {
     "file": "typing/stubs/riposte/models.pyi",
-    "line": 42,
+    "line": 44,
     "declaration": "embeddings: Any"
   },
   {
     "file": "typing/stubs/riposte/models.pyi",
-    "line": 45,
+    "line": 47,
     "declaration": "timesteps: Any"
   },
   {
     "file": "typing/stubs/riposte/models.pyi",
-    "line": 46,
+    "line": 48,
     "declaration": "identity: Report"
   },
   {
     "file": "typing/stubs/riposte/models.pyi",
-    "line": 50,
+    "line": 52,
     "declaration": "def __call__(self, x: ModelTensor, keep: ModelTensor, seed: int, early_fraction: float, prompt_key: str) -> ModelTensor:"
   },
   {
@@ -311,57 +311,57 @@
   },
   {
     "file": "typing/stubs/riposte/temporal.pyi",
-    "line": 23,
+    "line": 24,
     "declaration": "def letterbox_tensor(x: ModelTensor, width: int, height: int) -> ModelTensor:"
   },
   {
     "file": "typing/stubs/riposte/temporal.pyi",
-    "line": 25,
+    "line": 26,
     "declaration": "def v_prediction_original(sample: ModelTensor, velocity: ModelTensor, sigma: ModelTensor) -> ModelTensor:"
   },
   {
     "file": "typing/stubs/riposte/temporal.pyi",
-    "line": 32,
+    "line": 33,
     "declaration": "dtype: Any"
   },
   {
     "file": "typing/stubs/riposte/temporal.pyi",
-    "line": 33,
+    "line": 34,
     "declaration": "vae: Any"
   },
   {
     "file": "typing/stubs/riposte/temporal.pyi",
-    "line": 34,
+    "line": 35,
     "declaration": "unet: Any"
   },
   {
     "file": "typing/stubs/riposte/temporal.pyi",
-    "line": 35,
+    "line": 36,
     "declaration": "image_encoder: Any"
   },
   {
     "file": "typing/stubs/riposte/temporal.pyi",
-    "line": 36,
+    "line": 37,
     "declaration": "timestep: ModelTensor"
   },
   {
     "file": "typing/stubs/riposte/temporal.pyi",
-    "line": 39,
+    "line": 40,
     "declaration": "mean: ModelTensor"
   },
   {
     "file": "typing/stubs/riposte/temporal.pyi",
-    "line": 40,
+    "line": 41,
     "declaration": "std: ModelTensor"
   },
   {
     "file": "typing/stubs/riposte/temporal.pyi",
-    "line": 41,
+    "line": 42,
     "declaration": "identity: Report"
   },
   {
     "file": "typing/stubs/riposte/temporal.pyi",
-    "line": 45,
+    "line": 46,
     "declaration": "def __call__(self, x: ModelTensor, seed: int) -> ModelTensor:"
   },
   {

@@ -64,9 +64,38 @@ def model_fingerprint(folder: Path) -> str:
     return digest.hexdigest()
 
 
+def configuration_fingerprint(folder: Path, components: tuple[str, ...] = ()) -> str:
+    """Bind local JSON configuration and tokenizer text by name and content.
+
+    Only the digest leaves the adapter. Absolute locations, timestamps and
+    weight bytes are excluded, so relocating an unchanged bundle is harmless.
+    """
+    if any(Path(part).name != part or part in {"", ".", ".."} for part in components):
+        raise RiposteError("MODEL_CONFIG_INVALID")
+    digest = hashlib.sha256()
+    try:
+        for directory in [folder, *(folder / part for part in sorted(set(components)))]:
+            if (not directory.is_dir() or is_link(directory)
+                or any(is_link(parent) for parent in directory.parents)):
+                raise RiposteError("LOCAL_MODEL_DIRECTORY_REQUIRED")
+            for path in sorted(directory.iterdir()):
+                if path.suffix.lower() not in {".json", ".txt"}:
+                    continue
+                if is_link(path) or not path.is_file():
+                    raise RiposteError("MODEL_CONFIG_INVALID")
+                with path.open("rb") as stream:
+                    value = hashlib.file_digest(stream, "sha256").hexdigest()
+                entry = [path.relative_to(folder).as_posix(), value]
+                digest.update(json.dumps(entry, ensure_ascii=True).encode("utf-8"))
+    except OSError:
+        raise RiposteError("MODEL_CONFIG_INVALID") from None
+    return digest.hexdigest()
+
+
 def inspect_vae(folder: Path, fingerprint: bool = False) -> dict:
     if not folder.is_dir() or not (folder / "config.json").is_file():
         raise RiposteError("LOCAL_VAE_DIRECTORY_REQUIRED")
+    configuration = configuration_fingerprint(folder) if fingerprint else None
     config = read_config(folder / "config.json")
     kind = config.get("_class_name")
     if kind not in VAE_CLASSES:
@@ -78,6 +107,7 @@ def inspect_vae(folder: Path, fingerprint: bool = False) -> dict:
               "preflight": "FILES_PRESENT_NOT_EXECUTED", "ai_protection": "UNVERIFIED"}
     if fingerprint:
         result["weights_sha256"] = model_fingerprint(folder)
+        result["configuration_sha256"] = configuration
     return result
 
 
@@ -141,6 +171,8 @@ class LocalEncoder:
             self.factor = 2 ** (len(channels) - 1)
         except Exception:
             raise RiposteError("LOCAL_VAE_LOAD_FAILED") from None
+        if configuration_fingerprint(folder) != self.identity["configuration_sha256"]:
+            raise RiposteError("MODEL_CONFIGURATION_CHANGED")
 
     def __call__(self, x):
         import torch.nn.functional as F
@@ -181,6 +213,8 @@ class LocalInpaintProbe:
             for item in (folder / part).rglob("*"):
                 if is_link(item):
                     raise RiposteError("LOCAL_MODEL_DIRECTORY_REQUIRED")
+        components = ("vae", "unet", "text_encoder", "tokenizer", "scheduler")
+        configuration = configuration_fingerprint(folder, components)
         index = read_config(folder / "model_index.json")
         if index.get("_class_name") != "StableDiffusionInpaintPipeline":
             raise RiposteError("INPAINT_ARCHITECTURE_UNSUPPORTED")
@@ -213,7 +247,10 @@ class LocalInpaintProbe:
             self.timesteps = int(self.scheduler.config.num_train_timesteps)
         except Exception:
             raise RiposteError("LOCAL_INPAINT_LOAD_FAILED") from None
+        if configuration_fingerprint(folder, components) != configuration:
+            raise RiposteError("MODEL_CONFIGURATION_CHANGED")
         self.identity = {"kind": "SD_9CHANNEL_EARLY_CONDITIONING", "component_sha256": fingerprints,
+                         "configuration_sha256": configuration,
                          "scope": "EARLY_DENOISER_PROXY", "ai_protection": "UNVERIFIED"}
 
     def __call__(self, x, keep, seed: int, early_fraction: float, prompt_key: str):
