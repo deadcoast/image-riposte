@@ -1,0 +1,691 @@
+FFFFFFFFFFF..FFF                                                         [100%]
+================================== FAILURES ===================================
+_______________ test_browser_review[approval_waits_for_decode] ________________
+
+scenario = 'approval_waits_for_decode'
+
+    @pytest.mark.parametrize('scenario', [
+        'approval_waits_for_decode',
+        'failed_image_blocks_approval',
+        'failed_decode_blocks_approval',
+        'new_review_clears_old_pixels',
+        'superseded_load_cannot_authorize',
+        'original_pixels_required',
+        'cached_preview_is_revalidated',
+        'closed_review_cannot_submit',
+        'native_close_cancels_review',
+        'duplicate_decisions_blocked',
+        'old_decision_keeps_new_review_open',
+        'failed_decision_can_retry',
+        'rejection_without_images',
+        'same_path_load_race',
+        'late_decode_keeps_current_image',
+        'fresh_urls_are_released',
+    ])
+    def test_browser_review(scenario):
+        node = shutil.which('node')
+        if node is None:
+            pytest.skip('Node is required to execute the browser JavaScript')
+        script = Path(__file__).with_name('browser_review.cjs')
+        result = subprocess.run([node, str(script), scenario], capture_output=True,
+                                text=True, encoding='utf-8', timeout=15)
+>       assert result.returncode == 0, result.stdout + result.stderr
+E       AssertionError: AssertionError [ERR_ASSERTION]: approval waits for pixels
+E         
+E         false !== true
+E         
+E             at Object.approval_waits_for_decode (C:\Users\ryanf\github\_new\image-riposte\tests\browser_review.cjs:130:12)
+E             at C:\Users\ryanf\github\_new\image-riposte\tests\browser_review.cjs:272:35 {
+E           generatedMessage: false,
+E           code: 'ERR_ASSERTION',
+E           actual: false,
+E           expected: true,
+E           operator: 'strictEqual',
+E           diff: 'simple'
+E         }
+E         
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['C:\\nvm4w\\nodejs\\node.EXE', 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\tests\\browser_r...se,\n  code: 'ERR_ASSERTION',\n  actual: false,\n  expected: true,\n  operator: 'strictEqual',\n  diff: 'simple'\n}\n").returncode
+
+tests\test_browser_review.py:34: AssertionError
+______________ test_browser_review[failed_image_blocks_approval] ______________
+
+scenario = 'failed_image_blocks_approval'
+
+    @pytest.mark.parametrize('scenario', [
+        'approval_waits_for_decode',
+        'failed_image_blocks_approval',
+        'failed_decode_blocks_approval',
+        'new_review_clears_old_pixels',
+        'superseded_load_cannot_authorize',
+        'original_pixels_required',
+        'cached_preview_is_revalidated',
+        'closed_review_cannot_submit',
+        'native_close_cancels_review',
+        'duplicate_decisions_blocked',
+        'old_decision_keeps_new_review_open',
+        'failed_decision_can_retry',
+        'rejection_without_images',
+        'same_path_load_race',
+        'late_decode_keeps_current_image',
+        'fresh_urls_are_released',
+    ])
+    def test_browser_review(scenario):
+        node = shutil.which('node')
+        if node is None:
+            pytest.skip('Node is required to execute the browser JavaScript')
+        script = Path(__file__).with_name('browser_review.cjs')
+        result = subprocess.run([node, str(script), scenario], capture_output=True,
+                                text=True, encoding='utf-8', timeout=15)
+>       assert result.returncode == 0, result.stdout + result.stderr
+E       AssertionError: AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+E         
+E         false !== true
+E         
+E             at Object.failed_image_blocks_approval (C:\Users\ryanf\github\_new\image-riposte\tests\browser_review.cjs:148:12)
+E             at async C:\Users\ryanf\github\_new\image-riposte\tests\browser_review.cjs:272:3 {
+E           generatedMessage: true,
+E           code: 'ERR_ASSERTION',
+E           actual: false,
+E           expected: true,
+E           operator: 'strictEqual',
+E           diff: 'simple'
+E         }
+E         
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['C:\\nvm4w\\nodejs\\node.EXE', 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\tests\\browser_r...ue,\n  code: 'ERR_ASSERTION',\n  actual: false,\n  expected: true,\n  operator: 'strictEqual',\n  diff: 'simple'\n}\n").returncode
+
+tests\test_browser_review.py:34: AssertionError
+_____________ test_browser_review[failed_decode_blocks_approval] ______________
+
+scenario = 'failed_decode_blocks_approval'
+
+    @pytest.mark.parametrize('scenario', [
+        'approval_waits_for_decode',
+        'failed_image_blocks_approval',
+        'failed_decode_blocks_approval',
+        'new_review_clears_old_pixels',
+        'superseded_load_cannot_authorize',
+        'original_pixels_required',
+        'cached_preview_is_revalidated',
+        'closed_review_cannot_submit',
+        'native_close_cancels_review',
+        'duplicate_decisions_blocked',
+        'old_decision_keeps_new_review_open',
+        'failed_decision_can_retry',
+        'rejection_without_images',
+        'same_path_load_race',
+        'late_decode_keeps_current_image',
+        'fresh_urls_are_released',
+    ])
+    def test_browser_review(scenario):
+        node = shutil.which('node')
+        if node is None:
+            pytest.skip('Node is required to execute the browser JavaScript')
+        script = Path(__file__).with_name('browser_review.cjs')
+        result = subprocess.run([node, str(script), scenario], capture_output=True,
+                                text=True, encoding='utf-8', timeout=15)
+>       assert result.returncode == 0, result.stdout + result.stderr
+E       AssertionError: AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+E         
+E         false !== true
+E         
+E             at Object.failed_decode_blocks_approval (C:\Users\ryanf\github\_new\image-riposte\tests\browser_review.cjs:155:12)
+E             at async C:\Users\ryanf\github\_new\image-riposte\tests\browser_review.cjs:272:3 {
+E           generatedMessage: true,
+E           code: 'ERR_ASSERTION',
+E           actual: false,
+E           expected: true,
+E           operator: 'strictEqual',
+E           diff: 'simple'
+E         }
+E         
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['C:\\nvm4w\\nodejs\\node.EXE', 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\tests\\browser_r...ue,\n  code: 'ERR_ASSERTION',\n  actual: false,\n  expected: true,\n  operator: 'strictEqual',\n  diff: 'simple'\n}\n").returncode
+
+tests\test_browser_review.py:34: AssertionError
+______________ test_browser_review[new_review_clears_old_pixels] ______________
+
+scenario = 'new_review_clears_old_pixels'
+
+    @pytest.mark.parametrize('scenario', [
+        'approval_waits_for_decode',
+        'failed_image_blocks_approval',
+        'failed_decode_blocks_approval',
+        'new_review_clears_old_pixels',
+        'superseded_load_cannot_authorize',
+        'original_pixels_required',
+        'cached_preview_is_revalidated',
+        'closed_review_cannot_submit',
+        'native_close_cancels_review',
+        'duplicate_decisions_blocked',
+        'old_decision_keeps_new_review_open',
+        'failed_decision_can_retry',
+        'rejection_without_images',
+        'same_path_load_race',
+        'late_decode_keeps_current_image',
+        'fresh_urls_are_released',
+    ])
+    def test_browser_review(scenario):
+        node = shutil.which('node')
+        if node is None:
+            pytest.skip('Node is required to execute the browser JavaScript')
+        script = Path(__file__).with_name('browser_review.cjs')
+        result = subprocess.run([node, str(script), scenario], capture_output=True,
+                                text=True, encoding='utf-8', timeout=15)
+>       assert result.returncode == 0, result.stdout + result.stderr
+E       AssertionError: AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+E         + actual - expected
+E         
+E         + 'blob:preview-3'
+E         - ''
+E         
+E             at Object.new_review_clears_old_pixels (C:\Users\ryanf\github\_new\image-riposte\tests\browser_review.cjs:160:12)
+E             at async C:\Users\ryanf\github\_new\image-riposte\tests\browser_review.cjs:272:3 {
+E           generatedMessage: true,
+E           code: 'ERR_ASSERTION',
+E           actual: 'blob:preview-3',
+E           expected: '',
+E           operator: 'strictEqual',
+E           diff: 'simple'
+E         }
+E         
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['C:\\nvm4w\\nodejs\\node.EXE', 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\tests\\browser_r...de: 'ERR_ASSERTION',\n  actual: 'blob:preview-3',\n  expected: '',\n  operator: 'strictEqual',\n  diff: 'simple'\n}\n").returncode
+
+tests\test_browser_review.py:34: AssertionError
+____________ test_browser_review[superseded_load_cannot_authorize] ____________
+
+scenario = 'superseded_load_cannot_authorize'
+
+    @pytest.mark.parametrize('scenario', [
+        'approval_waits_for_decode',
+        'failed_image_blocks_approval',
+        'failed_decode_blocks_approval',
+        'new_review_clears_old_pixels',
+        'superseded_load_cannot_authorize',
+        'original_pixels_required',
+        'cached_preview_is_revalidated',
+        'closed_review_cannot_submit',
+        'native_close_cancels_review',
+        'duplicate_decisions_blocked',
+        'old_decision_keeps_new_review_open',
+        'failed_decision_can_retry',
+        'rejection_without_images',
+        'same_path_load_race',
+        'late_decode_keeps_current_image',
+        'fresh_urls_are_released',
+    ])
+    def test_browser_review(scenario):
+        node = shutil.which('node')
+        if node is None:
+            pytest.skip('Node is required to execute the browser JavaScript')
+        script = Path(__file__).with_name('browser_review.cjs')
+        result = subprocess.run([node, str(script), scenario], capture_output=True,
+                                text=True, encoding='utf-8', timeout=15)
+>       assert result.returncode == 0, result.stdout + result.stderr
+E       AssertionError: AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+E         
+E         false !== true
+E         
+E             at Object.superseded_load_cannot_authorize (C:\Users\ryanf\github\_new\image-riposte\tests\browser_review.cjs:172:12)
+E             at async C:\Users\ryanf\github\_new\image-riposte\tests\browser_review.cjs:272:3 {
+E           generatedMessage: true,
+E           code: 'ERR_ASSERTION',
+E           actual: false,
+E           expected: true,
+E           operator: 'strictEqual',
+E           diff: 'simple'
+E         }
+E         
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['C:\\nvm4w\\nodejs\\node.EXE', 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\tests\\browser_r...ue,\n  code: 'ERR_ASSERTION',\n  actual: false,\n  expected: true,\n  operator: 'strictEqual',\n  diff: 'simple'\n}\n").returncode
+
+tests\test_browser_review.py:34: AssertionError
+________________ test_browser_review[original_pixels_required] ________________
+
+scenario = 'original_pixels_required'
+
+    @pytest.mark.parametrize('scenario', [
+        'approval_waits_for_decode',
+        'failed_image_blocks_approval',
+        'failed_decode_blocks_approval',
+        'new_review_clears_old_pixels',
+        'superseded_load_cannot_authorize',
+        'original_pixels_required',
+        'cached_preview_is_revalidated',
+        'closed_review_cannot_submit',
+        'native_close_cancels_review',
+        'duplicate_decisions_blocked',
+        'old_decision_keeps_new_review_open',
+        'failed_decision_can_retry',
+        'rejection_without_images',
+        'same_path_load_race',
+        'late_decode_keeps_current_image',
+        'fresh_urls_are_released',
+    ])
+    def test_browser_review(scenario):
+        node = shutil.which('node')
+        if node is None:
+            pytest.skip('Node is required to execute the browser JavaScript')
+        script = Path(__file__).with_name('browser_review.cjs')
+        result = subprocess.run([node, str(script), scenario], capture_output=True,
+                                text=True, encoding='utf-8', timeout=15)
+>       assert result.returncode == 0, result.stdout + result.stderr
+E       AssertionError: AssertionError [ERR_ASSERTION]: difference is not the candidate
+E         
+E         false !== true
+E         
+E             at Object.original_pixels_required (C:\Users\ryanf\github\_new\image-riposte\tests\browser_review.cjs:177:12)
+E             at async C:\Users\ryanf\github\_new\image-riposte\tests\browser_review.cjs:272:3 {
+E           generatedMessage: false,
+E           code: 'ERR_ASSERTION',
+E           actual: false,
+E           expected: true,
+E           operator: 'strictEqual',
+E           diff: 'simple'
+E         }
+E         
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['C:\\nvm4w\\nodejs\\node.EXE', 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\tests\\browser_r...se,\n  code: 'ERR_ASSERTION',\n  actual: false,\n  expected: true,\n  operator: 'strictEqual',\n  diff: 'simple'\n}\n").returncode
+
+tests\test_browser_review.py:34: AssertionError
+_____________ test_browser_review[cached_preview_is_revalidated] ______________
+
+scenario = 'cached_preview_is_revalidated'
+
+    @pytest.mark.parametrize('scenario', [
+        'approval_waits_for_decode',
+        'failed_image_blocks_approval',
+        'failed_decode_blocks_approval',
+        'new_review_clears_old_pixels',
+        'superseded_load_cannot_authorize',
+        'original_pixels_required',
+        'cached_preview_is_revalidated',
+        'closed_review_cannot_submit',
+        'native_close_cancels_review',
+        'duplicate_decisions_blocked',
+        'old_decision_keeps_new_review_open',
+        'failed_decision_can_retry',
+        'rejection_without_images',
+        'same_path_load_race',
+        'late_decode_keeps_current_image',
+        'fresh_urls_are_released',
+    ])
+    def test_browser_review(scenario):
+        node = shutil.which('node')
+        if node is None:
+            pytest.skip('Node is required to execute the browser JavaScript')
+        script = Path(__file__).with_name('browser_review.cjs')
+        result = subprocess.run([node, str(script), scenario], capture_output=True,
+                                text=True, encoding='utf-8', timeout=15)
+>       assert result.returncode == 0, result.stdout + result.stderr
+E       AssertionError: AssertionError [ERR_ASSERTION]: reopening revalidates both files at server
+E         
+E         2 !== 4
+E         
+E             at Object.cached_preview_is_revalidated (C:\Users\ryanf\github\_new\image-riposte\tests\browser_review.cjs:187:12)
+E             at async C:\Users\ryanf\github\_new\image-riposte\tests\browser_review.cjs:272:3 {
+E           generatedMessage: false,
+E           code: 'ERR_ASSERTION',
+E           actual: 2,
+E           expected: 4,
+E           operator: 'strictEqual',
+E           diff: 'simple'
+E         }
+E         
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['C:\\nvm4w\\nodejs\\node.EXE', 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\tests\\browser_r...ge: false,\n  code: 'ERR_ASSERTION',\n  actual: 2,\n  expected: 4,\n  operator: 'strictEqual',\n  diff: 'simple'\n}\n").returncode
+
+tests\test_browser_review.py:34: AssertionError
+______________ test_browser_review[closed_review_cannot_submit] _______________
+
+scenario = 'closed_review_cannot_submit'
+
+    @pytest.mark.parametrize('scenario', [
+        'approval_waits_for_decode',
+        'failed_image_blocks_approval',
+        'failed_decode_blocks_approval',
+        'new_review_clears_old_pixels',
+        'superseded_load_cannot_authorize',
+        'original_pixels_required',
+        'cached_preview_is_revalidated',
+        'closed_review_cannot_submit',
+        'native_close_cancels_review',
+        'duplicate_decisions_blocked',
+        'old_decision_keeps_new_review_open',
+        'failed_decision_can_retry',
+        'rejection_without_images',
+        'same_path_load_race',
+        'late_decode_keeps_current_image',
+        'fresh_urls_are_released',
+    ])
+    def test_browser_review(scenario):
+        node = shutil.which('node')
+        if node is None:
+            pytest.skip('Node is required to execute the browser JavaScript')
+        script = Path(__file__).with_name('browser_review.cjs')
+        result = subprocess.run([node, str(script), scenario], capture_output=True,
+                                text=True, encoding='utf-8', timeout=15)
+>       assert result.returncode == 0, result.stdout + result.stderr
+E       AssertionError: AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+E         
+E         false !== true
+E         
+E             at Object.closed_review_cannot_submit (C:\Users\ryanf\github\_new\image-riposte\tests\browser_review.cjs:195:12)
+E             at async C:\Users\ryanf\github\_new\image-riposte\tests\browser_review.cjs:272:3 {
+E           generatedMessage: true,
+E           code: 'ERR_ASSERTION',
+E           actual: false,
+E           expected: true,
+E           operator: 'strictEqual',
+E           diff: 'simple'
+E         }
+E         
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['C:\\nvm4w\\nodejs\\node.EXE', 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\tests\\browser_r...ue,\n  code: 'ERR_ASSERTION',\n  actual: false,\n  expected: true,\n  operator: 'strictEqual',\n  diff: 'simple'\n}\n").returncode
+
+tests\test_browser_review.py:34: AssertionError
+______________ test_browser_review[native_close_cancels_review] _______________
+
+scenario = 'native_close_cancels_review'
+
+    @pytest.mark.parametrize('scenario', [
+        'approval_waits_for_decode',
+        'failed_image_blocks_approval',
+        'failed_decode_blocks_approval',
+        'new_review_clears_old_pixels',
+        'superseded_load_cannot_authorize',
+        'original_pixels_required',
+        'cached_preview_is_revalidated',
+        'closed_review_cannot_submit',
+        'native_close_cancels_review',
+        'duplicate_decisions_blocked',
+        'old_decision_keeps_new_review_open',
+        'failed_decision_can_retry',
+        'rejection_without_images',
+        'same_path_load_race',
+        'late_decode_keeps_current_image',
+        'fresh_urls_are_released',
+    ])
+    def test_browser_review(scenario):
+        node = shutil.which('node')
+        if node is None:
+            pytest.skip('Node is required to execute the browser JavaScript')
+        script = Path(__file__).with_name('browser_review.cjs')
+        result = subprocess.run([node, str(script), scenario], capture_output=True,
+                                text=True, encoding='utf-8', timeout=15)
+>       assert result.returncode == 0, result.stdout + result.stderr
+E       AssertionError: AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+E         
+E         false !== true
+E         
+E             at Object.native_close_cancels_review (C:\Users\ryanf\github\_new\image-riposte\tests\browser_review.cjs:203:12)
+E             at async C:\Users\ryanf\github\_new\image-riposte\tests\browser_review.cjs:272:3 {
+E           generatedMessage: true,
+E           code: 'ERR_ASSERTION',
+E           actual: false,
+E           expected: true,
+E           operator: 'strictEqual',
+E           diff: 'simple'
+E         }
+E         
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['C:\\nvm4w\\nodejs\\node.EXE', 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\tests\\browser_r...ue,\n  code: 'ERR_ASSERTION',\n  actual: false,\n  expected: true,\n  operator: 'strictEqual',\n  diff: 'simple'\n}\n").returncode
+
+tests\test_browser_review.py:34: AssertionError
+______________ test_browser_review[duplicate_decisions_blocked] _______________
+
+scenario = 'duplicate_decisions_blocked'
+
+    @pytest.mark.parametrize('scenario', [
+        'approval_waits_for_decode',
+        'failed_image_blocks_approval',
+        'failed_decode_blocks_approval',
+        'new_review_clears_old_pixels',
+        'superseded_load_cannot_authorize',
+        'original_pixels_required',
+        'cached_preview_is_revalidated',
+        'closed_review_cannot_submit',
+        'native_close_cancels_review',
+        'duplicate_decisions_blocked',
+        'old_decision_keeps_new_review_open',
+        'failed_decision_can_retry',
+        'rejection_without_images',
+        'same_path_load_race',
+        'late_decode_keeps_current_image',
+        'fresh_urls_are_released',
+    ])
+    def test_browser_review(scenario):
+        node = shutil.which('node')
+        if node is None:
+            pytest.skip('Node is required to execute the browser JavaScript')
+        script = Path(__file__).with_name('browser_review.cjs')
+        result = subprocess.run([node, str(script), scenario], capture_output=True,
+                                text=True, encoding='utf-8', timeout=15)
+>       assert result.returncode == 0, result.stdout + result.stderr
+E       AssertionError: AssertionError [ERR_ASSERTION]: only one decision can be in flight
+E         
+E         3 !== 1
+E         
+E             at Object.duplicate_decisions_blocked (C:\Users\ryanf\github\_new\image-riposte\tests\browser_review.cjs:211:12)
+E             at async C:\Users\ryanf\github\_new\image-riposte\tests\browser_review.cjs:272:3 {
+E           generatedMessage: false,
+E           code: 'ERR_ASSERTION',
+E           actual: 3,
+E           expected: 1,
+E           operator: 'strictEqual',
+E           diff: 'simple'
+E         }
+E         
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['C:\\nvm4w\\nodejs\\node.EXE', 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\tests\\browser_r...ge: false,\n  code: 'ERR_ASSERTION',\n  actual: 3,\n  expected: 1,\n  operator: 'strictEqual',\n  diff: 'simple'\n}\n").returncode
+
+tests\test_browser_review.py:34: AssertionError
+___________ test_browser_review[old_decision_keeps_new_review_open] ___________
+
+scenario = 'old_decision_keeps_new_review_open'
+
+    @pytest.mark.parametrize('scenario', [
+        'approval_waits_for_decode',
+        'failed_image_blocks_approval',
+        'failed_decode_blocks_approval',
+        'new_review_clears_old_pixels',
+        'superseded_load_cannot_authorize',
+        'original_pixels_required',
+        'cached_preview_is_revalidated',
+        'closed_review_cannot_submit',
+        'native_close_cancels_review',
+        'duplicate_decisions_blocked',
+        'old_decision_keeps_new_review_open',
+        'failed_decision_can_retry',
+        'rejection_without_images',
+        'same_path_load_race',
+        'late_decode_keeps_current_image',
+        'fresh_urls_are_released',
+    ])
+    def test_browser_review(scenario):
+        node = shutil.which('node')
+        if node is None:
+            pytest.skip('Node is required to execute the browser JavaScript')
+        script = Path(__file__).with_name('browser_review.cjs')
+        result = subprocess.run([node, str(script), scenario], capture_output=True,
+                                text=True, encoding='utf-8', timeout=15)
+>       assert result.returncode == 0, result.stdout + result.stderr
+E       AssertionError: AssertionError [ERR_ASSERTION]: old decision cannot dismiss next image
+E         
+E         false !== true
+E         
+E             at Object.old_decision_keeps_new_review_open (C:\Users\ryanf\github\_new\image-riposte\tests\browser_review.cjs:220:12)
+E             at async C:\Users\ryanf\github\_new\image-riposte\tests\browser_review.cjs:272:3 {
+E           generatedMessage: false,
+E           code: 'ERR_ASSERTION',
+E           actual: false,
+E           expected: true,
+E           operator: 'strictEqual',
+E           diff: 'simple'
+E         }
+E         
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['C:\\nvm4w\\nodejs\\node.EXE', 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\tests\\browser_r...se,\n  code: 'ERR_ASSERTION',\n  actual: false,\n  expected: true,\n  operator: 'strictEqual',\n  diff: 'simple'\n}\n").returncode
+
+tests\test_browser_review.py:34: AssertionError
+__________________ test_browser_review[same_path_load_race] ___________________
+
+scenario = 'same_path_load_race'
+
+    @pytest.mark.parametrize('scenario', [
+        'approval_waits_for_decode',
+        'failed_image_blocks_approval',
+        'failed_decode_blocks_approval',
+        'new_review_clears_old_pixels',
+        'superseded_load_cannot_authorize',
+        'original_pixels_required',
+        'cached_preview_is_revalidated',
+        'closed_review_cannot_submit',
+        'native_close_cancels_review',
+        'duplicate_decisions_blocked',
+        'old_decision_keeps_new_review_open',
+        'failed_decision_can_retry',
+        'rejection_without_images',
+        'same_path_load_race',
+        'late_decode_keeps_current_image',
+        'fresh_urls_are_released',
+    ])
+    def test_browser_review(scenario):
+        node = shutil.which('node')
+        if node is None:
+            pytest.skip('Node is required to execute the browser JavaScript')
+        script = Path(__file__).with_name('browser_review.cjs')
+        result = subprocess.run([node, str(script), scenario], capture_output=True,
+                                text=True, encoding='utf-8', timeout=15)
+>       assert result.returncode == 0, result.stdout + result.stderr
+E       AssertionError: AssertionError [ERR_ASSERTION]: fresh calls are independently validated
+E         
+E         1 !== 2
+E         
+E             at Object.same_path_load_race (C:\Users\ryanf\github\_new\image-riposte\tests\browser_review.cjs:246:12)
+E             at C:\Users\ryanf\github\_new\image-riposte\tests\browser_review.cjs:272:35 {
+E           generatedMessage: false,
+E           code: 'ERR_ASSERTION',
+E           actual: 1,
+E           expected: 2,
+E           operator: 'strictEqual',
+E           diff: 'simple'
+E         }
+E         
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['C:\\nvm4w\\nodejs\\node.EXE', 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\tests\\browser_r...ge: false,\n  code: 'ERR_ASSERTION',\n  actual: 1,\n  expected: 2,\n  operator: 'strictEqual',\n  diff: 'simple'\n}\n").returncode
+
+tests\test_browser_review.py:34: AssertionError
+____________ test_browser_review[late_decode_keeps_current_image] _____________
+
+scenario = 'late_decode_keeps_current_image'
+
+    @pytest.mark.parametrize('scenario', [
+        'approval_waits_for_decode',
+        'failed_image_blocks_approval',
+        'failed_decode_blocks_approval',
+        'new_review_clears_old_pixels',
+        'superseded_load_cannot_authorize',
+        'original_pixels_required',
+        'cached_preview_is_revalidated',
+        'closed_review_cannot_submit',
+        'native_close_cancels_review',
+        'duplicate_decisions_blocked',
+        'old_decision_keeps_new_review_open',
+        'failed_decision_can_retry',
+        'rejection_without_images',
+        'same_path_load_race',
+        'late_decode_keeps_current_image',
+        'fresh_urls_are_released',
+    ])
+    def test_browser_review(scenario):
+        node = shutil.which('node')
+        if node is None:
+            pytest.skip('Node is required to execute the browser JavaScript')
+        script = Path(__file__).with_name('browser_review.cjs')
+        result = subprocess.run([node, str(script), scenario], capture_output=True,
+                                text=True, encoding='utf-8', timeout=15)
+>       assert result.returncode == 0, result.stdout + result.stderr
+E       AssertionError: AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+E         + actual - expected
+E         
+E         + undefined
+E         - true
+E         
+E             at Object.late_decode_keeps_current_image (C:\Users\ryanf\github\_new\image-riposte\tests\browser_review.cjs:257:60)
+E             at async C:\Users\ryanf\github\_new\image-riposte\tests\browser_review.cjs:272:3 {
+E           generatedMessage: true,
+E           code: 'ERR_ASSERTION',
+E           actual: undefined,
+E           expected: true,
+E           operator: 'strictEqual',
+E           diff: 'simple'
+E         }
+E         
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['C:\\nvm4w\\nodejs\\node.EXE', 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\tests\\browser_r...n  code: 'ERR_ASSERTION',\n  actual: undefined,\n  expected: true,\n  operator: 'strictEqual',\n  diff: 'simple'\n}\n").returncode
+
+tests\test_browser_review.py:34: AssertionError
+________________ test_browser_review[fresh_urls_are_released] _________________
+
+scenario = 'fresh_urls_are_released'
+
+    @pytest.mark.parametrize('scenario', [
+        'approval_waits_for_decode',
+        'failed_image_blocks_approval',
+        'failed_decode_blocks_approval',
+        'new_review_clears_old_pixels',
+        'superseded_load_cannot_authorize',
+        'original_pixels_required',
+        'cached_preview_is_revalidated',
+        'closed_review_cannot_submit',
+        'native_close_cancels_review',
+        'duplicate_decisions_blocked',
+        'old_decision_keeps_new_review_open',
+        'failed_decision_can_retry',
+        'rejection_without_images',
+        'same_path_load_race',
+        'late_decode_keeps_current_image',
+        'fresh_urls_are_released',
+    ])
+    def test_browser_review(scenario):
+        node = shutil.which('node')
+        if node is None:
+            pytest.skip('Node is required to execute the browser JavaScript')
+        script = Path(__file__).with_name('browser_review.cjs')
+        result = subprocess.run([node, str(script), scenario], capture_output=True,
+                                text=True, encoding='utf-8', timeout=15)
+>       assert result.returncode == 0, result.stdout + result.stderr
+E       AssertionError: AssertionError [ERR_ASSERTION]: released blob:preview-3
+E             at Object.fresh_urls_are_released (C:\Users\ryanf\github\_new\image-riposte\tests\browser_review.cjs:266:36)
+E             at async C:\Users\ryanf\github\_new\image-riposte\tests\browser_review.cjs:272:3 {
+E           generatedMessage: false,
+E           code: 'ERR_ASSERTION',
+E           actual: false,
+E           expected: true,
+E           operator: '==',
+E           diff: 'simple'
+E         }
+E         
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['C:\\nvm4w\\nodejs\\node.EXE', 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\tests\\browser_r...sage: false,\n  code: 'ERR_ASSERTION',\n  actual: false,\n  expected: true,\n  operator: '==',\n  diff: 'simple'\n}\n").returncode
+
+tests\test_browser_review.py:34: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/test_browser_review.py::test_browser_review[approval_waits_for_decode]
+FAILED tests/test_browser_review.py::test_browser_review[failed_image_blocks_approval]
+FAILED tests/test_browser_review.py::test_browser_review[failed_decode_blocks_approval]
+FAILED tests/test_browser_review.py::test_browser_review[new_review_clears_old_pixels]
+FAILED tests/test_browser_review.py::test_browser_review[superseded_load_cannot_authorize]
+FAILED tests/test_browser_review.py::test_browser_review[original_pixels_required]
+FAILED tests/test_browser_review.py::test_browser_review[cached_preview_is_revalidated]
+FAILED tests/test_browser_review.py::test_browser_review[closed_review_cannot_submit]
+FAILED tests/test_browser_review.py::test_browser_review[native_close_cancels_review]
+FAILED tests/test_browser_review.py::test_browser_review[duplicate_decisions_blocked]
+FAILED tests/test_browser_review.py::test_browser_review[old_decision_keeps_new_review_open]
+FAILED tests/test_browser_review.py::test_browser_review[same_path_load_race]
+FAILED tests/test_browser_review.py::test_browser_review[late_decode_keeps_current_image]
+FAILED tests/test_browser_review.py::test_browser_review[fresh_urls_are_released]
+14 failed, 2 passed in 0.82s

@@ -1,0 +1,212 @@
+F.FFF...F....                                                            [100%]
+================================== FAILURES ===================================
+_________ test_review_releases_decoded_images_before_writing_receipts _________
+
+root = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/publication-review/red/test_review_releases_decoded_i0/workspace')
+ready_batch = {'id': '3cf17e5b40044561b1c7a519789e4a51', 'schema': 1, 'sequence': 1, 'recipe': {'edges': (64,), 'guard': {'steps': 2...75, ...}, 'quality': {'epsilon_255': 4, 'preserve_white': True, 'rms_fraction': 0.95, 'delta_e76_p95': 6.0, ...}}, ...}
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001C1BE9E1CD0>
+
+    def test_review_releases_decoded_images_before_writing_receipts(root, ready_batch, monkeypatch):
+        references, live_at_write = [], []
+        verify, write = p._verified_item, p._replace_json
+    
+        def measured_verify(*args):
+            result = verify(*args)
+            references.extend(weakref.ref(image) for image in result[1].values())
+            return result
+    
+        def measured_write(*args):
+            gc.collect()
+            live_at_write.append(sum(reference() is not None for reference in references))
+            return write(*args)
+    
+        monkeypatch.setattr(p, "_verified_item", measured_verify)
+        monkeypatch.setattr(p, "_replace_json", measured_write)
+        result = accept(root, ready_batch)
+        assert result["counts"]["ACCEPTED"] == 6
+>       assert live_at_write == [0] * 6
+E       assert [12, 12, 12, 12, 12, 12] == [0, 0, 0, 0, 0, 0]
+E         
+E         At index 0 diff: 12 != 0
+E         Use -v to get more diff
+
+tests\test_publication_review_snapshots.py:83: AssertionError
+_ test_report_replaced_during_verification_cannot_supply_approval_hash[verify] _
+
+root = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/publication-review/red/test_report_replaced_during_ve0/workspace')
+ready_batch = {'id': '4797a80c503242d2a8787a95c4cc797a', 'schema': 1, 'sequence': 1, 'recipe': {'edges': (64,), 'guard': {'steps': 2...75, ...}, 'quality': {'epsilon_255': 4, 'preserve_white': True, 'rms_fraction': 0.95, 'delta_e76_p95': 6.0, ...}}, ...}
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001C1BE8D6B10>
+operation = 'verify'
+
+    @pytest.mark.parametrize("operation", ["verify", "review", "export"])
+    def test_report_replaced_during_verification_cannot_supply_approval_hash(root, ready_batch, monkeypatch, operation):
+        request = ready_batch
+        if operation == "export":
+            accept(root, request)
+        path = item_folder(root, request) / "report.json"
+        initial_bytes = path.read_bytes()
+        replacement = json.loads(initial_bytes)
+        replacement["guard"]["note"] = "Changed after report parsing"
+        replacement_bytes = json.dumps(replacement).encode("utf-8")
+        measure = p.quality_report
+        writes = []
+    
+        def replace_report(*args, **kwargs):
+            if not writes:
+                path.write_bytes(replacement_bytes)
+                writes.append(1)
+            return measure(*args, **kwargs)
+    
+        monkeypatch.setattr(p, "quality_report", replace_report)
+        if operation == "verify":
+            report, _, _, digest = p._verified_item(root, request, request["tasks"][0])
+            assert report == json.loads(initial_bytes)
+>           assert digest == hashlib.sha256(initial_bytes).hexdigest()
+E           AssertionError: assert '994a55ec6efe...9a4f8decc567a' == '7fec983e2154...c2bea95194276'
+E             
+E             - 7fec983e2154b350912c3dd76aecb635a27d5e6b0a564407496c2bea95194276
+E             + 994a55ec6efe635ff205badd571c9653d8f3fdb6a9d0a9b52a59a4f8decc567a
+
+tests\test_publication_review_snapshots.py:116: AssertionError
+_ test_report_replaced_during_verification_cannot_supply_approval_hash[review] _
+
+root = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/publication-review/red/test_report_replaced_during_ve1/workspace')
+ready_batch = {'id': 'b0a239528e724a26b1cb9c4c2b7b1c9e', 'schema': 1, 'sequence': 1, 'recipe': {'edges': (64,), 'guard': {'steps': 2...75, ...}, 'quality': {'epsilon_255': 4, 'preserve_white': True, 'rms_fraction': 0.95, 'delta_e76_p95': 6.0, ...}}, ...}
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001C1BEB34EF0>
+operation = 'review'
+
+    @pytest.mark.parametrize("operation", ["verify", "review", "export"])
+    def test_report_replaced_during_verification_cannot_supply_approval_hash(root, ready_batch, monkeypatch, operation):
+        request = ready_batch
+        if operation == "export":
+            accept(root, request)
+        path = item_folder(root, request) / "report.json"
+        initial_bytes = path.read_bytes()
+        replacement = json.loads(initial_bytes)
+        replacement["guard"]["note"] = "Changed after report parsing"
+        replacement_bytes = json.dumps(replacement).encode("utf-8")
+        measure = p.quality_report
+        writes = []
+    
+        def replace_report(*args, **kwargs):
+            if not writes:
+                path.write_bytes(replacement_bytes)
+                writes.append(1)
+            return measure(*args, **kwargs)
+    
+        monkeypatch.setattr(p, "quality_report", replace_report)
+        if operation == "verify":
+            report, _, _, digest = p._verified_item(root, request, request["tasks"][0])
+            assert report == json.loads(initial_bytes)
+            assert digest == hashlib.sha256(initial_bytes).hexdigest()
+        elif operation == "review":
+            result = accept(root, request)
+>           assert result["items"][0]["review"] == "STALE"
+E           AssertionError: assert 'ACCEPTED' == 'STALE'
+E             
+E             - STALE
+E             + ACCEPTED
+
+tests\test_publication_review_snapshots.py:119: AssertionError
+_ test_report_replaced_during_verification_cannot_supply_approval_hash[export] _
+
+root = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/publication-review/red/test_report_replaced_during_ve2/workspace')
+ready_batch = {'id': 'eb91d559dfee4de59d7d6c567e12b1d6', 'schema': 1, 'sequence': 1, 'recipe': {'edges': (64,), 'guard': {'steps': 2...75, ...}, 'quality': {'epsilon_255': 4, 'preserve_white': True, 'rms_fraction': 0.95, 'delta_e76_p95': 6.0, ...}}, ...}
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001C1BEA8CE20>
+operation = 'export'
+
+    @pytest.mark.parametrize("operation", ["verify", "review", "export"])
+    def test_report_replaced_during_verification_cannot_supply_approval_hash(root, ready_batch, monkeypatch, operation):
+        request = ready_batch
+        if operation == "export":
+            accept(root, request)
+        path = item_folder(root, request) / "report.json"
+        initial_bytes = path.read_bytes()
+        replacement = json.loads(initial_bytes)
+        replacement["guard"]["note"] = "Changed after report parsing"
+        replacement_bytes = json.dumps(replacement).encode("utf-8")
+        measure = p.quality_report
+        writes = []
+    
+        def replace_report(*args, **kwargs):
+            if not writes:
+                path.write_bytes(replacement_bytes)
+                writes.append(1)
+            return measure(*args, **kwargs)
+    
+        monkeypatch.setattr(p, "quality_report", replace_report)
+        if operation == "verify":
+            report, _, _, digest = p._verified_item(root, request, request["tasks"][0])
+            assert report == json.loads(initial_bytes)
+            assert digest == hashlib.sha256(initial_bytes).hexdigest()
+        elif operation == "review":
+            result = accept(root, request)
+            assert result["items"][0]["review"] == "STALE"
+            with pytest.raises(RiposteError, match="PUBLICATION_REVIEW_STALE"):
+                p.publication_zip(root, request["id"])
+        else:
+            # This operation already read the approved snapshot. It may finish that
+            # exact snapshot; the next operation must observe the changed report.
+>           raw = p.publication_zip(root, request["id"])
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_publication_review_snapshots.py:125: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\riposte\publication.py:380: in publication_zip
+    return _publication_zip_locked(root, batch_id)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+root = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/publication-review/red/test_report_replaced_during_ve2/workspace')
+batch_id = 'eb91d559dfee4de59d7d6c567e12b1d6'
+
+    def _publication_zip_locked(root, batch_id):
+            _checkpoint(root)
+            request = _request(root, batch_id)
+            entries, total_bytes = [], 0
+            for task in request["tasks"]:
+                review_path = _prefix(root, batch_id) + f'/reviews/{task["id"]}.json'
+                if not safe_child(root, review_path).is_file(): continue
+                review = _read(root, review_path)
+                if review.get("decision") != "ACCEPTED": continue
+                item, _, raw, report_hash = _verified_item(root, request, task)
+                if (review.get("candidate_sha256") != item["artifact_sha256"]["candidate"] or review.get("report_sha256") != report_hash
+                    or review.get("visual_accepted") is not True or review.get("acknowledge_unverified") is not True):
+>                   raise RiposteError("PUBLICATION_REVIEW_STALE")
+E                   riposte.errors.RiposteError: PUBLICATION_REVIEW_STALE
+
+src\riposte\publication.py:395: RiposteError
+_____________ test_record_growth_after_stat_does_not_bypass_limit _____________
+
+root = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/publication-review/red/test_record_growth_after_stat_0/workspace')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001C1BEB27CE0>
+
+    def test_record_growth_after_stat_does_not_bypass_limit(root, monkeypatch):
+        path = root / "record.json"
+        path.write_bytes(b"{}")
+        calls = []
+        original_open = Path.open
+    
+        class GrowingFile(io.BytesIO):
+            def read(self, size=-1):
+                calls.append(size)
+                return super().read(size)
+    
+        def opened(file, *args, **kwargs):
+            if file == path:
+                return GrowingFile(b"{}" + b" " * 8_388_608)
+            return original_open(file, *args, **kwargs)
+    
+        monkeypatch.setattr(Path, "open", opened)
+>       with pytest.raises(RiposteError, match="PUBLICATION_RECORD_INVALID"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE RiposteError
+
+tests\test_publication_review_snapshots.py:176: Failed
+=========================== short test summary info ===========================
+FAILED tests/test_publication_review_snapshots.py::test_review_releases_decoded_images_before_writing_receipts
+FAILED tests/test_publication_review_snapshots.py::test_report_replaced_during_verification_cannot_supply_approval_hash[verify]
+FAILED tests/test_publication_review_snapshots.py::test_report_replaced_during_verification_cannot_supply_approval_hash[review]
+FAILED tests/test_publication_review_snapshots.py::test_report_replaced_during_verification_cannot_supply_approval_hash[export]
+FAILED tests/test_publication_review_snapshots.py::test_record_growth_after_stat_does_not_bypass_limit
+5 failed, 8 passed in 2.80s

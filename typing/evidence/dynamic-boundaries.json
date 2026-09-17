@@ -202,31 +202,36 @@
   {
     "file": "typing/stubs/riposte/publication.pyi",
     "line": 36,
+    "declaration": "def _read_record(root: Path, relative: str) -> tuple[Report, bytes]:"
+  },
+  {
+    "file": "typing/stubs/riposte/publication.pyi",
+    "line": 38,
     "declaration": "def _replace_json(root: Path, relative: str, report: Report) -> None:"
   },
   {
     "file": "typing/stubs/riposte/publication.pyi",
-    "line": 42,
+    "line": 44,
     "declaration": "def _request(root: Path, batch_id: str) -> Report:"
   },
   {
     "file": "typing/stubs/riposte/publication.pyi",
-    "line": 44,
+    "line": 46,
     "declaration": "def _models(vae_dirs: list[Path], device: str, pipeline_dir: Path | None, temporal_dir: Path | None, progress: _Progress | None=None) -> tuple[list[Encoder], InpaintProbe | None, TemporalProbe | None, Report, list[Report]]:"
   },
   {
     "file": "typing/stubs/riposte/publication.pyi",
-    "line": 50,
+    "line": 52,
     "declaration": "def _run(root: Path, request: Report, models: tuple[list[Encoder], InpaintProbe | None, TemporalProbe | None, Report, list[Report]], progress: _Progress | None) -> PublicationBatch:"
   },
   {
     "file": "typing/stubs/riposte/publication.pyi",
-    "line": 52,
+    "line": 54,
     "declaration": "def _verified_item(root: Path, request: Report, task: Report) -> tuple[Report, dict[str, _Image], dict[str, bytes], str]:"
   },
   {
     "file": "typing/stubs/riposte/publication.pyi",
-    "line": 68,
+    "line": 70,
     "declaration": "def open_in_workshop(root: Path, batch_id: str, item_id: str) -> Report:"
   },
   {

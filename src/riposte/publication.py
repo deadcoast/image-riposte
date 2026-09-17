@@ -59,12 +59,19 @@ def _prefix(root, batch_id): return state_relative(root, f"publishing/{_id(batch
 
 
 def _read(root, relative):
+    return _read_record(root, relative)[0]
+
+
+def _read_record(root, relative):
+    """Parse one bounded snapshot and retain its exact bytes for receipt hashes."""
     path = safe_child(root, relative)
     try:
-        if path.stat().st_size > 8_388_608: raise RiposteError("PUBLICATION_RECORD_INVALID")
-        data = json.loads(path.read_text(encoding="utf-8"))
+        with path.open("rb") as stream:
+            raw = stream.read(8_388_609)
+        if len(raw) > 8_388_608: raise RiposteError("PUBLICATION_RECORD_INVALID")
+        data = json.loads(raw.decode("utf-8"))
         if not isinstance(data, dict): raise RiposteError("PUBLICATION_RECORD_INVALID")
-        return data
+        return data, raw
     except (ValueError, OSError): raise RiposteError("PUBLICATION_RECORD_UNREADABLE") from None
 
 
@@ -239,7 +246,7 @@ def _run(root, request, models, progress):
 def _verified_item(root, request, task):
     prefix = _prefix(root, request["id"]) + f'/items/{task["id"]}'
     report_path = prefix + "/report.json"
-    report = _read(root, report_path)
+    report, report_bytes = _read_record(root, report_path)
     if any(report.get(k) != task[k] for k in ("id", "image_id", "date", "source_clean_sha256", "max_edge")) or report.get("batch_id") != request["id"]:
         raise RiposteError("PUBLICATION_ITEM_BINDING_FAILED")
     from .policy import canonical_path
@@ -270,7 +277,7 @@ def _verified_item(root, request, task):
         raise RiposteError("PUBLICATION_FILENAME_INVALID")
     if images["candidate"].size != (report.get("width"), report.get("height")):
         raise RiposteError("PUBLICATION_DIMENSION_MISMATCH")
-    report_hash = hashlib.sha256(safe_child(root, report_path).read_bytes()).hexdigest()
+    report_hash = hashlib.sha256(report_bytes).hexdigest()
     return report, images, raw, report_hash
 
 
@@ -348,10 +355,16 @@ def review_publication(root, batch_id, item_ids, decision="ACCEPTED", visual_acc
                               {'decision': 'REJECTED', 'ai_protection': 'UNVERIFIED'})
             return publication_status(root, batch_id)
         # Validate the full review selection before recording any acceptance.
-        checked = [(i, _verified_item(root, request, tasks[i])) for i in item_ids]
-        for identifier, (item, _, _, digest) in checked:
+        # Keep only receipt fields. Retaining decoded images here grows memory
+        # with every selected rendition, even after that item has been verified.
+        checked = []
+        for identifier in item_ids:
+            verified = _verified_item(root, request, tasks[identifier])
+            checked.append((identifier, verified[0]["artifact_sha256"]["candidate"], verified[3]))
+            del verified
+        for identifier, candidate_hash, digest in checked:
             _replace_json(root, _prefix(root, batch_id) + f"/reviews/{identifier}.json",
-                          {"decision": decision, "candidate_sha256": item["artifact_sha256"]["candidate"],
+                          {"decision": decision, "candidate_sha256": candidate_hash,
                            "report_sha256": digest, "visual_accepted": bool(visual_accepted),
                            "acknowledge_unverified": bool(acknowledge_unverified), "ai_protection": "UNVERIFIED"})
         return publication_status(root, batch_id)

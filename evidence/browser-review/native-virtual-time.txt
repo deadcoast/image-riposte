@@ -1,0 +1,77 @@
+F                                                                        [100%]
+================================== FAILURES ===================================
+_____________________ test_browser_review[native_browser] _____________________
+
+scenario = 'native_browser'
+
+    @pytest.mark.parametrize('scenario', [
+        'approval_waits_for_decode',
+        'failed_image_blocks_approval',
+        'failed_decode_blocks_approval',
+        'new_review_clears_old_pixels',
+        'superseded_load_cannot_authorize',
+        'original_pixels_required',
+        'cached_preview_is_revalidated',
+        'closed_review_cannot_submit',
+        'native_close_cancels_review',
+        'duplicate_decisions_blocked',
+        'old_decision_keeps_new_review_open',
+        'failed_decision_can_retry',
+        'rejection_without_images',
+        'same_path_load_race',
+        'late_decode_keeps_current_image',
+        'fresh_urls_are_released',
+        'acknowledgements_required',
+        'stale_receipt_is_not_success',
+        'old_workshop_keeps_new_review_open',
+        'workshop_handoff',
+        'native_browser',
+    ])
+    def test_browser_review(scenario):
+        node = shutil.which('node')
+        if node is None:
+            pytest.skip('Node is required to execute the browser JavaScript')
+        browser = None
+        if scenario == 'native_browser':
+            candidates = [
+                os.environ.get('RIPOSTE_TEST_BROWSER', ''),
+                shutil.which('chromium') or shutil.which('google-chrome') or '',
+                'C:/Program Files/Google/Chrome/Application/chrome.exe',
+                'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe',
+            ]
+            browser = next((name for name in candidates if name and Path(name).is_file()), None)
+            if browser is None:
+                pytest.skip('A local Chromium browser is required for native DOM verification')
+        script = Path(__file__).with_name('browser_review.cjs')
+        result = subprocess.run([node, str(script), scenario, *([browser] if browser else [])],
+                                capture_output=True, text=True, encoding='utf-8', timeout=30)
+>       assert result.returncode == 0, result.stdout + result.stderr
+E       AssertionError: AssertionError [ERR_ASSERTION]: native browser result: Error: Timed out: ()=&gt;$('pub-review-reject').disabled
+E             at wait (http://127.0.0.1:13462/probe.js:4:117)
+E             at async http://127.0.0.1:13462/probe.js:20:38
+E         + actual - expected
+E         
+E         + "Error: Timed out: ()=&gt;$('pub-review-reject').disabled\r\n" +
+E         +   '    at wait (http://127.0.0.1:13462/probe.js:4:117)\r\n' +
+E         +   '    at async http://127.0.0.1:13462/probe.js:20:38'
+E         - 'PASS'
+E         
+E             at nativeBrowser (C:\Users\ryanf\github\_new\image-riposte\tests\browser_review.cjs:369:12)
+E             at async C:\Users\ryanf\github\_new\image-riposte\tests\browser_review.cjs:379:5 {
+E           generatedMessage: false,
+E           code: 'ERR_ASSERTION',
+E           actual: "Error: Timed out: ()=&gt;$('pub-review-reject').disabled\r\n" +
+E             '    at wait (http://127.0.0.1:13462/probe.js:4:117)\r\n' +
+E             '    at async http://127.0.0.1:13462/probe.js:20:38',
+E           expected: 'PASS',
+E           operator: 'strictEqual',
+E           diff: 'simple'
+E         }
+E         
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['C:\\nvm4w\\nodejs\\node.EXE', 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\tests\\browser_r...ttp://127.0.0.1:13462/probe.js:20:38\',\n  expected: \'PASS\',\n  operator: \'strictEqual\',\n  diff: \'simple\'\n}\n').returncode
+
+tests\test_browser_review.py:51: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/test_browser_review.py::test_browser_review[native_browser] - As...
+1 failed, 20 deselected in 0.66s

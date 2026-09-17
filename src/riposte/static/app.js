@@ -2,6 +2,7 @@
 const $ = id => document.getElementById(id);
 const state = {images:[],trials:[],selected:null,trial:null,view:'library',size:'ALL',folder:'',search:'',sort:'newest',mode:'split',plan:false,audit:null,control:'build',transport:'identity',zoom:1,panX:0,panY:0,evaluations:new Map(),generations:new Map()};
 const blobs = new Map(), imageRequests = new Map(), lastJobs = new Set();
+const imageLoads = new WeakMap();
 let busyJob = null, pollTimer, refreshing = false, labRevision = 0, drag = null;
 const fragment = new URLSearchParams(location.hash.slice(1));
 if (fragment.has('token')) {sessionStorage.setItem('riposte-session',fragment.get('token'));history.replaceState(null,'',location.pathname);}
@@ -19,13 +20,35 @@ function el(tag,cls,text){const item=document.createElement(tag);if(cls)item.cla
 function toast(message){$('toast').textContent=message;$('toast').hidden=false;clearTimeout(toast.timer);toast.timer=setTimeout(()=>$('toast').hidden=true,6500);}
 function error(e){toast(messages[e.message]||String(e.message||'OPERATION_FAILED').replaceAll('_',' '));}
 function showReport(title,value){$('report-title').textContent=title;$('report-content').textContent=JSON.stringify(value,null,2);if(!$('report-dialog').open)$('report-dialog').showModal();}
-async function imageURL(path){
-  if(blobs.has(path))return blobs.get(path);
-  if(imageRequests.has(path))return imageRequests.get(path);
-  const promise=(async()=>{const response=await fetch('/api/'+path,{headers:requestHeaders,cache:'no-store'});if(!response.ok)throw new Error('IMAGE_READ_FAILED');const url=URL.createObjectURL(await response.blob());blobs.set(path,url);if(blobs.size>128){const first=blobs.keys().next().value;URL.revokeObjectURL(blobs.get(first));blobs.delete(first);}return url;})();
+async function imageURL(path,{fresh=false}={}){
+  if(!fresh&&blobs.has(path))return blobs.get(path);
+  if(!fresh&&imageRequests.has(path))return imageRequests.get(path);
+  const promise=(async()=>{
+    const response=await fetch('/api/'+path,{headers:requestHeaders,cache:'no-store'});
+    if(!response.ok)throw new Error('IMAGE_READ_FAILED');
+    const url=URL.createObjectURL(await response.blob());
+    if(!fresh){blobs.set(path,url);if(blobs.size>128){const first=blobs.keys().next().value;URL.revokeObjectURL(blobs.get(first));blobs.delete(first);}}
+    return url;
+  })();
+  // Review images must reach the server again, including same-path retries.
+  if(fresh)return promise;
   imageRequests.set(path,promise);try{return await promise;}finally{imageRequests.delete(path);}
 }
-async function loadImage(element,path){element.dataset.imagePath=path;try{const url=await imageURL(path);if(element.dataset.imagePath===path){element.src=url;await element.decode().catch(()=>{});}}catch(e){if(element.dataset.imagePath===path)element.removeAttribute('src');}}
+function clearImage(element){
+  const previous=imageLoads.get(element);imageLoads.delete(element);
+  element.removeAttribute('src');delete element.dataset.imagePath;
+  if(previous?.url)URL.revokeObjectURL(previous.url);
+}
+async function loadImage(element,path,{fresh=false}={}){
+  clearImage(element);const request={url:null};imageLoads.set(element,request);element.dataset.imagePath=path;
+  try{
+    const url=await imageURL(path,{fresh});
+    if(imageLoads.get(element)!==request){if(fresh)URL.revokeObjectURL(url);return false;}
+    if(fresh)request.url=url;
+    element.src=url;await element.decode();
+    return imageLoads.get(element)===request;
+  }catch(e){if(imageLoads.get(element)===request)clearImage(element);return false;}
+}
 function shortName(row){return row.relative.split('/').pop();}
 function bin(row){return row.relative.split('/')[2];}
 function select(id){state.selected=state.images.find(i=>i.id===id)||null;state.trial=state.trials.find(t=>t.image_id===id)||null;state.transport='identity';$('transport-view').value='identity';fit();syncGallerySelection();renderInspector();renderLab();updateWorkflow();}

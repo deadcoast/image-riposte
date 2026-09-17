@@ -16,9 +16,14 @@ window.RipostePublish = (() => {
     $('pub-resume').hidden=!batch||!(batch.counts.PENDING+batch.counts.BLOCKED);
     $('pub-resume').disabled=!!busyJob||!models().length;
     $('pub-download').disabled=!!busyJob||!batch?.counts.ACCEPTED;
-    $('pub-review-accept').disabled=!!busyJob||!review||!$('pub-review-quality').checked||!$('pub-review-ack').checked;
-    $('pub-review-reject').disabled=!!busyJob||!review;
-    $('pub-workshop').disabled=!!busyJob||!review;
+    const reviewing=!!review&&$('pub-review-dialog').open,waiting=!!busyJob||!!review?.pending;
+    const visible=reviewing&&review.ready&&review.originalSeen;
+    $('pub-review-quality').disabled=waiting||!visible;
+    $('pub-review-ack').disabled=waiting||!reviewing;
+    $('pub-review-accept').disabled=waiting||!visible||!$('pub-review-quality').checked||!$('pub-review-ack').checked;
+    $('pub-review-reject').disabled=waiting||!reviewing;
+    $('pub-workshop').disabled=waiting||!reviewing;
+    $('pub-review-view').disabled=$('pub-review-difference').disabled=waiting||!reviewing;
   }
   function renderSources(force=false){
     const key=JSON.stringify(state.images.map(x=>[x.id,x.sha256]));
@@ -77,26 +82,52 @@ window.RipostePublish = (() => {
     renderAuditBadge();
   }
   async function openReview(item,batchID){
-    review={item,batchID};difference=false;native=false;
+    review={item,batchID,revision:0,ready:false,originalSeen:false,pending:false};difference=false;native=false;
     $('pub-review-title').textContent=item.relative;$('pub-review-view').value='identity';$('pub-review-quality').checked=false;$('pub-review-ack').checked=false;
     $('pub-review-pair').classList.remove('native');$('pub-review-fit').classList.add('selected');$('pub-review-native').classList.remove('selected');$('pub-review-difference').classList.remove('selected');
     if(!$('pub-review-dialog').open)$('pub-review-dialog').showModal();renderReview();disabled();
   }
-  function renderReview(){
-    if(!review)return;const {item,batchID}=review,view=$('pub-review-view').value;
+  async function renderReview(){
+    if(!review||review.pending)return;
+    const target=review,revision=++target.revision,{item,batchID}=target,view=$('pub-review-view').value,original=view==='identity'&&!difference;
+    target.ready=false;$('pub-review-quality').checked=false;
+    $('pub-review-help').textContent='Loading both images for review…';disabled();
     const path='publication/'+batchID+'/image/'+item.id+'/';
-    loadImage($('pub-review-clean'),path+'clean?view='+view);loadImage($('pub-review-candidate'),path+(difference?'difference':'candidate')+'?view='+view);
+    const pixels=Promise.all([loadImage($('pub-review-clean'),path+'clean?view='+view,{fresh:true}),loadImage($('pub-review-candidate'),path+(difference?'difference':'candidate')+'?view='+view,{fresh:true})]);
     $('pub-review-candidate-label').textContent=difference?'ABSOLUTE DIFFERENCE ×12':view==='identity'?'CANDIDATE · ACTUAL EXPORT PIXELS':'CANDIDATE · SAME TRANSPORT TRANSFORM';
     const row=item.transport?.rows.find(r=>r.transform===view),area=$('pub-review-metrics');area.replaceChildren();
     const metrics=view==='identity'?[[item.quality.max_channel_delta_255,'PEAK CHANGE / 255'],[item.quality.worst_tile_rmse_255.toFixed(2),'WORST LOCAL RMS'],[item.quality.delta_e76_p95.toFixed(2),'COLOUR ΔE76 / P95'],['PASS','NUMERIC QUALITY ONLY']]:[[row?.rmse_255.toFixed(3)||'—','RESIDUAL RMS / 255'],[row?.max_channel_delta_255??'—','POST-TRANSPORT PEAK Δ'],['UNVERIFIED','AI RESISTANCE']];
     for(const [value,label] of metrics){const box=el('div');box.append(el('strong','',String(value)),el('span','',label));area.append(box);}
-    $('pub-review-help').textContent=view==='identity'?'Compare line work, flat areas and colour. These are the exact baseline and candidate PNG pixels; numeric quality passing does not replace your judgment.':'Both images received the same real transformation. Remaining pixel differences are not proof of AI resistance. Approval always applies to the original publishing PNG, not this stress-test preview.';
+    const loaded=await pixels;
+    if(review!==target||target.revision!==revision||!$('pub-review-dialog').open)return;
+    target.ready=loaded.every(Boolean);if(target.ready&&original)target.originalSeen=true;
+    // A click made while pixels were loading cannot count as inspecting them.
+    $('pub-review-quality').checked=false;
+    $('pub-review-help').textContent=!target.ready?'Could not load both images. Reopen this review or choose another view to retry. Approval is unavailable; you can still reject this output.':
+      !target.originalSeen?'Choose Original raster with Difference switched off to inspect the publishing PNG before approving.':
+      original?'Compare line work, flat areas and colour. These are the exact baseline and candidate PNG pixels; numeric quality passing does not replace your judgment.':
+      'This preview helps inspect changes. Approval applies to the original publishing PNG. Pixel differences are not proof of AI resistance.';
+    disabled();
+  }
+  function closeReview(){
+    review=null;clearImage($('pub-review-clean'));clearImage($('pub-review-candidate'));
+    $('pub-review-quality').checked=false;$('pub-review-ack').checked=false;
+    $('pub-review-dialog').close();disabled();
   }
   async function decision(accepted){
-    if(!review)return;try{
-      const result=await api('publication/'+review.batchID+'/review',{item_ids:[review.item.id],decision:accepted?'ACCEPTED':'REJECTED',visual_accepted:$('pub-review-quality').checked,acknowledge_unverified:$('pub-review-ack').checked});
-      if(current===result.id){batch=result;renderBatch();}$('pub-review-dialog').close();toast(accepted?'This exact PNG is approved for the publishing pack. AI resistance remains unverified.':'This image is excluded from the publishing pack.');
-    }catch(e){error(e);}
+    const target=review;
+    if(!target||target.pending||busyJob||!$('pub-review-dialog').open)return;
+    if(accepted&&(!target.ready||!target.originalSeen||!$('pub-review-quality').checked||!$('pub-review-ack').checked))return;
+    target.pending=true;disabled();
+    try{
+      const result=await api('publication/'+target.batchID+'/review',{item_ids:[target.item.id],decision:accepted?'ACCEPTED':'REJECTED',visual_accepted:$('pub-review-quality').checked,acknowledge_unverified:$('pub-review-ack').checked});
+      if(current===result.id){batch=result;renderBatch();}
+      if(review!==target)return;
+      closeReview();
+      const approved=result.items.some(item=>item.id===target.item.id&&item.review==='ACCEPTED');
+      toast(accepted?(approved?'This exact PNG is approved for the publishing pack. AI resistance remains unverified.':'The output changed and is not approved. Reopen it for review.'):'This image is excluded from the publishing pack.');
+    }catch(e){if(review===target)error(e);}
+    finally{target.pending=false;if(review===target)disabled();}
   }
   $('pub-select-all').onclick=()=>{for(const row of state.images)selected.add(row.id);renderSources(true);};$('pub-clear').onclick=()=>{selected.clear();renderSources(true);};
   for(const id of ['pub-models','pub-device','pub-steps','pub-restarts','pub-inpaint','pub-video','pub-rms','pub-colour','pub-white'])$(id).addEventListener('input',disabled);
@@ -112,12 +143,23 @@ window.RipostePublish = (() => {
     if(!response.ok){const r=await response.json();throw new Error(r.code||'DOWNLOAD_FAILED');}
     const url=URL.createObjectURL(await response.blob()),link=el('a');link.href=url;link.download='RIPOSTE-'+String(batch.sequence).padStart(2,'0')+'.zip';document.body.append(link);link.click();link.remove();setTimeout(()=>URL.revokeObjectURL(url),10000);
   }catch(e){error(e);}};
-  $('pub-review-close').onclick=()=>$('pub-review-dialog').close();$('pub-review-view').onchange=renderReview;
+  $('pub-review-close').onclick=closeReview;
+  $('pub-review-dialog').addEventListener('close',()=>{if(!$('pub-review-dialog').open)closeReview();});
+  $('pub-review-view').onchange=renderReview;
   $('pub-review-fit').onclick=()=>{native=false;$('pub-review-pair').classList.remove('native');$('pub-review-fit').classList.add('selected');$('pub-review-native').classList.remove('selected');};
   $('pub-review-native').onclick=()=>{native=true;$('pub-review-pair').classList.add('native');$('pub-review-fit').classList.remove('selected');$('pub-review-native').classList.add('selected');};
   $('pub-review-difference').onclick=()=>{difference=!difference;$('pub-review-difference').classList.toggle('selected',difference);renderReview();};
   $('pub-review-quality').onchange=$('pub-review-ack').onchange=disabled;
   $('pub-review-accept').onclick=()=>decision(true);$('pub-review-reject').onclick=()=>decision(false);
-  $('pub-workshop').onclick=async()=>{if(!review)return;try{const t=await api('publication/'+review.batchID+'/workshop/'+review.item.id,{});state.selected=state.images.find(x=>x.id===t.image_id);state.trial=t;state.trials.unshift(t);state.transport='identity';$('transport-view').value='identity';$('pub-review-dialog').close();setView('lab');toast('The workshop is inspecting the exact publishing output. It did not regenerate the image.');}catch(e){error(e);}};
+  $('pub-workshop').onclick=async()=>{
+    const target=review;if(!target||target.pending||busyJob||!$('pub-review-dialog').open)return;
+    target.pending=true;disabled();
+    try{
+      const t=await api('publication/'+target.batchID+'/workshop/'+target.item.id,{});
+      if(review!==target)return;
+      state.selected=state.images.find(x=>x.id===t.image_id);state.trial=t;state.trials.unshift(t);state.transport='identity';$('transport-view').value='identity';closeReview();setView('lab');toast('The workshop is inspecting the exact publishing output. It did not regenerate the image.');
+    }catch(e){if(review===target)error(e);}
+    finally{target.pending=false;if(review===target)disabled();}
+  };
   return {onState,activate,chooseCurrent,completed};
 })();

@@ -20,7 +20,9 @@ Before serving/approving/packing, the application checks the request/task/image/
 
 The hash relationships catch accidental stale/changed outputs; they are not signatures against a hostile person who controls the entire machine and can rewrite every receipt and report. No such stronger security boundary is advertised.
 
-API review accepts several item IDs in one request and validates the full selection before writing approvals. CLI `--item` is repeatable. The UI presents individual image review. `REJECTED` reverses an earlier acceptance for future downloads. An already distributed pack cannot be revoked remotely.
+API review accepts several item IDs in one request and validates the full selection before writing approvals. Each item's decoded images and PNG buffers are released after validation; only item IDs and receipt hashes are retained across the selection. Reports are read once with an 8 MiB byte limit, and the receipt hashes that exact parsed snapshot. A later report replacement needs a new review; it cannot supply a hash for an earlier report. An operation that has already read an approved snapshot can finish using that snapshot, while later operations observe the replacement.
+
+CLI `--item` is repeatable. The UI presents individual image review. `REJECTED` reverses an earlier acceptance for future downloads. An already distributed pack cannot be revoked remotely.
 
 ## Publishing packs
 

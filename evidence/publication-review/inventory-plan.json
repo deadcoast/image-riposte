@@ -1,0 +1,43 @@
+[
+  {
+    "op": "set",
+    "id": "OVR-023",
+    "fields": {
+      "Exports": "PublishRecipe;PublishRecipe.__post_init__;PublishRecipe.from_dict;PublishRecipe.public;_checkpoint;_id;_models;_prefix;_publication_zip_locked;_read;_read_record;_replace_json;_request;_run;_verified_item;export_publication;open_in_workshop;publication_pixels;publication_plan;publication_status;publication_zip;publications;resume_publication;review_publication;start_publication"
+    }
+  },
+  {
+    "op": "set",
+    "id": "OVR-089",
+    "fields": {
+      "Exports": "PublishRecipe;PublishRecipe.__post_init__;PublishRecipe.from_dict;PublishRecipe.public;_checkpoint;_id;_models;_prefix;_publication_zip_locked;_read;_read_record;_replace_json;_request;_run;_verified_item;export_publication;open_in_workshop;publication_pixels;publication_plan;publication_status;publication_zip;publications;resume_publication;review_publication;start_publication"
+    }
+  },
+  {
+    "op": "set",
+    "id": "OVR-463",
+    "fields": {
+      "Requires": "OVR-023;OVR-380;OVR-525;OVR-784"
+    }
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/publication.py",
+      "Symbol": "_read_record",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-023;OVR-380;OVR-525",
+      "Tags": "#source-symbol",
+      "ID": "OVR-784"
+    }
+  },
+  {
+    "op": "set",
+    "id": "OVR-318",
+    "fields": {
+      "Requires": "OVR-023;OVR-380;OVR-448;OVR-450;OVR-455;OVR-461;OVR-463;OVR-483;OVR-492;OVR-494;OVR-495;OVR-522;OVR-525;OVR-784"
+    }
+  }
+]
