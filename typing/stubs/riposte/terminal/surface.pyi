@@ -4,7 +4,7 @@ from rich.console import Console, ConsoleOptions
 from rich.style import Style
 from rich.segment import Segment
 from dataclasses import dataclass
-PALETTES: dict[str, dict[str, str]]
+from .palette import PALETTES as PALETTES
 
 def ascii_text(value: object) -> str: ...
 
@@ -24,7 +24,7 @@ class Surface:
     palette: dict[str, str]
     cells: list[list[Cell]]
 
-    def __init__(self, width: int, height: int, theme: str='dark') -> None: ...
+    def __init__(self, width: int, height: int, theme: str='goks') -> None: ...
 
     def put(self, x: int, y: int, char: object, fg: str='text', bg: str | None=None, bold: bool=False) -> None: ...
 

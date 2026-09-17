@@ -24,7 +24,7 @@ class Presentation:
     plain: bool = False
     no_color: bool = False
     no_animation: bool = False
-    theme: str = "dark"
+    theme: str = "goks"
     fps: int = 12
     events: bool = False
 
@@ -39,6 +39,11 @@ class Presentation:
 
 
 RECOVERY = {
+    "DECODE_FAILED": "The image could not be decoded; the source was left untouched.",
+    "SIDECAR_REQUIRES_DISCARD": "Enable Discard metadata sidecars before applying their removal.",
+    "UNSUPPORTED_FILE": "Review this unsupported input separately; it was not silently removed.",
+    "CATALOG_FILE_CHANGED": "A managed clean image changed outside RIPOSTE; inspect the file before proceeding.",
+    "CATALOG_FILE_MISSING": "A catalogued clean image is missing; restore the intended clean file before proceeding.",
     "CLI_ARGUMENT_INVALID": "Use riposte COMMAND --help for the accepted arguments and ranges. Rejected values are not echoed.",
     "CLEAN_MASTER_VIEW_INVALID": "Clean-master inspection is identity-only. Use a publishing output or trial for difference and transport views.",
     "ROOT_INVALID": "Select an existing dedicated artwork directory.",
@@ -66,7 +71,7 @@ def error(code: str, presentation: Presentation):
         print(json.dumps({"error": code}), file=sys.stderr)
     else:
         console = presentation.console(stderr=True)
-        console.print(Text(f"\n  [STOP] {code}", style="bold red"))
+        console.print(Text(f"\n  [STOP] {code}", style="bold " + PALETTES[presentation.theme]["danger"]))
         if code in RECOVERY: console.print(Text("  " + RECOVERY[code]))
 
 
@@ -90,38 +95,22 @@ def result_table(rows, title=None):
     return table
 
 
-def emit(result, presentation: Presentation):
-    data = json.dumps(result, indent=2, ensure_ascii=True, allow_nan=False)
+def emit(result, presentation: Presentation, command=""):
     if presentation.machine:
-        print(data)
+        print(json.dumps(result, indent=2, ensure_ascii=True, allow_nan=False))
         return
+    from .reports import overview, report_lines
     console = presentation.console()
     palette = PALETTES[presentation.theme]
-    console.print(Text("\n  RIPOSTE / RESULT", style=f"bold {palette['accent']}"))
-    console.print(Text("  " + "-" * min(70, max(16, console.width - 4)), style=palette["line"]))
-    if isinstance(result, list):
-        console.print(result_table(result) if result else Text("  No records."))
-    elif isinstance(result, dict):
-        for key in ("mode", "checkpoint", "status", "id", "metadata_policy", "relative", "bytes", "viewer"):
-            if key in result: console.print(Text(f"  {key:18} {ascii_text(result[key])}"))
-        if "counts" in result:
-            console.print(Text("  " + "   ".join(f"{key} {value}" for key, value in result["counts"].items())))
-        for key in ("blockers", "destinations"):
-            if result.get(key): console.print(result_table([{"key": k, "count": v} for k, v in result[key].items()], key.upper()))
-        if "items" in result: console.print(result_table(result["items"], "PUBLISHING OUTPUTS"))
-        elif not any(key in result for key in ("mode", "checkpoint", "status", "relative", "counts")):
-            console.print(Text(data))
-        elif result.get("mode") == "PUBLICATION_PLAN":
-            console.print(Text(f"  {result['images']} images / {result['outputs']} distinct outputs / {result['duplicate_renders_avoided']} duplicate sizes avoided"))
-            console.print(result_table(result["tasks"], "PLANNED OUTPUTS"))
-        displayed={"mode","checkpoint","status","id","metadata_policy","relative","bytes","viewer","counts","blockers","destinations","items","ai_protection"}
-        if result.get("mode")=="PUBLICATION_PLAN":displayed.update({"images","outputs","duplicate_renders_avoided","tasks"})
-        if any(key in result for key in ("mode","checkpoint","status","relative","counts")):
-            remaining={key:value for key,value in result.items() if key not in displayed}
-            if remaining:console.print(Text(json.dumps(remaining,indent=2,ensure_ascii=True,allow_nan=False)))
-        if result.get("ai_protection"):
-            console.print(Text("  AI evidence: " + ascii_text(result["ai_protection"]), style=palette["warn"]))
-    else: console.print(Text(data))
+    width = max(20, min(112, console.width - 4))
+    report = overview(result, command, width)
+    console.print(Text("\n  RIPOSTE / " + report.title.upper(), style=f"bold {palette['accent']}"))
+    console.print(Text("  " + "-" * width, style=palette["line"]))
+    console.print(Text("  [" + report.outcome + "]", style=f"bold {palette[report.tone]}"))
+    console.print(Text("  " + report.explanation, style=palette["muted"]))
+    console.print()
+    for line in report_lines(report, result, "overview", width):
+        console.print(Text("  ") + line.rich(presentation.theme))
     console.print()
 
 
@@ -189,5 +178,5 @@ def _run_direct(request: Request, presentation: Presentation):
         op.join()
     snapshot = op.snapshot()
     if snapshot.code: error(snapshot.code, presentation)
-    elif op.result is not None: emit(op.result, presentation)
+    elif op.result is not None: emit(op.result, presentation, request.name)
     return 143 if terminated else op.exit_code

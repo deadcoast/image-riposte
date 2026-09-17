@@ -1,4 +1,5 @@
 # Source-derived external stub; see typing/README.md for scope.
+from .palette import PALETTES as PALETTES
 from typer._click import Context, HelpFormatter
 from typer.core import TyperCommand, TyperGroup
 

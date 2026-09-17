@@ -1,0 +1,387 @@
+{
+  "result": "PASS",
+  "scope": "Selective merge continuity, archive identity and retained execution reports; the full application suite and raw-source typing remain failing.",
+  "command": [
+    "C:\\Users\\ryanf\\github\\_new\\image-riposte\\.venv\\Scripts\\python.exe",
+    "scripts/verify_v05_merge.py"
+  ],
+  "archive": "packages/RIPOSTE_v0.5.0.zip",
+  "archive_sha256": "97541fba8ce1fd9095080140eef596b0ec80d4c46f590a2adb1f78826fe8547b",
+  "existing_source_files_changed": [
+    "src/riposte/__init__.py",
+    "src/riposte/cli.py",
+    "src/riposte/terminal/app.py",
+    "src/riposte/terminal/controller.py",
+    "src/riposte/terminal/help.py",
+    "src/riposte/terminal/output.py",
+    "src/riposte/terminal/preview.py",
+    "src/riposte/terminal/render.py",
+    "src/riposte/terminal/state.py",
+    "src/riposte/terminal/surface.py"
+  ],
+  "source_and_test_files_preserved": 57,
+  "git_index_unchanged": true,
+  "dependency_versions_preserved": true,
+  "baseline": {
+    "counts": {
+      "tests": 457,
+      "failures": 10,
+      "errors": 12,
+      "skipped": 30
+    },
+    "revision_cases": 0,
+    "revision_passed": 0,
+    "failures": [
+      {
+        "test": "tests.test_benchmark::test_runner_requires_cuda",
+        "kind": "error",
+        "message": "failed on setup with \"riposte.errors.RiposteError: ORGANIZATION_CHECKPOINT_REQUIRED\""
+      },
+      {
+        "test": "tests.test_benchmark::test_runner_invalid_parameters[kwargs0]",
+        "kind": "error",
+        "message": "failed on setup with \"riposte.errors.RiposteError: ORGANIZATION_CHECKPOINT_REQUIRED\""
+      },
+      {
+        "test": "tests.test_benchmark::test_runner_requires_clean_checkpoint",
+        "kind": "error",
+        "message": "failed on setup with \"riposte.errors.RiposteError: ORGANIZATION_CHECKPOINT_REQUIRED\""
+      },
+      {
+        "test": "tests.test_lab::test_external_size_mismatch",
+        "kind": "failure",
+        "message": "AssertionError: Regex pattern did not match.\n  Expected regex: 'SIZE_MISMATCH'\n  Actual message: 'ORGANIZATION_CHECKPOINT_REQUIRED'"
+      },
+      {
+        "test": "tests.test_lab::test_candidate_tamper_rejected",
+        "kind": "failure",
+        "message": "riposte.errors.RiposteError: ORGANIZATION_CHECKPOINT_REQUIRED"
+      },
+      {
+        "test": "tests.test_organizer::test_full_migration_idempotence",
+        "kind": "failure",
+        "message": "AssertionError: assert 'INCOMPLETE' == 'COMPLETE'\n  \n  - COMPLETE\n  + INCOMPLETE\n  ? ++"
+      },
+      {
+        "test": "tests.test_organizer::test_no_overwrite_and_existing_layout_translated",
+        "kind": "failure",
+        "message": "AssertionError: assert 'INCOMPLETE' == 'COMPLETE'\n  \n  - COMPLETE\n  + INCOMPLETE\n  ? ++"
+      },
+      {
+        "test": "tests.test_policy::test_modified_fallback",
+        "kind": "failure",
+        "message": "AttributeError: 'types.SimpleNamespace' object has no attribute 'st_ctime'. Did you mean: 'st_mtime'?"
+      },
+      {
+        "test": "tests.test_server::test_ui_is_self_contained",
+        "kind": "failure",
+        "message": "UnicodeDecodeError: 'charmap' codec can't decode byte 0x81 in position 1500: character maps to <undefined>"
+      },
+      {
+        "test": "tests.test_v02_api_cli::test_real_trial_view_routes_validate_clean_pair",
+        "kind": "error",
+        "message": "failed on setup with \"riposte.errors.RiposteError: ORGANIZATION_CHECKPOINT_REQUIRED\""
+      },
+      {
+        "test": "tests.test_v02_generation::test_cancel_after_write_rolls_back_run",
+        "kind": "error",
+        "message": "failed on setup with \"riposte.errors.RiposteError: ORGANIZATION_CHECKPOINT_REQUIRED\""
+      },
+      {
+        "test": "tests.test_v02_generation::test_invalid_generation_parameters[kwargs0]",
+        "kind": "error",
+        "message": "failed on setup with \"riposte.errors.RiposteError: ORGANIZATION_CHECKPOINT_REQUIRED\""
+      },
+      {
+        "test": "tests.test_v02_generation::test_invalid_generation_parameters[kwargs1]",
+        "kind": "error",
+        "message": "failed on setup with \"riposte.errors.RiposteError: ORGANIZATION_CHECKPOINT_REQUIRED\""
+      },
+      {
+        "test": "tests.test_v02_generation::test_invalid_generation_parameters[kwargs2]",
+        "kind": "error",
+        "message": "failed on setup with \"riposte.errors.RiposteError: ORGANIZATION_CHECKPOINT_REQUIRED\""
+      },
+      {
+        "test": "tests.test_v02_generation::test_invalid_generation_parameters[kwargs5]",
+        "kind": "error",
+        "message": "failed on setup with \"riposte.errors.RiposteError: ORGANIZATION_CHECKPOINT_REQUIRED\""
+      },
+      {
+        "test": "tests.test_v02_generation::test_invalid_generation_parameters[kwargs7]",
+        "kind": "error",
+        "message": "failed on setup with \"riposte.errors.RiposteError: ORGANIZATION_CHECKPOINT_REQUIRED\""
+      },
+      {
+        "test": "tests.test_v02_generation::test_invalid_generation_parameters[kwargs8]",
+        "kind": "error",
+        "message": "failed on setup with \"riposte.errors.RiposteError: ORGANIZATION_CHECKPOINT_REQUIRED\""
+      },
+      {
+        "test": "tests.test_v02_generation::test_generation_requires_clean_checkpoint",
+        "kind": "error",
+        "message": "failed on setup with \"riposte.errors.RiposteError: ORGANIZATION_CHECKPOINT_REQUIRED\""
+      },
+      {
+        "test": "tests.test_v02_migration::test_legacy_read_is_nonmutating_then_upgrade_keeps_art_ids",
+        "kind": "failure",
+        "message": "KeyError: '.shroud\\\\catalog.sqlite3'"
+      },
+      {
+        "test": "tests.test_v02_models::test_symlink_weights_rejected",
+        "kind": "failure",
+        "message": "OSError: [WinError 1314] A required privilege is not held by the client: 'C:\\\\Users\\\\ryanf\\\\github\\\\_new\\\\image-riposte\\\\typing\\\\.cache\\\\pac-004\\\\baseline-full-tmp\\\\test_symlink_weights_rejected0\\\\not-a-model' -> 'C:\\\\Users\\\\ryanf\\\\github\\\\_new\\\\image-riposte\\\\typing\\\\.cache\\\\pac-004\\\\baseline-full-tmp\\\\test_symlink_weights_rejected0\\\\model\\\\diffusion_pytorch_model.safetensors'"
+      },
+      {
+        "test": "tests.test_v04_product_terminal::test_interactive_clean_preview_confirmation_and_audit",
+        "kind": "failure",
+        "message": "AssertionError: assert (not True)\n +  where True = exists()\n +    where exists = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/pac-004/baseline-full-tmp/test_interactive_clean_preview0/workspace/nested/input.png').exists"
+      },
+      {
+        "test": "tests.test_v04_typer::test_readonly_targeting_and_plan_no_files",
+        "kind": "failure",
+        "message": "AssertionError: assert 2 == 0\n +  where 2 = <function main at 0x000002CD3D7578A0>(['--json', 'publish', 'C:\\\\Users\\\\ryanf\\\\github\\\\_new\\\\image-riposte\\\\typing\\\\.cache\\\\pac-004\\\\baseline-full-tmp\\\\test_readonly_targeting_and_pl0\\\\workspace', '--all', '--year', '2026', ...])\n +    where <function main at 0x000002CD3D7578A0> = cli.main"
+      }
+    ]
+  },
+  "merged": {
+    "counts": {
+      "tests": 506,
+      "failures": 9,
+      "errors": 14,
+      "skipped": 28
+    },
+    "revision_cases": 49,
+    "revision_passed": 49,
+    "failures": [
+      {
+        "test": "tests.test_benchmark::test_paired_runner_control_flow[video]",
+        "kind": "error",
+        "message": "failed on setup with \"riposte.errors.RiposteError: ORGANIZATION_CHECKPOINT_REQUIRED\""
+      },
+      {
+        "test": "tests.test_benchmark::test_runner_invalid_parameters[kwargs0]",
+        "kind": "error",
+        "message": "failed on setup with \"riposte.errors.RiposteError: ORGANIZATION_CHECKPOINT_REQUIRED\""
+      },
+      {
+        "test": "tests.test_benchmark::test_runner_invalid_parameters[kwargs1]",
+        "kind": "error",
+        "message": "failed on setup with \"riposte.errors.RiposteError: ORGANIZATION_CHECKPOINT_REQUIRED\""
+      },
+      {
+        "test": "tests.test_benchmark::test_runner_invalid_parameters[kwargs2]",
+        "kind": "error",
+        "message": "failed on setup with \"riposte.errors.RiposteError: ORGANIZATION_CHECKPOINT_REQUIRED\""
+      },
+      {
+        "test": "tests.test_benchmark::test_runner_rejects_changed_candidate",
+        "kind": "error",
+        "message": "failed on setup with \"riposte.errors.RiposteError: ORGANIZATION_CHECKPOINT_REQUIRED\""
+      },
+      {
+        "test": "tests.test_lab::test_candidate_tamper_rejected",
+        "kind": "failure",
+        "message": "riposte.errors.RiposteError: ORGANIZATION_CHECKPOINT_REQUIRED"
+      },
+      {
+        "test": "tests.test_organizer::test_full_migration_idempotence",
+        "kind": "failure",
+        "message": "AssertionError: assert 'INCOMPLETE' == 'COMPLETE'\n  \n  - COMPLETE\n  + INCOMPLETE\n  ? ++"
+      },
+      {
+        "test": "tests.test_organizer::test_no_overwrite_and_existing_layout_translated",
+        "kind": "failure",
+        "message": "AssertionError: assert 'INCOMPLETE' == 'COMPLETE'\n  \n  - COMPLETE\n  + INCOMPLETE\n  ? ++"
+      },
+      {
+        "test": "tests.test_organizer::test_sidecars_never_imported[.aae]",
+        "kind": "failure",
+        "message": "AssertionError: assert 'INCOMPLETE' == 'COMPLETE'\n  \n  - COMPLETE\n  + INCOMPLETE\n  ? ++"
+      },
+      {
+        "test": "tests.test_policy::test_modified_fallback",
+        "kind": "failure",
+        "message": "AttributeError: 'types.SimpleNamespace' object has no attribute 'st_ctime'. Did you mean: 'st_mtime'?"
+      },
+      {
+        "test": "tests.test_server::test_ui_is_self_contained",
+        "kind": "failure",
+        "message": "UnicodeDecodeError: 'charmap' codec can't decode byte 0x81 in position 1500: character maps to <undefined>"
+      },
+      {
+        "test": "tests.test_v02_api_cli::test_real_trial_view_routes_validate_clean_pair",
+        "kind": "error",
+        "message": "failed on setup with \"riposte.errors.RiposteError: ORGANIZATION_CHECKPOINT_REQUIRED\""
+      },
+      {
+        "test": "tests.test_v02_api_cli::test_namespace_upgrade_api",
+        "kind": "error",
+        "message": "failed on setup with \"riposte.errors.RiposteError: ORGANIZATION_CHECKPOINT_REQUIRED\""
+      },
+      {
+        "test": "tests.test_v02_generation::test_five_arm_generation_has_matched_seeds_date_only_frames[inpaint]",
+        "kind": "error",
+        "message": "failed on setup with \"riposte.errors.RiposteError: ORGANIZATION_CHECKPOINT_REQUIRED\""
+      },
+      {
+        "test": "tests.test_v02_generation::test_five_arm_generation_has_matched_seeds_date_only_frames[video]",
+        "kind": "error",
+        "message": "failed on setup with \"riposte.errors.RiposteError: ORGANIZATION_CHECKPOINT_REQUIRED\""
+      },
+      {
+        "test": "tests.test_v02_generation::test_cancel_after_write_rolls_back_run",
+        "kind": "error",
+        "message": "failed on setup with \"riposte.errors.RiposteError: ORGANIZATION_CHECKPOINT_REQUIRED\""
+      },
+      {
+        "test": "tests.test_v02_generation::test_invalid_generation_parameters[kwargs2]",
+        "kind": "error",
+        "message": "failed on setup with \"riposte.errors.RiposteError: ORGANIZATION_CHECKPOINT_REQUIRED\""
+      },
+      {
+        "test": "tests.test_v02_generation::test_invalid_generation_parameters[kwargs5]",
+        "kind": "error",
+        "message": "failed on setup with \"riposte.errors.RiposteError: ORGANIZATION_CHECKPOINT_REQUIRED\""
+      },
+      {
+        "test": "tests.test_v02_generation::test_invalid_generation_parameters[kwargs8]",
+        "kind": "error",
+        "message": "failed on setup with \"riposte.errors.RiposteError: ORGANIZATION_CHECKPOINT_REQUIRED\""
+      },
+      {
+        "test": "tests.test_v02_generation::test_generation_requires_clean_checkpoint",
+        "kind": "error",
+        "message": "failed on setup with \"riposte.errors.RiposteError: ORGANIZATION_CHECKPOINT_REQUIRED\""
+      },
+      {
+        "test": "tests.test_v02_migration::test_legacy_read_is_nonmutating_then_upgrade_keeps_art_ids",
+        "kind": "failure",
+        "message": "KeyError: '.shroud\\\\catalog.sqlite3'"
+      },
+      {
+        "test": "tests.test_v02_models::test_symlink_weights_rejected",
+        "kind": "failure",
+        "message": "OSError: [WinError 1314] A required privilege is not held by the client: 'C:\\\\Users\\\\ryanf\\\\github\\\\_new\\\\image-riposte\\\\typing\\\\.cache\\\\pac-004\\\\merged-full-tmp\\\\test_symlink_weights_rejected0\\\\not-a-model' -> 'C:\\\\Users\\\\ryanf\\\\github\\\\_new\\\\image-riposte\\\\typing\\\\.cache\\\\pac-004\\\\merged-full-tmp\\\\test_symlink_weights_rejected0\\\\model\\\\diffusion_pytorch_model.safetensors'"
+      },
+      {
+        "test": "tests.test_v04_typer::test_readonly_targeting_and_plan_no_files",
+        "kind": "failure",
+        "message": "AssertionError: assert 2 == 0\n +  where 2 = <function main at 0x000001FACC5A0300>(['--json', 'publish', 'C:\\\\Users\\\\ryanf\\\\github\\\\_new\\\\image-riposte\\\\typing\\\\.cache\\\\pac-004\\\\merged-full-tmp\\\\test_readonly_targeting_and_pl0\\\\workspace', '--all', '--year', '2026', ...])\n +    where <function main at 0x000001FACC5A0300> = cli.main"
+      }
+    ]
+  },
+  "contracts": {
+    "scope": "External declarations, consumer typing, signatures, and offline record fixtures; not source-body or model-execution certification",
+    "python": "3.13.9 (main, Oct 14 2025, 21:22:32) [MSC v.1944 64 bit (AMD64)]",
+    "versions": {
+      "mypy": "2.3.1",
+      "numpy": "2.5.3",
+      "Pillow": "12.3.0",
+      "typer": "0.26.8",
+      "fastapi": "0.141.1",
+      "rich": "15.0.0"
+    },
+    "source_files": 47,
+    "source_signatures": 313,
+    "stubtest_leaf_modules": 38,
+    "stubtest_allowlist_entries": 4,
+    "dynamic_declarations": 89,
+    "results": {
+      "mypy-contracts": true,
+      "mypy-tooling": true,
+      "stubtest": true,
+      "runtime-contracts": true,
+      "tooling-regressions": true,
+      "negative-consumers": true,
+      "source-stable": true
+    }
+  },
+  "raw_source_audit": {
+    "python": "3.14.3 (tags/v3.14.3:323c59a, Feb  3 2026, 16:04:56) [MSC v.1944 64 bit (AMD64)]",
+    "results": [
+      {
+        "entrypoint": "default",
+        "command": [
+          "C:\\Users\\ryanf\\github\\_new\\image-riposte\\.venv\\Scripts\\python.exe",
+          "-m",
+          "mypy"
+        ],
+        "exit_code": 1,
+        "summary": "Found 962 errors in 36 files (checked 41 source files)",
+        "diagnostics": 962,
+        "duplicate_module": false,
+        "output_sha256": "c570a3dcfc88d7f1bcabad0407da6be30e3a6ab17c2e4792a822ccbc538fc32b"
+      },
+      {
+        "entrypoint": "dot",
+        "command": [
+          "C:\\Users\\ryanf\\github\\_new\\image-riposte\\.venv\\Scripts\\python.exe",
+          "-m",
+          "mypy",
+          "."
+        ],
+        "exit_code": 1,
+        "summary": "Found 962 errors in 36 files (checked 41 source files)",
+        "diagnostics": 962,
+        "duplicate_module": false,
+        "output_sha256": "c570a3dcfc88d7f1bcabad0407da6be30e3a6ab17c2e4792a822ccbc538fc32b"
+      }
+    ],
+    "same_output": true
+  },
+  "source_sha256": {
+    "src/riposte/benchmark.py": "a7fbb359fb87d7ed6c5593a6fb0c194e5a34d20dfe0e9dd549200fe1007c7d68",
+    "src/riposte/cli.py": "729a1f6b899f11312cd1eb99b103aad508bd1f4ce4dc567aa32d1edabf42711b",
+    "src/riposte/coupled.py": "eca0afb9e0de03b740029864a5ddeeb7212cc9676c5e9cc191a6f4d1274641a8",
+    "src/riposte/errors.py": "7a9c08b799d1c713fbd82e30fd145a6dc3085c215848893e31d1ec066abc5244",
+    "src/riposte/generation.py": "97d3481d0d51cd95899c0c47b3a1e9aab1fc4bac09c1a39e791d79d74617515d",
+    "src/riposte/lab.py": "3845f3e3abedd03d1f0c200b84395e6b46f67b2ff120f6e8a8fc75a2d8c03093",
+    "src/riposte/methods.json": "4405d32fac499c6f3b7fbce0afa04abea62e2509e130844a20899c39a6283920",
+    "src/riposte/metrics.py": "0d873a0cb8972b5bdce14eb3cdc49ab391af31a297981fda1ad37603496c22eb",
+    "src/riposte/models.py": "19c774fff774c2c947a836ece9493168e71a20bec3a4f658853333d671c5a002",
+    "src/riposte/optimizer.py": "16367347cb57cfd8efba57a5002d2c313ce31106304d993dc0fba0d398ae4121",
+    "src/riposte/organizer.py": "249c082bce0872f6395f15ea7af6ac1df814002a635a15fb2d51d5fe23d62579",
+    "src/riposte/policy.py": "a4e0d5ab07a0b4aac2efcf518f7cdf19a1a9cdfa9c1fc7e263ef66545d2774e7",
+    "src/riposte/publication.py": "f3120bca31c8c851206e46a803b0a93cb83f99eed08a62f1e40dc15511b013bd",
+    "src/riposte/qualification.py": "4fc049f680adc31c34f02499d8dfe4ebed9af46f47fa1cd554f50ead273231ce",
+    "src/riposte/quality.py": "3af92838360f5f9ce65d69973eef37a6dd006d733f56c376443a2228d3c9656d",
+    "src/riposte/release_guard.py": "673fcfc83602e074d774b4ccfeddf4f481f784887a72986dbce8d9abf150245e",
+    "src/riposte/runtime_probe.py": "63d28c72b3d7aaeca6e503ae6ac7f8965fb8ed862d4a423cdd4fe981614bb339",
+    "src/riposte/sanitize.py": "358ebd215602d8fe93aea4ab07931cfb84f9094202bec3ab34231ab193fb7001",
+    "src/riposte/server.py": "fd4336c40f67189e953256980a18dab6ef4edf342ac5cdb87279d2cad240af6a",
+    "src/riposte/store.py": "f6a88c29653c26c58db9d69845a96dfa5e6b8071bce4578e29aa6932bd8e0b9a",
+    "src/riposte/temporal.py": "22fb7b410ebfbe906816267d9d049e9413bc65a5e515bfa1af9c5749ba09ade9",
+    "src/riposte/views.py": "901a71db135ce03b0c929d230de1bacb73542dcc1570df166f36013a906b90e7",
+    "src/riposte/__init__.py": "a9e9d2abdceaac2c47ed5846a874787f47337c407e2b2aa8064a32b53489f28d",
+    "src/riposte/__main__.py": "79ee6f134c5c5193377cf9b189cbdcc3e2095e49ba9cec310114441c15a917c4",
+    "src/riposte/static/app.js": "a27663ef2e214bd14d956987081c039ecfc878c972abe17f2806679daec612a4",
+    "src/riposte/static/index.html": "c294c3ecdb09ccd2dd582460d051255c08cc9156a4c750b53ed8ca416aa37971",
+    "src/riposte/static/publish.css": "3194ff34f6648c32432a8a85fcd7cbe8d2103f4fe0e4506e5af3e759c460261b",
+    "src/riposte/static/publish.js": "446685b4373385fea701c61148559e88a81b6e9db060f34dcc92ea246cf7aeae",
+    "src/riposte/static/style.css": "932983321f7c1394a44750a05433f6b521262ffd84b0db71eb0c41556813e3a7",
+    "src/riposte/terminal/actions.py": "c8bef2ea12fc14f0f2d2f88e104e01d47da920fa9bc1383a3bcbffef3705f04c",
+    "src/riposte/terminal/app.py": "7aa2187ed6d096ee086cf714040123d9b2dd6174f466f1a27331ed2146385d51",
+    "src/riposte/terminal/controller.py": "589fd7b4b73a717bf1597ea837b3e702d05b21a63152b935ef17429e4e736b0b",
+    "src/riposte/terminal/help.py": "8c24dd8a762ad4eb7df97df2d541a7b3ddbaf27ba8d7cf08ae44e3eb73e24bde",
+    "src/riposte/terminal/interaction.py": "0a836c051568058c14ea00b42342f63a18de436f283b900467b4ab4fecfc32fe",
+    "src/riposte/terminal/jobs.py": "c3e7f2ab8d53ba9d2319c9021a059af816e246272f9001e7bbe0eb3ea5f2633b",
+    "src/riposte/terminal/keyboard.py": "5506f92c9999aad2658ed012f808c90043c4ea830cc1c6f6e32871518c83a4e0",
+    "src/riposte/terminal/material.py": "522d5080177faae021905b94851bf3836bb2c18805a38d0a1d56b8402f5cebeb",
+    "src/riposte/terminal/output.py": "cfd18cad392a24443e158e1ce83c59f5b90793aa52aa7ae87b3225abd592e417",
+    "src/riposte/terminal/palette.py": "ab05080d75402a964ce73e25755fb3476b693ab8b79ab10982b4f74f42ee3e41",
+    "src/riposte/terminal/preview.py": "446b57630ee54c99070082b28f67e6d1d647b201577fb55d9ff5fb39259a67bc",
+    "src/riposte/terminal/render.py": "2be4a31ac3793c31ba129b150a0cb80808b45a7eebaf65a82e09d50ce613b78a",
+    "src/riposte/terminal/reports.py": "4fe6d0a03b7627aedf0d6ac946791df7a688c258cc4e329014502fc310ac72f5",
+    "src/riposte/terminal/service.py": "040ada5a2749e3abe041094e3094d5345aafaf8f6586a702d2eb19a349188bff",
+    "src/riposte/terminal/signals.py": "dd7ef5eac1860b126ceebeecb6aa6c6151f14dd4813254870b061ce71470ce19",
+    "src/riposte/terminal/state.py": "01ac2fe1a02ac55caaadcf91c62303289cc9cb8a2cbb7da287ecf47437d21bf8",
+    "src/riposte/terminal/surface.py": "8088e77ab12aa16868beb09dcae60a2e3b67de64f106e7ea0b0245646bb110d1",
+    "src/riposte/terminal/__init__.py": "3205c2b37274b4a78cad648f40635e4b02474f77515b94e506510e521ec79fa2"
+  },
+  "limits": [
+    "Windows organization identity failures are intermittent; before/after failing test IDs differ.",
+    "Preserved backend source and matching failure causes support continuity; test counts alone do not establish it.",
+    "No native POSIX console, optional ML stack, historical wheel or visual acceptance was verified."
+  ]
+}

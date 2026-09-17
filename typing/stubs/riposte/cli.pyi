@@ -30,6 +30,7 @@ class DateMode(str, Enum):
     def __new__(cls, value: object) -> Self: ...
 
 class Theme(str, Enum):
+    goks = 'goks'
     dark = 'dark'
     light = 'light'
     mono = 'mono'

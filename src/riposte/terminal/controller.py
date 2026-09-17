@@ -10,6 +10,7 @@ from .output import Presentation
 from .preview import make_preview
 from .render import view_rows, scroll_limit
 from .service import Request, execute, image_bytes, root_of
+from .interaction import fields_for, contextual_help
 from .state import Session, Page, Editor
 from ..errors import RiposteError
 from ..metrics import TRANSFORMS
@@ -91,7 +92,7 @@ class Controller:
         if key == "workshop": return self.show(Page("workshop", "OPTIONAL WORKSHOP"))
         if key != "doctor" and not self.require_workspace(key): return
         if key == "publish" and not self.state.selected:
-            self.library(); self.state.notice = "Select illustrations with Space, then press p to protect them."
+            self.library(); self.state.notice = "Press Enter to select illustrations, then p to protect. Press i to inspect."
             return
         action = BY_KEY[key]
         values = defaults(action, self.state.models)
@@ -190,12 +191,12 @@ class Controller:
         if p.name in {"result", "help", "command"}:
             p.scroll = min(scroll_limit(self.state), max(0, p.scroll + amount))
             return
-        count = len(BY_KEY[p.action].fields) + 1 if p.name == "form" else len(view_rows(self.state))
+        count = len(fields_for(p)) + 1 if p.name == "form" else len(view_rows(self.state))
         p.cursor = max(0, min(max(0, count - 1), p.cursor + amount))
 
     def field_edit(self):
         p = self.state.page
-        fields = BY_KEY[p.action].fields
+        fields = fields_for(p)
         if p.cursor >= len(fields):
             return self.run_form(preview=p.action == "publish")
         f = fields[p.cursor]
@@ -258,7 +259,7 @@ class Controller:
         if self.state.page.name == "preferences": self.preferences()
 
     def cycle_theme(self):
-        values = ("dark", "light", "mono")
+        values = ("goks", "light", "mono", "dark")
         p = self.state.presentation
         p.theme = values[(values.index(p.theme)+1)%len(values)]
         if self.state.page.name == "preferences": self.preferences()
@@ -306,7 +307,7 @@ class Controller:
                     return self.run(p.confirm_request)
                 self.state.notice = "The confirmation word did not match. No write was started."
             return
-        if key.name == "f1": return self.show(Page("help", "KEYBOARD MAP"))
+        if key.name == "f1": return self.show(Page("help", "CONTEXTUAL HELP", result=contextual_help(self.state)))
         if key.name == "f4":
             request = p.request or self.state.last_request
             if p.name == "form":
@@ -336,25 +337,30 @@ class Controller:
                 if row: return self.action(row["key"])
         elif p.name == "library":
             row = self.selected_row()
-            if ch == " " and row: return self.toggle_selection(row)
+            if (key.name == "enter" or ch == " ") and row: return self.toggle_selection(row)
             if ch == "a":
                 rows = view_rows(self.state)
                 if len(set(r['id'] for r in rows)|self.state.selected) > 200:
                     self.state.notice = "Selection exceeds 200. Narrow the search or choose individual images."; return
                 self.state.selected.update(r["id"] for r in rows)
             elif ch == "n": self.state.selected.clear()
-            elif key.name == "enter" and row: return self.inspect_asset(row)
+            elif ch == "i" and row: return self.inspect_asset(row)
             elif ch == "p": return self.action("publish")
         elif p.name == "asset":
-            if ch == " ": return self.toggle_selection(p.report)
+            if key.name == "enter" or ch == " ": return self.toggle_selection(p.report)
             if ch == "v": return self.run(Request("open-image", self.state.root, {"image_id": p.image_id}))
             if ch == "p":
                 if p.image_id not in self.state.selected: self.toggle_selection(p.report)
                 return self.action("publish")
         elif p.name == "form":
+            if ch == "f" and p.action == "publish":
+                focused = fields_for(p)[p.cursor].key if p.cursor < len(fields_for(p)) else None
+                p.advanced = not p.advanced
+                p.cursor = next((i for i, f in enumerate(fields_for(p)) if f.key == focused), 0)
+                return
             if key.name == "enter" or ch == " ": return self.field_edit()
             if key.name in {"left", "right"}:
-                fields = BY_KEY[p.action].fields
+                fields = fields_for(p)
                 if p.cursor < len(fields) and fields[p.cursor].choices:
                     f = fields[p.cursor]; index = f.choices.index(p.values[f.key])
                     p.values[f.key] = f.choices[(index + (1 if key.name == "right" else -1))%len(f.choices)]
@@ -367,9 +373,11 @@ class Controller:
         elif p.name == "batch":
             row = self.selected_row()
             if key.name == "enter" and row: return self.inspect_item(row, p.batch_id)
+            if ch == "d": return self.show(Page("result", "BATCH REPORT", result=p.result, request=Request("publications",self.state.root,{"batch_id":p.batch_id})))
             if ch == "p": return self.run(Request("package", self.state.root, {"batch_id": p.batch_id}))
             if ch == "r": return self.action("resume", {"batch_id": p.batch_id})
         elif p.name == "item":
+            if key.name == "enter": ch = "v"
             if ch in {"c", "b", "d"}:
                 p.kind = {"c":"candidate", "b":"clean", "d":"difference"}[ch]
                 return self.reload_preview()
@@ -382,6 +390,17 @@ class Controller:
             if ch == "w": return self.action("handoff", {"batch_id":p.batch_id,"item_id":p.item_id})
         elif p.name == "result":
             request = p.request
+            if ch == "t" and not p.code:
+                views = ("overview", "details", "json")
+                p.report_view = views[(views.index(p.report_view) + 1) % len(views)]
+                p.scroll = 0
+                return
+            if key.name == "enter":
+                if p.code: return self.back()
+                if request and request.name == "organize": ch = "a"
+                elif request and request.name == "plan": ch = "r"
+                elif request and request.name == "package": return self.batches()
+                else: return self.back()
             if ch == "a" and request and request.name == "organize":
                 return self.confirm(Request("apply", request.root, request.values), "REPLACE", "Apply the displayed metadata-cleaning and calendar/size policy to this workspace.")
             if ch == "r" and request and request.name == "plan":

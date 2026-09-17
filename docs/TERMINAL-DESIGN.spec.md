@@ -1,4 +1,9 @@
-# RIPOSTE / MIVIN terminal design specification / 0.4
+# RIPOSTE / MIVIN terminal design specification / 0.5
+
+The 0.5 terminal revision retains the architectural, motion and consent contracts
+below. Its foreground-only palette, semantic reports and contextual controls
+supersede the earlier colour and selection details. See [REVISION-v05.md](REVISION-v05.md)
+and [PATCH-v05-MERGE.md](PATCH-v05-MERGE.md) for design provenance and current verification.
 
 ## Mandate
 
@@ -30,19 +35,19 @@ The requested **Frontend Design Premium** and **Design Partner** names were sear
 | Home | Quiet identity/material band; actual counters; seven task actions; focused action/effect | Hero animation repeated above every screen, fake security statistics |
 | Library | Date/size/dimension rows, selection marks, search, full clean ID | Extension-based folders, raw-source names or metadata history |
 | Artwork | Large character preview with date and native dimensions | Calling the character preview full-resolution review |
-| Protection | Full editable recipe; per-field explanation; current-session model choices | Hidden models, guessed settings, a fake Run button |
+| Protection | Essential fields first; `f` exposes the full recipe without discarding values; per-field explanation; current-session model choices | Inaccessible models, guessed settings, a fake Run button |
 | Migration | Read-only results then a visibly different source-replacement boundary | Auto-apply, raw backups, Enter-only destructive confirmation |
 | Active operation | Actual stage/counts/item/time and bounded event tape; separate aesthetic activity trace | Percentage inferred from animation or elapsed time |
 | Batch/output | Committed output states, exact-byte image access, review, resume, pack | Automatic approval based on a proxy score |
-| Result/command | Complete scrollable data or a quoted equivalent command | Excerpt represented as full result; shell evaluation |
-| Settings/help | Discoverable palette/motion/workspace/browser options; visible key map | Memorized hidden shortcuts as the only access |
+| Result/command | Semantic Overview, complete Details and explicit JSON views, or a quoted equivalent command | Excerpt represented as full result; shell evaluation |
+| Settings/help | Discoverable palette/motion/workspace/browser options; shared contextual key hints and F1 help | Memorized hidden shortcuts as the only access |
 | Workshop | Secondary helper list, all inherited operations retained | Making research instrumentation the product's main path |
 
 ## Layout and colour
 
-The whole surface uses a shared baseline, gutters and spacing. ASCII rules delimit working regions without surrounding every value in a card. Focus combines a `>` marker, text weight and a surface change; it is not conveyed by colour alone. Source-replacement warnings use warning colour plus explicit language.
+The whole surface uses a shared baseline, gutters and spacing. ASCII rules delimit working regions without surrounding every value in a card. Focus combines a `>` marker and text weight; it is not conveyed by colour alone. Source-replacement warnings use warning colour plus explicit language. Every cell, preview, cursor and animation uses the host terminal's default background; reverse video and explicit background fills are excluded.
 
-Dark uses low-chroma charcoal with mint, light uses an ivory working surface with forest accents, and monochrome uses grayscale including the image preview. `NO_COLOR` removes colour while preserving text/navigation. The designed range is 72×24 through 240×100 character cells, with specific inspection at 79×24, 100×34 and 132×46. Too-small screens do not permit hidden write actions; resize or select the linear mode.
+The default `goks` foreground palette retains the twelve supplied tokens and their intentional numbering gaps. Light, monochrome and dark are foreground alternatives; none changes the terminal wallpaper, opacity or background. ASCII preview tones may be lifted for legibility, without changing image pixels. `NO_COLOR` removes colour while preserving text/navigation. The designed range is 72×24 through 240×100 character cells, with specific inspection at 79×24, 100×34 and 132×46. Too-small screens do not permit hidden write actions; resize or select the linear mode.
 
 ## Motion contracts
 
@@ -51,6 +56,11 @@ The terminal is usable on its first frame. There is no artificial load delay, un
 COUNTERSTROKE occupies the home identity region and, when there is room, the active-operation margin. It is not placed over the illustration or the editable form. A liveness trail during operations is labeled activity, not progress; the adjacent engine numerator/denominator is only rendered when the engine actually supplies it. A new engine phase clears a previous phase's count.
 
 ## Interaction and privacy
+
+Enter selects a library image; `i` inspects it without changing the selection.
+Space remains a compatibility alias. A shared hint registry supplies footers and
+contextual F1 help. `t` switches report views; complete Details and explicit JSON
+retain fields omitted from an operation summary. Machine JSON remains separate.
 
 Typer and the native/linear interfaces produce the same allowlisted `Request`; `service.execute` invokes the actual existing backend. No command string is evaluated. F4 quotes the corresponding PowerShell command for inspection, and long commands scroll. A valid ID, range, model selection and backend checkpoint retain their existing enforcement.
 
@@ -69,6 +79,9 @@ A non-daemon, foreground-owned worker runs slow operations while the UI remains 
 | Pure cell surface / Rich segments | `terminal/surface.py` |
 | Original geometry and activity material | `terminal/material.py` |
 | Distinct task scenes | `terminal/render.py` |
+| Foreground palette tokens | `terminal/palette.py` |
+| Shared hints, contextual help and field disclosure | `terminal/interaction.py` |
+| Semantic reports, complete field trees and JSON spans | `terminal/reports.py` |
 | Input validation, state transitions, write boundaries | `terminal/controller.py` |
 | Foreground-owned operation lifecycle | `terminal/jobs.py` |
 | Native keys, bounded paste, cooked-mode restoration | `terminal/keyboard.py` |

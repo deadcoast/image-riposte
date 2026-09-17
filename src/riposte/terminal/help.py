@@ -6,6 +6,7 @@ import sys
 from rich.console import Console
 from rich.table import Table
 from rich.text import Text
+from .palette import PALETTES
 from rich import box
 from typer.core import TyperGroup, TyperCommand
 
@@ -14,7 +15,9 @@ def format_help(command, ctx, formatter):
     stream = io.StringIO()
     console = Console(file=stream, width=min(ctx.terminal_width or 100, 140), markup=False, highlight=False,
                       force_terminal=sys.stdout.isatty() and os.environ.get("TERM") != "dumb", no_color="NO_COLOR" in os.environ)
-    console.print(Text("\n  RIPOSTE / IMAGE SECURITY", style="bold green"))
+    chosen = getattr(getattr(ctx, "obj", None), "theme", "goks")
+    palette = PALETTES.get(chosen, PALETTES["goks"])
+    console.print(Text("\n  RIPOSTE / IMAGE SECURITY", style="bold " + palette["accent"]))
     console.print(Text("  " + (command.help or "Local artwork protection and publication.")))
     console.print(Text("\n  " + command.get_usage(ctx)))
     records = []
@@ -34,7 +37,7 @@ def format_help(command, ctx, formatter):
             groups.setdefault(getattr(sub, "rich_help_panel", None) or "COMMANDS", []).append((name, sub.get_short_help_str(80)))
         for title, rows in groups.items():
             table = Table(box=None, title=title, title_justify="left", show_header=False, padding=(0, 1))
-            table.add_column(style="bold green", min_width=16); table.add_column()
+            table.add_column(style="bold " + palette["accent"], min_width=16); table.add_column()
             for left, right in rows: table.add_row(Text(left), Text(right))
             console.print(table)
     if command.epilog: console.print(Text("\n  " + command.epilog))

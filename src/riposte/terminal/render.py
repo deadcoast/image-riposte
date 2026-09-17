@@ -8,6 +8,9 @@ from .state import Session, HOME
 from .actions import BY_KEY, ACTIONS, command_line
 from .preview import paint_preview
 from .output import RECOVERY
+from .interaction import hints, context, fields_for, GLOBAL
+from .reports import overview, report_lines, paint_lines, Writer, label
+from .. import __version__
 
 
 def view_rows(state):
@@ -40,26 +43,46 @@ def page_window(cursor, count, capacity):
 def header(c, state):
     c.text(3, 1, "R I P O S T E", "accent", bold=True)
     c.text(20, 1, "/  " + state.page.title, "text", width=max(0, c.width - 47))
-    if c.width >= 76: c.text(c.width - 24, 1, "LOCAL   /   v0.4.0", "muted")
+    if c.width >= 76: c.text(c.width - 24, 1, "LOCAL   /   v" + __version__, "muted")
     c.rule(3)
-    current = {"library":0,"asset":0,"form":2,"batch":3,"item":3,"batches":3}.get(state.page.name)
-    if state.page.action == "organize": current = 1
-    labels = ("SELECT", "CLEAN", "PROTECT", "REVIEW", "PUBLISH")
+    current = {"library":1,"asset":1,"form":2,"batch":3,"item":3,"batches":3}.get(state.page.name)
+    if state.page.action == "organize": current = 0
+    labels = ("CLEAN", "SELECT", "PROTECT", "REVIEW", "EXPORT")
     step = max(8, (c.width - 7) // 5)
     for n, label in enumerate(labels):
         text = f"{n+1:02d} {label}"
         c.text(3 + n*step, 4, text, "accent" if current == n else "muted", bold=current == n, width=step - 1)
 
 
-def footer(c, state, keys="[Enter] open   [Esc] back   [/] find"):
+def footer(c, state, keys=None):
+    # All scenes use the same action grammar. Per-screen ad-hoc key strings are
+    # intentionally ignored; hints() is also the contextual help source.
     c.rule(c.height - 4)
-    c.text(3, c.height - 3, keys, "text", width=c.width - 6)
-    global_keys = "[F1] keys  [F2] motion " + ("OFF" if state.paused or state.presentation.no_animation else "ON") + "  [F3] palette  [F4] command"
-    if c.width < 84: global_keys = "F1 help | F2 motion | F3 palette | F4 command"
-    c.text(3, c.height - 2, global_keys, "muted", width=c.width - 6)
-    if state.notice:
-        c.text(3, c.height - 5, state.notice, "warn", width=c.width - 6)
-
+    controls=hints(state)
+    if not any(h.key=="F1" for h in controls):controls=controls+[GLOBAL[0]]
+    # Keep primary action and Help visible at the smallest supported size.
+    compact=[controls[0]] if controls else []
+    compact += [h for h in controls[1:] if h.key not in {"Left/Right","a","n","Up/Down"}]
+    if not any(h.key=="F1" for h in compact):compact.append(GLOBAL[0])
+    x,y=3,c.height-3; maxx=c.width-3
+    deferred=[]
+    for h in compact:
+        token=f"[{h.key}] {h.label}"
+        if x+len(token)>maxx:
+            if y==c.height-3:x=3;y+=1
+            else:deferred.append(h);continue
+        # Leave space for Help on the second line.
+        if y==c.height-2 and h.key!="F1" and x+len(token)+12>maxx:
+            deferred.append(h);continue
+        c.text(x,y,f"[{h.key}]","accent",bold=True)
+        c.text(x+len(h.key)+3,y,h.label,"text")
+        x+=len(token)+3
+    if deferred and not any('F1' in ''.join(cell.char for cell in row) for row in c.cells[-3:]):
+        c.text(c.width-13,c.height-2,"[F1] All keys","accent",bold=True)
+    note=state.notice or context(state)
+    if note:
+        text=note if len(note)<=c.width-6 else note[:c.width-9].rstrip()+"..."
+        c.text(3,c.height-5,text,"warn" if state.notice else "muted",width=c.width-6)
 
 def home(c, state, time):
     rows = view_rows(state)
@@ -107,7 +130,7 @@ def home(c, state, time):
 def collection(c, state):
     rows = view_rows(state)
     c.text(3, 6, f"CLEAN LIBRARY / {len(rows)} visible / {len(state.selected)} selected", "accent", bold=True, width=c.width-6)
-    c.text(3, 8, "   DATE         SIZE       PIXELS       CANONICAL FILE", "muted", width=c.width-6)
+    c.text(3, 8, "     DATE         SIZE       PIXELS       CANONICAL FILE", "muted", width=c.width-6)
     c.rule(9)
     capacity = c.height - 16
     start, end = page_window(state.page.cursor, len(rows), capacity)
@@ -115,9 +138,9 @@ def collection(c, state):
         row = rows[n]; y = 10 + n-start; chosen = row["id"] in state.selected
         if n == state.page.cursor: c.fill(3, y, c.width-6, 1, "raised")
         parts = row["relative"].split("/")
-        head = f"{'[x]' if chosen else '[ ]'} {row['day']}   {parts[2]:3}  {row['width']:5}x{row['height']:<5}  "
+        head = f"{'>' if n==state.page.cursor else ' '} {'[x]' if chosen else '[ ]'} {row['day']}   {parts[2]:3}  {row['width']:5}x{row['height']:<5}  "
         name = row["relative"] if c.width >= 120 else parts[-1] + "  " + row["id"][:12]
-        c.text(3, y, head + name, "accent" if chosen else "text", bold=n==state.page.cursor, width=c.width-6)
+        c.text(3, y, head + name, "accent" if chosen or n==state.page.cursor else "text", bold=n==state.page.cursor, width=c.width-6)
     if not rows:
         c.wrap(4, 12, "No matching clean images. Clean & organize imports your existing artwork into the calendar hierarchy.", c.width-8, 3)
     if rows:
@@ -139,12 +162,12 @@ def asset(c, state):
                                            ("METADATA", "DATE ONLY"), ("SELECTED", "YES" if p.image_id in state.selected else "NO"))):
             c.text(dx, 9+n*3, label, "muted"); c.text(dx,10+n*3, shown(value), "text", width=side-4)
         c.wrap(dx, 23, "[v] opens the audited image in your local image viewer.", side-4, 3)
-    footer(c, state, "[Space] select   [v] actual image   [p] protect selection   [Esc] library")
+    footer(c, state, "[Enter] select   [v] actual image   [p] protect selection   [Esc] library")
 
 
 def form(c, state):
     p = state.page; action = BY_KEY[p.action]
-    fields = action.fields
+    fields = fields_for(p)
     c.text(3, 6, action.title.upper(), "accent", bold=True)
     sub = f"{len(state.selected)} selected images / clean masters unchanged" if p.action == "publish" else action.effect.replace("_", " ")
     c.text(3, 7, sub, "muted", width=c.width-6)
@@ -175,11 +198,11 @@ def form(c, state):
             used=c.wrap(x,14,f.help,width,5)
             if f.choices: c.wrap(x,15+used," / ".join(f.choices),width,3,"accent")
             elif f.minimum is not None: c.text(x,15+used,f"{f.minimum:g} .. {f.maximum:g}","accent",width=width)
-            c.wrap(x,22,"Path values stay in this process; no saved model-path history.",width,3)
+            c.wrap(x,22,"Local paths remain in memory only." if f.kind=="path" else "Changing a setting does not start processing. Preview uses the current values.",width,3)
         else:
             c.wrap(x,12,action.summary,width,5,"text")
             c.wrap(x,19,"The next action uses these settings. F4 shows its direct Typer command.",width,4)
-    c.text(3,c.height-6,f"FIELD {min(p.cursor+1,count)}/{count}   |   Enter edits; Space toggles; Left/Right cycles choices", "muted",width=c.width-6)
+    c.text(3,c.height-6,f"SETTING {min(p.cursor+1,count)}/{count}   |   " + ("ALL SETTINGS" if p.advanced else "ESSENTIAL SETTINGS" if p.action=="publish" else "ACTION SETTINGS"), "muted",width=c.width-6)
     footer(c,state,"[Enter] edit / preview   [p] preview   [v] audit workspace   [Esc] back" if p.action=="organize" else "[Enter] edit / continue   [p] preview   [r] run   [Esc] back")
 
 
@@ -215,7 +238,7 @@ def item(c,state):
         x=c.width-side+1;quality=p.report.get('quality',{})
         c.text(x,10,"EXACT OUTPUT", "muted")
         for n,(label,value) in enumerate((("Dimensions",f"{p.report.get('width')} x {p.report.get('height')}"),
-              ("Pixel budget",quality.get('budget_violating_pixels','-')),("Worst tile RMS",quality.get('worst_tile_rmse_255','-')),
+              ("Budget violations",quality.get('budget_violating_pixels','-')),("Worst tile RMS",quality.get('worst_tile_rmse_255','-')),
               ("Delta E76 p95",quality.get('delta_e76_p95','-')),("AI evidence","UNVERIFIED"))):
             c.text(x,12+n*2,label,"muted",width=side-4);c.text(x,13+n*2,shown(value),"warn" if label=='AI evidence' else "text",width=side-4)
         c.wrap(x,24,"[v] actual pixels in a local viewer. Approval is bound to these bytes.",side-4,4)
@@ -236,53 +259,69 @@ def workshop(c,state):
     footer(c,state,"[Up/Down] choose   [Enter] configure   [/] find   [Esc] home")
 
 
+def _report_data(state, actual_width=None):
+    p=state.page
+    command=p.request.name if p.request else ""
+    width=max(12,(actual_width or state.width)-8)
+    key=(id(p.result),command,width,p.report_view)
+    if key not in p.display_cache:
+        report=overview(p.result,command,width)
+        p.display_cache.clear()
+        p.display_cache[key]=(report,report_lines(report,p.result,p.report_view,width))
+    return p.display_cache[key]
+
+
+def _help_lines(state, actual_width=None):
+    value=state.page.result or {"screen":"RIPOSTE", "context":"Enter activates the focused action; Esc returns.",
+                              "controls":[{"key":h.key,"label":h.label,"explanation":h.explanation} for h in GLOBAL]}
+    w=Writer(max(12,(actual_width or state.width)-8))
+    if value.get("context"):w.text(value["context"]);w.blank()
+    for entry in value.get("controls",[]):
+        w.pair("["+entry["key"]+"]",entry["label"])
+        w.text("  "+entry["explanation"],"muted");w.blank()
+    return w.lines
+
+
 def scroll_limit(state):
     p=state.page
-    if p.name=="help": return max(0,12-max(1,state.height-15))
+    if p.name=="help":return max(0,len(_help_lines(state))-max(1,state.height-15))
     if p.name=="command":
         return max(0,len(textwrap.wrap(command_line(p.request),max(12,state.width-6)))-max(1,state.height-19)) if p.request else 0
-    if p.name!="result" or p.code: return 0
-    raw=json.dumps(p.result,indent=2,ensure_ascii=True,allow_nan=False).splitlines()
-    lines=sum(max(1,len(textwrap.wrap(line,max(12,state.width-10),replace_whitespace=False,drop_whitespace=False))) for line in raw)
-    y=14 if isinstance(p.result,dict) and p.result.get("mode") in ("READ_ONLY","APPLY","PUBLICATION_PLAN") else 8
-    return max(0,lines-max(1,state.height-y-6))
-
+    if p.name!="result" or p.code:return 0
+    return max(0,len(_report_data(state)[1])-max(1,state.height-(10 if state.height<30 else 14)-6))
 
 def result(c,state):
     p=state.page
     if p.code:
-        c.text(3,6,"OPERATION STOPPED", "danger",bold=True)
-        c.text(3,8,p.code,"warn",bold=True,width=c.width-6)
-        c.wrap(3,10,RECOVERY.get(p.code,"No raw backend error, local path or metadata dump was printed."),c.width-6,4)
-        if state.operation_request and state.operation_request.name in ('publish','resume'):
-            c.wrap(3,15,"Committed output files remain available in Publishing batches.",c.width-6,3)
-        footer(c,state,"[Esc] back   [b] publishing batches   [F4] direct command")
-        return
-    c.text(3,6,p.title, "accent",bold=True,width=c.width-6)
-    values=p.result
-    if isinstance(values,dict) and values.get('mode') in ('READ_ONLY','APPLY','PUBLICATION_PLAN'):
-        if 'counts' in values:
-            counts=' / '.join(f"{k}: {v}" for k,v in values['counts'].items()) or "No changes"
-            c.wrap(3,8,counts,c.width-6,2,"text")
-        elif values.get('mode')=='PUBLICATION_PLAN':
-            c.text(3,8,f"{values['images']} images  /  {values['outputs']} outputs  /  {values['duplicate_renders_avoided']} duplicate sizes avoided",width=c.width-6)
-        c.text(3,11,"READ ONLY / NOTHING WRITTEN" if values.get('mode')!='APPLY' else f"CHECKPOINT {values.get('checkpoint')}","accent" if not values.get('blockers') else "warn")
-    lines=json.dumps(values,indent=2,ensure_ascii=True,allow_nan=False).splitlines()
-    # The complete data remains scrollable; no hidden/truncated record is credited
-    # as a full inspection. Long source-free technical lines wrap at cell width.
-    wrapped=[]
-    for line in lines:wrapped.extend(textwrap.wrap(line,max(12,c.width-10),replace_whitespace=False,drop_whitespace=False) or [''])
-    y=14 if isinstance(values,dict) and values.get('mode') in ('READ_ONLY','APPLY','PUBLICATION_PLAN') else 8
-    capacity=c.height-y-6
-    scroll=min(p.scroll,max(0,len(wrapped)-max(1,capacity)))
-    for n,line in enumerate(wrapped[scroll:scroll+max(1,capacity)]):c.text(4,y+n,line,"muted",width=c.width-8)
-    c.text(3,c.height-6,f"Lines {scroll+1}-{min(len(wrapped),scroll+max(1,capacity))}/{len(wrapped)}", "muted")
-    request=p.request
-    keys="[Up/Down/PgUp/PgDn] read   [Esc] back   [b] batches"
-    if request and request.name=='organize':keys="[a] apply this policy   [Up/Down] read   [Esc] back"
-    if request and request.name=='plan':keys="[r] protect this selection   [Up/Down] read   [Esc] back"
-    footer(c,state,keys)
-
+        c.text(3,6,"[STOPPED]  OPERATION NEEDS ATTENTION","danger",bold=True)
+        c.wrap(3,8,label(p.code),c.width-6,3,"text",bold=True)
+        c.rule(11,label="NEXT ACTION")
+        c.wrap(3,13,RECOVERY.get(p.code,"No raw backend error or personal path was printed. Review the settings and retry the action."),c.width-6,max(2,c.height-21),"text")
+        c.text(3,c.height-6,"CODE / "+p.code,"code",width=c.width-6)
+        footer(c,state);return
+    report,lines=_report_data(state,c.width)
+    c.text(3,6,report.title.upper(),"text",bold=True,width=c.width-6)
+    compact=c.height<30
+    if compact:
+        badge="["+report.outcome+"]"
+        if len(report.title)+len(badge)<c.width-10:c.text(c.width-len(badge)-3,6,badge,report.tone,bold=True)
+        else:c.text(3,7,badge,report.tone,bold=True,width=c.width-6)
+    else:
+        c.text(3,7,"["+report.outcome+"]",report.tone,bold=True,width=c.width-6)
+        c.wrap(3,9,report.explanation,c.width-6,2,"muted")
+    tab_y=8 if compact else 12
+    body_y=10 if compact else 14
+    x=3
+    for value,title in (("overview","Overview"),("details","Details"),("json","JSON")):
+        selected=value==p.report_view
+        text=("> " if selected else "  ")+title
+        c.text(x,tab_y,text,"accent" if selected else "muted",bold=selected)
+        if selected:c.text(x,tab_y+1,"-"*len(text),"accent")
+        x+=len(title)+7
+    capacity=max(1,c.height-body_y-6)
+    start,end=paint_lines(c,lines,4,body_y,c.width-8,capacity,p.scroll)
+    c.text(3,c.height-6,f"{p.report_view.upper()} / lines {start+1 if lines else 0}-{end} of {len(lines)}","muted",width=c.width-6)
+    footer(c,state)
 
 def job(c,state,time):
     op=state.operation;s=op.snapshot()
@@ -321,11 +360,11 @@ def preferences(c,state):
 
 
 def help_page(c,state):
-    c.text(3,6,"KEY MAP / NOTHING HERE EXECUTES SHELL TEXT", "accent",bold=True,width=c.width-6)
-    lines=["Up/Down or j/k   Focus an action or row", "Enter           Open, edit, or run the focused action", "Esc / 0         Go back; discard an unfinished edit", "Space           Toggle an image selection or checkbox", "/               Search the current action list or clean catalog", "F1              This key map", "F2              Freeze/resume aesthetic motion", "F3              Cycle dark / light / monochrome palette", "F4              Exact direct-command lens (not executed)", "q               Quit from menus; waits for an active job", "Ctrl+C          Cooperative stop; destructive commits finish", "v               Open verified image pixels in a local viewer"]
-    for n,line in enumerate(lines[state.page.scroll:state.page.scroll+max(1,c.height-15)]):c.text(3,9+n,line,"text",width=c.width-6)
-    footer(c,state,"[Up/Down] scroll   [Esc] return")
-
+    title=(state.page.result or {}).get("screen","KEY MAP")
+    c.text(3,6,"HELP / "+title,"accent",bold=True,width=c.width-6)
+    c.text(3,7,"Controls are contextual. Enter activates the focused action.","muted",width=c.width-6)
+    paint_lines(c,_help_lines(state,c.width),3,9,c.width-6,max(1,c.height-15),state.page.scroll)
+    footer(c,state)
 
 def command_page(c,state):
     c.text(3,6,"DIRECT COMMAND / INSPECT ONLY", "accent",bold=True)
@@ -362,7 +401,8 @@ def editor_overlay(c,state):
     cursor=e.position-start
     if 0<=cursor<available:
         char=e.value[e.position] if e.position<len(e.value) else ' '
-        c.put(x+4+cursor,y+6,char,"ink","accent",True)
+        c.put(x+4+cursor,y+6,char,"accent",bold=True)
+        c.put(x+4+cursor,y+7,"^","accent",bold=True)
     c.text(x+3,y+8,"Invalid value. Correct this field." if e.error else "[Enter] save   [Esc] discard   [Ctrl+U] clear", "danger" if e.error else "muted",width=w-6)
 
 

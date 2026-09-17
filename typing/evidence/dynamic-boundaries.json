@@ -36,7 +36,7 @@
   },
   {
     "file": "typing/stubs/riposte/cli.pyi",
-    "line": 64,
+    "line": 65,
     "declaration": "def dispatch(ctx: typer.Context, name: str, root: Path | None=None, **values: Any) -> None:"
   },
   {
@@ -371,17 +371,17 @@
   },
   {
     "file": "typing/stubs/riposte/terminal/controller.pyi",
-    "line": 43,
+    "line": 44,
     "declaration": "def action(self, key: str, overrides: Mapping[str, Any] | None=None) -> None:"
   },
   {
     "file": "typing/stubs/riposte/terminal/controller.pyi",
-    "line": 47,
+    "line": 48,
     "declaration": "def save_model_session(self, values: Mapping[str, Any]) -> None:"
   },
   {
     "file": "typing/stubs/riposte/terminal/controller.pyi",
-    "line": 57,
+    "line": 58,
     "declaration": "def selected_row(self) -> Report | None:"
   },
   {
@@ -391,27 +391,27 @@
   },
   {
     "file": "typing/stubs/riposte/terminal/render.pyi",
-    "line": 10,
+    "line": 14,
     "declaration": "def view_rows(state: Session) -> list[Report]:"
   },
   {
     "file": "typing/stubs/riposte/terminal/state.pyi",
-    "line": 21,
+    "line": 25,
     "declaration": "rows: list[dict[str, Any]] = field(default_factory=list)"
   },
   {
     "file": "typing/stubs/riposte/terminal/state.pyi",
-    "line": 23,
+    "line": 27,
     "declaration": "values: dict[str, Any] = field(default_factory=dict)"
   },
   {
     "file": "typing/stubs/riposte/terminal/state.pyi",
-    "line": 33,
+    "line": 37,
     "declaration": "report: dict[str, Any] = field(default_factory=dict)"
   },
   {
     "file": "typing/stubs/riposte/terminal/state.pyi",
-    "line": 55,
+    "line": 59,
     "declaration": "models: dict[str, Any] = field(default_factory=dict)"
   },
   {

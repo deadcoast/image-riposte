@@ -1,0 +1,378 @@
+sEsEEEsEs.............F.F.F...F............s............................ [ 14%]
+.......................................................F................ [ 28%]
+.............F................E...E....EE....E...E..E..E..EsssF......... [ 43%]
+.....F.....ssss.sss.s................................................... [ 57%]
+......................................................................ss [ 72%]
+ss...................................................................... [ 86%]
+...........F......................................................       [100%]
+=================================== ERRORS ====================================
+__________ ERROR at setup of test_paired_runner_control_flow[video] ___________
+tests\test_benchmark.py:18: in trial
+    return compare_external(root,catalog(root)[0]['id'],candidate)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\riposte\lab.py:54: in compare_external
+    row, master = _master(root, identifier)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^
+src\riposte\lab.py:19: in _master
+    raise RiposteError("ORGANIZATION_CHECKPOINT_REQUIRED")
+E   riposte.errors.RiposteError: ORGANIZATION_CHECKPOINT_REQUIRED
+__________ ERROR at setup of test_runner_invalid_parameters[kwargs0] __________
+tests\test_benchmark.py:18: in trial
+    return compare_external(root,catalog(root)[0]['id'],candidate)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\riposte\lab.py:54: in compare_external
+    row, master = _master(root, identifier)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^
+src\riposte\lab.py:19: in _master
+    raise RiposteError("ORGANIZATION_CHECKPOINT_REQUIRED")
+E   riposte.errors.RiposteError: ORGANIZATION_CHECKPOINT_REQUIRED
+__________ ERROR at setup of test_runner_invalid_parameters[kwargs1] __________
+tests\test_benchmark.py:18: in trial
+    return compare_external(root,catalog(root)[0]['id'],candidate)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\riposte\lab.py:54: in compare_external
+    row, master = _master(root, identifier)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^
+src\riposte\lab.py:19: in _master
+    raise RiposteError("ORGANIZATION_CHECKPOINT_REQUIRED")
+E   riposte.errors.RiposteError: ORGANIZATION_CHECKPOINT_REQUIRED
+__________ ERROR at setup of test_runner_invalid_parameters[kwargs2] __________
+tests\test_benchmark.py:18: in trial
+    return compare_external(root,catalog(root)[0]['id'],candidate)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\riposte\lab.py:54: in compare_external
+    row, master = _master(root, identifier)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^
+src\riposte\lab.py:19: in _master
+    raise RiposteError("ORGANIZATION_CHECKPOINT_REQUIRED")
+E   riposte.errors.RiposteError: ORGANIZATION_CHECKPOINT_REQUIRED
+___________ ERROR at setup of test_runner_rejects_changed_candidate ___________
+tests\test_benchmark.py:18: in trial
+    return compare_external(root,catalog(root)[0]['id'],candidate)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\riposte\lab.py:54: in compare_external
+    row, master = _master(root, identifier)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^
+src\riposte\lab.py:19: in _master
+    raise RiposteError("ORGANIZATION_CHECKPOINT_REQUIRED")
+E   riposte.errors.RiposteError: ORGANIZATION_CHECKPOINT_REQUIRED
+______ ERROR at setup of test_real_trial_view_routes_validate_clean_pair ______
+tests\test_v02_api_cli.py:17: in trial
+    return compare_external(root,catalog(root)[0]['id'],make_image(tmp_path/'candidate.png',color=(31,91,151)))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\riposte\lab.py:54: in compare_external
+    row, master = _master(root, identifier)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^
+src\riposte\lab.py:19: in _master
+    raise RiposteError("ORGANIZATION_CHECKPOINT_REQUIRED")
+E   riposte.errors.RiposteError: ORGANIZATION_CHECKPOINT_REQUIRED
+________________ ERROR at setup of test_namespace_upgrade_api _________________
+tests\test_v02_api_cli.py:17: in trial
+    return compare_external(root,catalog(root)[0]['id'],make_image(tmp_path/'candidate.png',color=(31,91,151)))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\riposte\lab.py:54: in compare_external
+    row, master = _master(root, identifier)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^
+src\riposte\lab.py:19: in _master
+    raise RiposteError("ORGANIZATION_CHECKPOINT_REQUIRED")
+E   riposte.errors.RiposteError: ORGANIZATION_CHECKPOINT_REQUIRED
+_ ERROR at setup of test_five_arm_generation_has_matched_seeds_date_only_frames[inpaint] _
+tests\test_v02_generation.py:18: in trial
+    return compare_external(root,catalog(root)[0]['id'],path)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\riposte\lab.py:54: in compare_external
+    row, master = _master(root, identifier)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^
+src\riposte\lab.py:19: in _master
+    raise RiposteError("ORGANIZATION_CHECKPOINT_REQUIRED")
+E   riposte.errors.RiposteError: ORGANIZATION_CHECKPOINT_REQUIRED
+_ ERROR at setup of test_five_arm_generation_has_matched_seeds_date_only_frames[video] _
+tests\test_v02_generation.py:18: in trial
+    return compare_external(root,catalog(root)[0]['id'],path)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\riposte\lab.py:54: in compare_external
+    row, master = _master(root, identifier)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^
+src\riposte\lab.py:19: in _master
+    raise RiposteError("ORGANIZATION_CHECKPOINT_REQUIRED")
+E   riposte.errors.RiposteError: ORGANIZATION_CHECKPOINT_REQUIRED
+__________ ERROR at setup of test_cancel_after_write_rolls_back_run ___________
+tests\test_v02_generation.py:18: in trial
+    return compare_external(root,catalog(root)[0]['id'],path)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\riposte\lab.py:54: in compare_external
+    row, master = _master(root, identifier)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^
+src\riposte\lab.py:19: in _master
+    raise RiposteError("ORGANIZATION_CHECKPOINT_REQUIRED")
+E   riposte.errors.RiposteError: ORGANIZATION_CHECKPOINT_REQUIRED
+________ ERROR at setup of test_invalid_generation_parameters[kwargs2] ________
+tests\test_v02_generation.py:18: in trial
+    return compare_external(root,catalog(root)[0]['id'],path)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\riposte\lab.py:54: in compare_external
+    row, master = _master(root, identifier)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^
+src\riposte\lab.py:19: in _master
+    raise RiposteError("ORGANIZATION_CHECKPOINT_REQUIRED")
+E   riposte.errors.RiposteError: ORGANIZATION_CHECKPOINT_REQUIRED
+________ ERROR at setup of test_invalid_generation_parameters[kwargs5] ________
+tests\test_v02_generation.py:18: in trial
+    return compare_external(root,catalog(root)[0]['id'],path)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\riposte\lab.py:54: in compare_external
+    row, master = _master(root, identifier)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^
+src\riposte\lab.py:19: in _master
+    raise RiposteError("ORGANIZATION_CHECKPOINT_REQUIRED")
+E   riposte.errors.RiposteError: ORGANIZATION_CHECKPOINT_REQUIRED
+________ ERROR at setup of test_invalid_generation_parameters[kwargs8] ________
+tests\test_v02_generation.py:18: in trial
+    return compare_external(root,catalog(root)[0]['id'],path)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\riposte\lab.py:54: in compare_external
+    row, master = _master(root, identifier)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^
+src\riposte\lab.py:19: in _master
+    raise RiposteError("ORGANIZATION_CHECKPOINT_REQUIRED")
+E   riposte.errors.RiposteError: ORGANIZATION_CHECKPOINT_REQUIRED
+_________ ERROR at setup of test_generation_requires_clean_checkpoint _________
+tests\test_v02_generation.py:18: in trial
+    return compare_external(root,catalog(root)[0]['id'],path)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\riposte\lab.py:54: in compare_external
+    row, master = _master(root, identifier)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^
+src\riposte\lab.py:19: in _master
+    raise RiposteError("ORGANIZATION_CHECKPOINT_REQUIRED")
+E   riposte.errors.RiposteError: ORGANIZATION_CHECKPOINT_REQUIRED
+================================== FAILURES ===================================
+_______________________ test_candidate_tamper_rejected ________________________
+tests\test_lab.py:40: in test_candidate_tamper_rejected
+    external=make_image(tmp_path/'candidate.png');report=compare_external(root,row['id'],external)
+                                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\riposte\lab.py:54: in compare_external
+    row, master = _master(root, identifier)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^
+src\riposte\lab.py:19: in _master
+    raise RiposteError("ORGANIZATION_CHECKPOINT_REQUIRED")
+E   riposte.errors.RiposteError: ORGANIZATION_CHECKPOINT_REQUIRED
+_______________________ test_full_migration_idempotence _______________________
+tests\test_organizer.py:16: in test_full_migration_idempotence
+    r=organize(root,POLICY);assert r['checkpoint']=='COMPLETE';assert r['counts']['migrated']==3
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   AssertionError: assert 'INCOMPLETE' == 'COMPLETE'
+E     
+E     - COMPLETE
+E     + INCOMPLETE
+E     ? ++
+______________ test_no_overwrite_and_existing_layout_translated _______________
+tests\test_organizer.py:29: in test_no_overwrite_and_existing_layout_translated
+    assert organize(root,POLICY)['checkpoint']=='COMPLETE';rows=catalog(root);assert len(rows)==2;assert len({r['sha256'] for r in rows})==2
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   AssertionError: assert 'INCOMPLETE' == 'COMPLETE'
+E     
+E     - COMPLETE
+E     + INCOMPLETE
+E     ? ++
+_____________________ test_sidecars_never_imported[.aae] ______________________
+tests\test_organizer.py:35: in test_sidecars_never_imported
+    r=organize(root,Policy(date_mode='modified',discard_sidecars=True));assert r['checkpoint']=='COMPLETE';assert not side.exists()
+                                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   AssertionError: assert 'INCOMPLETE' == 'COMPLETE'
+E     
+E     - COMPLETE
+E     + INCOMPLETE
+E     ? ++
+___________________________ test_modified_fallback ____________________________
+tests\test_policy.py:23: in test_modified_fallback
+    day,source=extract_day(Image.new("RGB",(1,1)),SimpleNamespace(st_mtime=stamp),"modified")
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\riposte\policy.py:70: in extract_day
+    birth = stat.st_ctime
+            ^^^^^^^^^^^^^
+E   AttributeError: 'types.SimpleNamespace' object has no attribute 'st_ctime'. Did you mean: 'st_mtime'?
+__________________________ test_ui_is_self_contained __________________________
+tests\test_server.py:17: in test_ui_is_self_contained
+    r=client.get('/');assert r.status_code==200;assert 'RIPOSTE' in r.text;assert r.headers['cache-control']=='no-store';assert "frame-ancestors 'none'" in r.headers['content-security-policy']
+      ^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\starlette\testclient.py:483: in get
+    return super().get(
+.venv\Lib\site-packages\httpx\_client.py:1053: in get
+    return self.request(
+.venv\Lib\site-packages\starlette\testclient.py:455: in request
+    return super().request(
+.venv\Lib\site-packages\httpx\_client.py:825: in request
+    return self.send(request, auth=auth, follow_redirects=follow_redirects)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\httpx\_client.py:914: in send
+    response = self._send_handling_auth(
+.venv\Lib\site-packages\httpx\_client.py:942: in _send_handling_auth
+    response = self._send_handling_redirects(
+.venv\Lib\site-packages\httpx\_client.py:979: in _send_handling_redirects
+    response = self._send_single_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\httpx\_client.py:1014: in _send_single_request
+    response = transport.handle_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\starlette\testclient.py:354: in handle_request
+    raise exc
+.venv\Lib\site-packages\starlette\testclient.py:351: in handle_request
+    portal.call(self.app, scope, receive, send)
+.venv\Lib\site-packages\anyio\from_thread.py:340: in call
+    return cast(T_Retval, self.start_task_soon(func, *args).result())
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Python314\Lib\concurrent\futures\_base.py:450: in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+C:\Python314\Lib\concurrent\futures\_base.py:395: in __get_result
+    raise self._exception
+.venv\Lib\site-packages\anyio\from_thread.py:265: in _call_func
+    retval = await retval_or_awaitable
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\fastapi\applications.py:1163: in __call__
+    await super().__call__(scope, receive, send)
+.venv\Lib\site-packages\starlette\applications.py:96: in __call__
+    await self.middleware_stack(scope, receive, send)
+.venv\Lib\site-packages\starlette\middleware\errors.py:186: in __call__
+    raise exc
+.venv\Lib\site-packages\starlette\middleware\errors.py:164: in __call__
+    await self.app(scope, receive, _send)
+.venv\Lib\site-packages\starlette\middleware\base.py:193: in __call__
+    response = await self.dispatch_func(request, call_next)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\riposte\server.py:195: in security
+    response=await call_next(request)
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\starlette\middleware\base.py:168: in call_next
+    raise app_exc from app_exc.__cause__ or app_exc.__context__
+.venv\Lib\site-packages\starlette\middleware\base.py:144: in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+.venv\Lib\site-packages\starlette\middleware\exceptions.py:63: in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+.venv\Lib\site-packages\starlette\_exception_handler.py:53: in wrapped_app
+    raise exc
+.venv\Lib\site-packages\starlette\_exception_handler.py:42: in wrapped_app
+    await app(scope, receive, sender)
+.venv\Lib\site-packages\fastapi\middleware\asyncexitstack.py:18: in __call__
+    await self.app(scope, receive, send)
+.venv\Lib\site-packages\starlette\routing.py:670: in __call__
+    await self.middleware_stack(scope, receive, send)
+.venv\Lib\site-packages\fastapi\routing.py:2734: in app
+    await route.handle(scope, receive, send)
+.venv\Lib\site-packages\fastapi\routing.py:1281: in handle
+    await super().handle(scope, receive, send)
+.venv\Lib\site-packages\starlette\routing.py:280: in handle
+    await self.app(scope, receive, send)
+.venv\Lib\site-packages\fastapi\routing.py:158: in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+.venv\Lib\site-packages\starlette\_exception_handler.py:53: in wrapped_app
+    raise exc
+.venv\Lib\site-packages\starlette\_exception_handler.py:42: in wrapped_app
+    await app(scope, receive, sender)
+.venv\Lib\site-packages\fastapi\routing.py:144: in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\fastapi\routing.py:706: in app
+    raw_response = await run_endpoint_function(
+.venv\Lib\site-packages\fastapi\routing.py:354: in run_endpoint_function
+    return await run_in_threadpool(dependant.call, **values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\starlette\concurrency.py:34: in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\anyio\to_thread.py:65: in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+.venv\Lib\site-packages\anyio\_backends\_asyncio.py:2706: in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+.venv\Lib\site-packages\anyio\_backends\_asyncio.py:1100: in run
+    result = context.run(func, *args)
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+src\riposte\server.py:214: in home
+    return (STATIC/"index.html").read_text()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Python314\Lib\pathlib\__init__.py:788: in read_text
+    return f.read()
+           ^^^^^^^^
+C:\Python314\Lib\encodings\cp1252.py:23: in decode
+    return codecs.charmap_decode(input,self.errors,decoding_table)[0]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   UnicodeDecodeError: 'charmap' codec can't decode byte 0x81 in position 1500: character maps to <undefined>
+_________ test_legacy_read_is_nonmutating_then_upgrade_keeps_art_ids __________
+tests\test_v02_migration.py:31: in test_legacy_read_is_nonmutating_then_upgrade_keeps_art_ids
+    if name!='.shroud/WORKSPACE':assert after[name.replace('.shroud/','.riposte/')]==digest
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   KeyError: '.shroud\\catalog.sqlite3'
+________________________ test_symlink_weights_rejected ________________________
+tests\test_v02_models.py:34: in test_symlink_weights_rejected
+    real=tmp_path/'not-a-model';real.write_bytes(b'content');q.symlink_to(real)
+                                                             ^^^^^^^^^^^^^^^^^^
+C:\Python314\Lib\pathlib\__init__.py:1213: in symlink_to
+    os.symlink(target, self, target_is_directory)
+E   OSError: [WinError 1314] A required privilege is not held by the client: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\pac-004\\merged-full-tmp\\test_symlink_weights_rejected0\\not-a-model' -> 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\pac-004\\merged-full-tmp\\test_symlink_weights_rejected0\\model\\diffusion_pytorch_model.safetensors'
+__________________ test_readonly_targeting_and_plan_no_files __________________
+tests\test_v04_typer.py:75: in test_readonly_targeting_and_plan_no_files
+    assert cli.main(['--json','publish',str(root),'--all','--year','2026','--month','9','--size','SML','--plan'])==0
+E   AssertionError: assert 2 == 0
+E    +  where 2 = <function main at 0x000001FACC5A0300>(['--json', 'publish', 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\pac-004\\merged-full-tmp\\test_readonly_targeting_and_pl0\\workspace', '--all', '--year', '2026', ...])
+E    +    where <function main at 0x000001FACC5A0300> = cli.main
+---------------------------- Captured stderr call -----------------------------
+{"error": "ORGANIZATION_CHECKPOINT_REQUIRED"}
+============================== warnings summary ===============================
+.venv\Lib\site-packages\fastapi\testclient.py:1
+  C:\Users\ryanf\github\_new\image-riposte\.venv\Lib\site-packages\fastapi\testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    from starlette.testclient import TestClient as TestClient  # noqa
+
+.venv\Lib\site-packages\starlette\testclient.py:53
+  C:\Users\ryanf\github\_new\image-riposte\.venv\Lib\site-packages\starlette\testclient.py:53: DeprecationWarning: The anyio.abc.BlockingPortal alias is deprecated, use anyio.from_thread.BlockingPortal instead.
+    _PortalFactoryType = Callable[[], AbstractContextManager[anyio.abc.BlockingPortal]]
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ===========================
+SKIPPED [1] tests\test_optimizer.py:7: could not import 'torch': No module named 'torch'
+SKIPPED [1] tests\test_v02_coupled.py:8: could not import 'torch': No module named 'torch'
+SKIPPED [1] tests\test_v02_qualification.py:14: could not import 'torch': No module named 'torch'
+SKIPPED [1] tests\test_v02_views.py:8: could not import 'torch': No module named 'torch'
+SKIPPED [1] tests\test_v03_api_cli.py:5: could not import 'torch': No module named 'torch'
+SKIPPED [1] tests\test_v03_publication.py:6: could not import 'torch': No module named 'torch'
+SKIPPED [1] tests\test_v03_quality_guard.py:4: could not import 'torch': No module named 'torch'
+SKIPPED [1] tests\test_v03_temporal.py:3: could not import 'torch': No module named 'torch'
+SKIPPED [1] tests\test_benchmark.py:45: could not import 'torch': No module named 'torch'
+SKIPPED [1] tests\test_benchmark.py:57: could not import 'torch': No module named 'torch'
+SKIPPED [1] tests\test_benchmark.py:63: could not import 'torch': No module named 'torch'
+SKIPPED [1] tests\test_benchmark.py:74: could not import 'torch': No module named 'torch'
+SKIPPED [1] tests\test_organizer.py:67: Symlinks unavailable
+SKIPPED [3] tests\test_v02_generation.py:107: could not import 'torch': No module named 'torch'
+SKIPPED [2] tests\test_v02_models.py:48: could not import 'torch': No module named 'torch'
+SKIPPED [1] tests\test_v02_models.py:63: could not import 'torch': No module named 'torch'
+SKIPPED [1] tests\test_v02_models.py:81: could not import 'torch': No module named 'torch'
+SKIPPED [1] tests\test_v04_product_terminal.py:72: could not import 'torch': No module named 'torch'
+SKIPPED [1] tests\test_v04_product_terminal.py:93: could not import 'torch': No module named 'torch'
+SKIPPED [1] tests\test_v04_product_terminal.py:101: could not import 'torch': No module named 'torch'
+SKIPPED [1] tests\test_v04_product_terminal.py:123: could not import 'torch': No module named 'torch'
+SKIPPED [4] tests\test_v04_terminal_host.py:8: POSIX pseudo-terminal contract
+ERROR tests/test_benchmark.py::test_paired_runner_control_flow[video] - ripos...
+ERROR tests/test_benchmark.py::test_runner_invalid_parameters[kwargs0] - ripo...
+ERROR tests/test_benchmark.py::test_runner_invalid_parameters[kwargs1] - ripo...
+ERROR tests/test_benchmark.py::test_runner_invalid_parameters[kwargs2] - ripo...
+ERROR tests/test_benchmark.py::test_runner_rejects_changed_candidate - ripost...
+ERROR tests/test_v02_api_cli.py::test_real_trial_view_routes_validate_clean_pair
+ERROR tests/test_v02_api_cli.py::test_namespace_upgrade_api - riposte.errors....
+ERROR tests/test_v02_generation.py::test_five_arm_generation_has_matched_seeds_date_only_frames[inpaint]
+ERROR tests/test_v02_generation.py::test_five_arm_generation_has_matched_seeds_date_only_frames[video]
+ERROR tests/test_v02_generation.py::test_cancel_after_write_rolls_back_run - ...
+ERROR tests/test_v02_generation.py::test_invalid_generation_parameters[kwargs2]
+ERROR tests/test_v02_generation.py::test_invalid_generation_parameters[kwargs5]
+ERROR tests/test_v02_generation.py::test_invalid_generation_parameters[kwargs8]
+ERROR tests/test_v02_generation.py::test_generation_requires_clean_checkpoint
+FAILED tests/test_lab.py::test_candidate_tamper_rejected - riposte.errors.Rip...
+FAILED tests/test_organizer.py::test_full_migration_idempotence - AssertionEr...
+FAILED tests/test_organizer.py::test_no_overwrite_and_existing_layout_translated
+FAILED tests/test_organizer.py::test_sidecars_never_imported[.aae] - Assertio...
+FAILED tests/test_policy.py::test_modified_fallback - AttributeError: 'types....
+FAILED tests/test_server.py::test_ui_is_self_contained - UnicodeDecodeError: ...
+FAILED tests/test_v02_migration.py::test_legacy_read_is_nonmutating_then_upgrade_keeps_art_ids
+FAILED tests/test_v02_models.py::test_symlink_weights_rejected - OSError: [Wi...
+FAILED tests/test_v04_typer.py::test_readonly_targeting_and_plan_no_files - A...
+9 failed, 455 passed, 28 skipped, 2 warnings, 14 errors in 7.42s

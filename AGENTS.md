@@ -32,6 +32,12 @@ are read-only. Work in external typing declarations, typing tools/evidence, and
 PACER governance. This assignment does not revoke another agent's separate
 authorization to develop application source. Preserve other agents' work.
 
+The subsequent PAC-004 request explicitly authorizes selective integration of
+`patch-TODO/RIPOSTE_v0.5.0.zip`, including its necessary application, launcher,
+packaging, documentation and test changes. This exception is limited to the
+reviewed patch and its compatibility work. Compare against the 0.4.0 archive,
+preserve newer branch changes, and retain historical evidence as historical.
+
 Use the existing uv environments and lockfiles. The isolated typing project is
 `typing/`; its documented check is `uv run --project typing --frozen --cache-dir
 typing/.cache/uv python typing/check.py`. Follow `typing/README.md` for the exact

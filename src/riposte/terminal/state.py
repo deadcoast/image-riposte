@@ -24,6 +24,9 @@ class Page:
     query: str = ""
     query_edit: bool = False
     scroll: int = 0
+    report_view: str = "overview"
+    advanced: bool = False
+    display_cache: dict = field(default_factory=dict)
     rows: list[dict] = field(default_factory=list)
     action: str | None = None
     values: dict = field(default_factory=dict)

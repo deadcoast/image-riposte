@@ -14,7 +14,7 @@ def record(root,out):
     class Sink:
         def write(self,text):events.append([round(time.monotonic()-start,4),'o',text])
         def flush(self):pass
-    child=pexpect.spawn(sys.executable,['-m','riposte','ui',str(root)],env={**os.environ,'TERM':'xterm-256color'},encoding='utf-8',dimensions=(38,112),timeout=10)
+    child=pexpect.spawn(sys.executable,['-m','riposte','ui',str(root)],env={**os.environ,'TERM':'xterm-256color','COLORTERM':'truecolor'},encoding='utf-8',dimensions=(38,112),timeout=10)
     child.logfile_read=Sink()
     try:
         child.expect('ACTION DECK')
@@ -23,18 +23,18 @@ def record(root,out):
             try:child.read_nonblocking(65536,timeout=.12)
             except pexpect.TIMEOUT:pass
         child.send('2');child.expect('CLEAN LIBRARY')
-        child.send(' ');child.send('\r');child.expect('ASCII COMPOSITION PREVIEW')
+        child.send('\r');child.send('i');child.expect('ASCII COMPOSITION PREVIEW')
         for _ in range(5):
             try:child.read_nonblocking(65536,timeout=.12)
             except pexpect.TIMEOUT:pass
         child.send('p');child.expect('PUBLISHING EDGES')
         child.send('\x1bOS');child.expect('DIRECT COMMAND / INSPECT ONLY')
         child.send('\x1b');child.expect('PUBLISHING EDGES')
-        child.send('\x1bOR');child.send('\x1bOP');child.expect('KEY MAP')
+        child.send('\x1bOR');child.send('\x1bOP');child.expect('CONTEXTUAL HELP')
         child.send('\x1b');child.expect('PUBLISHING EDGES');child.send('q');child.expect(pexpect.EOF)
     finally:child.close(force=True)
     assert child.exitstatus==0
-    out.write_text(json.dumps({'version':2,'width':112,'height':38,'title':'RIPOSTE 0.4 / real POSIX Rich terminal / synthetic art / read-only navigation','env':{'TERM':'xterm-256color'}})+'\n'+'\n'.join(json.dumps(e) for e in events)+'\n')
+    out.write_text(json.dumps({'version':2,'width':112,'height':38,'title':'RIPOSTE 0.5 / real POSIX Rich terminal / synthetic art / read-only navigation','env':{'TERM':'xterm-256color','COLORTERM':'truecolor'}})+'\n'+'\n'.join(json.dumps(e) for e in events)+'\n')
     return {'exit_status':child.exitstatus,'events':len(events),'seconds':round(time.monotonic()-start,2),'native_pty':True,'artwork':'SYNTHETIC_GEOMETRIC_FIXTURES','writes_requested':False}
 
 if __name__=='__main__':

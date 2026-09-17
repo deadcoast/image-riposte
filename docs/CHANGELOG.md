@@ -1,3 +1,7 @@
+# 0.5.0 / terminal revision reconstruction
+
+See [REVISION-v05.md](REVISION-v05.md) for source provenance, transparent backgrounds, goks, semantic reports and interaction changes. Backends and image pixels are unchanged.
+
 # 0.4.0 / Native Typer + Rich ASCII
 
 - Replaced argparse with 27 native Typer command names and preserved direct payload/positional compatibility.

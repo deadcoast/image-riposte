@@ -3,12 +3,12 @@
 set -euo pipefail
 PROJECT="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 if [[ $# -lt 1 ]]; then
-  printf 'Usage: bash START.sh /existing/artwork/folder [--lab] [--browser] [--no-animation] [--linear] [--theme dark|light|mono]\n' >&2
+  printf 'Usage: bash START.sh /existing/artwork/folder [--lab] [--browser] [--no-animation] [--linear] [--theme goks|dark|light|mono]\n' >&2
   exit 2
 fi
 ARTWORK="$1"
 shift
-LAB=0; BROWSER=0; LINEAR=0; MOTION=1; THEME=dark
+LAB=0; BROWSER=0; LINEAR=0; MOTION=1; THEME=goks
 while [[ $# -gt 0 ]]; do
   case "$1" in
     --lab) LAB=1 ;;
@@ -18,7 +18,7 @@ while [[ $# -gt 0 ]]; do
     --theme)
       shift
       THEME="${1:-}"
-      [[ "$THEME" == dark || "$THEME" == light || "$THEME" == mono ]] || { printf 'Invalid palette.\n' >&2; exit 2; }
+      [[ "$THEME" == goks || "$THEME" == dark || "$THEME" == light || "$THEME" == mono ]] || { printf 'Invalid palette.\n' >&2; exit 2; }
       ;;
     *) printf 'Unknown launcher option. No artwork changed.\n' >&2; exit 2 ;;
   esac

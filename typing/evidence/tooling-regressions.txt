@@ -3,8 +3,9 @@ test_changed_application_file_is_detected (__main__.TypingToolingTests.test_chan
 test_default_and_dot_reach_source_errors_despite_build_and_stub_copies (__main__.TypingToolingTests.test_default_and_dot_reach_source_errors_despite_build_and_stub_copies) ... ok
 test_generated_metadata_is_not_application_identity (__main__.TypingToolingTests.test_generated_metadata_is_not_application_identity) ... ok
 test_removed_application_file_is_detected (__main__.TypingToolingTests.test_removed_application_file_is_detected) ... ok
+test_structured_report_is_not_a_dynamic_report_alias (__main__.TypingToolingTests.test_structured_report_is_not_a_dynamic_report_alias) ... ok
 
 ----------------------------------------------------------------------
-Ran 5 tests in 1.963s
+Ran 6 tests in 1.729s
 
 OK

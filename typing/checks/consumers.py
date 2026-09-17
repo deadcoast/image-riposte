@@ -104,6 +104,11 @@ def encoder_contracts(image: Image.Image, encoders: list[ExampleEncoder]) -> Non
 
 
 def terminal_contracts() -> None:
+    from riposte.terminal.interaction import contextual_help, fields_for, hints, Hint
+    from riposte.terminal.actions import Field
+    from riposte.terminal.reports import Line, Report, Run, overview, raw_lines
+    from riposte.terminal.state import Page
+    from rich.text import Text
     worker = Operation(Request("doctor"), operation)
     assert_type(worker.start(), Operation)
     assert_type(worker.snapshot().processed, int | None)
@@ -113,3 +118,9 @@ def terminal_contracts() -> None:
     state = Session(None, Presentation())
     assert_type(render(state, 80, 24).plain(), str)
     assert_type(Jobs().start(lambda: None), JobStarted)
+    assert_type(hints(state), list[Hint])
+    assert_type(contextual_help(state)["controls"][0]["explanation"], str)
+    assert_type(fields_for(Page("form", action="publish")), tuple[Field, ...])
+    assert_type(overview({"checkpoint": "INCOMPLETE"}, "audit"), Report)
+    assert_type(raw_lines({"nested": [1, True, None]}, 40), list[Line])
+    assert_type(Line((Run("safe text"),)).rich(), Text)

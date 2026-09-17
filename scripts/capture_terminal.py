@@ -19,15 +19,17 @@ def make_art(root):
     organize(root,Policy(date_mode='modified'))
 
 
-def raster(surface, scale=1):
-    # Loaded from the host only. Output consists solely of rendered cells.
+def raster(surface, scale=1, background="#171B22", transparent=False):
+    # Background here simulates a HOST TERMINAL for captures only. Runtime cells
+    # always use the terminal default background; transparent=True preserves alpha.
     font=ImageFont.truetype('/usr/share/fonts/truetype/dejavu/DejaVuSansMono.ttf',14*scale)
     cw,ch=9*scale,19*scale
-    out=Image.new('RGB',(surface.width*cw,surface.height*ch),surface.palette['bg']);d=ImageDraw.Draw(out)
+    backdrop=(0,0,0,0) if transparent else background
+    out=Image.new('RGBA' if transparent else 'RGB',(surface.width*cw,surface.height*ch),backdrop);d=ImageDraw.Draw(out)
     for y,row in enumerate(surface.cells):
         for x,cell in enumerate(row):
-            fg=surface.palette.get(cell.fg,cell.fg);bg=surface.palette.get(cell.bg,cell.bg)
-            d.rectangle((x*cw,y*ch,(x+1)*cw-1,(y+1)*ch-1),fill=bg)
+            fg=surface.palette.get(cell.fg,cell.fg)
+            if fg=='default':fg='#202938' if surface.theme=='light' else '#D8DEE9'
             if cell.char!=' ':d.text((x*cw,y*ch),cell.char,font=font,fill=fg,stroke_width=0)
     return out
 
@@ -42,7 +44,7 @@ def capture(root,out):
     frames=[raster(render(s,112,38,i/12)) for i in range(48)]
     frames[0].save(out/'terminal-motion.gif',save_all=True,append_images=frames[1:],duration=83,loop=0,optimize=False)
     c.library();c.key(Key('char',' '));c.key(Key('down'));c.key(Key('char',' '));save('terminal-library')
-    c.key(Key('enter'));save('terminal-artwork')
+    c.key(Key('char','i'));save('terminal-artwork')
     c.action('publish');save('terminal-publish')
     c.key(Key('down'));c.key(Key('enter'));save('terminal-field')
     c.key(Key('escape'));c.state.presentation.theme='light';save('terminal-light');save('terminal-compact',79,24)

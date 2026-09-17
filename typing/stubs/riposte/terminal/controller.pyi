@@ -1,4 +1,5 @@
 # Source-derived external stub; see typing/README.md for scope.
+from .interaction import fields_for as fields_for, contextual_help as contextual_help
 from typing import Any, Callable, Mapping
 from pathlib import Path
 from _riposte_types import Report, CatalogRow, PublicationItem, PublicationBatch

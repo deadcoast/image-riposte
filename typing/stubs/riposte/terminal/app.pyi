@@ -1,4 +1,5 @@
 # Source-derived external stub; see typing/README.md for scope.
+from .interaction import fields_for as fields_for
 from typing import TextIO
 from pathlib import Path
 from ..errors import RiposteError as RiposteError

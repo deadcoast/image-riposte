@@ -15,7 +15,7 @@ import hashlib
 import json
 from pathlib import Path
 
-from check import is_application_source
+from check import REVIEWED_SOURCE, is_application_source
 
 ROOT = Path(__file__).resolve().parents[1]
 REPORT = ROOT / "typing/evidence/pacer-inventory.json"
@@ -31,11 +31,20 @@ INPUTS = (
     "typing/evidence/source-after.json",
     "typing/checks/consumers.py", "typing/checks/rejected.py.txt",
     "typing/evidence/source-before.json", "typing/evidence/verification.json",
+    "typing/evidence/source-reviewed-v050.json",
     "typing/evidence/source-current.txt",
     "typing/evidence/source-current-command.txt",
     "typing/evidence/dynamic-boundaries.json",
     "typing/evidence/windows-stat-probe.txt",
     "typing/evidence/windows-stat-probe-app-py314.txt",
+    # PAC-004 explicitly admits terminal patch integration and its proof inputs.
+    "START.ps1", "START.sh", "docs/CHANGELOG.md", "docs/CLI.md",
+    "docs/REBUILD.md", "docs/REVISION-v05.md", "docs/PATCH-v05-MERGE.md",
+    "docs/TERMINAL-DESIGN.spec.md", "docs/VALIDATION.md",
+    "scripts/capture_revision.py", "scripts/capture_terminal.py", "scripts/record_terminal.py",
+    "scripts/verify_v05_merge.py",
+    "tests/test_v05_revision.py",
+    "typing/evidence/mypy-contracts.txt", "typing/evidence/stubtest.txt",
 )
 
 
@@ -137,7 +146,7 @@ def inventory() -> tuple[list[dict[str, str]], dict[str, str]]:
     paths = scoped_paths()
     modules = {key: path for path in paths if (key := module_key(path)) is not None}
     modules.update({("source", Path(path).stem): path for path in paths
-                    if Path(path).parent.as_posix() == "typing" and path.endswith(".py")})
+                    if Path(path).parent.as_posix() in {"typing", "scripts"} and path.endswith(".py")})
     return [describe(path, modules) for path in paths], {path: digest(ROOT / path) for path in paths}
 
 
@@ -195,10 +204,10 @@ def reconcile(plan: Path | None) -> bool:
             issues.append(f"Retired tool function needs review: {row['Symbol']}")
     source = {path: value for path, value in hashes.items()
               if path.startswith("src/") and is_application_source(Path(path))}
-    baseline = json.loads((ROOT / "typing/evidence/source-before.json").read_text(encoding="utf-8"))
+    baseline = json.loads(REVIEWED_SOURCE.read_text(encoding="utf-8"))
     baseline = {path: value for path, value in baseline.items() if is_application_source(Path(path))}
     if source != baseline:
-        issues.append("Application source differs from the reviewed source-before snapshot")
+        issues.append("Application source differs from the reviewed source snapshot")
     source_modules = {key[1] for path in paths if (key := module_key(path)) and key[0] == "source"}
     stub_modules = {key[1] for path in paths if (key := module_key(path)) and key[0] == "stub" and key[1] != "_riposte_types"}
     if source_modules != stub_modules:

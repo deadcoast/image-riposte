@@ -18,6 +18,7 @@ HERE = ROOT / "typing"
 STUBS = HERE / "stubs" / "riposte"
 EVIDENCE = HERE / "evidence"
 CONTRACT_CONFIG = "typing/mypy-contracts.ini"
+REVIEWED_SOURCE = EVIDENCE / "source-reviewed-v050.json"
 
 
 def is_application_source(path: Path) -> bool:
@@ -122,6 +123,13 @@ def dynamic_inventory() -> list[dict[str, object]]:
     rows = []
     for path in sorted((HERE / "stubs").rglob("*.pyi")):
         tree = ast.parse(path.read_text(encoding="utf-8"))
+        dynamic_names = {"Any"}
+        if path.name == "_riposte_types.pyi":
+            dynamic_names.update({"Report", "ModelTensor"})
+        for imported in tree.body:
+            if isinstance(imported, ast.ImportFrom) and imported.module == "_riposte_types":
+                dynamic_names.update(alias.asname or alias.name for alias in imported.names
+                                     if alias.name in {"Report", "ModelTensor"})
         for node in ast.walk(tree):
             annotations = []
             if isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef)):
@@ -138,7 +146,7 @@ def dynamic_inventory() -> list[dict[str, object]]:
                 continue
             names = {part.id for annotation in annotations if annotation is not None
                      for part in ast.walk(annotation) if isinstance(part, ast.Name)}
-            if names & {"Any", "Report", "ModelTensor"}:
+            if names & dynamic_names:
                 rows.append({"file": path.relative_to(ROOT).as_posix(), "line": node.lineno,
                              "declaration": ast.unparse(node).splitlines()[0]})
     return rows
@@ -156,9 +164,9 @@ def main() -> int:
         return result.returncode
 
     before = source_hashes()
-    reviewed = json.loads((EVIDENCE / "source-before.json").read_text(encoding="utf-8"))
-    # Retain the original manifest, including its historical generated metadata.
-    # Dependency installation may regenerate egg-info without changing source.
+    reviewed = json.loads(REVIEWED_SOURCE.read_text(encoding="utf-8"))
+    # PAC-004 explicitly reviewed the terminal revision and its matching stubs.
+    # The original source-before.json remains intact as historical evidence.
     reviewed = {path: value for path, value in reviewed.items() if is_application_source(Path(path))}
     drift = sorted(k for k in before.keys() | reviewed.keys() if before.get(k) != reviewed.get(k))
     issues, signatures, modules = check_parity()

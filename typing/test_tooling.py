@@ -77,6 +77,24 @@ class TypingToolingTests(unittest.TestCase):
             self.source.unlink()
             self.assertNotEqual(check.source_hashes(), before)
 
+    def test_structured_report_is_not_a_dynamic_report_alias(self) -> None:
+        stubs = self.root / "stubs"
+        stubs.mkdir()
+        (stubs / "reports.pyi").write_text(
+            "from _riposte_types import Report as DynamicReport\n"
+            "from typing import Any\n"
+            "class Report:\n    title: str\n"
+            "def structured() -> Report: ...\n"
+            "def extension() -> DynamicReport: ...\n"
+            "def opaque() -> Any: ...\n",
+            encoding="utf-8",
+        )
+        with patch.object(check, "ROOT", self.root), patch.object(check, "HERE", self.root):
+            declarations = [str(row["declaration"]) for row in check.dynamic_inventory()]
+        self.assertEqual(len(declarations), 2)
+        self.assertTrue(any("extension" in row for row in declarations))
+        self.assertTrue(any("opaque" in row for row in declarations))
+
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)

@@ -1,0 +1,16 @@
+........................................................................ [ 28%]
+........................................................................ [ 57%]
+........................................................................ [ 86%]
+...........................F.....                                        [100%]
+================================== FAILURES ===================================
+__________________ test_readonly_targeting_and_plan_no_files __________________
+tests\test_v04_typer.py:75: in test_readonly_targeting_and_plan_no_files
+    assert cli.main(['--json','publish',str(root),'--all','--year','2026','--month','9','--size','SML','--plan'])==0
+E   AssertionError: assert 2 == 0
+E    +  where 2 = <function main at 0x0000014E3DD9ADA0>(['--json', 'publish', 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\pac-004\\merged-terminal-tmp\\test_readonly_targeting_and_pl0\\workspace', '--all', '--year', '2026', ...])
+E    +    where <function main at 0x0000014E3DD9ADA0> = cli.main
+---------------------------- Captured stderr call -----------------------------
+{"error": "ORGANIZATION_CHECKPOINT_REQUIRED"}
+=========================== short test summary info ===========================
+FAILED tests/test_v04_typer.py::test_readonly_targeting_and_plan_no_files - A...
+1 failed, 248 passed in 2.55s

@@ -23,7 +23,7 @@ Vae = Annotated[Optional[list[Path]], typer.Option("--vae", help="Local encoder 
 
 class Device(str, Enum): auto="auto"; cpu="cpu"; cuda="cuda"; mps="mps"
 class DateMode(str, Enum): download="download"; modified="modified"; embedded="embedded"
-class Theme(str, Enum): dark="dark"; light="light"; mono="mono"
+class Theme(str, Enum): goks="goks"; dark="dark"; light="light"; mono="mono"
 class Engine(str, Enum): coupled="coupled"; encoder="encoder"
 class Task(str, Enum): edit="edit"; inpaint="inpaint"; video="video"
 class Decision(str, Enum): ACCEPTED="ACCEPTED"; REJECTED="REJECTED"
@@ -43,7 +43,7 @@ def root_callback(ctx: typer.Context,
                   plain: Annotated[bool, typer.Option("--plain", help="Linear menus and plain ASCII output; no ANSI or motion.")] = False,
                   no_color: Annotated[bool, typer.Option("--no-color", help="Disable colour; also respects NO_COLOR.")] = False,
                   no_animation: Annotated[bool, typer.Option("--no-animation", "--no-anim", help="Freeze aesthetic motion; keep actual status updates.")] = False,
-                  theme: Annotated[Theme, typer.Option(help="Terminal palette.")] = Theme.dark,
+                  theme: Annotated[Theme, typer.Option(help="Terminal palette.")] = Theme.goks,
                   fps: Annotated[int, typer.Option(min=4, max=30, help="Maximum terminal refresh frequency, not processing speed.")] = 12,
                   events: Annotated[bool, typer.Option("--events", help="Code-defined progress JSON Lines on stderr for direct commands.")] = False,
                   version: Annotated[bool, typer.Option("--version", callback=_version, is_eager=True, help="Show installed release.")] = False):

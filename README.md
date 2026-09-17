@@ -1,8 +1,14 @@
-# RIPOSTE 0.4.0
+# RIPOSTE 0.5.0
 
 **Local artwork security. Native Typer commands. An authored, animated Rich ASCII interface.**
 
-RIPOSTE reconstructs image files with date-only metadata, organizes a maintained artwork directory, applies experimental image-integrated protection through selected local models, and packages exact reviewed publishing images. This release replaces the old argparse entry with a complete Typer command surface and a native Rich terminal application. The browser remains available; the workshop remains an optional helper.
+RIPOSTE reconstructs image files with date-only metadata, organizes a maintained artwork directory, applies experimental image-integrated protection through selected local models, and packages exact reviewed publishing images. The existing Typer command surface and native Rich terminal now share designed operation reports and foreground-only styling. The browser remains available; the workshop remains an optional helper.
+
+## Terminal revision 0.5
+
+Foreground-only `goks` is now the default. The host owns the background in every scene. Interactive results offer Overview / Details / JSON with `t`. Enter selects images, `i` inspects, `p` configures protection, and F1 explains the current screen. `f` expands advanced protection settings without resetting them.
+
+The shelved revision was selectively integrated against the 0.4.0 archive while retaining this checkout's dependency and typing work. See the [merge record](docs/PATCH-v05-MERGE.md), [supplied design record](docs/REVISION-v05.md), and [build guide](docs/REBUILD.md). No workspace migration is needed.
 
 ## Start the terminal on Windows
 
@@ -70,11 +76,13 @@ Working screens have different compositions: selected artwork, editable protecti
 
 | Key | Behaviour |
 | --- | --- |
-| Arrows or `j` / `k`, Enter | Move focus, open an action, edit a field |
-| Space | Select an image or toggle a checkbox |
+| Arrows or `j` / `k` | Move focus |
+| Enter | Activate the highlighted action; select an image; edit or toggle the focused field |
+| `i` in the library | Inspect the highlighted image without changing selection |
+| Space | Optional compatibility alias for selection or checkbox toggling |
 | `/` | Search visible actions, clean catalog or batches |
 | Esc / `0` | Back; discard an unfinished field edit |
-| F1 / F2 / F3 / F4 | Key map / pause motion / palette / equivalent direct command |
+| F1 / F2 / F3 / F4 | Contextual help / pause motion / palette / equivalent direct command |
 | `q` / Ctrl+C | Exit or request a cooperative stop; active source commits finish safely |
 
 Library shortcuts are visible on the screen: `a` selects visible images, `n` clears, `p` opens protection. Forms use `p` for a read-only plan and `r` for the explicit operation; Clean & organize always previews first and also exposes `v` for the audit. The migration result requires a typed **REPLACE** confirmation before source replacement.
@@ -137,13 +145,14 @@ The protection engines are unchanged in this CLI release and remain **experiment
 
 ## Optional helpers and reference
 
-All inherited helper paths remain accessible, including standalone guard, external comparison, encoder qualification, five-arm generation, legacy paired benchmark, trial export and exact-file handoff. New `generation` and `frame` commands expose complete saved reports and audited frames. They are below the main product actions, not prerequisites for normal publishing.
+All inherited helper paths remain accessible, including standalone guard, external comparison, encoder qualification, five-arm generation, legacy paired benchmark, trial export and exact-file handoff. The `generation` and `frame` commands expose complete saved reports and audited frames. They are below the main product actions, not prerequisites for normal publishing.
 
 - [Complete CLI and linear-menu reference](docs/CLI.md)
 - [Terminal visual and interaction specification](docs/TERMINAL-DESIGN.spec.md)
 - [Publishing contracts](docs/PUBLISHING.md)
 - [Image-engine mathematics](docs/ENGINE-v03.md)
 - [Development record and next grouped implementation](docs/WAVE-04.md)
+- [Terminal revision and selective merge](docs/PATCH-v05-MERGE.md)
 - [Executed internal validation and provenance](docs/VALIDATION.md)
 
-The previous CLI, README, validation and evidence are retained under `history/v0.3.0/`. All inherited image/backend modules except the package version and CLI entry remain byte-identical. No user artwork was used in development captures; previews show original synthetic geometric fixtures.
+The previous CLI, README, validation and evidence are retained under `history/v0.3.0/`. The original 0.4.0 and supplied 0.5.0 snapshots remain in `packages/`. The merge preserves image-engine, sanitation, organization, publication, storage and browser files. Historical screenshots, wheels and test claims in those ZIPs are not validation of this checkout; current checks are recorded in the merge record. No user artwork was used in development captures; previews show original synthetic geometric fixtures.

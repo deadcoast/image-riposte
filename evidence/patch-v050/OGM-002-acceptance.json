@@ -1,0 +1,56 @@
+{
+  "requirement": "OGM-002",
+  "meaning": "402fee20ccefdb855e1860fad766e3eb693daa94c6a090f0ea0b9d4ec135b015",
+  "sources": {
+    "evidence/patch-v050/root-mypy.json": "c87bf9475086557b10f0d5d7b2a165ba8972400e030b467fe62e9d6e1cdc9e64",
+    "evidence/patch-v050/root-mypy-dot.txt": "78a3b1c0f5395e6487e5ae4d5a3d270a9286ae431c094b0f3763f8acfa4b31f2",
+    "evidence/patch-v050/root-mypy-default.txt": "78a3b1c0f5395e6487e5ae4d5a3d270a9286ae431c094b0f3763f8acfa4b31f2",
+    "typing/test_tooling.py": "ead2a06a1ecc4335e82c5e488fc3a4e1a8a5bb6f05d5e74fe0ec316a327cc514",
+    "typing/check.py": "955644e9d7ca53b3e8c20c2b61506294f71b8f69b81fc59da1663c5f7907e6ea",
+    "typing/evidence/source-reviewed-v050.json": "0b62c31d7fc3e617bbc418ee56b962aeba0c03699103e94d90e5d52a5a0ac966",
+    "typing/evidence/pac-003-root-audit.json": "5c1555e201fe1dc7db6a8f14b53e33e2d48f8d098d5790cd627ef0fea5ff39c1",
+    "typing/evidence/pac-003-before.json": "062e2a21c61af2102001d5352a24ad73f93dc875d40d8db27660e90c9fd95ccb",
+    "typing/mypy-contracts.ini": "78fddb2607c7cdb260de23c75b2570d07407dd9ba4aefeebccbfeb0b4c27e70e",
+    "typing/evidence/tooling-regressions.txt": "e31e6c9515c27e74d388607de2af0cf56d1987535a913f6a17973aac1872d851",
+    "typing/evidence/source-after.json": "0b62c31d7fc3e617bbc418ee56b962aeba0c03699103e94d90e5d52a5a0ac966",
+    "typing/evidence/mypy-tooling.txt": "281a094c39385b4d7b53e5db635f52158036861433c2a4975b9039e77a627a24",
+    "typing/evidence/runtime-contracts.txt": "c58bd24c7568ad9f4658400fbbe359ca0017030b11cbb85a3dfc74cdce6924ee",
+    "typing/evidence/pacer-inventory.json": "3adfde87e3687035635f6c6f3daff43ea7306711c94a12db41c0827b6063e1ef",
+    "typing/pacer_inventory.py": "c24b09b07505fc13e08246e7fb5628fbfd6fe5ce924ecd3e29c5c7d4193ae93a",
+    "typing/mypy-source.ini": "f168d5874f12d6258a8e35311ea4fc90ebeab878a51fb1268cc1a89e8cb104bf",
+    "typing/evidence/verification.json": "feb23e16c1cfbda65dab253fe6df84b78030c494b9657b7da1ff9dbe30ca891e",
+    "typing/evidence/source-before.json": "d3fa8409db29ebf923523671b44fade9caf459f627bd4f16ea07a4ff6d094f8b",
+    "typing/README.md": "64f9539350903310a109f1ad9b7ce0ddb8c6979fe1a9726a200c9a5b8d78ebfb",
+    "mypy.ini": "c0961208a99c02083a873c32a8bd5ca6a7ba1c88d601eb2210fb3f94c00d2d99"
+  },
+  "result": "PASS",
+  "command": [
+    ".venv/Scripts/python.exe",
+    "-m",
+    "mypy",
+    "."
+  ],
+  "scope": "Default and explicit-dot root discovery and separation of external contracts from the raw source audit.",
+  "checks": {
+    "default_and_dot_outputs_identical": true,
+    "duplicate_module_discovery": false,
+    "raw_audit_exit_code": 1,
+    "raw_audit_errors": 962,
+    "raw_audit_error_files": 36,
+    "raw_audit_checked_files": 41,
+    "tooling_regressions": 6
+  },
+  "additional_commands": [
+    ".venv/Scripts/python.exe -m mypy",
+    "uv run --project typing --frozen --offline --cache-dir typing/.cache/uv python typing/check.py"
+  ],
+  "evidence": [
+    "evidence/patch-v050/root-mypy.json",
+    "evidence/patch-v050/root-mypy-default.txt",
+    "evidence/patch-v050/root-mypy-dot.txt"
+  ],
+  "limits": [
+    "PASS applies to discovery and audit integrity, not to strict source-body typing.",
+    "The earlier 817 diagnostics came from the previous 38-module baseline."
+  ]
+}

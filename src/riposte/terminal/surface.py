@@ -10,11 +10,8 @@ import textwrap
 from rich.segment import Segment
 from rich.style import Style
 
-PALETTES = {
-    "dark": {"bg": "#111a19", "panel": "#172321", "raised": "#20312d", "line": "#38524a", "muted": "#8fa49c", "text": "#e7ece4", "accent": "#71e3ad", "ink": "#10291e", "warn": "#efba80", "danger": "#ee8e84", "white": "#ffffff"},
-    "light": {"bg": "#f2f0e8", "panel": "#e8e8df", "raised": "#d6e6d9", "line": "#9aa79a", "muted": "#53685e", "text": "#192d25", "accent": "#1c6b48", "ink": "#f4fff7", "warn": "#84501a", "danger": "#a43837", "white": "#ffffff"},
-    "mono": {"bg": "#101010", "panel": "#181818", "raised": "#333333", "line": "#666666", "muted": "#aaaaaa", "text": "#eeeeee", "accent": "#ffffff", "ink": "#101010", "warn": "#dddddd", "danger": "#ffffff", "white": "#ffffff"},
-}
+from .palette import PALETTES
+
 
 
 def ascii_text(value: object) -> str:
@@ -32,13 +29,13 @@ class Cell:
 
 @lru_cache(maxsize=4096)
 def _style(fg, bg, bold):
-    return Style(color=fg, bgcolor=bg, bold=bold)
+    return Style(color=fg, bgcolor="default", bold=bold)
 
 
 class Surface:
-    def __init__(self, width: int, height: int, theme="dark"):
+    def __init__(self, width: int, height: int, theme="goks"):
         self.width, self.height = max(1, min(width, 240)), max(1, min(height, 100))
-        self.theme = theme if theme in PALETTES else "dark"
+        self.theme = theme if theme in PALETTES else "goks"
         self.palette = PALETTES[self.theme]
         self.cells = [[Cell() for _ in range(self.width)] for _ in range(self.height)]
 
@@ -46,12 +43,12 @@ class Surface:
         if 0 <= x < self.width and 0 <= y < self.height:
             char = ascii_text(char)[:1]
             if char == "\n" or not char: char = " "
-            self.cells[y][x] = Cell(char, fg, bg or self.cells[y][x].bg, bold)
+            self.cells[y][x] = Cell(char, fg, "bg", bold)
 
     def fill(self, x, y, width, height, bg="panel", char=" ", fg="line"):
         for row in range(max(y, 0), min(y + height, self.height)):
             for col in range(max(x, 0), min(x + width, self.width)):
-                self.cells[row][col] = Cell(char, fg, bg)
+                self.cells[row][col] = Cell(char, fg, "bg")
 
     def text(self, x, y, text, fg="text", bg=None, bold=False, width=None):
         for dy, line in enumerate(ascii_text(text).splitlines() or [""]):

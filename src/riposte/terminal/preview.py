@@ -45,7 +45,11 @@ def paint_preview(surface: Surface, raw: Preview, x: int, y: int, width: int, he
     ox, oy = x + (width - cols) // 2, y + (height - rows) // 2
     for py, row in enumerate(raw.cache[key]):
         for px, (char, colour) in enumerate(row):
-            if surface.theme=="mono":
-                r,g,b=(int(colour[i:i+2],16) for i in (1,3,5))
-                gray=round(.2126*r+.7152*g+.0722*b);colour=f"#{gray:02x}{gray:02x}{gray:02x}"
-            surface.put(ox + px, oy + py, char, colour, "#eeeeee" if surface.theme=="mono" else "#eeeeea")
+            if surface.theme == "mono":
+                colour = "default"
+            elif surface.theme in {"goks", "dark"}:
+                # A dark ink outline cannot be printed as black on a host-owned
+                # dark terminal. Lift glyph tones; actual PNG viewing is unchanged.
+                values = [int(colour[i:i+2],16) for i in (1,3,5)]
+                colour = "#" + "".join(f"{round(112 + value * 143/255):02x}" for value in values)
+            surface.put(ox + px, oy + py, char, colour)

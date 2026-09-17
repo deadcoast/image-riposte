@@ -10,6 +10,7 @@ from rich.text import Text
 from .controller import Controller
 from .keyboard import Key, TerminalKeys
 from .render import render, view_rows
+from .interaction import fields_for
 from .output import Presentation, error
 from ..errors import RiposteError
 from .signals import termination_guard, TerminationRequested
@@ -35,7 +36,7 @@ def _line_command(controller: Controller, line: str):
         number, _, value = rest.partition(" ")
         from .actions import BY_KEY, parse_value
         try:
-            fields=BY_KEY[state.page.action].fields;index=int(number)-1
+            fields=fields_for(state.page);index=int(number)-1
             if not 0<=index<len(fields): raise ValueError
             f=fields[index]
             state.page.values[f.key]=parse_value(f,value);state.page.cursor=index
@@ -51,6 +52,9 @@ def _line_command(controller: Controller, line: str):
         return
     mapping={"":"enter","enter":"enter","open":"enter","back":"escape","up":"up","down":"down","pgup":"pageup","pgdn":"pagedown","home":"home","end":"end","help":"f1","motion":"f2","theme":"f3","command":"f4","toggle":"char"}
     if head in mapping:controller.key(Key(mapping[head]," " if head=="toggle" else ""))
+    elif head == "inspect" and state.page.name == "library":controller.key(Key("char","i"))
+    elif head == "details" and state.page.name == "result":controller.key(Key("char","t"))
+    elif head == "advanced" and state.page.name == "form":controller.key(Key("char","f"))
     elif head in {"plan","run","apply","accept","reject","audit"}:controller.key(Key("char",{"plan":"p","run":"r","apply":"a","accept":"a","reject":"x","audit":"v"}[head]))
     elif len(line)==1:controller.key(Key("char",line))
     else:state.notice="Use a visible key, focus N, select 1,3, edit N VALUE, search TEXT, or help."

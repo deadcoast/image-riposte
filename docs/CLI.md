@@ -54,6 +54,7 @@ riposte --human COMMAND ...
 riposte --plain COMMAND ...
 riposte --events --json COMMAND ...
 riposte --no-animation ui ROOT
+riposte --theme goks ui ROOT
 riposte --theme light ui ROOT
 riposte --theme mono --fps 12 ui ROOT
 riposte --no-color ui ROOT
@@ -62,6 +63,12 @@ riposte --no-color ui ROOT
 These are global flags: put them before the command. stdout redirection automatically selects JSON for direct commands. Diagnostic/operation events are on stderr. `--plain` suppresses ANSI and selects the linear interface on an interactive entry. `TERM=dumb` also uses linear menus. `NO_COLOR` suppresses colours without deleting keyboard functionality. `RIPOSTE_NO_ANIMATION=1` freezes authored motion; actual time and callback counts remain live. ASCII glyph output does not require a special terminal font. Local Unicode path input is retained, while the ASCII display uses a replacement glyph for non-ASCII characters.
 
 The terminal uses Rich Live's alternate screen. On ordinary exit, Ctrl+C, handled errors, or handled SIGTERM it restores terminal mode, bracketed-paste state and cursor visibility and joins the owned worker. SIGKILL, kernel failure and power loss cannot run cleanup. A particular model forward call cannot be forcibly interrupted safely; cancellation waits for a backend checkpoint. Source replacement, review and package commits are not abandoned on an interactive interrupt.
+
+## Result display and contextual controls (0.5)
+
+Normal results are semantic reports, shared by the interactive and direct human CLI. `t` cycles Overview, complete Details and syntax-coloured JSON. Only explicit machine output retains raw JSON as its primary representation. Backgrounds always belong to the host terminal.
+
+Enter toggles an image selection; `i` inspects the focused image. Space remains a compatibility alias, not the required selection key. `f` expands the publishing form's advanced settings without discarding any values. F1 explains the exact current screen and focused field.
 
 ## Interactive actions
 
@@ -81,7 +88,10 @@ select 1,3                toggle visible row numbers in the library
 p                         configure publishing for the selection
 edit 1 1024,1536           set the first form field
 focus 3                   focus a visible list row
-enter                     open/edit the focused item
+enter                     activate the focused action; select a library image
+inspect                   inspect the focused library image
+advanced                  expand/collapse protection settings
+details                   cycle result report views
 plan                      run a read-only preview in the appropriate form
 run                       explicit operation in the appropriate form/result
 apply                     open the source-replacement confirmation from its plan

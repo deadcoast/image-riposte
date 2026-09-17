@@ -1,0 +1,33 @@
+{
+  "python": "3.14.3 (tags/v3.14.3:323c59a, Feb  3 2026, 16:04:56) [MSC v.1944 64 bit (AMD64)]",
+  "results": [
+    {
+      "entrypoint": "default",
+      "command": [
+        "C:\\Users\\ryanf\\github\\_new\\image-riposte\\.venv\\Scripts\\python.exe",
+        "-m",
+        "mypy"
+      ],
+      "exit_code": 1,
+      "summary": "Found 962 errors in 36 files (checked 41 source files)",
+      "diagnostics": 962,
+      "duplicate_module": false,
+      "output_sha256": "c570a3dcfc88d7f1bcabad0407da6be30e3a6ab17c2e4792a822ccbc538fc32b"
+    },
+    {
+      "entrypoint": "dot",
+      "command": [
+        "C:\\Users\\ryanf\\github\\_new\\image-riposte\\.venv\\Scripts\\python.exe",
+        "-m",
+        "mypy",
+        "."
+      ],
+      "exit_code": 1,
+      "summary": "Found 962 errors in 36 files (checked 41 source files)",
+      "diagnostics": 962,
+      "duplicate_module": false,
+      "output_sha256": "c570a3dcfc88d7f1bcabad0407da6be30e3a6ab17c2e4792a822ccbc538fc32b"
+    }
+  ],
+  "same_output": true
+}

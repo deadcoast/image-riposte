@@ -4,7 +4,7 @@ param(
     [switch]$Browser,
     [switch]$NoAnimation,
     [switch]$Linear,
-    [ValidateSet("dark", "light", "mono")][string]$Theme = "dark"
+    [ValidateSet("goks", "dark", "light", "mono")][string]$Theme = "goks"
 )
 Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
