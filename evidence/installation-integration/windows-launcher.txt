@@ -1,0 +1,37 @@
+RIPOSTE / LINEAR ASCII
+Use visible keys; edit N VALUE; select 1,3; focus N; /cancel discards an edit.
+                                                                                                    
+   R I P O S T E    /  IMAGE SECURITY                                       LOCAL   /   v0.5.0      
+                                                                                                    
+  ------------------------------------------------------------------------------------------------  
+   01 CHOOSE         02 CONFIGURE      03 RIPOSTE        04 REVIEW         05 EXPORT                
+                                                                               =------//            
+    RRRR   III  PPPP    OOO   SSSS  TTTTT  EEEEE                        =-------..////              
+    R   R   I   P   P  O   O  S       T    E                       .-----+.+... -//---.--///        
+    RRRR    I   PPPP   O   O   SSS    T    EEEE                 //-.:...:==--------./ ///           
+    R  R    I   P      O   O      S   T    E                 ///.+=-/------::...:+ /// =---//       
+    R   R  III  P       OOO   SSSS    T    EEEEE          ///----///-...:.+.:-------:---///         
+                                                         //-  //:/.+:/-------..::.../ //            
+    YOUR ART. YOUR COUNTERMOVE.                   >        /// ---///-+..+.::..+./// /              
+                                                         //----///:....:+.= ------                  
+                                                            ///.=- ---------                        
+                                                          //-----                                   
+   00 CLEAN IMAGES   /   00 SELECTED   /   00 BATCHES                                               
+                                                                                                    
+  -- ACTION DECK ---------------------------------------------------------------------------------  
+                                                                                                    
+    > 1  RIPOSTE                                               FOCUS / RIPOSTE                      
+      2  Image library                                                                              
+      3  Sort                                                  Protect files or folders. Keep       
+      4  Sort + RIPOSTE                                        originals and their folder           
+      5  Publishing batches                                    structure.                           
+      6  Local models                                                                               
+      7  Terminal & workspace                                                                       
+      8  Workshop                                              CREATE CANDIDATES                    
+                                                                                                    
+                                                               Writes require an explicit           
+  ------------------------------------------------------------------------------------------------  
+   [Enter] Open   [/] Find   [q] Quit   [F1] Help                                                   
+                                                               [Enter] continue                     
+                                                                                                    
+riposte>   RIPOSTE / terminal released. No unfinished worker was abandoned.

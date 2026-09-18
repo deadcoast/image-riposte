@@ -36,11 +36,12 @@ PY
 PYTHON="$PROJECT/.venv/bin/python"
 [[ -x "$PYTHON" ]] || python3 -m venv "$PROJECT/.venv"
 EXPECTED="$("$PYTHON" -c "import sys,tomllib;print(tomllib.load(open(sys.argv[1],'rb'))['project']['version'])" "$PROJECT/pyproject.toml")"
-INSTALLED="$("$PYTHON" -c "import importlib.metadata as m;print(next((d.version for d in m.distributions() if d.metadata['Name']=='riposte-studio'),'absent'))")"
+INSTALLED="$("$PYTHON" -c "import importlib.metadata as m, importlib.util as u, pathlib, sys; s=u.find_spec('riposte'); current=s is not None and s.origin is not None and pathlib.Path(s.origin).resolve()==(pathlib.Path(sys.argv[1])/'src/riposte/__init__.py').resolve(); print(next((d.version for d in m.distributions() if d.metadata['Name']=='riposte-studio'),'absent') if current else 'absent')" "$PROJECT")"
 TARGET="$PROJECT"
 [[ "$LAB" == 0 ]] || TARGET="$PROJECT[lab]"
 if [[ "$EXPECTED" != "$INSTALLED" || "$LAB" == 1 ]]; then
-  "$PYTHON" -m pip install "$TARGET"
+  # Code-only updates must remain visible even with an unchanged package version.
+  "$PYTHON" -m pip install --editable "$TARGET"
 fi
 ARGS=(-m riposte --theme "$THEME")
 [[ "$MOTION" == 1 ]] || ARGS+=(--no-animation)

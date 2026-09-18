@@ -39,12 +39,14 @@ if (-not (Test-Path -LiteralPath $Python -PathType Leaf)) {
 }
 $Expected = & $Python -c "import sys,tomllib; print(tomllib.load(open(sys.argv[1], 'rb'))['project']['version'])" (Join-Path $Project 'pyproject.toml')
 if ($LASTEXITCODE -ne 0) { throw 'Python 3.11 or newer is required.' }
-$Installed = & $Python -c "import importlib.metadata as m; print(next((d.version for d in m.distributions() if d.metadata['Name'] == 'riposte-studio'), 'absent'))"
+$Installed = & $Python -c "import importlib.metadata as m, importlib.util as u, pathlib, sys; s=u.find_spec('riposte'); current=s is not None and s.origin is not None and pathlib.Path(s.origin).resolve()==(pathlib.Path(sys.argv[1])/'src/riposte/__init__.py').resolve(); print(next((d.version for d in m.distributions() if d.metadata['Name'] == 'riposte-studio'), 'absent') if current else 'absent')" $Project
 if ($LASTEXITCODE -ne 0) { throw 'The virtual environment is not working; recreate .venv using README.md.' }
 if ($Created -or $Lab -or $Installed.Trim() -ne $Expected.Trim()) {
     $Target = $Project
     if ($Lab) { $Target = $Project + '[lab]' }
-    & $Python -m pip install $Target
+    # Editable installation keeps code-only checkout updates visible even when
+    # the version is unchanged. Old copied installs are refreshed by the check above.
+    & $Python -m pip install --editable $Target
     if ($LASTEXITCODE -ne 0) { throw 'Package installation failed. Artwork has not been modified.' }
 }
 $LaunchArgs = @('-m', 'riposte', '--theme', $Theme)

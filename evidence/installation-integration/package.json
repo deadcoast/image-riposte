@@ -1,0 +1,65 @@
+{
+  "result": "PASS",
+  "source_files": 48,
+  "equal_bytes": "checkout = sdist = wheel = isolated installation",
+  "installed_origin": "C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\workflow-installed\\riposte\\__init__.py",
+  "commands": [
+    "audit",
+    "benchmark",
+    "challenge",
+    "compare",
+    "doctor",
+    "evaluations",
+    "export",
+    "frame",
+    "generation",
+    "generations",
+    "guard",
+    "image",
+    "inspect",
+    "list",
+    "organize",
+    "package",
+    "protect",
+    "publications",
+    "publish",
+    "qualify",
+    "resume",
+    "review",
+    "riposte",
+    "serve",
+    "sort",
+    "sort-riposte",
+    "trials",
+    "ui",
+    "upgrade",
+    "workshop"
+  ],
+  "previews": [
+    {
+      "workflow": "sort",
+      "mode": "READ_ONLY",
+      "exit_code": 0
+    },
+    {
+      "workflow": "riposte",
+      "mode": "PUBLICATION_PLAN",
+      "exit_code": 0
+    },
+    {
+      "workflow": "sort-riposte",
+      "mode": "SORT_RIPOSTE_PLAN",
+      "exit_code": 0
+    }
+  ],
+  "windows_launcher": "actual START.ps1 and existing environment; linear menu entered and exited",
+  "windows_wrapper": "actual riposte.cmd help; all new workflow commands visible",
+  "artwork_changed": false,
+  "wheel_sha256": "120fa4fef509b7dc75d01926dadec01d8e4e52e983a99c9e33c4fba9b9dc3a55",
+  "sdist_sha256": "fac828b9be4cfa28c66a4e5c929117d4a445e8631e135bcaa208ff2b47fa0fce",
+  "limits": [
+    "Installed previews do not execute models",
+    "No native raw-keyboard or GPU acceptance claim",
+    "Bash installer behavior is separately tested with installation/UI subprocess adapters"
+  ]
+}
