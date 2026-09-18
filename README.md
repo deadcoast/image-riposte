@@ -66,7 +66,17 @@ riposte publish --help                  All publishing controls
 
 Direct commands and interactive forms call the same operation service. The interface does not simulate an engine, shell out to a pretend CLI, or execute the text displayed in the command lens.
 
-The main action deck is **Protect & publish / Image library / Clean & organize / Publishing batches / Local models / Terminal & workspace / Workshop**. The normal workflow never requires the workshop.
+The main action deck includes **RIPOSTE / Image library / Sort / Sort + RIPOSTE / Publishing batches / Local models / Terminal & workspace / Workshop**. Choose the work you need on each run; the normal workflow never requires the workshop.
+
+| Workflow | Interactive terminal | Direct command |
+| --- | --- | --- |
+| Sort | **Sort** previews the directory, then requires `REPLACE` | `riposte sort ROOT`; add `--apply` to replace sources |
+| RIPOSTE | **RIPOSTE** accepts a file or directory; library `p` protects selected catalog images | `riposte riposte ROOT --input PATH --vae MODEL`; repeat `--input` for more files/folders; add `--plan` for a read-only preview |
+| Sort + RIPOSTE | **Sort + RIPOSTE** previews sorting and protection, then requires `REPLACE` | `riposte sort-riposte ROOT --all --vae MODEL`; add `--apply` to run both |
+
+Standalone RIPOSTE preserves original files and folders. `ROOT` holds its application state and reviewed exports; inputs may be elsewhere. It creates date-only clean snapshots for resumable protection without reorganizing the input library. Directory inputs are recursive; the terminal's advanced settings accept additional paths. For existing catalog images use `--image ID` or `--all` with filters instead of `--input`. Unrelated additions no longer block publishing, reviewing or packaging selected catalog images.
+
+Sort retains the established reconstruction and source-replacement behavior, including explicit sidecar consent. Repeating it processes new additions and leaves verified clean masters alone. The combined workflow sorts `ROOT` and protects matching catalog images, including newly sorted additions. Model preflight happens before replacement; an incomplete sort stops protection. After successful sorting, protection can be retried separately. Existing `organize`, `publish`, `protect`, and expert commands remain available. Candidate creation never grants visual approval or verified protection efficacy.
 
 ## The ASCII experience
 

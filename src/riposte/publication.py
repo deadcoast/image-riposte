@@ -94,24 +94,34 @@ def _checkpoint(root):
         raise RiposteError("ORGANIZATION_CHECKPOINT_REQUIRED")
 
 
-def publication_plan(root, image_ids, recipe: PublishRecipe = PublishRecipe()) -> dict:
+def publication_plan(root, image_ids, recipe: PublishRecipe = PublishRecipe(), *, input_paths=None, date_mode="download") -> dict:
     check_root(root)
+    if input_paths:
+        if image_ids:
+            raise RiposteError("INPUT_SELECTION_CONFLICT")
+        from .intake import inspect_inputs
+        from .policy import Policy
+        sources, ignored = inspect_inputs(input_paths, Policy(date_mode=date_mode))
+        return {**_plan_rows([source.row for source in sources], recipe),
+                "source_mode": "snapshot", "ignored_files": ignored, "originals_preserved": True}
     if (not isinstance(image_ids, (list, tuple)) or not 1 <= len(image_ids) <= 200
         or len(set(image_ids)) != len(image_ids)):
         raise RiposteError("PUBLICATION_SELECTION_INVALID")
-    _checkpoint(root)
+    return _plan_rows([find_image(root, _id(identifier)) for identifier in image_ids], recipe)
+
+
+def _plan_rows(rows, recipe):
     tasks, avoided = [], 0
-    for identifier in image_ids:
-        row = find_image(root, _id(identifier))
+    for row in rows:
         seen_edges = set()
         for edge in sorted(recipe.edges):
             effective = min(edge, max(row["width"], row["height"]))
             if effective in seen_edges:
                 avoided += 1; continue
             seen_edges.add(effective)
-            tasks.append({"image_id": identifier, "date": row["day"], "max_edge": edge,
+            tasks.append({"image_id": row["id"], "date": row["day"], "max_edge": edge,
                           "source_clean_sha256": row["sha256"], "index": len(tasks)})
-    return {"mode": "PUBLICATION_PLAN", "images": len(image_ids), "outputs": len(tasks),
+    return {"mode": "PUBLICATION_PLAN", "images": len(rows), "outputs": len(tasks),
             "duplicate_renders_avoided": avoided, "tasks": tasks, "recipe": recipe.public(),
             "master_changes": 0, "ai_protection": "UNVERIFIED", "writes": False}
 
@@ -119,6 +129,8 @@ def publication_plan(root, image_ids, recipe: PublishRecipe = PublishRecipe()) -
 def _request(root, batch_id):
     data = _read(root, _prefix(root, batch_id) + "/request.json")
     if data.get("id") != batch_id or data.get("schema") != 1:
+        raise RiposteError("PUBLICATION_RECORD_INVALID")
+    if data.get("source_mode", "catalog") not in {"catalog", "snapshot"}:
         raise RiposteError("PUBLICATION_RECORD_INVALID")
     PublishRecipe.from_dict(data.get("recipe", {}))
     tasks = data.get("tasks")
@@ -159,12 +171,37 @@ def _models(vae_dirs, device, pipeline_dir, temporal_dir, progress=None):
 
 
 def start_publication(root, image_ids, vae_dirs, recipe: PublishRecipe = PublishRecipe(),
-                      device="auto", pipeline_dir=None, temporal_dir=None, progress=None):
+                      device="auto", pipeline_dir=None, temporal_dir=None, progress=None, *, input_paths=None, date_mode="download", _loaded_models=None):
     with workspace_lock(root):
-        plan = publication_plan(root, image_ids, recipe)
-        models = _models(vae_dirs, device, pipeline_dir, temporal_dir, progress)
+        sources = []
+        ignored = 0
+        if input_paths:
+            if image_ids:
+                raise RiposteError("INPUT_SELECTION_CONFLICT")
+            from .intake import inspect_inputs
+            from .policy import Policy
+            policy = Policy(date_mode=date_mode)
+            sources, ignored = inspect_inputs(input_paths, policy, progress)
+            plan = _plan_rows([source.row for source in sources], recipe)
+        else:
+            plan = publication_plan(root, image_ids, recipe)
+        models = _loaded_models if _loaded_models is not None else _models(vae_dirs, device, pipeline_dir, temporal_dir, progress)
         identifier = uuid.uuid4().hex
+        try:
+            for source in sources:
+                if progress:
+                    progress({"phase": "Saving clean input snapshot"})
+                data = source.snapshot(policy)
+                atomic_clean_write(root, _prefix(root, identifier) + f'/inputs/{source.row["id"]}.png', data)
+        except BaseException:
+            # This fresh UUID has no committed request or generated outputs yet.
+            # Discard only its incomplete snapshots; originals are never touched.
+            incomplete = safe_child(root, _prefix(root, identifier))
+            if incomplete.exists():
+                shutil.rmtree(incomplete)
+            raise
         request = {"id": identifier, "schema": 1, "sequence": max((x["sequence"] for x in publications(root)), default=0) + 1,
+                   "source_mode": "snapshot" if sources else "catalog", "ignored_files": ignored,
                    "recipe": recipe.public(), "models": models[3], "execution_probes": models[4],
                    "tasks": [{**t, "id": uuid.uuid4().hex} for t in plan["tasks"]],
                    "duplicate_renders_avoided": plan["duplicate_renders_avoided"],
@@ -175,17 +212,33 @@ def start_publication(root, image_ids, vae_dirs, recipe: PublishRecipe = Publish
 
 def resume_publication(root, batch_id, vae_dirs, device="auto", pipeline_dir=None, temporal_dir=None, progress=None):
     with workspace_lock(root):
-        _checkpoint(root)
         request = _request(root, batch_id)
         # Verify committed work before loading expensive models or retrying failed items.
         for task in request["tasks"]:
-            row = find_image(root, task["image_id"])
+            row = _source_row(root, request, task)
             if row["sha256"] != task["source_clean_sha256"]: raise RiposteError("PUBLICATION_MASTER_CHANGED")
             if safe_child(root, _prefix(root, batch_id) + f'/items/{task["id"]}/report.json').is_file():
                 _verified_item(root, request, task)
         models = _models(vae_dirs, device, pipeline_dir, temporal_dir, progress)
         if models[3] != request["models"]: raise RiposteError("PUBLICATION_RESUME_MODEL_MISMATCH")
         return _run(root, request, models, progress)
+
+
+def _source_row(root, request, task):
+    """Verify only the selected master or its private, date-only input snapshot."""
+    if request.get("source_mode", "catalog") == "catalog":
+        row = find_image(root, task["image_id"])
+    else:
+        relative = _prefix(root, request["id"]) + f'/inputs/{_id(task["image_id"])}.png'
+        try:
+            audit = png_audit(safe_child(root, relative).read_bytes())
+        except OSError:
+            raise RiposteError("PUBLICATION_INPUT_MISSING") from None
+        row = {"id": task["image_id"], "relative": relative, "day": audit["date"],
+               "sha256": audit["sha256"], "width": audit["width"], "height": audit["height"]}
+    if row["sha256"] != task["source_clean_sha256"] or row["day"] != task["date"]:
+        raise RiposteError("PUBLICATION_MASTER_CHANGED")
+    return row
 
 
 def _run(root, request, models, progress):
@@ -204,7 +257,7 @@ def _run(root, request, models, progress):
                 # task's uncommitted directory is disposable; never touch a report.
                 orphan = safe_child(root, item_prefix)
                 if orphan.exists(): shutil.rmtree(orphan)
-                row = find_image(root, task["image_id"])
+                row = _source_row(root, request, task)
                 if row["sha256"] != task["source_clean_sha256"]: raise RiposteError("PUBLICATION_MASTER_CHANGED")
                 with Image.open(safe_child(root, row["relative"])) as source:
                     clean = social_render(source, task["max_edge"])
@@ -262,7 +315,7 @@ def _verified_item(root, request, task):
             raise RiposteError("PUBLICATION_ARTIFACT_CHANGED")
         with Image.open(io.BytesIO(data)) as image: images[kind] = image.copy()
         raw[kind] = data
-    row = find_image(root, task["image_id"])
+    row = _source_row(root, request, task)
     if row["sha256"] != task["source_clean_sha256"]:
         raise RiposteError("PUBLICATION_MASTER_CHANGED")
     with Image.open(safe_child(root, row["relative"])) as master:
@@ -323,7 +376,8 @@ def publication_status(root, batch_id):
     outcome = _read(root, outcome_path)["status"] if safe_child(root, outcome_path).exists() else "OPEN_OR_INTERRUPTED"
     return {"mode": "PUBLICATION_BATCH", "id": batch_id, "sequence": request["sequence"], "status": outcome,
             "items": records, "counts": counts, "recipe": request["recipe"], "master_changes": 0,
-            "duplicate_renders_avoided": request["duplicate_renders_avoided"], "ai_protection": "UNVERIFIED"}
+            "duplicate_renders_avoided": request["duplicate_renders_avoided"], "ai_protection": "UNVERIFIED",
+            "source_mode": request.get("source_mode", "catalog"), "ignored_files": request.get("ignored_files", 0)}
 
 
 def publications(root):
@@ -394,7 +448,6 @@ def publication_zip(root, batch_id):
 
 
 def _publication_zip_locked(root, batch_id):
-        _checkpoint(root)
         request = _request(root, batch_id)
         entries, total_bytes = [], 0
         for task in request["tasks"]:
@@ -444,7 +497,6 @@ def open_in_workshop(root, batch_id, item_id):
     """An optional helper handoff; publish outputs don't depend on lab state."""
     from .lab import trials, _store_trial
     with workspace_lock(root):
-        _checkpoint(root)
         request = _request(root, batch_id)
         task = next((t for t in request["tasks"] if t["id"] == _id(item_id)), None)
         if task is None: raise RiposteError("PUBLICATION_ITEM_NOT_FOUND")
@@ -453,6 +505,6 @@ def open_in_workshop(root, batch_id, item_id):
             if (trial.get("publication_batch_id") == batch_id and trial.get("publication_item_id") == item_id
                 and trial.get("artifact_sha256", {}).get("candidate") == item["artifact_sha256"]["candidate"]):
                 return trial
-        row = find_image(root, task["image_id"])
+        row = _source_row(root, request, task)
         return _store_trial(root, row, images["clean"], images["candidate"],
                             {**item["guard"], "publication_batch_id": batch_id, "publication_item_id": item_id})

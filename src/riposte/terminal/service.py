@@ -29,6 +29,8 @@ class Request:
 
 # These are application effects, not a permission system for hostile local code.
 EFFECTS = {
+    "riposte": "CREATE_CANDIDATES", "riposte-plan": "INSPECT",
+    "sort-riposte-plan": "INSPECT", "sort-riposte": "REPLACE_SOURCES",
     "organize": "INSPECT", "apply": "REPLACE_SOURCES", "audit": "INSPECT",
     "list": "INSPECT", "inspect": "INSPECT", "publish": "CREATE_CANDIDATES",
     "plan": "INSPECT", "publications": "INSPECT", "resume": "CREATE_CANDIDATES",
@@ -40,7 +42,7 @@ EFFECTS = {
     "generation": "INSPECT", "frame": "INSPECT", "handoff": "CREATE_EXACT_TRIAL", "image": "INSPECT", "open-image": "OPEN_LOCAL_VIEWER",
 }
 CANCELLABLE = frozenset({"organize", "audit", "list", "inspect", "plan", "publish", "resume",
-                         "guard", "qualify", "challenge", "doctor"})
+                         "guard", "qualify", "challenge", "doctor", "sort-riposte-plan", "riposte", "riposte-plan"})
 
 
 def root_of(request: Request) -> Path:
@@ -151,12 +153,48 @@ def execute(request: Request, progress: Progress | None = None) -> Any:
         audit = png_audit(safe_child(root, row["relative"]).read_bytes())
         if audit["sha256"] != row["sha256"]: raise RiposteError("CATALOG_FILE_CHANGED")
         return {"mode": "CLEAN_IMAGE", **row, "audit": audit, "metadata_policy": "DATE_ONLY"}
-    if name in {"publish", "plan"}:
+    if name in {"sort-riposte", "sort-riposte-plan"}:
+        from ..organizer import plan, organize
+        from ..publication import _models, publication_plan, start_publication
+        if v.get("input_paths"):
+            raise RiposteError("SORT_USES_WORKSPACE_ROOT")
+        # Validate the selection grammar before source replacement. --all is
+        # resolved again after sorting so newly imported images are included.
+        selected = image_selection(root, v)
+        configuration = recipe(v)
+        if not v.get("all_images"):
+            publication_plan(root, selected, configuration)
+        policy = Policy(date_mode=v.get("date_mode", "download"), discard_sidecars=v.get("discard_sidecars", False))
+        sorting = plan(root, policy, progress)
+        if name == "sort-riposte-plan":
+            return {"mode": "SORT_RIPOSTE_PLAN", "sorting": sorting, "ready": sorting["ready"],
+                    "selection": "ALL_MATCHING_AFTER_SORT" if v.get("all_images") else "SELECTED_CATALOG_IMAGES",
+                    "recipe": configuration.public(), "writes": False, "requires": "EXPLICIT_REPLACE_CONSENT"}
+        if not sorting["ready"]:
+            return {"mode": "SORT_RIPOSTE_RESULT", "checkpoint": "INCOMPLETE", "sorting": sorting, "protection": "NOT_STARTED"}
+        # Execute all chosen model probes before replacing any source. Keep the
+        # loaded models for the following publication instead of loading twice.
+        loaded = _models(_paths(v), v.get("device", "auto"), _optional(v, "inpaint"), _optional(v, "video"), progress)
+        sorting = organize(root, policy, progress)
+        if sorting["checkpoint"] != "COMPLETE":
+            return {"mode": "SORT_RIPOSTE_RESULT", "checkpoint": "INCOMPLETE", "sorting": sorting, "protection": "NOT_STARTED"}
+        try:
+            result = start_publication(root, image_selection(root, v), _paths(v), configuration,
+                                       device=v.get("device", "auto"), progress=progress, _loaded_models=loaded)
+        except RiposteError as exc:
+            return {"mode": "SORT_RIPOSTE_RESULT", "checkpoint": "INCOMPLETE", "sorting": sorting,
+                    "protection": "STOPPED", "code": exc.code, "recovery": "Use RIPOSTE to retry protection; sorting has completed."}
+        return {**result, "workflow": "SORT_RIPOSTE", "sorting": sorting}
+    if name in {"publish", "plan", "riposte", "riposte-plan"}:
         from ..publication import publication_plan, start_publication
-        ids, configuration = image_selection(root, v), recipe(v)
-        if name == "plan": return publication_plan(root, ids, configuration)
+        inputs = [Path(p).expanduser().absolute() for p in v.get("input_paths", [])]
+        if inputs and (v.get("image_ids") or v.get("all_images") or any(v.get(k) for k in ("year", "month", "size"))):
+            raise RiposteError("INPUT_SELECTION_CONFLICT")
+        ids, configuration = ([] if inputs else image_selection(root, v)), recipe(v)
+        intake = {"input_paths": inputs, "date_mode": v.get("date_mode", "download")}
+        if name in {"plan", "riposte-plan"}: return publication_plan(root, ids, configuration, **intake)
         return start_publication(root, ids, _paths(v), configuration, device=v.get("device", "auto"),
-                                 pipeline_dir=_optional(v, "inpaint"), temporal_dir=_optional(v, "video"), progress=progress)
+                                 pipeline_dir=_optional(v, "inpaint"), temporal_dir=_optional(v, "video"), progress=progress, **intake)
     if name == "publications":
         from ..publication import publication_status, publications
         return publication_status(root, v["batch_id"]) if v.get("batch_id") else publications(root)

@@ -197,7 +197,24 @@ def overview(data, command="", width=94) -> Report:
         else:tree(w,data)
     elif isinstance(data,dict):
         mode=data.get("mode","")
-        if mode in {"READ_ONLY","APPLY"}:
+        if mode in {"SORT_RIPOSTE_PLAN", "SORT_RIPOSTE_RESULT"}:
+            preview = mode == "SORT_RIPOSTE_PLAN"
+            sorting = data.get("sorting", {})
+            r = Report("Sort + RIPOSTE", "READ ONLY" if preview else "INCOMPLETE", "accent" if preview and data.get("ready") else "warn",
+                       "Confirm source replacement before sorting; protection follows only after sorting succeeds." if preview else "The combined workflow stopped. Completed sorting is retained.")
+            w.section("Sorting")
+            tree(w, sorting.get("counts", {}))
+            w.text("Rebuild date-only PNGs and remove verified originals after explicit REPLACE consent.", "warn")
+            blockers(w, sorting.get("blockers", {}))
+            w.section("Protection")
+            if preview:
+                w.text("Protect all matching organized images, including new additions." if data.get("selection") == "ALL_MATCHING_AFTER_SORT" else "Protect only the selected catalog images after sorting.")
+            else:
+                w.text(str(data.get("protection", "NOT_STARTED")))
+            if preview: tree(w, data.get("recipe", {}))
+            if data.get("code"): w.pair("Stopped because", data["code"])
+            if data.get("recovery"): w.text(data["recovery"])
+        elif mode in {"READ_ONLY","APPLY"}:
             preview=mode=="READ_ONLY";counts=data.get("counts",{});blocked=data.get("blockers",{})
             r=Report("Migration plan" if preview else "Clean & organize", "READ ONLY" if preview else data.get("checkpoint","RECORDED"),
                      "warn" if blocked else "good", "No files have been changed." if preview else "Verified sources were replaced; unsuccessful inputs remain.")
@@ -216,6 +233,9 @@ def overview(data, command="", width=94) -> Report:
             r=Report("Publishing plan","READ ONLY","good","Each final size is optimized independently. Clean masters remain unchanged.")
             r.metrics=[("Images",str(data.get("images",0))),("Final outputs",str(data.get("outputs",0))),
                        ("Duplicate sizes skipped",str(data.get("duplicate_renders_avoided",0)))]
+            if data.get("source_mode") == "snapshot":
+                w.text("Original files and folders stay unchanged. Clean snapshots support later resume and review.")
+                w.pair("Non-image files left untouched", data.get("ignored_files", 0))
             w.section("Final-size jobs")
             w.rows(("Job","Date","Edge limit","Clean image ID"),
                    [(str(t.get("index",n)+1),t.get("date",""),f"{t.get('max_edge','?')} px",t.get("image_id","")) for n,t in enumerate(data.get("tasks",[]))],[1,2,2,5])

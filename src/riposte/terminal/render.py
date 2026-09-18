@@ -47,7 +47,12 @@ def header(c, state):
     c.rule(3)
     current = {"library":1,"asset":1,"form":2,"batch":3,"item":3,"batches":3}.get(state.page.name)
     if state.page.action == "organize": current = 0
-    labels = ("CLEAN", "SELECT", "PROTECT", "REVIEW", "EXPORT")
+    if state.page.action == "organize":
+        labels = ("SORT", "PREVIEW", "CONFIRM", "ORGANIZE", "DONE")
+    elif state.page.action == "sort-riposte":
+        labels = ("BOTH", "PREVIEW", "CONFIRM", "PROTECT", "REVIEW")
+    else:
+        labels = ("CHOOSE", "CONFIGURE", "RIPOSTE", "REVIEW", "EXPORT")
     step = max(8, (c.width - 7) // 5)
     for n, label in enumerate(labels):
         text = f"{n+1:02d} {label}"
@@ -169,7 +174,10 @@ def form(c, state):
     p = state.page; action = BY_KEY[p.action]
     fields = fields_for(p)
     c.text(3, 6, action.title.upper(), "accent", bold=True)
-    sub = f"{len(state.selected)} selected images / clean masters unchanged" if p.action == "publish" else action.effect.replace("_", " ")
+    sub = (f"{len(state.selected)} selected images / clean masters unchanged" if p.action == "publish"
+           else "Files and folders / originals stay in place" if p.action == "riposte"
+           else "Entire workspace / preview, REPLACE, then protection" if p.action == "sort-riposte"
+           else action.effect.replace("_", " "))
     c.text(3, 7, sub, "muted", width=c.width-6)
     c.rule(9)
     side = max(28, c.width//3) if c.width >= 100 else 0
@@ -182,7 +190,7 @@ def form(c, state):
         y = 10+n-start; selected = n==p.cursor
         if selected: c.fill(3,y,left,1,"raised")
         if n == len(fields):
-            label = "PREVIEW BATCH" if p.action=='publish' else "PREVIEW MIGRATION" if p.action=='organize' else "RUN ACTION"
+            label = "PREVIEW BATCH" if p.action in {'publish','riposte'} else "PREVIEW SORT" if p.action=='organize' else "PREVIEW BOTH STAGES" if p.action=='sort-riposte' else "RUN ACTION"
             c.text(4,y,">> " + label,"accent",bold=True,width=left-2)
             continue
         f = fields[n]; value=shown(p.values.get(f.key,f.default))
@@ -202,7 +210,7 @@ def form(c, state):
         else:
             c.wrap(x,12,action.summary,width,5,"text")
             c.wrap(x,19,"The next action uses these settings. F4 shows its direct Typer command.",width,4)
-    c.text(3,c.height-6,f"SETTING {min(p.cursor+1,count)}/{count}   |   " + ("ALL SETTINGS" if p.advanced else "ESSENTIAL SETTINGS" if p.action=="publish" else "ACTION SETTINGS"), "muted",width=c.width-6)
+    c.text(3,c.height-6,f"SETTING {min(p.cursor+1,count)}/{count}   |   " + ("ALL SETTINGS" if p.advanced else "ESSENTIAL SETTINGS" if p.action in {"publish", "riposte", "sort-riposte"} else "ACTION SETTINGS"), "muted",width=c.width-6)
     footer(c,state,"[Enter] edit / preview   [p] preview   [v] audit workspace   [Esc] back" if p.action=="organize" else "[Enter] edit / continue   [p] preview   [r] run   [Esc] back")
 
 

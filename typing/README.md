@@ -9,7 +9,14 @@ including source and test changes", authorizes the development-audit repairs.
 Affected declarations and fixtures were reviewed against those changes. The live PACER registers index the existing contracts and
 their evidence; they do not certify application behavior.
 
-The external stub tree covers all 41 Python modules. The shared declarations in
+PAC-020's explicit user request authorizes the independent Sort, RIPOSTE and
+combined workflows. The affected publication/CLI declarations, request and batch
+records, terminal field exports, and new `intake` module were reviewed against
+the implementation. `source-reviewed-workflows.json` records this reviewed state;
+the earlier snapshots remain historical. Runtime workflow evidence is separate
+in [`../evidence/workflows/README.md`](../evidence/workflows/README.md).
+
+The external stub tree covers all 42 Python modules. The shared declarations in
 [`stubs/_riposte_types.pyi`](stubs/_riposte_types.pyi) define 27 record shapes,
 callback types, and callable model protocols. They preserve existing states such
 as `UNVERIFIED`, `INCOMPLETE`, nullable PSNR, absent publication-item fields, and
@@ -32,7 +39,7 @@ application wheel, and does not add `py.typed` or claim installed-package suppor
 Consumers that need helper records should import them inside `TYPE_CHECKING`.
 
 The default [`../mypy.ini`](../mypy.ini) checks application implementation.
-From the repository root, both commands reach the same 41 source modules:
+From the repository root, both commands reach the same 42 source modules:
 
 ```powershell
 mypy
@@ -68,8 +75,8 @@ would select the application environment instead.
 For only the declaration/consumer check, use
 `uv run --project typing --frozen --cache-dir typing/.cache/uv python -m mypy --config-file typing/mypy-contracts.ini`.
 
-The suite checks source hashes and 318 source/stub signatures, runs strict
-mypy on contracts and its three tooling modules, checks 38 leaf modules with
+The suite checks source hashes and 326 source/stub signatures, runs strict
+mypy on contracts and its three tooling modules, checks 39 leaf modules with
 stubtest, verifies nine offline fixture tests and ten tooling regressions,
 and requires exactly 13 expected diagnostics from invalid consumers. The two
 package initializers and executable `__main__` are covered statically; they are
@@ -87,14 +94,14 @@ Current verification is recorded in [`evidence/verification.json`](evidence/veri
 
 | Check | Verified result |
 | --- | --- |
-| Strict declarations and consumer fixture | 43 files; no errors |
+| Strict declarations and consumer fixture | 44 files; no errors |
 | Strict typing of the checker, inventory and tooling tests | 3 files; no errors |
-| Source parameter parity | 318 signatures |
-| Runtime signature comparison | 38 leaf modules; four documented exceptions |
+| Source parameter parity | 326 signatures |
+| Runtime signature comparison | 39 leaf modules; four documented exceptions |
 | Incorrect consumer calls | All 13 expected errors; exact line and error-code match |
 | Offline record fixtures | 9 tests passed |
 | Tooling regressions | 10 tests passed, including discovery, interpreter selection, source identity and missing-symbol/dependency detection |
-| Application source identity | All 47 application files match the reviewed snapshot |
+| Application source identity | All 48 application files match the reviewed snapshot |
 
 The fixtures use temporary artwork only. Publication states and the export
 record use synthetic data; the export test injects ZIP bytes. They do not run
@@ -202,7 +209,7 @@ names; it is not a guarantee about Python's dynamic export behavior. The index
 excludes build/history trees and caches. Run the external contract checker before
 acceptance: a recorded pass read by the inventory is not a fresh test execution.
 The inventory still registers and hashes generated `.egg-info` inputs separately;
-its application identity comparison uses the same 47-file scope as the checker.
+its application identity comparison uses the same 48-file scope as the checker.
 Source/stub definitions are indexed in FILE exports and the JSON report, with
 source symbol rows checked independently. Previously authored extra dependency
 edges are retained. Missing, duplicate, retired or insufficiently linked symbol

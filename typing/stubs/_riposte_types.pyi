@@ -144,6 +144,9 @@ class PublicationPlan(TypedDict):
     master_changes: Literal[0]
     ai_protection: Literal["UNVERIFIED"]
     writes: Literal[False]
+    source_mode: NotRequired[Literal["snapshot"]]
+    ignored_files: NotRequired[int]
+    originals_preserved: NotRequired[Literal[True]]
 
 class PublicationItem(TypedDict):
     id: str
@@ -173,6 +176,10 @@ class PublicationBatch(PublicationSummary):
     recipe: Report
     master_changes: Literal[0]
     duplicate_renders_avoided: int
+    source_mode: Literal["catalog", "snapshot"]
+    ignored_files: int
+    workflow: NotRequired[Literal["SORT_RIPOSTE"]]
+    sorting: NotRequired[OrganizationReport]
 
 class PublicationExport(TypedDict):
     relative: str
@@ -187,6 +194,7 @@ class ImageInfo(PngAudit):
     relative: NotRequired[str]
 
 class RequestValues(TypedDict, total=False):
+    input_paths: Sequence[Path | str]
     image_id: str
     image_ids: list[str] | tuple[str, ...]
     all_images: bool

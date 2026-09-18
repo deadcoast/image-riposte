@@ -6,6 +6,10 @@ The normal path imports no workshop module. `publication.py` owns the publishing
 
 The actively maintained calendar hierarchy holds canonical clean masters. Publishing operations use `.riposte/publishing/BATCH_ID/`; old `.shroud` workspaces use their existing namespace until explicit upgrade. Model directories must be outside the managed artwork folder.
 
+The terminal and direct CLI expose three independent workflows: Sort, RIPOSTE, and Sort + RIPOSTE. Sorting keeps its explicit source-replacement consent. Standalone publishing accepts selected catalog IDs or raw files/directories without requiring a whole-workspace organization checkpoint. Only selected sources must validate. The combined workflow preflights models, sorts with consent, and starts publishing only after a complete sort.
+
+Raw-input batches store reconstructed date-only PNGs at `inputs/IMAGE_ID.png` inside their batch. The original files and directories are unchanged and do not enter the catalog. Resume, review and packaging verify these clean snapshots instead of requiring the originals to stay available. New requests record `source_mode`; requests without that field retain the historical catalog-source interpretation. Failed or cancelled intake before request commit removes its own incomplete snapshots; a hard process termination may leave sanitized, unlisted orphans. Once a request is committed, existing interruption and resume rules apply.
+
 `request.json` stores a fixed recipe, technical model identities, execution-probe results, internal image IDs, date-only values and already-clean master hashes. No raw metadata, pre-clean image hashes, raw source filenames, source locations, user identity or local model pathname is stored. The metadata/date sanitation implementation from the clean foundation is unchanged.
 
 Each task has one clean publishing baseline, one candidate and a report. These PNGs have already passed strict date-only encoding/audit before their first disk write. The report commits last. Temporary files contain only sanitized data or code-defined JSON. A failed task removes its own uncommitted item directory. An abrupt process interruption can leave sanitized orphans; resume removes only an uncommitted task's directory, never a committed result.
@@ -16,7 +20,7 @@ The plan is read-only and creates no publishing tree. Models load and pass an ac
 
 A ready output is `READY_FOR_REVIEW`; it is never automatically approved. Numeric quality and human visual approval are separate. A review receipt binds both the final candidate's PNG hash and the full committed report hash. The receipt contains only decision and acknowledgement fields, not free-text personal data.
 
-Before serving/approving/packing, the application checks the request/task/image/date relationship, strict PNG audit, candidate/baseline hashes, canonical output path, expected dimensions, source-clean hash, and an independently regenerated clean publishing baseline from the canonical master. It recomputes numerical quality rather than trusting the old PASS string. Modifying a report requires a new review; modifying committed image bytes stops the operation.
+Before serving/approving/packing, the application checks the request/task/image/date relationship, strict PNG audit, candidate/baseline hashes, canonical output path, expected dimensions, source-clean hash, and an independently regenerated clean publishing baseline from the selected canonical master or clean input snapshot. It recomputes numerical quality rather than trusting the old PASS string. Modifying a report requires a new review; modifying committed image bytes stops the operation.
 
 The hash relationships catch accidental stale/changed outputs; they are not signatures against a hostile person who controls the entire machine and can rewrite every receipt and report. No such stronger security boundary is advertised.
 

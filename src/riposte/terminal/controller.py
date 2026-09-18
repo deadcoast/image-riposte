@@ -96,6 +96,7 @@ class Controller:
             return
         action = BY_KEY[key]
         values = defaults(action, self.state.models)
+        if key == "riposte": values["input1"] = str(self.state.root)
         if overrides: values.update(overrides)
         if key == "upgrade":
             return self.confirm(Request("upgrade", self.state.root), "UPGRADE", "Rename legacy application state; keep artwork, dates and identifiers intact.")
@@ -115,9 +116,11 @@ class Controller:
         p = self.state.page
         request = self.request_from_form()
         self.save_model_session(p.values)
-        if request.name == "publish":
+        if request.name in {"publish", "riposte"}:
             # The normal interactive primary button previews before creating files.
-            request = Request("plan" if preview else "publish", request.root, request.values)
+            request = Request(("plan" if request.name == "publish" else "riposte-plan") if preview else request.name, request.root, request.values)
+        if request.name == "sort-riposte":
+            request = Request("sort-riposte-plan", request.root, request.values)
         if request.name == "review":
             title = "Record visual approval for these exact output files." if request.values["decision"] == "ACCEPTED" else "Revoke this approval for future publishing packs."
             return self.confirm(request, "ACCEPT" if request.values["decision"] == "ACCEPTED" else "REJECT", title)
@@ -148,7 +151,7 @@ class Controller:
             return
         if snapshot.code:
             self.show(Page("result", "OPERATION STOPPED", code=snapshot.code, request=request), remember=False)
-        elif request.name in {"publish", "resume", "review"} and isinstance(result, dict) and result.get("id"):
+        elif request.name in {"publish", "riposte", "sort-riposte", "resume", "review"} and isinstance(result, dict) and result.get("id"):
             self.batch(result["id"], remember=False, result=result)
         elif request.name == "open-image":
             self.back()
@@ -198,7 +201,7 @@ class Controller:
         p = self.state.page
         fields = fields_for(p)
         if p.cursor >= len(fields):
-            return self.run_form(preview=p.action == "publish")
+            return self.run_form(preview=p.action in {"publish", "riposte", "sort-riposte"})
         f = fields[p.cursor]
         value = p.values.get(f.key, f.default)
         if f.kind == "bool": p.values[f.key] = not value; return
@@ -314,6 +317,7 @@ class Controller:
                 try:
                     request = self.request_from_form()
                     if request.name == "publish": request= Request("plan",request.root,request.values)
+                    elif request.name in {"riposte", "sort-riposte"}: request = Request(request.name + "-plan", request.root, request.values)
                 except RiposteError: self.state.notice = "Fill required fields to view the direct command."; return
             return self.show(Page("command", "DIRECT COMMAND", request=request))
         if key.name in {"eof", "interrupt"} or ch == "q": self.state.running = False; return
@@ -353,7 +357,7 @@ class Controller:
                 if p.image_id not in self.state.selected: self.toggle_selection(p.report)
                 return self.action("publish")
         elif p.name == "form":
-            if ch == "f" and p.action == "publish":
+            if ch == "f" and p.action in {"publish", "riposte", "sort-riposte"}:
                 focused = fields_for(p)[p.cursor].key if p.cursor < len(fields_for(p)) else None
                 p.advanced = not p.advanced
                 p.cursor = next((i for i, f in enumerate(fields_for(p)) if f.key == focused), 0)
@@ -365,7 +369,7 @@ class Controller:
                     f = fields[p.cursor]; index = f.choices.index(p.values[f.key])
                     p.values[f.key] = f.choices[(index + (1 if key.name == "right" else -1))%len(f.choices)]
             if ch == "v" and p.action == "organize": return self.run(Request("audit",self.state.root))
-            if ch == "p" and p.action in {"publish", "organize"}: return self.run_form(preview=True)
+            if ch == "p" and p.action in {"publish", "riposte", "sort-riposte", "organize"}: return self.run_form(preview=True)
             if ch == "r": return self.run_form(preview=p.action=="organize")
         elif p.name == "batches":
             row = self.selected_row()
@@ -398,13 +402,18 @@ class Controller:
             if key.name == "enter":
                 if p.code: return self.back()
                 if request and request.name == "organize": ch = "a"
-                elif request and request.name == "plan": ch = "r"
+                elif request and request.name in {"plan", "riposte-plan", "sort-riposte-plan"}: ch = "r"
                 elif request and request.name == "package": return self.batches()
                 else: return self.back()
             if ch == "a" and request and request.name == "organize":
                 return self.confirm(Request("apply", request.root, request.values), "REPLACE", "Apply the displayed metadata-cleaning and calendar/size policy to this workspace.")
             if ch == "r" and request and request.name == "plan":
                 return self.run(Request("publish", request.root, request.values))
+            if ch == "r" and request and request.name == "riposte-plan":
+                return self.run(Request("riposte", request.root, request.values))
+            if ch == "r" and request and request.name == "sort-riposte-plan":
+                return self.confirm(Request("sort-riposte", request.root, request.values), "REPLACE",
+                                    "Replace verified sources during sorting, then protect the organized collection.")
             if ch == "b": return self.batches()
         elif p.name == "preferences":
             if key.name != "enter": return

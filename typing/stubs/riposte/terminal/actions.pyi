@@ -43,6 +43,8 @@ EPSILON: Field
 WHITE: Field
 EDGES: Field
 PUB_FIELDS: tuple[Field, ...]
+INPUT_FIELDS: tuple[Field, ...]
+SORT_FIELDS: tuple[Field, ...]
 MAX_EDGE: Field
 ACTIONS: tuple[Action, ...]
 BY_KEY: dict[str, Action]

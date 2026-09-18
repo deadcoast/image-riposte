@@ -39,6 +39,17 @@ class Presentation:
 
 
 RECOVERY = {
+    "INPUT_SELECTION_CONFLICT": "Choose files/folders with --input, or catalog images with --image/--all. Use a separate run for each selection type.",
+    "SORT_USES_WORKSPACE_ROOT": "Sort + RIPOSTE sorts ROOT. For selected files or folders without sorting, choose RIPOSTE and --input.",
+    "SORT_CONSENT_REQUIRES_COMBINED_WORKFLOW": "Use sort or sort-riposte for source replacement. RIPOSTE preserves original inputs.",
+    "INPUT_NOT_FOUND": "Choose an existing image or directory; relative paths use the current working directory.",
+    "INPUT_LINK_REQUIRES_REVIEW": "Select the original file or directory directly; symbolic links and junctions are not followed.",
+    "INPUT_APPLICATION_STATE_REJECTED": "Choose original artwork or a catalog image. Internal application records are excluded from input discovery.",
+    "INPUT_DECODE_FAILED": "A selected image could not be decoded. Repair it or select other inputs; originals remain unchanged.",
+    "INPUT_UNREADABLE": "Check read access to the selected directory and preview again.",
+    "INPUT_CHANGED_REPLAN": "An input changed during inspection. Preview the current selection again.",
+    "NO_INPUT_IMAGES": "Select at least one decodable image or a directory containing images.",
+    "PUBLICATION_INPUT_MISSING": "The batch's clean input snapshot is missing. Restore its application state or start a new batch from the originals.",
     "DECODE_FAILED": "The image could not be decoded; the source was left untouched.",
     "SIDECAR_REQUIRES_DISCARD": "Enable Discard metadata sidecars before applying their removal.",
     "UNSUPPORTED_FILE": "Review this unsupported input separately; it was not silently removed.",

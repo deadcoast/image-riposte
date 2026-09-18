@@ -11,22 +11,22 @@
   },
   {
     "file": "typing/stubs/_riposte_types.pyi",
-    "line": 173,
+    "line": 176,
     "declaration": "recipe: Report"
   },
   {
     "file": "typing/stubs/_riposte_types.pyi",
-    "line": 236,
+    "line": 244,
     "declaration": "def __call__(self, x: ModelTensor, /) -> ModelTensor:"
   },
   {
     "file": "typing/stubs/_riposte_types.pyi",
-    "line": 241,
+    "line": 249,
     "declaration": "def __call__(self, x: ModelTensor, keep: ModelTensor, seed: int, early_fraction: float, prompt_key: str, /) -> ModelTensor:"
   },
   {
     "file": "typing/stubs/_riposte_types.pyi",
-    "line": 245,
+    "line": 253,
     "declaration": "def __call__(self, x: ModelTensor, seed: int, /) -> ModelTensor:"
   },
   {
@@ -78,6 +78,11 @@
     "file": "typing/stubs/riposte/generation.pyi",
     "line": 22,
     "declaration": "identity: Report"
+  },
+  {
+    "file": "typing/stubs/riposte/intake.pyi",
+    "line": 17,
+    "declaration": "row: Report"
   },
   {
     "file": "typing/stubs/riposte/lab.pyi",
@@ -212,26 +217,41 @@
   {
     "file": "typing/stubs/riposte/publication.pyi",
     "line": 44,
-    "declaration": "def _request(root: Path, batch_id: str) -> Report:"
+    "declaration": "def _plan_rows(rows: list[Report], recipe: PublishRecipe) -> PublicationPlan:"
   },
   {
     "file": "typing/stubs/riposte/publication.pyi",
     "line": 46,
+    "declaration": "def _request(root: Path, batch_id: str) -> Report:"
+  },
+  {
+    "file": "typing/stubs/riposte/publication.pyi",
+    "line": 48,
     "declaration": "def _models(vae_dirs: list[Path], device: str, pipeline_dir: Path | None, temporal_dir: Path | None, progress: _Progress | None=None) -> tuple[list[Encoder], InpaintProbe | None, TemporalProbe | None, Report, list[Report]]:"
   },
   {
     "file": "typing/stubs/riposte/publication.pyi",
+    "line": 50,
+    "declaration": "def start_publication(root: Path, image_ids: list[str] | tuple[str, ...], vae_dirs: list[Path], recipe: PublishRecipe=..., device: str='auto', pipeline_dir: Path | None=None, temporal_dir: Path | None=None, progress: _Progress | None=None, *, input_paths: list[Path] | None=None, date_mode: str='download', _loaded_models: tuple[list[Encoder], InpaintProbe | None, TemporalProbe | None, Report, list[Report]] | None=None) -> PublicationBatch:"
+  },
+  {
+    "file": "typing/stubs/riposte/publication.pyi",
     "line": 52,
+    "declaration": "def _source_row(root: Path, request: Report, task: Report) -> Report:"
+  },
+  {
+    "file": "typing/stubs/riposte/publication.pyi",
+    "line": 56,
     "declaration": "def _run(root: Path, request: Report, models: tuple[list[Encoder], InpaintProbe | None, TemporalProbe | None, Report, list[Report]], progress: _Progress | None) -> PublicationBatch:"
   },
   {
     "file": "typing/stubs/riposte/publication.pyi",
-    "line": 54,
+    "line": 58,
     "declaration": "def _verified_item(root: Path, request: Report, task: Report) -> tuple[Report, dict[str, _Image], dict[str, bytes], str]:"
   },
   {
     "file": "typing/stubs/riposte/publication.pyi",
-    "line": 70,
+    "line": 74,
     "declaration": "def open_in_workshop(root: Path, batch_id: str, item_id: str) -> Report:"
   },
   {
@@ -371,17 +391,17 @@
   },
   {
     "file": "typing/stubs/riposte/terminal/actions.pyi",
-    "line": 50,
+    "line": 52,
     "declaration": "def defaults(action: Action, models: dict[str, Any] | None=None) -> dict[str, Any]:"
   },
   {
     "file": "typing/stubs/riposte/terminal/actions.pyi",
-    "line": 52,
+    "line": 54,
     "declaration": "def parse_value(field: Field, raw: Any) -> FormValue:"
   },
   {
     "file": "typing/stubs/riposte/terminal/actions.pyi",
-    "line": 54,
+    "line": 56,
     "declaration": "def make_request(key: str, root: Path | None, values: Mapping[str, Any], selected: Iterable[str]=()) -> Request:"
   },
   {

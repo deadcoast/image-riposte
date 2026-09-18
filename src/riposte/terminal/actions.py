@@ -53,12 +53,17 @@ PUB_FIELDS = (EDGES, EPSILON, STEPS, Field("restarts", "Search restarts", "int",
               Field("rms_fraction", "Local RMS fraction", "float", .95, "Local-tile RMS as a fraction of the pixel cap.", minimum=.1, maximum=1),
               DEVICE, *VAE_FIELDS, INPAINT, VIDEO)
 MAX_EDGE = Field("max_edge", "Maximum edge", "int", 1536, "Public raster limit; no enlargement.", minimum=64, maximum=4096)
+INPUT_FIELDS = tuple(Field(f"input{i}", "File or folder" if i == 1 else f"Additional file/folder {i}", "path", "",
+                           "Choose a file or a folder of images. Folders include subfolders. Originals stay in place.", optional=i > 1) for i in range(1, 5))
+SORT_FIELDS = (
+    Field("date_mode", "Date basis", "choice", "download", "Creation/birth time with modified-time fallback, or an explicit alternative.", ("download", "modified", "embedded")),
+    Field("discard_sidecars", "Discard metadata sidecars", "bool", False, "Authorize known metadata sidecar deletion during Apply, not during preview."))
 
 ACTIONS = (
+    Action("riposte", "RIPOSTE", "PRIMARY", "Protect files or folders. Keep originals and their folder structure.", (*INPUT_FIELDS, SORT_FIELDS[0], *PUB_FIELDS)),
+    Action("sort-riposte", "Sort + RIPOSTE", "PRIMARY", "Preview sorting, confirm replacement, then protect the organized collection.", (*SORT_FIELDS, *PUB_FIELDS)),
     Action("publish", "Protect & publish", "PRIMARY", "Selected clean art -> independently optimized publishing files.", PUB_FIELDS),
-    Action("organize", "Clean & organize", "PRIMARY", "Preview first. Apply reconstructs images and removes verified sources.", (
-        Field("date_mode", "Date basis", "choice", "download", "Creation/birth time with modified-time fallback, or an explicit alternative.", ("download", "modified", "embedded")),
-        Field("discard_sidecars", "Discard metadata sidecars", "bool", False, "Authorize known metadata sidecar deletion during Apply, not during preview."))),
+    Action("organize", "Sort", "PRIMARY", "Clean & organize only. Rebuild date-only images and classify; no protection models.", SORT_FIELDS),
     Action("audit", "Audit clean workspace", "PRIMARY", "Verify date-only images and calendar/size organization."),
     Action("doctor", "Local model setup", "SYSTEM", "Inspect runtime or execute a local encoder input-gradient probe.", (*VAE_FIELDS, DEVICE, Field("execute", "Run encoder probe", "bool", False, "Execution-only diagnostic; does not certify protection."))),
     Action("resume", "Resume publishing", "PRIMARY", "Reuse committed outputs; retry unfinished work with matching models.", (BATCH, *VAE_FIELDS, DEVICE, INPAINT, VIDEO)),
@@ -158,13 +163,16 @@ def make_request(key: str, root: Path | None, values: dict, selected=()) -> Requ
     vaes = [parsed.pop(f"vae{i}", "") for i in range(1, 5)]
     if any(f.key.startswith("vae") for f in action.fields): parsed["vae_dirs"] = [Path(p) for p in vaes if p]
     if key == "publish": parsed["image_ids"] = list(selected)
+    if key == "riposte": parsed["input_paths"] = [parsed.pop(f"input{i}") for i in range(1, 5) if parsed.get(f"input{i}")]
+    for i in range(1, 5): parsed.pop(f"input{i}", None)
+    if key == "sort-riposte": parsed["all_images"] = True
     if key == "review": parsed["item_ids"] = list(parsed["item_ids"])
     return Request(key, root, parsed)
 
 
 def request_argv(request: Request) -> list[str]:
     """Generate a real Typer command, never execute the rendered command line."""
-    name = {"plan": "publish", "apply": "organize", "handoff": "workshop", "open-image": "image"}.get(request.name, request.name)
+    name = {"plan": "publish", "riposte-plan": "riposte", "sort-riposte-plan": "sort-riposte", "apply": "organize", "handoff": "workshop", "open-image": "image"}.get(request.name, request.name)
     args = ["riposte", name]
     if request.root is not None and name != "doctor": args.append(str(request.root))
     values = request.values
@@ -174,7 +182,7 @@ def request_argv(request: Request) -> list[str]:
            "trials": ("trial_id",), "evaluations": ("trial_id",), "generations": ("trial_id",), "generation": ("run_id",), "frame": ("run_id", "relative"), "workshop": ("batch_id", "item_id")}.get(name, ())
     for key in pos:
         if values.get(key): args.append(str(values[key]))
-    aliases = {"open_viewer": "open", "vae_dirs": "vae", "image_ids": "image", "all_images": "all", "edges": "edge", "item_ids": "item", "seeds": "seed", "views": "view"}
+    aliases = {"input_paths": "input", "open_viewer": "open", "vae_dirs": "vae", "image_ids": "image", "all_images": "all", "edges": "edge", "item_ids": "item", "seeds": "seed", "views": "view"}
     for key, value in values.items():
         if key in pos or value is None or value == "" or value == [] or value == (): continue
         if name == "guard" and key == "inpaint": option = "pipeline"
@@ -186,8 +194,8 @@ def request_argv(request: Request) -> list[str]:
         elif isinstance(value, (list, tuple)):
             for entry in value: args.extend(["--" + option, str(entry)])
         else: args.extend(["--" + option, str(value)])
-    if request.name == "plan": args.append("--plan")
-    if request.name == "apply": args.append("--apply")
+    if request.name in {"plan", "riposte-plan", "sort-riposte-plan"}: args.append("--plan")
+    if request.name in {"apply", "sort-riposte"}: args.append("--apply")
     if request.name == "open-image": args.append("--open")
     return args
 

@@ -76,6 +76,7 @@ def ui(ctx: typer.Context, root: Annotated[Optional[Path], typer.Argument(help="
 
 
 @command("organize", "CLEAN COLLECTION")
+@command("sort", "WORKFLOWS")
 def organize(ctx: typer.Context, root: Root,
              apply: Annotated[bool, typer.Option("--apply", help="AUTHORIZE removing each verified source after sanitized replacement. No raw backups.")] = False,
              discard_sidecars: Annotated[bool, typer.Option("--discard-sidecars", help="Authorize known metadata sidecar/cache removal on apply.")] = False,
@@ -109,6 +110,8 @@ def inspect(ctx: typer.Context, root: Root, image_id: Annotated[str, typer.Argum
 
 
 @command("publish", "PROTECT + PUBLISH")
+@command("riposte", "WORKFLOWS")
+@command("sort-riposte", "WORKFLOWS")
 def publish(ctx: typer.Context, root: Root,
             image: Annotated[Optional[list[str]], typer.Option("--image", help="Target exact clean image IDs; repeat for a selection.")] = None,
             all_images: Annotated[bool, typer.Option("--all", help="Explicitly select the full collection, optionally filtered.")] = False,
@@ -127,12 +130,22 @@ def publish(ctx: typer.Context, root: Root,
             rms_fraction: Annotated[float, typer.Option(min=.1, max=1, help="Local RMS fraction of the pixel-change cap.")] = .95,
             year: Annotated[Optional[str], typer.Option(help="Calendar filter, with --all only.")] = None,
             month: Annotated[Optional[str], typer.Option(help="Month filter, with --all only.")] = None,
-            size: Annotated[Optional[str], typer.Option(help="Size-bin filter, with --all only.")] = None):
+            size: Annotated[Optional[str], typer.Option(help="Size-bin filter, with --all only.")] = None,
+            input_paths: Annotated[Optional[list[Path]], typer.Option("--input", help="Source file or folder; repeat to combine selections. Preserves originals; mutually exclusive with --image/--all.")] = None,
+            date_mode: Annotated[DateMode, typer.Option(help="Date basis for selected raw inputs or sorting.")] = DateMode.download,
+            apply: Annotated[bool, typer.Option("--apply", help="Sort + RIPOSTE only: authorize source replacement then protection. Otherwise this workflow previews.")] = False,
+            discard_sidecars: Annotated[bool, typer.Option(help="Sort + RIPOSTE only: authorize metadata sidecar deletion during sorting.")] = False):
     """Protect a selected batch at each final size; clean masters stay unchanged."""
-    dispatch(ctx, "plan" if plan else "publish", root, image_ids=image or [], all_images=all_images, vae_dirs=vae or [],
+    combined = ctx.info_name == "sort-riposte"
+    if not combined and (apply or discard_sidecars):
+        raise RiposteError("SORT_CONSENT_REQUIRES_COMBINED_WORKFLOW")
+    operation = ("sort-riposte-plan" if plan or not apply else "sort-riposte") if combined else ("plan" if plan else "publish")
+    if ctx.info_name == "riposte": operation = "riposte-plan" if plan else "riposte"
+    dispatch(ctx, operation, root, image_ids=image or [], all_images=all_images, vae_dirs=vae or [],
              edges=edge or [1536], epsilon=epsilon, steps=steps, restarts=restarts, seed=seed,
              preserve_white=preserve_white, inpaint=inpaint, video=video, device=device,
-             delta_e76_p95=delta_e76_p95, rms_fraction=rms_fraction, year=year, month=month, size=size)
+             delta_e76_p95=delta_e76_p95, rms_fraction=rms_fraction, year=year, month=month, size=size,
+             input_paths=input_paths or [], date_mode=date_mode, discard_sidecars=discard_sidecars)
 
 
 # Discoverable alias, identical parameter schema and backend path.

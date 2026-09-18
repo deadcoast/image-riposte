@@ -35,6 +35,12 @@ INPUTS = (
     "typing/evidence/source-before.json", "typing/evidence/verification.json",
     "typing/evidence/source-reviewed-v050.json",
     "typing/evidence/source-reviewed-repairs.json",
+    "typing/evidence/source-reviewed-workflows.json",
+    # PAC-020 admits independent workflows and their bounded regression evidence.
+    "tests/test_workflows.py", "evidence/workflows/README.md",
+    "evidence/workflows/report.json", "evidence/workflows/pytest.txt",
+    "evidence/workflows/pytest.xml", "evidence/workflows/browser.txt",
+    "evidence/workflows/browser.xml", "evidence/workflows/typing.txt",
     "typing/evidence/source-current.txt",
     "typing/evidence/source-current-command.txt",
     "typing/evidence/source-environment.json",

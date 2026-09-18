@@ -8,10 +8,13 @@ Every listed command is a real Typer command; use `riposte COMMAND --help` for p
 |---|---|---|
 | `ui [ROOT]` | Optional workspace | Native Rich menu; `--linear` explicitly permits scripted stdin |
 | `organize ROOT` | Whole maintained workspace | Read-only plan; `--apply` explicitly replaces successfully reconstructed sources |
+| `sort ROOT` | Whole maintained workspace | Alias of `organize`; incremental sorting without protection |
+| `riposte ROOT` | Repeated `--input` files/folders, or catalog selection | Protect independently; raw originals stay unchanged; `--plan` writes nothing |
+| `sort-riposte ROOT` | Whole workspace, then catalog selection | Preview by default; `--apply` authorizes sorting followed by protection |
 | `audit ROOT` | Whole workspace | Inspect clean PNGs, artifacts, catalog and calendar/size rules |
 | `list ROOT` | Filterable clean catalog | Inspect; `--year`, `--month`, `--size`, `--search`, `--offset`, `--limit` |
 | `inspect ROOT IMAGE_ID` | Clean master | Verify exact bytes and print complete technical metadata audit |
-| `publish ROOT` | `--image` repeated, or `--all` with filters | Generate final-size candidates; `--plan` is read-only |
+| `publish ROOT` | Repeated `--input`, or `--image` repeated, or `--all` with filters | Generate final-size candidates; `--plan` is read-only |
 | `protect ROOT` | Same as publish | Typed alias, not a separate engine |
 | `publications ROOT [BATCH_ID]` | All batches or one | Inspect complete output/review states |
 | `resume ROOT BATCH_ID` | Unfinished batch | Reload matching models; keep committed outputs byte-identical |
@@ -34,7 +37,7 @@ Every listed command is a real Typer command; use `riposte COMMAND --help` for p
 | `frame ROOT RUN_ID RELATIVE` | Exact report-listed frame | Inspect or `--open` audited frame; no arbitrary file access |
 | `workshop ROOT [BATCH_ID ITEM_ID]` | Helper menu or exact output | Open optional menu, or create/reuse an exact-pixel trial handoff |
 
-There are **27 command names**, including the `protect` alias. Presentation flags and Typer's completion options are not additional application commands.
+There are **30 command names**, including the preserved aliases. Presentation flags and Typer's completion options are not additional application commands.
 
 ## Publishing configuration
 
@@ -42,7 +45,25 @@ There are **27 command names**, including the `protect` alias. Presentation flag
 
 A model-dependent action with no usable model stops with a code; it does not add a cosmetic effect instead. Local paths are reselected on a later session because RIPOSTE does not save a model-path history. Four local encoders are not a promise that four large models fit available memory.
 
-`--all` means all matching catalog images, not every raw file on disk. Organize raw inputs first through its explicit source-replacement boundary. Date and resolution filters qualify `--all`; combining filters with explicit IDs is rejected instead of ambiguously intersecting or ignoring them.
+`--all` means all matching catalog images. For unorganized inputs, use repeated `--input PATH` with `riposte`, `publish`, or `protect`; a path can be a file or a recursively scanned directory. Relative paths use the current working directory. At most 200 distinct files are selected; overlapping paths are deduplicated. Non-image files are left untouched, corrupt image inputs stop intake, links/junctions are rejected, and internal `.riposte`/`.shroud` directories are excluded. Raw paths and metadata are not saved in batch records. `--date-mode download|modified|embedded` chooses the snapshot date basis. Originals stay where they are.
+
+Use exactly one selection style: `--input`, `--image`, or `--all`. Date and resolution filters qualify `--all`; they cannot be combined with raw inputs or explicit IDs. Selected catalog sources are verified individually, so unrelated additions do not force sorting before a protection run.
+
+```powershell
+# Repeat only sorting when new artwork arrives.
+riposte sort ROOT
+riposte sort ROOT --apply
+
+# Protect selected originals without restructuring their directory.
+riposte riposte ROOT --input "D:\Artwork\drawing.png" --input "D:\Artwork\New" --plan
+riposte riposte ROOT --input "D:\Artwork\drawing.png" --input "D:\Artwork\New" --vae MODEL
+
+# Preview both operations, then explicitly authorize source replacement.
+riposte sort-riposte ROOT --all --vae MODEL
+riposte sort-riposte ROOT --all --vae MODEL --apply
+```
+
+The combined command sorts the whole `ROOT`; it does not accept `--input`. Its protection selection is `--all` (optionally filtered) or existing `--image` IDs. `--discard-sidecars` is separate consent to delete metadata sidecars during sorting. Model preflight occurs before source replacement. An incomplete sort stops the pipeline; a later protection failure keeps the sorting receipt and supports a separate RIPOSTE retry. A created batch uses the existing `resume`, exact-pixel `review`, and `package` commands. Neither workflow approves images automatically.
 
 The workshop guard retains `--engine coupled|encoder`; the primary publish route calls the inherited release-v1 algorithm. A workshop pipeline is selected with `--pipeline`; primary publishing uses `--inpaint` and `--video`.
 
@@ -72,7 +93,7 @@ Enter toggles an image selection; `i` inspects the focused image. Space remains 
 
 ## Interactive actions
 
-Numbered actions and arrow/Enter navigation are always visible. The home screen keeps publishing first and the workshop last. `Esc` or `0` returns without changing a field; `q` exits outside a text field. Bracketed paste is consumed as field/search data, not as queued Enter or menu shortcuts. Input and rendering never evaluate arbitrary shell text.
+Numbered actions and arrow/Enter navigation are always visible. The home screen exposes RIPOSTE, Sort, and Sort + RIPOSTE and keeps the workshop last. `Esc` or `0` returns without changing a field; `q` exits outside a text field. Bracketed paste is consumed as field/search data, not as queued Enter or menu shortcuts. Input and rendering never evaluate arbitrary shell text. RIPOSTE starts with the workspace as its input; edit File or folder to target another path. `f` reveals three additional file/folder fields and advanced protection settings. Both Sort forms always preview first and require the exact word `REPLACE` before source replacement; protection-only forms never sort.
 
 The artwork library supports search, multi-selection and selection-preserving inspection. Its `p` shortcut carries that selection into protection settings. Model directories entered in Local models remain available in the current process's publishing and helper forms. `F4` shows the configured command; in a publishing form it shows the default read-only preview invocation. After an operation it shows that actual operation. Copying/executing it is the user's separate action; RIPOSTE performs no clipboard write or shell evaluation.
 

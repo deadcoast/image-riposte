@@ -7,9 +7,10 @@ from .actions import Field
 from .output import Presentation
 
 HOME = (
-    ("publish", "Protect & publish", "Create final-size candidate images"),
+    ("riposte", "RIPOSTE", "Protect files or folders; preserve originals"),
     ("library", "Image library", "Select cleaned illustrations"),
-    ("organize", "Clean & organize", "Inspect, reconstruct, classify"),
+    ("organize", "Sort", "Clean & organize only; no protection"),
+    ("sort-riposte", "Sort + RIPOSTE", "Organize, then protect in one workflow"),
     ("batches", "Publishing batches", "Review, resume, package"),
     ("doctor", "Local models", "Configure local processing"),
     ("preferences", "Terminal & workspace", "Palette, motion, workspace"),
