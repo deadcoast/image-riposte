@@ -1,6 +1,9 @@
 .venv/
 __pycache__/
 .pytest_cache/
+.mypy_cache/
+.tmp/
+.pacer/lock
 *.pyc
 *.egg-info/
 build/
