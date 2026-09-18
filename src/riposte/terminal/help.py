@@ -18,7 +18,7 @@ def format_help(command, ctx, formatter):
     chosen = getattr(getattr(ctx, "obj", None), "theme", "goks")
     palette = PALETTES.get(chosen, PALETTES["goks"])
     console.print(Text("\n  RIPOSTE / IMAGE SECURITY", style="bold " + palette["accent"]))
-    console.print(Text("  " + (command.help or "Local artwork protection and publication.")))
+    console.print(Text("  " + (command.help or "Local image protection and publication.")))
     console.print(Text("\n  " + command.get_usage(ctx)))
     records = []
     for param in command.get_params(ctx):

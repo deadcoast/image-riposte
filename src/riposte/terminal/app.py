@@ -42,6 +42,7 @@ def _line_command(controller: Controller, line: str):
             if not 0<=index<len(fields): raise ValueError
             f=fields[index]
             state.page.values[f.key]=parse_value(f,value);state.page.cursor=index
+            if f.key.startswith("input"): state.page.values.pop("input_paths", None)
         except (ValueError,RiposteError): state.notice="Invalid field number or value. No operation started."
         return
     if head == "select" and state.page.name == "library":
@@ -52,7 +53,12 @@ def _line_command(controller: Controller, line: str):
             for i in indices:controller.toggle_selection(rows[i])
         except ValueError:state.notice="Use select 1,3,5 with visible row numbers."
         return
-    mapping={"":"enter","enter":"enter","open":"enter","back":"escape","up":"up","down":"down","pgup":"pageup","pgdn":"pagedown","home":"home","end":"end","help":"f1","motion":"f2","theme":"f3","command":"f4","toggle":"char"}
+    if head.isdigit() and state.page.name=="picker":
+        index=int(head)-1
+        if 0<=index<len(view_rows(state)):
+            state.page.cursor=index;controller.key(Key("enter"))
+        return
+    mapping={"":"enter","enter":"enter","open":"enter","back":"escape","parent":"backspace","up":"up","down":"down","pgup":"pageup","pgdn":"pagedown","home":"home","end":"end","help":"f1","motion":"f2","theme":"f3","command":"f4","toggle":"char"}
     if head in mapping:controller.key(Key(mapping[head]," " if head=="toggle" else ""))
     elif head == "inspect" and state.page.name == "library":controller.key(Key("char","i"))
     elif head == "details" and state.page.name == "result":controller.key(Key("char","t"))

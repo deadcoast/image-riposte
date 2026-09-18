@@ -1,8 +1,8 @@
 # RIPOSTE 0.5.0
 
-**Local artwork security. Native Typer commands. An authored, animated Rich ASCII interface.**
+**Local image protection and organization. Interactive terminal menu and direct commands.**
 
-RIPOSTE reconstructs image files with date-only metadata, organizes a maintained artwork directory, applies experimental image-integrated protection through selected local models, and packages exact reviewed publishing images. The existing Typer command surface and native Rich terminal now share designed operation reports and foreground-only styling. The browser remains available; the workshop remains an optional helper.
+RIPOSTE lets you protect selected images, sort a folder, or explicitly do both. Sorting rebuilds image files with date-only metadata. Protection uses selected local models; exact reviewed outputs can be packaged for sharing. The existing Typer command surface and native Rich terminal now share designed operation reports and foreground-only styling. The browser remains available; the workshop remains an optional helper.
 
 ## Terminal revision 0.5
 
@@ -10,45 +10,66 @@ Foreground-only `goks` is now the default. The host owns the background in every
 
 The shelved revision was selectively integrated against the 0.4.0 archive while retaining this checkout's dependency and typing work. See the [merge record](docs/PATCH-v05-MERGE.md), [supplied design record](docs/REVISION-v05.md), and [build guide](docs/REBUILD.md). No workspace migration is needed.
 
-## Start the terminal on Windows
+## Install, then open the menu
 
-Extract the application outside your artwork and model folders. Python 3.11+ is required.
-
-```powershell
-.\START.ps1 -ArtworkFolder "D:\Artwork\SocialSamples"
-```
-
-The launcher installs the core into a project-local `.venv`, then opens the animated terminal. Startup does not organize or remove images. Add `-Lab` to install the optional model-processing dependencies; weights are not bundled or automatically downloaded.
+Keep the application separate from image and model folders. Python 3.11+ is required.
+Install once, then launch without a path:
 
 ```powershell
-.\START.ps1 -ArtworkFolder "D:\Artwork\SocialSamples" -Lab
-.\START.ps1 -ArtworkFolder "D:\Artwork\SocialSamples" -NoAnimation
-.\START.ps1 -ArtworkFolder "D:\Artwork\SocialSamples" -Theme light
+.\INSTALL.ps1
+.\START.ps1
 ```
 
-`-Browser` explicitly starts the existing browser application. `-Linear` selects the plain line-input interface. The launcher preserves application/artwork separation checks. Native PowerShell execution was not available in the development host; the actual terminal was exercised in a POSIX pseudo-terminal, including cleanup and resize.
+You can also double-click `START.cmd`. **START opens the interactive main menu.**
+Choose **RIPOSTE**, **Sort**, or **Sort + RIPOSTE** with arrows and Enter (or the
+visible number). The action explains what it does before opening a file/folder
+browser. Space selects files or folders; Enter opens a folder; Backspace goes up;
+`l` lists drives and home locations. `g` optionally accepts a pasted path.
+Esc cancels and returns to the previous screen.
 
-Once installed, the supplied local wrapper supports all commands without environment activation:
+INSTALL sets up the project-local `.venv` in editable mode and returns without
+opening the application. With uv available it uses the existing lockfile and
+preserves installed optional dependencies. The Python/pip fallback is also
+editable. START never installs or downloads dependencies; a missing or stale
+installation tells you to run INSTALL explicitly.
 
 ```powershell
-.\riposte.cmd list "D:\Artwork\SocialSamples"
-.\riposte.cmd --json publish "D:\Artwork\SocialSamples" --all --edge 1024 --plan
-.\riposte.cmd ui "D:\Artwork\SocialSamples"
+.\INSTALL.ps1 -Lab                 # Optional processing dependencies; no model weights
+.\START.ps1 -NoAnimation
+.\START.ps1 -Theme light
+.\START.ps1 -ImageFolder "D:\Images" # Optional initial folder; menu still opens first
 ```
 
-The installed console entry is `riposte`. Activate the project environment to use that shorter name, or invoke `.venv\Scripts\riposte.exe` directly. Manual setup when script execution is restricted:
+`-ArtworkFolder` remains an alias for compatibility. `-Lab` has moved to INSTALL.
+`-Browser -ImageFolder "D:\Images"` explicitly opens the existing browser interface.
+`-Linear` selects the numbered line-input alternative for terminals without raw
+keyboard support. Neither startup nor location selection modifies images.
+
+The supplied local wrapper keeps every direct command available:
 
 ```powershell
-py -3 -m venv .venv
-.\.venv\Scripts\python.exe -m pip install .
-.\.venv\Scripts\riposte.exe ui "D:\Artwork\SocialSamples"
+.\riposte.cmd
+.\riposte.cmd sort "D:\Images"
+.\riposte.cmd riposte "D:\Results" --input "D:\Images\sample.png" --vae "D:\Models\encoder" --plan
+.\riposte.cmd --help
 ```
+
+For manual setup when script execution is restricted:
+
+```powershell
+uv sync --frozen --inexact
+.\.venv\Scripts\riposte.exe
+```
+
+Alternatively, with Python 3.11+ and no uv, create `.venv` with `py -3 -m venv .venv`,
+then run `.\.venv\Scripts\python.exe -m pip install --editable .`.
 
 On macOS/Linux:
 
 ```sh
-bash START.sh "$HOME/Artwork/SocialSamples"
-# Optional flags: --lab --browser --no-animation --linear --theme light
+bash INSTALL.sh       # Add --lab for optional processing dependencies
+bash START.sh         # Opens the menu; no folder required
+# Optional launch flags: --no-animation --linear --theme light
 ```
 
 ## Two complete entry paths, one operation boundary
@@ -56,8 +77,8 @@ bash START.sh "$HOME/Artwork/SocialSamples"
 With the installed entry available:
 
 ```text
-riposte                                Animated workspace chooser
-riposte --root ROOT                     Animated workspace already selected
+riposte                                Interactive main action menu
+riposte --root ROOT                     Main menu with an initial folder
 riposte ui ROOT                         Explicit interactive entry
 riposte ui ROOT --linear                Numbered, line-input alternative
 riposte --help                          Complete typed command reference
@@ -66,7 +87,7 @@ riposte publish --help                  All publishing controls
 
 Direct commands and interactive forms call the same operation service. The interface does not simulate an engine, shell out to a pretend CLI, or execute the text displayed in the command lens.
 
-The main action deck includes **RIPOSTE / Image library / Sort / Sort + RIPOSTE / Publishing batches / Local models / Terminal & workspace / Workshop**. Choose the work you need on each run; the normal workflow never requires the workshop.
+The main action deck includes **RIPOSTE / Sort / Sort + RIPOSTE / Image library / Publishing batches / Local models / Terminal & workspace / Workshop**. Choose the work you need on each run; the normal workflow never requires the workshop.
 
 | Workflow | Interactive terminal | Direct command |
 | --- | --- | --- |
@@ -74,7 +95,7 @@ The main action deck includes **RIPOSTE / Image library / Sort / Sort + RIPOSTE 
 | RIPOSTE | **RIPOSTE** accepts a file or directory; library `p` protects selected catalog images | `riposte riposte ROOT --input PATH --vae MODEL`; repeat `--input` for more files/folders; add `--plan` for a read-only preview |
 | Sort + RIPOSTE | **Sort + RIPOSTE** previews sorting and protection, then requires `REPLACE` | `riposte sort-riposte ROOT --all --vae MODEL`; add `--apply` to run both |
 
-Standalone RIPOSTE preserves original files and folders. `ROOT` holds its application state and reviewed exports; inputs may be elsewhere. It creates date-only clean snapshots for resumable protection without reorganizing the input library. Directory inputs are recursive; the terminal's advanced settings accept additional paths. For existing catalog images use `--image ID` or `--all` with filters instead of `--input`. Unrelated additions no longer block publishing, reviewing or packaging selected catalog images.
+Standalone RIPOSTE preserves original files and folders. `ROOT` holds its application state and reviewed exports; inputs may be elsewhere. It creates date-only clean snapshots for resumable protection without reorganizing the input library. Directory inputs are recursive; the terminal browser accepts multiple selected files and folders. For existing catalog images use `--image ID` or `--all` with filters instead of `--input`. Unrelated additions no longer block publishing, reviewing or packaging selected catalog images.
 
 Sort retains the established reconstruction and source-replacement behavior, including explicit sidecar consent. Repeating it processes new additions and leaves verified clean masters alone. The combined workflow sorts `ROOT` and protects matching catalog images, including newly sorted additions. Model preflight happens before replacement; an incomplete sort stops protection. After successful sorting, protection can be retried separately. Existing `organize`, `publish`, `protect`, and expert commands remain available. Candidate creation never grants visual approval or verified protection efficacy.
 
@@ -82,7 +103,7 @@ Sort retains the established reconstruction and source-replacement behavior, inc
 
 COUNTERSTROKE is an authored depth-resolved lamellar image-plane material with moving hinges, travelling light and a reflected stroke. It is drawn from ordinary ASCII cells by Rich, not from terminal bitmaps, web views, a font pack or a pre-rendered movie. The entrance is immediately interactive: no artificial loading countdown or minimum animation duration.
 
-Working screens have different compositions: selected artwork, editable protection fields, real batch outputs, explicit source-replacement confirmation, operation activity and full result inspection. Colour ASCII previews help identify an illustration; **they are not substitutes for full-resolution visual review**. Press `v` in an image inspector to hand audited PNG bytes to a local image viewer. The handoff does not approve the image.
+Working screens have different compositions: selected images, editable protection fields, real batch outputs, explicit source-replacement confirmation, operation activity and full result inspection. Colour ASCII previews help identify an image; **they are not substitutes for full-resolution visual review**. Press `v` in an image inspector to hand audited PNG bytes to a local image viewer. The handoff does not approve the image.
 
 | Key | Behaviour |
 | --- | --- |
@@ -149,9 +170,9 @@ Exit statuses: **0** completed command, **2** invalid input/operation failure/in
 
 The calendar roots remain `2026`, `2025`, `2024`, `EVERYTHING_ELSE`; English month directories and SML/MED/LRG/XTL appear only when needed. Bins are pixel area below 1M, 4M, 16M and 16M or more. Images are not sorted by file extension.
 
-Sanitation still decodes supported input, applies orientation, converts supported colour profiles, rebuilds pixels, clears fully transparent hidden RGB, and writes fresh PNG with only its date. Applying organization removes successfully replaced originals, without raw backup or Trash copies. Unsupported and failed inputs remain blockers. This is not forensic erasure of operating-system caches or data encoded into visible artwork.
+Sanitation still decodes supported input, applies orientation, converts supported colour profiles, rebuilds pixels, clears fully transparent hidden RGB, and writes fresh PNG with only its date. Applying organization removes successfully replaced originals, without raw backup or Trash copies. Unsupported and failed inputs remain blockers. This is not forensic erasure of operating-system caches or data encoded into visible images.
 
-The protection engines are unchanged in this CLI release and remain **experimental**. Generating a candidate, passing a numerical visual limit, or accepting its appearance does not establish AI resistance. No new efficacy or pretrained-model result is claimed here. There is no watermark, audience login, licensing gate, artwork upload or noise-only fallback.
+The protection engines are unchanged in this CLI release and remain **experimental**. Generating a candidate, passing a numerical visual limit, or accepting its appearance does not establish AI resistance. No new efficacy or pretrained-model result is claimed here. There is no watermark, audience login, licensing gate, images upload or noise-only fallback.
 
 ## Optional helpers and reference
 
@@ -165,4 +186,4 @@ All inherited helper paths remain accessible, including standalone guard, extern
 - [Terminal revision and selective merge](docs/PATCH-v05-MERGE.md)
 - [Executed internal validation and provenance](docs/VALIDATION.md)
 
-The previous CLI, README, validation and evidence are retained under `history/v0.3.0/`. The original 0.4.0 and supplied 0.5.0 snapshots remain in `packages/`. The merge preserves image-engine, sanitation, organization, publication, storage and browser files. Historical screenshots, wheels and test claims in those ZIPs are not validation of this checkout; current checks are recorded in the merge record. No user artwork was used in development captures; previews show original synthetic geometric fixtures.
+The previous CLI, README, validation and evidence are retained under `history/v0.3.0/`. The original 0.4.0 and supplied 0.5.0 snapshots remain in `packages/`. The merge preserves image-engine, sanitation, organization, publication, storage and browser files. Historical screenshots, wheels and test claims in those ZIPs are not validation of this checkout; current checks are recorded in the merge record. No user images was used in development captures; previews show original synthetic geometric fixtures.

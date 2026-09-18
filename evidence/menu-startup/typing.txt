@@ -1,0 +1,7 @@
+Source/stub parity: 339 signatures, 40 importable leaf modules
+mypy-contracts: PASS
+mypy-tooling: PASS
+stubtest: PASS
+runtime-contracts: PASS
+tooling-regressions: PASS
+negative-consumers: 13/13 expected diagnostics; exact line/code match=True

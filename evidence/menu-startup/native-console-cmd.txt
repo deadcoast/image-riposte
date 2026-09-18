@@ -1,0 +1,397 @@
+]0;C:\WINDOWS\SYSTEM32\cmd.exe
+   R I P O S T E    /  MAIN MENU                                            LOCAL   /   v0.5.0      
+
+  ------------------------------------------------------------------------------------------------  
+   Choose what you want to do. Each action works independently.
+                                                                             =---------- -
+    RRRR   III  PPPP    OOO   SSSS  TTTTT  EEEEE/----------+/ -----.-----        
+    R   R   I   P   P  O   O  S       T    E                   ----..:=------------- ----
+    RRRR    I   PPPP   O   O   SSS    T    EEEE           /------/-----.:.+.:-------:--------       
+    R  R    I   P      O   O      S   T    E      >      -------:- /---------.+:::/- ---
+    R   R  III  P       OOO   SSSS    T    EEEEE         ---------.-+.::== --------
+                                                          -------- --------
+
+   Choose an action, then browse images or folders.
+  -- MAIN MENU -----------------------------------------------------------------------------------  
+    > 1  RIPOSTE                                               FOCUS / RIPOSTE
+      2  Sort
+      3  Sort + RIPOSTE                                        Protect files or folders. Keep       
+      4  Image library                                         originals and their folder
+      5  Publishing batches                                    structure.
+      6  Local models
+      7  Terminal & workspace                                  No files change when you open an     
+      8  Workshop                                              action.
+
+
+
+
+
+
+   Protect files or folders; preserve originals
+  ------------------------------------------------------------------------------------------------  
+   [Enter] Open   [Arrows] Move   [1-8] Choose   [/] Find   [q] Quit   [F1] Help
+
+                                                                                                    
+   R I P O S T E    /  RIPOSTE / SELECT INPUTS                              LOCAL   /   v0.5.0      
+
+  ------------------------------------------------------------------------------------------------  
+   MAIN MENU / RIPOSTE / SELECT INPUTS
+
+   Select images or folders to protect, including subfolders. Originals stay in place; sorting is   
+   not required.
+
+
+   C:\Users\ryanf\github\_new\image-riposte\.tmp\native-menu-home\Pictures
+  -- FILES & FOLDERS -----------------------------------------------------------------------------  
+   >  1     Continue with 0 selected
+      2     ..  Parent folder
+      3 [ ] sample folder/
+      4 [ ] sample.png
+
+
+
+
+
+
+
+
+
+
+
+
+   0 selected   |   Rows 1-4/4
+   Selection is read-only. Enter on the first row confirms your choice.
+  ------------------------------------------------------------------------------------------------  
+   [Enter] Open / choose   [Space] Select   [s] This folder   [Backspace] Parent   [l] Locations    
+   [g] Go to path   [Esc] Cancel   [F1] Help
+                                                                                                    
+   R I P O S T E    /  RIPOSTE / SELECT INPUTS                              LOCAL   /   v0.5.0      
+
+  ------------------------------------------------------------------------------------------------  
+   MAIN MENU / RIPOSTE / SELECT INPUTS
+
+   Select images or folders to protect, including subfolders. Originals stay in place; sorting is   
+   not required.
+
+
+   C:\Users\ryanf\github\_new\image-riposte\.tmp\native-menu-home\Pictures
+  -- FILES & FOLDERS -----------------------------------------------------------------------------  
+   >  1     Continue with 1 selected
+      2     ..  Parent folder
+      3 [ ] sample folder/
+      4 [ ] sample.png
+
+
+
+
+
+
+
+
+
+
+
+
+   1 selected   |   Rows 1-4/4
+   Selection is read-only. Enter on the first row confirms your choice.
+  ------------------------------------------------------------------------------------------------  
+   [Enter] Open / choose   [Space] Select   [s] This folder   [Backspace] Parent   [l] Locations    
+   [g] Go to path   [Esc] Cancel   [F1] Help
+                                                                                                    
+   R I P O S T E    /  SELECT RESULTS FOLDER                                LOCAL   /   v0.5.0      
+
+  ------------------------------------------------------------------------------------------------  
+   MAIN MENU / SELECT RESULTS FOLDER
+
+   Select a results folder. RIPOSTE saves clean snapshots, candidates and review records here;      
+   selected originals stay unchanged.
+
+
+   C:\Users\ryanf\github\_new\image-riposte\.tmp\native-menu-home\Pictures
+  -- FOLDERS -------------------------------------------------------------------------------------  
+   >  1     Use this folder
+      2     ..  Parent folder
+      3     sample folder/
+
+
+
+
+
+
+
+
+
+
+
+
+
+   1 selected   |   Rows 1-3/3
+   Selection is read-only. Enter on the first row confirms your choice.
+  ------------------------------------------------------------------------------------------------  
+   [Enter] Open / choose   [Backspace] Parent   [l] Locations   [g] Go to path   [Esc] Cancel       
+   [F1] Help
+                                                                                                    
+   R I P O S T E    /  RIPOSTE / SELECT INPUTS                              LOCAL   /   v0.5.0      
+
+  ------------------------------------------------------------------------------------------------  
+   MAIN MENU / RIPOSTE / SELECT INPUTS
+
+   Select images or folders to protect, including subfolders. Originals stay in place; sorting is   
+   not required.
+
+
+   C:\Users\ryanf\github\_new\image-riposte\.tmp\native-menu-home\Pictures
+  -- FILES & FOLDERS -----------------------------------------------------------------------------  
+   >  1     Continue with 1 selected
+      2     ..  Parent folder
+      3 [ ] sample folder/
+      4 [ ] sample.png
+
+
+
+
+
+
+
+
+
+
+
+
+   1 selected   |   Rows 1-4/4
+   Selection is read-only. Enter on the first row confirms your choice.
+  ------------------------------------------------------------------------------------------------  
+   [Enter] Open / choose   [Space] Select   [s] This folder   [Backspace] Parent   [l] Locations    
+   [g] Go to path   [Esc] Cancel   [F1] Help
+                                                                                                    
+   R I P O S T E    /  MAIN MENU                                            LOCAL   /   v0.5.0      
+
+  ------------------------------------------------------------------------------------------------  
+   Choose what you want to do. Each action works independently.
+                                                                             =---------- -
+    RRRR   III  PPPP    OOO   SSSS  TTTTT  EEEEE/----------+/ -----.-----        
+    R   R   I   P   P  O   O  S       T    E                   ----..:=------------- ----
+    RRRR    I   PPPP   O   O   SSS    T    EEEE           /------/-----.:.+.:-------:--------       
+    R  R    I   P      O   O      S   T    E      >      -------:- /---------.+:::/- ---
+    R   R  III  P       OOO   SSSS    T    EEEEE         ---------.-+.::== --------
+                                                          -------- --------
+
+   Choose an action, then browse images or folders.
+  -- MAIN MENU -----------------------------------------------------------------------------------  
+    > 1  RIPOSTE                                               FOCUS / RIPOSTE
+      2  Sort
+      3  Sort + RIPOSTE                                        Protect files or folders. Keep       
+      4  Image library                                         originals and their folder
+      5  Publishing batches                                    structure.
+      6  Local models
+      7  Terminal & workspace                                  No files change when you open an     
+      8  Workshop                                              action.
+
+
+
+
+
+
+   Protect files or folders; preserve originals
+  ------------------------------------------------------------------------------------------------  
+   [Enter] Open   [Arrows] Move   [1-8] Choose   [/] Find   [q] Quit   [F1] Help
+
+                                                                                                    
+   R I P O S T E    /  MAIN MENU                                            LOCAL   /   v0.5.0      
+
+  ------------------------------------------------------------------------------------------------  
+   Choose what you want to do. Each action works independently.
+                                                                             =---------- -
+    RRRR   III  PPPP    OOO   SSSS  TTTTT  EEEEE/----------+/ -----.-----        
+    R   R   I   P   P  O   O  S       T    E                   ----..:=------------- ----
+    RRRR    I   PPPP   O   O   SSS    T    EEEE           /------/-----.:.+.:-------:--------       
+    R  R    I   P      O   O      S   T    E      >      -------:- /---------.+:::/- ---
+    R   R  III  P       OOO   SSSS    T    EEEEE         ---------.-+.::== --------
+                                                          -------- --------
+
+   Choose an action, then browse images or folders.
+  -- MAIN MENU -----------------------------------------------------------------------------------  
+      1  RIPOSTE                                               FOCUS / SORT
+    > 2  Sort
+      3  Sort + RIPOSTE                                        Clean & organize only. Rebuild       
+      4  Image library                                         date-only images and classify; no    
+      5  Publishing batches                                    protection models.
+      6  Local models
+      7  Terminal & workspace                                  No files change when you open an     
+      8  Workshop                                              action.
+
+
+
+
+
+
+   Clean & organize only; no protection
+  ------------------------------------------------------------------------------------------------  
+   [Enter] Open   [Arrows] Move   [1-8] Choose   [/] Find   [q] Quit   [F1] Help
+
+                                                                                                    
+   R I P O S T E    /  SORT / SELECT FOLDER                                 LOCAL   /   v0.5.0      
+
+  ------------------------------------------------------------------------------------------------  
+   MAIN MENU / SORT / SELECT FOLDER
+
+   Select the folder to sort, including its subfolders. Preview first; replacing originals
+   requires REPLACE.
+
+
+   C:\Users\ryanf\github\_new\image-riposte\.tmp\native-menu-home\Pictures
+  -- FOLDERS -------------------------------------------------------------------------------------  
+   >  1     Use this folder
+      2     ..  Parent folder
+      3     sample folder/
+
+
+
+
+
+
+
+
+
+
+
+
+
+   0 selected   |   Rows 1-3/3
+   Selection is read-only. Enter on the first row confirms your choice.
+  ------------------------------------------------------------------------------------------------  
+   [Enter] Open / choose   [Backspace] Parent   [l] Locations   [g] Go to path   [Esc] Cancel       
+   [F1] Help
+                                                                                                    
+   R I P O S T E    /  MAIN MENU                                            LOCAL   /   v0.5.0      
+
+  ------------------------------------------------------------------------------------------------  
+   Choose what you want to do. Each action works independently.
+                                                                             =---------- -
+    RRRR   III  PPPP    OOO   SSSS  TTTTT  EEEEE/----------+/ -----.-----        
+    R   R   I   P   P  O   O  S       T    E                   ----..:=------------- ----
+    RRRR    I   PPPP   O   O   SSS    T    EEEE           /------/-----.:.+.:-------:--------       
+    R  R    I   P      O   O      S   T    E      >      -------:- /---------.+:::/- ---
+    R   R  III  P       OOO   SSSS    T    EEEEE         ---------.-+.::== --------
+                                                          -------- --------
+
+   Choose an action, then browse images or folders.
+  -- MAIN MENU -----------------------------------------------------------------------------------  
+      1  RIPOSTE                                               FOCUS / SORT
+    > 2  Sort
+      3  Sort + RIPOSTE                                        Clean & organize only. Rebuild       
+      4  Image library                                         date-only images and classify; no    
+      5  Publishing batches                                    protection models.
+      6  Local models
+      7  Terminal & workspace                                  No files change when you open an     
+      8  Workshop                                              action.
+
+
+
+
+
+
+   Clean & organize only; no protection
+  ------------------------------------------------------------------------------------------------  
+   [Enter] Open   [Arrows] Move   [1-8] Choose   [/] Find   [q] Quit   [F1] Help
+
+                                                                                                    
+   R I P O S T E    /  SORT + RIPOSTE / SELECT FOLDER                       LOCAL   /   v0.5.0      
+
+  ------------------------------------------------------------------------------------------------  
+   MAIN MENU / SORT + RIPOSTE / SELECT FOLDER
+
+   Sort this folder and its subfolders, then protect the images. Preview first; replacing
+   originals requires REPLACE.
+
+
+   C:\Users\ryanf\github\_new\image-riposte\.tmp\native-menu-home\Pictures
+  -- FOLDERS -------------------------------------------------------------------------------------  
+   >  1     Use this folder
+      2     ..  Parent folder
+      3     sample folder/
+
+
+
+
+
+
+
+
+
+
+
+
+
+   0 selected   |   Rows 1-3/3
+   Selection is read-only. Enter on the first row confirms your choice.
+  ------------------------------------------------------------------------------------------------  
+   [Enter] Open / choose   [Backspace] Parent   [l] Locations   [g] Go to path   [Esc] Cancel       
+   [F1] Help
+                                                                                                    
+   R I P O S T E    /  MAIN MENU                                            LOCAL   /   v0.5.0      
+
+  ------------------------------------------------------------------------------------------------  
+   Choose what you want to do. Each action works independently.
+                                                                             =---------- -
+    RRRR   III  PPPP    OOO   SSSS  TTTTT  EEEEE/----------+/ -----.-----        
+    R   R   I   P   P  O   O  S       T    E                   ----..:=------------- ----
+    RRRR    I   PPPP   O   O   SSS    T    EEEE           /------/-----.:.+.:-------:--------       
+    R  R    I   P      O   O      S   T    E      >      -------:- /---------.+:::/- ---
+    R   R  III  P       OOO   SSSS    T    EEEEE         ---------.-+.::== --------
+                                                          -------- --------
+
+   Choose an action, then browse images or folders.
+  -- MAIN MENU -----------------------------------------------------------------------------------  
+      1  RIPOSTE                                               FOCUS / SORT + RIPOSTE
+      2  Sort
+    > 3  Sort + RIPOSTE                                        Preview sorting, confirm
+      4  Image library                                         replacement, then protect the        
+      5  Publishing batches                                    organized collection.
+      6  Local models
+      7  Terminal & workspace                                  No files change when you open an     
+      8  Workshop                                              action.
+
+
+
+
+
+
+   Organize, then protect in one workflow
+  ------------------------------------------------------------------------------------------------  
+   [Enter] Open   [Arrows] Move   [1-8] Choose   [/] Find   [q] Quit   [F1] Help
+
+                                                                                                    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  RIPOSTE / terminal released. No unfinished worker was abandoned.

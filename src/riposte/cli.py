@@ -16,9 +16,9 @@ from .terminal.service import Request
 app = typer.Typer(name="riposte", cls=RichGroup, invoke_without_command=True, no_args_is_help=False,
                   add_completion=True, pretty_exceptions_enable=False, pretty_exceptions_show_locals=False,
                   help="Clean masters in. Reviewed publishing images out. No watermark or upload gate.",
-                  epilog="No command opens the animated terminal. Piped direct results are JSON. ROOT is a dedicated artwork folder.")
+                  epilog="No command opens the animated terminal. Piped direct results are JSON. ROOT is a dedicated image folder.")
 
-Root = Annotated[Path, typer.Argument(help="Existing dedicated artwork folder; everything inside is in scope.")]
+Root = Annotated[Path, typer.Argument(help="Existing dedicated image folder; everything inside is in scope.")]
 Vae = Annotated[Optional[list[Path]], typer.Option("--vae", help="Local encoder directory. Repeat for up to four; no automatic download.", rich_help_panel="LOCAL MODELS")]
 
 class Device(str, Enum): auto="auto"; cpu="cpu"; cuda="cuda"; mps="mps"
@@ -68,7 +68,7 @@ def dispatch(ctx, name, root=None, **values):
 
 
 @command("ui", "INTERFACE")
-def ui(ctx: typer.Context, root: Annotated[Optional[Path], typer.Argument(help="Initial artwork workspace.")] = None,
+def ui(ctx: typer.Context, root: Annotated[Optional[Path], typer.Argument(help="Initial image workspace.")] = None,
        linear: Annotated[bool, typer.Option("--linear", help="Explicit numbered, line-input menus; also works with a script on stdin.")] = False):
     """Open the interactive Rich ASCII terminal."""
     from .terminal.app import launch
@@ -99,7 +99,7 @@ def list_images(ctx: typer.Context, root: Root,
                 search: Annotated[str, typer.Option(help="Literal search of clean canonical names, dates and IDs.")] = "",
                 limit: Annotated[Optional[int], typer.Option(min=1, help="Maximum returned rows.")] = None,
                 offset: Annotated[int, typer.Option(min=0, help="Skip returned rows.")] = 0):
-    """List and target cleaned artwork; never sort by file extension."""
+    """List and target cleaned image; never sort by file extension."""
     dispatch(ctx, "list", root, year=year, month=month, size=size, search=search, limit=limit, offset=offset)
 
 
@@ -208,7 +208,7 @@ def doctor(ctx: typer.Context, vae: Vae = None,
 
 @command("upgrade", "LOCAL RUNTIME")
 def upgrade(ctx: typer.Context, root: Root):
-    """Explicit legacy-state rename; artwork and identifiers are preserved."""
+    """Explicit legacy-state rename; image and identifiers are preserved."""
     dispatch(ctx, "upgrade", root)
 
 

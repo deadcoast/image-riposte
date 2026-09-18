@@ -18,7 +18,7 @@ HERE = ROOT / "typing"
 STUBS = HERE / "stubs" / "riposte"
 EVIDENCE = HERE / "evidence"
 CONTRACT_CONFIG = "typing/mypy-contracts.ini"
-REVIEWED_SOURCE = EVIDENCE / "source-reviewed-workflows.json"
+REVIEWED_SOURCE = EVIDENCE / "source-reviewed-menu.json"
 
 
 def is_application_source(path: Path) -> bool:
@@ -197,7 +197,7 @@ def main() -> int:
 
     before = source_hashes()
     reviewed = json.loads(REVIEWED_SOURCE.read_text(encoding="utf-8"))
-    # PAC-020 reviewed input snapshots, publication modes and both CLI surfaces.
+    # PAC-022 reviewed menu-first entry, read-only browsing and neutral UI copy.
     # Original and v0.5 patch snapshots remain intact as historical evidence.
     reviewed = {path: value for path, value in reviewed.items() if is_application_source(Path(path))}
     drift = sorted(k for k in before.keys() | reviewed.keys() if before.get(k) != reviewed.get(k))

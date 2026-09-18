@@ -12,6 +12,7 @@ from .render import view_rows, scroll_limit
 from .service import Request, execute, image_bytes, root_of
 from .interaction import fields_for, contextual_help
 from .state import Session, Page, Editor
+from .paths import Picker, starting_directory, validate_workspace, locations
 from ..errors import RiposteError
 from ..metrics import TRANSFORMS
 
@@ -27,8 +28,6 @@ class Controller:
             root_of(Request("list", self.state.root))
             self.refresh()
         if initial == "workshop": self.show(Page("workshop", "OPTIONAL WORKSHOP"), remember=False)
-        if self.state.root is None:
-            self.edit_workspace()
 
     def refresh(self):
         if self.state.root is None: return
@@ -47,14 +46,87 @@ class Controller:
         self.state.notice = ""
 
     def edit_workspace(self):
-        field = Field("workspace", "Artwork workspace", "path", "", "Choose an existing dedicated artwork folder. All of its files are actively maintained; no files are changed by selecting it.")
-        value = str(self.state.root) if self.state.root else ""
-        self.state.editor = Editor(field, value, len(value), target="workspace")
+        self.browse("workspace", "preferences")
+
+    def begin_action(self, key):
+        if key == "riposte": return self.browse("inputs", key)
+        if key in {"organize", "sort-riposte"}: return self.browse("sort", key)
+        return self.action(key)
+
+    def browse(self, mode, action=None, inputs=(), field=None):
+        settings = dict(self.state.page.values) if self.state.page.name == "form" else {}
+        purpose = {
+            "inputs": "Select images or folders to protect, including subfolders. Originals stay in place; sorting is not required.",
+            "sort": "Select the folder to sort, including its subfolders. Preview first; replacing originals requires REPLACE.",
+            "workspace": "Select a results folder. RIPOSTE saves clean snapshots, candidates and review records here; selected originals stay unchanged.",
+            "existing": "Open an existing image/results folder to view its library and saved batches. Selection changes no files.",
+            "field": "Choose the folder for this setting. Selecting a location does not run processing.",
+        }[mode]
+        if action == "sort-riposte": purpose = "Sort this folder and its subfolders, then protect the images. Preview first; replacing originals requires REPLACE."
+        title = "RIPOSTE / SELECT INPUTS" if mode == "inputs" else "SORT + RIPOSTE / SELECT FOLDER" if action == "sort-riposte" else "SORT / SELECT FOLDER" if mode == "sort" else "SELECT RESULTS FOLDER" if mode == "workspace" else "SELECT FOLDER"
+        picker = Picker(starting_directory(self.state.root), multiple=mode == "inputs", selected=list(inputs))
+        if field and self.state.page.values.get(field):
+            picker.enter(Path(self.state.page.values[field]).expanduser())
+        self.show(Page("picker", title, action=action, result=picker,
+                       values={"mode": mode, "purpose": purpose, "inputs": list(inputs), "field": field, "settings": settings}, rows=picker.rows()))
+
+    def picker_key(self, key):
+        p = self.state.page
+        picker = p.result
+        row = self.selected_row()
+        if key.name == "backspace": picker.enter(picker.directory.parent); p.cursor = 0
+        elif key.text == "l":
+            p.rows = locations(); p.cursor = 0; p.values["locations"] = True; return
+        elif key.text == "g":
+            value = str(picker.directory)
+            self.state.editor = Editor(Field("location", "Go to folder", "path", "", "Optional: paste an existing folder path, or Esc to keep browsing."), value, len(value), target="picker-location")
+            return
+        elif key.text == "s" and picker.multiple: picker.toggle(picker.directory)
+        elif key.text == " " and row and row.get("path") and picker.multiple and not p.values.get("locations") and row["kind"] != "parent":
+            picker.toggle(row["path"])
+        elif key.name == "enter" and row:
+            if row["kind"] == "accept": return self.accept_picker()
+            if row["kind"] in {"directory", "parent"}:
+                picker.enter(row["path"]); p.cursor = 0; p.values.pop("locations", None)
+            elif row["kind"] == "file": picker.toggle(row["path"])
+        p.rows = picker.rows()
+        self.state.notice = picker.error
+
+    def accept_picker(self):
+        p = self.state.page
+        picker = p.result
+        mode = p.values["mode"]
+        if mode == "inputs":
+            if not picker.selected:
+                self.state.notice = "Select files or folders with Space, or s for this folder."
+                return
+            self.browse("workspace", "riposte", picker.selected)
+            self.state.page.values["settings"] = p.values["settings"]
+            return
+        if mode == "field":
+            field = p.values["field"]
+            self.back(); self.state.page.values[field] = str(picker.directory)
+            return
+        try:
+            root = validate_workspace(picker.directory)
+        except RiposteError as exc:
+            self.state.notice = "Keep image/results folders separate from the application folder." if exc.code == "IMAGE_FOLDER_OVERLAPS_APPLICATION" else "Choose an accessible existing folder without linked paths."
+            return
+        self.state.root = root
+        self.state.selected.clear()
+        self.refresh()
+        action = p.action
+        if action == "browser":
+            self.state.handoff = ["serve", str(root)]; self.state.running = False; return
+        if action == "riposte":
+            paths = p.values["inputs"]
+            return self.action(action, {**p.values["settings"], "input1": str(paths[0]), "input_paths": paths})
+        if action: return self.action(action)
+        self.back()
 
     def require_workspace(self, next_action):
         if self.state.root: return True
-        self.pending_action = next_action
-        self.edit_workspace()
+        self.browse("existing", next_action)
         return False
 
     def library(self):
@@ -73,13 +145,13 @@ class Controller:
 
     def preferences(self):
         rows = [
-            {"key": "workspace", "title": "Artwork workspace", "value": "SELECTED" if self.state.root else "NOT SELECTED"},
+            {"key": "workspace", "title": "Image workspace", "value": "SELECTED" if self.state.root else "NOT SELECTED"},
             {"key": "theme", "title": "Palette", "value": self.state.presentation.theme.upper()},
             {"key": "motion", "title": "ASCII motion", "value": "PAUSED" if self.state.paused else "LIVE"},
             {"key": "fps", "title": "Refresh ceiling", "value": str(self.state.presentation.fps) + " fps"},
             {"key": "linear", "title": "Linear interface", "value": "SWITCH"},
             {"key": "browser", "title": "Browser alternative", "value": "EXPLICIT HANDOFF"},
-            {"key": "upgrade", "title": "Legacy state upgrade", "value": "NO ARTWORK REWRITE"},
+            {"key": "upgrade", "title": "Legacy state upgrade", "value": "NO IMAGES REWRITE"},
         ]
         if self.state.page.name == "preferences":
             self.state.page.rows = rows
@@ -92,14 +164,14 @@ class Controller:
         if key == "workshop": return self.show(Page("workshop", "OPTIONAL WORKSHOP"))
         if key != "doctor" and not self.require_workspace(key): return
         if key == "publish" and not self.state.selected:
-            self.library(); self.state.notice = "Press Enter to select illustrations, then p to protect. Press i to inspect."
+            self.library(); self.state.notice = "Press Enter to select images, then p to protect. Press i to inspect."
             return
         action = BY_KEY[key]
         values = defaults(action, self.state.models)
         if key == "riposte": values["input1"] = str(self.state.root)
         if overrides: values.update(overrides)
         if key == "upgrade":
-            return self.confirm(Request("upgrade", self.state.root), "UPGRADE", "Rename legacy application state; keep artwork, dates and identifiers intact.")
+            return self.confirm(Request("upgrade", self.state.root), "UPGRADE", "Rename legacy application state; keep image, dates and identifiers intact.")
         if not action.fields:
             return self.run(Request(key, self.state.root))
         self.show(Page("form", action.title.upper(), action=key, values=values))
@@ -203,6 +275,8 @@ class Controller:
         if p.cursor >= len(fields):
             return self.run_form(preview=p.action in {"publish", "riposte", "sort-riposte"})
         f = fields[p.cursor]
+        if p.action == "riposte" and f.key == "input1" and p.values.get("input_paths"):
+            return self.browse("inputs", "riposte", p.values["input_paths"])
         value = p.values.get(f.key, f.default)
         if f.kind == "bool": p.values[f.key] = not value; return
         if f.kind == "choice":
@@ -215,6 +289,17 @@ class Controller:
         e = self.state.editor
         try:
             value = parse_value(e.field, e.value)
+            if e.target == "picker-location":
+                picker = self.state.page.result
+                path = Path(value).expanduser().absolute()
+                if not path.is_dir(): raise ValueError
+                picker.enter(path)
+                if picker.error: raise ValueError
+                self.state.page.rows = picker.rows()
+                self.state.page.cursor = 0
+                self.state.page.values.pop("locations", None)
+                self.state.editor = None
+                return
             if e.target == "workspace":
                 path = Path(value).expanduser().absolute()
                 root_of(Request("list", path))
@@ -229,7 +314,9 @@ class Controller:
             if e.target == "fps":
                 self.state.presentation.fps = value
                 self.preferences()
-            else: self.state.page.values[e.field.key] = value
+            else:
+                self.state.page.values[e.field.key] = value
+                if e.field.key.startswith("input"): self.state.page.values.pop("input_paths", None)
             self.state.editor = None
         except (RiposteError, OSError, ValueError): e.error = True
 
@@ -335,10 +422,11 @@ class Controller:
                 if n < len(view_rows(self.state)):
                     p.cursor = n
                     row = self.selected_row()
-                    return self.action(row["key"])
+                    return self.begin_action(row["key"])
             if key.name == "enter":
                 row = self.selected_row()
-                if row: return self.action(row["key"])
+                if row: return self.begin_action(row["key"])
+        elif p.name == "picker": return self.picker_key(key)
         elif p.name == "library":
             row = self.selected_row()
             if (key.name == "enter" or ch == " ") and row: return self.toggle_selection(row)
@@ -357,6 +445,13 @@ class Controller:
                 if p.image_id not in self.state.selected: self.toggle_selection(p.report)
                 return self.action("publish")
         elif p.name == "form":
+            if ch == "b":
+                fields = fields_for(p)
+                if p.cursor < len(fields) and fields[p.cursor].kind == "path":
+                    if fields[p.cursor].key.startswith("input"): return self.browse("inputs", "riposte", p.values.get("input_paths", ()))
+                    if fields[p.cursor].key == "candidate":
+                        self.state.notice = "Press Enter to paste the candidate image file path."; return
+                    return self.browse("field", field=fields[p.cursor].key)
             if ch == "f" and p.action in {"publish", "riposte", "sort-riposte"}:
                 focused = fields_for(p)[p.cursor].key if p.cursor < len(fields_for(p)) else None
                 p.advanced = not p.advanced
@@ -427,7 +522,7 @@ class Controller:
             if row["key"] == "linear": self.state.switch_linear=True; self.state.running=False
             if row["key"] == "upgrade": return self.action("upgrade")
             if row["key"] == "browser":
-                if not self.require_workspace("preferences"): return
+                if not self.require_workspace("browser"): return
                 self.state.handoff=["serve",str(self.state.root)]; self.state.running=False
 
     def shutdown(self):

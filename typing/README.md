@@ -16,7 +16,15 @@ the implementation. `source-reviewed-workflows.json` records this reviewed state
 the earlier snapshots remain historical. Runtime workflow evidence is separate
 in [`../evidence/workflows/README.md`](../evidence/workflows/README.md).
 
-The external stub tree covers all 42 Python modules. The shared declarations in
+PAC-022 authorizes menu-first startup and an action-specific file/folder browser.
+The new `terminal.paths` declarations, controller entry/browse methods, renderer
+entry, and preserved command/form signatures were reviewed against the source.
+`source-reviewed-menu.json` is the current snapshot; earlier snapshots remain
+historical. Copy-only changes retain JSON keys and all model/engine contracts.
+Runtime, launcher, and native Windows evidence is separate in
+[`../evidence/menu-startup/README.md`](../evidence/menu-startup/README.md).
+
+The external stub tree covers all 43 Python modules. The shared declarations in
 [`stubs/_riposte_types.pyi`](stubs/_riposte_types.pyi) define 27 record shapes,
 callback types, and callable model protocols. They preserve existing states such
 as `UNVERIFIED`, `INCOMPLETE`, nullable PSNR, absent publication-item fields, and
@@ -39,7 +47,7 @@ application wheel, and does not add `py.typed` or claim installed-package suppor
 Consumers that need helper records should import them inside `TYPE_CHECKING`.
 
 The default [`../mypy.ini`](../mypy.ini) checks application implementation.
-From the repository root, both commands reach the same 42 source modules:
+From the repository root, both commands reach the same 43 source modules:
 
 ```powershell
 mypy

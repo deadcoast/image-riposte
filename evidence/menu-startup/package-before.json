@@ -1,0 +1,12 @@
+{
+  "result": "FAIL",
+  "missing_launch_assets": [
+    "INSTALL.ps1",
+    "INSTALL.sh",
+    "START.ps1",
+    "START.sh",
+    "START.cmd",
+    "riposte.cmd",
+    "uv.lock"
+  ]
+}

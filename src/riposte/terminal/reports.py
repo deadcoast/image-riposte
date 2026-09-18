@@ -182,7 +182,7 @@ def overview(data, command="", width=94) -> Report:
         if not data:w.text("No records match this selection. Nothing was created by this inspection.","muted")
         elif command=="list" or isinstance(data[0],dict) and "relative" in data[0] and "day" in data[0]:
             r.metrics=[("Clean images",str(len(data)))]
-            w.section("Artwork / canonical names")
+            w.section("Image / canonical names")
             for row in data:
                 w.add(Run(row.get('relative',''),"text",True))
                 w.add(Run(f"  {row.get('day','')}   ","label"),Run(f"{row.get('width','?')} x {row.get('height','?')} px", "number"))

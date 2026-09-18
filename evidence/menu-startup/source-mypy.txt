@@ -1,0 +1,2 @@
+usage: check.py [-h] [--source] [--source-python SOURCE_PYTHON]
+check.py: error: unrecognized arguments: --source-audit

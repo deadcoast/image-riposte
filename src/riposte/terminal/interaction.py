@@ -19,6 +19,8 @@ GLOBAL = (
 
 def fields_for(page):
     fields = BY_KEY[page.action].fields
+    if page.action == "riposte" and page.values.get("input_paths"):
+        fields = tuple(f for f in fields if f.key not in {"input2", "input3", "input4"})
     if page.action in {"publish", "riposte", "sort-riposte"} and not page.advanced:
         return tuple(f for f in fields if f.key in {"input1", "date_mode", "discard_sidecars", "edges", "epsilon", "preserve_white", "device", "vae1"})
     return fields
@@ -29,9 +31,10 @@ def hints(state):
     if state.editor:return [Hint("Enter","Save","Validate and save this field; it does not run an operation."),Hint("Esc","Discard","Leave the field unchanged."),Hint("Ctrl+U","Clear","Clear this field's input.")]
     if p.query_edit:return [Hint("Enter","Finish search","Keep the filter and return to the filtered list."),Hint("Esc","Finish search","Close search input without executing anything."),Hint("Ctrl+U","Clear filter","Show all rows again.")]
     rows={
-        "home":[Hint("Enter","Open","Choose Sort, RIPOSTE, or Sort + RIPOSTE. Arrows or visible numbers open an action."),Hint("/","Find","Filter the action list."),Hint("q","Quit","Leave RIPOSTE.")],
+        "picker":[Hint("Enter","Open / choose","Open a folder, toggle a file, or confirm the highlighted selection row."),Hint("Up/Down","Move","Move the highlight."),Hint("Space","Select","Select or unselect a file or folder for protection."),Hint("s","This folder","Select or unselect the current folder for protection."),Hint("Backspace","Parent","Browse the parent folder."),Hint("l","Locations","Browse home, Pictures, and drives."),Hint("g","Go to path","Optionally type or paste a folder location."),Hint("Esc","Cancel","Return without starting an operation.")],
+        "home":[Hint("Enter","Open","Choose Sort, RIPOSTE, or Sort + RIPOSTE. Arrows or visible numbers open an action."),Hint("Arrows","Move","Move the highlight; Enter opens the selected action."),Hint("1-8","Choose","Open the numbered action."),Hint("/","Find","Filter the action list."),Hint("q","Quit","Leave RIPOSTE.")],
         "library":[Hint("Enter","Select","Add or remove the focused image from your publishing selection."),Hint("i","Inspect","Open the focused image without changing your selection."),Hint("p","Protect","Configure protection for selected images."),Hint("/","Find","Filter dates, canonical names or image IDs."),Hint("a","Select visible","Add every visible image, up to the selection limit."),Hint("n","Clear selection","Remove selected images from the current selection; files are unchanged.")],
-        "asset":[Hint("Enter","Select","Toggle this illustration in your publishing selection."),Hint("p","Protect","Carry this image and the current selection into protection."),Hint("v","Open PNG","Open audited full-resolution pixels in your local viewer.")],
+        "asset":[Hint("Enter","Select","Toggle this image in your publishing selection."),Hint("p","Protect","Carry this image and the current selection into protection."),Hint("v","Open PNG","Open audited full-resolution pixels in your local viewer.")],
         "batches":[Hint("Enter","Open batch","See its output queue, approvals and blocked items."),Hint("/","Find","Filter the batch list.")],
         "batch":[Hint("Enter","Review output","Inspect the focused output; no approval is implied."),Hint("p","Package","Write a ZIP containing approved PNGs only."),Hint("r","Resume","Reload matching models and continue unfinished outputs."),Hint("d","Batch report","Read the complete batch result in the authored report viewer."),Hint("/","Find","Filter output states and IDs.")],
         "item":[Hint("Enter","Open PNG","View exact audited pixels; this does not record approval."),Hint("a","Approve","Open the explicit visual-approval form."),Hint("x","Reject","Revoke approval for future packs."),Hint("c/b/d","Image mode","Candidate / baseline / amplified difference."),Hint("t","Transport","Cycle real codec and resize previews."),Hint("w","Workshop","Pass this exact output to optional expert helpers.")],
@@ -50,6 +53,7 @@ def hints(state):
             primary=Hint("Enter","Toggle" if f.kind=="bool" else "Change" if f.kind=="choice" else "Edit",f.help)
         else:primary=Hint("Enter","Preview" if p.action in {"publish","riposte","sort-riposte","organize"} else "Run",BY_KEY[p.action].summary)
         controls=[primary]
+        if p.cursor<len(fields) and fields[p.cursor].kind=="path":controls.append(Hint("b","Browse","Choose this location in the file/folder browser."))
         if p.action in {"publish","riposte","sort-riposte","organize"}:controls.append(Hint("p","Preview","Read-only plan; no images are written."))
         if p.action=="organize":controls.append(Hint("v","Audit","Verify existing clean files and workspace organization."))
         elif p.action=="sort-riposte":controls.append(Hint("r","Preview","Preview both stages before confirming source replacement."))
@@ -66,6 +70,11 @@ def hints(state):
                  else Hint("Enter","Return","Return to the previous screen."))
         return [primary,Hint("t","Report view","Cycle Overview, complete Details, and syntax-coloured JSON."),Hint("Up/Down","Scroll","Scroll the selected report view; Page Up/Down move a page."),Hint("b","Batches","Open publishing batches."),Hint("Esc","Back","Return to the previous screen.")]
     controls=rows.get(p.name,[])
+    if p.name=="picker":
+        controls=[h for h in controls if p.result.multiple or h.key not in {"Space","s"}]
+        cancel=next(h for h in controls if h.key=="Esc")
+        controls.remove(cancel);controls.insert(3 if p.result.multiple else 1,cancel)
+        return controls
     if p.name not in {"home","confirm","help","command"}:controls=controls+[Hint("Esc","Back","Return to the previous screen.")]
     return controls
 
@@ -73,6 +82,11 @@ def hints(state):
 def context(state):
     p=state.page
     if state.editor:return state.editor.field.help
+    if p.name=="home":
+        from .render import view_rows
+        rows=view_rows(state)
+        return rows[min(p.cursor,len(rows)-1)]["summary"] if rows else "No matching actions."
+    if p.name=="picker":return "Selection is read-only. Enter on the first row confirms your choice."
     if p.name=="form":
         fields=fields_for(p)
         return fields[p.cursor].help if p.cursor<len(fields) else BY_KEY[p.action].summary

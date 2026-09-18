@@ -1,0 +1,11 @@
+{
+  "result": "PASS",
+  "checks": [
+    "START.ps1 without a path opens the raw interactive main menu",
+    "Enter opens purpose-labelled multi-input browser",
+    "Selection carries to an explained results-folder browser",
+    "Windows arrow key then Enter opens Sort; replacement consent is explained",
+    "Visible numeric shortcut opens combined workflow",
+    "Quit restores the cursor, exits zero, and leaves synthetic inputs unchanged"
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "requirement": "OGM-008",
+  "meaning": "ebe4108e46373bb8a4b285032b92409cb91cbc204d40080dc92834a795a01ecc",
+  "sources": {
+    "evidence/browser-review/README.md": "c795f3774ca7c52e210313788e0b0869c92376387a753e797fa6e8c886784e73",
+    "tests/browser_review.cjs": "c8367e48924371bfcc20ee954a114153e2f98d3ae9f45e1f9ad9ca62d4dbf81a",
+    "tests/test_browser_review.py": "8be9063a792e733aad3b13eb56b61ffd2401ce4641834c9be6a1998bd008c181",
+    "src/riposte/static/publish.js": "639451897dd7402243571acf68a38785e75001bec50c310c969a3d10510b2b2c",
+    "src/riposte/static/app.js": "457829ddf63765307f3c16c9f33bc6bc9a36507cf74834fedbb07812e9693c19"
+  },
+  "result": "PASS",
+  "command": [
+    ".venv/Scripts/python.exe -m pytest -q --basetemp .tmp/menu-full --junitxml evidence/menu-startup/pytest.xml",
+    ".venv/Scripts/python.exe -m pytest -q tests/test_browser_review.py --basetemp .tmp/menu-browser --junitxml evidence/menu-startup/browser.xml (outside sandbox)",
+    ".venv/Scripts/python.exe -m pytest -q tests/test_menu_startup.py --basetemp .tmp/menu-layout-final --junitxml evidence/menu-startup/menu-final.xml",
+    ".venv/Scripts/python.exe evidence/menu-startup/native_console.py",
+    ".venv/Scripts/python.exe evidence/menu-startup/native_console.py --entry cmd",
+    "uv run --project typing --frozen --cache-dir typing/.cache/uv python typing/check.py",
+    "uv run --project typing --frozen --cache-dir typing/.cache/uv python typing/pacer_inventory.py",
+    "uv build --offline --cache-dir typing/.cache/uv",
+    ".venv/Scripts/python.exe evidence/menu-startup/check_package.py"
+  ],
+  "observations": [
+    "All 21 current browser regressions passed outside sandbox, including real Chromium decoding and review races; initial native-browser sandbox timeout remains in the full-suite log. UI wording changed, approval logic and explicit acknowledgements remain verified."
+  ],
+  "evidence": [
+    "evidence/menu-startup/README.md",
+    "evidence/menu-startup/pytest.xml",
+    "evidence/menu-startup/browser.xml",
+    "evidence/menu-startup/menu-final.xml",
+    "evidence/menu-startup/package.json",
+    "evidence/menu-startup/native-console-powershell.json",
+    "evidence/menu-startup/native-console-cmd.json",
+    "evidence/menu-startup/typing-final.txt"
+  ],
+  "limits": [
+    "No pretrained model, GPU, cross-platform native terminal or protection-efficacy acceptance claim.",
+    "External contracts pass; separate raw-source mypy audit remains failing: 1043 errors in 37 files, 43 source modules checked.",
+    "Installer routing uses real shell scripts with uv process adapters; no new network installation was needed."
+  ]
+}

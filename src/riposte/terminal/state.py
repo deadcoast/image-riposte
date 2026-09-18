@@ -1,4 +1,4 @@
-"""Session-only UI state. Pure renderers never write artwork or app state."""
+"""Session-only UI state. Pure renderers never write image or app state."""
 from __future__ import annotations
 from dataclasses import dataclass, field
 from pathlib import Path
@@ -8,9 +8,9 @@ from .output import Presentation
 
 HOME = (
     ("riposte", "RIPOSTE", "Protect files or folders; preserve originals"),
-    ("library", "Image library", "Select cleaned illustrations"),
     ("organize", "Sort", "Clean & organize only; no protection"),
     ("sort-riposte", "Sort + RIPOSTE", "Organize, then protect in one workflow"),
+    ("library", "Image library", "Browse and select cleaned images"),
     ("batches", "Publishing batches", "Review, resume, package"),
     ("doctor", "Local models", "Configure local processing"),
     ("preferences", "Terminal & workspace", "Palette, motion, workspace"),
@@ -20,7 +20,7 @@ HOME = (
 @dataclass
 class Page:
     name: str = "home"
-    title: str = "IMAGE SECURITY"
+    title: str = "MAIN MENU"
     cursor: int = 0
     query: str = ""
     query_edit: bool = False

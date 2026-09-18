@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "riposte-studio"
 version = "0.5.0"
-description = "Local-first artwork sanitation, organization, and image-integrated protection for publication"
+description = "Local image sanitation, organization, and image-integrated protection for publication"
 requires-python = ">=3.11"
 license = "MIT"
 readme = "README.md"

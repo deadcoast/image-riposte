@@ -62,7 +62,7 @@ SORT_FIELDS = (
 ACTIONS = (
     Action("riposte", "RIPOSTE", "PRIMARY", "Protect files or folders. Keep originals and their folder structure.", (*INPUT_FIELDS, SORT_FIELDS[0], *PUB_FIELDS)),
     Action("sort-riposte", "Sort + RIPOSTE", "PRIMARY", "Preview sorting, confirm replacement, then protect the organized collection.", (*SORT_FIELDS, *PUB_FIELDS)),
-    Action("publish", "Protect & publish", "PRIMARY", "Selected clean art -> independently optimized publishing files.", PUB_FIELDS),
+    Action("publish", "Protect & publish", "PRIMARY", "Selected clean images -> independently optimized publishing files.", PUB_FIELDS),
     Action("organize", "Sort", "PRIMARY", "Clean & organize only. Rebuild date-only images and classify; no protection models.", SORT_FIELDS),
     Action("audit", "Audit clean workspace", "PRIMARY", "Verify date-only images and calendar/size organization."),
     Action("doctor", "Local model setup", "SYSTEM", "Inspect runtime or execute a local encoder input-gradient probe.", (*VAE_FIELDS, DEVICE, Field("execute", "Run encoder probe", "bool", False, "Execution-only diagnostic; does not certify protection."))),
@@ -73,7 +73,7 @@ ACTIONS = (
         Field("visual_accepted", "Visual quality accepted", "bool", False, "Assert only after viewing actual image pixels, not the ASCII thumbnail."),
         Field("acknowledge_unverified", "AI resistance unverified", "bool", False, "Acknowledge that approval is aesthetic, not an efficacy certificate."))),
     Action("package", "Package approved images", "PRIMARY", "Exact accepted PNG bytes, calendar/size names; no research reports.", (BATCH,)),
-    Action("upgrade", "Upgrade legacy state", "SYSTEM", "Rename old SHROUD application state; artwork and IDs stay intact."),
+    Action("upgrade", "Upgrade legacy state", "SYSTEM", "Rename old SHROUD application state; image and IDs stay intact."),
     Action("guard", "Standalone candidate", "WORKSHOP", "Expert single-image engine path; normal publishing is elsewhere.", (IMAGE, *VAE_FIELDS, MAX_EDGE, EPSILON,
         Field("steps", "Iterations", "int", 48, "Real optimization iterations.", minimum=1, maximum=1000), SEED,
         Field("engine", "Engine", "choice", "coupled", "Select an existing experimental image objective.", ("coupled", "encoder")), DEVICE, WHITE, INPAINT)),
@@ -163,7 +163,7 @@ def make_request(key: str, root: Path | None, values: dict, selected=()) -> Requ
     vaes = [parsed.pop(f"vae{i}", "") for i in range(1, 5)]
     if any(f.key.startswith("vae") for f in action.fields): parsed["vae_dirs"] = [Path(p) for p in vaes if p]
     if key == "publish": parsed["image_ids"] = list(selected)
-    if key == "riposte": parsed["input_paths"] = [parsed.pop(f"input{i}") for i in range(1, 5) if parsed.get(f"input{i}")]
+    if key == "riposte": parsed["input_paths"] = [Path(p) for p in values["input_paths"]] if values.get("input_paths") else [parsed.pop(f"input{i}") for i in range(1, 5) if parsed.get(f"input{i}")]
     for i in range(1, 5): parsed.pop(f"input{i}", None)
     if key == "sort-riposte": parsed["all_images"] = True
     if key == "review": parsed["item_ids"] = list(parsed["item_ids"])

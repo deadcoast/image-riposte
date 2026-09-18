@@ -45,18 +45,9 @@ def header(c, state):
     c.text(20, 1, "/  " + state.page.title, "text", width=max(0, c.width - 47))
     if c.width >= 76: c.text(c.width - 24, 1, "LOCAL   /   v" + __version__, "muted")
     c.rule(3)
-    current = {"library":1,"asset":1,"form":2,"batch":3,"item":3,"batches":3}.get(state.page.name)
-    if state.page.action == "organize": current = 0
-    if state.page.action == "organize":
-        labels = ("SORT", "PREVIEW", "CONFIRM", "ORGANIZE", "DONE")
-    elif state.page.action == "sort-riposte":
-        labels = ("BOTH", "PREVIEW", "CONFIRM", "PROTECT", "REVIEW")
-    else:
-        labels = ("CHOOSE", "CONFIGURE", "RIPOSTE", "REVIEW", "EXPORT")
-    step = max(8, (c.width - 7) // 5)
-    for n, label in enumerate(labels):
-        text = f"{n+1:02d} {label}"
-        c.text(3 + n*step, 4, text, "accent" if current == n else "muted", bold=current == n, width=step - 1)
+    caption = "Choose what you want to do. Each action works independently."
+    if state.page.name != "home": caption = "MAIN MENU / " + state.page.title
+    c.text(3, 4, caption, "muted", width=c.width-6)
 
 
 def footer(c, state, keys=None):
@@ -95,16 +86,15 @@ def home(c, state, time):
     top = 6
     if roomy:
         for dy, line in enumerate(LOGO): c.text(4, top + dy, line, "text", bold=True)
-        c.text(4, top + 6, "YOUR ART. YOUR COUNTERMOVE.", "muted")
-        counterstroke(c, c.width//2, top-1, c.width//2-4, 11, time)
-        top += 10
+        counterstroke(c, c.width//2, top-1, c.width//2-4, 7, time)
+        top += 7
     else:
-        c.text(3, top, "YOUR ART. YOUR COUNTERMOVE.", "text", bold=True)
+        c.text(3, top, "IMAGE PROTECTION & ORGANIZATION", "text", bold=True)
         top += 2
-    counts = f"{len(state.catalog):02d} CLEAN IMAGES   /   {len(state.selected):02d} SELECTED   /   {len(state.batches):02d} BATCHES"
+    counts = "Choose an action, then browse images or folders."
     c.text(3, top, counts, "accent", width=c.width - 6)
-    c.rule(top + 2, label="ACTION DECK" if not state.page.query_edit else "FIND AN ACTION")
-    top += 4
+    c.rule(top + 1, label="MAIN MENU" if not state.page.query_edit else "FIND AN ACTION")
+    top += 2
     stride = 2 if c.height - top - 5 >= len(rows)*2 else 1
     deck_width = (c.width//2 + 5) if c.width >= 100 else c.width - 6
     capacity = max(1, (c.height - top - 5)//stride)
@@ -124,12 +114,29 @@ def home(c, state, time):
         c.text(x, top, "FOCUS / " + row["title"].upper(), "muted", width=width)
         action = BY_KEY.get(row["key"])
         c.wrap(x, top+2, action.summary if action else row["summary"], width, 4, "text")
-        effect = action.effect if action else "INSPECT / SELECT"
-        c.text(x, top+7, effect.replace("_", " "), "accent", bold=True, width=width)
-        note = "Master images stay unchanged." if row['key'] == 'publish' else "Writes require an explicit action."
-        c.wrap(x, top+9, note, width, 2)
-        c.text(x, top+12, "[Enter] continue", "text", width=width)
+        c.wrap(x, top+6, "No files change when you open an action.", width, 2)
     footer(c, state, "[1-7] choose   [Up/Down] focus   [Enter] open   [/] find   [q] quit")
+
+
+def picker(c, state):
+    p = state.page
+    browser = p.result
+    c.wrap(3, 6, p.values["purpose"], c.width-6, 3, "text")
+    location = str(browser.directory)
+    if len(location) > c.width-6: location = location[:3] + "..." + location[-(c.width-12):]
+    c.text(3, 10, location, "accent", width=c.width-6)
+    c.rule(11, label="LOCATIONS" if p.values.get("locations") else "FILES & FOLDERS" if browser.multiple else "FOLDERS")
+    rows = view_rows(state)
+    start, end = page_window(p.cursor, len(rows), c.height-18)
+    for n in range(start, end):
+        row = rows[n]; y = 12+n-start
+        focused = n == p.cursor
+        if focused: c.fill(3, y, c.width-6, 1, "raised")
+        mark = "[x] " if row.get("selected") else "[ ] " if browser.multiple and row["kind"] in {"file", "directory"} else "    "
+        suffix = "/" if row["kind"] == "directory" else ""
+        c.text(3, y, f"{'>' if focused else ' '} {n+1:2} {mark}{row['title']}{suffix}", "accent" if focused else "text", bold=focused, width=c.width-6)
+    c.text(3, c.height-6, f"{len(browser.selected)} selected   |   Rows {start+1}-{end}/{len(rows)}", "muted", width=c.width-6)
+    footer(c, state)
 
 
 def collection(c, state):
@@ -147,7 +154,7 @@ def collection(c, state):
         name = row["relative"] if c.width >= 120 else parts[-1] + "  " + row["id"][:12]
         c.text(3, y, head + name, "accent" if chosen or n==state.page.cursor else "text", bold=n==state.page.cursor, width=c.width-6)
     if not rows:
-        c.wrap(4, 12, "No matching clean images. Clean & organize imports your existing artwork into the calendar hierarchy.", c.width-8, 3)
+        c.wrap(4, 12, "No matching clean images. Clean & organize imports your existing image into the calendar hierarchy.", c.width-8, 3)
     if rows:
         row = rows[min(state.page.cursor, len(rows)-1)]
         c.text(3, c.height-6, f"ID {row['id']}  |  rows {start+1}-{end}/{len(rows)}", "muted", width=c.width-6)
@@ -179,6 +186,7 @@ def form(c, state):
            else "Entire workspace / preview, REPLACE, then protection" if p.action == "sort-riposte"
            else action.effect.replace("_", " "))
     c.text(3, 7, sub, "muted", width=c.width-6)
+    if state.root: c.text(3, 8, ("Results: " if p.action == "riposte" else "Folder: ") + str(state.root), "muted", width=c.width-6)
     c.rule(9)
     side = max(28, c.width//3) if c.width >= 100 else 0
     left = c.width - side - 6
@@ -194,6 +202,7 @@ def form(c, state):
             c.text(4,y,">> " + label,"accent",bold=True,width=left-2)
             continue
         f = fields[n]; value=shown(p.values.get(f.key,f.default))
+        if f.key == "input1" and p.values.get("input_paths"): value = f"{len(p.values['input_paths'])} selected - Enter to browse"
         if f.kind=='bool': value='[x] ON' if p.values.get(f.key,f.default) else '[ ] OFF'
         c.text(4,y,('> ' if selected else '  ')+f.label,"text",bold=selected,width=label_width)
         c.text(5+label_width,y,value,"accent" if selected else "muted",width=max(0,left-label_width-3))
@@ -230,7 +239,7 @@ def batches(c,state):
             counts=row.get('counts',{})
             text=f"{'>' if n==state.page.cursor else ' '}  {row['sequence']:05d}   {row['status']:22} {counts.get('READY_FOR_REVIEW',0):5}  {counts.get('ACCEPTED',0):8} {counts.get('BLOCKED',0):8}   {row['id'][:12]}"
         c.text(3,y,text,"warn" if row.get('status')=='BLOCKED' else "text",bold=n==state.page.cursor,width=c.width-6)
-    if not rows:c.wrap(4,12,"No publishing records yet. Protect & publish creates independently sized candidates from selected cleaned artwork.",c.width-8,3)
+    if not rows:c.wrap(4,12,"No publishing records yet. Protect & publish creates independently sized candidates from selected cleaned image.",c.width-8,3)
     footer(c,state,"[Enter] review output   [p] package approved   [r] resume   [Esc] batches" if batch else "[Enter] open batch   [/] find   [Esc] home")
 
 
@@ -426,7 +435,7 @@ def render(state:Session,width:int,height:int,time:float=0)->Surface:
                'form':lambda:form(c,state),'batches':lambda:batches(c,state),'batch':lambda:batches(c,state),
                'item':lambda:item(c,state),'workshop':lambda:workshop(c,state),'result':lambda:result(c,state),
                'job':lambda:job(c,state,time),'preferences':lambda:preferences(c,state),'help':lambda:help_page(c,state),
-               'command':lambda:command_page(c,state),'confirm':lambda:confirm(c,state)}
+               'command':lambda:command_page(c,state),'confirm':lambda:confirm(c,state),'picker':lambda:picker(c,state)}
     renderers.get(page,lambda:home(c,state,time))()
     if state.page.query_edit:
         c.fill(3,c.height-5,c.width-6,1,"raised")

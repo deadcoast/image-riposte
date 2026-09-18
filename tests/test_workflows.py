@@ -261,12 +261,13 @@ def test_interactive_standalone_and_combined_consent(root, make_image, models):
     controller.shutdown()
 
 
-def test_linear_user_can_preview_file_without_catalog_or_commands(root, make_image):
+def test_linear_user_can_preview_file_without_catalog_or_commands(root, make_image, monkeypatch):
+    monkeypatch.setattr('riposte.terminal.paths.application_directory', lambda: root.parent / 'application')
     source = make_image(root / 'input.png')
     before = snapshot(root)
     controller = Controller(root, Presentation(plain=True))
     transcript = io.StringIO()
-    linear_session(controller, io.StringIO('1\np\nq\n'), transcript)
+    linear_session(controller, io.StringIO('1\ns\nenter\nenter\np\nq\n'), transcript)
     assert 'PUBLISHING PLAN' in transcript.getvalue()
     assert controller.state.page.result['images'] == 1 and source.exists()
     assert snapshot(root) == before

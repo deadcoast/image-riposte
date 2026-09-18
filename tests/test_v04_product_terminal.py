@@ -128,8 +128,10 @@ def test_ascii_inspection_uses_bound_pixel_hash(root,make_image,models):
     c.shutdown()
 
 
-def test_model_free_fresh_workspace_choosing_exiting_is_read_only(root):
-    c=Controller(None,Presentation());assert c.state.editor
-    c.state.editor.value=str(root);c.state.editor.position=len(str(root));c.key(Key('enter'))
+def test_model_free_fresh_workspace_choosing_exiting_is_read_only(root, monkeypatch):
+    monkeypatch.setattr('riposte.terminal.paths.application_directory', lambda: root.parent / 'application')
+    c=Controller(None,Presentation());assert c.state.editor is None
+    c.key(Key('char','2')); assert c.state.page.name=='picker'
+    c.state.page.result.enter(root);c.state.page.rows=c.state.page.result.rows();c.key(Key('enter'))
     assert c.state.root==root and not list(root.iterdir())
     c.key(Key('char','q'));c.shutdown();assert not list(root.iterdir())

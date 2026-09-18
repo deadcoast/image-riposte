@@ -257,7 +257,7 @@ def create_app(root: Path, token: str | None = None) -> FastAPI:
         images=catalog(root)
         from .publication import publications
         return {"version":__version__,"images":images,"trials":trials(root),"jobs":app.state.jobs.snapshot(),"publications":publications(root),
-                "privacy":"Local only • no telemetry • date-only image metadata","root_label":"Active artwork folder", "legacy_workspace":legacy_workspace(root), "demo":safe_child(root, state_relative(root,"DEMO")).is_file()}
+                "privacy":"Local only • no telemetry • date-only image metadata","root_label":"Active image folder", "legacy_workspace":legacy_workspace(root), "demo":safe_child(root, state_relative(root,"DEMO")).is_file()}
     @app.get("/api/methods")
     def methods():
         return json.loads((Path(__file__).parent/"methods.json").read_text(encoding="utf-8"))

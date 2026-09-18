@@ -22,7 +22,7 @@ Every listed command is a real Typer command; use `riposte COMMAND --help` for p
 | `package ROOT BATCH_ID` | Accepted batch outputs | Write an exact-byte, PNG-only publishing ZIP |
 | `image ROOT` | `--image`, `--batch` plus `--item`, or `--trial` | Inspect verified PNG; `--open` is an explicit local viewer handoff |
 | `doctor` | Optional repeated `--vae` | Inspect runtime; `--execute` runs a numerical input-gradient probe |
-| `upgrade ROOT` | Legacy `.shroud` application state | Explicit state rename; no artwork rewrite |
+| `upgrade ROOT` | Legacy `.shroud` application state | Explicit state rename; no images rewrite |
 | `serve ROOT` | Local workspace | Existing loopback browser alternative; optional `--no-browser`, `--port` |
 | `guard ROOT IMAGE_ID` | One master | Expert standalone experimental candidate |
 | `compare ROOT IMAGE_ID CANDIDATE` | External candidate | Sanitize, compare and commit an expert trial |
@@ -50,13 +50,13 @@ A model-dependent action with no usable model stops with a code; it does not add
 Use exactly one selection style: `--input`, `--image`, or `--all`. Date and resolution filters qualify `--all`; they cannot be combined with raw inputs or explicit IDs. Selected catalog sources are verified individually, so unrelated additions do not force sorting before a protection run.
 
 ```powershell
-# Repeat only sorting when new artwork arrives.
+# Repeat only sorting when new images arrives.
 riposte sort ROOT
 riposte sort ROOT --apply
 
 # Protect selected originals without restructuring their directory.
-riposte riposte ROOT --input "D:\Artwork\drawing.png" --input "D:\Artwork\New" --plan
-riposte riposte ROOT --input "D:\Artwork\drawing.png" --input "D:\Artwork\New" --vae MODEL
+riposte riposte ROOT --input "D:\Images\drawing.png" --input "D:\Images\New" --plan
+riposte riposte ROOT --input "D:\Images\drawing.png" --input "D:\Images\New" --vae MODEL
 
 # Preview both operations, then explicitly authorize source replacement.
 riposte sort-riposte ROOT --all --vae MODEL
@@ -93,9 +93,9 @@ Enter toggles an image selection; `i` inspects the focused image. Space remains 
 
 ## Interactive actions
 
-Numbered actions and arrow/Enter navigation are always visible. The home screen exposes RIPOSTE, Sort, and Sort + RIPOSTE and keeps the workshop last. `Esc` or `0` returns without changing a field; `q` exits outside a text field. Bracketed paste is consumed as field/search data, not as queued Enter or menu shortcuts. Input and rendering never evaluate arbitrary shell text. RIPOSTE starts with the workspace as its input; edit File or folder to target another path. `f` reveals three additional file/folder fields and advanced protection settings. Both Sort forms always preview first and require the exact word `REPLACE` before source replacement; protection-only forms never sort.
+Numbered actions and arrow/Enter navigation are always visible. The home screen exposes RIPOSTE, Sort, and Sort + RIPOSTE and keeps the workshop last. `Esc` or `0` returns without changing a field; `q` exits outside a text field. Bracketed paste is consumed as field/search data, not as queued Enter or menu shortcuts. Input and rendering never evaluate arbitrary shell text. RIPOSTE first browses selected files/folders, then asks where to save results. The input selection is not limited to four paths. `f` reveals advanced protection settings without discarding the selection. Both Sort forms always preview first and require the exact word `REPLACE` before source replacement; protection-only forms never sort.
 
-The artwork library supports search, multi-selection and selection-preserving inspection. Its `p` shortcut carries that selection into protection settings. Model directories entered in Local models remain available in the current process's publishing and helper forms. `F4` shows the configured command; in a publishing form it shows the default read-only preview invocation. After an operation it shows that actual operation. Copying/executing it is the user's separate action; RIPOSTE performs no clipboard write or shell evaluation.
+The image library supports search, multi-selection and selection-preserving inspection. Its `p` shortcut carries that selection into protection settings. Model directories entered in Local models remain available in the current process's publishing and helper forms. `F4` shows the configured command; in a publishing form it shows the default read-only preview invocation. After an operation it shows that actual operation. Copying/executing it is the user's separate action; RIPOSTE performs no clipboard write or shell evaluation.
 
 The source-migration preview shows the actual current plan, then `a` opens the explicit **REPLACE** boundary. The apply operation re-inspects the workspace rather than trusting a stale path list. Output acceptance has its own **ACCEPT** boundary and both underlying acknowledgements; a local viewer launch is not an acceptance event. The panel's numerical output checks are not an AI protection percentage.
 
@@ -138,3 +138,17 @@ The terminal's thumbnail is a composition aid. `image --open` hands verified PNG
 Direct results preserve the existing JSON payloads and positional ROOT/ID conventions. Exit status 2 also reflects incomplete checkpoints or blocked publishing items; it is not solely a parser error. Sensitive argument values and underlying exceptions are not echoed. Use the command help to correct invalid inputs.
 
 Old SHROUD state stays readable until explicitly upgraded. v0.2/v0.3 workspaces need no catalog rewrite to use this terminal. The prior argparse source is retained as history, not a second executable command implementation. The browser and image engines remain unchanged.
+
+## Menu-first startup
+
+Run `riposte`, `riposte ui`, `START.ps1`, or `START.cmd` without a folder to
+open the interactive main menu. Choose an action with arrows and Enter or a
+visible number. It explains the input/output scope before opening its location
+browser. Space selects files/folders for RIPOSTE; Enter opens folders; Backspace
+goes up; `l` lists drives; `g` optionally accepts a pasted location. Esc returns
+without processing. Sort and combined processing retain the preview and exact
+`REPLACE` confirmation. Direct command syntax remains unchanged.
+
+`INSTALL.ps1` / `INSTALL.sh` perform setup only. START never installs packages.
+The optional `-ImageFolder` (`-ArtworkFolder` alias) or shell positional folder
+preselects a location without skipping the menu. `-Lab` / `--lab` belongs to INSTALL.
