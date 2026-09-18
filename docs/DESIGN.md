@@ -21,5 +21,5 @@ choose/configure/protect/review/export sequence.
 Use **image**, **folder**, and the actual operation name in interface copy.
 Explain selection scope before showing a location browser. Keep destructive
 replacement and visual acceptance explicit. See [UX-CONTRACT.md](UX-CONTRACT.md)
-for the behavior contract and [evidence/menu-startup/README.md](evidence/menu-startup/README.md)
+for the behavior contract and [evidence/menu-startup/README.md](../evidence/menu-startup/README.md)
 for tested scope. Earlier visual specifications remain historical design context.
