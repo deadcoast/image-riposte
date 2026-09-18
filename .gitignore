@@ -11,3 +11,5 @@ dist/
 .riposte/
 .image_security_methods/
 .shroud/
+
+docs/image_security_methods/
