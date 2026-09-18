@@ -4,6 +4,7 @@ A successful script proves these observations reproduced, not that the product
 passes their proposed repair criteria. No user artwork, model downloads or
 application-source edits are involved.
 """
+import csv
 import datetime as dt
 import hashlib
 import json
@@ -176,9 +177,33 @@ def run():
 
     after = hashes()
     assert before == after
+    review = json.loads((Path(__file__).parent / "review.json").read_text(encoding="utf-8"))
+    assert review["sources"] == after
+    assert {item["group"] for item in review["findings"]} == {1, 2, 3, 4}
+    assert len(review["findings"]) == len({item["id"] for item in review["findings"]}) == 16
+    csv.field_size_limit(10_000_000)
+    with (ROOT / "todo.PACER.csv").open(encoding="utf-8", newline="") as stream:
+        tasks = {row["ID"]: row for row in csv.DictReader(stream)}
+    for item in review["findings"]:
+        row = tasks[item["id"]]
+        assert row["Status"] == "TODO" and row["ApprovalState"] == "PENDING"
+        assert row["Priority"] == item["priority"]
+        assert item["sources"] and item["acceptance"] and item["impact"]
+        for location in item["sources"]:
+            path, line = location.rsplit(":", 1)
+            assert (ROOT / path).is_file()
+            assert 1 <= int(line) <= len((ROOT / path).read_text(encoding="utf-8").splitlines())
+        if item["id"] != "PAC-015":
+            assert row["Title"] == item["title"]
+            assert row["ValidationCriteria"] == item["acceptance"]
+    with (ROOT / "organism.PACER.csv").open(encoding="utf-8", newline="") as stream:
+        requirements = {row["ID"]: row for row in csv.DictReader(stream)}
+    assert all(requirements[key]["Status"] == "PACED_REQUIREMENT" for key in ("OGM-012", "OGM-018"))
     return {"probe_status": "OBSERVATIONS_REPRODUCED", "application_acceptance": "NOT_A_PASS_CLAIM",
         "command": ".venv/Scripts/python.exe evidence/development-review-2026-09-18/probes.py",
         "source_unchanged": True, "sources": before, "findings": findings,
+        "review_checks": {"groups": 4, "items": 16, "todo_entries_pending": True,
+                          "source_links_exist": True, "recovery_acceptance_incomplete": True},
         "verifier_sha256": hashlib.sha256(Path(__file__).read_bytes()).hexdigest()}
 
 

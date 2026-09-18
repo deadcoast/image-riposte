@@ -1,0 +1,490 @@
+{
+  "task": "PAC-028",
+  "date": "2026-09-18",
+  "request": "CONTINUE TO THE NEXT STEP IN DEVELOPMENT; UTILIZE PACERS RIGEROUS IDENTIFICATION YOURSELF TO FIND AND COMPILE LISTS OF:[1. ANY WEAK POINTS IN THE SOURCE CORDE, 2. POINTS THAT REQUIRE FURTHER DEVELOPMENT, 3. POINTS THAT CAN BENEFIT FROM ADDITIONS AND POLISH, 4. NEW MODULES AND OR FEATURES THAT CAN BENEFIT THE CORE SYSTEM OPERATION.]",
+  "scope": "Source-led development identification. Application source is read-only; findings are proposals for follow-up, not repaired-feature claims.",
+  "groups": {
+    "1": "Weak points in source",
+    "2": "Further development required",
+    "3": "Additions and polish",
+    "4": "Beneficial new modules or features"
+  },
+  "priority_order": [
+    "PAC-029",
+    "PAC-030",
+    "PAC-031",
+    "PAC-032",
+    "PAC-035",
+    "PAC-033",
+    "PAC-036",
+    "PAC-015",
+    "PAC-034",
+    "PAC-037",
+    "PAC-038",
+    "PAC-039",
+    "PAC-040",
+    "PAC-041",
+    "PAC-042",
+    "PAC-043"
+  ],
+  "findings": [
+    {
+      "id": "PAC-029",
+      "group": 1,
+      "priority": "HIGH",
+      "title": "Recover safely from abandoned workspace locks",
+      "basis": "OBSERVED_REPRODUCED",
+      "sources": [
+        "src/riposte/store.py:116",
+        "src/riposte/sort_history.py:269"
+      ],
+      "probe": "crash_lock",
+      "observed": "A real child exited with code 23 while holding the workspace lock and after saving recovery state. Undo preview returned ready=true, but Undo apply returned WORKSPACE_LOCKED. The zero-byte lock has no owner identity; original bytes survived.",
+      "impact": "A crash or forced termination can prevent the built-in recovery operation from running.",
+      "acceptance": "Add owner-bound, race-safe crash recovery or an OS-managed lease. A killed worker must leave a usable explicit recovery path; a live owner must never be displaced. Test killed-process recovery, PID reuse, concurrent claims, partial journals and exact undo.",
+      "depends": []
+    },
+    {
+      "id": "PAC-030",
+      "group": 1,
+      "priority": "HIGH",
+      "title": "Enforce application-folder separation at the shared operation boundary",
+      "basis": "OBSERVED_REPRODUCED",
+      "sources": [
+        "src/riposte/terminal/paths.py:24",
+        "src/riposte/terminal/service.py:51",
+        "src/riposte/store.py:25"
+      ],
+      "probe": "application_overlap",
+      "observed": "The terminal rejects a synthetic subfolder inside the application checkout with IMAGE_FOLDER_OVERLAPS_APPLICATION. The real direct CLI sorted the same folder successfully.",
+      "impact": "CLI/API entry points can operate on a location the interactive workflow treats as unsafe, including installation assets.",
+      "acceptance": "Centralize the overlap guard for mutating operations across CLI, terminal and API; define source-checkout and installed-wheel roots explicitly. Test exact app root, ancestor, descendant and independent sibling workspaces without following links.",
+      "depends": []
+    },
+    {
+      "id": "PAC-031",
+      "group": 1,
+      "priority": "HIGH",
+      "title": "Bind ordinary sorting to the preview confirmed by the user",
+      "basis": "OBSERVED_REPRODUCED",
+      "sources": [
+        "src/riposte/organizer.py:66",
+        "src/riposte/organizer.py:147",
+        "src/riposte/terminal/controller.py:514"
+      ],
+      "probe": "ordinary_preview",
+      "observed": "An ordinary preview counted one image; adding a second file before apply resulted in two migrated images. Ordinary plans have no preview ID, while category plans do.",
+      "impact": "The terminal promises to apply the displayed plan, but ordinary sorting applies the directory's later contents. Existing directory-wide behavior is confirmed; the stronger preview contract is a proposed change.",
+      "acceptance": "Extend reviewed identity/destination receipts to ordinary and combined sorting, or require an explicit separately named live-directory mode. Added, changed or removed inputs and policy changes must require renewed preview without creating state.",
+      "depends": []
+    },
+    {
+      "id": "PAC-032",
+      "group": 1,
+      "priority": "MEDIUM",
+      "title": "Remove repeated full-catalog reads from sorting and lookup",
+      "basis": "OBSERVED_REPRODUCED",
+      "sources": [
+        "src/riposte/organizer.py:354",
+        "src/riposte/organizer.py:184",
+        "src/riposte/store.py:163",
+        "src/riposte/server.py:279"
+      ],
+      "probe": "catalog_scaling",
+      "observed": "Auditing 16 category images returned 256 title rows across 16 loads; 32 images returned 1024 rows across 32 loads. Looking up all images repeated the same full-catalog pattern.",
+      "impact": "Work grows quadratically for these paths; browser polling also returns the full collection. This is measured call/row growth, not an end-user latency benchmark.",
+      "acceptance": "Use indexed ID lookup and operation-local title maps with explicit revision/integrity guards. Measure row reads, bytes, elapsed time and memory at increasing collection sizes; retain detection of changed catalogs during apply.",
+      "depends": []
+    },
+    {
+      "id": "PAC-033",
+      "group": 1,
+      "priority": "MEDIUM",
+      "title": "Reduce application source typing debt without weakening checks",
+      "basis": "OBSERVED_SOURCE_BOUND_EVIDENCE",
+      "sources": [
+        "typing/evidence/source-current.txt:1",
+        "typing/check.py:165",
+        "src/riposte/terminal/controller.py:1",
+        "src/riposte/terminal/reports.py:1"
+      ],
+      "observed": "The retained raw-source audit matches all 56 current application-file hashes and reports 1103 diagnostics in 37 of 49 Python files. Controller has 197, reports 155, CLI 123 and publication 96. External contracts pass separately.",
+      "impact": "Loose internal records and untyped boundaries make safe refactoring and cross-interface parity harder to verify; diagnostics are not 1103 proven runtime defects.",
+      "acceptance": "Start with shared request/result records and mutation boundaries; review behavior before annotation changes. Reduce a declared baseline by module/error class with unchanged regression behavior; no blanket Any, ignores, deleted safeguards or snapshot-only silencing.",
+      "depends": []
+    },
+    {
+      "id": "PAC-015",
+      "group": 2,
+      "priority": "HIGH",
+      "title": "Complete real-model and native-platform qualification",
+      "basis": "OBSERVED_EXISTING_OPEN_WORK",
+      "sources": [
+        "docs/VALIDATION.md:56",
+        "tests/test_v02_models.py:53",
+        "tests/test_v03_temporal.py:27",
+        "tests/test_v04_terminal_host.py:8"
+      ],
+      "observed": "PAC-015 remains pending. Current tests include synthetic loader/model substitutions, and four POSIX PTY cases skip on Windows. The completed category suite does not establish pretrained protection efficacy or all native interfaces.",
+      "impact": "Model-specific behavior, native host behavior and visual/effectiveness claims remain bounded by missing qualification.",
+      "acceptance": "Continue the existing PAC-015 rather than duplicate it: controlled real local model runs, declared hardware/runtime identities, native console/browser checks and explicit visual-versus-efficacy acceptance. Retain unavailable paths as unverified; do not make user-run testing a prerequisite.",
+      "depends": []
+    },
+    {
+      "id": "PAC-034",
+      "group": 2,
+      "priority": "MEDIUM",
+      "title": "Verify the declared Python and installation platform matrix",
+      "basis": "OBSERVED_SCOPE_GAP",
+      "sources": [
+        "pyproject.toml:9",
+        "tests/test_v04_terminal_host.py:8",
+        "evidence/category-sort/README.md:1"
+      ],
+      "observed": "Python >=3.11 and Windows/macOS/Linux launch paths are advertised. Recent package proof uses the existing Windows Python 3.13 environment; there is no .github workflow directory in this checkout.",
+      "impact": "Fresh packaging equality and installed smoke tests do not establish clean bootstrap or minimum-version/platform compatibility.",
+      "acceptance": "Run an offline-friendly development matrix over the supported minimum/current Python versions and launch paths, with clean and upgrade installation fixtures and explicit optional dependencies. Keep native-model qualification under PAC-015.",
+      "depends": []
+    },
+    {
+      "id": "PAC-035",
+      "group": 2,
+      "priority": "MEDIUM",
+      "title": "Make long read-only browser scans cancellable with visible progress",
+      "basis": "OBSERVED_REPRODUCED",
+      "sources": [
+        "src/riposte/server.py:294",
+        "src/riposte/server.py:304",
+        "src/riposte/terminal/service.py:47"
+      ],
+      "probe": "browser_scan_cancel",
+      "observed": "The API marks read-only organize previews non-cancellable; a real job cancellation request returns JOB_CANCELLATION_UNSUPPORTED. Category discovery/rule review execute as direct request handlers instead of shared jobs.",
+      "impact": "Large scans have inconsistent progress and cancellation across terminal and browser, even though read-only discovery supports callbacks.",
+      "acceptance": "Route browser discovery, rule review and previews through cancellable jobs with bounded progress, stale-result rejection and explicit read-only semantics. Keep source replacement/undo commit sections non-cancellable and verify shutdown behavior.",
+      "depends": []
+    },
+    {
+      "id": "PAC-036",
+      "group": 2,
+      "priority": "MEDIUM",
+      "title": "Refresh legacy acceptance evidence without erasing its history",
+      "basis": "OBSERVED_REGISTER_GAP",
+      "sources": [
+        "organism.PACER.csv:1",
+        "typing/check.py:165",
+        "evidence/category-sort/README.md:1"
+      ],
+      "observed": "OGM-001, OGM-002, OGM-003, OGM-004 and OGM-006 remain PACED_REQUIREMENT and evaluate with stale source-bound reports, despite later scoped checks. Staleness is not itself a reproduced behavior failure.",
+      "impact": "The register cannot currently distinguish each old requirement's verified current scope from its historical acceptance packet.",
+      "acceptance": "Review each exact requirement against current sources and execute its missing proof before accepting a fresh report. Preserve historical acceptance and explicit raw-source/model/native limitations; leave unsupported requirements incomplete.",
+      "depends": []
+    },
+    {
+      "id": "PAC-037",
+      "group": 3,
+      "priority": "MEDIUM",
+      "title": "Replace category-rule syntax fields with guided row editing",
+      "basis": "INFERRED_IMPROVEMENT",
+      "sources": [
+        "src/riposte/static/index.html:105",
+        "src/riposte/static/category-sort.js:10",
+        "src/riposte/terminal/actions.py:1",
+        "src/riposte/category_rules.py:95"
+      ],
+      "observed": "Users currently enter Label=term;alias, separate exclusion/priority/slug lines, and path=slug assignments; the terminal manual assignment field is a JSON list.",
+      "impact": "Valid operations require learning several small syntaxes, especially for ambiguous/legacy files and category renames.",
+      "acceptance": "Add selectable per-file assignment controls and structured rule rows with inline errors, preserved slugs on label-only renames, keyboard access and draft/save distinction. Retain CLI syntax and exact preview/consent guards.",
+      "depends": []
+    },
+    {
+      "id": "PAC-038",
+      "group": 3,
+      "priority": "MEDIUM",
+      "title": "Unify actionable recovery messages across terminal and browser",
+      "basis": "OBSERVED_SOURCE_GAP",
+      "sources": [
+        "src/riposte/terminal/reports.py:163",
+        "src/riposte/static/app.js:12",
+        "src/riposte/static/category-sort.js:17",
+        "src/riposte/terminal/output.py:41"
+      ],
+      "observed": "Browser error maps and terminal recovery explanations are separate; the category dialog translates only a subset of category failures. Unmapped codes fall back to generic text instead of a concrete safe recovery action.",
+      "impact": "Users can see an error without knowing whether to reload rules, refresh a plan, resolve assignments or inspect recovery history.",
+      "acceptance": "Create a shared semantic error catalog with operation-specific recovery actions, retaining sanitized machine codes. Cover lock/history, category ties, unknown original titles, stale plans and rule revision errors without recommending unsafe lock deletion.",
+      "depends": [
+        "PAC-029"
+      ]
+    },
+    {
+      "id": "PAC-039",
+      "group": 3,
+      "priority": "LOW",
+      "title": "Clarify current documentation versus historical privacy and workflow contracts",
+      "basis": "OBSERVED_DOCUMENTATION_GAP",
+      "sources": [
+        "docs/DEVELOPMENT-SPEC.md:1",
+        "docs/DEVELOPMENT-SPEC.md:17",
+        "docs/WAVE-04.md:5",
+        "README.md:143"
+      ],
+      "observed": "Older documents are labelled historical/superseded, but still present earlier version headings, a seven-action deck and an absolute ban on persisting originals beside current date-only guidance. Current README explicitly requires private originals/title history for undo.",
+      "impact": "Developers and users must reconcile several generations of contracts to understand current private-state and public-export behavior.",
+      "acceptance": "Add precise supersession links and current scope annotations while preserving historical documents verbatim where archival. Current entry documentation must distinguish public exports, generated metadata and private recovery state, with command examples checked against shipping CLI.",
+      "depends": []
+    },
+    {
+      "id": "PAC-040",
+      "group": 4,
+      "priority": "MEDIUM",
+      "title": "Add reusable path-free publishing recipes",
+      "basis": "INFERRED_FEATURE",
+      "sources": [
+        "src/riposte/publication.py:30",
+        "src/riposte/terminal/service.py:91",
+        "docs/WAVE-04.md:27"
+      ],
+      "observed": "PublishRecipe is validated and stored inside batch requests, but there is no reusable named recipe library exposed across entry points. The next-wave document already identifies reusable path-free recipes.",
+      "impact": "Users repeatedly configure the same output sizes and quality/search settings; a recipe library can reduce configuration mistakes.",
+      "acceptance": "Version, list, preview, save and select named recipes independently of model paths and approvals. Saving never starts processing; loaded settings remain subject to current validation, explicit consent and per-batch model identity.",
+      "depends": []
+    },
+    {
+      "id": "PAC-041",
+      "group": 4,
+      "priority": "MEDIUM",
+      "title": "Add workspace storage and recovery health inspection",
+      "basis": "INFERRED_FEATURE",
+      "sources": [
+        "src/riposte/sort_history.py:135",
+        "src/riposte/store.py:178",
+        "README.md:151"
+      ],
+      "observed": "Every sort preserves private originals, including full videos; exclusive commits use hard links. No storage-usage/backup-retention/disk-capability preflight service exists in the inspected core.",
+      "impact": "A read-only health view could explain backup growth, required free space, unsupported storage capabilities and recoverable/pending histories before large operations.",
+      "acceptance": "Report used/estimated space, filesystem capability results and history status without deleting anything. Any later pruning needs an exact explicit plan, preserves active recovery chains and fails closed on uncertainty. Coordinate crash ownership with PAC-029.",
+      "depends": [
+        "PAC-029"
+      ]
+    },
+    {
+      "id": "PAC-042",
+      "group": 4,
+      "priority": "MEDIUM",
+      "title": "Add private original-title and category library search",
+      "basis": "INFERRED_FEATURE",
+      "sources": [
+        "src/riposte/terminal/service.py:70",
+        "src/riposte/sort_titles.py:1",
+        "src/riposte/server.py:279"
+      ],
+      "observed": "Library search filters canonical relative paths, IDs and dates. Trusted original filenames now exist privately, but the normal library query does not search them or expose category-specific filters.",
+      "impact": "After numbered sorting, users cannot locate an item by a descriptive word that is absent from its category folder.",
+      "acceptance": "Add opt-in local search over trusted private titles and category assignments with bounded paging and clear unknown-title states. Keep titles out of public catalogs, PNG metadata, shared packs and default external reports.",
+      "depends": [
+        "PAC-032"
+      ]
+    },
+    {
+      "id": "PAC-043",
+      "group": 4,
+      "priority": "LOW",
+      "title": "Add artist-directed spatial protection budgets",
+      "basis": "INFERRED_FEATURE",
+      "sources": [
+        "src/riposte/quality.py:29",
+        "src/riposte/views.py:67",
+        "docs/WAVE-04.md:28"
+      ],
+      "observed": "Current spatial_budget is an automatic white/edge heuristic; optimization masks are predefined. There is no artist-supplied regional budget in PublishRecipe or primary forms.",
+      "impact": "Users could preserve sensitive linework/text/regions while allowing an explicit quality budget elsewhere.",
+      "acceptance": "Admit a validated mask/budget format, resampling rules and reproducible identity; preview it on the final raster and carry it through quality gates, resume identity and exact output review. Do not claim improved AI resistance without separate controlled evidence.",
+      "depends": [
+        "PAC-015"
+      ]
+    }
+  ],
+  "domains": [
+    {
+      "domain": "Sanitation and storage",
+      "sources": [
+        "src/riposte/sanitize.py",
+        "src/riposte/policy.py",
+        "src/riposte/store.py",
+        "src/riposte/sort_history.py"
+      ],
+      "review": "Inspected format/pixel/file limits, same-file identity, date-only PNG audit, exclusive commits, lock and recovery lifecycle. No new sanitation defect established. Reproduced crash-lock recovery blocker; filesystem-capability and backup-usage inspection proposed."
+    },
+    {
+      "domain": "Sorting, categories and identity",
+      "sources": [
+        "src/riposte/organizer.py",
+        "src/riposte/category_sort.py",
+        "src/riposte/category_rules.py",
+        "src/riposte/sort_titles.py"
+      ],
+      "review": "Reviewed rules revision, private provenance, exact category preview, ordinary apply semantics, title restoration and catalog audit. Reproduced ordinary preview drift and repeated full title reads. Preserve category safety controls and private-title boundary."
+    },
+    {
+      "domain": "Publication lifecycle and models",
+      "sources": [
+        "src/riposte/publication.py",
+        "src/riposte/models.py",
+        "src/riposte/release_guard.py",
+        "src/riposte/quality.py",
+        "src/riposte/coupled.py",
+        "src/riposte/views.py",
+        "src/riposte/temporal.py"
+      ],
+      "review": "Reviewed validated recipes, persisted batch identities, exact-byte review/pack paths, quality budget and local adapter preflight. No new approval-integrity defect established. Real-model/native proof remains PAC-015; named recipes and user-directed spatial budgets proposed."
+    },
+    {
+      "domain": "API and browser",
+      "sources": [
+        "src/riposte/server.py",
+        "src/riposte/static/app.js",
+        "src/riposte/static/category-sort.js",
+        "src/riposte/static/index.html"
+      ],
+      "review": "Inspected authentication/body limits, jobs, cancellation, polling and category controls. Reproduced non-cancellable read-only API preview. Direct discovery/rule review lacks the existing jobs/progress path. No new rendered browser or accessibility acceptance claimed."
+    },
+    {
+      "domain": "CLI and terminal",
+      "sources": [
+        "src/riposte/cli.py",
+        "src/riposte/terminal/service.py",
+        "src/riposte/terminal/paths.py",
+        "src/riposte/terminal/controller.py",
+        "src/riposte/terminal/reports.py",
+        "src/riposte/terminal/output.py"
+      ],
+      "review": "Traced picker validation, shared root validation, confirmation dispatch, search and recovery text. Reproduced terminal-versus-real-CLI application-directory guard difference. Propose shared enforcement and focused workflow polish."
+    },
+    {
+      "domain": "Packaging and launchers",
+      "sources": [
+        "pyproject.toml",
+        "README.md",
+        "evidence/category-sort/package.json",
+        "evidence/category-sort/README.md"
+      ],
+      "review": "Reviewed declared Python/platform support against retained installed-package proof. Existing package/source equality and wrapper checks are evidence for the Windows development environment, not a clean-machine or cross-platform matrix. No installer executed and no dependencies changed."
+    },
+    {
+      "domain": "Tests, typing and evidence",
+      "sources": [
+        "typing/check.py",
+        "typing/evidence/source-current-command.json",
+        "typing/evidence/source-current.txt",
+        "typing/evidence/verification.json",
+        "tests/test_v02_models.py",
+        "tests/test_v03_temporal.py",
+        "tests/test_v04_terminal_host.py"
+      ],
+      "review": "Verified raw audit source bindings against all current application files; counted diagnostics and reviewed loader/model substitutions and Windows PTY skips. Retained 1062-pass suite is current-source evidence, not a newly executed suite in this audit. Five fresh synthetic probes executed."
+    },
+    {
+      "domain": "Roadmap and PACER acceptance",
+      "sources": [
+        "todo.PACER.csv",
+        "organism.PACER.csv",
+        "docs/WAVE-04.md",
+        "docs/DEVELOPMENT-SPEC.md",
+        "docs/VALIDATION.md"
+      ],
+      "review": "Reconciled historical audit closure and existing PAC-015 to avoid duplicate work. Queried stale OGM-001/002/003/004/006. Compiled four requested groups with priorities, source locations and acceptance criteria, keeping new development pending."
+    }
+  ],
+  "validation": {
+    "command": ".venv/Scripts/python.exe evidence/development-review-2026-09-18/probes.py",
+    "probe_result": "OBSERVATIONS_REPRODUCED",
+    "probe_count": 5,
+    "application_source_unchanged": true,
+    "retained_suite": "1062 passed, 8 platform skips; final category feature suite, not rerun in this identification audit",
+    "raw_source": {
+      "diagnostics": 1103,
+      "files_with_diagnostics": 37,
+      "python_files_checked": 49,
+      "current_source_bindings": true
+    },
+    "limitations": [
+      "Synthetic local inputs and controlled API work function; no user media.",
+      "No pretrained models, GPU efficacy, clean-machine installs, native UI qualification or new accessibility acceptance executed.",
+      "Measured catalog row growth is not a wall-clock performance benchmark.",
+      "Existing manual PASS reports describe bounded tests; the new hard-exit recovery finding requires narrower acceptance until repaired."
+    ],
+    "recommendation": "Begin implementation with PAC-029, then PAC-030 and PAC-031 before optional additions.",
+    "recovery_acceptance": {
+      "OGM-012": "PACED_REQUIREMENT",
+      "OGM-018": "PACED_REQUIREMENT",
+      "reason": "Hard-exit counterexample blocks built-in Undo; missing owner-aware recovery is PAC-029. Historical manual PASS artifacts remain preserved for narrower cooperative/in-process tests."
+    }
+  },
+  "sources": {
+    "src/riposte/__init__.py": "a9e9d2abdceaac2c47ed5846a874787f47337c407e2b2aa8064a32b53489f28d",
+    "src/riposte/__main__.py": "79ee6f134c5c5193377cf9b189cbdcc3e2095e49ba9cec310114441c15a917c4",
+    "src/riposte/benchmark.py": "a7fbb359fb87d7ed6c5593a6fb0c194e5a34d20dfe0e9dd549200fe1007c7d68",
+    "src/riposte/category_rules.py": "7e4d056b08acd55632c2c9b0132f3782518e0d25c8e42ea67dabc2ac26b90a60",
+    "src/riposte/category_sort.py": "4f36ddddbf556f618255e424f8f3645fd347ce2d37c5ee89e97e991d7c829717",
+    "src/riposte/cli.py": "fcaae834111109f5650788965391127ac79575e28711265c5c527db105e5132c",
+    "src/riposte/coupled.py": "eca0afb9e0de03b740029864a5ddeeb7212cc9676c5e9cc191a6f4d1274641a8",
+    "src/riposte/errors.py": "7a9c08b799d1c713fbd82e30fd145a6dc3085c215848893e31d1ec066abc5244",
+    "src/riposte/generation.py": "674e942d9781c2ef640a65b39873b484336d08e99251f12eb3277b5e333c5525",
+    "src/riposte/intake.py": "5fdea54e8c89d58230c68521317b89044de39e9b40e1cf173e5b9cd4575a97c4",
+    "src/riposte/lab.py": "3845f3e3abedd03d1f0c200b84395e6b46f67b2ff120f6e8a8fc75a2d8c03093",
+    "src/riposte/methods.json": "4405d32fac499c6f3b7fbce0afa04abea62e2509e130844a20899c39a6283920",
+    "src/riposte/metrics.py": "0d873a0cb8972b5bdce14eb3cdc49ab391af31a297981fda1ad37603496c22eb",
+    "src/riposte/models.py": "cd6d2fd05c0288e270879bc260dcd299a3fcbe378bc564b571826ad1992c1fcf",
+    "src/riposte/optimizer.py": "c41b3ee66835aea8feab01985434844ee9fb96b217f19ecf0ec8d47a1a047918",
+    "src/riposte/organizer.py": "19c43093ca05c75531730610e3e92c6b74e246835e8a102180a3135c0ada5638",
+    "src/riposte/policy.py": "5d3250a13fd462665131bc1370016c3b4d915ed86a936ee8e8d6ce38d91f5432",
+    "src/riposte/publication.py": "e22aa9db5edd8cf7af6ec532e2ce9f32d9859e5afdf5ebe81aff6817b741897e",
+    "src/riposte/qualification.py": "4fc049f680adc31c34f02499d8dfe4ebed9af46f47fa1cd554f50ead273231ce",
+    "src/riposte/quality.py": "3af92838360f5f9ce65d69973eef37a6dd006d733f56c376443a2228d3c9656d",
+    "src/riposte/release_guard.py": "52787a6620ccab6efdd1446cb469d8e966212ae2fad0f6bd8219aebe031cd391",
+    "src/riposte/runtime_probe.py": "67178701646b2d6e144b42400398394c85c14963a27f3e4a359d0942221f712d",
+    "src/riposte/sanitize.py": "8233e398cf90f403d0fad458b83ddddefb873234183c1610348501d5383f90c2",
+    "src/riposte/server.py": "ef8dbc63999eae63e9019976e25842ac26fdabe3baae4bd72019e6c1c102649f",
+    "src/riposte/sort_history.py": "90a0b7a3a47961c1b4330038883a84ccc4346d459c0bee6a2a012dbffa241aa4",
+    "src/riposte/sort_titles.py": "5dfacf7438362b2e80538dde40ea3b4947a9ed684b8e2a057b7af0d8caa58720",
+    "src/riposte/static/app.js": "c2fbaf3078a897e8ac77785214b3b3bf5aa71799711341afff202d01d9d50999",
+    "src/riposte/static/category-sort.js": "4f528f7d122b6f368a6103d880a81dd5ed58cb1fa84913bc8873e881d48192de",
+    "src/riposte/static/index.html": "2403d1b7ec5a0b12937d321e732471b5844347a26563163e8589f646f23dbf2d",
+    "src/riposte/static/publish.css": "3194ff34f6648c32432a8a85fcd7cbe8d2103f4fe0e4506e5af3e759c460261b",
+    "src/riposte/static/publish.js": "639451897dd7402243571acf68a38785e75001bec50c310c969a3d10510b2b2c",
+    "src/riposte/static/style.css": "6007968f2ef01b68952a5c8616298808a73546ae7162890b425ca78a7b527cea",
+    "src/riposte/store.py": "9f5521a9346cba11dea37ad0d36d5485168aad4fc0716c27ab0a04021ac3e7cd",
+    "src/riposte/temporal.py": "e224555e5fdd1f98fcf030d5c66d99ee38440a0154959e63a2fe434fe42bbef9",
+    "src/riposte/terminal/__init__.py": "3205c2b37274b4a78cad648f40635e4b02474f77515b94e506510e521ec79fa2",
+    "src/riposte/terminal/actions.py": "2152c0e98305ae6a218a6c3c025845475bd529438111e12357efb3da21346137",
+    "src/riposte/terminal/app.py": "abd4db345de03dca12650e4713063b09277ebf67ff84c993a38b6e1b6f104a2a",
+    "src/riposte/terminal/controller.py": "147d1f9fdca267f15c76cd0ffdf0b3f1acb2e87106624885a67579141c13475c",
+    "src/riposte/terminal/help.py": "a8602fc471cc001809b87d9e3145096914229e4ddaef7271cacfbba739c6dd8f",
+    "src/riposte/terminal/interaction.py": "814882a17220d0157b0321ccbbda8bf74b5de5b3359565ffb36bc52e3b840e12",
+    "src/riposte/terminal/jobs.py": "c3e7f2ab8d53ba9d2319c9021a059af816e246272f9001e7bbe0eb3ea5f2633b",
+    "src/riposte/terminal/keyboard.py": "5506f92c9999aad2658ed012f808c90043c4ea830cc1c6f6e32871518c83a4e0",
+    "src/riposte/terminal/material.py": "522d5080177faae021905b94851bf3836bb2c18805a38d0a1d56b8402f5cebeb",
+    "src/riposte/terminal/output.py": "07047f0f8c4c39c95414c6da86fc8a97ba465fd779e2d2706d0b24dea480eb80",
+    "src/riposte/terminal/palette.py": "ab05080d75402a964ce73e25755fb3476b693ab8b79ab10982b4f74f42ee3e41",
+    "src/riposte/terminal/paths.py": "1493c5ad7f5ee6e64674430fcd370265ff656409a87b4a6415f79ea447b9671c",
+    "src/riposte/terminal/preview.py": "446b57630ee54c99070082b28f67e6d1d647b201577fb55d9ff5fb39259a67bc",
+    "src/riposte/terminal/render.py": "cae305ac50474ffd4ca011869af94baf408ec9ed98d14b02628fa5be9d08027b",
+    "src/riposte/terminal/reports.py": "5dfa1aa03c1918d2d0e1303a37e216157dd2b396a7afbce077c5faddddae5f62",
+    "src/riposte/terminal/service.py": "9fb6f38cea13b8946fd9d47b192154fc1d6a429ca2c893892c540242fe51a41f",
+    "src/riposte/terminal/signals.py": "dd7ef5eac1860b126ceebeecb6aa6c6151f14dd4813254870b061ce71470ce19",
+    "src/riposte/terminal/state.py": "db1465f9efdf6ce167e42c36e56f9ef1416d16bc2ef793107e4a39a9cf2064f0",
+    "src/riposte/terminal/surface.py": "8088e77ab12aa16868beb09dcae60a2e3b67de64f106e7ea0b0245646bb110d1",
+    "src/riposte/title_categories.py": "0933a01ab42b5299e9257d0f410f647e50d107d542238b521ea4d70148e4c6ba",
+    "src/riposte/video.py": "5732775794d132a5c956874fada06e0efac16ca84307b68aa0a14c47a129e814",
+    "src/riposte/views.py": "901a71db135ce03b0c929d230de1bacb73542dcc1570df166f36013a906b90e7"
+  },
+  "reviewed_inputs": {
+    "README.md": "22afcd4461f28b582a5b5f759beb66614da2dc98f36f391b3e059a05381e3079",
+    "AGENTS.md": "a6d4ea1860b088946e9eca107b77105876a405391e4fdc708c2312755505be3b",
+    "docs/WAVE-04.md": "b683d8efdfce6101528f7be01d7d0b72fb5ff0519a3af704b6b88c6d5020d902",
+    "docs/DEVELOPMENT-SPEC.md": "67161a784fc39e19cb937f0a3e08301012da69cc58402066c98299c9ba5569ad",
+    "docs/VALIDATION.md": "cbc6ed660a472ad4dc5afd547930cc8323c8acd26b36af38f55ae54df10d90a3",
+    "pyproject.toml": "9a594befa9bc12ce1eb50db8a16890f15f4d237e7618e26a164356a66ed53153",
+    "typing/evidence/source-current-command.json": "74c0ef1acc98a9124cdd43ba3be826fb1d156ad682d66107c0d082842c3685d6",
+    "typing/evidence/source-current.txt": "6b312ab7d7c718fb5a950f2151542aa5c5aa32a9b0a4cf94ad6fd03f9c3c7592"
+  }
+}

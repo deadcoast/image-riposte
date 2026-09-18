@@ -106,5 +106,12 @@
       "scope": "Real API job/cancel path with a controlled read-only work function; no model or browser rendering involved."
     }
   },
-  "verifier_sha256": "685e455b5e1e2d2e1421b67978a05c896fdce02b1150bc2e018c36f49c523ffb"
+  "review_checks": {
+    "groups": 4,
+    "items": 16,
+    "todo_entries_pending": true,
+    "source_links_exist": true,
+    "recovery_acceptance_incomplete": true
+  },
+  "verifier_sha256": "840a92e5a1d793a3267738f3da087026ecf2240feef5c0b2c43a48f5389f1720"
 }
