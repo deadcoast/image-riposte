@@ -1,32 +1,32 @@
 [
   {
     "file": "typing/stubs/_riposte_types.pyi",
-    "line": 11,
+    "line": 12,
     "declaration": "Report: TypeAlias = dict[str, Any]"
   },
   {
     "file": "typing/stubs/_riposte_types.pyi",
-    "line": 12,
+    "line": 13,
     "declaration": "ModelTensor: TypeAlias = Any"
   },
   {
     "file": "typing/stubs/_riposte_types.pyi",
-    "line": 176,
+    "line": 202,
     "declaration": "recipe: Report"
   },
   {
     "file": "typing/stubs/_riposte_types.pyi",
-    "line": 244,
+    "line": 270,
     "declaration": "def __call__(self, x: ModelTensor, /) -> ModelTensor:"
   },
   {
     "file": "typing/stubs/_riposte_types.pyi",
-    "line": 249,
+    "line": 275,
     "declaration": "def __call__(self, x: ModelTensor, keep: ModelTensor, seed: int, early_fraction: float, prompt_key: str, /) -> ModelTensor:"
   },
   {
     "file": "typing/stubs/_riposte_types.pyi",
-    "line": 253,
+    "line": 279,
     "declaration": "def __call__(self, x: ModelTensor, seed: int, /) -> ModelTensor:"
   },
   {
@@ -36,7 +36,7 @@
   },
   {
     "file": "typing/stubs/riposte/cli.pyi",
-    "line": 65,
+    "line": 69,
     "declaration": "def dispatch(ctx: typer.Context, name: str, root: Path | None=None, **values: Any) -> None:"
   },
   {
@@ -335,6 +335,41 @@
     "declaration": "def snapshot(self) -> list[Report]:"
   },
   {
+    "file": "typing/stubs/riposte/sort_history.pyi",
+    "line": 9,
+    "declaration": "def _save(root: Path, journal: Report) -> None:"
+  },
+  {
+    "file": "typing/stubs/riposte/sort_history.pyi",
+    "line": 11,
+    "declaration": "def latest_sort(root: Path) -> Report | None:"
+  },
+  {
+    "file": "typing/stubs/riposte/sort_history.pyi",
+    "line": 24,
+    "declaration": "def _check(root: Path, journal: Report) -> UndoSortReport:"
+  },
+  {
+    "file": "typing/stubs/riposte/sort_history.pyi",
+    "line": 17,
+    "declaration": "journal: Report"
+  },
+  {
+    "file": "typing/stubs/riposte/sort_history.pyi",
+    "line": 19,
+    "declaration": "def prepare(self, source: Path, output: str | None, expected: Report | None, media: str, before_row: CatalogRow | None=...) -> Report:"
+  },
+  {
+    "file": "typing/stubs/riposte/sort_history.pyi",
+    "line": 20,
+    "declaration": "def reject_output(self, entry: Report) -> None:"
+  },
+  {
+    "file": "typing/stubs/riposte/sort_history.pyi",
+    "line": 21,
+    "declaration": "def remove_source(self, entry: Report) -> None:"
+  },
+  {
     "file": "typing/stubs/riposte/temporal.pyi",
     "line": 24,
     "declaration": "def letterbox_tensor(x: ModelTensor, width: int, height: int) -> ModelTensor:"
@@ -453,6 +488,21 @@
     "file": "typing/stubs/riposte/terminal/state.pyi",
     "line": 59,
     "declaration": "models: dict[str, Any] = field(default_factory=dict)"
+  },
+  {
+    "file": "typing/stubs/riposte/title_categories.pyi",
+    "line": 17,
+    "declaration": "Progress: TypeAlias = Callable[[dict[str, Any]], None]"
+  },
+  {
+    "file": "typing/stubs/riposte/title_categories.pyi",
+    "line": 29,
+    "declaration": "def discover_categories(root: Path, *, min_count: int=..., max_words: int=..., limit: int=..., sample_limit: int=..., fillers: Sequence[str]=..., ignore: Sequence[str]=..., categories: Sequence[str]=..., progress: Progress | None=...) -> dict[str, Any]:"
+  },
+  {
+    "file": "typing/stubs/riposte/video.pyi",
+    "line": 13,
+    "declaration": "def record_video(root: Path, relative: str, info: Report) -> CatalogRow:"
   },
   {
     "file": "typing/stubs/riposte/views.pyi",

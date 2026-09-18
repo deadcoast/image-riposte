@@ -1,0 +1,86 @@
+.............................F.......................................... [  7%]
+........................................................................ [ 15%]
+............................................s........................... [ 23%]
+........................................................................ [ 31%]
+........................................................................ [ 39%]
+..............................................................s......... [ 47%]
+........................................................................ [ 55%]
+........................................................................ [ 63%]
+...........................s............................................ [ 70%]
+........................................................................ [ 78%]
+...........ssss......................................................... [ 86%]
+........................................................................ [ 94%]
+..................................................                       [100%]
+================================== FAILURES ===================================
+_____________________ test_browser_review[native_browser] _____________________
+
+scenario = 'native_browser'
+
+    @pytest.mark.parametrize('scenario', [
+        'approval_waits_for_decode',
+        'failed_image_blocks_approval',
+        'failed_decode_blocks_approval',
+        'new_review_clears_old_pixels',
+        'superseded_load_cannot_authorize',
+        'original_pixels_required',
+        'cached_preview_is_revalidated',
+        'closed_review_cannot_submit',
+        'native_close_cancels_review',
+        'duplicate_decisions_blocked',
+        'old_decision_keeps_new_review_open',
+        'failed_decision_can_retry',
+        'rejection_without_images',
+        'same_path_load_race',
+        'late_decode_keeps_current_image',
+        'fresh_urls_are_released',
+        'acknowledgements_required',
+        'stale_receipt_is_not_success',
+        'old_workshop_keeps_new_review_open',
+        'workshop_handoff',
+        'native_browser',
+    ])
+    def test_browser_review(scenario):
+        node = shutil.which('node')
+        if node is None:
+            pytest.skip('Node is required to execute the browser JavaScript')
+        browser = None
+        if scenario == 'native_browser':
+            candidates = [
+                os.environ.get('RIPOSTE_TEST_BROWSER', ''),
+                shutil.which('chromium') or shutil.which('google-chrome') or '',
+                'C:/Program Files/Google/Chrome/Application/chrome.exe',
+                'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe',
+            ]
+            browser = next((name for name in candidates if name and Path(name).is_file()), None)
+            if browser is None:
+                pytest.skip('A local Chromium browser is required for native DOM verification')
+        script = Path(__file__).with_name('browser_review.cjs')
+        result = subprocess.run([node, str(script), scenario, *([browser] if browser else [])],
+                                capture_output=True, text=True, encoding='utf-8', timeout=30)
+>       assert result.returncode == 0, result.stdout + result.stderr
+E       AssertionError: Error: Browser command timed out: Page.navigate
+E             at Timeout._onTimeout (C:\Users\ryanf\github\_new\image-riposte\tests\browser_review.cjs:388:66)
+E             at listOnTimeout (node:internal/timers:605:17)
+E             at process.processTimers (node:internal/timers:541:7)
+E         
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['C:\\nvm4w\\nodejs\\node.EXE', 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\tests\\browser_r...:66)\n    at listOnTimeout (node:internal/timers:605:17)\n    at process.processTimers (node:internal/timers:541:7)\n').returncode
+
+tests\test_browser_review.py:51: AssertionError
+============================== warnings summary ===============================
+.venv\Lib\site-packages\fastapi\testclient.py:1
+  C:\Users\ryanf\github\_new\image-riposte\.venv\Lib\site-packages\fastapi\testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    from starlette.testclient import TestClient as TestClient  # noqa
+
+.venv\Lib\site-packages\starlette\testclient.py:53
+  C:\Users\ryanf\github\_new\image-riposte\.venv\Lib\site-packages\starlette\testclient.py:53: DeprecationWarning: The anyio.abc.BlockingPortal alias is deprecated, use anyio.from_thread.BlockingPortal instead.
+    _PortalFactoryType = Callable[[], AbstractContextManager[anyio.abc.BlockingPortal]]
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ===========================
+SKIPPED [1] tests\test_organizer.py:70: Symlinks unavailable
+SKIPPED [1] tests\test_v02_models.py:38: Windows symlink creation privilege unavailable
+SKIPPED [1] tests\test_v03_temporal.py:134: Windows account lacks symlink privilege
+SKIPPED [4] tests\test_v04_terminal_host.py:8: POSIX pseudo-terminal contract
+FAILED tests/test_browser_review.py::test_browser_review[native_browser] - As...
+1 failed, 906 passed, 7 skipped, 2 warnings in 73.84s (0:01:13)

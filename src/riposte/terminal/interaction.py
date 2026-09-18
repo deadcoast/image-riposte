@@ -32,7 +32,7 @@ def hints(state):
     if p.query_edit:return [Hint("Enter","Finish search","Keep the filter and return to the filtered list."),Hint("Esc","Finish search","Close search input without executing anything."),Hint("Ctrl+U","Clear filter","Show all rows again.")]
     rows={
         "picker":[Hint("Enter","Open / choose","Open a folder, toggle a file, or confirm the highlighted selection row."),Hint("Up/Down","Move","Move the highlight."),Hint("Space","Select","Select or unselect a file or folder for protection."),Hint("s","This folder","Select or unselect the current folder for protection."),Hint("Backspace","Parent","Browse the parent folder."),Hint("l","Locations","Browse home, Pictures, and drives."),Hint("g","Go to path","Optionally type or paste a folder location."),Hint("Esc","Cancel","Return without starting an operation.")],
-        "home":[Hint("Enter","Open","Choose Sort, RIPOSTE, or Sort + RIPOSTE. Arrows or visible numbers open an action."),Hint("Arrows","Move","Move the highlight; Enter opens the selected action."),Hint("1-8","Choose","Open the numbered action."),Hint("/","Find","Filter the action list."),Hint("q","Quit","Leave RIPOSTE.")],
+        "home":[Hint("Enter","Open","Choose Sort, RIPOSTE, or Sort + RIPOSTE. Arrows or visible numbers open an action."),Hint("Arrows","Move","Move the highlight; Enter opens the selected action."),Hint("1-9","Choose","Open the numbered action."),Hint("/","Find","Filter the action list."),Hint("q","Quit","Leave RIPOSTE.")],
         "library":[Hint("Enter","Select","Add or remove the focused image from your publishing selection."),Hint("i","Inspect","Open the focused image without changing your selection."),Hint("p","Protect","Configure protection for selected images."),Hint("/","Find","Filter dates, canonical names or image IDs."),Hint("a","Select visible","Add every visible image, up to the selection limit."),Hint("n","Clear selection","Remove selected images from the current selection; files are unchanged.")],
         "asset":[Hint("Enter","Select","Toggle this image in your publishing selection."),Hint("p","Protect","Carry this image and the current selection into protection."),Hint("v","Open PNG","Open audited full-resolution pixels in your local viewer.")],
         "batches":[Hint("Enter","Open batch","See its output queue, approvals and blocked items."),Hint("/","Find","Filter the batch list.")],
@@ -55,15 +55,20 @@ def hints(state):
         controls=[primary]
         if p.cursor<len(fields) and fields[p.cursor].kind=="path":controls.append(Hint("b","Browse","Choose this location in the file/folder browser."))
         if p.action in {"publish","riposte","sort-riposte","organize"}:controls.append(Hint("p","Preview","Read-only plan; no images are written."))
-        if p.action=="organize":controls.append(Hint("v","Audit","Verify existing clean files and workspace organization."))
+        if p.action=="organize":
+            controls.append(Hint("c","Categories","Discover recurring filename terms and review category groups without changing files."))
+            controls.append(Hint("u","Undo last sort","Preview recovery before an explicit UNDO confirmation."))
+            controls.append(Hint("v","Audit","Verify existing clean files and workspace organization."))
         elif p.action=="sort-riposte":controls.append(Hint("r","Preview","Preview both stages before confirming source replacement."))
+        elif p.action=="categories":controls.append(Hint("r","Discover / review","Read filename suggestions and category matches. No files or rules are saved."))
         else:controls.append(Hint("r","Run","Run these settings. Review acceptance still requires its separate confirmation."))
         if p.action in {"publish","riposte","sort-riposte"}:controls.append(Hint("f","Basic" if p.advanced else "Advanced","Show additional inputs, engine, quality and extra-model fields; no setting is discarded when collapsed."))
         controls.append(Hint("Left/Right","Choice","Cycle a focused choice field; other fields use Enter."))
         return controls+[Hint("Esc","Back","Return without starting another action.")]
     if p.name=="result":
         name=p.request.name if p.request else ""
-        primary=(Hint("Enter","Apply policy","Open the explicit REPLACE confirmation; no write from a single Enter.") if name=="organize" and not p.code
+        primary=(Hint("Enter","Confirm undo","Open the explicit UNDO confirmation; conflicts block restoration.") if name=="undo-sort" and not p.code and p.result.get("ready")
+                 else Hint("Enter","Apply policy","Open the explicit REPLACE confirmation; no write from a single Enter.") if name=="organize" and not p.code
                  else Hint("Enter","Confirm both stages","Open REPLACE confirmation before sorting and protection.") if name=="sort-riposte-plan" and not p.code
                  else Hint("Enter","Start protection","Run this planned selection with its configured models.") if name in {"plan","riposte-plan"} and not p.code
                  else Hint("Enter","Batches","Open publishing batches.") if name=="package" and not p.code

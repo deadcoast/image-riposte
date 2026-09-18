@@ -189,10 +189,17 @@ def atomic_clean_write(root: Path, relative: str, data: bytes, replace: bool = F
             f.write(data)
             f.flush()
             os.fsync(f.fileno())
-        if dest.exists() and not replace:
-            raise RiposteError("DESTINATION_EXISTS")
-        os.replace(temp, dest)
-        timestamp_day(dest, audit["date"])
+        timestamp_day(temp, audit["date"])
+        safe_child(root, relative)
+        if replace:
+            os.replace(temp, dest)
+        else:
+            # Link publication is exclusive: a late destination wins without
+            # being overwritten or receiving our output's timestamp.
+            try:
+                os.link(temp, dest)
+            except FileExistsError:
+                raise RiposteError("DESTINATION_EXISTS") from None
         if png_audit(dest.read_bytes())["sha256"] != audit["sha256"]:
             raise RiposteError("WRITE_VERIFY_FAILED")
         return dest

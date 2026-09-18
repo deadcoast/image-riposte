@@ -1,0 +1,17 @@
+warning: `VIRTUAL_ENV=.venv` does not match the project environment path `typing\.venv` and will be ignored; use `--active` to target the active environment instead
+{
+  "result": "PASS",
+  "counts": {
+    "source_files": 51,
+    "source_modules": 45,
+    "paired_stubs": 45,
+    "indexed_files": 277,
+    "source_symbols": 485,
+    "tool_functions": 9,
+    "symbol_dependency_edges": 1955,
+    "static_definitions": 1275,
+    "local_dependency_edges": 556
+  },
+  "source_unchanged": true,
+  "issues": []
+}

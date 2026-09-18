@@ -1,0 +1,23 @@
+F                                                                        [100%]
+================================== FAILURES ===================================
+_______________ test_windows_launcher_accepts_category_aliases ________________
+
+root = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/.tmp/title-discovery/launcher-first/test_windows_launcher_accepts_0/workspace')
+
+    @pytest.mark.skipif(sys.platform != "win32", reason="Windows command-wrapper argument contract")
+    def test_windows_launcher_accepts_category_aliases(root):
+        names(root, "hockey.png", "goalie.mp4", "other.jpg")
+        before = snapshot(root)
+        launcher = Path(__file__).resolve().parents[1] / "riposte.cmd"
+        result = subprocess.run([str(launcher), "--json", "categories", str(root),
+                                 "--category", "Sport=hockey;goalie"],
+                                capture_output=True, text=True, encoding="utf-8", timeout=30)
+        assert result.returncode == 0, result.stdout + result.stderr
+        report = json.loads(result.stdout)
+>       assert report["review"]["categories"][0]["count"] == 2
+E       assert 0 == 2
+
+tests\test_title_categories.py:248: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/test_title_categories.py::test_windows_launcher_accepts_category_aliases
+1 failed in 0.56s

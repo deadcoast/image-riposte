@@ -1,0 +1,458 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="12" skipped="0" tests="13" time="1.906" timestamp="2026-09-18T05:36:14.438325-07:00" hostname="homeone"><testcase classname="tests.test_sort_collisions" name="test_clean_commit_never_replaces_a_late_winner[different]" time="0.017"><failure message="Failed: DID NOT RAISE RiposteError">root = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/sort-collisions/before/test_clean_commit_never_replac0/workspace')
+make_image = &lt;function make_image.&lt;locals&gt;.create at 0x00000203D52E0EB0&gt;
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x00000203D528E2C0&gt;
+winner = 'different'
+
+    @pytest.mark.parametrize("winner", ["different", "identical", "directory"])
+    def test_clean_commit_never_replaces_a_late_winner(root, make_image, monkeypatch, winner):
+        source = make_image(root / "original.png")
+        clean = decode_clean(source, POLICY)
+        data = encode_clean(clean.pixels, clean.day)
+        destination = root / "out.png"
+        external = data if winner == "identical" else b"external file"
+    
+        def create(_data):
+            if winner == "directory":
+                destination.mkdir()
+                (destination / "keep.txt").write_bytes(external)
+            else:
+                destination.write_bytes(external)
+            os.utime(destination, ns=(STAMP, STAMP))
+    
+        intercept_commit(monkeypatch, destination, create)
+&gt;       with pytest.raises(RiposteError, match="DESTINATION_EXISTS"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE RiposteError
+
+tests\test_sort_collisions.py:49: Failed</failure></testcase><testcase classname="tests.test_sort_collisions" name="test_clean_commit_never_replaces_a_late_winner[identical]" time="0.011"><failure message="Failed: DID NOT RAISE RiposteError">root = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/sort-collisions/before/test_clean_commit_never_replac1/workspace')
+make_image = &lt;function make_image.&lt;locals&gt;.create at 0x00000203D52CBCC0&gt;
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x00000203D528DCD0&gt;
+winner = 'identical'
+
+    @pytest.mark.parametrize("winner", ["different", "identical", "directory"])
+    def test_clean_commit_never_replaces_a_late_winner(root, make_image, monkeypatch, winner):
+        source = make_image(root / "original.png")
+        clean = decode_clean(source, POLICY)
+        data = encode_clean(clean.pixels, clean.day)
+        destination = root / "out.png"
+        external = data if winner == "identical" else b"external file"
+    
+        def create(_data):
+            if winner == "directory":
+                destination.mkdir()
+                (destination / "keep.txt").write_bytes(external)
+            else:
+                destination.write_bytes(external)
+            os.utime(destination, ns=(STAMP, STAMP))
+    
+        intercept_commit(monkeypatch, destination, create)
+&gt;       with pytest.raises(RiposteError, match="DESTINATION_EXISTS"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE RiposteError
+
+tests\test_sort_collisions.py:49: Failed</failure></testcase><testcase classname="tests.test_sort_collisions" name="test_clean_commit_never_replaces_a_late_winner[directory]" time="0.010"><failure message="PermissionError: [WinError 5] Access is denied: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\sort-collisions\\before\\test_clean_commit_never_replac2\\workspace\\.clean-7f8ecc31d6854d0caea44856af77d37d.tmp' -&gt; 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\sort-collisions\\before\\test_clean_commit_never_replac2\\workspace\\out.png'">root = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/sort-collisions/before/test_clean_commit_never_replac2/workspace')
+make_image = &lt;function make_image.&lt;locals&gt;.create at 0x00000203D53128D0&gt;
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x00000203D52F1C70&gt;
+winner = 'directory'
+
+    @pytest.mark.parametrize("winner", ["different", "identical", "directory"])
+    def test_clean_commit_never_replaces_a_late_winner(root, make_image, monkeypatch, winner):
+        source = make_image(root / "original.png")
+        clean = decode_clean(source, POLICY)
+        data = encode_clean(clean.pixels, clean.day)
+        destination = root / "out.png"
+        external = data if winner == "identical" else b"external file"
+    
+        def create(_data):
+            if winner == "directory":
+                destination.mkdir()
+                (destination / "keep.txt").write_bytes(external)
+            else:
+                destination.write_bytes(external)
+            os.utime(destination, ns=(STAMP, STAMP))
+    
+        intercept_commit(monkeypatch, destination, create)
+        with pytest.raises(RiposteError, match="DESTINATION_EXISTS"):
+&gt;           store.atomic_clean_write(root, "out.png", data)
+
+tests\test_sort_collisions.py:50: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\riposte\store.py:194: in atomic_clean_write
+    os.replace(temp, dest)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+source = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/sort-collisions/before/test_clean_commit_never_replac2/workspace/.clean-7f8ecc31d6854d0caea44856af77d37d.tmp')
+target = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/sort-collisions/before/test_clean_commit_never_replac2/workspace/out.png')
+_original = &lt;built-in function replace&gt;, args = (), kwargs = {}
+
+    def commit(source, target, *args, _original=original, **kwargs):
+        if Path(target) == destination and not destination.exists():
+            create(Path(source).read_bytes())
+&gt;       return _original(source, target, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       PermissionError: [WinError 5] Access is denied: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\sort-collisions\\before\\test_clean_commit_never_replac2\\workspace\\.clean-7f8ecc31d6854d0caea44856af77d37d.tmp' -&gt; 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\sort-collisions\\before\\test_clean_commit_never_replac2\\workspace\\out.png'
+
+tests\test_sort_collisions.py:27: PermissionError</failure></testcase><testcase classname="tests.test_sort_collisions" name="test_rejected_output_is_not_owned_by_undo[False-before_write-image]" time="0.147"><failure message="AssertionError: assert '2025/March/img/SML/SML01.png' is None">root = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/sort-collisions/before/test_rejected_output_is_not_ow0/workspace')
+make_image = &lt;function make_image.&lt;locals&gt;.create at 0x00000203D5313B60&gt;
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x00000203D52ED480&gt;
+media = 'image', when = 'before_write', identical = False
+
+    @pytest.mark.parametrize("media", ["image", "video"])
+    @pytest.mark.parametrize("when", ["before_write", "final_commit"])
+    @pytest.mark.parametrize("identical", [False, True])
+    def test_rejected_output_is_not_owned_by_undo(root, make_image, monkeypatch, media, when, identical):
+        sources = media_pair(root, make_image, media)
+        originals = [p.read_bytes() for p in sources]
+        destination = root / f"2025/March/{'img' if media == 'image' else 'vid'}/SML/SML01{sources[0].suffix}"
+        winner = []
+    
+        def create(intended):
+            destination.parent.mkdir(parents=True, exist_ok=True)
+            winner.append(intended if identical else b"external destination")
+            destination.write_bytes(winner[0])
+            os.utime(destination, ns=(STAMP, STAMP))
+    
+        if when == "final_commit":
+            intercept_commit(monkeypatch, destination, create)
+        else:
+            name = "atomic_clean_write" if media == "image" else "copy_exclusive"
+            writer = getattr(organizer, name)
+    
+            def add_before_write(*args, **kwargs):
+                if not winner:
+                    create(args[2] if media == "image" else Path(args[1]).read_bytes())
+                return writer(*args, **kwargs)
+    
+            monkeypatch.setattr(organizer, name, add_before_write)
+    
+        result = organizer.organize(root, POLICY)
+        assert winner, "collision injection did not execute"
+        assert result["checkpoint"] == "INCOMPLETE"
+        assert result["blockers"].get("DESTINATION_EXISTS") == 1
+        assert sources[0].read_bytes() == originals[0]
+        assert destination.read_bytes() == winner[0]
+        assert destination.stat().st_mtime_ns == STAMP
+        assert result["counts"].get("migrated" if media == "image" else "videos_sorted") == 1
+        journal = latest_sort(root)
+&gt;       assert journal["entries"][0]["output"] is None
+E       AssertionError: assert '2025/March/img/SML/SML01.png' is None
+
+tests\test_sort_collisions.py:93: AssertionError</failure></testcase><testcase classname="tests.test_sort_collisions" name="test_rejected_output_is_not_owned_by_undo[False-before_write-video]" time="0.287"><failure message="AssertionError: assert '2025/March/vid/SML/SML01.mp4' is None">root = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/sort-collisions/before/test_rejected_output_is_not_ow1/workspace')
+make_image = &lt;function make_image.&lt;locals&gt;.create at 0x00000203D5368880&gt;
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x00000203D547DD00&gt;
+media = 'video', when = 'before_write', identical = False
+
+    @pytest.mark.parametrize("media", ["image", "video"])
+    @pytest.mark.parametrize("when", ["before_write", "final_commit"])
+    @pytest.mark.parametrize("identical", [False, True])
+    def test_rejected_output_is_not_owned_by_undo(root, make_image, monkeypatch, media, when, identical):
+        sources = media_pair(root, make_image, media)
+        originals = [p.read_bytes() for p in sources]
+        destination = root / f"2025/March/{'img' if media == 'image' else 'vid'}/SML/SML01{sources[0].suffix}"
+        winner = []
+    
+        def create(intended):
+            destination.parent.mkdir(parents=True, exist_ok=True)
+            winner.append(intended if identical else b"external destination")
+            destination.write_bytes(winner[0])
+            os.utime(destination, ns=(STAMP, STAMP))
+    
+        if when == "final_commit":
+            intercept_commit(monkeypatch, destination, create)
+        else:
+            name = "atomic_clean_write" if media == "image" else "copy_exclusive"
+            writer = getattr(organizer, name)
+    
+            def add_before_write(*args, **kwargs):
+                if not winner:
+                    create(args[2] if media == "image" else Path(args[1]).read_bytes())
+                return writer(*args, **kwargs)
+    
+            monkeypatch.setattr(organizer, name, add_before_write)
+    
+        result = organizer.organize(root, POLICY)
+        assert winner, "collision injection did not execute"
+        assert result["checkpoint"] == "INCOMPLETE"
+        assert result["blockers"].get("DESTINATION_EXISTS") == 1
+        assert sources[0].read_bytes() == originals[0]
+        assert destination.read_bytes() == winner[0]
+        assert destination.stat().st_mtime_ns == STAMP
+        assert result["counts"].get("migrated" if media == "image" else "videos_sorted") == 1
+        journal = latest_sort(root)
+&gt;       assert journal["entries"][0]["output"] is None
+E       AssertionError: assert '2025/March/vid/SML/SML01.mp4' is None
+
+tests\test_sort_collisions.py:93: AssertionError</failure></testcase><testcase classname="tests.test_sort_collisions" name="test_rejected_output_is_not_owned_by_undo[False-final_commit-image]" time="0.128"><failure message="AssertionError: assert 'COMPLETE' == 'INCOMPLETE'&#10;  &#10;  - INCOMPLETE&#10;  ? --&#10;  + COMPLETE">root = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/sort-collisions/before/test_rejected_output_is_not_ow2/workspace')
+make_image = &lt;function make_image.&lt;locals&gt;.create at 0x00000203D55256F0&gt;
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x00000203D54F5450&gt;
+media = 'image', when = 'final_commit', identical = False
+
+    @pytest.mark.parametrize("media", ["image", "video"])
+    @pytest.mark.parametrize("when", ["before_write", "final_commit"])
+    @pytest.mark.parametrize("identical", [False, True])
+    def test_rejected_output_is_not_owned_by_undo(root, make_image, monkeypatch, media, when, identical):
+        sources = media_pair(root, make_image, media)
+        originals = [p.read_bytes() for p in sources]
+        destination = root / f"2025/March/{'img' if media == 'image' else 'vid'}/SML/SML01{sources[0].suffix}"
+        winner = []
+    
+        def create(intended):
+            destination.parent.mkdir(parents=True, exist_ok=True)
+            winner.append(intended if identical else b"external destination")
+            destination.write_bytes(winner[0])
+            os.utime(destination, ns=(STAMP, STAMP))
+    
+        if when == "final_commit":
+            intercept_commit(monkeypatch, destination, create)
+        else:
+            name = "atomic_clean_write" if media == "image" else "copy_exclusive"
+            writer = getattr(organizer, name)
+    
+            def add_before_write(*args, **kwargs):
+                if not winner:
+                    create(args[2] if media == "image" else Path(args[1]).read_bytes())
+                return writer(*args, **kwargs)
+    
+            monkeypatch.setattr(organizer, name, add_before_write)
+    
+        result = organizer.organize(root, POLICY)
+        assert winner, "collision injection did not execute"
+&gt;       assert result["checkpoint"] == "INCOMPLETE"
+E       AssertionError: assert 'COMPLETE' == 'INCOMPLETE'
+E         
+E         - INCOMPLETE
+E         ? --
+E         + COMPLETE
+
+tests\test_sort_collisions.py:86: AssertionError</failure></testcase><testcase classname="tests.test_sort_collisions" name="test_rejected_output_is_not_owned_by_undo[False-final_commit-video]" time="0.287"><failure message="AssertionError: assert None == 1&#10; +  where None = &lt;built-in method get of dict object at 0x00000203D555DC80&gt;('DESTINATION_EXISTS')&#10; +    where &lt;built-in method get of dict object at 0x00000203D555DC80&gt; = {'IO_OPERATION_FAILED': 1}.get">root = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/sort-collisions/before/test_rejected_output_is_not_ow3/workspace')
+make_image = &lt;function make_image.&lt;locals&gt;.create at 0x00000203D5525B10&gt;
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x00000203D54F5B50&gt;
+media = 'video', when = 'final_commit', identical = False
+
+    @pytest.mark.parametrize("media", ["image", "video"])
+    @pytest.mark.parametrize("when", ["before_write", "final_commit"])
+    @pytest.mark.parametrize("identical", [False, True])
+    def test_rejected_output_is_not_owned_by_undo(root, make_image, monkeypatch, media, when, identical):
+        sources = media_pair(root, make_image, media)
+        originals = [p.read_bytes() for p in sources]
+        destination = root / f"2025/March/{'img' if media == 'image' else 'vid'}/SML/SML01{sources[0].suffix}"
+        winner = []
+    
+        def create(intended):
+            destination.parent.mkdir(parents=True, exist_ok=True)
+            winner.append(intended if identical else b"external destination")
+            destination.write_bytes(winner[0])
+            os.utime(destination, ns=(STAMP, STAMP))
+    
+        if when == "final_commit":
+            intercept_commit(monkeypatch, destination, create)
+        else:
+            name = "atomic_clean_write" if media == "image" else "copy_exclusive"
+            writer = getattr(organizer, name)
+    
+            def add_before_write(*args, **kwargs):
+                if not winner:
+                    create(args[2] if media == "image" else Path(args[1]).read_bytes())
+                return writer(*args, **kwargs)
+    
+            monkeypatch.setattr(organizer, name, add_before_write)
+    
+        result = organizer.organize(root, POLICY)
+        assert winner, "collision injection did not execute"
+        assert result["checkpoint"] == "INCOMPLETE"
+&gt;       assert result["blockers"].get("DESTINATION_EXISTS") == 1
+E       AssertionError: assert None == 1
+E        +  where None = &lt;built-in method get of dict object at 0x00000203D555DC80&gt;('DESTINATION_EXISTS')
+E        +    where &lt;built-in method get of dict object at 0x00000203D555DC80&gt; = {'IO_OPERATION_FAILED': 1}.get
+
+tests\test_sort_collisions.py:87: AssertionError</failure></testcase><testcase classname="tests.test_sort_collisions" name="test_rejected_output_is_not_owned_by_undo[True-before_write-image]" time="0.115"><failure message="AssertionError: assert '2025/March/img/SML/SML01.png' is None">root = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/sort-collisions/before/test_rejected_output_is_not_ow4/workspace')
+make_image = &lt;function make_image.&lt;locals&gt;.create at 0x00000203D5534300&gt;
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x00000203D55032F0&gt;
+media = 'image', when = 'before_write', identical = True
+
+    @pytest.mark.parametrize("media", ["image", "video"])
+    @pytest.mark.parametrize("when", ["before_write", "final_commit"])
+    @pytest.mark.parametrize("identical", [False, True])
+    def test_rejected_output_is_not_owned_by_undo(root, make_image, monkeypatch, media, when, identical):
+        sources = media_pair(root, make_image, media)
+        originals = [p.read_bytes() for p in sources]
+        destination = root / f"2025/March/{'img' if media == 'image' else 'vid'}/SML/SML01{sources[0].suffix}"
+        winner = []
+    
+        def create(intended):
+            destination.parent.mkdir(parents=True, exist_ok=True)
+            winner.append(intended if identical else b"external destination")
+            destination.write_bytes(winner[0])
+            os.utime(destination, ns=(STAMP, STAMP))
+    
+        if when == "final_commit":
+            intercept_commit(monkeypatch, destination, create)
+        else:
+            name = "atomic_clean_write" if media == "image" else "copy_exclusive"
+            writer = getattr(organizer, name)
+    
+            def add_before_write(*args, **kwargs):
+                if not winner:
+                    create(args[2] if media == "image" else Path(args[1]).read_bytes())
+                return writer(*args, **kwargs)
+    
+            monkeypatch.setattr(organizer, name, add_before_write)
+    
+        result = organizer.organize(root, POLICY)
+        assert winner, "collision injection did not execute"
+        assert result["checkpoint"] == "INCOMPLETE"
+        assert result["blockers"].get("DESTINATION_EXISTS") == 1
+        assert sources[0].read_bytes() == originals[0]
+        assert destination.read_bytes() == winner[0]
+        assert destination.stat().st_mtime_ns == STAMP
+        assert result["counts"].get("migrated" if media == "image" else "videos_sorted") == 1
+        journal = latest_sort(root)
+&gt;       assert journal["entries"][0]["output"] is None
+E       AssertionError: assert '2025/March/img/SML/SML01.png' is None
+
+tests\test_sort_collisions.py:93: AssertionError</failure></testcase><testcase classname="tests.test_sort_collisions" name="test_rejected_output_is_not_owned_by_undo[True-before_write-video]" time="0.285"><failure message="AssertionError: assert '2025/March/vid/SML/SML01.mp4' is None">root = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/sort-collisions/before/test_rejected_output_is_not_ow5/workspace')
+make_image = &lt;function make_image.&lt;locals&gt;.create at 0x00000203D5537690&gt;
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x00000203D551C230&gt;
+media = 'video', when = 'before_write', identical = True
+
+    @pytest.mark.parametrize("media", ["image", "video"])
+    @pytest.mark.parametrize("when", ["before_write", "final_commit"])
+    @pytest.mark.parametrize("identical", [False, True])
+    def test_rejected_output_is_not_owned_by_undo(root, make_image, monkeypatch, media, when, identical):
+        sources = media_pair(root, make_image, media)
+        originals = [p.read_bytes() for p in sources]
+        destination = root / f"2025/March/{'img' if media == 'image' else 'vid'}/SML/SML01{sources[0].suffix}"
+        winner = []
+    
+        def create(intended):
+            destination.parent.mkdir(parents=True, exist_ok=True)
+            winner.append(intended if identical else b"external destination")
+            destination.write_bytes(winner[0])
+            os.utime(destination, ns=(STAMP, STAMP))
+    
+        if when == "final_commit":
+            intercept_commit(monkeypatch, destination, create)
+        else:
+            name = "atomic_clean_write" if media == "image" else "copy_exclusive"
+            writer = getattr(organizer, name)
+    
+            def add_before_write(*args, **kwargs):
+                if not winner:
+                    create(args[2] if media == "image" else Path(args[1]).read_bytes())
+                return writer(*args, **kwargs)
+    
+            monkeypatch.setattr(organizer, name, add_before_write)
+    
+        result = organizer.organize(root, POLICY)
+        assert winner, "collision injection did not execute"
+        assert result["checkpoint"] == "INCOMPLETE"
+        assert result["blockers"].get("DESTINATION_EXISTS") == 1
+        assert sources[0].read_bytes() == originals[0]
+        assert destination.read_bytes() == winner[0]
+        assert destination.stat().st_mtime_ns == STAMP
+        assert result["counts"].get("migrated" if media == "image" else "videos_sorted") == 1
+        journal = latest_sort(root)
+&gt;       assert journal["entries"][0]["output"] is None
+E       AssertionError: assert '2025/March/vid/SML/SML01.mp4' is None
+
+tests\test_sort_collisions.py:93: AssertionError</failure></testcase><testcase classname="tests.test_sort_collisions" name="test_rejected_output_is_not_owned_by_undo[True-final_commit-image]" time="0.128"><failure message="AssertionError: assert 'COMPLETE' == 'INCOMPLETE'&#10;  &#10;  - INCOMPLETE&#10;  ? --&#10;  + COMPLETE">root = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/sort-collisions/before/test_rejected_output_is_not_ow6/workspace')
+make_image = &lt;function make_image.&lt;locals&gt;.create at 0x00000203D5565590&gt;
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x00000203D5551550&gt;
+media = 'image', when = 'final_commit', identical = True
+
+    @pytest.mark.parametrize("media", ["image", "video"])
+    @pytest.mark.parametrize("when", ["before_write", "final_commit"])
+    @pytest.mark.parametrize("identical", [False, True])
+    def test_rejected_output_is_not_owned_by_undo(root, make_image, monkeypatch, media, when, identical):
+        sources = media_pair(root, make_image, media)
+        originals = [p.read_bytes() for p in sources]
+        destination = root / f"2025/March/{'img' if media == 'image' else 'vid'}/SML/SML01{sources[0].suffix}"
+        winner = []
+    
+        def create(intended):
+            destination.parent.mkdir(parents=True, exist_ok=True)
+            winner.append(intended if identical else b"external destination")
+            destination.write_bytes(winner[0])
+            os.utime(destination, ns=(STAMP, STAMP))
+    
+        if when == "final_commit":
+            intercept_commit(monkeypatch, destination, create)
+        else:
+            name = "atomic_clean_write" if media == "image" else "copy_exclusive"
+            writer = getattr(organizer, name)
+    
+            def add_before_write(*args, **kwargs):
+                if not winner:
+                    create(args[2] if media == "image" else Path(args[1]).read_bytes())
+                return writer(*args, **kwargs)
+    
+            monkeypatch.setattr(organizer, name, add_before_write)
+    
+        result = organizer.organize(root, POLICY)
+        assert winner, "collision injection did not execute"
+&gt;       assert result["checkpoint"] == "INCOMPLETE"
+E       AssertionError: assert 'COMPLETE' == 'INCOMPLETE'
+E         
+E         - INCOMPLETE
+E         ? --
+E         + COMPLETE
+
+tests\test_sort_collisions.py:86: AssertionError</failure></testcase><testcase classname="tests.test_sort_collisions" name="test_rejected_output_is_not_owned_by_undo[True-final_commit-video]" time="0.278"><failure message="AssertionError: assert None == 1&#10; +  where None = &lt;built-in method get of dict object at 0x00000203D5573640&gt;('DESTINATION_EXISTS')&#10; +    where &lt;built-in method get of dict object at 0x00000203D5573640&gt; = {'IO_OPERATION_FAILED': 1}.get">root = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/sort-collisions/before/test_rejected_output_is_not_ow7/workspace')
+make_image = &lt;function make_image.&lt;locals&gt;.create at 0x00000203D5565900&gt;
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x00000203D5552190&gt;
+media = 'video', when = 'final_commit', identical = True
+
+    @pytest.mark.parametrize("media", ["image", "video"])
+    @pytest.mark.parametrize("when", ["before_write", "final_commit"])
+    @pytest.mark.parametrize("identical", [False, True])
+    def test_rejected_output_is_not_owned_by_undo(root, make_image, monkeypatch, media, when, identical):
+        sources = media_pair(root, make_image, media)
+        originals = [p.read_bytes() for p in sources]
+        destination = root / f"2025/March/{'img' if media == 'image' else 'vid'}/SML/SML01{sources[0].suffix}"
+        winner = []
+    
+        def create(intended):
+            destination.parent.mkdir(parents=True, exist_ok=True)
+            winner.append(intended if identical else b"external destination")
+            destination.write_bytes(winner[0])
+            os.utime(destination, ns=(STAMP, STAMP))
+    
+        if when == "final_commit":
+            intercept_commit(monkeypatch, destination, create)
+        else:
+            name = "atomic_clean_write" if media == "image" else "copy_exclusive"
+            writer = getattr(organizer, name)
+    
+            def add_before_write(*args, **kwargs):
+                if not winner:
+                    create(args[2] if media == "image" else Path(args[1]).read_bytes())
+                return writer(*args, **kwargs)
+    
+            monkeypatch.setattr(organizer, name, add_before_write)
+    
+        result = organizer.organize(root, POLICY)
+        assert winner, "collision injection did not execute"
+        assert result["checkpoint"] == "INCOMPLETE"
+&gt;       assert result["blockers"].get("DESTINATION_EXISTS") == 1
+E       AssertionError: assert None == 1
+E        +  where None = &lt;built-in method get of dict object at 0x00000203D5573640&gt;('DESTINATION_EXISTS')
+E        +    where &lt;built-in method get of dict object at 0x00000203D5573640&gt; = {'IO_OPERATION_FAILED': 1}.get
+
+tests\test_sort_collisions.py:87: AssertionError</failure></testcase><testcase classname="tests.test_sort_collisions" name="test_explicit_clean_replacement_still_works" time="0.011" /><testcase classname="tests.test_sort_collisions" name="test_exclusive_commit_failure_does_not_fall_back_to_replacement" time="0.010"><failure message="Failed: DID NOT RAISE OSError">root = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/sort-collisions/before/test_exclusive_commit_failure_0/workspace')
+make_image = &lt;function make_image.&lt;locals&gt;.create at 0x00000203D5595590&gt;
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x00000203D5538050&gt;
+
+    def test_exclusive_commit_failure_does_not_fall_back_to_replacement(root, make_image, monkeypatch):
+        source = make_image(root / "original.png")
+        clean = decode_clean(source, POLICY)
+        data = encode_clean(clean.pixels, clean.day)
+    
+        def unsupported(*args, **kwargs):
+            raise OSError("exclusive commit unavailable")
+    
+        monkeypatch.setattr(os, "link", unsupported)
+&gt;       with pytest.raises(OSError, match="exclusive commit unavailable"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE OSError
+
+tests\test_sort_collisions.py:125: Failed</failure></testcase></testsuite></testsuites>

@@ -25,3 +25,8 @@ if (Get-Command uv -ErrorAction SilentlyContinue) {
 if ($LASTEXITCODE -ne 0) { throw 'Installation failed. Read the error above before launching.' }
 Write-Host 'Installed. Run .\START.ps1 or double-click START.cmd to open the menu.'
 Write-Host 'Model weights are selected separately and are not downloaded by this installer.'
+if (Get-Command ffprobe -ErrorAction SilentlyContinue) {
+    Write-Host 'Video sorting: ffprobe is available.'
+} else {
+    Write-Host 'Video sorting is optional and needs FFmpeg ffprobe on PATH. Image sorting and protection are available without it.'
+}

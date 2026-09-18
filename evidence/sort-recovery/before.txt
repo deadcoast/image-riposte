@@ -1,0 +1,38 @@
+FF                                                                       [100%]
+================================== FAILURES ===================================
+__________ test_undo_restores_original_bytes_names_and_modified_time __________
+
+root = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/.tmp/sort-tests/before/test_undo_restores_original_by0/workspace')
+make_image = <function make_image.<locals>.create at 0x0000016EB9C79E80>
+
+    def test_undo_restores_original_bytes_names_and_modified_time(root, make_image):
+        source = make_image(root / "originals" / "personal-name.png")
+        original, stamp = source.read_bytes(), source.stat().st_mtime_ns
+        assert organizer.organize(root, POLICY)["checkpoint"] == "COMPLETE"
+        before = inventory(root)
+>       preview = organizer.undo_sort(root)
+                  ^^^^^^^^^^^^^^^^^^^
+E       AttributeError: module 'riposte.organizer' has no attribute 'undo_sort'
+
+tests\test_sort_recovery.py:24: AttributeError
+___________________ test_preview_has_no_state_or_mutations ____________________
+
+root = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/.tmp/sort-tests/before/test_preview_has_no_state_or_m0/workspace')
+make_image = <function make_image.<locals>.create at 0x0000016EB9CB90C0>
+
+    def test_preview_has_no_state_or_mutations(root, make_image):
+        make_image(root / "photo.png")
+        before = inventory(root)
+        result = organizer.plan(root, POLICY)
+        assert result["ready"]
+>       assert list(result["destinations"]) == ["2025/March/img/SML"]
+E       AssertionError: assert ['2025/March/SML'] == ['2025/March/img/SML']
+E         
+E         At index 0 diff: '2025/March/SML' != '2025/March/img/SML'
+E         Use -v to get more diff
+
+tests\test_sort_recovery.py:38: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/test_sort_recovery.py::test_undo_restores_original_bytes_names_and_modified_time
+FAILED tests/test_sort_recovery.py::test_preview_has_no_state_or_mutations - ...
+2 failed in 0.24s

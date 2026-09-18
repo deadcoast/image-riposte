@@ -1,0 +1,21 @@
+warning: `VIRTUAL_ENV=.venv` does not match the project environment path `typing\.venv` and will be ignored; use `--active` to target the active environment instead
+{
+  "result": "FAIL",
+  "counts": {
+    "source_files": 51,
+    "source_modules": 45,
+    "paired_stubs": 45,
+    "indexed_files": 273,
+    "source_symbols": 484,
+    "tool_functions": 9,
+    "symbol_dependency_edges": 1953,
+    "static_definitions": 1259,
+    "local_dependency_edges": 543
+  },
+  "source_unchanged": true,
+  "issues": [
+    "Unregistered file: tests/test_sort_commit_safety.py",
+    "Unregistered file: typing/evidence/source-reviewed-sort-commit.json",
+    "Stale symbol: src/riposte/sort_history.py:SortHistory.remove_source: Requires"
+  ]
+}

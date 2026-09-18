@@ -1,0 +1,40 @@
+warning: `VIRTUAL_ENV=.venv` does not match the project environment path `typing\.venv` and will be ignored; use `--active` to target the active environment instead
+{
+  "result": "FAIL",
+  "counts": {
+    "source_files": 52,
+    "source_modules": 46,
+    "paired_stubs": 46,
+    "indexed_files": 283,
+    "source_symbols": 497,
+    "tool_functions": 9,
+    "symbol_dependency_edges": 1990,
+    "static_definitions": 1319,
+    "local_dependency_edges": 580
+  },
+  "source_unchanged": true,
+  "issues": [
+    "Unregistered file: evidence/title-discovery/README.md",
+    "Unregistered file: evidence/title-discovery/acceptance.json",
+    "Stale index: src/riposte/cli.py: Exports",
+    "Stale index: src/riposte/terminal/service.py: Imports, Requires",
+    "Unregistered file: src/riposte/title_categories.py",
+    "Unregistered file: tests/test_title_categories.py",
+    "Unregistered file: typing/evidence/source-reviewed-title-discovery.json",
+    "Stale index: typing/stubs/riposte/cli.pyi: Exports",
+    "Unregistered file: typing/stubs/riposte/title_categories.pyi",
+    "Unregistered symbol: src/riposte/cli.py:categories",
+    "Stale symbol: src/riposte/terminal/service.py:execute: Requires",
+    "Unregistered symbol: src/riposte/title_categories.py:CategoryDraft",
+    "Unregistered symbol: src/riposte/title_categories.py:DEFAULT_FILLERS",
+    "Unregistered symbol: src/riposte/title_categories.py:GENERATED_TITLE",
+    "Unregistered symbol: src/riposte/title_categories.py:MAX_CATEGORIES",
+    "Unregistered symbol: src/riposte/title_categories.py:MAX_TERMS",
+    "Unregistered symbol: src/riposte/title_categories.py:Progress",
+    "Unregistered symbol: src/riposte/title_categories.py:_media_titles",
+    "Unregistered symbol: src/riposte/title_categories.py:category_drafts",
+    "Unregistered symbol: src/riposte/title_categories.py:discover_categories",
+    "Unregistered symbol: src/riposte/title_categories.py:title_terms",
+    "Unregistered symbol: src/riposte/title_categories.py:title_tokens"
+  ]
+}

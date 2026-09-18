@@ -1,0 +1,10 @@
+{
+  "previous_snapshot": "typing/evidence/source-reviewed-sort-recovery.json",
+  "changed": [
+    "src/riposte/sort_history.py"
+  ],
+  "unchanged_application_files": 50,
+  "before_sha256": "b1be6122f25395e9ce1545f4ee2da865a6a1ca046c463cf20797a6a6f7268dc3",
+  "after_sha256": "449e15c6a4138b37ac9ccd8eec74a80bf5142d04cfb809ea95f859ab5248d84f",
+  "contract_review": "SortHistory.remove_source retains its existing entry record, parameters, None return and RiposteError failure boundary; no stub changes required."
+}

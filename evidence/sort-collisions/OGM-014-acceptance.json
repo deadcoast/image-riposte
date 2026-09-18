@@ -1,0 +1,40 @@
+{
+  "requirement": "OGM-014",
+  "meaning": "176548a9ded2585146616774459b462f5cf5141187d94f7ca42c59a5a90163c4",
+  "sources": {
+    "tests/test_sort_partial_failures.py": "06a66c220e5af45197103f1502a1c627a6e7db8d2cd6993bf95033a953120f11",
+    "src/riposte/video.py": "d36bd5b2b6f9040cc8cefc5cc4bfead0f7f7ef4e77c83318fb623d9d94d5a2e6",
+    "src/riposte/store.py": "9f5521a9346cba11dea37ad0d36d5485168aad4fc0716c27ab0a04021ac3e7cd",
+    "src/riposte/sanitize.py": "8233e398cf90f403d0fad458b83ddddefb873234183c1610348501d5383f90c2",
+    "src/riposte/policy.py": "da032bd17c80b4d3bccdc73db0c41f413f55dfb92415f7e07bf6627c6e2ab922",
+    "src/riposte/errors.py": "7a9c08b799d1c713fbd82e30fd145a6dc3085c215848893e31d1ec066abc5244",
+    "src/riposte/sort_history.py": "9e79f363f0886a6a61503335bc26da29d579b68b77551e8d983f2f335fb4ec23",
+    "src/riposte/organizer.py": "41ee1a3d6c509a7b8901c7ec92e3a282bfb030b5923ad5f9f5933acb38214c7e",
+    "src/riposte/__init__.py": "a9e9d2abdceaac2c47ed5846a874787f47337c407e2b2aa8064a32b53489f28d",
+    "typing/stubs/riposte/sort_history.pyi": "ac3df253133e1a131f5fe48db80ae41059d809a17a50de2a7fe08e1afc3a9bb8",
+    "typing/stubs/riposte/video.pyi": "e28ad242201064c8a8d8f65bd2b8f6f50985f80f84e80d8cb05a288a58fa0468",
+    "typing/stubs/riposte/store.pyi": "dfc1448e34ed913b109202457fd651fa0a21dd1c8b61a0fa151128cc9938db88",
+    "typing/stubs/riposte/sanitize.pyi": "7389450202abf94d5a6dd7bf2582bcd00d8fe851265a845db8844b8aa37d3381",
+    "typing/stubs/riposte/policy.pyi": "3f3e1736a71f4c60c36500f5709f045f86461d84664e9ccb7e4da0ea67cfb91f",
+    "typing/stubs/riposte/errors.pyi": "09294254fa034c3b927925cf853a7004f3bf02c75cf4129065b285e8268cdc0f",
+    "typing/stubs/_riposte_types.pyi": "88a8b92db3e57944e45a0fc90f6d5c2de98bf8ce579ec1a26a14da206ce24220",
+    "typing/stubs/riposte/organizer.pyi": "74c7767f0ff109df6df9fa4f4fb826da4e2cc7120ef0777f10902b7cf34c6c95"
+  },
+  "result": "PASS",
+  "command": [
+    ".venv/Scripts/python.exe -m pytest tests -q -k 'not native_browser' --basetemp=typing/.cache/sort-collisions/suite --junitxml=evidence/sort-collisions/suite.xml",
+    ".venv/Scripts/python.exe -m pytest tests/test_browser_review.py -q -k native_browser -p no:cacheprovider --basetemp=typing/.cache/sort-collisions/browser-native --junitxml=evidence/sort-collisions/browser-native.xml",
+    "uv run --project typing --frozen --cache-dir typing/.cache/uv python typing/check.py",
+    ".venv/Scripts/python.exe evidence/sort-collisions/verify_distribution.py"
+  ],
+  "scope": "Current synthetic application regressions, native headless browser fixture, external contracts and fresh installed/package sort-undo checks. Only store, organizer and sort_history changed among 51 application files. Exclusive commits and persisted rejected-output recovery are tested; no arbitrary parent-path replacement, pre-persistence power-loss, new ConPTY visual, pretrained-model or efficacy claim.",
+  "evidence": {
+    "before": "before.xml: 12 failed, one replacement control passed; includes actual deletion of identical-byte external image/video paths",
+    "focused": "focused.xml: 115 passed, one skip; 13 new collision/commit cases",
+    "suite": "suite.xml: 943 passed, seven platform skips, one separately tested native-browser case",
+    "native_browser": "browser-native.xml: one passed",
+    "external_contracts": "contracts.txt: all checks passed, 357 signatures; source-body mypy separately fails with 1057 diagnostics",
+    "package": "package.json: all 51 application files equal checkout/sdist/wheel/installed; installed previews, sort/undo and linear launchers pass"
+  },
+  "historical_evidence": "Earlier reports and failed evidence remain retained."
+}

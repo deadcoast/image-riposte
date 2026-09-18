@@ -12,6 +12,13 @@ controls/help; `terminal/service.py` for the operation boundary shared with CLI.
 - Sort explains its recursive folder scope before selection. It previews
   sanitation/organization and requires the exact `REPLACE` confirmation before
   replacing verified sources. Sidecar deletion has its own explicit option.
+- Sort previews show separate `img` and `vid` routes inside dated folders.
+  Videos retain their bytes and metadata and never enter protection selection.
+  Consent explains that private original copies are retained for recovery.
+- Undo last sort is visible in the main menu and on the Sort form (`u`). Its
+  read-only preview precedes an exact `UNDO` confirmation bound to that sort ID.
+  Conflicts stop restoration; returning from either screen changes no files.
+  Older sorts without recovery records explain why undo is unavailable.
 - RIPOSTE browses independently selected files/folders, then asks where to save
   its clean snapshots, candidates, and review records. Inputs stay in place.
   Space toggles selections, Enter opens folders, `s` selects the current folder,

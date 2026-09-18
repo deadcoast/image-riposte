@@ -9,6 +9,8 @@ Every listed command is a real Typer command; use `riposte COMMAND --help` for p
 | `ui [ROOT]` | Optional workspace | Native Rich menu; `--linear` explicitly permits scripted stdin |
 | `organize ROOT` | Whole maintained workspace | Read-only plan; `--apply` explicitly replaces successfully reconstructed sources |
 | `sort ROOT` | Whole maintained workspace | Alias of `organize`; incremental sorting without protection |
+| `categories ROOT` | Filename stems under ROOT | Read-only term discovery and session category review; no media, catalog or rules writes |
+| `undo-sort ROOT` | Last recorded sort in this workspace | Read-only recovery preview; `--apply` restores originals if conflict checks pass; optional `--sort-id` binds confirmation to an exact preview |
 | `riposte ROOT` | Repeated `--input` files/folders, or catalog selection | Protect independently; raw originals stay unchanged; `--plan` writes nothing |
 | `sort-riposte ROOT` | Whole workspace, then catalog selection | Preview by default; `--apply` authorizes sorting followed by protection |
 | `audit ROOT` | Whole workspace | Inspect clean PNGs, artifacts, catalog and calendar/size rules |
@@ -37,7 +39,30 @@ Every listed command is a real Typer command; use `riposte COMMAND --help` for p
 | `frame ROOT RUN_ID RELATIVE` | Exact report-listed frame | Inspect or `--open` audited frame; no arbitrary file access |
 | `workshop ROOT [BATCH_ID ITEM_ID]` | Helper menu or exact output | Open optional menu, or create/reuse an exact-pixel trial handoff |
 
-There are **30 command names**, including the preserved aliases. Presentation flags and Typer's completion options are not additional application commands.
+Presentation flags and Typer's completion options are not additional application commands.
+
+## Filename category discovery
+
+`riposte categories ROOT` discovers recurring words and contiguous phrases in
+image/video filename stems. Each term counts once per file, wherever it appears.
+Use `--min-count 1` to include one-off terms, `--max-words 1` for words only,
+`--ignore TERM` to hide a suggestion, and `--fillers ""` to disable filler words.
+
+```powershell
+riposte categories ROOT --category "Hockey=hockey;goalie;goaltender"
+riposte categories ROOT --category "Sports=hockey" --category "Practice=practice"
+```
+
+Each explicit group selects or renames a category and merges its supplied terms.
+Repeated groups show overlaps for review without assigning a winner. In the menu,
+open Sort and press `c`; edit Category groups and run again to review them.
+Separate groups with commas in the form. The report shows matching-file counts
+and title examples; Details retains the complete bounded report.
+
+This milestone writes no media, catalog entries or saved rules. It does not
+decode media or infer titles for numbered SML/MED/LRG/XTL files. Persistent rules,
+original-title recovery and `Year/Month/img-or-vid/Category/Size` destinations remain
+planned work under PAC-027B; current sorting keeps its existing layout.
 
 ## Publishing configuration
 
@@ -54,6 +79,10 @@ Use exactly one selection style: `--input`, `--image`, or `--all`. Date and reso
 riposte sort ROOT
 riposte sort ROOT --apply
 
+# Inspect recovery before explicitly restoring the last recorded sort.
+riposte undo-sort ROOT
+riposte undo-sort ROOT --apply
+
 # Protect selected originals without restructuring their directory.
 riposte riposte ROOT --input "D:\Images\drawing.png" --input "D:\Images\New" --plan
 riposte riposte ROOT --input "D:\Images\drawing.png" --input "D:\Images\New" --vae MODEL
@@ -64,6 +93,16 @@ riposte sort-riposte ROOT --all --vae MODEL --apply
 ```
 
 The combined command sorts the whole `ROOT`; it does not accept `--input`. Its protection selection is `--all` (optionally filtered) or existing `--image` IDs. `--discard-sidecars` is separate consent to delete metadata sidecars during sorting. Model preflight occurs before source replacement. An incomplete sort stops the pipeline; a later protection failure keeps the sorting receipt and supports a separate RIPOSTE retry. A created batch uses the existing `resume`, exact-pixel `review`, and `package` commands. Neither workflow approves images automatically.
+
+Sort destinations are `Year/Month/img/Size` and `Year/Month/vid/Size`. Video
+inspection requires ffprobe on PATH. Video files retain their bytes and metadata
+and never enter the image protection catalog. Original files and explicitly
+discarded sidecars are retained privately for undo, including their original
+metadata and names. This uses extra disk space. Undo requires these recovery
+copies and refuses conflicts; it cannot recover sorts made before history was
+introduced. `Undo last sort` is a main-menu action and the Sort form's `u` key.
+Its preview must be followed by the exact `UNDO` word. Protection results remain
+in place. Interrupted recovery must be completed before another sort.
 
 The workshop guard retains `--engine coupled|encoder`; the primary publish route calls the inherited release-v1 algorithm. A workshop pipeline is selected with `--pipeline`; primary publishing uses `--inpaint` and `--video`.
 

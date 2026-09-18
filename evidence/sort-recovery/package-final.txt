@@ -1,0 +1,82 @@
+{
+  "result": "PASS",
+  "source_files": 51,
+  "equal_bytes": "checkout = sdist = wheel = isolated installation",
+  "installed_origin": "C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\sort-installed\\riposte\\__init__.py",
+  "commands": [
+    "audit",
+    "benchmark",
+    "challenge",
+    "compare",
+    "doctor",
+    "evaluations",
+    "export",
+    "frame",
+    "generation",
+    "generations",
+    "guard",
+    "image",
+    "inspect",
+    "list",
+    "organize",
+    "package",
+    "protect",
+    "publications",
+    "publish",
+    "qualify",
+    "resume",
+    "review",
+    "riposte",
+    "serve",
+    "sort",
+    "sort-riposte",
+    "trials",
+    "ui",
+    "undo-sort",
+    "upgrade",
+    "workshop"
+  ],
+  "previews": [
+    {
+      "workflow": "sort",
+      "mode": "READ_ONLY",
+      "exit_code": 0
+    },
+    {
+      "workflow": "riposte",
+      "mode": "PUBLICATION_PLAN",
+      "exit_code": 0
+    },
+    {
+      "workflow": "sort-riposte",
+      "mode": "SORT_RIPOSTE_PLAN",
+      "exit_code": 0
+    },
+    {
+      "workflow": "sort",
+      "mode": "APPLY",
+      "exit_code": 0
+    },
+    {
+      "workflow": "undo-sort",
+      "mode": "UNDO_SORT_PREVIEW",
+      "exit_code": 0
+    },
+    {
+      "workflow": "undo-sort",
+      "mode": "UNDO_SORT",
+      "exit_code": 0
+    }
+  ],
+  "windows_launcher": "actual START.ps1 and existing environment; linear menu entered and exited",
+  "windows_wrapper": "actual riposte.cmd help; all new workflow commands visible",
+  "original_bytes_restored": true,
+  "processing_scope": "synthetic image sort and undo; no models",
+  "wheel_sha256": "3e89a1a7ff300369e87576316ebcc3d9dde100c9bc54ebda55610ab7a4b4c95b",
+  "sdist_sha256": "ac4e47c248f0a62d17e5eb7a65456b5c048f9758012f5d6c87b33139ef3bbfe9",
+  "limits": [
+    "Installed previews do not execute models",
+    "Native Windows terminal is checked separately; no GPU/model efficacy claim",
+    "Bash installer behavior is separately tested with installation/UI subprocess adapters"
+  ]
+}

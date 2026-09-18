@@ -13,7 +13,7 @@ FORMAT_NAMES = frozenset({"PNG", "JPEG", "WEBP", "BMP", "TIFF", "GIF"})
 IMAGE_SUFFIXES = frozenset({".png", ".jpg", ".jpeg", ".webp", ".bmp", ".tif", ".tiff", ".gif", ".avif", ".heic", ".heif", ".psd", ".svg", ".jxl", ".exr"})
 SIDECAR_SUFFIXES = frozenset({".xmp", ".exif", ".iptc", ".aae"})
 CACHE_NAMES = frozenset({".ds_store", "thumbs.db", "desktop.ini"})
-CANONICAL = re.compile(r"^(202[456]|EVERYTHING_ELSE)/(" + "|".join(MONTHS) + r")/(SML|MED|LRG|XTL)/(SML|MED|LRG|XTL)([0-9]{2,})\.png$")
+CANONICAL = re.compile(r"^(202[456]|EVERYTHING_ELSE)/(" + "|".join(MONTHS) + r")/(?:img/)?(SML|MED|LRG|XTL)/(SML|MED|LRG|XTL)([0-9]{2,})\.png$")
 
 @dataclass(frozen=True)
 class Policy:
@@ -80,6 +80,14 @@ def folder_for(day: str, width: int, height: int) -> Path:
     date = dt.date.fromisoformat(valid_day(day))
     year = str(date.year) if str(date.year) in YEARS else "EVERYTHING_ELSE"
     return Path(year) / MONTHS[date.month - 1] / size_bin(width, height)
+
+
+def sort_folder_for(day: str, width: int, height: int, media: str = "img") -> Path:
+    """Media layers apply to sorting; existing publishing routes stay compatible."""
+    if media not in {"img", "vid"}:
+        raise RiposteError("MEDIA_KIND_INVALID")
+    folder = folder_for(day, width, height)
+    return folder.parent / media / folder.name
 
 def is_link(path: Path) -> bool:
     try:

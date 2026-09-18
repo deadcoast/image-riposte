@@ -78,11 +78,32 @@ def ui(ctx: typer.Context, root: Annotated[Optional[Path], typer.Argument(help="
 @command("organize", "CLEAN COLLECTION")
 @command("sort", "WORKFLOWS")
 def organize(ctx: typer.Context, root: Root,
-             apply: Annotated[bool, typer.Option("--apply", help="AUTHORIZE removing each verified source after sanitized replacement. No raw backups.")] = False,
+             apply: Annotated[bool, typer.Option("--apply", help="AUTHORIZE sorting sources. Private original copies are retained for undo.")] = False,
              discard_sidecars: Annotated[bool, typer.Option("--discard-sidecars", help="Authorize known metadata sidecar/cache removal on apply.")] = False,
              date_mode: Annotated[DateMode, typer.Option(help="Date-only retention basis.")] = DateMode.download):
     """Read-only recursive plan; --apply explicitly replaces sources."""
     dispatch(ctx, "apply" if apply else "organize", root, discard_sidecars=discard_sidecars, date_mode=date_mode)
+
+
+@command("undo-sort", "WORKFLOWS")
+def undo_sort(ctx: typer.Context, root: Root,
+              apply: Annotated[bool, typer.Option("--apply", help="Restore the last recorded sort after checking for conflicts.")] = False,
+              sort_id: Annotated[Optional[str], typer.Option(help="Require the exact sort ID shown by a previous undo preview.")] = None):
+    """Preview undo; --apply restores original names, bytes and modified times."""
+    dispatch(ctx, "undo-sort-apply" if apply else "undo-sort", root, sort_id=sort_id)
+
+
+@command("categories", "CLEAN COLLECTION")
+def categories(ctx: typer.Context, root: Root,
+               min_count: Annotated[int, typer.Option(min=1, max=1_000_000_000, help="Minimum distinct filenames per suggestion.")] = 2,
+               max_words: Annotated[int, typer.Option(min=1, max=3, help="Longest suggested phrase in words.")] = 3,
+               limit: Annotated[int, typer.Option(min=1, max=500, help="Maximum suggestions shown; all files are counted.")] = 100,
+               category: Annotated[Optional[list[str]], typer.Option("--category", help="Session draft: Hockey=hockey;goalie. Repeat for more categories.")] = None,
+               ignore: Annotated[Optional[list[str]], typer.Option("--ignore", help="Hide this suggestion; repeat for more terms.")] = None,
+               fillers: Annotated[str, typer.Option(help="Comma-separated filler words; empty includes every nonnumeric word.")] = "a,an,and,at,by,for,from,in,of,on,or,the,to,with") -> None:
+    """Discover filename categories and review explicit groups. No files or rules are written."""
+    dispatch(ctx, "categories", root, min_count=min_count, max_words=max_words, limit=limit,
+             category_specs=category or [], ignore=ignore or [], fillers=fillers)
 
 
 @command("audit", "CLEAN COLLECTION")

@@ -1,0 +1,15 @@
+{
+  "previous_snapshot": "typing/evidence/source-reviewed-sort-commit.json",
+  "changed": {
+    "src/riposte/organizer.py": {
+      "before": "dd53050b140a8ed5776e76de8e7326fcd5b2e76125302688922671a6c36028a4",
+      "after": "458f5ec5630f5cf622078b3fe21d5de6e5e5ad8f01f51d40acecd62fffc7262b"
+    },
+    "src/riposte/sort_history.py": {
+      "before": "449e15c6a4138b37ac9ccd8eec74a80bf5142d04cfb809ea95f859ab5248d84f",
+      "after": "da23d27560f15ce33afdc1a223ba18dbebb2f7c05de86b5f15370e978d9fbfd7"
+    }
+  },
+  "unchanged_application_files": 49,
+  "contract_review": "Optional keyword-only next_numbers map added to organizer._next_relative and its external declaration. SortHistory.prepare keeps its parameters, journal fields, return type and RiposteError boundary."
+}

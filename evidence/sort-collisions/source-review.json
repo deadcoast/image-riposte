@@ -1,0 +1,19 @@
+{
+  "previous_snapshot": "typing/evidence/source-reviewed-sort-partial.json",
+  "changed": {
+    "src/riposte/organizer.py": {
+      "before": "458f5ec5630f5cf622078b3fe21d5de6e5e5ad8f01f51d40acecd62fffc7262b",
+      "after": "41ee1a3d6c509a7b8901c7ec92e3a282bfb030b5923ad5f9f5933acb38214c7e"
+    },
+    "src/riposte/sort_history.py": {
+      "before": "da23d27560f15ce33afdc1a223ba18dbebb2f7c05de86b5f15370e978d9fbfd7",
+      "after": "9e79f363f0886a6a61503335bc26da29d579b68b77551e8d983f2f335fb4ec23"
+    },
+    "src/riposte/store.py": {
+      "before": "f6a88c29653c26c58db9d69845a96dfa5e6b8071bce4578e29aa6932bd8e0b9a",
+      "after": "9f5521a9346cba11dea37ad0d36d5485168aad4fc0716c27ab0a04021ac3e7cd"
+    }
+  },
+  "unchanged_application_files": 48,
+  "contract_review": "Store and copy signatures unchanged; SortHistory.reject_output accepts existing entry record and returns None. Existing nullable output and expected fields still describe the version-1 journal."
+}

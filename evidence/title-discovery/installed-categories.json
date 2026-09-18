@@ -1,0 +1,83 @@
+{
+  "result": "PASS",
+  "scope": "Installed wheel read-only filename command on three synthetic files",
+  "report": {
+    "mode": "TITLE_CATEGORY_DISCOVERY",
+    "writes": false,
+    "rules_saved": false,
+    "checkpoint": "COMPLETE",
+    "counts": {
+      "scanned_files": 3,
+      "eligible_files": 3,
+      "images": 2,
+      "analyzed_files": 3,
+      "matched_files": 2,
+      "unmatched_files": 1,
+      "videos": 1
+    },
+    "basis": "FILENAME_STEMS_BY_MEDIA_EXTENSION",
+    "media_validated": false,
+    "settings": {
+      "min_count": 2,
+      "max_words": 3,
+      "limit": 100,
+      "sample_limit": 3,
+      "fillers": [
+        "a",
+        "an",
+        "and",
+        "at",
+        "by",
+        "for",
+        "from",
+        "in",
+        "of",
+        "on",
+        "or",
+        "the",
+        "to",
+        "with"
+      ],
+      "ignore": []
+    },
+    "candidate_count": 0,
+    "omitted_candidates": 0,
+    "candidates": [],
+    "review": {
+      "status": "SESSION_DRAFT",
+      "categories": [
+        {
+          "label": "Sport",
+          "terms": [
+            "goalie",
+            "hockey"
+          ],
+          "count": 2,
+          "examples": [
+            {
+              "filename": "hockey.png",
+              "matched_terms": [
+                "hockey"
+              ]
+            },
+            {
+              "filename": "winter-goalie-practice.mp4",
+              "matched_terms": [
+                "goalie"
+              ]
+            }
+          ]
+        }
+      ],
+      "overlaps": [],
+      "ambiguous_examples": [],
+      "unmatched_examples": [
+        "other.jpg"
+      ],
+      "unmatched_proposal": "Uncategorized"
+    },
+    "next": "Edit category groups and rerun to review. Saving rules and moving files are not available in this milestone.",
+    "title_policy": "Generated SML/MED/LRG/XTL numbered names are excluded; original-title provenance or manual assignment is required."
+  },
+  "media_and_state_unchanged": true
+}

@@ -12,7 +12,7 @@ No new font, component toolkit, theme configuration, or runtime dependency is
 introduced. F2 and `--no-animation` disable decorative motion.
 
 `terminal/render.py` owns all screen layouts. The minimum interactive viewport is
-72 columns by 24 rows. All eight main actions must be visible there, with a
+72 columns by 24 rows. All nine main actions, including Undo last sort, must be visible there, with a
 textual focus marker and visible arrow/Enter hints. Wider screens may show the
 wordmark and a description beside the menu. Number labels are keyboard shortcuts,
 not stages in a required pipeline. Headers show the current task, never a global

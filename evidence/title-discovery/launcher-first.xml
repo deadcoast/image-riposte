@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="1" time="0.532" timestamp="2026-09-18T06:45:39.313486-07:00" hostname="homeone"><testcase classname="tests.test_title_categories" name="test_windows_launcher_accepts_category_aliases" time="0.287"><failure message="assert 0 == 2">root = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/.tmp/title-discovery/launcher-first/test_windows_launcher_accepts_0/workspace')
+
+    @pytest.mark.skipif(sys.platform != "win32", reason="Windows command-wrapper argument contract")
+    def test_windows_launcher_accepts_category_aliases(root):
+        names(root, "hockey.png", "goalie.mp4", "other.jpg")
+        before = snapshot(root)
+        launcher = Path(__file__).resolve().parents[1] / "riposte.cmd"
+        result = subprocess.run([str(launcher), "--json", "categories", str(root),
+                                 "--category", "Sport=hockey;goalie"],
+                                capture_output=True, text=True, encoding="utf-8", timeout=30)
+        assert result.returncode == 0, result.stdout + result.stderr
+        report = json.loads(result.stdout)
+&gt;       assert report["review"]["categories"][0]["count"] == 2
+E       assert 0 == 2
+
+tests\test_title_categories.py:248: AssertionError</failure></testcase></testsuite></testsuites>

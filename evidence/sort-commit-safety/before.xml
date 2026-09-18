@@ -1,0 +1,507 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="10" skipped="0" tests="10" time="0.695" timestamp="2026-09-18T04:03:10.870081-07:00" hostname="homeone"><testcase classname="tests.test_sort_commit_safety" name="test_source_changed_during_removal_journal_is_retained[edit-image]" time="0.073"><failure message="AssertionError: assert 'COMPLETE' == 'INCOMPLETE'&#10;  &#10;  - INCOMPLETE&#10;  ? --&#10;  + COMPLETE">root = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/sort-commit/before/test_source_changed_during_rem0/workspace')
+make_image = &lt;function make_image.&lt;locals&gt;.create at 0x0000018FB9B2B7F0&gt;
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x0000018FB9AEDE00&gt;
+media = 'image', change = 'edit'
+
+    @pytest.mark.parametrize("media", ["image", "sidecar"])
+    @pytest.mark.parametrize("change", ["edit", "replace", "timestamp", "remove", "hardlink"])
+    def test_source_changed_during_removal_journal_is_retained(root, make_image, monkeypatch, media, change):
+        source = root / ("original.png" if media == "image" else "original.xmp")
+        if media == "image":
+            make_image(source)
+        else:
+            source.write_bytes(b"private sidecar metadata")
+        original = source.read_bytes()
+        stamp = source.stat()
+        edited = bytes([original[0] ^ 1]) + original[1:]
+        expected = edited if change == "edit" else original
+        fired = False
+        save = history._save
+    
+        def change_during_save(workspace, journal):
+            nonlocal fired
+            save(workspace, journal)
+            if fired or not any(e["removing"] and not e["removed"] for e in journal["entries"]):
+                return
+            fired = True
+            if change == "edit":
+                source.write_bytes(edited)
+                os.utime(source, ns=(stamp.st_atime_ns, stamp.st_mtime_ns))
+            elif change == "replace":
+                replacement = root / "replacement.tmp"
+                replacement.write_bytes(original)
+                os.utime(replacement, ns=(stamp.st_atime_ns, stamp.st_mtime_ns))
+                os.replace(replacement, source)
+            elif change == "timestamp":
+                os.utime(source, ns=(stamp.st_atime_ns, stamp.st_mtime_ns + 10_000_000_000))
+            elif change == "remove":
+                source.unlink()
+            else:
+                os.link(source, root / "external-link.tmp")
+    
+        monkeypatch.setattr(history, "_save", change_during_save)
+        result = organizer.organize(root, Policy(date_mode="modified", discard_sidecars=True))
+        assert fired
+&gt;       assert result["checkpoint"] == "INCOMPLETE"
+E       AssertionError: assert 'COMPLETE' == 'INCOMPLETE'
+E         
+E         - INCOMPLETE
+E         ? --
+E         + COMPLETE
+
+tests\test_sort_commit_safety.py:52: AssertionError</failure></testcase><testcase classname="tests.test_sort_commit_safety" name="test_source_changed_during_removal_journal_is_retained[edit-sidecar]" time="0.045"><failure message="AssertionError: assert 'COMPLETE' == 'INCOMPLETE'&#10;  &#10;  - INCOMPLETE&#10;  ? --&#10;  + COMPLETE">root = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/sort-commit/before/test_source_changed_during_rem1/workspace')
+make_image = &lt;function make_image.&lt;locals&gt;.create at 0x0000018FB9B77950&gt;
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x0000018FB9AED810&gt;
+media = 'sidecar', change = 'edit'
+
+    @pytest.mark.parametrize("media", ["image", "sidecar"])
+    @pytest.mark.parametrize("change", ["edit", "replace", "timestamp", "remove", "hardlink"])
+    def test_source_changed_during_removal_journal_is_retained(root, make_image, monkeypatch, media, change):
+        source = root / ("original.png" if media == "image" else "original.xmp")
+        if media == "image":
+            make_image(source)
+        else:
+            source.write_bytes(b"private sidecar metadata")
+        original = source.read_bytes()
+        stamp = source.stat()
+        edited = bytes([original[0] ^ 1]) + original[1:]
+        expected = edited if change == "edit" else original
+        fired = False
+        save = history._save
+    
+        def change_during_save(workspace, journal):
+            nonlocal fired
+            save(workspace, journal)
+            if fired or not any(e["removing"] and not e["removed"] for e in journal["entries"]):
+                return
+            fired = True
+            if change == "edit":
+                source.write_bytes(edited)
+                os.utime(source, ns=(stamp.st_atime_ns, stamp.st_mtime_ns))
+            elif change == "replace":
+                replacement = root / "replacement.tmp"
+                replacement.write_bytes(original)
+                os.utime(replacement, ns=(stamp.st_atime_ns, stamp.st_mtime_ns))
+                os.replace(replacement, source)
+            elif change == "timestamp":
+                os.utime(source, ns=(stamp.st_atime_ns, stamp.st_mtime_ns + 10_000_000_000))
+            elif change == "remove":
+                source.unlink()
+            else:
+                os.link(source, root / "external-link.tmp")
+    
+        monkeypatch.setattr(history, "_save", change_during_save)
+        result = organizer.organize(root, Policy(date_mode="modified", discard_sidecars=True))
+        assert fired
+&gt;       assert result["checkpoint"] == "INCOMPLETE"
+E       AssertionError: assert 'COMPLETE' == 'INCOMPLETE'
+E         
+E         - INCOMPLETE
+E         ? --
+E         + COMPLETE
+
+tests\test_sort_commit_safety.py:52: AssertionError</failure></testcase><testcase classname="tests.test_sort_commit_safety" name="test_source_changed_during_removal_journal_is_retained[replace-image]" time="0.055"><failure message="AssertionError: assert 'COMPLETE' == 'INCOMPLETE'&#10;  &#10;  - INCOMPLETE&#10;  ? --&#10;  + COMPLETE">root = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/sort-commit/before/test_source_changed_during_rem2/workspace')
+make_image = &lt;function make_image.&lt;locals&gt;.create at 0x0000018FB9BB8EB0&gt;
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x0000018FB9B51910&gt;
+media = 'image', change = 'replace'
+
+    @pytest.mark.parametrize("media", ["image", "sidecar"])
+    @pytest.mark.parametrize("change", ["edit", "replace", "timestamp", "remove", "hardlink"])
+    def test_source_changed_during_removal_journal_is_retained(root, make_image, monkeypatch, media, change):
+        source = root / ("original.png" if media == "image" else "original.xmp")
+        if media == "image":
+            make_image(source)
+        else:
+            source.write_bytes(b"private sidecar metadata")
+        original = source.read_bytes()
+        stamp = source.stat()
+        edited = bytes([original[0] ^ 1]) + original[1:]
+        expected = edited if change == "edit" else original
+        fired = False
+        save = history._save
+    
+        def change_during_save(workspace, journal):
+            nonlocal fired
+            save(workspace, journal)
+            if fired or not any(e["removing"] and not e["removed"] for e in journal["entries"]):
+                return
+            fired = True
+            if change == "edit":
+                source.write_bytes(edited)
+                os.utime(source, ns=(stamp.st_atime_ns, stamp.st_mtime_ns))
+            elif change == "replace":
+                replacement = root / "replacement.tmp"
+                replacement.write_bytes(original)
+                os.utime(replacement, ns=(stamp.st_atime_ns, stamp.st_mtime_ns))
+                os.replace(replacement, source)
+            elif change == "timestamp":
+                os.utime(source, ns=(stamp.st_atime_ns, stamp.st_mtime_ns + 10_000_000_000))
+            elif change == "remove":
+                source.unlink()
+            else:
+                os.link(source, root / "external-link.tmp")
+    
+        monkeypatch.setattr(history, "_save", change_during_save)
+        result = organizer.organize(root, Policy(date_mode="modified", discard_sidecars=True))
+        assert fired
+&gt;       assert result["checkpoint"] == "INCOMPLETE"
+E       AssertionError: assert 'COMPLETE' == 'INCOMPLETE'
+E         
+E         - INCOMPLETE
+E         ? --
+E         + COMPLETE
+
+tests\test_sort_commit_safety.py:52: AssertionError</failure></testcase><testcase classname="tests.test_sort_commit_safety" name="test_source_changed_during_removal_journal_is_retained[replace-sidecar]" time="0.041"><failure message="AssertionError: assert 'COMPLETE' == 'INCOMPLETE'&#10;  &#10;  - INCOMPLETE&#10;  ? --&#10;  + COMPLETE">root = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/sort-commit/before/test_source_changed_during_rem3/workspace')
+make_image = &lt;function make_image.&lt;locals&gt;.create at 0x0000018FB9BB90C0&gt;
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x0000018FB9B3D150&gt;
+media = 'sidecar', change = 'replace'
+
+    @pytest.mark.parametrize("media", ["image", "sidecar"])
+    @pytest.mark.parametrize("change", ["edit", "replace", "timestamp", "remove", "hardlink"])
+    def test_source_changed_during_removal_journal_is_retained(root, make_image, monkeypatch, media, change):
+        source = root / ("original.png" if media == "image" else "original.xmp")
+        if media == "image":
+            make_image(source)
+        else:
+            source.write_bytes(b"private sidecar metadata")
+        original = source.read_bytes()
+        stamp = source.stat()
+        edited = bytes([original[0] ^ 1]) + original[1:]
+        expected = edited if change == "edit" else original
+        fired = False
+        save = history._save
+    
+        def change_during_save(workspace, journal):
+            nonlocal fired
+            save(workspace, journal)
+            if fired or not any(e["removing"] and not e["removed"] for e in journal["entries"]):
+                return
+            fired = True
+            if change == "edit":
+                source.write_bytes(edited)
+                os.utime(source, ns=(stamp.st_atime_ns, stamp.st_mtime_ns))
+            elif change == "replace":
+                replacement = root / "replacement.tmp"
+                replacement.write_bytes(original)
+                os.utime(replacement, ns=(stamp.st_atime_ns, stamp.st_mtime_ns))
+                os.replace(replacement, source)
+            elif change == "timestamp":
+                os.utime(source, ns=(stamp.st_atime_ns, stamp.st_mtime_ns + 10_000_000_000))
+            elif change == "remove":
+                source.unlink()
+            else:
+                os.link(source, root / "external-link.tmp")
+    
+        monkeypatch.setattr(history, "_save", change_during_save)
+        result = organizer.organize(root, Policy(date_mode="modified", discard_sidecars=True))
+        assert fired
+&gt;       assert result["checkpoint"] == "INCOMPLETE"
+E       AssertionError: assert 'COMPLETE' == 'INCOMPLETE'
+E         
+E         - INCOMPLETE
+E         ? --
+E         + COMPLETE
+
+tests\test_sort_commit_safety.py:52: AssertionError</failure></testcase><testcase classname="tests.test_sort_commit_safety" name="test_source_changed_during_removal_journal_is_retained[timestamp-image]" time="0.055"><failure message="AssertionError: assert 'COMPLETE' == 'INCOMPLETE'&#10;  &#10;  - INCOMPLETE&#10;  ? --&#10;  + COMPLETE">root = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/sort-commit/before/test_source_changed_during_rem4/workspace')
+make_image = &lt;function make_image.&lt;locals&gt;.create at 0x0000018FB9BBB8A0&gt;
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x0000018FB9B3D6A0&gt;
+media = 'image', change = 'timestamp'
+
+    @pytest.mark.parametrize("media", ["image", "sidecar"])
+    @pytest.mark.parametrize("change", ["edit", "replace", "timestamp", "remove", "hardlink"])
+    def test_source_changed_during_removal_journal_is_retained(root, make_image, monkeypatch, media, change):
+        source = root / ("original.png" if media == "image" else "original.xmp")
+        if media == "image":
+            make_image(source)
+        else:
+            source.write_bytes(b"private sidecar metadata")
+        original = source.read_bytes()
+        stamp = source.stat()
+        edited = bytes([original[0] ^ 1]) + original[1:]
+        expected = edited if change == "edit" else original
+        fired = False
+        save = history._save
+    
+        def change_during_save(workspace, journal):
+            nonlocal fired
+            save(workspace, journal)
+            if fired or not any(e["removing"] and not e["removed"] for e in journal["entries"]):
+                return
+            fired = True
+            if change == "edit":
+                source.write_bytes(edited)
+                os.utime(source, ns=(stamp.st_atime_ns, stamp.st_mtime_ns))
+            elif change == "replace":
+                replacement = root / "replacement.tmp"
+                replacement.write_bytes(original)
+                os.utime(replacement, ns=(stamp.st_atime_ns, stamp.st_mtime_ns))
+                os.replace(replacement, source)
+            elif change == "timestamp":
+                os.utime(source, ns=(stamp.st_atime_ns, stamp.st_mtime_ns + 10_000_000_000))
+            elif change == "remove":
+                source.unlink()
+            else:
+                os.link(source, root / "external-link.tmp")
+    
+        monkeypatch.setattr(history, "_save", change_during_save)
+        result = organizer.organize(root, Policy(date_mode="modified", discard_sidecars=True))
+        assert fired
+&gt;       assert result["checkpoint"] == "INCOMPLETE"
+E       AssertionError: assert 'COMPLETE' == 'INCOMPLETE'
+E         
+E         - INCOMPLETE
+E         ? --
+E         + COMPLETE
+
+tests\test_sort_commit_safety.py:52: AssertionError</failure></testcase><testcase classname="tests.test_sort_commit_safety" name="test_source_changed_during_removal_journal_is_retained[timestamp-sidecar]" time="0.041"><failure message="AssertionError: assert 'COMPLETE' == 'INCOMPLETE'&#10;  &#10;  - INCOMPLETE&#10;  ? --&#10;  + COMPLETE">root = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/sort-commit/before/test_source_changed_during_rem5/workspace')
+make_image = &lt;function make_image.&lt;locals&gt;.create at 0x0000018FB9BB90C0&gt;
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x0000018FB9B62650&gt;
+media = 'sidecar', change = 'timestamp'
+
+    @pytest.mark.parametrize("media", ["image", "sidecar"])
+    @pytest.mark.parametrize("change", ["edit", "replace", "timestamp", "remove", "hardlink"])
+    def test_source_changed_during_removal_journal_is_retained(root, make_image, monkeypatch, media, change):
+        source = root / ("original.png" if media == "image" else "original.xmp")
+        if media == "image":
+            make_image(source)
+        else:
+            source.write_bytes(b"private sidecar metadata")
+        original = source.read_bytes()
+        stamp = source.stat()
+        edited = bytes([original[0] ^ 1]) + original[1:]
+        expected = edited if change == "edit" else original
+        fired = False
+        save = history._save
+    
+        def change_during_save(workspace, journal):
+            nonlocal fired
+            save(workspace, journal)
+            if fired or not any(e["removing"] and not e["removed"] for e in journal["entries"]):
+                return
+            fired = True
+            if change == "edit":
+                source.write_bytes(edited)
+                os.utime(source, ns=(stamp.st_atime_ns, stamp.st_mtime_ns))
+            elif change == "replace":
+                replacement = root / "replacement.tmp"
+                replacement.write_bytes(original)
+                os.utime(replacement, ns=(stamp.st_atime_ns, stamp.st_mtime_ns))
+                os.replace(replacement, source)
+            elif change == "timestamp":
+                os.utime(source, ns=(stamp.st_atime_ns, stamp.st_mtime_ns + 10_000_000_000))
+            elif change == "remove":
+                source.unlink()
+            else:
+                os.link(source, root / "external-link.tmp")
+    
+        monkeypatch.setattr(history, "_save", change_during_save)
+        result = organizer.organize(root, Policy(date_mode="modified", discard_sidecars=True))
+        assert fired
+&gt;       assert result["checkpoint"] == "INCOMPLETE"
+E       AssertionError: assert 'COMPLETE' == 'INCOMPLETE'
+E         
+E         - INCOMPLETE
+E         ? --
+E         + COMPLETE
+
+tests\test_sort_commit_safety.py:52: AssertionError</failure></testcase><testcase classname="tests.test_sort_commit_safety" name="test_source_changed_during_removal_journal_is_retained[remove-image]" time="0.049"><failure message="AssertionError: assert None == 1&#10; +  where None = &lt;built-in method get of dict object at 0x0000018FB9BAC2C0&gt;('SOURCE_CHANGED_OUTPUT_RETAINED')&#10; +    where &lt;built-in method get of dict object at 0x0000018FB9BAC2C0&gt; = {'IO_OPERATION_FAILED': 1}.get">root = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/sort-commit/before/test_source_changed_during_rem6/workspace')
+make_image = &lt;function make_image.&lt;locals&gt;.create at 0x0000018FB9BB9A60&gt;
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x0000018FB9B61B50&gt;
+media = 'image', change = 'remove'
+
+    @pytest.mark.parametrize("media", ["image", "sidecar"])
+    @pytest.mark.parametrize("change", ["edit", "replace", "timestamp", "remove", "hardlink"])
+    def test_source_changed_during_removal_journal_is_retained(root, make_image, monkeypatch, media, change):
+        source = root / ("original.png" if media == "image" else "original.xmp")
+        if media == "image":
+            make_image(source)
+        else:
+            source.write_bytes(b"private sidecar metadata")
+        original = source.read_bytes()
+        stamp = source.stat()
+        edited = bytes([original[0] ^ 1]) + original[1:]
+        expected = edited if change == "edit" else original
+        fired = False
+        save = history._save
+    
+        def change_during_save(workspace, journal):
+            nonlocal fired
+            save(workspace, journal)
+            if fired or not any(e["removing"] and not e["removed"] for e in journal["entries"]):
+                return
+            fired = True
+            if change == "edit":
+                source.write_bytes(edited)
+                os.utime(source, ns=(stamp.st_atime_ns, stamp.st_mtime_ns))
+            elif change == "replace":
+                replacement = root / "replacement.tmp"
+                replacement.write_bytes(original)
+                os.utime(replacement, ns=(stamp.st_atime_ns, stamp.st_mtime_ns))
+                os.replace(replacement, source)
+            elif change == "timestamp":
+                os.utime(source, ns=(stamp.st_atime_ns, stamp.st_mtime_ns + 10_000_000_000))
+            elif change == "remove":
+                source.unlink()
+            else:
+                os.link(source, root / "external-link.tmp")
+    
+        monkeypatch.setattr(history, "_save", change_during_save)
+        result = organizer.organize(root, Policy(date_mode="modified", discard_sidecars=True))
+        assert fired
+        assert result["checkpoint"] == "INCOMPLETE"
+&gt;       assert result["blockers"].get("SOURCE_CHANGED_OUTPUT_RETAINED") == 1
+E       AssertionError: assert None == 1
+E        +  where None = &lt;built-in method get of dict object at 0x0000018FB9BAC2C0&gt;('SOURCE_CHANGED_OUTPUT_RETAINED')
+E        +    where &lt;built-in method get of dict object at 0x0000018FB9BAC2C0&gt; = {'IO_OPERATION_FAILED': 1}.get
+
+tests\test_sort_commit_safety.py:53: AssertionError</failure></testcase><testcase classname="tests.test_sort_commit_safety" name="test_source_changed_during_removal_journal_is_retained[remove-sidecar]" time="0.035"><failure message="AssertionError: assert None == 1&#10; +  where None = &lt;built-in method get of dict object at 0x0000018F9A739640&gt;('SOURCE_CHANGED_OUTPUT_RETAINED')&#10; +    where &lt;built-in method get of dict object at 0x0000018F9A739640&gt; = {'IO_OPERATION_FAILED': 1}.get">root = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/sort-commit/before/test_source_changed_during_rem7/workspace')
+make_image = &lt;function make_image.&lt;locals&gt;.create at 0x0000018FB9BB85C0&gt;
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x0000018FB9BB17C0&gt;
+media = 'sidecar', change = 'remove'
+
+    @pytest.mark.parametrize("media", ["image", "sidecar"])
+    @pytest.mark.parametrize("change", ["edit", "replace", "timestamp", "remove", "hardlink"])
+    def test_source_changed_during_removal_journal_is_retained(root, make_image, monkeypatch, media, change):
+        source = root / ("original.png" if media == "image" else "original.xmp")
+        if media == "image":
+            make_image(source)
+        else:
+            source.write_bytes(b"private sidecar metadata")
+        original = source.read_bytes()
+        stamp = source.stat()
+        edited = bytes([original[0] ^ 1]) + original[1:]
+        expected = edited if change == "edit" else original
+        fired = False
+        save = history._save
+    
+        def change_during_save(workspace, journal):
+            nonlocal fired
+            save(workspace, journal)
+            if fired or not any(e["removing"] and not e["removed"] for e in journal["entries"]):
+                return
+            fired = True
+            if change == "edit":
+                source.write_bytes(edited)
+                os.utime(source, ns=(stamp.st_atime_ns, stamp.st_mtime_ns))
+            elif change == "replace":
+                replacement = root / "replacement.tmp"
+                replacement.write_bytes(original)
+                os.utime(replacement, ns=(stamp.st_atime_ns, stamp.st_mtime_ns))
+                os.replace(replacement, source)
+            elif change == "timestamp":
+                os.utime(source, ns=(stamp.st_atime_ns, stamp.st_mtime_ns + 10_000_000_000))
+            elif change == "remove":
+                source.unlink()
+            else:
+                os.link(source, root / "external-link.tmp")
+    
+        monkeypatch.setattr(history, "_save", change_during_save)
+        result = organizer.organize(root, Policy(date_mode="modified", discard_sidecars=True))
+        assert fired
+        assert result["checkpoint"] == "INCOMPLETE"
+&gt;       assert result["blockers"].get("SOURCE_CHANGED_OUTPUT_RETAINED") == 1
+E       AssertionError: assert None == 1
+E        +  where None = &lt;built-in method get of dict object at 0x0000018F9A739640&gt;('SOURCE_CHANGED_OUTPUT_RETAINED')
+E        +    where &lt;built-in method get of dict object at 0x0000018F9A739640&gt; = {'IO_OPERATION_FAILED': 1}.get
+
+tests\test_sort_commit_safety.py:53: AssertionError</failure></testcase><testcase classname="tests.test_sort_commit_safety" name="test_source_changed_during_removal_journal_is_retained[hardlink-image]" time="0.053"><failure message="AssertionError: assert None == 1&#10; +  where None = &lt;built-in method get of dict object at 0x0000018FB9BB6340&gt;('SOURCE_CHANGED_OUTPUT_RETAINED')&#10; +    where &lt;built-in method get of dict object at 0x0000018FB9BB6340&gt; = {}.get">root = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/sort-commit/before/test_source_changed_during_rem8/workspace')
+make_image = &lt;function make_image.&lt;locals&gt;.create at 0x0000018FB9B771C0&gt;
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x0000018FB9BB0D70&gt;
+media = 'image', change = 'hardlink'
+
+    @pytest.mark.parametrize("media", ["image", "sidecar"])
+    @pytest.mark.parametrize("change", ["edit", "replace", "timestamp", "remove", "hardlink"])
+    def test_source_changed_during_removal_journal_is_retained(root, make_image, monkeypatch, media, change):
+        source = root / ("original.png" if media == "image" else "original.xmp")
+        if media == "image":
+            make_image(source)
+        else:
+            source.write_bytes(b"private sidecar metadata")
+        original = source.read_bytes()
+        stamp = source.stat()
+        edited = bytes([original[0] ^ 1]) + original[1:]
+        expected = edited if change == "edit" else original
+        fired = False
+        save = history._save
+    
+        def change_during_save(workspace, journal):
+            nonlocal fired
+            save(workspace, journal)
+            if fired or not any(e["removing"] and not e["removed"] for e in journal["entries"]):
+                return
+            fired = True
+            if change == "edit":
+                source.write_bytes(edited)
+                os.utime(source, ns=(stamp.st_atime_ns, stamp.st_mtime_ns))
+            elif change == "replace":
+                replacement = root / "replacement.tmp"
+                replacement.write_bytes(original)
+                os.utime(replacement, ns=(stamp.st_atime_ns, stamp.st_mtime_ns))
+                os.replace(replacement, source)
+            elif change == "timestamp":
+                os.utime(source, ns=(stamp.st_atime_ns, stamp.st_mtime_ns + 10_000_000_000))
+            elif change == "remove":
+                source.unlink()
+            else:
+                os.link(source, root / "external-link.tmp")
+    
+        monkeypatch.setattr(history, "_save", change_during_save)
+        result = organizer.organize(root, Policy(date_mode="modified", discard_sidecars=True))
+        assert fired
+        assert result["checkpoint"] == "INCOMPLETE"
+&gt;       assert result["blockers"].get("SOURCE_CHANGED_OUTPUT_RETAINED") == 1
+E       AssertionError: assert None == 1
+E        +  where None = &lt;built-in method get of dict object at 0x0000018FB9BB6340&gt;('SOURCE_CHANGED_OUTPUT_RETAINED')
+E        +    where &lt;built-in method get of dict object at 0x0000018FB9BB6340&gt; = {}.get
+
+tests\test_sort_commit_safety.py:53: AssertionError</failure></testcase><testcase classname="tests.test_sort_commit_safety" name="test_source_changed_during_removal_journal_is_retained[hardlink-sidecar]" time="0.071"><failure message="AssertionError: assert None == 1&#10; +  where None = &lt;built-in method get of dict object at 0x0000018F9A663380&gt;('SOURCE_CHANGED_OUTPUT_RETAINED')&#10; +    where &lt;built-in method get of dict object at 0x0000018F9A663380&gt; = {}.get">root = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/sort-commit/before/test_source_changed_during_rem9/workspace')
+make_image = &lt;function make_image.&lt;locals&gt;.create at 0x0000018FB9C44460&gt;
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x0000018FB9B809F0&gt;
+media = 'sidecar', change = 'hardlink'
+
+    @pytest.mark.parametrize("media", ["image", "sidecar"])
+    @pytest.mark.parametrize("change", ["edit", "replace", "timestamp", "remove", "hardlink"])
+    def test_source_changed_during_removal_journal_is_retained(root, make_image, monkeypatch, media, change):
+        source = root / ("original.png" if media == "image" else "original.xmp")
+        if media == "image":
+            make_image(source)
+        else:
+            source.write_bytes(b"private sidecar metadata")
+        original = source.read_bytes()
+        stamp = source.stat()
+        edited = bytes([original[0] ^ 1]) + original[1:]
+        expected = edited if change == "edit" else original
+        fired = False
+        save = history._save
+    
+        def change_during_save(workspace, journal):
+            nonlocal fired
+            save(workspace, journal)
+            if fired or not any(e["removing"] and not e["removed"] for e in journal["entries"]):
+                return
+            fired = True
+            if change == "edit":
+                source.write_bytes(edited)
+                os.utime(source, ns=(stamp.st_atime_ns, stamp.st_mtime_ns))
+            elif change == "replace":
+                replacement = root / "replacement.tmp"
+                replacement.write_bytes(original)
+                os.utime(replacement, ns=(stamp.st_atime_ns, stamp.st_mtime_ns))
+                os.replace(replacement, source)
+            elif change == "timestamp":
+                os.utime(source, ns=(stamp.st_atime_ns, stamp.st_mtime_ns + 10_000_000_000))
+            elif change == "remove":
+                source.unlink()
+            else:
+                os.link(source, root / "external-link.tmp")
+    
+        monkeypatch.setattr(history, "_save", change_during_save)
+        result = organizer.organize(root, Policy(date_mode="modified", discard_sidecars=True))
+        assert fired
+        assert result["checkpoint"] == "INCOMPLETE"
+&gt;       assert result["blockers"].get("SOURCE_CHANGED_OUTPUT_RETAINED") == 1
+E       AssertionError: assert None == 1
+E        +  where None = &lt;built-in method get of dict object at 0x0000018F9A663380&gt;('SOURCE_CHANGED_OUTPUT_RETAINED')
+E        +    where &lt;built-in method get of dict object at 0x0000018F9A663380&gt; = {}.get
+
+tests\test_sort_commit_safety.py:53: AssertionError</failure></testcase></testsuite></testsuites>

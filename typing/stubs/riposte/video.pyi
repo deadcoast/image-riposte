@@ -1,0 +1,13 @@
+"""Sort-only video contracts; ffprobe is an external runtime dependency."""
+from pathlib import Path
+from _riposte_types import CatalogRow, Report, VideoInfo
+from .errors import RiposteError as RiposteError
+from .policy import Policy as Policy, extract_day as extract_day, is_link as is_link, same_file_state as same_file_state, sort_folder_for as sort_folder_for, valid_day as valid_day
+from .store import check_root as check_root, connect as connect, safe_child as safe_child, state_relative as state_relative
+
+VIDEO_SUFFIXES: frozenset[str]
+
+def file_hash(path: Path) -> str: ...
+def inspect_video(path: Path, policy: Policy=...) -> VideoInfo: ...
+def video_catalog(root: Path) -> list[CatalogRow]: ...
+def record_video(root: Path, relative: str, info: Report) -> CatalogRow: ...

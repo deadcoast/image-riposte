@@ -1,0 +1,24 @@
+                                                                        
+   R I P O S T E    /  MAIN MENU                                        
+                                                                        
+  --------------------------------------------------------------------  
+   Choose what you want to do. Each action works independently.         
+                                                                        
+   IMAGE PROTECTION & ORGANIZATION                                      
+                                                                        
+   Choose an action, then browse images or folders.                     
+  -- MAIN MENU -------------------------------------------------------  
+    > 1  RIPOSTE                                                        
+      2  Sort                                                           
+      3  Sort + RIPOSTE                                                 
+      4  Image library                                                  
+      5  Publishing batches                                             
+      6  Local models                                                   
+      7  Terminal & workspace                                           
+      8  Workshop                                                       
+      9  Undo last sort                                                 
+   Protect files or folders; preserve originals                         
+  --------------------------------------------------------------------  
+   [Enter] Open   [Arrows] Move   [1-9] Choose   [/] Find   [q] Quit    
+   [F1] Help                                                            
+                                                                        

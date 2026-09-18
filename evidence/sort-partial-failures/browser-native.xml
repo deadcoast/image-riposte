@@ -1,0 +1,1 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="0" skipped="0" tests="1" time="0.868" timestamp="2026-09-18T05:22:23.630463-07:00" hostname="homeone"><testcase classname="tests.test_browser_review" name="test_browser_review[native_browser]" time="0.848" /></testsuite></testsuites>

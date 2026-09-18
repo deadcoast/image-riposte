@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="21" time="6.359" timestamp="2026-09-18T06:41:15.072559-07:00" hostname="homeone"><testcase classname="tests.test_browser_review" name="test_browser_review[approval_waits_for_decode]" time="0.049" /><testcase classname="tests.test_browser_review" name="test_browser_review[failed_image_blocks_approval]" time="0.048" /><testcase classname="tests.test_browser_review" name="test_browser_review[failed_decode_blocks_approval]" time="0.054" /><testcase classname="tests.test_browser_review" name="test_browser_review[new_review_clears_old_pixels]" time="0.049" /><testcase classname="tests.test_browser_review" name="test_browser_review[superseded_load_cannot_authorize]" time="0.048" /><testcase classname="tests.test_browser_review" name="test_browser_review[original_pixels_required]" time="0.046" /><testcase classname="tests.test_browser_review" name="test_browser_review[cached_preview_is_revalidated]" time="0.047" /><testcase classname="tests.test_browser_review" name="test_browser_review[closed_review_cannot_submit]" time="0.043" /><testcase classname="tests.test_browser_review" name="test_browser_review[native_close_cancels_review]" time="0.048" /><testcase classname="tests.test_browser_review" name="test_browser_review[duplicate_decisions_blocked]" time="0.045" /><testcase classname="tests.test_browser_review" name="test_browser_review[old_decision_keeps_new_review_open]" time="0.047" /><testcase classname="tests.test_browser_review" name="test_browser_review[failed_decision_can_retry]" time="0.046" /><testcase classname="tests.test_browser_review" name="test_browser_review[rejection_without_images]" time="0.044" /><testcase classname="tests.test_browser_review" name="test_browser_review[same_path_load_race]" time="0.044" /><testcase classname="tests.test_browser_review" name="test_browser_review[late_decode_keeps_current_image]" time="0.042" /><testcase classname="tests.test_browser_review" name="test_browser_review[fresh_urls_are_released]" time="0.041" /><testcase classname="tests.test_browser_review" name="test_browser_review[acknowledgements_required]" time="0.043" /><testcase classname="tests.test_browser_review" name="test_browser_review[stale_receipt_is_not_success]" time="0.044" /><testcase classname="tests.test_browser_review" name="test_browser_review[old_workshop_keeps_new_review_open]" time="0.042" /><testcase classname="tests.test_browser_review" name="test_browser_review[workshop_handoff]" time="0.046" /><testcase classname="tests.test_browser_review" name="test_browser_review[native_browser]" time="5.374"><failure message="AssertionError: Error: Browser command timed out: Page.navigate&#10;      at Timeout._onTimeout (C:\Users\ryanf\github\_new\image-riposte\tests\browser_review.cjs:388:66)&#10;      at listOnTimeout (node:internal/timers:605:17)&#10;      at process.processTimers (node:internal/timers:541:7)&#10;  &#10;assert 1 == 0&#10; +  where 1 = CompletedProcess(args=['C:\\nvm4w\\nodejs\\node.EXE', 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\tests\\browser_r...:66)\n    at listOnTimeout (node:internal/timers:605:17)\n    at process.processTimers (node:internal/timers:541:7)\n').returncode">scenario = 'native_browser'
+
+    @pytest.mark.parametrize('scenario', [
+        'approval_waits_for_decode',
+        'failed_image_blocks_approval',
+        'failed_decode_blocks_approval',
+        'new_review_clears_old_pixels',
+        'superseded_load_cannot_authorize',
+        'original_pixels_required',
+        'cached_preview_is_revalidated',
+        'closed_review_cannot_submit',
+        'native_close_cancels_review',
+        'duplicate_decisions_blocked',
+        'old_decision_keeps_new_review_open',
+        'failed_decision_can_retry',
+        'rejection_without_images',
+        'same_path_load_race',
+        'late_decode_keeps_current_image',
+        'fresh_urls_are_released',
+        'acknowledgements_required',
+        'stale_receipt_is_not_success',
+        'old_workshop_keeps_new_review_open',
+        'workshop_handoff',
+        'native_browser',
+    ])
+    def test_browser_review(scenario):
+        node = shutil.which('node')
+        if node is None:
+            pytest.skip('Node is required to execute the browser JavaScript')
+        browser = None
+        if scenario == 'native_browser':
+            candidates = [
+                os.environ.get('RIPOSTE_TEST_BROWSER', ''),
+                shutil.which('chromium') or shutil.which('google-chrome') or '',
+                'C:/Program Files/Google/Chrome/Application/chrome.exe',
+                'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe',
+            ]
+            browser = next((name for name in candidates if name and Path(name).is_file()), None)
+            if browser is None:
+                pytest.skip('A local Chromium browser is required for native DOM verification')
+        script = Path(__file__).with_name('browser_review.cjs')
+        result = subprocess.run([node, str(script), scenario, *([browser] if browser else [])],
+                                capture_output=True, text=True, encoding='utf-8', timeout=30)
+&gt;       assert result.returncode == 0, result.stdout + result.stderr
+E       AssertionError: Error: Browser command timed out: Page.navigate
+E             at Timeout._onTimeout (C:\Users\ryanf\github\_new\image-riposte\tests\browser_review.cjs:388:66)
+E             at listOnTimeout (node:internal/timers:605:17)
+E             at process.processTimers (node:internal/timers:541:7)
+E         
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['C:\\nvm4w\\nodejs\\node.EXE', 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\tests\\browser_r...:66)\n    at listOnTimeout (node:internal/timers:605:17)\n    at process.processTimers (node:internal/timers:541:7)\n').returncode
+
+tests\test_browser_review.py:51: AssertionError</failure></testcase></testsuite></testsuites>

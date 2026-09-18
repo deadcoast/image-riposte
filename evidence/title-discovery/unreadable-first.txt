@@ -1,0 +1,60 @@
+FF                                                                       [100%]
+================================== FAILURES ===================================
+__________ test_unreadable_entry_is_not_misreported_as_a_link[False] __________
+
+root = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/.tmp/title-discovery/unreadable-first/test_unreadable_entry_is_not_m0/workspace')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x00000209FDF39E00>
+directory = False
+
+    @pytest.mark.parametrize("directory", [False, True])
+    def test_unreadable_entry_is_not_misreported_as_a_link(root, monkeypatch, directory):
+        names(root, "hockey.png", "blocked/goalie.png" if directory else "blocked.png")
+        original = Path.lstat
+        blocked = root / ("blocked" if directory else "blocked.png")
+    
+        def denied(path, *args, **kwargs):
+            if path == blocked:
+                raise PermissionError("private filename must not enter diagnostics")
+            return original(path, *args, **kwargs)
+    
+        monkeypatch.setattr(Path, "lstat", denied)
+        report = tc.discover_categories(root, min_count=1)
+>       assert report["checkpoint"] == "INCOMPLETE"
+E       AssertionError: assert 'COMPLETE' == 'INCOMPLETE'
+E         
+E         - INCOMPLETE
+E         ? --
+E         + COMPLETE
+
+tests\test_title_categories.py:161: AssertionError
+__________ test_unreadable_entry_is_not_misreported_as_a_link[True] ___________
+
+root = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/.tmp/title-discovery/unreadable-first/test_unreadable_entry_is_not_m1/workspace')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x00000209FDF39A70>
+directory = True
+
+    @pytest.mark.parametrize("directory", [False, True])
+    def test_unreadable_entry_is_not_misreported_as_a_link(root, monkeypatch, directory):
+        names(root, "hockey.png", "blocked/goalie.png" if directory else "blocked.png")
+        original = Path.lstat
+        blocked = root / ("blocked" if directory else "blocked.png")
+    
+        def denied(path, *args, **kwargs):
+            if path == blocked:
+                raise PermissionError("private filename must not enter diagnostics")
+            return original(path, *args, **kwargs)
+    
+        monkeypatch.setattr(Path, "lstat", denied)
+        report = tc.discover_categories(root, min_count=1)
+>       assert report["checkpoint"] == "INCOMPLETE"
+E       AssertionError: assert 'COMPLETE' == 'INCOMPLETE'
+E         
+E         - INCOMPLETE
+E         ? --
+E         + COMPLETE
+
+tests\test_title_categories.py:161: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/test_title_categories.py::test_unreadable_entry_is_not_misreported_as_a_link[False]
+FAILED tests/test_title_categories.py::test_unreadable_entry_is_not_misreported_as_a_link[True]
+2 failed in 0.29s

@@ -1,0 +1,84 @@
+{
+  "result": "PASS",
+  "source_files": 52,
+  "equal_bytes": "checkout = sdist = wheel = isolated installation",
+  "installed_origin": "C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\title-discovery\\installed\\riposte\\__init__.py",
+  "commands": [
+    "audit",
+    "benchmark",
+    "categories",
+    "challenge",
+    "compare",
+    "doctor",
+    "evaluations",
+    "export",
+    "frame",
+    "generation",
+    "generations",
+    "guard",
+    "image",
+    "inspect",
+    "list",
+    "organize",
+    "package",
+    "protect",
+    "publications",
+    "publish",
+    "qualify",
+    "resume",
+    "review",
+    "riposte",
+    "serve",
+    "sort",
+    "sort-riposte",
+    "trials",
+    "ui",
+    "undo-sort",
+    "upgrade",
+    "workshop"
+  ],
+  "previews": [
+    {
+      "workflow": "sort",
+      "mode": "READ_ONLY",
+      "exit_code": 0
+    },
+    {
+      "workflow": "riposte",
+      "mode": "PUBLICATION_PLAN",
+      "exit_code": 0
+    },
+    {
+      "workflow": "sort-riposte",
+      "mode": "SORT_RIPOSTE_PLAN",
+      "exit_code": 0
+    },
+    {
+      "workflow": "sort",
+      "mode": "APPLY",
+      "exit_code": 0
+    },
+    {
+      "workflow": "undo-sort",
+      "mode": "UNDO_SORT_PREVIEW",
+      "exit_code": 0
+    },
+    {
+      "workflow": "undo-sort",
+      "mode": "UNDO_SORT",
+      "exit_code": 0
+    }
+  ],
+  "windows_launcher": "actual START.ps1 and existing environment; linear menu entered and exited",
+  "windows_wrapper": "actual riposte.cmd help; all new workflow commands visible",
+  "original_bytes_restored": true,
+  "processing_scope": "synthetic image sort and undo; no models",
+  "wheel_sha256": "71404218b0680383e2673c6fa5bc644025e002e5ff4a9565b65995c3b7b9968e",
+  "sdist_sha256": "1f4f12d5e49a113c79af8a1ac221ebd83e1e7af705bdeac8fa5b4f3c28b95ef6",
+  "limits": [
+    "Installed previews do not execute models",
+    "Native Windows terminal is checked separately; no GPU/model efficacy claim",
+    "Bash installer behavior is separately tested with installation/UI subprocess adapters"
+  ]
+}
+PASS installed filename category discovery and explicit aliases

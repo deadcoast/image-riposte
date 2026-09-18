@@ -29,9 +29,11 @@ class Request:
 
 # These are application effects, not a permission system for hostile local code.
 EFFECTS = {
+    "categories": "INSPECT",
     "riposte": "CREATE_CANDIDATES", "riposte-plan": "INSPECT",
     "sort-riposte-plan": "INSPECT", "sort-riposte": "REPLACE_SOURCES",
     "organize": "INSPECT", "apply": "REPLACE_SOURCES", "audit": "INSPECT",
+    "undo-sort": "INSPECT", "undo-sort-apply": "RESTORE_SOURCES",
     "list": "INSPECT", "inspect": "INSPECT", "publish": "CREATE_CANDIDATES",
     "plan": "INSPECT", "publications": "INSPECT", "resume": "CREATE_CANDIDATES",
     "review": "RECORD_REVIEW", "package": "WRITE_APPROVED_PACK", "doctor": "INSPECT",
@@ -41,7 +43,7 @@ EFFECTS = {
     "trials": "INSPECT", "evaluations": "INSPECT", "generations": "INSPECT",
     "generation": "INSPECT", "frame": "INSPECT", "handoff": "CREATE_EXACT_TRIAL", "image": "INSPECT", "open-image": "OPEN_LOCAL_VIEWER",
 }
-CANCELLABLE = frozenset({"organize", "audit", "list", "inspect", "plan", "publish", "resume",
+CANCELLABLE = frozenset({"categories", "organize", "audit", "list", "inspect", "plan", "publish", "resume",
                          "guard", "qualify", "challenge", "doctor", "sort-riposte-plan", "riposte", "riposte-plan"})
 
 
@@ -79,7 +81,7 @@ def select_rows(root: Path, *, year=None, month=None, size=None, search="", limi
         parts = row["relative"].split("/")
         if year not in (None, "", "all") and parts[0] != year: continue
         if month is not None and parts[1] != month: continue
-        if size not in (None, "", "all") and parts[2] != size: continue
+        if size not in (None, "", "all") and parts[-2] != size: continue
         if search and search.lower() not in (row["relative"] + " " + row["id"] + " " + row["day"]).lower(): continue
         filtered.append(row)
     return filtered[offset:] if limit is None else filtered[offset:offset + limit]
@@ -137,6 +139,16 @@ def execute(request: Request, progress: Progress | None = None) -> Any:
             result["model" if len(entries) == 1 else "models"] = entries[0] if len(entries) == 1 else entries
         return result
     root = root_of(request)
+    if name == "categories":
+        from ..title_categories import discover_categories, DEFAULT_FILLERS
+        fillers = v.get("fillers", DEFAULT_FILLERS)
+        if isinstance(fillers, str): fillers = tuple(word.strip() for word in fillers.split(",") if word.strip())
+        return discover_categories(root, min_count=v.get("min_count", 2), max_words=v.get("max_words", 3),
+                                   limit=v.get("limit", 100), fillers=fillers,
+                                   ignore=v.get("ignore") or (), categories=v.get("category_specs") or (), progress=progress)
+    if name in {"undo-sort", "undo-sort-apply"}:
+        from ..sort_history import undo_sort
+        return undo_sort(root, apply=name == "undo-sort-apply", sort_id=v.get("sort_id"))
     if name in {"organize", "apply"}:
         from ..organizer import plan, organize
         return (organize if name == "apply" else plan)(

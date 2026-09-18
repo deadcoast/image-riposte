@@ -22,7 +22,9 @@ from check import REVIEWED_SOURCE, is_application_source
 ROOT = Path(__file__).resolve().parents[1]
 REPORT = ROOT / "typing/evidence/pacer-inventory.json"
 TAG = "#typing-index"
-INPUTS = (
+INPUTS: tuple[str, ...] = (
+    "tests/test_title_categories.py", "typing/evidence/source-reviewed-title-discovery.json",
+    "evidence/title-discovery/README.md", "evidence/title-discovery/acceptance.json",
     "README.md", "AGENTS.md", "pyproject.toml", "uv.lock", "mypy.ini",
     "typing/README.md", "typing/pyproject.toml", "typing/uv.lock",
     "typing/check.py", "typing/runtime_contracts.py",
@@ -111,6 +113,84 @@ INPUTS = (
     "tests/test_v05_revision.py",
     "typing/evidence/mypy-contracts.txt", "typing/evidence/stubtest.txt",
 )
+
+# PAC-026 admits exclusive output commits and rejected-destination recovery.
+INPUTS += (
+    "tests/test_sort_collisions.py",
+    "typing/evidence/source-reviewed-sort-collisions.json",
+)
+
+# PAC-025 admits per-file sorting failure recovery and destination allocation.
+INPUTS += (
+    "tests/test_sort_partial_failures.py",
+    "typing/evidence/source-reviewed-sort-partial.json",
+)
+
+# PAC-024 admits journal-time source mutation checks and their proof inputs.
+INPUTS += (
+    "tests/test_sort_commit_safety.py",
+    "typing/evidence/source-reviewed-sort-commit.json",
+)
+
+# PAC-023 admits reversible media sorting and its bounded evidence.
+INPUTS += (
+    'tests/test_sort_recovery.py',
+    'tests/test_video_sort.py',
+    'tests/test_organizer.py',
+    'tests/test_v04_terminal_core.py',
+    'typing/evidence/source-reviewed-sort-recovery.json',
+    'evidence/sort-recovery/backend-first.txt',
+    'evidence/sort-recovery/backend-first.xml',
+    'evidence/sort-recovery/before.txt',
+    'evidence/sort-recovery/before.xml',
+    'evidence/sort-recovery/browser-report.json',
+    'evidence/sort-recovery/browser-small.png',
+    'evidence/sort-recovery/browser-small.txt',
+    'evidence/sort-recovery/browser.txt',
+    'evidence/sort-recovery/browser.xml',
+    'evidence/sort-recovery/build-final.txt',
+    'evidence/sort-recovery/build.txt',
+    'evidence/sort-recovery/capture.py',
+    'evidence/sort-recovery/check_package.py',
+    'evidence/sort-recovery/contracts-final.txt',
+    'evidence/sort-recovery/distribution-report.json',
+    'evidence/sort-recovery/expanded-first.txt',
+    'evidence/sort-recovery/expanded-first.xml',
+    'evidence/sort-recovery/full-first.txt',
+    'evidence/sort-recovery/full-first.xml',
+    'evidence/sort-recovery/home-small.png',
+    'evidence/sort-recovery/home-small.txt',
+    'evidence/sort-recovery/home-wide.png',
+    'evidence/sort-recovery/home-wide.txt',
+    'evidence/sort-recovery/install-final.txt',
+    'evidence/sort-recovery/install.txt',
+    'evidence/sort-recovery/menu-report.json',
+    'evidence/sort-recovery/native-cmd-run.txt',
+    'evidence/sort-recovery/native-console-cmd.json',
+    'evidence/sort-recovery/native-console-cmd.txt',
+    'evidence/sort-recovery/native-console-powershell.json',
+    'evidence/sort-recovery/native-console-powershell.txt',
+    'evidence/sort-recovery/native-run.txt',
+    'evidence/sort-recovery/native_console.py',
+    'evidence/sort-recovery/package-final.txt',
+    'evidence/sort-recovery/package-run.txt',
+    'evidence/sort-recovery/package.json',
+    'evidence/sort-recovery/publication-report.json',
+    'evidence/sort-recovery/recovery-final.txt',
+    'evidence/sort-recovery/recovery-final.xml',
+    'evidence/sort-recovery/source-mypy-final.txt',
+    'evidence/sort-recovery/source-mypy.txt',
+    'evidence/sort-recovery/suite-final.txt',
+    'evidence/sort-recovery/targeted-final.txt',
+    'evidence/sort-recovery/targeted-final.xml',
+    'evidence/sort-recovery/typing-final.txt',
+    'evidence/sort-recovery/typing-first.txt',
+    'evidence/sort-recovery/verification.json',
+    'evidence/sort-recovery/windows-launcher.txt',
+    'evidence/sort-recovery/workflows-report.json',
+)
+
+INPUTS += ('evidence/sort-recovery/README.md', 'evidence/sort-recovery/suite-final.xml', 'evidence/sort-recovery/source-mypy-current.txt', 'evidence/sort-recovery/inventory-first.txt')
 
 
 def digest(path: Path) -> str:

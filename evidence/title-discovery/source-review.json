@@ -1,0 +1,14 @@
+{
+  "previous": "typing/evidence/source-reviewed-sort-collisions.json",
+  "changed": [
+    "src/riposte/cli.py",
+    "src/riposte/terminal/actions.py",
+    "src/riposte/terminal/controller.py",
+    "src/riposte/terminal/interaction.py",
+    "src/riposte/terminal/reports.py",
+    "src/riposte/terminal/service.py",
+    "src/riposte/title_categories.py"
+  ],
+  "unchanged_files": 45,
+  "review": "New filename-only module and CLI signature; unchanged service/form/controller/report signatures; source-derived stub reviewed separately."
+}

@@ -1,5 +1,19 @@
 # MIVIM.spec mypy-engineer / source-derived typing
 
+PAC-027A implements the first milestone of the user-resumed filename-category
+plan: read-only discovery and session category drafts. The new `title_categories`
+module and CLI signature were reviewed; the service, action schema, controller
+shortcut, help and semantic report changes retain their existing signatures.
+`source-reviewed-title-discovery.json` admits these seven application files after
+checking every other application hash against the prior sort-collision snapshot.
+The new stub exposes immutable draft records and existing dynamic report boundaries.
+Runtime evidence is in `../evidence/title-discovery/`; saved rules, category routing,
+private title recovery and undo integration remain in PAC-027B. External contract
+passes do not imply a clean raw-source mypy audit or model qualification.
+Current parity covers 363 source signatures, 43 importable leaf modules and
+52 application files. The fresh raw-source audit reports 1,073 errors in 37
+files; the new filename module has no raw-source diagnostics.
+
 The original typing assignment defined existing RIPOSTE interfaces without
 changing application source. PAC-004 subsequently authorized the selective 0.5
 terminal patch; the affected declarations were re-reviewed and extended.
@@ -19,13 +33,51 @@ in [`../evidence/workflows/README.md`](../evidence/workflows/README.md).
 PAC-022 authorizes menu-first startup and an action-specific file/folder browser.
 The new `terminal.paths` declarations, controller entry/browse methods, renderer
 entry, and preserved command/form signatures were reviewed against the source.
-`source-reviewed-menu.json` is the current snapshot; earlier snapshots remain
+`source-reviewed-menu.json` records that review; earlier snapshots remain
 historical. Copy-only changes retain JSON keys and all model/engine contracts.
 Runtime, launcher, and native Windows evidence is separate in
 [`../evidence/menu-startup/README.md`](../evidence/menu-startup/README.md).
 
-The external stub tree covers all 43 Python modules. The shared declarations in
-[`stubs/_riposte_types.pyi`](stubs/_riposte_types.pyi) define 27 record shapes,
+PAC-023 authorizes undo, preview validation and sort-only video compatibility.
+The organizer, media paths, CLI and recovery/video modules were reviewed against
+their implementation. Organization reports now declare private recovery history
+and distinguish date-only image outputs from unchanged video bytes. New video
+and undo report records describe that boundary. The current reviewed snapshot is
+`source-reviewed-sort-recovery.json`; previous snapshots remain historical.
+At that milestone, external validation covered 356 signatures, 42 importable leaf modules
+and 51 application files. Source-body mypy remains a separate failing audit;
+these external checks do not imply a clean implementation type check.
+
+PAC-024 continues the authorized sort/recovery work by checking source identity
+and bytes again after saving the removal-intent journal. The only application
+change is inside `SortHistory.remove_source`; its parameters, return behavior
+and journal record fields remain compatible with the reviewed declarations.
+`source-reviewed-sort-commit.json` admits that specific change and verifies that
+the other 50 application files match the preceding snapshot. Failed reproductions
+and runtime checks are retained in
+[`../evidence/sort-commit-safety/README.md`](../evidence/sort-commit-safety/README.md).
+
+PAC-025 continues the requested core sorting work with per-operation destination
+reservations and journal entries saved before post-backup source validation.
+The organizer's private allocation helper gains an optional keyword-only counter
+map; its declaration was updated. `SortHistory.prepare` retains its signature
+and record shape. `source-reviewed-sort-partial.json` admits these two reviewed
+modules and verifies the other 49 application files against the previous snapshot.
+Failure reproductions and runtime evidence are retained separately in
+[`../evidence/sort-partial-failures/README.md`](../evidence/sort-partial-failures/README.md).
+
+PAC-026 continues core sorting polish with exclusive image publication and
+recovery records that release confirmed rejected output paths. The store and
+copy helper signatures remain compatible; `SortHistory.reject_output` is declared
+with the existing journal entry record and a `None` return. Existing nullable
+output/expected fields still describe the journal, without a format change.
+`source-reviewed-sort-collisions.json` admits the three reviewed modules and
+verifies that the other 48 application files match the previous snapshot.
+At that milestone, external parity covered 357 signatures; runtime evidence remains separate
+in [`../evidence/sort-collisions/README.md`](../evidence/sort-collisions/README.md).
+
+The external stub tree covers all 46 Python modules. The shared declarations in
+[`stubs/_riposte_types.pyi`](stubs/_riposte_types.pyi) define the shared record shapes,
 callback types, and callable model protocols. They preserve existing states such
 as `UNVERIFIED`, `INCOMPLETE`, nullable PSNR, absent publication-item fields, and
 empty optional model paths. Types do not confer model efficacy or visual approval.
@@ -47,7 +99,7 @@ application wheel, and does not add `py.typed` or claim installed-package suppor
 Consumers that need helper records should import them inside `TYPE_CHECKING`.
 
 The default [`../mypy.ini`](../mypy.ini) checks application implementation.
-From the repository root, both commands reach the same 43 source modules:
+From the repository root, both commands reach the same 46 source modules:
 
 ```powershell
 mypy

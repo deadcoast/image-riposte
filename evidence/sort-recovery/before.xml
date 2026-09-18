@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="2" skipped="0" tests="2" time="0.213" timestamp="2026-09-18T00:11:03.353971-07:00" hostname="homeone"><testcase classname="tests.test_sort_recovery" name="test_undo_restores_original_bytes_names_and_modified_time" time="0.049"><failure message="AttributeError: module 'riposte.organizer' has no attribute 'undo_sort'">root = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/.tmp/sort-tests/before/test_undo_restores_original_by0/workspace')
+make_image = &lt;function make_image.&lt;locals&gt;.create at 0x0000016EB9C79E80&gt;
+
+    def test_undo_restores_original_bytes_names_and_modified_time(root, make_image):
+        source = make_image(root / "originals" / "personal-name.png")
+        original, stamp = source.read_bytes(), source.stat().st_mtime_ns
+        assert organizer.organize(root, POLICY)["checkpoint"] == "COMPLETE"
+        before = inventory(root)
+&gt;       preview = organizer.undo_sort(root)
+                  ^^^^^^^^^^^^^^^^^^^
+E       AttributeError: module 'riposte.organizer' has no attribute 'undo_sort'
+
+tests\test_sort_recovery.py:24: AttributeError</failure></testcase><testcase classname="tests.test_sort_recovery" name="test_preview_has_no_state_or_mutations" time="0.006"><failure message="AssertionError: assert ['2025/March/SML'] == ['2025/March/img/SML']&#10;  &#10;  At index 0 diff: '2025/March/SML' != '2025/March/img/SML'&#10;  Use -v to get more diff">root = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/.tmp/sort-tests/before/test_preview_has_no_state_or_m0/workspace')
+make_image = &lt;function make_image.&lt;locals&gt;.create at 0x0000016EB9CB90C0&gt;
+
+    def test_preview_has_no_state_or_mutations(root, make_image):
+        make_image(root / "photo.png")
+        before = inventory(root)
+        result = organizer.plan(root, POLICY)
+        assert result["ready"]
+&gt;       assert list(result["destinations"]) == ["2025/March/img/SML"]
+E       AssertionError: assert ['2025/March/SML'] == ['2025/March/img/SML']
+E         
+E         At index 0 diff: '2025/March/SML' != '2025/March/img/SML'
+E         Use -v to get more diff
+
+tests\test_sort_recovery.py:38: AssertionError</failure></testcase></testsuite></testsuites>

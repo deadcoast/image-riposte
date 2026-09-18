@@ -5,6 +5,7 @@ They do not certify report validation, tensor shapes, or model execution.
 """
 from collections.abc import Callable, Sequence
 from pathlib import Path
+import os
 from typing import Any, Literal, NotRequired, Protocol, TypeAlias, TypedDict, TypeVar
 
 JSONValue: TypeAlias = None | bool | int | float | str | list[JSONValue] | dict[str, JSONValue]
@@ -53,6 +54,7 @@ class OrganizationPlan(TypedDict):
     blockers: dict[str, int]
     ready: bool
     source_policy: str
+    video_policy: Literal["SORT_ONLY_BYTES_UNCHANGED"]
 
 class OrganizationReport(TypedDict):
     mode: Literal["APPLY"]
@@ -60,16 +62,40 @@ class OrganizationReport(TypedDict):
     blockers: dict[str, int]
     unmanaged_or_changed_remaining: int
     checkpoint: Literal["COMPLETE", "INCOMPLETE"]
-    metadata_policy: Literal["DATE_ONLY"]
-    source_backups: Literal["NONE"]
+    metadata_policy: Literal["DATE_ONLY_IMAGES"]
+    source_backups: Literal["PRIVATE_UNDO_HISTORY"]
+    video_policy: Literal["SORT_ONLY_BYTES_UNCHANGED"]
+    sort_id: str | None
 
 class WorkspaceAudit(TypedDict):
     checkpoint: Literal["COMPLETE", "INCOMPLETE"]
     verified_images: int
+    verified_videos: int
     verified_artifacts: int
     blockers: dict[str, int]
-    metadata_policy: Literal["DATE_ONLY"]
+    metadata_policy: Literal["DATE_ONLY_IMAGES"]
+    video_policy: Literal["SORT_ONLY_BYTES_UNCHANGED"]
     ai_protection: Literal["NOT_ESTABLISHED_BY_METADATA_AUDIT"]
+
+class VideoInfo(TypedDict):
+    day: str
+    date_source: str
+    width: int
+    height: int
+    sha256: str
+    bytes: int
+    source_stat: os.stat_result
+
+class UndoSortReport(TypedDict):
+    mode: Literal["UNDO_SORT_PREVIEW", "UNDO_SORT"]
+    ready: bool
+    blockers: dict[str, int]
+    sort_id: NotRequired[str]
+    checkpoint: NotRequired[Literal["COMPLETE", "INCOMPLETE"]]
+    files_to_restore: NotRequired[int]
+    outputs_to_remove: NotRequired[int]
+    recovery_metadata: NotRequired[Literal["ORIGINAL_NAMES_AND_METADATA"]]
+    scope: NotRequired[str]
 
 class UpgradeReport(TypedDict):
     mode: Literal["STATE_UPGRADE"]

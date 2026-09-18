@@ -1,0 +1,21 @@
+warning: `VIRTUAL_ENV=.venv` does not match the project environment path `typing\.venv` and will be ignored; use `--active` to target the active environment instead
+{
+  "result": "FAIL",
+  "counts": {
+    "source_files": 52,
+    "source_modules": 46,
+    "paired_stubs": 46,
+    "indexed_files": 283,
+    "source_symbols": 497,
+    "tool_functions": 9,
+    "symbol_dependency_edges": 1989,
+    "static_definitions": 1320,
+    "local_dependency_edges": 580
+  },
+  "source_unchanged": true,
+  "issues": [
+    "Stale index: src/riposte/title_categories.py: Imports",
+    "Stale index: tests/test_title_categories.py: Exports, Imports",
+    "Stale index: typing/stubs/riposte/title_categories.pyi: Imports"
+  ]
+}

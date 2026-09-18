@@ -1,0 +1,45 @@
+...FF.................s..                                                [100%]
+================================== FAILURES ===================================
+_______________________ test_full_migration_idempotence _______________________
+
+root = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/.tmp/sort-tests/backend/test_full_migration_idempotenc0/workspace')
+make_image = <function make_image.<locals>.create at 0x0000017AFF137AB0>
+
+    def test_full_migration_idempotence(root,make_image):
+        make_image(root/'old'/'private_filename.png');make_image(root/'random.jpg',day='2024-01-01');make_image(root/'other'/'extless',fmt='PNG',day='2023-12-01')
+        r=organize(root,POLICY);assert r['checkpoint']=='COMPLETE';assert r['counts']['migrated']==3
+        expected={'2025/March/SML/SML01.png','2024/January/SML/SML01.png','EVERYTHING_ELSE/December/SML/SML01.png'}
+>       assert {x['relative'] for x in catalog(root)}==expected;assert not (root/'old').exists();assert not (root/'2024'/'July').exists();assert not (root/'2025'/'March'/'MED').exists()
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AssertionError: assert {'2024/Januar...ML/SML01.png'} == {'2024/Januar...ML/SML01.png'}
+E         
+E         Extra items in the left set:
+E         '2024/January/img/SML/SML01.png'
+E         'EVERYTHING_ELSE/December/img/SML/SML01.png'
+E         '2025/March/img/SML/SML01.png'
+E         Extra items in the right set:
+E         '2024/January/SML/SML01.png'...
+E         
+E         ...Full output truncated (3 lines hidden), use '-vv' to show
+
+tests\test_organizer.py:18: AssertionError
+_________________ test_catalog_does_not_record_original_name __________________
+
+root = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/.tmp/sort-tests/backend/test_catalog_does_not_record_o0/workspace')
+make_image = <function make_image.<locals>.create at 0x0000017AFF04F740>
+
+    def test_catalog_does_not_record_original_name(root,make_image):
+        make_image(root/'PRIVATE_SOURCE_NAME.png');organize(root,POLICY)
+        for p in (root/'.riposte').rglob('*'):
+>           if p.is_file():assert b'PRIVATE_SOURCE_NAME' not in p.read_bytes();assert b'PRIVATE_FIXTURE_PAYLOAD' not in p.read_bytes()
+                                                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           assert b'PRIVATE_FIXTURE_PAYLOAD' not in b'\x89PNG\r\n\x1a\n\x00\x00\x00\rIHDR\x00\x00\x00@\x00\x00\x000\x08\x02\x00\x00\x00.)\xebH\x00\x00\x00\x1ftEXtComment\...12\'q\x12\'q\x12\'q\x12\'q\x12\'q\x12\'q\x12\xe7\xef\xc0\xd4\x03\x17\xdf\x01n"\x12\'\x84\x00\x00\x00\x00IEND\xaeB`\x82'
+E            +  where b'\x89PNG\r\n\x1a\n\x00\x00\x00\rIHDR\x00\x00\x00@\x00\x00\x000\x08\x02\x00\x00\x00.)\xebH\x00\x00\x00\x1ftEXtComment\...12\'q\x12\'q\x12\'q\x12\'q\x12\'q\x12\'q\x12\xe7\xef\xc0\xd4\x03\x17\xdf\x01n"\x12\'\x84\x00\x00\x00\x00IEND\xaeB`\x82' = read_bytes()
+E            +    where read_bytes = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/.tmp/sort-tests/backend/test_catalog_does_not_record_o0/workspace/.riposte/sort-history/01789715738398474700-2a0267ac4d1c4ac8840646ca165879fc/00000000.bin').read_bytes
+
+tests\test_organizer.py:26: AssertionError
+=========================== short test summary info ===========================
+SKIPPED [1] tests\test_organizer.py:67: Symlinks unavailable
+FAILED tests/test_organizer.py::test_full_migration_idempotence - AssertionEr...
+FAILED tests/test_organizer.py::test_catalog_does_not_record_original_name - ...
+2 failed, 22 passed, 1 skipped in 1.88s

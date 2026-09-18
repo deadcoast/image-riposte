@@ -66,8 +66,36 @@ def test_visible_actions_open_explained_browser_before_root(menu, number, action
 def test_menu_all_actions_visible_and_navigation_is_discoverable(width,height):
     c=Controller(None,Presentation())
     text=render(c.state,width,height).plain()
-    for label in ('MAIN MENU','RIPOSTE','Sort + RIPOSTE','Image library','Workshop','Arrows','Enter'):
+    for label in ('MAIN MENU','RIPOSTE','Sort + RIPOSTE','Image library','Workshop','Undo last sort','Arrows','Enter'):
         assert label in text
+
+
+def test_undo_menu_previews_then_requires_bound_confirmation(menu, make_image):
+    from riposte.organizer import organize
+    from riposte.policy import Policy
+    c, inputs, _ = menu
+    source = make_image(inputs / 'original.png')
+    data = source.read_bytes()
+    organize(inputs, Policy(date_mode='modified'))
+    c.key(Key('char', '9'))
+    assert c.state.page.name == 'picker' and c.state.page.action == 'undo-sort'
+    assert 'UNDO' in render(c.state, 72, 24).plain()
+    c.key(Key('enter'))
+    c.state.operation.join()
+    c.pump()
+    assert c.state.page.result['mode'] == 'UNDO_SORT_PREVIEW'
+    assert not source.exists()
+    sort_id = c.state.page.result['sort_id']
+    c.key(Key('enter'))
+    assert c.state.page.confirm_word == 'UNDO'
+    assert c.state.page.confirm_request.values['sort_id'] == sort_id
+    c.key(Key('enter'))
+    assert not source.exists() and c.state.operation is None
+    c.key(Key('char', 'UNDO'))
+    c.key(Key('enter'))
+    c.state.operation.join()
+    c.pump()
+    assert source.read_bytes() == data
 
 
 def test_arrows_enter_and_escape_preserve_menu_focus(menu):

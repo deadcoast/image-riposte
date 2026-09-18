@@ -1,0 +1,243 @@
+FFFFFFF                                                                  [100%]
+================================== FAILURES ===================================
+_______ test_failed_output_does_not_reuse_a_recovery_destination[image] _______
+
+root = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/sort-partial/before/test_failed_output_does_not_re0/workspace')
+make_image = <function make_image.<locals>.create at 0x000001D1D0FA4720>
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001D1D0F79E00>
+media = 'image'
+
+    @pytest.mark.parametrize("media", ["image", "video"])
+    def test_failed_output_does_not_reuse_a_recovery_destination(root, make_image, monkeypatch, media):
+        sources = media_pair(root, make_image, media)
+        originals = [p.read_bytes() for p in sources]
+        name = "atomic_clean_write" if media == "image" else "copy_exclusive"
+        writer = getattr(organizer, name)
+        failed = False
+    
+        def fail_first(*args, **kwargs):
+            nonlocal failed
+            if not failed:
+                failed = True
+                raise OSError("injected destination write failure")
+            return writer(*args, **kwargs)
+    
+        monkeypatch.setattr(organizer, name, fail_first)
+        result = organizer.organize(root, POLICY)
+        assert result["checkpoint"] == "INCOMPLETE"
+        rows = catalog(root) if media == "image" else video_catalog(root)
+        assert len(rows) == 1
+        journal = latest_sort(root)
+        destinations = [e["output"] for e in journal["entries"]]
+>       assert len(destinations) == len(set(destinations))
+E       AssertionError: assert 2 == 1
+E        +  where 2 = len(['2025/March/img/SML/SML01.png', '2025/March/img/SML/SML01.png'])
+E        +  and   1 = len({'2025/March/img/SML/SML01.png'})
+E        +    where {'2025/March/img/SML/SML01.png'} = set(['2025/March/img/SML/SML01.png', '2025/March/img/SML/SML01.png'])
+
+tests\test_sort_partial_failures.py:57: AssertionError
+_______ test_failed_output_does_not_reuse_a_recovery_destination[video] _______
+
+root = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/sort-partial/before/test_failed_output_does_not_re1/workspace')
+make_image = <function make_image.<locals>.create at 0x000001D1D10F2610>
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001D1D0F79810>
+media = 'video'
+
+    @pytest.mark.parametrize("media", ["image", "video"])
+    def test_failed_output_does_not_reuse_a_recovery_destination(root, make_image, monkeypatch, media):
+        sources = media_pair(root, make_image, media)
+        originals = [p.read_bytes() for p in sources]
+        name = "atomic_clean_write" if media == "image" else "copy_exclusive"
+        writer = getattr(organizer, name)
+        failed = False
+    
+        def fail_first(*args, **kwargs):
+            nonlocal failed
+            if not failed:
+                failed = True
+                raise OSError("injected destination write failure")
+            return writer(*args, **kwargs)
+    
+        monkeypatch.setattr(organizer, name, fail_first)
+        result = organizer.organize(root, POLICY)
+        assert result["checkpoint"] == "INCOMPLETE"
+        rows = catalog(root) if media == "image" else video_catalog(root)
+        assert len(rows) == 1
+        journal = latest_sort(root)
+        destinations = [e["output"] for e in journal["entries"]]
+>       assert len(destinations) == len(set(destinations))
+E       AssertionError: assert 2 == 1
+E        +  where 2 = len(['2025/March/vid/SML/SML01.mp4', '2025/March/vid/SML/SML01.mp4'])
+E        +  and   1 = len({'2025/March/vid/SML/SML01.mp4'})
+E        +    where {'2025/March/vid/SML/SML01.mp4'} = set(['2025/March/vid/SML/SML01.mp4', '2025/March/vid/SML/SML01.mp4'])
+
+tests\test_sort_partial_failures.py:57: AssertionError
+_____ test_changed_source_after_backup_does_not_poison_later_files[edit] ______
+
+root = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/sort-partial/before/test_changed_source_after_back0/workspace')
+make_image = <function make_image.<locals>.create at 0x000001D1D10F3C10>
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001D1D0FBDFD0>
+change = 'edit'
+
+    @pytest.mark.parametrize("change", ["edit", "replace", "remove"])
+    def test_changed_source_after_backup_does_not_poison_later_files(root, make_image, monkeypatch, change):
+        first, second = media_pair(root, make_image, "image")
+        originals = [p.read_bytes() for p in (first, second)]
+        edited = b"later source edit"
+        writer = history.copy_exclusive
+        changed = False
+    
+        def change_after_backup(workspace, source, relative, digest):
+            nonlocal changed
+            output = writer(workspace, source, relative, digest)
+            if not changed and source == first:
+                changed = True
+                if change == "edit":
+                    first.write_bytes(edited)
+                elif change == "replace":
+                    replacement = root / "replacement.tmp"
+                    replacement.write_bytes(originals[0])
+                    os.replace(replacement, first)
+                else:
+                    first.unlink()
+            return output
+    
+        monkeypatch.setattr(history, "copy_exclusive", change_after_backup)
+        result = organizer.organize(root, POLICY)
+        assert result["checkpoint"] == "INCOMPLETE"
+>       assert result["counts"].get("migrated") == 1
+E       AssertionError: assert None == 1
+E        +  where None = <built-in method get of dict object at 0x000001D1D116F240>('migrated')
+E        +    where <built-in method get of dict object at 0x000001D1D116F240> = {}.get
+
+tests\test_sort_partial_failures.py:90: AssertionError
+____ test_changed_source_after_backup_does_not_poison_later_files[replace] ____
+
+root = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/sort-partial/before/test_changed_source_after_back1/workspace')
+make_image = <function make_image.<locals>.create at 0x000001D1D10F2DA0>
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001D1D11F6030>
+change = 'replace'
+
+    @pytest.mark.parametrize("change", ["edit", "replace", "remove"])
+    def test_changed_source_after_backup_does_not_poison_later_files(root, make_image, monkeypatch, change):
+        first, second = media_pair(root, make_image, "image")
+        originals = [p.read_bytes() for p in (first, second)]
+        edited = b"later source edit"
+        writer = history.copy_exclusive
+        changed = False
+    
+        def change_after_backup(workspace, source, relative, digest):
+            nonlocal changed
+            output = writer(workspace, source, relative, digest)
+            if not changed and source == first:
+                changed = True
+                if change == "edit":
+                    first.write_bytes(edited)
+                elif change == "replace":
+                    replacement = root / "replacement.tmp"
+                    replacement.write_bytes(originals[0])
+                    os.replace(replacement, first)
+                else:
+                    first.unlink()
+            return output
+    
+        monkeypatch.setattr(history, "copy_exclusive", change_after_backup)
+        result = organizer.organize(root, POLICY)
+        assert result["checkpoint"] == "INCOMPLETE"
+>       assert result["counts"].get("migrated") == 1
+E       AssertionError: assert None == 1
+E        +  where None = <built-in method get of dict object at 0x000001D1D1233F40>('migrated')
+E        +    where <built-in method get of dict object at 0x000001D1D1233F40> = {}.get
+
+tests\test_sort_partial_failures.py:90: AssertionError
+____ test_changed_source_after_backup_does_not_poison_later_files[remove] _____
+
+root = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/sort-partial/before/test_changed_source_after_back2/workspace')
+make_image = <function make_image.<locals>.create at 0x000001D1D1292C40>
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001D1D11F6580>
+change = 'remove'
+
+    @pytest.mark.parametrize("change", ["edit", "replace", "remove"])
+    def test_changed_source_after_backup_does_not_poison_later_files(root, make_image, monkeypatch, change):
+        first, second = media_pair(root, make_image, "image")
+        originals = [p.read_bytes() for p in (first, second)]
+        edited = b"later source edit"
+        writer = history.copy_exclusive
+        changed = False
+    
+        def change_after_backup(workspace, source, relative, digest):
+            nonlocal changed
+            output = writer(workspace, source, relative, digest)
+            if not changed and source == first:
+                changed = True
+                if change == "edit":
+                    first.write_bytes(edited)
+                elif change == "replace":
+                    replacement = root / "replacement.tmp"
+                    replacement.write_bytes(originals[0])
+                    os.replace(replacement, first)
+                else:
+                    first.unlink()
+            return output
+    
+        monkeypatch.setattr(history, "copy_exclusive", change_after_backup)
+        result = organizer.organize(root, POLICY)
+        assert result["checkpoint"] == "INCOMPLETE"
+>       assert result["counts"].get("migrated") == 1
+E       AssertionError: assert None == 1
+E        +  where None = <built-in method get of dict object at 0x000001D1D12F26C0>('migrated')
+E        +    where <built-in method get of dict object at 0x000001D1D12F26C0> = {}.get
+
+tests\test_sort_partial_failures.py:90: AssertionError
+___________ test_noncanonical_numeric_filename_does_not_block_sort ____________
+
+root = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/sort-partial/before/test_noncanonical_numeric_file0/workspace')
+make_image = <function make_image.<locals>.create at 0x000001D1D12D0040>
+
+    def test_noncanonical_numeric_filename_does_not_block_sort(root, make_image):
+        make_image(root / "a.png")
+        make_image(root / "2025/March/img/SML/SML\u00b2.png", color=(100, 50, 30))
+>       assert organizer.organize(root, POLICY)["checkpoint"] == "COMPLETE"
+E       AssertionError: assert 'INCOMPLETE' == 'COMPLETE'
+E         
+E         - COMPLETE
+E         + INCOMPLETE
+E         ? ++
+
+tests\test_sort_partial_failures.py:107: AssertionError
+______________ test_destination_numbering_scans_each_folder_once ______________
+
+root = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/typing/.cache/sort-partial/before/test_destination_numbering_sca0/workspace')
+make_image = <function make_image.<locals>.create at 0x000001D1D12D0300>
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001D1D1262B50>
+
+    def test_destination_numbering_scans_each_folder_once(root, make_image, monkeypatch):
+        for index in range(12):
+            make_image(root / f"image-{index:02}.png", color=(index, 50, 100))
+        target = root / "2025/March/img/SML"
+        target.mkdir(parents=True)
+        iterations = 0
+        iterdir = Path.iterdir
+    
+        def count_scans(path):
+            nonlocal iterations
+            if path == target:
+                iterations += 1
+            return iterdir(path)
+    
+        monkeypatch.setattr(Path, "iterdir", count_scans)
+        assert organizer.organize(root, POLICY)["checkpoint"] == "COMPLETE"
+        assert len(catalog(root)) == 12
+>       assert iterations == 1
+E       assert 12 == 1
+
+tests\test_sort_partial_failures.py:130: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/test_sort_partial_failures.py::test_failed_output_does_not_reuse_a_recovery_destination[image]
+FAILED tests/test_sort_partial_failures.py::test_failed_output_does_not_reuse_a_recovery_destination[video]
+FAILED tests/test_sort_partial_failures.py::test_changed_source_after_backup_does_not_poison_later_files[edit]
+FAILED tests/test_sort_partial_failures.py::test_changed_source_after_backup_does_not_poison_later_files[replace]
+FAILED tests/test_sort_partial_failures.py::test_changed_source_after_backup_does_not_poison_later_files[remove]
+FAILED tests/test_sort_partial_failures.py::test_noncanonical_numeric_filename_does_not_block_sort
+FAILED tests/test_sort_partial_failures.py::test_destination_numbering_scans_each_folder_once
+7 failed in 1.58s

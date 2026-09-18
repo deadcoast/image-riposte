@@ -1,0 +1,207 @@
+{
+  "scope": "10000 real directory entries with synthetic filename-only media; discovery measured without fixture creation",
+  "seconds": 1.6831908999884035,
+  "peak_traced_bytes": 891468,
+  "report": {
+    "mode": "TITLE_CATEGORY_DISCOVERY",
+    "writes": false,
+    "rules_saved": false,
+    "checkpoint": "COMPLETE",
+    "counts": {
+      "scanned_files": 10000,
+      "eligible_files": 10000,
+      "images": 10000,
+      "analyzed_files": 10000,
+      "matched_files": 10000,
+      "ambiguous_files": 10000
+    },
+    "basis": "FILENAME_STEMS_BY_MEDIA_EXTENSION",
+    "media_validated": false,
+    "settings": {
+      "min_count": 2,
+      "max_words": 3,
+      "limit": 100,
+      "sample_limit": 3,
+      "fillers": [
+        "a",
+        "an",
+        "and",
+        "at",
+        "by",
+        "for",
+        "from",
+        "in",
+        "of",
+        "on",
+        "or",
+        "the",
+        "to",
+        "with"
+      ],
+      "ignore": []
+    },
+    "candidate_count": 6,
+    "omitted_candidates": 0,
+    "candidates": [
+      {
+        "term": "goalie",
+        "count": 10000,
+        "coverage": 1.0,
+        "examples": [
+          "winter-hockey-goalie-00000.png",
+          "winter-hockey-goalie-00001.png",
+          "winter-hockey-goalie-00002.png"
+        ]
+      },
+      {
+        "term": "hockey",
+        "count": 10000,
+        "coverage": 1.0,
+        "examples": [
+          "winter-hockey-goalie-00000.png",
+          "winter-hockey-goalie-00001.png",
+          "winter-hockey-goalie-00002.png"
+        ]
+      },
+      {
+        "term": "hockey goalie",
+        "count": 10000,
+        "coverage": 1.0,
+        "examples": [
+          "winter-hockey-goalie-00000.png",
+          "winter-hockey-goalie-00001.png",
+          "winter-hockey-goalie-00002.png"
+        ]
+      },
+      {
+        "term": "winter",
+        "count": 10000,
+        "coverage": 1.0,
+        "examples": [
+          "winter-hockey-goalie-00000.png",
+          "winter-hockey-goalie-00001.png",
+          "winter-hockey-goalie-00002.png"
+        ]
+      },
+      {
+        "term": "winter hockey",
+        "count": 10000,
+        "coverage": 1.0,
+        "examples": [
+          "winter-hockey-goalie-00000.png",
+          "winter-hockey-goalie-00001.png",
+          "winter-hockey-goalie-00002.png"
+        ]
+      },
+      {
+        "term": "winter hockey goalie",
+        "count": 10000,
+        "coverage": 1.0,
+        "examples": [
+          "winter-hockey-goalie-00000.png",
+          "winter-hockey-goalie-00001.png",
+          "winter-hockey-goalie-00002.png"
+        ]
+      }
+    ],
+    "review": {
+      "status": "SESSION_DRAFT",
+      "categories": [
+        {
+          "label": "Hockey",
+          "terms": [
+            "goalie",
+            "hockey"
+          ],
+          "count": 10000,
+          "examples": [
+            {
+              "filename": "winter-hockey-goalie-00000.png",
+              "matched_terms": [
+                "goalie",
+                "hockey"
+              ]
+            },
+            {
+              "filename": "winter-hockey-goalie-00001.png",
+              "matched_terms": [
+                "goalie",
+                "hockey"
+              ]
+            },
+            {
+              "filename": "winter-hockey-goalie-00002.png",
+              "matched_terms": [
+                "goalie",
+                "hockey"
+              ]
+            }
+          ]
+        },
+        {
+          "label": "Winter",
+          "terms": [
+            "winter"
+          ],
+          "count": 10000,
+          "examples": [
+            {
+              "filename": "winter-hockey-goalie-00000.png",
+              "matched_terms": [
+                "winter"
+              ]
+            },
+            {
+              "filename": "winter-hockey-goalie-00001.png",
+              "matched_terms": [
+                "winter"
+              ]
+            },
+            {
+              "filename": "winter-hockey-goalie-00002.png",
+              "matched_terms": [
+                "winter"
+              ]
+            }
+          ]
+        }
+      ],
+      "overlaps": [
+        {
+          "categories": [
+            "Hockey",
+            "Winter"
+          ],
+          "count": 10000
+        }
+      ],
+      "ambiguous_examples": [
+        {
+          "filename": "winter-hockey-goalie-00000.png",
+          "categories": [
+            "Hockey",
+            "Winter"
+          ]
+        },
+        {
+          "filename": "winter-hockey-goalie-00001.png",
+          "categories": [
+            "Hockey",
+            "Winter"
+          ]
+        },
+        {
+          "filename": "winter-hockey-goalie-00002.png",
+          "categories": [
+            "Hockey",
+            "Winter"
+          ]
+        }
+      ],
+      "unmatched_examples": [],
+      "unmatched_proposal": "Uncategorized"
+    },
+    "next": "Edit category groups and rerun to review. Saving rules and moving files are not available in this milestone.",
+    "title_policy": "Generated SML/MED/LRG/XTL numbered names are excluded; original-title provenance or manual assignment is required."
+  }
+}

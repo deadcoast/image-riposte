@@ -1,0 +1,24 @@
+                                                                        
+   R I P O S T E    /  RIPOSTE / SELECT INPUT                           
+                                                                        
+  --------------------------------------------------------------------  
+   MAIN MENU / RIPOSTE / SELECT INPUTS                                  
+                                                                        
+   Select images or folders to protect, including subfolders.           
+   Originals stay in place; sorting is not required.                    
+                                                                        
+                                                                        
+   C:\...anf\github\_new\image-riposte\.tmp\sort-native-home\Pictures   
+  -- FILES & FOLDERS -------------------------------------------------  
+   >  1     Continue with 0 selected                                    
+      2     ..  Parent folder                                           
+      3 [ ] sample folder/                                              
+      4 [ ] sample.png                                                  
+                                                                        
+                                                                        
+   0 selected   |   Rows 1-4/4                                          
+   Selection is read-only. Enter on the first row confirms your ch...   
+  --------------------------------------------------------------------  
+   [Enter] Open / choose   [Space] Select   [Esc] Cancel                
+   [s] This folder   [Backspace] Parent   [l] Locations   [F1] Help     
+                                                                        

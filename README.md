@@ -2,7 +2,7 @@
 
 **Local image protection and organization. Interactive terminal menu and direct commands.**
 
-RIPOSTE lets you protect selected images, sort a folder, or explicitly do both. Sorting rebuilds image files with date-only metadata. Protection uses selected local models; exact reviewed outputs can be packaged for sharing. The existing Typer command surface and native Rich terminal now share designed operation reports and foreground-only styling. The browser remains available; the workshop remains an optional helper.
+RIPOSTE lets you protect selected images, sort a folder, or explicitly do both. Sorting separates images and videos, rebuilds images with date-only metadata, and retains original files privately for undo. Protection uses selected local models; exact reviewed outputs can be packaged for sharing. Direct commands and the interactive terminal share the same operations. The browser remains available; the workshop remains optional.
 
 ## Terminal revision 0.5
 
@@ -87,17 +87,60 @@ riposte publish --help                  All publishing controls
 
 Direct commands and interactive forms call the same operation service. The interface does not simulate an engine, shell out to a pretend CLI, or execute the text displayed in the command lens.
 
-The main action deck includes **RIPOSTE / Sort / Sort + RIPOSTE / Image library / Publishing batches / Local models / Terminal & workspace / Workshop**. Choose the work you need on each run; the normal workflow never requires the workshop.
+The main action deck includes **RIPOSTE / Sort / Sort + RIPOSTE / Image library / Publishing batches / Local models / Terminal & workspace / Workshop / Undo last sort**. Choose the work you need on each run; the normal workflow never requires the workshop.
 
 | Workflow | Interactive terminal | Direct command |
 | --- | --- | --- |
 | Sort | **Sort** previews the directory, then requires `REPLACE` | `riposte sort ROOT`; add `--apply` to replace sources |
+| Undo last sort | **Undo last sort** previews recovery, then requires `UNDO`; also available with `u` in the Sort form | `riposte undo-sort ROOT`; add `--apply` to restore |
 | RIPOSTE | **RIPOSTE** accepts a file or directory; library `p` protects selected catalog images | `riposte riposte ROOT --input PATH --vae MODEL`; repeat `--input` for more files/folders; add `--plan` for a read-only preview |
 | Sort + RIPOSTE | **Sort + RIPOSTE** previews sorting and protection, then requires `REPLACE` | `riposte sort-riposte ROOT --all --vae MODEL`; add `--apply` to run both |
 
 Standalone RIPOSTE preserves original files and folders. `ROOT` holds its application state and reviewed exports; inputs may be elsewhere. It creates date-only clean snapshots for resumable protection without reorganizing the input library. Directory inputs are recursive; the terminal browser accepts multiple selected files and folders. For existing catalog images use `--image ID` or `--all` with filters instead of `--input`. Unrelated additions no longer block publishing, reviewing or packaging selected catalog images.
 
 Sort retains the established reconstruction and source-replacement behavior, including explicit sidecar consent. Repeating it processes new additions and leaves verified clean masters alone. The combined workflow sorts `ROOT` and protects matching catalog images, including newly sorted additions. Model preflight happens before replacement; an incomplete sort stops protection. After successful sorting, protection can be retried separately. Existing `organize`, `publish`, `protect`, and expert commands remain available. Candidate creation never grants visual approval or verified protection efficacy.
+
+Sorting uses `Year/Month/img/Size/NAME.png` for images and
+`Year/Month/vid/Size/NAME.ext` for videos. The existing year/month rules and
+`SML`, `MED`, `LRG`, `XTL` resolution bins remain. Videos keep their container,
+extension, bytes and embedded metadata; sorting does not transcode or protect
+them. Video inspection needs **ffprobe from FFmpeg on PATH**. INSTALL reports
+whether it is available; it does not install FFmpeg. Image-only sorting and
+protection do not need ffprobe. Common video extensions include MP4, MOV, MKV,
+WEBM, AVI, M4V, WMV, MPG/MPEG, MTS/M2TS, 3GP and OGV; the installed ffprobe must
+be able to read the actual stream. Unreadable videos remain in place as blockers.
+
+**Filename category discovery is read-only.** In the Sort form, press `c` for
+Categories, then run discovery to see recurring words and short phrases with
+matching-file counts and examples. Return to the form to select or rename a group
+with `Hockey=hockey`, or merge explicit terms with `Hockey=hockey;goalie;goaltender`.
+Separate groups with commas in the terminal form. Minimum count, filler words and
+ignored suggestions are editable; manual groups can match below the threshold.
+The direct equivalent is `riposte categories ROOT --category "Hockey=hockey;goalie"`.
+Groups are session drafts; they are not saved and cannot move files. Overlapping
+groups are shown for review. Discovery reads filename stems by media extension,
+without validating image/video contents. Generated numbered names are excluded
+because they need original-title provenance or a manual assignment. The planned
+`Year/Month/img-or-vid/Category/Size` sorting mode remains under development.
+
+**Preview is read-only.** It shows destination folders, image/video counts and
+blockers without creating application state. **Undo applies to sorts recorded
+by this version**, including partially completed sorts. Earlier sorts that
+discarded originals have no recovery record. Each new sort retains original
+bytes, names and modified times under `.riposte/sort-history` (or legacy
+`.shroud/sort-history`). This private history includes original metadata and
+uses additional disk space, including full video copies. Keep it with the
+library; deleting it removes the ability to undo. It never enters publishing
+packs. Repeated undo walks backward through recorded sorts; a no-change sort
+does not replace the last recovery record.
+
+Undo checks the complete operation before restoring files. Occupied original
+paths, changed sorted files, damaged backups and changed catalogs block it;
+files added elsewhere remain untouched. Protection outputs and reviews remain
+in place, although a removed catalog image must be sorted again before a batch
+that depends on that image can resume. Already created publishing packs remain
+unchanged. Legacy image paths remain readable; the next explicit sort moves
+them into `img` while preserving image IDs, dates and bytes.
 
 ## The ASCII experience
 
@@ -170,7 +213,7 @@ Exit statuses: **0** completed command, **2** invalid input/operation failure/in
 
 The calendar roots remain `2026`, `2025`, `2024`, `EVERYTHING_ELSE`; English month directories and SML/MED/LRG/XTL appear only when needed. Bins are pixel area below 1M, 4M, 16M and 16M or more. Images are not sorted by file extension.
 
-Sanitation still decodes supported input, applies orientation, converts supported colour profiles, rebuilds pixels, clears fully transparent hidden RGB, and writes fresh PNG with only its date. Applying organization removes successfully replaced originals, without raw backup or Trash copies. Unsupported and failed inputs remain blockers. This is not forensic erasure of operating-system caches or data encoded into visible images.
+Sanitation still decodes supported input, applies orientation, converts supported colour profiles, rebuilds pixels, clears fully transparent hidden RGB, and writes fresh PNG with only its date. Applying organization saves private original copies for undo before removing source paths. Video bytes and private recovery copies retain original metadata; date-only sanitation applies to generated images. Unsupported and failed inputs remain blockers. This is not forensic erasure of operating-system caches or data encoded into visible images.
 
 The protection engines are unchanged in this CLI release and remain **experimental**. Generating a candidate, passing a numerical visual limit, or accepting its appearance does not establish AI resistance. No new efficacy or pretrained-model result is claimed here. There is no watermark, audience login, licensing gate, images upload or noise-only fallback.
 

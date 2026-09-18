@@ -1,0 +1,81 @@
+{
+  "result": "PASS",
+  "source_files": 51,
+  "equal_bytes": "checkout = sdist = wheel = isolated installation",
+  "installed_origin": "C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\sort-installed\\riposte\\__init__.py",
+  "commands": [
+    "audit",
+    "benchmark",
+    "challenge",
+    "compare",
+    "doctor",
+    "evaluations",
+    "export",
+    "frame",
+    "generation",
+    "generations",
+    "guard",
+    "image",
+    "inspect",
+    "list",
+    "organize",
+    "package",
+    "protect",
+    "publications",
+    "publish",
+    "qualify",
+    "resume",
+    "review",
+    "riposte",
+    "serve",
+    "sort",
+    "sort-riposte",
+    "trials",
+    "ui",
+    "undo-sort",
+    "upgrade",
+    "workshop"
+  ],
+  "previews": [
+    {
+      "workflow": "sort",
+      "mode": "READ_ONLY",
+      "exit_code": 0
+    },
+    {
+      "workflow": "riposte",
+      "mode": "PUBLICATION_PLAN",
+      "exit_code": 0
+    },
+    {
+      "workflow": "sort-riposte",
+      "mode": "SORT_RIPOSTE_PLAN",
+      "exit_code": 0
+    },
+    {
+      "workflow": "sort",
+      "mode": "APPLY",
+      "exit_code": 0
+    },
+    {
+      "workflow": "undo-sort",
+      "mode": "UNDO_SORT_PREVIEW",
+      "exit_code": 0
+    },
+    {
+      "workflow": "undo-sort",
+      "mode": "UNDO_SORT",
+      "exit_code": 0
+    }
+  ],
+  "windows_launcher": "actual START.ps1 and existing environment; linear menu entered and exited",
+  "windows_wrapper": "actual riposte.cmd help; all new workflow commands visible",
+  "images_changed": false,
+  "wheel_sha256": "0df574b1f2f891553febd1b891dd12469a5e6dd5c4fbc543d20b1216408bce47",
+  "sdist_sha256": "f9585e4a1097dbcfc2f5546339c6385a1e032baf739d52309e1fd70f10c28762",
+  "limits": [
+    "Installed previews do not execute models",
+    "Native Windows terminal is checked separately; no GPU/model efficacy claim",
+    "Bash installer behavior is separately tested with installation/UI subprocess adapters"
+  ]
+}

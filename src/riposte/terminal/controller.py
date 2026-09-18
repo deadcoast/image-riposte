@@ -51,6 +51,7 @@ class Controller:
     def begin_action(self, key):
         if key == "riposte": return self.browse("inputs", key)
         if key in {"organize", "sort-riposte"}: return self.browse("sort", key)
+        if key == "undo-sort": return self.browse("undo", key)
         return self.action(key)
 
     def browse(self, mode, action=None, inputs=(), field=None):
@@ -58,12 +59,14 @@ class Controller:
         purpose = {
             "inputs": "Select images or folders to protect, including subfolders. Originals stay in place; sorting is not required.",
             "sort": "Select the folder to sort, including its subfolders. Preview first; replacing originals requires REPLACE.",
+            "undo": "Select the folder previously sorted. Preview recovery first; restoring originals requires UNDO.",
             "workspace": "Select a results folder. RIPOSTE saves clean snapshots, candidates and review records here; selected originals stay unchanged.",
             "existing": "Open an existing image/results folder to view its library and saved batches. Selection changes no files.",
             "field": "Choose the folder for this setting. Selecting a location does not run processing.",
         }[mode]
         if action == "sort-riposte": purpose = "Sort this folder and its subfolders, then protect the images. Preview first; replacing originals requires REPLACE."
         title = "RIPOSTE / SELECT INPUTS" if mode == "inputs" else "SORT + RIPOSTE / SELECT FOLDER" if action == "sort-riposte" else "SORT / SELECT FOLDER" if mode == "sort" else "SELECT RESULTS FOLDER" if mode == "workspace" else "SELECT FOLDER"
+        if mode == "undo": title = "UNDO LAST SORT / SELECT FOLDER"
         picker = Picker(starting_directory(self.state.root), multiple=mode == "inputs", selected=list(inputs))
         if field and self.state.page.values.get(field):
             picker.enter(Path(self.state.page.values[field]).expanduser())
@@ -464,6 +467,8 @@ class Controller:
                     f = fields[p.cursor]; index = f.choices.index(p.values[f.key])
                     p.values[f.key] = f.choices[(index + (1 if key.name == "right" else -1))%len(f.choices)]
             if ch == "v" and p.action == "organize": return self.run(Request("audit",self.state.root))
+            if ch == "u" and p.action == "organize": return self.run(Request("undo-sort", self.state.root))
+            if ch == "c" and p.action == "organize": return self.action("categories")
             if ch == "p" and p.action in {"publish", "riposte", "sort-riposte", "organize"}: return self.run_form(preview=True)
             if ch == "r": return self.run_form(preview=p.action=="organize")
         elif p.name == "batches":
@@ -497,11 +502,14 @@ class Controller:
             if key.name == "enter":
                 if p.code: return self.back()
                 if request and request.name == "organize": ch = "a"
+                elif request and request.name == "undo-sort" and p.result.get("ready"): ch = "u"
                 elif request and request.name in {"plan", "riposte-plan", "sort-riposte-plan"}: ch = "r"
                 elif request and request.name == "package": return self.batches()
                 else: return self.back()
             if ch == "a" and request and request.name == "organize":
                 return self.confirm(Request("apply", request.root, request.values), "REPLACE", "Apply the displayed metadata-cleaning and calendar/size policy to this workspace.")
+            if ch == "u" and request and request.name == "undo-sort" and p.result.get("ready"):
+                return self.confirm(Request("undo-sort-apply", request.root, {"sort_id": p.result["sort_id"]}), "UNDO", "Restore original names and bytes from the last sort. Remove only its verified sorted copies.")
             if ch == "r" and request and request.name == "plan":
                 return self.run(Request("publish", request.root, request.values))
             if ch == "r" and request and request.name == "riposte-plan":

@@ -50,7 +50,7 @@ async function loadImage(element,path,{fresh=false}={}){
   }catch(e){if(imageLoads.get(element)===request)clearImage(element);return false;}
 }
 function shortName(row){return row.relative.split('/').pop();}
-function bin(row){return row.relative.split('/')[2];}
+function bin(row){return row.relative.split('/').at(-2);}
 function select(id){state.selected=state.images.find(i=>i.id===id)||null;state.trial=state.trials.find(t=>t.image_id===id)||null;state.transport='identity';$('transport-view').value='identity';fit();syncGallerySelection();renderInspector();renderLab();updateWorkflow();}
 function setView(view){
   state.view=view;for(const v of ['library','publish','lab','evidence'])$(v+'-view').hidden=v!==view;
@@ -70,7 +70,7 @@ function updateWorkflow(){
 }
 function renderTree(){
   const tree=$('tree');const openMonths=new Set([...tree.querySelectorAll('details.month[open]')].map(d=>d.dataset.key));tree.replaceChildren();const groups={};
-  for(const item of state.images){const [year,month,size]=item.relative.split('/');groups[year]??={};groups[year][month]??={};groups[year][month][size]=(groups[year][month][size]||0)+1;}
+  for(const item of state.images){const [year,month]=item.relative.split('/');const size=bin(item);groups[year]??={};groups[year][month]??={};groups[year][month][size]=(groups[year][month][size]||0)+1;}
   for(const year of ['2026','2025','2024','EVERYTHING_ELSE']){if(!groups[year])continue;const detail=el('details','year');detail.open=true;detail.append(el('summary','',year));
     for(const month of ['January','February','March','April','May','June','July','August','September','October','November','December']){if(!groups[year][month])continue;const key=year+'/'+month;const sizes=groups[year][month];const nested=el('details','month');nested.dataset.key=key;nested.open=openMonths.has(key)||(!openMonths.size&&month==='September')||state.folder.startsWith(key);const summary=el('summary');const button=el('button','folder'+(state.folder===key?' selected':''));button.append(document.createTextNode(month),el('span','',String(Object.values(sizes).reduce((a,b)=>a+b,0))));button.onclick=e=>{e.preventDefault();state.folder=key;state.size='ALL';syncSize();nested.open=true;renderGallery();setView('library');renderTree();};summary.append(button);nested.append(summary);
       for(const size of ['SML','MED','LRG','XTL']){if(!sizes[size])continue;const b=el('button','folder bin-folder'+(state.folder===key&&state.size===size?' selected':''));b.append(document.createTextNode(size),el('span','',String(sizes[size])));b.onclick=()=>{state.folder=key;state.size=size;syncSize();renderTree();renderGallery();setView('library');};nested.append(b);}detail.append(nested);

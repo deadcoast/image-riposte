@@ -1,0 +1,13 @@
+warning: `VIRTUAL_ENV=.venv` does not match the project environment path `typing\.venv` and will be ignored; use `--active` to target the active environment instead
+Source/stub parity: 356 signatures, 42 importable leaf modules
+mypy-contracts: PASS
+mypy-tooling: FAIL
+typing\pacer_inventory.py:116:1: error: Incompatible types in assignment (expression has type "tuple[str, str, ... <110 more items>]", variable has type "tuple[str, str, ... <108 more items>]")  [assignment]
+typing\pacer_inventory.py:122:1: error: Incompatible types in assignment (expression has type "tuple[str, str, ... <162 more items>]", variable has type "tuple[str, str, ... <108 more items>]")  [assignment]
+typing\pacer_inventory.py:179:1: error: Incompatible types in assignment (expression has type "tuple[str, str, ... <112 more items>]", variable has type "tuple[str, str, ... <108 more items>]")  [assignment]
+Found 3 errors in 1 file (checked 3 source files)
+
+stubtest: PASS
+runtime-contracts: PASS
+tooling-regressions: PASS
+negative-consumers: 13/13 expected diagnostics; exact line/code match=True

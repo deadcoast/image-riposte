@@ -197,14 +197,36 @@ def overview(data, command="", width=94) -> Report:
         else:tree(w,data)
     elif isinstance(data,dict):
         mode=data.get("mode","")
-        if mode in {"SORT_RIPOSTE_PLAN", "SORT_RIPOSTE_RESULT"}:
+        if mode == "TITLE_CATEGORY_DISCOVERY":
+            counts = data.get("counts", {})
+            r = Report("Filename categories", "READ ONLY" if data.get("checkpoint") == "COMPLETE" else "INCOMPLETE", "accent",
+                       "Filename suggestions and session groups only. No files or reusable rules are written.")
+            r.metrics = [("Titles analyzed", str(counts.get("analyzed_files", 0))), ("Suggestions", str(data.get("candidate_count", 0))),
+                         ("Original title needed", str(counts.get("original_title_required", 0)))]
+            w.section("Suggestions / matching files")
+            w.rows(("Term", "Files", "Example"), [(row["term"], str(row["count"]), row["examples"][0] if row["examples"] else "")
+                    for row in data.get("candidates", [])], [3, 1, 5])
+            if data.get("omitted_candidates"): w.pair("More suggestions", data["omitted_candidates"])
+            if not data.get("candidates"): w.text("No suggestions meet this count. Lower the minimum or enter a category group manually.")
+            review = data.get("review", {})
+            w.section("Category groups / session draft")
+            for group in review.get("categories", []):
+                w.pair(group["label"], f"{group['count']} files / " + " | ".join(group["terms"]))
+            if review.get("categories"):
+                w.pair("Unmatched files", counts.get("unmatched_files", 0))
+                w.pair("Ambiguous files", counts.get("ambiguous_files", 0))
+                for overlap in review.get("overlaps", []): w.pair(" / ".join(overlap["categories"]), overlap["count"])
+            w.text("Return to edit Category groups: Hockey=hockey;goalie. Use commas between groups. Clear a group to remove it.")
+            w.text("Numbered sorted names are excluded. Details shows all samples and match evidence. Media contents were not validated.", "muted")
+            if data.get("checkpoint") == "INCOMPLETE": w.text("Some paths could not be scanned; counts are incomplete.", "warn")
+        elif mode in {"SORT_RIPOSTE_PLAN", "SORT_RIPOSTE_RESULT"}:
             preview = mode == "SORT_RIPOSTE_PLAN"
             sorting = data.get("sorting", {})
             r = Report("Sort + RIPOSTE", "READ ONLY" if preview else "INCOMPLETE", "accent" if preview and data.get("ready") else "warn",
                        "Confirm source replacement before sorting; protection follows only after sorting succeeds." if preview else "The combined workflow stopped. Completed sorting is retained.")
             w.section("Sorting")
             tree(w, sorting.get("counts", {}))
-            w.text("Rebuild date-only PNGs and remove verified originals after explicit REPLACE consent.", "warn")
+            w.text("Sort images and videos separately; protect images only. Original copies are retained privately for undo.", "warn")
             blockers(w, sorting.get("blockers", {}))
             w.section("Protection")
             if preview:
@@ -214,6 +236,15 @@ def overview(data, command="", width=94) -> Report:
             if preview: tree(w, data.get("recipe", {}))
             if data.get("code"): w.pair("Stopped because", data["code"])
             if data.get("recovery"): w.text(data["recovery"])
+        elif mode in {"UNDO_SORT_PREVIEW", "UNDO_SORT"}:
+            preview = mode == "UNDO_SORT_PREVIEW"
+            r = Report("Undo last sort", "READ ONLY" if preview else data.get("checkpoint", "INCOMPLETE"),
+                       "good" if data.get("ready") else "warn", "Restore original names, bytes and modified times. Original metadata returns too.")
+            w.pair("Files to restore", data.get("files_to_restore", 0))
+            w.pair("Sorted copies to remove", data.get("outputs_to_remove", 0))
+            w.text("Conflicts block undo. Protection outputs and review records stay in place.")
+            w.text("Sorts made before recovery history was introduced cannot be undone.")
+            blockers(w, data.get("blockers", {}))
         elif mode in {"READ_ONLY","APPLY"}:
             preview=mode=="READ_ONLY";counts=data.get("counts",{});blocked=data.get("blockers",{})
             r=Report("Migration plan" if preview else "Clean & organize", "READ ONLY" if preview else data.get("checkpoint","RECORDED"),
@@ -222,11 +253,12 @@ def overview(data, command="", width=94) -> Report:
                        ("Already clean",str(counts.get("already_clean",0))),("Blockers",str(sum(blocked.values())))]
             w.section("What this operation does" if preview else "Source replacement receipt")
             w.text("Reconstruct date-only PNGs, classify by date and resolution, then name them consistently.")
-            w.text("Apply removes successfully replaced source files. No raw backup or Trash copy.","warn")
+            w.text("Images go into img; videos into vid. Videos keep all bytes and metadata; protection is image-only.")
+            w.text("Private undo history retains original files, names and metadata and uses extra disk space.","warn")
             for key,value in counts.items(): w.pair(key,size(value) if key=="input_bytes" else value)
             if data.get("destinations"):
                 w.section("Calendar / output routes")
-                w.rows(("Destination","Images"),[(folder,str(count)) for folder,count in data["destinations"].items()],[5,1])
+                w.rows(("Destination","Files"),[(folder,str(count)) for folder,count in data["destinations"].items()],[5,1])
             blockers(w,blocked)
             if "remaining_unmanaged_inputs" in data:w.pair("Remaining unmanaged inputs",data["remaining_unmanaged_inputs"])
         elif mode=="PUBLICATION_PLAN":

@@ -63,7 +63,15 @@ ACTIONS = (
     Action("riposte", "RIPOSTE", "PRIMARY", "Protect files or folders. Keep originals and their folder structure.", (*INPUT_FIELDS, SORT_FIELDS[0], *PUB_FIELDS)),
     Action("sort-riposte", "Sort + RIPOSTE", "PRIMARY", "Preview sorting, confirm replacement, then protect the organized collection.", (*SORT_FIELDS, *PUB_FIELDS)),
     Action("publish", "Protect & publish", "PRIMARY", "Selected clean images -> independently optimized publishing files.", PUB_FIELDS),
-    Action("organize", "Sort", "PRIMARY", "Clean & organize only. Rebuild date-only images and classify; no protection models.", SORT_FIELDS),
+    Action("organize", "Sort", "PRIMARY", "Preview image/video sorting into img/vid folders; originals saved for undo.", SORT_FIELDS),
+    Action("categories", "Filename categories", "PRIMARY", "Discover filename terms and review session groups. No files or rules are written.", (
+        Field("min_count", "Minimum file count", "int", 2, "Each term counts once per filename, wherever it occurs.", minimum=1, maximum=1_000_000_000),
+        Field("max_words", "Maximum phrase words", "int", 3, "Suggest contiguous phrases up to three words.", minimum=1, maximum=3),
+        Field("limit", "Suggestions shown", "int", 100, "Show the most frequent suggestions; all eligible filenames are counted.", minimum=1, maximum=500),
+        Field("category_specs", "Category groups", "words", (), "Select or rename: Hockey=hockey. Merge: Hockey=hockey;goalie. Separate categories with commas. Session only.", optional=True),
+        Field("ignore", "Ignore suggestions", "words", (), "Comma-separated words or phrases to hide from suggestions.", optional=True),
+        Field("fillers", "Filler words", "text", "a,an,and,at,by,for,from,in,of,on,or,the,to,with", "Comma-separated filler words. Clear to include every nonnumeric word.", optional=True))),
+    Action("undo-sort", "Undo last sort", "PRIMARY", "Preview restoring original files and names. Conflicts block restoration."),
     Action("audit", "Audit clean workspace", "PRIMARY", "Verify date-only images and calendar/size organization."),
     Action("doctor", "Local model setup", "SYSTEM", "Inspect runtime or execute a local encoder input-gradient probe.", (*VAE_FIELDS, DEVICE, Field("execute", "Run encoder probe", "bool", False, "Execution-only diagnostic; does not certify protection."))),
     Action("resume", "Resume publishing", "PRIMARY", "Reuse committed outputs; retry unfinished work with matching models.", (BATCH, *VAE_FIELDS, DEVICE, INPAINT, VIDEO)),
@@ -114,7 +122,7 @@ def defaults(action: Action, models: dict | None = None) -> dict:
 
 
 def parse_value(field: Field, raw: Any) -> Any:
-    if field.optional and raw in (None, ""):
+    if field.optional and raw in (None, "", ()):
         return ""
     try:
         if field.kind == "bool":
@@ -172,7 +180,7 @@ def make_request(key: str, root: Path | None, values: dict, selected=()) -> Requ
 
 def request_argv(request: Request) -> list[str]:
     """Generate a real Typer command, never execute the rendered command line."""
-    name = {"plan": "publish", "riposte-plan": "riposte", "sort-riposte-plan": "sort-riposte", "apply": "organize", "handoff": "workshop", "open-image": "image"}.get(request.name, request.name)
+    name = {"plan": "publish", "riposte-plan": "riposte", "sort-riposte-plan": "sort-riposte", "apply": "organize", "undo-sort-apply": "undo-sort", "handoff": "workshop", "open-image": "image"}.get(request.name, request.name)
     args = ["riposte", name]
     if request.root is not None and name != "doctor": args.append(str(request.root))
     values = request.values
@@ -182,8 +190,11 @@ def request_argv(request: Request) -> list[str]:
            "trials": ("trial_id",), "evaluations": ("trial_id",), "generations": ("trial_id",), "generation": ("run_id",), "frame": ("run_id", "relative"), "workshop": ("batch_id", "item_id")}.get(name, ())
     for key in pos:
         if values.get(key): args.append(str(values[key]))
-    aliases = {"input_paths": "input", "open_viewer": "open", "vae_dirs": "vae", "image_ids": "image", "all_images": "all", "edges": "edge", "item_ids": "item", "seeds": "seed", "views": "view"}
+    aliases = {"category_specs": "category", "input_paths": "input", "open_viewer": "open", "vae_dirs": "vae", "image_ids": "image", "all_images": "all", "edges": "edge", "item_ids": "item", "seeds": "seed", "views": "view"}
     for key, value in values.items():
+        if name == "categories" and key == "fillers" and value == "":
+            args.extend(["--fillers", ""])
+            continue
         if key in pos or value is None or value == "" or value == [] or value == (): continue
         if name == "guard" and key == "inpaint": option = "pipeline"
         else: option = aliases.get(key, key).replace("_", "-")
@@ -195,7 +206,7 @@ def request_argv(request: Request) -> list[str]:
             for entry in value: args.extend(["--" + option, str(entry)])
         else: args.extend(["--" + option, str(value)])
     if request.name in {"plan", "riposte-plan", "sort-riposte-plan"}: args.append("--plan")
-    if request.name in {"apply", "sort-riposte"}: args.append("--apply")
+    if request.name in {"apply", "sort-riposte", "undo-sort-apply"}: args.append("--apply")
     if request.name == "open-image": args.append("--open")
     return args
 

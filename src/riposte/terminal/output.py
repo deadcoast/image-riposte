@@ -39,6 +39,17 @@ class Presentation:
 
 
 RECOVERY = {
+    "VIDEO_PROBE_UNAVAILABLE": "Video sorting needs ffprobe from FFmpeg on PATH. Image-only sorting works without it.",
+    "VIDEO_PROBE_FAILED": "This video could not be read. Its original stays in place; inspect or repair it separately.",
+    "NO_SORT_TO_UNDO": "No recorded sort is available. Sorts made before undo history was introduced cannot be restored by this application.",
+    "SORT_RECOVERY_REQUIRED": "An interrupted sort or undo needs recovery. Choose Undo last sort before sorting again.",
+    "SORT_HISTORY_CHANGED_REPREVIEW": "The last sort changed since your preview. Preview Undo last sort again.",
+    "UNDO_SOURCE_OCCUPIED": "An original path is occupied by a later file. Move that file somewhere safe, then preview undo again.",
+    "UNDO_SOURCE_CHANGED": "An original file changed during recovery. Preserve the current file elsewhere before retrying.",
+    "UNDO_OUTPUT_CHANGED": "A sorted file has changed since sorting. Preserve that version elsewhere before retrying undo.",
+    "UNDO_BACKUP_CHANGED": "A recovery copy is missing or damaged. Restore the recovery history from your backup before retrying.",
+    "UNDO_CATALOG_CHANGED": "The image/video catalog changed after sorting. Undo has stopped without overwriting it.",
+    "SORT_HISTORY_INVALID": "Recovery history cannot be verified. Keep its files intact and inspect the saved journal before making further changes.",
     "INPUT_SELECTION_CONFLICT": "Choose files/folders with --input, or catalog images with --image/--all. Use a separate run for each selection type.",
     "SORT_USES_WORKSPACE_ROOT": "Sort + RIPOSTE sorts ROOT. For selected files or folders without sorting, choose RIPOSTE and --input.",
     "SORT_CONSENT_REQUIRES_COMBINED_WORKFLOW": "Use sort or sort-riposte for source replacement. RIPOSTE preserves original inputs.",

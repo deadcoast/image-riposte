@@ -91,7 +91,7 @@ def test_every_scene_ascii_and_bounded(root,dimensions,theme,page):
     sink=io.StringIO();Console(file=sink,width=dimensions[0],height=dimensions[1],force_terminal=False).print(a)
     assert '\x1b' not in sink.getvalue()
     if page=='preferences':assert 'Legacy state upgrade' in text
-    if page=='confirm':assert 'No raw backup or Trash' in ' '.join(text.split()) and 'TYPE REPLACE' in text
+    if page=='confirm':assert 'private undo history' in ' '.join(text.split()) and 'TYPE REPLACE' in text
 
 
 def test_end_scroll_is_bounded_and_up_recovers(root):

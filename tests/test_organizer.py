@@ -14,7 +14,7 @@ def test_plan_has_no_writes(root,make_image):
 def test_full_migration_idempotence(root,make_image):
     make_image(root/'old'/'private_filename.png');make_image(root/'random.jpg',day='2024-01-01');make_image(root/'other'/'extless',fmt='PNG',day='2023-12-01')
     r=organize(root,POLICY);assert r['checkpoint']=='COMPLETE';assert r['counts']['migrated']==3
-    expected={'2025/March/SML/SML01.png','2024/January/SML/SML01.png','EVERYTHING_ELSE/December/SML/SML01.png'}
+    expected={'2025/March/img/SML/SML01.png','2024/January/img/SML/SML01.png','EVERYTHING_ELSE/December/img/SML/SML01.png'}
     assert {x['relative'] for x in catalog(root)}==expected;assert not (root/'old').exists();assert not (root/'2024'/'July').exists();assert not (root/'2025'/'March'/'MED').exists()
     hashes={str(p):hashlib.sha256(p.read_bytes()).hexdigest() for p in root.rglob('*.png')}
     again=organize(root,POLICY);assert again['counts']['already_clean']==3;assert again['checkpoint']=='COMPLETE'
@@ -23,6 +23,9 @@ def test_full_migration_idempotence(root,make_image):
 def test_catalog_does_not_record_original_name(root,make_image):
     make_image(root/'PRIVATE_SOURCE_NAME.png');organize(root,POLICY)
     for p in (root/'.riposte').rglob('*'):
+        # Undo is the explicitly private exception: original names and bytes are
+        # necessary to restore a sort. Catalogs and generated images stay clean.
+        if 'sort-history' in p.relative_to(root/'.riposte').parts:continue
         if p.is_file():assert b'PRIVATE_SOURCE_NAME' not in p.read_bytes();assert b'PRIVATE_FIXTURE_PAYLOAD' not in p.read_bytes()
 def test_no_overwrite_and_existing_layout_translated(root,make_image):
     make_image(root/'2025'/'March'/'SML'/'SML01.png');make_image(root/'new.png',color=(22,24,88))

@@ -150,7 +150,7 @@ def collection(c, state):
         row = rows[n]; y = 10 + n-start; chosen = row["id"] in state.selected
         if n == state.page.cursor: c.fill(3, y, c.width-6, 1, "raised")
         parts = row["relative"].split("/")
-        head = f"{'>' if n==state.page.cursor else ' '} {'[x]' if chosen else '[ ]'} {row['day']}   {parts[2]:3}  {row['width']:5}x{row['height']:<5}  "
+        head = f"{'>' if n==state.page.cursor else ' '} {'[x]' if chosen else '[ ]'} {row['day']}   {parts[-2]:3}  {row['width']:5}x{row['height']:<5}  "
         name = row["relative"] if c.width >= 120 else parts[-1] + "  " + row["id"][:12]
         c.text(3, y, head + name, "accent" if chosen or n==state.page.cursor else "text", bold=n==state.page.cursor, width=c.width-6)
     if not rows:
@@ -400,7 +400,9 @@ def confirm(c,state):
     c.text(3,6,"EXPLICIT WRITE BOUNDARY", "warn",bold=True)
     c.wrap(3,8,p.title,c.width-6,3,"text",bold=True)
     if p.confirm_word=='REPLACE':
-        c.wrap(3,11,"Verified sources and authorized metadata sidecars are REMOVED. No raw backup or Trash copy. Failed inputs remain as blockers.",c.width-6,max(2,c.height-21),"warn")
+        c.wrap(3,11,"Originals move into private undo history, including original metadata. Images become date-only PNGs; videos keep their bytes. Failed inputs remain.",c.width-6,max(2,c.height-21),"warn")
+    elif p.confirm_word == 'UNDO':
+        c.wrap(3,11,"Restores original metadata and names. Changed files or occupied paths block undo. Protection results remain in place.",c.width-6,max(2,c.height-21),"warn")
     c.text(3,c.height-8,"TYPE "+p.confirm_word+" TO CONTINUE", "accent",bold=True)
     c.text(3,c.height-6,"> "+p.values.get('confirmation',''),"text",width=c.width-6)
     footer(c,state,"[Enter] confirm exact word   [Esc] cancel")

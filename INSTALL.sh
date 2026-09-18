@@ -19,3 +19,8 @@ else
   "$PYTHON" -m pip install --editable "$TARGET"
 fi
 printf 'Installed. Run bash START.sh to open the menu.\nModel weights are selected separately.\n'
+if command -v ffprobe >/dev/null 2>&1; then
+  printf 'Video sorting: ffprobe is available.\n'
+else
+  printf 'Optional video sorting needs FFmpeg ffprobe on PATH. Image sorting and protection work without it.\n'
+fi

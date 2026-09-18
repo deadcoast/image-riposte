@@ -14,6 +14,10 @@ from enum import Enum
 from typing import Annotated
 app: typer.Typer
 
+def undo_sort(ctx: typer.Context, root: Root, apply: bool=..., sort_id: str | None=...) -> None: ...
+
+def categories(ctx: typer.Context, root: Root, min_count: int=..., max_words: int=..., limit: int=..., category: list[str] | None=..., ignore: list[str] | None=..., fillers: str=...) -> None: ...
+
 class Device(str, Enum):
     auto = 'auto'
     cpu = 'cpu'
