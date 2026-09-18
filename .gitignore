@@ -9,5 +9,5 @@ __pycache__/
 build/
 dist/
 .riposte/
-
+.image_security_methods/
 .shroud/
