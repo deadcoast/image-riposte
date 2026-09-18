@@ -81,7 +81,8 @@ def video_catalog(root: Path) -> list[dict[str, Any]]:
         rows = [dict(row) for row in db.execute("SELECT * FROM videos ORDER BY day DESC, relative")]
     for row in rows:
         relative = Path(row["relative"])
-        folder = sort_folder_for(row["day"], row["width"], row["height"], "vid")
+        from .policy import path_category
+        folder = sort_folder_for(row["day"], row["width"], row["height"], "vid", path_category(row["relative"]))
         stem = relative.stem
         if (relative.parent != folder or relative.suffix not in VIDEO_SUFFIXES
                 or not stem.startswith(folder.name) or not stem[len(folder.name):].isascii()

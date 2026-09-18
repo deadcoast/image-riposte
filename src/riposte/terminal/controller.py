@@ -469,6 +469,7 @@ class Controller:
             if ch == "v" and p.action == "organize": return self.run(Request("audit",self.state.root))
             if ch == "u" and p.action == "organize": return self.run(Request("undo-sort", self.state.root))
             if ch == "c" and p.action == "organize": return self.action("categories")
+            if ch == "s" and p.action in {"organize", "categories"}: return self.action("category-rules")
             if ch == "p" and p.action in {"publish", "riposte", "sort-riposte", "organize"}: return self.run_form(preview=True)
             if ch == "r": return self.run_form(preview=p.action=="organize")
         elif p.name == "batches":
@@ -507,7 +508,12 @@ class Controller:
                 elif request and request.name == "package": return self.batches()
                 else: return self.back()
             if ch == "a" and request and request.name == "organize":
-                return self.confirm(Request("apply", request.root, request.values), "REPLACE", "Apply the displayed metadata-cleaning and calendar/size policy to this workspace.")
+                if request.values.get("categories") and not p.result.get("ready"):
+                    self.state.notice = "Resolve the category blockers and refresh the preview."; return
+                values = {**request.values, **({"plan_id": p.result["plan_id"]} if p.result.get("category_sorting") else {})}
+                return self.confirm(Request("apply", request.root, values), "REPLACE", "Apply the displayed sorting plan. Original names, bytes and category assignments remain privately recoverable.")
+            if ch == "s" and request and request.name == "category-rules" and p.result.get("status") == "DRAFT":
+                return self.confirm(Request("category-rules-save", request.root, {**request.values, "expected_revision": p.result["revision"]}), "SAVE", "Save these reusable rules. Sorting remains a separate preview and confirmation.")
             if ch == "u" and request and request.name == "undo-sort" and p.result.get("ready"):
                 return self.confirm(Request("undo-sort-apply", request.root, {"sort_id": p.result["sort_id"]}), "UNDO", "Restore original names and bytes from the last sort. Remove only its verified sorted copies.")
             if ch == "r" and request and request.name == "plan":
@@ -515,7 +521,11 @@ class Controller:
             if ch == "r" and request and request.name == "riposte-plan":
                 return self.run(Request("riposte", request.root, request.values))
             if ch == "r" and request and request.name == "sort-riposte-plan":
-                return self.confirm(Request("sort-riposte", request.root, request.values), "REPLACE",
+                sorting = p.result.get("sorting", {})
+                if request.values.get("categories") and not sorting.get("ready"):
+                    self.state.notice = "Resolve the category blockers and refresh the preview."; return
+                values = {**request.values, **({"plan_id": sorting["plan_id"]} if sorting.get("category_sorting") else {})}
+                return self.confirm(Request("sort-riposte", request.root, values), "REPLACE",
                                     "Replace verified sources during sorting, then protect the organized collection.")
             if ch == "b": return self.batches()
         elif p.name == "preferences":

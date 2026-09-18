@@ -1,6 +1,31 @@
 # MIVIM.spec mypy-engineer / source-derived typing
 
-PAC-027A implements the first milestone of the user-resumed filename-category
+PAC-027BB reviews frozen category plans, private title-table validation, journal
+version 2 and exact assignment restoration, stable video relocation, category
+path validation, and CLI/service/terminal/API contracts. The browser controller
+has separate rule-draft and destination-preview consent with stale response
+checks. `source-reviewed-category-sort.json` is the current reviewed source
+identity; earlier snapshots remain historical. Original filenames are excluded
+from public catalog rows, PNG metadata and publishing packs, and retained in the
+private title table/recovery journals only. Per-file plans and private journal
+records remain explicitly dynamic dictionaries at the external type boundary.
+These declarations do not establish source-body type safety or model efficacy.
+Current parity covers 387 signatures, 46 importable leaf modules and 56 application
+files (49 Python modules). See `../evidence/category-sort/README.md` for runtime and browser proof boundaries.
+
+
+Historical PAC-027BA added private versioned category rules and CLI/shared-service preview,
+save and match review. `source-reviewed-category-rules.json` admits the new
+`category_rules` module, the CLI command, service dispatch/effects and discovery
+next-action copy; the other 49 application files match the preceding snapshot.
+The immutable rule records and new command signature were reviewed against their
+external declarations. That milestone covered 375 signatures, 44 importable leaf
+modules and 53 application files (47 Python modules). Runtime persistence and
+compatibility evidence lives in `../evidence/category-rules/`. Category movement,
+original-title provenance and assignment recovery were left to PAC-027BB. Contract
+passes remain separate from the failing raw-source audit and model acceptance.
+
+PAC-027A implemented the first milestone of the user-resumed filename-category
 plan: read-only discovery and session category drafts. The new `title_categories`
 module and CLI signature were reviewed; the service, action schema, controller
 shortcut, help and semantic report changes retain their existing signatures.
@@ -8,10 +33,10 @@ shortcut, help and semantic report changes retain their existing signatures.
 checking every other application hash against the prior sort-collision snapshot.
 The new stub exposes immutable draft records and existing dynamic report boundaries.
 Runtime evidence is in `../evidence/title-discovery/`; saved rules, category routing,
-private title recovery and undo integration remain in PAC-027B. External contract
+private title recovery and undo integration were left to PAC-027B. External contract
 passes do not imply a clean raw-source mypy audit or model qualification.
-Current parity covers 363 source signatures, 43 importable leaf modules and
-52 application files. The fresh raw-source audit reports 1,073 errors in 37
+At that milestone parity covered 363 source signatures, 43 importable leaf modules and
+52 application files. Its raw-source audit reported 1,073 errors in 37
 files; the new filename module has no raw-source diagnostics.
 
 The original typing assignment defined existing RIPOSTE interfaces without
@@ -76,7 +101,7 @@ verifies that the other 48 application files match the previous snapshot.
 At that milestone, external parity covered 357 signatures; runtime evidence remains separate
 in [`../evidence/sort-collisions/README.md`](../evidence/sort-collisions/README.md).
 
-The external stub tree covers all 46 Python modules. The shared declarations in
+The external stub tree covers all 49 Python modules. The shared declarations in
 [`stubs/_riposte_types.pyi`](stubs/_riposte_types.pyi) define the shared record shapes,
 callback types, and callable model protocols. They preserve existing states such
 as `UNVERIFIED`, `INCOMPLETE`, nullable PSNR, absent publication-item fields, and

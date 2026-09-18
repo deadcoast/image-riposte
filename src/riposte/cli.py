@@ -80,9 +80,13 @@ def ui(ctx: typer.Context, root: Annotated[Optional[Path], typer.Argument(help="
 def organize(ctx: typer.Context, root: Root,
              apply: Annotated[bool, typer.Option("--apply", help="AUTHORIZE sorting sources. Private original copies are retained for undo.")] = False,
              discard_sidecars: Annotated[bool, typer.Option("--discard-sidecars", help="Authorize known metadata sidecar/cache removal on apply.")] = False,
-             date_mode: Annotated[DateMode, typer.Option(help="Date-only retention basis.")] = DateMode.download):
+             date_mode: Annotated[DateMode, typer.Option(help="Date-only retention basis.")] = DateMode.download,
+             categories: Annotated[bool, typer.Option("--categories", help="Use saved category rules and preview exact destinations.")] = False,
+             assign: Annotated[Optional[list[str]], typer.Option("--assign", help="Manual source-relative-path=category-slug; repeat. Use =auto to clear a saved manual choice.")] = None,
+             plan_id: Annotated[Optional[str], typer.Option("--plan-id", help="Exact category preview ID; required with --categories --apply.")] = None):
     """Read-only recursive plan; --apply explicitly replaces sources."""
-    dispatch(ctx, "apply" if apply else "organize", root, discard_sidecars=discard_sidecars, date_mode=date_mode)
+    dispatch(ctx, "apply" if apply else "organize", root, discard_sidecars=discard_sidecars, date_mode=date_mode,
+             categories=categories, assignments=assign or [], plan_id=plan_id)
 
 
 @command("undo-sort", "WORKFLOWS")
@@ -104,6 +108,22 @@ def categories(ctx: typer.Context, root: Root,
     """Discover filename categories and review explicit groups. No files or rules are written."""
     dispatch(ctx, "categories", root, min_count=min_count, max_words=max_words, limit=limit,
              category_specs=category or [], ignore=ignore or [], fillers=fillers)
+
+
+@command("category-rules", "CLEAN COLLECTION")
+def category_rules(ctx: typer.Context, root: Root,
+                   category: Annotated[Optional[list[str]], typer.Option("--category", help="Complete replacement selection: Hockey=hockey;goalie. Repeat for each group.")] = None,
+                   exclude: Annotated[Optional[list[str]], typer.Option("--exclude", help="Exclude matching titles from this category: Hockey=table hockey;toy.")] = None,
+                   priority: Annotated[Optional[list[str]], typer.Option("--priority", help="Category priority: Hockey=10. Higher wins; equal highest matches need review.")] = None,
+                   slug: Annotated[Optional[list[str]], typer.Option("--slug", help="Stable folder name: Hockey=hockey. Repeat to override generated names.")] = None,
+                   clear: Annotated[bool, typer.Option("--clear", help="Preview an empty replacement ruleset; use --save to commit it.")] = False,
+                   save: Annotated[bool, typer.Option("--save", help="AUTHORIZE saving the complete ruleset privately. Never moves media.")] = False,
+                   expected_revision: Annotated[Optional[str], typer.Option("--expected-revision", help="Revision from the rule preview; 'missing' for the first save.")] = None,
+                   review: Annotated[bool, typer.Option("--review", help="Read-only matching-file counts and examples using these rules.")] = False) -> None:
+    """Inspect saved rules or preview a replacement. --save requires the current revision."""
+    dispatch(ctx, "category-rules-save" if save else "category-rules", root,
+             category_specs=category or [], exclusions=exclude or [], priorities=priority or [],
+             slugs=slug or [], clear=clear, expected_revision=expected_revision, review=review)
 
 
 @command("audit", "CLEAN COLLECTION")
@@ -155,10 +175,13 @@ def publish(ctx: typer.Context, root: Root,
             input_paths: Annotated[Optional[list[Path]], typer.Option("--input", help="Source file or folder; repeat to combine selections. Preserves originals; mutually exclusive with --image/--all.")] = None,
             date_mode: Annotated[DateMode, typer.Option(help="Date basis for selected raw inputs or sorting.")] = DateMode.download,
             apply: Annotated[bool, typer.Option("--apply", help="Sort + RIPOSTE only: authorize source replacement then protection. Otherwise this workflow previews.")] = False,
-            discard_sidecars: Annotated[bool, typer.Option(help="Sort + RIPOSTE only: authorize metadata sidecar deletion during sorting.")] = False):
+            discard_sidecars: Annotated[bool, typer.Option(help="Sort + RIPOSTE only: authorize metadata sidecar deletion during sorting.")] = False,
+            categories: Annotated[bool, typer.Option("--categories", help="Sort + RIPOSTE only: use saved category rules.")] = False,
+            assign: Annotated[Optional[list[str]], typer.Option("--assign", help="Manual source-relative-path=category-slug; repeat.")] = None,
+            plan_id: Annotated[Optional[str], typer.Option("--plan-id", help="Exact category preview ID required when applying category sorting.")] = None):
     """Protect a selected batch at each final size; clean masters stay unchanged."""
     combined = ctx.info_name == "sort-riposte"
-    if not combined and (apply or discard_sidecars):
+    if not combined and (apply or discard_sidecars or categories or assign or plan_id):
         raise RiposteError("SORT_CONSENT_REQUIRES_COMBINED_WORKFLOW")
     operation = ("sort-riposte-plan" if plan or not apply else "sort-riposte") if combined else ("plan" if plan else "publish")
     if ctx.info_name == "riposte": operation = "riposte-plan" if plan else "riposte"
@@ -166,7 +189,8 @@ def publish(ctx: typer.Context, root: Root,
              edges=edge or [1536], epsilon=epsilon, steps=steps, restarts=restarts, seed=seed,
              preserve_white=preserve_white, inpaint=inpaint, video=video, device=device,
              delta_e76_p95=delta_e76_p95, rms_fraction=rms_fraction, year=year, month=month, size=size,
-             input_paths=input_paths or [], date_mode=date_mode, discard_sidecars=discard_sidecars)
+             input_paths=input_paths or [], date_mode=date_mode, discard_sidecars=discard_sidecars,
+             categories=categories, assignments=assign or [], plan_id=plan_id)
 
 
 # Discoverable alias, identical parameter schema and backend path.

@@ -31,6 +31,29 @@ class OrganizeRequest(StrictModel):
     acknowledge_source_removal: bool = False
     discard_sidecars: bool = False
     date_mode: str = "download"
+    categories: bool = False
+    assignments: list[str] = Field(default_factory=list, max_length=1000)
+    plan_id: str | None = Field(default=None, pattern=r"^[0-9a-f]{64}$")
+
+class CategoryRulesRequest(StrictModel):
+    categories: list[str] = Field(default_factory=list, max_length=32)
+    exclusions: list[str] = Field(default_factory=list, max_length=32)
+    priorities: list[str] = Field(default_factory=list, max_length=32)
+    slugs: list[str] = Field(default_factory=list, max_length=32)
+    clear: bool = False
+    save: bool = False
+    expected_revision: str | None = None
+    review: bool = True
+
+class CategoryDiscoveryRequest(StrictModel):
+    min_count: int = Field(default=2, ge=1, le=1_000_000_000)
+    max_words: int = Field(default=3, ge=1, le=3)
+    limit: int = Field(default=100, ge=1, le=500)
+
+class UndoSortRequest(StrictModel):
+    apply: bool = False
+    sort_id: str | None = None
+    acknowledge_restore: bool = False
 
 class GuardRequest(StrictModel):
     image_id: str
@@ -266,7 +289,29 @@ def create_app(root: Path, token: str | None = None) -> FastAPI:
         if body.apply and not body.acknowledge_source_removal:
             raise RiposteError("ACKNOWLEDGE_SOURCE_REMOVAL_REQUIRED")
         policy=Policy(date_mode=body.date_mode,discard_sidecars=body.discard_sidecars)
-        return app.state.jobs.start(organize if body.apply else plan,cancellable=False,root=root,policy=policy)
+        options = {"categories": body.categories, "assignments": body.assignments}
+        if body.apply: options["plan_id"] = body.plan_id
+        return app.state.jobs.start(organize if body.apply else plan,cancellable=False,root=root,policy=policy, **options)
+    @app.get("/api/category-rules")
+    def stored_category_rules():
+        from .category_rules import category_rules
+        return category_rules(root)
+    @app.post("/api/category-rules")
+    def category_rules_endpoint(body: CategoryRulesRequest):
+        from .category_rules import category_rules
+        return category_rules(root, **body.model_dump())
+    @app.post("/api/categories")
+    def category_discovery_endpoint(body: CategoryDiscoveryRequest):
+        from .title_categories import discover_categories
+        return discover_categories(root, **body.model_dump())
+    @app.post("/api/undo-sort")
+    def undo_sort_endpoint(body: UndoSortRequest):
+        from .sort_history import undo_sort
+        if body.apply and (not body.acknowledge_restore or not body.sort_id):
+            raise RiposteError("ACKNOWLEDGE_SORT_RESTORE_REQUIRED")
+        def work(progress):
+            return undo_sort(root, apply=body.apply, sort_id=body.sort_id)
+        return app.state.jobs.start(work, cancellable=False)
     @app.get("/api/audit")
     def audit():
         return audit_workspace(root)

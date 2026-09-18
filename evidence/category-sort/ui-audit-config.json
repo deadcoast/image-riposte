@@ -1,0 +1,1 @@
+{"profile": "product-admin", "canonicalMap": "docs/UX-CONTRACT.md", "sourceRoots": ["src/riposte/static"], "requiredCapabilities": ["Form", "Select/Listbox", "Date", "Scrollbar", "Toast", "CRUD", "Table Selection"], "ownership": {"Select/Listbox": "native", "Date": "native"}}

@@ -1,0 +1,116 @@
+...............................................................s........ [ 18%]
+................................................s....................... [ 37%]
+.....................................................F.................. [ 56%]
+........................................................................ [ 75%]
+........................................................................ [ 94%]
+....................                                                     [100%]
+================================== FAILURES ===================================
+_______________ test_combined_incomplete_sort_stops_protection ________________
+
+root = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/.tmp/category-sort/core2/test_combined_incomplete_sort_0/workspace')
+make_image = <function make_image.<locals>.create at 0x0000021EF97A56F0>
+models = [(WindowsPath('C:/Users/ryanf/github/_new/image-riposte/SYNTHETIC_LOCAL_MODEL'), 'auto')]
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x0000021EF9BDD5C0>
+
+    def test_combined_incomplete_sort_stops_protection(root, make_image, models, monkeypatch):
+        import riposte.organizer as organizer
+        make_image(root / 'input.png')
+        real = organizer.organize
+        def concurrent_addition(*args):
+            (root / 'late.txt').write_text('arrived after preview')
+            return real(*args)
+        monkeypatch.setattr(organizer, 'organize', concurrent_addition)
+>       result = execute(Request('sort-riposte', root, values(all_images=True)))
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_workflows.py:221: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+request = Request(name='sort-riposte', root=WindowsPath('C:/Users/ryanf/github/_new/image-riposte/.tmp/category-sort/core2/test_...ues={'vae_dirs': [WindowsPath('SYNTHETIC_LOCAL_MODEL')], 'steps': 2, 'restarts': 1, 'edges': [64], 'all_images': True})
+progress = None
+
+    def execute(request: Request, progress: Progress | None = None) -> Any:
+        """Invoke an allowlisted operation. All returned data is existing clean state."""
+        name, v = request.name, request.values
+        if name not in EFFECTS:
+            raise RiposteError("COMMAND_NOT_AVAILABLE")
+        if name == "doctor":
+            from ..models import runtime_capabilities, inspect_vae
+            if v.get("execute"):
+                from ..runtime_probe import execute_local_probe
+                if not v.get("vae_dirs"): raise RiposteError("LOCAL_VAE_DIRECTORY_REQUIRED")
+                return execute_local_probe(_paths(v), device=v.get("device", "auto"), progress=progress)
+            result = {"runtime": runtime_capabilities()}
+            if v.get("vae_dirs"):
+                entries = [inspect_vae(p) for p in _paths(v)]
+                result["model" if len(entries) == 1 else "models"] = entries[0] if len(entries) == 1 else entries
+            return result
+        root = root_of(request)
+        if name in {"category-rules", "category-rules-save"}:
+            from ..category_rules import category_rules
+            return category_rules(root, categories=v.get("category_specs") or (),
+                                  exclusions=v.get("exclusions") or (), priorities=v.get("priorities") or (),
+                                  slugs=v.get("slugs") or (), clear=v.get("clear", False),
+                                  save=name == "category-rules-save", expected_revision=v.get("expected_revision"),
+                                  review=v.get("review", False), progress=progress)
+        if name == "categories":
+            from ..title_categories import discover_categories, DEFAULT_FILLERS
+            fillers = v.get("fillers", DEFAULT_FILLERS)
+            if isinstance(fillers, str): fillers = tuple(word.strip() for word in fillers.split(",") if word.strip())
+            return discover_categories(root, min_count=v.get("min_count", 2), max_words=v.get("max_words", 3),
+                                       limit=v.get("limit", 100), fillers=fillers,
+                                       ignore=v.get("ignore") or (), categories=v.get("category_specs") or (), progress=progress)
+        if name in {"undo-sort", "undo-sort-apply"}:
+            from ..sort_history import undo_sort
+            return undo_sort(root, apply=name == "undo-sort-apply", sort_id=v.get("sort_id"))
+        if name in {"organize", "apply"}:
+            from ..organizer import plan, organize
+            options = {"categories": v.get("categories", False), "assignments": v.get("assignments") or ()}
+            if name == "apply": options["plan_id"] = v.get("plan_id")
+            return (organize if name == "apply" else plan)(
+                root, Policy(date_mode=v.get("date_mode", "download"), discard_sidecars=v.get("discard_sidecars", False)), progress, **options)
+        if name == "audit":
+            from ..organizer import audit_workspace
+            return audit_workspace(root)
+        if name == "list":
+            return select_rows(root, **{k: v[k] for k in ("year", "month", "size", "search", "limit", "offset") if k in v})
+        if name == "inspect":
+            from ..store import find_image, safe_child
+            from ..sanitize import png_audit
+            row = find_image(root, v["image_id"])
+            audit = png_audit(safe_child(root, row["relative"]).read_bytes())
+            if audit["sha256"] != row["sha256"]: raise RiposteError("CATALOG_FILE_CHANGED")
+            return {"mode": "CLEAN_IMAGE", **row, "audit": audit, "metadata_policy": "DATE_ONLY"}
+        if name in {"sort-riposte", "sort-riposte-plan"}:
+            from ..organizer import plan, organize
+            from ..publication import _models, publication_plan, start_publication
+            if v.get("input_paths"):
+                raise RiposteError("SORT_USES_WORKSPACE_ROOT")
+            # Validate the selection grammar before source replacement. --all is
+            # resolved again after sorting so newly imported images are included.
+            selected = image_selection(root, v)
+            configuration = recipe(v)
+            if not v.get("all_images"):
+                publication_plan(root, selected, configuration)
+            policy = Policy(date_mode=v.get("date_mode", "download"), discard_sidecars=v.get("discard_sidecars", False))
+            options = {"categories": v.get("categories", False), "assignments": v.get("assignments") or ()}
+            sorting = plan(root, policy, progress, **options)
+            if name == "sort-riposte-plan":
+                return {"mode": "SORT_RIPOSTE_PLAN", "sorting": sorting, "ready": sorting["ready"],
+                        "selection": "ALL_MATCHING_AFTER_SORT" if v.get("all_images") else "SELECTED_CATALOG_IMAGES",
+                        "recipe": configuration.public(), "writes": False, "requires": "EXPLICIT_REPLACE_CONSENT"}
+            if not sorting["ready"]:
+                return {"mode": "SORT_RIPOSTE_RESULT", "checkpoint": "INCOMPLETE", "sorting": sorting, "protection": "NOT_STARTED"}
+            # Execute all chosen model probes before replacing any source. Keep the
+            # loaded models for the following publication instead of loading twice.
+            loaded = _models(_paths(v), v.get("device", "auto"), _optional(v, "inpaint"), _optional(v, "video"), progress)
+>           sorting = organize(root, policy, progress, plan_id=v.get("plan_id"), **options)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           TypeError: test_combined_incomplete_sort_stops_protection.<locals>.concurrent_addition() got an unexpected keyword argument 'plan_id'
+
+src\riposte\terminal\service.py:201: TypeError
+=========================== short test summary info ===========================
+SKIPPED [1] tests\test_category_rules.py:182: symlinks unavailable
+SKIPPED [1] tests\test_organizer.py:79: Symlinks unavailable
+FAILED tests/test_workflows.py::test_combined_incomplete_sort_stops_protection
+1 failed, 377 passed, 2 skipped in 22.36s

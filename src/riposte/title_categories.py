@@ -233,5 +233,5 @@ def discover_categories(root: Path, *, min_count: int = 2, max_words: int = 3,
                                     for (a, b), count in sorted(overlaps.items())],
                        "ambiguous_examples": ambiguous_examples, "unmatched_examples": unmatched_examples,
                        "unmatched_proposal": "Uncategorized"},
-            "next": "Edit category groups and rerun to review. Saving rules and moving files are not available in this milestone.",
+            "next": "Edit category groups and rerun to review. Use category-rules with the same groups to preview and explicitly save reusable rules. Then preview sort --categories before applying its exact plan.",
             "title_policy": "Generated SML/MED/LRG/XTL numbered names are excluded; original-title provenance or manual assignment is required."}

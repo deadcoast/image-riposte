@@ -1,0 +1,36 @@
+........................................................................ [  6%]
+.....s.................................................................. [ 13%]
+........................................................................ [ 20%]
+.........................s.............................................. [ 27%]
+........................................................................ [ 34%]
+........................................................................ [ 41%]
+........................................................................ [ 48%]
+.......................................s................................ [ 55%]
+........................................................................ [ 62%]
+........................................................................ [ 69%]
+....s................................................................... [ 76%]
+............................................................ssss........ [ 83%]
+........................................................................ [ 90%]
+........................................................................ [ 97%]
+..............................                                           [100%]
+============================== warnings summary ===============================
+.venv\Lib\site-packages\fastapi\testclient.py:1
+  C:\Users\ryanf\github\_new\image-riposte\.venv\Lib\site-packages\fastapi\testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    from starlette.testclient import TestClient as TestClient  # noqa
+
+.venv\Lib\site-packages\starlette\testclient.py:53
+  C:\Users\ryanf\github\_new\image-riposte\.venv\Lib\site-packages\starlette\testclient.py:53: DeprecationWarning: The anyio.abc.BlockingPortal alias is deprecated, use anyio.from_thread.BlockingPortal instead.
+    _PortalFactoryType = Callable[[], AbstractContextManager[anyio.abc.BlockingPortal]]
+
+.venv\Lib\site-packages\_pytest\cacheprovider.py:469
+  C:\Users\ryanf\github\_new\image-riposte\.venv\Lib\site-packages\_pytest\cacheprovider.py:469: PytestCacheWarning: could not create cache path C:\Users\ryanf\github\_new\image-riposte\.tmp\category-rules\cache\v\cache\nodeids: [WinError 183] Cannot create a file when that file already exists: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\.tmp\\category-rules\\cache\\v\\cache'
+    config.cache.set("cache/nodeids", sorted(self.cached_nodeids))
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ===========================
+SKIPPED [1] tests\test_category_rules.py:182: symlinks unavailable
+SKIPPED [1] tests\test_organizer.py:70: Symlinks unavailable
+SKIPPED [1] tests\test_v02_models.py:38: Windows symlink creation privilege unavailable
+SKIPPED [1] tests\test_v03_temporal.py:134: Windows account lacks symlink privilege
+SKIPPED [4] tests\test_v04_terminal_host.py:8: POSIX pseudo-terminal contract
+1030 passed, 8 skipped, 3 warnings in 58.86s

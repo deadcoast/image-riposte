@@ -48,6 +48,10 @@ class CatalogRow(TypedDict):
     bytes: int
 
 class OrganizationPlan(TypedDict):
+    category_sorting: NotRequired[bool]
+    plan_id: NotRequired[str]
+    rules_revision: NotRequired[str]
+    files: NotRequired[list[dict[str, Any]]]
     mode: Literal["READ_ONLY"]
     counts: dict[str, int]
     destinations: dict[str, int]

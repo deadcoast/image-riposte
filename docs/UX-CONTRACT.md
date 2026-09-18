@@ -43,3 +43,51 @@ image terminology; this terminal entry change does not introduce the new file
 picker into the web interface. Existing direct command names/options and JSON
 record keys remain compatible. `-ArtworkFolder` remains a PowerShell alias for
 `-ImageFolder` so existing invocations keep working.
+
+
+## Category sorting (PAC-027BB)
+
+The PAC-027 plan in `todo.PACER.csv` authorizes optional
+Year/Month/img-or-vid/Category/Size sorting. `category_rules.py` owns rule
+validation; `category_sort.py` owns the frozen read-only destination plan;
+`organizer.py` and `sort_history.py` own consent checks, replacement and undo.
+The public image/video catalog keeps its existing schema. Original titles and
+assignments live in its separate private `sort_titles` table and private undo
+journals; they are never PNG metadata or publishing pack contents.
+
+- Sort defaults to the existing layout. Enabling categories requires a fresh
+  exact plan. Every file shows its source, original title (or unknown), matched
+  terms, category and destination. A changed setting, rule revision, catalog,
+  source or occupied destination invalidates apply consent.
+- The terminal Sort form exposes `s` for saved rules, `c` for discovery, `u` for
+  undo, a category toggle and manual assignments. Rule replacement requires
+  `SAVE`; file replacement requires `REPLACE` with the plan ID from the result.
+  Sort + RIPOSTE carries the same plan through its separate model preflight.
+- The browser sorting dialog uses the existing native modal, form controls,
+  buttons and palette. Native select popup geometry is deliberately platform
+  owned. Escape closes the dialog and returns focus; drafts remain in memory.
+  Rules have separate discovery, draft review and explicit save. Saving never
+  starts a sort. A saved-rule revision conflict preserves the draft for review.
+- Manual assignments use source-relative paths and saved category slugs (or
+  `uncategorized`). `auto` clears a manual override. Old numbered names without
+  trustworthy provenance cannot be treated as descriptive titles.
+- Browser requests disable duplicate writes synchronously. A late inspection
+  cannot restore apply after settings change. Errors stay in the dialog with
+  corrective text; failure keeps the draft and requires a refreshed preview.
+  Undo has its own preview, acknowledgement and exact sort ID.
+- The dialog owns vertical scrolling; all actions remain reachable on narrow
+  screens. Destination lists wrap full filenames rather than truncate them.
+  This English-language workflow accepts Unicode titles/categories; it does
+  not claim translated UI or cross-platform assistive technology certification.
+
+### Canonical UI Map
+
+| Capability | Canonical owner | Source of truth | Allowed variants | Verification |
+| --- | --- | --- | --- | --- |
+| Form | `static/index.html`, `static/category-sort.js`; terminal field schema | PAC-027 consent and rule grammar | Native inputs and textareas; terminal JSON assignment list | CLI/API/controller tests and real Chromium state matrix |
+| Select/Listbox | Native HTML select; terminal choice field | Date policy enum in `policy.py` | Platform popup geometry accepted | Browser keyboard and narrow viewport checks |
+| Date | `Policy`, `extract_day` | Date-only output policy in README | Existing download/modified/embedded enum; no calendar widget | Organizer regression tests |
+| Scrollbar | `static/style.css` | Existing runtime palette tokens | Dialog/list geometry, forced-colors system baseline | Chromium viewport assertions and screenshots |
+| Toast | Shared `app.js` toast | Existing live status region | Persistent sorting errors also appear inline | Error/retry browser checks |
+| CRUD | Rules service and sorting/undo service | PAC-027 and `category_rules.py`/`sort_history.py` | Review then replace complete rules; clear explicitly; no autosave | Stale revision and exact recovery tests |
+| Table Selection | Existing publication/library owners | Independent image selection policy | Category destination rows are read-only, with no row selection | Existing browser/publication regression suite |

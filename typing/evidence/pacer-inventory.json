@@ -3,34 +3,69 @@
   "result": "PASS",
   "issues": [],
   "counts": {
-    "source_files": 52,
-    "source_modules": 46,
-    "paired_stubs": 46,
-    "indexed_files": 283,
-    "source_symbols": 497,
+    "source_files": 56,
+    "source_modules": 49,
+    "paired_stubs": 49,
+    "indexed_files": 332,
+    "source_symbols": 529,
     "tool_functions": 9,
-    "symbol_dependency_edges": 1989,
-    "static_definitions": 1320,
-    "local_dependency_edges": 580
+    "symbol_dependency_edges": 2160,
+    "static_definitions": 1435,
+    "local_dependency_edges": 654
   },
   "sources": {
     "AGENTS.md": "a6d4ea1860b088946e9eca107b77105876a405391e4fdc708c2312755505be3b",
-    "DESIGN.md": "002fb361015b154fa6cf291975459b3f894cc904e44cc7502b9bb5795d1e0daa",
     "INSTALL.ps1": "7bb338033eab109bd9f4767c9956fae00133444ab346bb3cbe20b8d612eabc3c",
     "INSTALL.sh": "d394c7756b2757382f5e78383c1b17a0cfefae640ce743dda09a44fbd2aafa01",
-    "MANIFEST.in": "6c7e4423d0e31cd20aeadae9ab30fdcec33486d77216a926069ba9679f56e333",
-    "README.md": "0ef9ba17bebef873528867ba3420109e9ae08e816f4bd15cfb0930999311f282",
+    "MANIFEST.in": "71217e8cf9156033db56dc82c34e12688c894c0b50cbde1633d7d48610c00263",
+    "README.md": "22afcd4461f28b582a5b5f759beb66614da2dc98f36f391b3e059a05381e3079",
     "START.cmd": "f1e2bbd4f9109a60cbeb646ef61d847f384a65348cc569c6d971e91f81ca1002",
     "START.ps1": "38f293347d099344ac8206c47c7eaa23ef44b03db95e6299db1214b736efaa91",
     "START.sh": "65ed119680efaebbc22c7907d69f9b940d662c4e2c1ed5e6faeb797011c07b79",
-    "UX-CONTRACT.md": "03240d86bb0b22ffdf7e3f444de3cd7d9dc042217bab747a254d404b201472b0",
     "docs/CHANGELOG.md": "acde9b0de8aa8c1ede711ecaeb861859a621aafc125a9a6243c60b54085d2718",
-    "docs/CLI.md": "f742b6993fde7422efe206ae93b44c8e4256a66a87cfaafd9feb01d4217811df",
+    "docs/CLI.md": "dcd097e00fa7f1151e032cea446810cc6c01e7070257286cf1e9309609431b51",
+    "docs/DESIGN.md": "ac0c42aade419a3a2e3b09e3a6a62825f782347a4aa57410180c3feda7689735",
     "docs/PATCH-v05-MERGE.md": "5d11de4515dd8de4a88e57750b87e6499af5084d02b1ae7c2ea397a48fc6b240",
     "docs/REBUILD.md": "34a0a52c3b6a4d0debc861b26411c342116e4af59947e6f23c879a8d687cbcda",
     "docs/REVISION-v05.md": "9328dc46b8da0b327dc13918a530f3a25c355b21c82b3f37db2222017c6ea261",
     "docs/TERMINAL-DESIGN.spec.md": "3a60eb03893af5b2a0635d76ef19d17f3c36a6c3a05ad0ab49a8e6c5ad9b36d1",
+    "docs/UX-CONTRACT.md": "fa606c0bdf1261f6b07078f5beb6250a4ebf55cd66785400a060721c33fa36c9",
     "docs/VALIDATION.md": "cbc6ed660a472ad4dc5afd547930cc8323c8acd26b36af38f55ae54df10d90a3",
+    "evidence/category-rules/README.md": "4f2300528fe1ab251732f964b639e02cfa388564287f984b618dfa579d575741",
+    "evidence/category-rules/acceptance.json": "782acc34d2094453bb4c71191e13e177f44fe5bcb01b015d5df283ab646a8ed4",
+    "evidence/category-sort/OGM-007.json": "eb674a1b9dccd63dec0a511c6faf6b5be0daba01e1e458e414dbd64a8899c9a2",
+    "evidence/category-sort/OGM-008.json": "508d890a4eab6a3db215d879b0601fc3cca749af9e4f30903f7f69994257c3e6",
+    "evidence/category-sort/OGM-009.json": "0cc7b0b555ef508574878147edcbfb499201736266bb96141501044b097226a0",
+    "evidence/category-sort/OGM-010.json": "25c21193ac3434a4e29b1204108be892d37853bc41ed4e9d136e4cc8168bce52",
+    "evidence/category-sort/OGM-011.json": "3c80829110cdc52ac7436ccf6937ac1198eeabc12dd50ab2b707462fb9f42531",
+    "evidence/category-sort/OGM-012.json": "bcaf1af710fac400fc568010af651ffac5d0967dd71840f12f2b3f7e9618ea32",
+    "evidence/category-sort/OGM-013.json": "2e7466b2172c86ef5df14bc87796331cd3ad24fed32594a678c1f69904e1d2bc",
+    "evidence/category-sort/OGM-014.json": "c9814e6772239a75a8be5ec8182e9bf113c559bb6f27630d043624ca1d3824b1",
+    "evidence/category-sort/OGM-015.json": "3d67e18f8626172cafdc8272945c075b2bed51a79590ca8000619687247b192b",
+    "evidence/category-sort/OGM-016.json": "a8e43f2de779025bc085538c01dc5525674881f1f3e95c5bc46267ab7084d3a2",
+    "evidence/category-sort/OGM-017.json": "c81fa50f46935bb568df5bbdaf5e51167942647a8084aba1cf8d455c36a30e82",
+    "evidence/category-sort/README.md": "190a7a9e39a25e63aeb7fdf7168f9ccd298a2f17767ecdd0387ebf17b8d44d65",
+    "evidence/category-sort/acceptance.json": "0aef89ddc57d347a9923d7baf5725226a739609a27d425b5a4ac20d9249cd918",
+    "evidence/category-sort/browser-final.txt": "a2cbffe2f1dc47d93ee54a538488ae706174da847ccb9a192e037a750c3cd625",
+    "evidence/category-sort/browser-sandbox.txt": "dee5dbd7deb0e3ae6b3eb1a03378d505760d2440a9470fe3f7b649d67c9ed8d6",
+    "evidence/category-sort/build-final.txt": "a33385d8230b5350cae0da895c8494126d87e6649f843ffd2dfe4e90ffdca387",
+    "evidence/category-sort/build.txt": "341f047012399e789fa446bd21b36152b9af34d290fcd4fb02a67de97fe5a0f1",
+    "evidence/category-sort/checks.json": "34818746569de3b0f44b5199395af5ae12adc159db8b6b62fd8eb1bc5dcd6590",
+    "evidence/category-sort/contracts.txt": "e75b0244e7ee20ba46b0be233c37eea8191b9fd04ae3e17a40aef478aba1ea08",
+    "evidence/category-sort/core-first.txt": "239bd653642669bc38911c0af5e3746b6c80a307f3ce71aa31f65b5aac1f6256",
+    "evidence/category-sort/core-second.txt": "455aab787689b1b314f6177695332a4c280bd0a377d0ff8c213a7399f74d4348",
+    "evidence/category-sort/finish.txt": "4f44e7bb68a576f3cc5cacbc0caa724853a0422b261169fcde0177f6512f5f51",
+    "evidence/category-sort/full-final.txt": "0a82e7c430cfcd1e1fca9d70e4bdf4c4827eb6d36d473cd95f5a81d1023c3bae",
+    "evidence/category-sort/install-final.txt": "bbb71655f14015124d40945e8ae79bb7dfc84f536ad3dc4a5d0f808284df7097",
+    "evidence/category-sort/package-final.txt": "b2e18fbd43e8690fc69bc81b489c00b0d27616e7d933a4c52ef99d5599ab18b9",
+    "evidence/category-sort/package.json": "0fe4d28c5dbc8047188ebd75ab75cd14b8d4db49c1f10b96afd043885c8f6fb9",
+    "evidence/category-sort/presentation-final.txt": "1638e0d846bf4d67c331e860cd545bf9c6e5279fe442998014fb5872ccf8fec0",
+    "evidence/category-sort/raw-source-first.txt.gz": "13e1b384a3817ec830ba97e944857cf51709a41e4c70c0eec962e995dffaf41f",
+    "evidence/category-sort/typing-final.txt": "e75b0244e7ee20ba46b0be233c37eea8191b9fd04ae3e17a40aef478aba1ea08",
+    "evidence/category-sort/typing-first.txt": "e75b0244e7ee20ba46b0be233c37eea8191b9fd04ae3e17a40aef478aba1ea08",
+    "evidence/category-sort/ui-audit-config.json": "53780585e0c391bc7f03e145fb9f72e65fac6356c83d802206eaddccb6944c84",
+    "evidence/category-sort/ui-audit-final.json": "ce1b6ea66c22c63e3424cbcd25cfe8247a4e7933578a551b7deca54c30c40263",
+    "evidence/category-sort/verify_package.py": "613cf491c440cc289ca2d3869e767820d818153e269edd7792701a899e847a60",
     "evidence/menu-startup/README.md": "f8cf941206265a5d8a7f88ae3469b1405e52af07c1d50a7d6fd75113389cca40",
     "evidence/menu-startup/before.txt": "ca1e2383070a23c05142bef75de43af7cae47bea4db2b7e763e71c4adba60cf8",
     "evidence/menu-startup/before.xml": "f66ffdd9b398141f5c26a1f8a5a9399210948ddb966f4545fcb66ac39f9e3100",
@@ -145,7 +180,9 @@
     "src/riposte/__init__.py": "a9e9d2abdceaac2c47ed5846a874787f47337c407e2b2aa8064a32b53489f28d",
     "src/riposte/__main__.py": "79ee6f134c5c5193377cf9b189cbdcc3e2095e49ba9cec310114441c15a917c4",
     "src/riposte/benchmark.py": "a7fbb359fb87d7ed6c5593a6fb0c194e5a34d20dfe0e9dd549200fe1007c7d68",
-    "src/riposte/cli.py": "92f5948047eda077913f57612e268d5842449b113b79a7312fc5862bd4683eb9",
+    "src/riposte/category_rules.py": "7e4d056b08acd55632c2c9b0132f3782518e0d25c8e42ea67dabc2ac26b90a60",
+    "src/riposte/category_sort.py": "4f36ddddbf556f618255e424f8f3645fd347ce2d37c5ee89e97e991d7c829717",
+    "src/riposte/cli.py": "fcaae834111109f5650788965391127ac79575e28711265c5c527db105e5132c",
     "src/riposte/coupled.py": "eca0afb9e0de03b740029864a5ddeeb7212cc9676c5e9cc191a6f4d1274641a8",
     "src/riposte/errors.py": "7a9c08b799d1c713fbd82e30fd145a6dc3085c215848893e31d1ec066abc5244",
     "src/riposte/generation.py": "674e942d9781c2ef640a65b39873b484336d08e99251f12eb3277b5e333c5525",
@@ -155,29 +192,31 @@
     "src/riposte/metrics.py": "0d873a0cb8972b5bdce14eb3cdc49ab391af31a297981fda1ad37603496c22eb",
     "src/riposte/models.py": "cd6d2fd05c0288e270879bc260dcd299a3fcbe378bc564b571826ad1992c1fcf",
     "src/riposte/optimizer.py": "c41b3ee66835aea8feab01985434844ee9fb96b217f19ecf0ec8d47a1a047918",
-    "src/riposte/organizer.py": "41ee1a3d6c509a7b8901c7ec92e3a282bfb030b5923ad5f9f5933acb38214c7e",
-    "src/riposte/policy.py": "da032bd17c80b4d3bccdc73db0c41f413f55dfb92415f7e07bf6627c6e2ab922",
+    "src/riposte/organizer.py": "19c43093ca05c75531730610e3e92c6b74e246835e8a102180a3135c0ada5638",
+    "src/riposte/policy.py": "5d3250a13fd462665131bc1370016c3b4d915ed86a936ee8e8d6ce38d91f5432",
     "src/riposte/publication.py": "e22aa9db5edd8cf7af6ec532e2ce9f32d9859e5afdf5ebe81aff6817b741897e",
     "src/riposte/qualification.py": "4fc049f680adc31c34f02499d8dfe4ebed9af46f47fa1cd554f50ead273231ce",
     "src/riposte/quality.py": "3af92838360f5f9ce65d69973eef37a6dd006d733f56c376443a2228d3c9656d",
     "src/riposte/release_guard.py": "52787a6620ccab6efdd1446cb469d8e966212ae2fad0f6bd8219aebe031cd391",
     "src/riposte/runtime_probe.py": "67178701646b2d6e144b42400398394c85c14963a27f3e4a359d0942221f712d",
     "src/riposte/sanitize.py": "8233e398cf90f403d0fad458b83ddddefb873234183c1610348501d5383f90c2",
-    "src/riposte/server.py": "b45b7038151320a5dc9cdd6b0a3fda2a0e86b3108ffeedcbe516127ac02dfa84",
-    "src/riposte/sort_history.py": "9e79f363f0886a6a61503335bc26da29d579b68b77551e8d983f2f335fb4ec23",
-    "src/riposte/static/app.js": "12aa93d831877cbbacf555a9bc241449781ff2aaa1eb0539b97d639c7875db2e",
-    "src/riposte/static/index.html": "a28292fab8f28917a2e35be883cb65cffb160f683f91befca5612d34e100e2cb",
+    "src/riposte/server.py": "ef8dbc63999eae63e9019976e25842ac26fdabe3baae4bd72019e6c1c102649f",
+    "src/riposte/sort_history.py": "90a0b7a3a47961c1b4330038883a84ccc4346d459c0bee6a2a012dbffa241aa4",
+    "src/riposte/sort_titles.py": "5dfacf7438362b2e80538dde40ea3b4947a9ed684b8e2a057b7af0d8caa58720",
+    "src/riposte/static/app.js": "c2fbaf3078a897e8ac77785214b3b3bf5aa71799711341afff202d01d9d50999",
+    "src/riposte/static/category-sort.js": "4f528f7d122b6f368a6103d880a81dd5ed58cb1fa84913bc8873e881d48192de",
+    "src/riposte/static/index.html": "2403d1b7ec5a0b12937d321e732471b5844347a26563163e8589f646f23dbf2d",
     "src/riposte/static/publish.css": "3194ff34f6648c32432a8a85fcd7cbe8d2103f4fe0e4506e5af3e759c460261b",
     "src/riposte/static/publish.js": "639451897dd7402243571acf68a38785e75001bec50c310c969a3d10510b2b2c",
-    "src/riposte/static/style.css": "932983321f7c1394a44750a05433f6b521262ffd84b0db71eb0c41556813e3a7",
+    "src/riposte/static/style.css": "6007968f2ef01b68952a5c8616298808a73546ae7162890b425ca78a7b527cea",
     "src/riposte/store.py": "9f5521a9346cba11dea37ad0d36d5485168aad4fc0716c27ab0a04021ac3e7cd",
     "src/riposte/temporal.py": "e224555e5fdd1f98fcf030d5c66d99ee38440a0154959e63a2fe434fe42bbef9",
     "src/riposte/terminal/__init__.py": "3205c2b37274b4a78cad648f40635e4b02474f77515b94e506510e521ec79fa2",
-    "src/riposte/terminal/actions.py": "9224ec97bc0ccbeda996153e0c08ec318c36c926a374c36694a9964e4f50c084",
+    "src/riposte/terminal/actions.py": "2152c0e98305ae6a218a6c3c025845475bd529438111e12357efb3da21346137",
     "src/riposte/terminal/app.py": "abd4db345de03dca12650e4713063b09277ebf67ff84c993a38b6e1b6f104a2a",
-    "src/riposte/terminal/controller.py": "443dc6a2b570363a3e001461a8fdf0540a7892397d85143f9920ecc8d566f9b5",
+    "src/riposte/terminal/controller.py": "147d1f9fdca267f15c76cd0ffdf0b3f1acb2e87106624885a67579141c13475c",
     "src/riposte/terminal/help.py": "a8602fc471cc001809b87d9e3145096914229e4ddaef7271cacfbba739c6dd8f",
-    "src/riposte/terminal/interaction.py": "79a41767eff94ff0acd23f61542e70d93e677b79dd5c78103c35515d9561ff3f",
+    "src/riposte/terminal/interaction.py": "814882a17220d0157b0321ccbbda8bf74b5de5b3359565ffb36bc52e3b840e12",
     "src/riposte/terminal/jobs.py": "c3e7f2ab8d53ba9d2319c9021a059af816e246272f9001e7bbe0eb3ea5f2633b",
     "src/riposte/terminal/keyboard.py": "5506f92c9999aad2658ed012f808c90043c4ea830cc1c6f6e32871518c83a4e0",
     "src/riposte/terminal/material.py": "522d5080177faae021905b94851bf3836bb2c18805a38d0a1d56b8402f5cebeb",
@@ -186,23 +225,28 @@
     "src/riposte/terminal/paths.py": "1493c5ad7f5ee6e64674430fcd370265ff656409a87b4a6415f79ea447b9671c",
     "src/riposte/terminal/preview.py": "446b57630ee54c99070082b28f67e6d1d647b201577fb55d9ff5fb39259a67bc",
     "src/riposte/terminal/render.py": "cae305ac50474ffd4ca011869af94baf408ec9ed98d14b02628fa5be9d08027b",
-    "src/riposte/terminal/reports.py": "a45cb0344bb64d5f152596cc6673467eacbc33486d205892fb3600cb4743af43",
-    "src/riposte/terminal/service.py": "c527d623880d47890fef65f6eaf9cefb3d22befc1a2242cb12abf01e2a571422",
+    "src/riposte/terminal/reports.py": "5dfa1aa03c1918d2d0e1303a37e216157dd2b396a7afbce077c5faddddae5f62",
+    "src/riposte/terminal/service.py": "9fb6f38cea13b8946fd9d47b192154fc1d6a429ca2c893892c540242fe51a41f",
     "src/riposte/terminal/signals.py": "dd7ef5eac1860b126ceebeecb6aa6c6151f14dd4813254870b061ce71470ce19",
     "src/riposte/terminal/state.py": "db1465f9efdf6ce167e42c36e56f9ef1416d16bc2ef793107e4a39a9cf2064f0",
     "src/riposte/terminal/surface.py": "8088e77ab12aa16868beb09dcae60a2e3b67de64f106e7ea0b0245646bb110d1",
-    "src/riposte/title_categories.py": "d0f724ff7e3beed6259d3985cc921170b15320618fefa72cee235db102650c80",
-    "src/riposte/video.py": "d36bd5b2b6f9040cc8cefc5cc4bfead0f7f7ef4e77c83318fb623d9d94d5a2e6",
+    "src/riposte/title_categories.py": "0933a01ab42b5299e9257d0f410f647e50d107d542238b521ea4d70148e4c6ba",
+    "src/riposte/video.py": "5732775794d132a5c956874fada06e0efac16ca84307b68aa0a14c47a129e814",
     "src/riposte/views.py": "901a71db135ce03b0c929d230de1bacb73542dcc1570df166f36013a906b90e7",
-    "src/riposte_studio.egg-info/PKG-INFO": "25b88607601a5a7226ec1a4a27b59102e53ca26f24a62c16071b897224a45ec4",
-    "src/riposte_studio.egg-info/SOURCES.txt": "2d819274551ed4451961274e259d61b5a608626fae71b40e4e6b87e338e60de5",
+    "src/riposte_studio.egg-info/PKG-INFO": "afde517aac86be8137925ecedbd17b08d2bf2106788713d6e795bcea57ac78ca",
+    "src/riposte_studio.egg-info/SOURCES.txt": "0e180097d01512a84b8b8c5f555d9cfb94504cc3fa285d3e8e186873c2dbba7e",
     "src/riposte_studio.egg-info/dependency_links.txt": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
     "src/riposte_studio.egg-info/entry_points.txt": "98b3e382efea4ca6b2491a4a8c44d047025ab2e4365d7e6950c2998a3624b70e",
     "src/riposte_studio.egg-info/requires.txt": "cf9a6d3665a40abc44b1c22dc989f0bffdc6a7252767478ee8602c3b2c70c563",
     "src/riposte_studio.egg-info/top_level.txt": "0c0ed5cd11dc3a90aeb6e75a4ca8a16adf2e2ee8d5e973d930c4bfc4372a0073",
+    "tests/category_sort_browser.cjs": "304f04d8bfa9494093a0c326f35f33b5d1721b47f64d7800b910369e9a770729",
+    "tests/category_sort_probe.js": "7112659f9ed67dd90d425b5bf17845a6cdfc1be3940711f357b99496b9b96f6c",
+    "tests/test_category_rules.py": "9a722280e1ac41f02bd2812a1be44975455304b9c496182aa170209c8da258fe",
+    "tests/test_category_sort.py": "5370c7faac498af73609c7658ed60f19e5beea18d7b3537936c4282dd9b72639",
+    "tests/test_category_sort_interfaces.py": "9e7fadc9fdcb1acb8ee78406713792041ca0af5926b93a1a2f5331d5d382360c",
     "tests/test_launcher_refresh.py": "ab47e19a0ad95524f1ce3e16f50c68f0eb9eac73e5328f41a8c5f576cdd0ba28",
     "tests/test_menu_startup.py": "2bff0f518b58d14bd7d7a570b7d3a719e986770a4846e61a7bae05121e266ce3",
-    "tests/test_organizer.py": "ba75c822567dc1b0938e62e040ecf73a2f7c07d4f01bd1bd9720011af6d3c097",
+    "tests/test_organizer.py": "4ae102a49a15be6adb40e3836ab5246e2d1582cb327376ca8cf444c26d9b2872",
     "tests/test_sort_collisions.py": "227cd880789938a016ee18e385378bf9144de32c914e0a1b319168520197fc91",
     "tests/test_sort_commit_safety.py": "5e026be5172596de65432e9085eaf01fc8ab6ddb118d2171650ece93098497d3",
     "tests/test_sort_partial_failures.py": "06a66c220e5af45197103f1502a1c627a6e7db8d2cd6993bf95033a953120f11",
@@ -213,19 +257,21 @@
     "tests/test_v05_revision.py": "b69369329c97a6be9a392d9b6e2e1f200b1fe0b471c10b7d006d388698a05798",
     "tests/test_video_sort.py": "06b4f12e14a1cd96072e3aa00f6467235d6a409a4ab6401ed57762c002383438",
     "tests/test_workflows.py": "dba9b396322c7929ff406027b2f12c91982f2bfc837fca931257760a9b6fe83f",
-    "typing/README.md": "ef8a3ab78a9d1ddc43ddcb78699bc40e03cbece70b59480c67cb6b17bee6baa3",
-    "typing/check.py": "16ffab38274b155746420145b580b2a027370a7d065a925a5c6893ca3208bd31",
+    "typing/README.md": "d342c3b53b3e372207f738f384ec0089aa4a04e48855e5ea6690a09300334a59",
+    "typing/check.py": "9af941326bce395fee570654ff933fff58b0ea8572e50d4644c194fe6e4acf9f",
     "typing/checks/consumers.py": "e1b3e5053c12086baddbf41e49346d876aba70de638b675dec81ce7a0f777892",
     "typing/checks/rejected.py.txt": "d4d0311fd0d7897e2aabce3ef23ff1c214f6d31d825aaf84b122a13a5718aebe",
-    "typing/evidence/dynamic-boundaries.json": "1c59250f6d7861d0f71fdb2ecd7d2d8cdf0b37705698be437f01ee449e24e332",
-    "typing/evidence/mypy-contracts.txt": "ecb8399edbf23ad4cacd9fb156d28186a57318eeac101aedcdc3ff78fc21a035",
+    "typing/evidence/dynamic-boundaries.json": "2d9d4d81242fb0009bc3f983aab9792c293a95a8ed30d7bf3cbac4f2e85b573d",
+    "typing/evidence/mypy-contracts.txt": "4d996ae698b403516d11772c2b407e911deec6d99e01d498c812b576cb353b7f",
     "typing/evidence/mypy-tooling.txt": "281a094c39385b4d7b53e5db635f52158036861433c2a4975b9039e77a627a24",
-    "typing/evidence/source-after.json": "8d2e10ead336df8315d6cf6740acc535990acfbbb7284d3ed511415ab18b0882",
+    "typing/evidence/source-after.json": "9f5f9be249a73106bcb138c006cb77453c18ea955bd14a70a6b1b93570ebe2c6",
     "typing/evidence/source-before.json": "d3fa8409db29ebf923523671b44fade9caf459f627bd4f16ea07a4ff6d094f8b",
-    "typing/evidence/source-current-command.json": "92bbbc6575509e1faad8c5b5d9bd18b0afc48e84badf68859537adaebe1fa6e3",
+    "typing/evidence/source-current-command.json": "74c0ef1acc98a9124cdd43ba3be826fb1d156ad682d66107c0d082842c3685d6",
     "typing/evidence/source-current-command.txt": "1e4d041bf375639ae5a0bcbd4f4c1cfa145c814580d0c4943ba1566596b4d38f",
-    "typing/evidence/source-current.txt": "0ac94e01f41e8fe1feb67d881d5da5819a0af5cefa64a205911c667b63037b0a",
+    "typing/evidence/source-current.txt": "6b312ab7d7c718fb5a950f2151542aa5c5aa32a9b0a4cf94ad6fd03f9c3c7592",
     "typing/evidence/source-environment.json": "bbd297d0f095bc207e6537810c0ea1e971a78b6a874cee5af286877e40241cb8",
+    "typing/evidence/source-reviewed-category-rules.json": "195ad61059b9aad3b075783873976872c1aa2b5263c5ab5f63dffcb4f40990d0",
+    "typing/evidence/source-reviewed-category-sort.json": "9f5f9be249a73106bcb138c006cb77453c18ea955bd14a70a6b1b93570ebe2c6",
     "typing/evidence/source-reviewed-menu.json": "0f61ac18d165e391ca314d64a3694e0cdec64ec364f7acda25807a07c7a46299",
     "typing/evidence/source-reviewed-repairs.json": "d2a1b1b164476ff1877520a21d115afb9ea37293e2d5f406330850f423fa0e64",
     "typing/evidence/source-reviewed-sort-collisions.json": "ca80489931a877e97de0d1b3e9e1a7941e5b19844d7746e8c05451ce21876ac1",
@@ -235,22 +281,24 @@
     "typing/evidence/source-reviewed-title-discovery.json": "8d2e10ead336df8315d6cf6740acc535990acfbbb7284d3ed511415ab18b0882",
     "typing/evidence/source-reviewed-v050.json": "0b62c31d7fc3e617bbc418ee56b962aeba0c03699103e94d90e5d52a5a0ac966",
     "typing/evidence/source-reviewed-workflows.json": "aa0a9d870961f41f3354d50859e70c76c0f2b7f3476d525a66109d4b0f71924c",
-    "typing/evidence/stubtest.txt": "1b04271d5593e71ae06d2162932a259877aab80fc7736cdf8e32bbc1329fa656",
-    "typing/evidence/tooling-regressions.txt": "e36fef943f2dcde9828ac6befa655381f7948ee556ac7f0da1107801a8fdca06",
-    "typing/evidence/verification.json": "7788264c53fc5e24eca97cdc4c87302997f5406ceb7adff2c410683e6c873fce",
+    "typing/evidence/stubtest.txt": "8fc56e98440fced39288ce36ce8341ec35dfa203eec4b46b3da3cac159359c57",
+    "typing/evidence/tooling-regressions.txt": "3805c7afa6b964244df26ec96feaec8f5b669bc125350331253acac05532ab8c",
+    "typing/evidence/verification.json": "d4e017b26f7882bb12e3082a141b1c840c165baccd4156d1a9223fb66b945521",
     "typing/evidence/windows-stat-probe-app-py314.txt": "97906e27e8c02071c86c777f457a1e4460a7f68b008935c6adbb2908846bad69",
     "typing/evidence/windows-stat-probe.txt": "171d820928accb3d74ed7d3590d95165a10eda06ccc2338b8f24d56cd7efbacf",
     "typing/mypy-contracts.ini": "78fddb2607c7cdb260de23c75b2570d07407dd9ba4aefeebccbfeb0b4c27e70e",
     "typing/mypy-source.ini": "f168d5874f12d6258a8e35311ea4fc90ebeab878a51fb1268cc1a89e8cb104bf",
-    "typing/pacer_inventory.py": "c039b703d07f271ad44fb4e0c918535670c02236039d5a34867b0eac0a51b3c1",
+    "typing/pacer_inventory.py": "d7b323c08bc11b0b264bfc4abf398f692b0e1cce38af3959ff08be56434f4b07",
     "typing/probe_windows_stat.py": "210e707483e1d8198689178b789580e1f23b26e49460c31ed5ddd059e5d5b142",
     "typing/pyproject.toml": "29e29b0dac5a0fb3dc6fb6db476f1d0cdf29970f5fe5e50c1b7e785e029fdcf2",
     "typing/runtime_contracts.py": "abec3dd94e79a58e273d73377c95ef7cec3d2308b92c260e0d5782d1f7ab40ab",
-    "typing/stubs/_riposte_types.pyi": "88a8b92db3e57944e45a0fc90f6d5c2de98bf8ce579ec1a26a14da206ce24220",
+    "typing/stubs/_riposte_types.pyi": "49b42d2af4ce3d0b48b4f5e003b495d0cf77709e0a8f0be10e55626374ee6b15",
     "typing/stubs/riposte/__init__.pyi": "b572e2c4973b7500c42501d3e0d44c4a27d8fd35c6f7af6aaf1219357afcdf5d",
     "typing/stubs/riposte/__main__.pyi": "2f159ea3d0f9b62e80f64cbdf2bff8cd42a52fc8f4f709465e15bb1fcbce5ce0",
     "typing/stubs/riposte/benchmark.pyi": "45fc6c5448fb1aa21618fcdaea41277a0a54b57810b42d63995188e0b9630b6f",
-    "typing/stubs/riposte/cli.pyi": "0596688adf691e94da89889e81ad25bfa19981f68cf8be5b39d34e89635880ef",
+    "typing/stubs/riposte/category_rules.pyi": "ade975078a1a632d17d0c57c109734d34d510022e823dcd72461b27016e5222d",
+    "typing/stubs/riposte/category_sort.pyi": "808d7b43de7c1fe0d9ba7a17facc6ea17adfc70c7c2009dae6815a63811d14f5",
+    "typing/stubs/riposte/cli.pyi": "dcc85b273edc9971617a2bf75c51876059df71985c58aad1f114910bef22c51a",
     "typing/stubs/riposte/coupled.pyi": "fc1da15312c0e65852796b327f2b5fca6ad2ef97be34b6b7dabcf5c18a00495f",
     "typing/stubs/riposte/errors.pyi": "09294254fa034c3b927925cf853a7004f3bf02c75cf4129065b285e8268cdc0f",
     "typing/stubs/riposte/generation.pyi": "a8033d6e2a713a55f506532840b1301c4ea36de75fe77930ce4b80535e65cd06",
@@ -259,16 +307,17 @@
     "typing/stubs/riposte/metrics.pyi": "c062241120b5a53dc44709cb8f9ab605629e74af93a54f678b606cdc1bacb71a",
     "typing/stubs/riposte/models.pyi": "ce8b0ccaef7d0ddcd9cf155c2afa894cd695dfb635688e18c731bf59a7fe971d",
     "typing/stubs/riposte/optimizer.pyi": "4826e402f6445ad4d10d240eccfb34f7a572867f5f1f7467daedea1afbd08d93",
-    "typing/stubs/riposte/organizer.pyi": "74c7767f0ff109df6df9fa4f4fb826da4e2cc7120ef0777f10902b7cf34c6c95",
-    "typing/stubs/riposte/policy.pyi": "3f3e1736a71f4c60c36500f5709f045f86461d84664e9ccb7e4da0ea67cfb91f",
+    "typing/stubs/riposte/organizer.pyi": "02d31a6ceb8f82933ec7d042ba7aaeaecbe812474941c4806393c587a78e6179",
+    "typing/stubs/riposte/policy.pyi": "dc1fdf388cb8059b01ed88a4b6a167e0e4d5588cbdae1484e70e131c558a7b22",
     "typing/stubs/riposte/publication.pyi": "647d935ce087b269dd4039d062a7e5014783e671bd0db82d7a48adb7b07ca12b",
     "typing/stubs/riposte/qualification.pyi": "3160462ef5bf3909f0c1ec24131496d20ba755d66de97a0796986fa9f60b3eb0",
     "typing/stubs/riposte/quality.pyi": "3b04366e1973b69021f96cbd7a1ee05929b95dc5fd1fd242116713c1cb6f62f9",
     "typing/stubs/riposte/release_guard.pyi": "9a8cdc6b88f7622f4c424fc1d9b91928c53946bbb48705e8a5abd9ced78eb9fe",
     "typing/stubs/riposte/runtime_probe.pyi": "b2bbd20ba850122e7aa35eea8d7bed18ab70ede61034b4b60b1401f269ee7040",
     "typing/stubs/riposte/sanitize.pyi": "7389450202abf94d5a6dd7bf2582bcd00d8fe851265a845db8844b8aa37d3381",
-    "typing/stubs/riposte/server.pyi": "7c29e89dcb91419f1f42dea3f3d6582d53da5dafa5d4c8d36302e38fb6f6b675",
-    "typing/stubs/riposte/sort_history.pyi": "ac3df253133e1a131f5fe48db80ae41059d809a17a50de2a7fe08e1afc3a9bb8",
+    "typing/stubs/riposte/server.pyi": "1d46c3d5de23498843fc36b6600ee49bad1df9728629a245486597f2d2313fa9",
+    "typing/stubs/riposte/sort_history.pyi": "807394a4ba664ac5e4b51edd8d3f8d1332c08a65992c831b280d4fce2cc9014a",
+    "typing/stubs/riposte/sort_titles.pyi": "50841676832287223d368068f55d672ba5311c65eb80528e6fba342f655a0df9",
     "typing/stubs/riposte/store.pyi": "dfc1448e34ed913b109202457fd651fa0a21dd1c8b61a0fa151128cc9938db88",
     "typing/stubs/riposte/temporal.pyi": "94f89035069f13090317d5b0515818f481ac71aa8bdb9be13916063ff9e16f5c",
     "typing/stubs/riposte/terminal/__init__.pyi": "17022212ba4ef7ca2de53e12cd9398edc248af0cd389c9e23e34ec6c641518dc",
@@ -285,7 +334,7 @@
     "typing/stubs/riposte/terminal/paths.pyi": "76dc80da768bbbe1b5be771a9fad4039f0fb555fcf95ea492475ad33167be1f8",
     "typing/stubs/riposte/terminal/preview.pyi": "6a3a4ac74cae2524bb2985e0a0ef7a71998d6c444c00b1101069132a9ab41671",
     "typing/stubs/riposte/terminal/render.pyi": "8f0234e8497ec338a7a464d69c30aa7049e8ceb40270ba8d93d2917511986897",
-    "typing/stubs/riposte/terminal/reports.pyi": "46acc5c58ebe1e87321a3eab7d74e61070e1abda185e74ec6ebc5c1fad92a244",
+    "typing/stubs/riposte/terminal/reports.pyi": "dcfa7dcf3fa056a46a08519c4e437b928da4a1eca3d7a2a9206eee4d5267ad14",
     "typing/stubs/riposte/terminal/service.pyi": "97009079186d4edaf618ef68ac3e39cc06b1197a1ec00f55ec64c183f656e649",
     "typing/stubs/riposte/terminal/signals.pyi": "87116e0ebd0dcf3299f183a6f609d272907a3075f44fdfdc0759ee2c6d91d059",
     "typing/stubs/riposte/terminal/state.pyi": "fa2525235a2a8cdad8a78c44abb15920717a76d3ce36a13d76a1503e471d532a",
@@ -304,11 +353,6 @@
     {
       "id": "OVR-002",
       "path": "AGENTS.md",
-      "definitions": []
-    },
-    {
-      "id": "OVR-827",
-      "path": "DESIGN.md",
       "definitions": []
     },
     {
@@ -347,11 +391,6 @@
       "definitions": []
     },
     {
-      "id": "OVR-832",
-      "path": "UX-CONTRACT.md",
-      "definitions": []
-    },
-    {
       "id": "OVR-150",
       "path": "docs/CHANGELOG.md",
       "definitions": []
@@ -359,6 +398,11 @@
     {
       "id": "OVR-151",
       "path": "docs/CLI.md",
+      "definitions": []
+    },
+    {
+      "id": "OVR-827",
+      "path": "docs/DESIGN.md",
       "definitions": []
     },
     {
@@ -382,9 +426,195 @@
       "definitions": []
     },
     {
+      "id": "OVR-832",
+      "path": "docs/UX-CONTRACT.md",
+      "definitions": []
+    },
+    {
       "id": "OVR-156",
       "path": "docs/VALIDATION.md",
       "definitions": []
+    },
+    {
+      "id": "OVR-1167",
+      "path": "evidence/category-rules/README.md",
+      "definitions": []
+    },
+    {
+      "id": "OVR-1168",
+      "path": "evidence/category-rules/acceptance.json",
+      "definitions": []
+    },
+    {
+      "id": "OVR-1216",
+      "path": "evidence/category-sort/OGM-007.json",
+      "definitions": []
+    },
+    {
+      "id": "OVR-1217",
+      "path": "evidence/category-sort/OGM-008.json",
+      "definitions": []
+    },
+    {
+      "id": "OVR-1218",
+      "path": "evidence/category-sort/OGM-009.json",
+      "definitions": []
+    },
+    {
+      "id": "OVR-1219",
+      "path": "evidence/category-sort/OGM-010.json",
+      "definitions": []
+    },
+    {
+      "id": "OVR-1220",
+      "path": "evidence/category-sort/OGM-011.json",
+      "definitions": []
+    },
+    {
+      "id": "OVR-1221",
+      "path": "evidence/category-sort/OGM-012.json",
+      "definitions": []
+    },
+    {
+      "id": "OVR-1222",
+      "path": "evidence/category-sort/OGM-013.json",
+      "definitions": []
+    },
+    {
+      "id": "OVR-1223",
+      "path": "evidence/category-sort/OGM-014.json",
+      "definitions": []
+    },
+    {
+      "id": "OVR-1224",
+      "path": "evidence/category-sort/OGM-015.json",
+      "definitions": []
+    },
+    {
+      "id": "OVR-1225",
+      "path": "evidence/category-sort/OGM-016.json",
+      "definitions": []
+    },
+    {
+      "id": "OVR-1226",
+      "path": "evidence/category-sort/OGM-017.json",
+      "definitions": []
+    },
+    {
+      "id": "OVR-1227",
+      "path": "evidence/category-sort/README.md",
+      "definitions": []
+    },
+    {
+      "id": "OVR-1228",
+      "path": "evidence/category-sort/acceptance.json",
+      "definitions": []
+    },
+    {
+      "id": "OVR-1229",
+      "path": "evidence/category-sort/browser-final.txt",
+      "definitions": []
+    },
+    {
+      "id": "OVR-1230",
+      "path": "evidence/category-sort/browser-sandbox.txt",
+      "definitions": []
+    },
+    {
+      "id": "OVR-1231",
+      "path": "evidence/category-sort/build-final.txt",
+      "definitions": []
+    },
+    {
+      "id": "OVR-1232",
+      "path": "evidence/category-sort/build.txt",
+      "definitions": []
+    },
+    {
+      "id": "OVR-1233",
+      "path": "evidence/category-sort/checks.json",
+      "definitions": []
+    },
+    {
+      "id": "OVR-1234",
+      "path": "evidence/category-sort/contracts.txt",
+      "definitions": []
+    },
+    {
+      "id": "OVR-1235",
+      "path": "evidence/category-sort/core-first.txt",
+      "definitions": []
+    },
+    {
+      "id": "OVR-1236",
+      "path": "evidence/category-sort/core-second.txt",
+      "definitions": []
+    },
+    {
+      "id": "OVR-1237",
+      "path": "evidence/category-sort/finish.txt",
+      "definitions": []
+    },
+    {
+      "id": "OVR-1238",
+      "path": "evidence/category-sort/full-final.txt",
+      "definitions": []
+    },
+    {
+      "id": "OVR-1239",
+      "path": "evidence/category-sort/install-final.txt",
+      "definitions": []
+    },
+    {
+      "id": "OVR-1240",
+      "path": "evidence/category-sort/package-final.txt",
+      "definitions": []
+    },
+    {
+      "id": "OVR-1241",
+      "path": "evidence/category-sort/package.json",
+      "definitions": []
+    },
+    {
+      "id": "OVR-1242",
+      "path": "evidence/category-sort/presentation-final.txt",
+      "definitions": []
+    },
+    {
+      "id": "OVR-1243",
+      "path": "evidence/category-sort/raw-source-first.txt.gz",
+      "definitions": []
+    },
+    {
+      "id": "OVR-1244",
+      "path": "evidence/category-sort/typing-final.txt",
+      "definitions": []
+    },
+    {
+      "id": "OVR-1245",
+      "path": "evidence/category-sort/typing-first.txt",
+      "definitions": []
+    },
+    {
+      "id": "OVR-1246",
+      "path": "evidence/category-sort/ui-audit-config.json",
+      "definitions": []
+    },
+    {
+      "id": "OVR-1247",
+      "path": "evidence/category-sort/ui-audit-final.json",
+      "definitions": []
+    },
+    {
+      "id": "OVR-1248",
+      "path": "evidence/category-sort/verify_package.py",
+      "definitions": [
+        "DIST",
+        "HERE",
+        "INSTALLED",
+        "ROOT",
+        "main"
+      ]
     },
     {
       "id": "OVR-833",
@@ -1012,6 +1242,37 @@
       ]
     },
     {
+      "id": "OVR-1169",
+      "path": "src/riposte/category_rules.py",
+      "definitions": [
+        "CategoryRule",
+        "MAX_RULE_BYTES",
+        "MISSING_REVISION",
+        "RESERVED_SLUGS",
+        "RuleSet",
+        "_parse_document",
+        "_slug",
+        "_terms",
+        "_unique_pairs",
+        "build_rules",
+        "category_rules",
+        "load_rules",
+        "match_title",
+        "review_matches",
+        "rules_document",
+        "save_rules"
+      ]
+    },
+    {
+      "id": "OVR-1249",
+      "path": "src/riposte/category_sort.py",
+      "definitions": [
+        "category_plan",
+        "source_state",
+        "verify_source"
+      ]
+    },
+    {
       "id": "OVR-012",
       "path": "src/riposte/cli.py",
       "definitions": [
@@ -1028,6 +1289,7 @@
         "audit",
         "benchmark",
         "categories",
+        "category_rules",
         "challenge",
         "command",
         "compare",
@@ -1206,9 +1468,11 @@
         "SIDECAR_SUFFIXES",
         "YEARS",
         "canonical_path",
+        "category_slug",
         "extract_day",
         "folder_for",
         "is_link",
+        "path_category",
         "same_file_state",
         "size_bin",
         "sort_folder_for",
@@ -1311,6 +1575,8 @@
       "id": "OVR-029",
       "path": "src/riposte/server.py",
       "definitions": [
+        "CategoryDiscoveryRequest",
+        "CategoryRulesRequest",
         "CompareRequest",
         "ExecutionRequest",
         "ExportRequest",
@@ -1330,6 +1596,7 @@
         "ResumePublishRequest",
         "STATIC",
         "StrictModel",
+        "UndoSortRequest",
         "_BodyLimitMiddleware",
         "_BodyLimitMiddleware.__call__",
         "_BodyLimitMiddleware.__init__",
@@ -1344,6 +1611,7 @@
         "SortHistory.__init__",
         "SortHistory.finish",
         "SortHistory.prepare",
+        "SortHistory.record_title",
         "SortHistory.reject_output",
         "SortHistory.remove_source",
         "_check",
@@ -1356,8 +1624,24 @@
       ]
     },
     {
+      "id": "OVR-1250",
+      "path": "src/riposte/sort_titles.py",
+      "definitions": [
+        "put_title",
+        "restore_titles",
+        "save_title",
+        "title_records",
+        "validate_title"
+      ]
+    },
+    {
       "id": "OVR-030",
       "path": "src/riposte/static/app.js",
+      "definitions": []
+    },
+    {
+      "id": "OVR-1251",
+      "path": "src/riposte/static/category-sort.js",
       "definitions": []
     },
     {
@@ -1676,6 +1960,7 @@
         "Writer.text",
         "_JSON",
         "blockers",
+        "category_destinations",
         "fold",
         "label",
         "line",
@@ -1821,6 +2106,80 @@
       "id": "OVR-058",
       "path": "src/riposte_studio.egg-info/top_level.txt",
       "definitions": []
+    },
+    {
+      "id": "OVR-1252",
+      "path": "tests/category_sort_browser.cjs",
+      "definitions": []
+    },
+    {
+      "id": "OVR-1253",
+      "path": "tests/category_sort_probe.js",
+      "definitions": []
+    },
+    {
+      "id": "OVR-1170",
+      "path": "tests/test_category_rules.py",
+      "definitions": [
+        "save",
+        "snapshot",
+        "test_cli_and_shared_service_preview_save_reload",
+        "test_colliding_slugs_require_explicit_unique_override",
+        "test_concurrent_edit_during_flush_is_detected",
+        "test_existing_workspace_lock_prevents_save",
+        "test_explicit_clear_and_no_accidental_empty_replacement",
+        "test_interrupted_save_keeps_previous_bytes_and_cleans_temp",
+        "test_invalid_json_and_oversize_reads_are_bounded",
+        "test_invalid_rules_fail_before_creating_state",
+        "test_legacy_state_save_and_readonly_match_counts",
+        "test_linked_and_nonfile_state_is_rejected",
+        "test_malformed_saved_state_is_not_silently_reset",
+        "test_preview_save_reload_and_revision_consent",
+        "test_priorities_aliases_exclusions_phrases_and_ties",
+        "test_review_incomplete_scan_and_cancellation",
+        "test_rule_symlink_rejected_without_touching_target",
+        "test_saved_rules_do_not_enable_sorting_or_change_undo",
+        "test_unicode_normalization_slug_stability_and_explicit_rename",
+        "test_unsafe_or_noncanonical_slug_rejected"
+      ]
+    },
+    {
+      "id": "OVR-1254",
+      "path": "tests/test_category_sort.py",
+      "definitions": [
+        "POLICY",
+        "apply",
+        "rules",
+        "test_ambiguity_override_exclusion_unicode_and_empty_rules",
+        "test_changed_assignment_blocks_undo",
+        "test_changed_preview_refuses_before_writes",
+        "test_duplicate_content_and_collisions_have_separate_ids",
+        "test_exact_preview_readonly_and_missing_consent",
+        "test_interruption_recovery_restores_private_state",
+        "test_late_collision_never_claims_unowned_output",
+        "test_legacy_numbered_files_need_manual_assignment_and_restore_absence",
+        "test_normalized_numbered_title_stays_unknown_with_manual_assignment",
+        "test_real_video_category_move_keeps_identity_bytes_and_undo",
+        "test_rules_change_reclassifies_using_original_and_undo_restores_assignment",
+        "test_sort_original_title_private_stable_repeat_and_exact_undo",
+        "test_source_changes_during_preview_apply_leave_recovery_safe",
+        "test_title_only_update_undo_preserves_catalog",
+        "test_unreadable_directory_blocks_frozen_plan",
+        "test_version_one_recovery_and_legacy_namespace"
+      ]
+    },
+    {
+      "id": "OVR-1255",
+      "path": "tests/test_category_sort_interfaces.py",
+      "definitions": [
+        "job",
+        "test_api_rules_discovery_sort_and_undo",
+        "test_category_browser_native",
+        "test_cli_exact_plan_requires_token_and_applies",
+        "test_combined_propagates_exact_category_consent_before_protection",
+        "test_terminal_manual_assignment_json_and_command_roundtrip",
+        "test_terminal_rule_save_and_preview_bound_confirmation"
+      ]
     },
     {
       "id": "OVR-813",
@@ -2160,6 +2519,16 @@
       "definitions": []
     },
     {
+      "id": "OVR-1171",
+      "path": "typing/evidence/source-reviewed-category-rules.json",
+      "definitions": []
+    },
+    {
+      "id": "OVR-1256",
+      "path": "typing/evidence/source-reviewed-category-sort.json",
+      "definitions": []
+    },
+    {
       "id": "OVR-878",
       "path": "typing/evidence/source-reviewed-menu.json",
       "definitions": []
@@ -2363,6 +2732,37 @@
       ]
     },
     {
+      "id": "OVR-1172",
+      "path": "typing/stubs/riposte/category_rules.pyi",
+      "definitions": [
+        "CategoryRule",
+        "MAX_RULE_BYTES",
+        "MISSING_REVISION",
+        "RESERVED_SLUGS",
+        "RuleSet",
+        "_parse_document",
+        "_slug",
+        "_terms",
+        "_unique_pairs",
+        "build_rules",
+        "category_rules",
+        "load_rules",
+        "match_title",
+        "review_matches",
+        "rules_document",
+        "save_rules"
+      ]
+    },
+    {
+      "id": "OVR-1257",
+      "path": "typing/stubs/riposte/category_sort.pyi",
+      "definitions": [
+        "category_plan",
+        "source_state",
+        "verify_source"
+      ]
+    },
+    {
       "id": "OVR-079",
       "path": "typing/stubs/riposte/cli.pyi",
       "definitions": [
@@ -2386,6 +2786,7 @@
         "audit",
         "benchmark",
         "categories",
+        "category_rules",
         "challenge",
         "command",
         "compare",
@@ -2559,9 +2960,11 @@
         "SIDECAR_SUFFIXES",
         "YEARS",
         "canonical_path",
+        "category_slug",
         "extract_day",
         "folder_for",
         "is_link",
+        "path_category",
         "same_file_state",
         "size_bin",
         "sort_folder_for",
@@ -2664,6 +3067,8 @@
       "id": "OVR-095",
       "path": "typing/stubs/riposte/server.pyi",
       "definitions": [
+        "CategoryDiscoveryRequest",
+        "CategoryRulesRequest",
         "CompareRequest",
         "ExecutionRequest",
         "ExportRequest",
@@ -2683,6 +3088,7 @@
         "ResumePublishRequest",
         "STATIC",
         "StrictModel",
+        "UndoSortRequest",
         "_BodyLimitMiddleware",
         "_BodyLimitMiddleware.__call__",
         "_BodyLimitMiddleware.__init__",
@@ -2697,6 +3103,7 @@
         "SortHistory.__init__",
         "SortHistory.finish",
         "SortHistory.prepare",
+        "SortHistory.record_title",
         "SortHistory.reject_output",
         "SortHistory.remove_source",
         "_check",
@@ -2706,6 +3113,17 @@
         "latest_sort",
         "pending_sort",
         "undo_sort"
+      ]
+    },
+    {
+      "id": "OVR-1258",
+      "path": "typing/stubs/riposte/sort_titles.pyi",
+      "definitions": [
+        "put_title",
+        "restore_titles",
+        "save_title",
+        "title_records",
+        "validate_title"
       ]
     },
     {
@@ -3006,6 +3424,7 @@
         "Writer.text",
         "_JSON",
         "blockers",
+        "category_destinations",
         "fold",
         "label",
         "line",
@@ -3186,6 +3605,177 @@
     },
     {
       "AssetType": "CLASS",
+      "Path": "src/riposte/category_rules.py",
+      "Symbol": "CategoryRule",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-1169",
+      "Tags": "#source-symbol",
+      "ID": "OVR-1173"
+    },
+    {
+      "AssetType": "CONFIG",
+      "Path": "src/riposte/category_rules.py",
+      "Symbol": "MAX_RULE_BYTES",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-1169",
+      "Tags": "#source-symbol",
+      "ID": "OVR-1174"
+    },
+    {
+      "AssetType": "CONFIG",
+      "Path": "src/riposte/category_rules.py",
+      "Symbol": "MISSING_REVISION",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-1169",
+      "Tags": "#source-symbol",
+      "ID": "OVR-1175"
+    },
+    {
+      "AssetType": "CONFIG",
+      "Path": "src/riposte/category_rules.py",
+      "Symbol": "RESERVED_SLUGS",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-1169",
+      "Tags": "#source-symbol",
+      "ID": "OVR-1176"
+    },
+    {
+      "AssetType": "CLASS",
+      "Path": "src/riposte/category_rules.py",
+      "Symbol": "RuleSet",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-1169;OVR-1173",
+      "Tags": "#source-symbol",
+      "ID": "OVR-1177"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/category_rules.py",
+      "Symbol": "_parse_document",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-1088;OVR-1169;OVR-1173;OVR-1179;OVR-1180;OVR-380",
+      "Tags": "#source-symbol",
+      "ID": "OVR-1178"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/category_rules.py",
+      "Symbol": "_slug",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-1095;OVR-1169;OVR-1176;OVR-380",
+      "Tags": "#source-symbol",
+      "ID": "OVR-1179"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/category_rules.py",
+      "Symbol": "_terms",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-1095;OVR-1169;OVR-380",
+      "Tags": "#source-symbol",
+      "ID": "OVR-1180"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/category_rules.py",
+      "Symbol": "_unique_pairs",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-1169;OVR-380",
+      "Tags": "#source-symbol",
+      "ID": "OVR-1181"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/category_rules.py",
+      "Symbol": "build_rules",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-1088;OVR-1092;OVR-1095;OVR-1169;OVR-1173;OVR-1178;OVR-1187;OVR-380",
+      "Tags": "#source-symbol",
+      "ID": "OVR-1182"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/category_rules.py",
+      "Symbol": "category_rules",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-1090;OVR-1169;OVR-1175;OVR-1182;OVR-1184;OVR-1186;OVR-1187;OVR-1188;OVR-380",
+      "Tags": "#source-symbol",
+      "ID": "OVR-1183"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/category_rules.py",
+      "Symbol": "load_rules",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-1169;OVR-1174;OVR-1175;OVR-1177;OVR-1178;OVR-1181;OVR-380;OVR-520;OVR-525;OVR-528",
+      "Tags": "#source-symbol",
+      "ID": "OVR-1184"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/category_rules.py",
+      "Symbol": "match_title",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-1087;OVR-1095;OVR-1169;OVR-1173",
+      "Tags": "#source-symbol",
+      "ID": "OVR-1185"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/category_rules.py",
+      "Symbol": "review_matches",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-1090;OVR-1091;OVR-1169;OVR-1173;OVR-1178;OVR-1185;OVR-1187;OVR-380;OVR-520",
+      "Tags": "#source-symbol",
+      "ID": "OVR-1186"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/category_rules.py",
+      "Symbol": "rules_document",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-1169;OVR-1173",
+      "Tags": "#source-symbol",
+      "ID": "OVR-1187"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/category_rules.py",
+      "Symbol": "save_rules",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-1169;OVR-1173;OVR-1174;OVR-1175;OVR-1177;OVR-1178;OVR-1184;OVR-1187;OVR-380;OVR-520;OVR-525;OVR-528;OVR-530",
+      "Tags": "#source-symbol",
+      "ID": "OVR-1188"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/category_sort.py",
+      "Symbol": "category_plan",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-1087;OVR-1184;OVR-1185;OVR-1249;OVR-1260;OVR-1261;OVR-1271;OVR-307;OVR-380;OVR-432;OVR-433;OVR-435;OVR-437;OVR-444;OVR-492;OVR-494;OVR-520;OVR-525;OVR-960;OVR-970;OVR-974;OVR-975",
+      "Tags": "#source-symbol",
+      "ID": "OVR-1259"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/category_sort.py",
+      "Symbol": "source_state",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-1249;OVR-380",
+      "Tags": "#source-symbol",
+      "ID": "OVR-1260"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/category_sort.py",
+      "Symbol": "verify_source",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-1249;OVR-1260;OVR-380;OVR-525;OVR-974",
+      "Tags": "#source-symbol",
+      "ID": "OVR-1261"
+    },
+    {
+      "AssetType": "CLASS",
       "Path": "src/riposte/cli.py",
       "Symbol": "DateMode",
       "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
@@ -3300,6 +3890,15 @@
       "Requires": "OVR-012;OVR-338;OVR-347;OVR-349",
       "Tags": "#source-symbol",
       "ID": "OVR-1084"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/cli.py",
+      "Symbol": "category_rules",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-012;OVR-338;OVR-347;OVR-349",
+      "Tags": "#source-symbol",
+      "ID": "OVR-1189"
     },
     {
       "AssetType": "FUNCTION",
@@ -4179,7 +4778,7 @@
       "Path": "src/riposte/organizer.py",
       "Symbol": "audit_workspace",
       "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
-      "Requires": "OVR-021;OVR-380;OVR-433;OVR-435;OVR-437;OVR-450;OVR-451;OVR-494;OVR-520;OVR-527;OVR-960",
+      "Requires": "OVR-021;OVR-1263;OVR-1271;OVR-380;OVR-433;OVR-435;OVR-437;OVR-450;OVR-451;OVR-494;OVR-520;OVR-527;OVR-960",
       "Tags": "#source-symbol",
       "ID": "OVR-434"
     },
@@ -4197,7 +4796,7 @@
       "Path": "src/riposte/organizer.py",
       "Symbol": "organize",
       "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
-      "Requires": "OVR-021;OVR-307;OVR-380;OVR-431;OVR-432;OVR-433;OVR-435;OVR-437;OVR-444;OVR-451;OVR-452;OVR-492;OVR-494;OVR-517;OVR-520;OVR-521;OVR-524;OVR-530;OVR-531;OVR-960;OVR-961;OVR-969;OVR-975;OVR-976",
+      "Requires": "OVR-021;OVR-1087;OVR-1184;OVR-1259;OVR-1261;OVR-1263;OVR-1271;OVR-307;OVR-380;OVR-431;OVR-432;OVR-433;OVR-435;OVR-437;OVR-444;OVR-451;OVR-452;OVR-492;OVR-494;OVR-517;OVR-520;OVR-521;OVR-524;OVR-530;OVR-531;OVR-960;OVR-961;OVR-969;OVR-975;OVR-976",
       "Tags": "#source-symbol",
       "ID": "OVR-308"
     },
@@ -4206,7 +4805,7 @@
       "Path": "src/riposte/organizer.py",
       "Symbol": "plan",
       "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
-      "Requires": "OVR-021;OVR-307;OVR-380;OVR-431;OVR-433;OVR-435;OVR-437;OVR-444;OVR-520;OVR-960;OVR-971;OVR-975",
+      "Requires": "OVR-021;OVR-1259;OVR-1263;OVR-307;OVR-380;OVR-431;OVR-433;OVR-435;OVR-437;OVR-444;OVR-520;OVR-960;OVR-971;OVR-975",
       "Tags": "#source-symbol",
       "ID": "OVR-436"
     },
@@ -4314,9 +4913,18 @@
       "Path": "src/riposte/policy.py",
       "Symbol": "canonical_path",
       "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
-      "Requires": "OVR-022;OVR-380;OVR-440",
+      "Requires": "OVR-022;OVR-1262;OVR-380;OVR-440",
       "Tags": "#source-symbol",
       "ID": "OVR-448"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/policy.py",
+      "Symbol": "category_slug",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-022;OVR-380",
+      "Tags": "#source-symbol",
+      "ID": "OVR-1262"
     },
     {
       "AssetType": "FUNCTION",
@@ -4348,6 +4956,15 @@
     {
       "AssetType": "FUNCTION",
       "Path": "src/riposte/policy.py",
+      "Symbol": "path_category",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-022;OVR-1262",
+      "Tags": "#source-symbol",
+      "ID": "OVR-1263"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/policy.py",
       "Symbol": "same_file_state",
       "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
       "Requires": "OVR-022",
@@ -4368,7 +4985,7 @@
       "Path": "src/riposte/policy.py",
       "Symbol": "sort_folder_for",
       "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
-      "Requires": "OVR-022;OVR-380;OVR-450",
+      "Requires": "OVR-022;OVR-1262;OVR-380;OVR-450",
       "Tags": "#source-symbol",
       "ID": "OVR-960"
     },
@@ -4888,6 +5505,24 @@
     {
       "AssetType": "CLASS",
       "Path": "src/riposte/server.py",
+      "Symbol": "CategoryDiscoveryRequest",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-029;OVR-513",
+      "Tags": "#source-symbol",
+      "ID": "OVR-1264"
+    },
+    {
+      "AssetType": "CLASS",
+      "Path": "src/riposte/server.py",
+      "Symbol": "CategoryRulesRequest",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-029;OVR-513",
+      "Tags": "#source-symbol",
+      "ID": "OVR-1265"
+    },
+    {
+      "AssetType": "CLASS",
+      "Path": "src/riposte/server.py",
       "Symbol": "CompareRequest",
       "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
       "Requires": "OVR-029;OVR-513",
@@ -5059,6 +5694,15 @@
     {
       "AssetType": "CLASS",
       "Path": "src/riposte/server.py",
+      "Symbol": "UndoSortRequest",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-029;OVR-513",
+      "Tags": "#source-symbol",
+      "ID": "OVR-1266"
+    },
+    {
+      "AssetType": "CLASS",
+      "Path": "src/riposte/server.py",
       "Symbol": "_BodyLimitMiddleware",
       "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
       "Requires": "OVR-029",
@@ -5088,7 +5732,7 @@
       "Path": "src/riposte/server.py",
       "Symbol": "create_app",
       "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
-      "Requires": "OVR-029;OVR-308;OVR-309;OVR-316;OVR-317;OVR-319;OVR-320;OVR-321;OVR-323;OVR-331;OVR-380;OVR-389;OVR-391;OVR-396;OVR-397;OVR-398;OVR-399;OVR-401;OVR-417;OVR-421;OVR-434;OVR-436;OVR-444;OVR-455;OVR-468;OVR-469;OVR-470;OVR-471;OVR-472;OVR-477;OVR-478;OVR-479;OVR-485;OVR-489;OVR-492;OVR-497;OVR-498;OVR-499;OVR-500;OVR-501;OVR-506;OVR-507;OVR-508;OVR-509;OVR-510;OVR-511;OVR-512;OVR-519;OVR-520;OVR-522;OVR-523;OVR-525;OVR-528;OVR-529",
+      "Requires": "OVR-029;OVR-1093;OVR-1183;OVR-1264;OVR-1265;OVR-1266;OVR-308;OVR-309;OVR-316;OVR-317;OVR-319;OVR-320;OVR-321;OVR-323;OVR-331;OVR-380;OVR-389;OVR-391;OVR-396;OVR-397;OVR-398;OVR-399;OVR-401;OVR-417;OVR-421;OVR-434;OVR-436;OVR-444;OVR-455;OVR-468;OVR-469;OVR-470;OVR-471;OVR-472;OVR-477;OVR-478;OVR-479;OVR-485;OVR-489;OVR-492;OVR-497;OVR-498;OVR-499;OVR-500;OVR-501;OVR-506;OVR-507;OVR-508;OVR-509;OVR-510;OVR-511;OVR-512;OVR-519;OVR-520;OVR-522;OVR-523;OVR-525;OVR-528;OVR-529;OVR-972",
       "Tags": "#source-symbol",
       "ID": "OVR-325"
     },
@@ -5097,7 +5741,7 @@
       "Path": "src/riposte/sort_history.py",
       "Symbol": "SortHistory",
       "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
-      "Requires": "OVR-380;OVR-451;OVR-452;OVR-519;OVR-526;OVR-528;OVR-950;OVR-967;OVR-968;OVR-969;OVR-971;OVR-974;OVR-977",
+      "Requires": "OVR-1270;OVR-1271;OVR-1272;OVR-380;OVR-451;OVR-452;OVR-519;OVR-526;OVR-528;OVR-950;OVR-967;OVR-968;OVR-969;OVR-971;OVR-974;OVR-977",
       "Tags": "#source-symbol",
       "ID": "OVR-961"
     },
@@ -5106,7 +5750,7 @@
       "Path": "src/riposte/sort_history.py",
       "Symbol": "SortHistory.__init__",
       "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
-      "Requires": "OVR-380;OVR-519;OVR-950;OVR-971;OVR-977",
+      "Requires": "OVR-1271;OVR-380;OVR-519;OVR-950;OVR-971;OVR-977",
       "Tags": "#source-symbol",
       "ID": "OVR-962"
     },
@@ -5131,6 +5775,15 @@
     {
       "AssetType": "FUNCTION",
       "Path": "src/riposte/sort_history.py",
+      "Symbol": "SortHistory.record_title",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-1270;OVR-1272;OVR-380;OVR-950;OVR-968",
+      "Tags": "#source-symbol",
+      "ID": "OVR-1267"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/sort_history.py",
       "Symbol": "SortHistory.reject_output",
       "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
       "Requires": "OVR-950;OVR-968",
@@ -5151,7 +5804,7 @@
       "Path": "src/riposte/sort_history.py",
       "Symbol": "_check",
       "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
-      "Requires": "OVR-380;OVR-519;OVR-525;OVR-528;OVR-950;OVR-967;OVR-974;OVR-977",
+      "Requires": "OVR-1271;OVR-380;OVR-519;OVR-525;OVR-528;OVR-950;OVR-967;OVR-974;OVR-977",
       "Tags": "#source-symbol",
       "ID": "OVR-966"
     },
@@ -5187,7 +5840,7 @@
       "Path": "src/riposte/sort_history.py",
       "Symbol": "latest_sort",
       "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
-      "Requires": "OVR-380;OVR-451;OVR-520;OVR-525;OVR-528;OVR-950",
+      "Requires": "OVR-1272;OVR-380;OVR-451;OVR-520;OVR-525;OVR-528;OVR-950",
       "Tags": "#source-symbol",
       "ID": "OVR-970"
     },
@@ -5205,9 +5858,54 @@
       "Path": "src/riposte/sort_history.py",
       "Symbol": "undo_sort",
       "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
-      "Requires": "OVR-380;OVR-520;OVR-521;OVR-525;OVR-528;OVR-530;OVR-950;OVR-966;OVR-967;OVR-968;OVR-969;OVR-970;OVR-974",
+      "Requires": "OVR-1269;OVR-380;OVR-520;OVR-521;OVR-525;OVR-528;OVR-530;OVR-950;OVR-966;OVR-967;OVR-968;OVR-969;OVR-970;OVR-974",
       "Tags": "#source-symbol",
       "ID": "OVR-972"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/sort_titles.py",
+      "Symbol": "put_title",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-1250;OVR-1272",
+      "Tags": "#source-symbol",
+      "ID": "OVR-1268"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/sort_titles.py",
+      "Symbol": "restore_titles",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-1250;OVR-1268",
+      "Tags": "#source-symbol",
+      "ID": "OVR-1269"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/sort_titles.py",
+      "Symbol": "save_title",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-1250;OVR-1268;OVR-521",
+      "Tags": "#source-symbol",
+      "ID": "OVR-1270"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/sort_titles.py",
+      "Symbol": "title_records",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-1250;OVR-1272;OVR-380;OVR-520;OVR-525;OVR-528",
+      "Tags": "#source-symbol",
+      "ID": "OVR-1271"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/sort_titles.py",
+      "Symbol": "validate_title",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-1250;OVR-1262;OVR-380",
+      "Tags": "#source-symbol",
+      "ID": "OVR-1272"
     },
     {
       "AssetType": "CONFIG",
@@ -5655,7 +6353,7 @@
       "Path": "src/riposte/terminal/actions.py",
       "Symbol": "make_request",
       "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
-      "Requires": "OVR-038;OVR-543;OVR-563;OVR-696",
+      "Requires": "OVR-038;OVR-380;OVR-543;OVR-563;OVR-696",
       "Tags": "#source-symbol",
       "ID": "OVR-562"
     },
@@ -6985,6 +7683,15 @@
     {
       "AssetType": "FUNCTION",
       "Path": "src/riposte/terminal/reports.py",
+      "Symbol": "category_destinations",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-162;OVR-201",
+      "Tags": "#source-symbol",
+      "ID": "OVR-1273"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/reports.py",
       "Symbol": "fold",
       "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
       "Requires": "OVR-162;OVR-198;OVR-199",
@@ -7014,7 +7721,7 @@
       "Path": "src/riposte/terminal/reports.py",
       "Symbol": "overview",
       "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
-      "Requires": "OVR-162;OVR-198;OVR-200;OVR-201;OVR-685;OVR-687;OVR-689;OVR-691;OVR-692",
+      "Requires": "OVR-1273;OVR-162;OVR-198;OVR-200;OVR-201;OVR-685;OVR-687;OVR-689;OVR-691;OVR-692",
       "Tags": "#source-symbol",
       "ID": "OVR-202"
     },
@@ -7140,7 +7847,7 @@
       "Path": "src/riposte/terminal/service.py",
       "Symbol": "execute",
       "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
-      "Requires": "OVR-048;OVR-1086;OVR-1093;OVR-308;OVR-309;OVR-315;OVR-316;OVR-317;OVR-319;OVR-320;OVR-333;OVR-380;OVR-390;OVR-391;OVR-396;OVR-397;OVR-398;OVR-400;OVR-401;OVR-417;OVR-421;OVR-434;OVR-436;OVR-444;OVR-467;OVR-468;OVR-470;OVR-472;OVR-477;OVR-478;OVR-489;OVR-494;OVR-522;OVR-525;OVR-529;OVR-694;OVR-695;OVR-696;OVR-697;OVR-698;OVR-701;OVR-703;OVR-705;OVR-706;OVR-707;OVR-972",
+      "Requires": "OVR-048;OVR-1086;OVR-1093;OVR-1183;OVR-308;OVR-309;OVR-315;OVR-316;OVR-317;OVR-319;OVR-320;OVR-333;OVR-380;OVR-390;OVR-391;OVR-396;OVR-397;OVR-398;OVR-400;OVR-401;OVR-417;OVR-421;OVR-434;OVR-436;OVR-444;OVR-467;OVR-468;OVR-470;OVR-472;OVR-477;OVR-478;OVR-489;OVR-494;OVR-522;OVR-525;OVR-529;OVR-694;OVR-695;OVR-696;OVR-697;OVR-698;OVR-701;OVR-703;OVR-705;OVR-706;OVR-707;OVR-972",
       "Tags": "#source-symbol",
       "ID": "OVR-699"
     },
@@ -7527,7 +8234,7 @@
       "Path": "src/riposte/video.py",
       "Symbol": "video_catalog",
       "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
-      "Requires": "OVR-380;OVR-520;OVR-525;OVR-528;OVR-951;OVR-960;OVR-973",
+      "Requires": "OVR-1263;OVR-380;OVR-520;OVR-525;OVR-528;OVR-951;OVR-960;OVR-973",
       "Tags": "#source-symbol",
       "ID": "OVR-977"
     },

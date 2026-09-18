@@ -30,6 +30,7 @@ class Request:
 # These are application effects, not a permission system for hostile local code.
 EFFECTS = {
     "categories": "INSPECT",
+    "category-rules": "INSPECT", "category-rules-save": "SAVE_CATEGORY_RULES",
     "riposte": "CREATE_CANDIDATES", "riposte-plan": "INSPECT",
     "sort-riposte-plan": "INSPECT", "sort-riposte": "REPLACE_SOURCES",
     "organize": "INSPECT", "apply": "REPLACE_SOURCES", "audit": "INSPECT",
@@ -43,7 +44,7 @@ EFFECTS = {
     "trials": "INSPECT", "evaluations": "INSPECT", "generations": "INSPECT",
     "generation": "INSPECT", "frame": "INSPECT", "handoff": "CREATE_EXACT_TRIAL", "image": "INSPECT", "open-image": "OPEN_LOCAL_VIEWER",
 }
-CANCELLABLE = frozenset({"categories", "organize", "audit", "list", "inspect", "plan", "publish", "resume",
+CANCELLABLE = frozenset({"categories", "category-rules", "organize", "audit", "list", "inspect", "plan", "publish", "resume",
                          "guard", "qualify", "challenge", "doctor", "sort-riposte-plan", "riposte", "riposte-plan"})
 
 
@@ -139,6 +140,13 @@ def execute(request: Request, progress: Progress | None = None) -> Any:
             result["model" if len(entries) == 1 else "models"] = entries[0] if len(entries) == 1 else entries
         return result
     root = root_of(request)
+    if name in {"category-rules", "category-rules-save"}:
+        from ..category_rules import category_rules
+        return category_rules(root, categories=v.get("category_specs") or (),
+                              exclusions=v.get("exclusions") or (), priorities=v.get("priorities") or (),
+                              slugs=v.get("slugs") or (), clear=v.get("clear", False),
+                              save=name == "category-rules-save", expected_revision=v.get("expected_revision"),
+                              review=v.get("review", False), progress=progress)
     if name == "categories":
         from ..title_categories import discover_categories, DEFAULT_FILLERS
         fillers = v.get("fillers", DEFAULT_FILLERS)
@@ -151,8 +159,10 @@ def execute(request: Request, progress: Progress | None = None) -> Any:
         return undo_sort(root, apply=name == "undo-sort-apply", sort_id=v.get("sort_id"))
     if name in {"organize", "apply"}:
         from ..organizer import plan, organize
+        options = {"categories": v.get("categories", False), "assignments": v.get("assignments") or ()} if v.get("categories") or v.get("assignments") else {}
+        if name == "apply" and v.get("plan_id") is not None: options["plan_id"] = v["plan_id"]
         return (organize if name == "apply" else plan)(
-            root, Policy(date_mode=v.get("date_mode", "download"), discard_sidecars=v.get("discard_sidecars", False)), progress)
+            root, Policy(date_mode=v.get("date_mode", "download"), discard_sidecars=v.get("discard_sidecars", False)), progress, **options)
     if name == "audit":
         from ..organizer import audit_workspace
         return audit_workspace(root)
@@ -177,7 +187,8 @@ def execute(request: Request, progress: Progress | None = None) -> Any:
         if not v.get("all_images"):
             publication_plan(root, selected, configuration)
         policy = Policy(date_mode=v.get("date_mode", "download"), discard_sidecars=v.get("discard_sidecars", False))
-        sorting = plan(root, policy, progress)
+        options = {"categories": v.get("categories", False), "assignments": v.get("assignments") or ()} if v.get("categories") or v.get("assignments") else {}
+        sorting = plan(root, policy, progress, **options)
         if name == "sort-riposte-plan":
             return {"mode": "SORT_RIPOSTE_PLAN", "sorting": sorting, "ready": sorting["ready"],
                     "selection": "ALL_MATCHING_AFTER_SORT" if v.get("all_images") else "SELECTED_CATALOG_IMAGES",
@@ -187,7 +198,8 @@ def execute(request: Request, progress: Progress | None = None) -> Any:
         # Execute all chosen model probes before replacing any source. Keep the
         # loaded models for the following publication instead of loading twice.
         loaded = _models(_paths(v), v.get("device", "auto"), _optional(v, "inpaint"), _optional(v, "video"), progress)
-        sorting = organize(root, policy, progress)
+        if v.get("plan_id") is not None: options["plan_id"] = v["plan_id"]
+        sorting = organize(root, policy, progress, **options)
         if sorting["checkpoint"] != "COMPLETE":
             return {"mode": "SORT_RIPOSTE_RESULT", "checkpoint": "INCOMPLETE", "sorting": sorting, "protection": "NOT_STARTED"}
         try:

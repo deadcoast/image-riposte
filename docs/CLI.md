@@ -10,6 +10,7 @@ Every listed command is a real Typer command; use `riposte COMMAND --help` for p
 | `organize ROOT` | Whole maintained workspace | Read-only plan; `--apply` explicitly replaces successfully reconstructed sources |
 | `sort ROOT` | Whole maintained workspace | Alias of `organize`; incremental sorting without protection |
 | `categories ROOT` | Filename stems under ROOT | Read-only term discovery and session category review; no media, catalog or rules writes |
+| `category-rules ROOT` | Private rules and optional filename review | Read-only preview; `--save --expected-revision REVISION` explicitly saves rules; never moves media |
 | `undo-sort ROOT` | Last recorded sort in this workspace | Read-only recovery preview; `--apply` restores originals if conflict checks pass; optional `--sort-id` binds confirmation to an exact preview |
 | `riposte ROOT` | Repeated `--input` files/folders, or catalog selection | Protect independently; raw originals stay unchanged; `--plan` writes nothing |
 | `sort-riposte ROOT` | Whole workspace, then catalog selection | Preview by default; `--apply` authorizes sorting followed by protection |
@@ -60,9 +61,100 @@ Separate groups with commas in the form. The report shows matching-file counts
 and title examples; Details retains the complete bounded report.
 
 This milestone writes no media, catalog entries or saved rules. It does not
-decode media or infer titles for numbered SML/MED/LRG/XTL files. Persistent rules,
-original-title recovery and `Year/Month/img-or-vid/Category/Size` destinations remain
-planned work under PAC-027B; current sorting keeps its existing layout.
+decode media or infer titles for numbered SML/MED/LRG/XTL files. Saved rules use
+the separate command below. Exact destinations and private title provenance are available through the
+separate opt-in sorting mode described below.
+
+## Saved category rules
+
+```powershell
+# Preview a complete replacement ruleset and its filename matches. Writes nothing.
+riposte category-rules ROOT --category "Hockey=hockey;goalie;goaltender" --exclude "Hockey=table hockey;toy" --priority "Hockey=10" --review
+
+# First save: use the same selection and the revision from the preview.
+riposte category-rules ROOT --category "Hockey=hockey;goalie;goaltender" --exclude "Hockey=table hockey;toy" --priority "Hockey=10" --save --expected-revision missing
+
+# Reload the saved rules and review their matches without changing files.
+riposte category-rules ROOT --review
+```
+
+Subsequent saves require the full revision printed by a fresh preview; a changed
+ruleset stops the save. Saving replaces the **complete** category selection, so
+repeat `--category` for every group to retain. `--clear` previews an empty ruleset;
+combine it with `--save --expected-revision REVISION` to clear saved rules.
+
+Aliases and phrases match complete normalized words wherever they occur in the
+filename stem. Exclusions apply to that category alone. Higher priority wins;
+equal highest priorities stay ambiguous and require review. Unmatched titles
+show `Uncategorized`. Generated numbered titles require trustworthy original
+titles or manual assignment; filename-only discovery does not guess them.
+
+Folder slugs default to normalized category labels joined with hyphens. Use
+`--slug "New label=existing-slug"` to retain a folder identity when renaming a
+label. Duplicate slugs, Windows device names and unsafe path characters are
+rejected; `uncategorized` is reserved for unmatched titles. Unicode letters are
+supported. Rules allow up to 32 categories, 32 included/excluded phrases each,
+and priorities from -1,000,000 to 1,000,000. Phrases have one to three words.
+
+Only the rules are persisted, in private `.riposte/category-rules.json` (or the
+existing legacy `.shroud` namespace). Filename samples and review assignments
+are not saved by this command. In the terminal Sort form press `s` to review
+and save rules with a separate `SAVE` confirmation. The browser sorting dialog
+also offers discovery, rule editing, review and explicit save.
+
+## Exact category sorting
+
+```powershell
+# Inspect every destination. Does not create state or move media.
+riposte --json sort ROOT --categories --date-mode modified
+
+# Copy plan_id from that unchanged preview; repeat the same options.
+riposte sort ROOT --categories --date-mode modified --apply --plan-id PLAN_ID
+
+# Resolve a tie or an old numbered file with no trustworthy original title.
+riposte sort ROOT --categories --assign "2025/March/img/SML/SML01.png=hockey"
+
+# Preview and apply recovery separately.
+riposte undo-sort ROOT
+riposte undo-sort ROOT --apply --sort-id SORT_ID
+```
+
+The layout is `Year/Month/img-or-vid/Category/Size`, for example
+`2025/March/img/hockey/SML/SML01.png`. A category plan shows source path, original
+filename (unknown for old untracked files), matched terms, category and exact
+numbered destination. Minimum discovery counts do not limit saved-rule matches.
+Rules apply to words anywhere in the original title. Equal-priority matches block
+apply until resolved; unmatched titles use `uncategorized`.
+
+`--assign` repeats for multiple files. It uses a source-relative path and a saved
+slug, or `uncategorized`. A manual choice persists across later sorts; `=auto`
+clears it and tries the original title again. Repeat manual overrides when applying
+the reviewed plan. The terminal accepts a JSON list for this field, preserving
+commas inside filenames; the browser accepts one assignment per line.
+
+`--plan-id` binds policy, rules, source identities/content, media catalog, private
+assignments and exact destination allocation. Changed inputs require inspection
+again. Late changes during an operation stop it with an incomplete checkpoint;
+private undo history retains recorded work for recovery. Existing files are never
+overwritten or assigned a different destination after approval.
+
+New sorts retain trustworthy original basenames privately, including normal sorts
+performed before enabling categories. Media IDs survive moves and identical bytes
+in different files keep separate identities. Existing catalogs remain readable;
+older numbered files without a trustworthy record require manual assignment. Image
+metadata remains date-only; videos keep their bytes and metadata. Undo restores
+the private provenance/assignments and both catalogs in one transaction. Rule
+edits themselves are separate operations and are not undone with a sort.
+
+`sort-riposte ROOT --all --categories` previews both stages. Its apply command
+also requires `--apply --plan-id PLAN_ID`; model preflight still precedes sorting.
+Protection consumes images only and its visual acceptance remains separate.
+
+The local API exposes `POST /api/categories`, `GET/POST /api/category-rules`,
+`POST /api/organize` and `POST /api/undo-sort`, all under the existing session
+boundary. Organize accepts `categories`, `assignments` and `plan_id`; apply also
+requires `acknowledge_source_removal`. Undo apply requires the reviewed `sort_id`
+and `acknowledge_restore`. Browser controls use those same boundaries.
 
 ## Publishing configuration
 

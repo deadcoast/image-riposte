@@ -11,22 +11,27 @@
   },
   {
     "file": "typing/stubs/_riposte_types.pyi",
-    "line": 202,
+    "line": 54,
+    "declaration": "files: NotRequired[list[dict[str, Any]]]"
+  },
+  {
+    "file": "typing/stubs/_riposte_types.pyi",
+    "line": 206,
     "declaration": "recipe: Report"
   },
   {
     "file": "typing/stubs/_riposte_types.pyi",
-    "line": 270,
+    "line": 274,
     "declaration": "def __call__(self, x: ModelTensor, /) -> ModelTensor:"
   },
   {
     "file": "typing/stubs/_riposte_types.pyi",
-    "line": 275,
+    "line": 279,
     "declaration": "def __call__(self, x: ModelTensor, keep: ModelTensor, seed: int, early_fraction: float, prompt_key: str, /) -> ModelTensor:"
   },
   {
     "file": "typing/stubs/_riposte_types.pyi",
-    "line": 279,
+    "line": 283,
     "declaration": "def __call__(self, x: ModelTensor, seed: int, /) -> ModelTensor:"
   },
   {
@@ -35,8 +40,53 @@
     "declaration": "def run_benchmark(root: Path, trial_id: str, model_dir: Path, task: str='edit', seeds: tuple[int, ...]=(7, 19), transforms: tuple[str, ...]=('identity', 'jpeg85', 'resize75'), steps: int=25) -> dict[str, Any]:"
   },
   {
+    "file": "typing/stubs/riposte/category_rules.pyi",
+    "line": 28,
+    "declaration": "def _terms(values: Any, *, required: bool) -> tuple[str, ...]:"
+  },
+  {
+    "file": "typing/stubs/riposte/category_rules.pyi",
+    "line": 29,
+    "declaration": "def rules_document(rules: Sequence[CategoryRule]) -> dict[str, Any]:"
+  },
+  {
+    "file": "typing/stubs/riposte/category_rules.pyi",
+    "line": 30,
+    "declaration": "def _parse_document(document: Any) -> tuple[CategoryRule, ...]:"
+  },
+  {
+    "file": "typing/stubs/riposte/category_rules.pyi",
+    "line": 32,
+    "declaration": "def _unique_pairs(pairs: list[tuple[str, Any]]) -> dict[str, Any]:"
+  },
+  {
+    "file": "typing/stubs/riposte/category_rules.pyi",
+    "line": 35,
+    "declaration": "def match_title(stem: str, rules: Sequence[CategoryRule]) -> dict[str, Any]:"
+  },
+  {
+    "file": "typing/stubs/riposte/category_rules.pyi",
+    "line": 36,
+    "declaration": "def review_matches(root: Path, rules: Sequence[CategoryRule], *, sample_limit: int=..., progress: Progress | None=...) -> dict[str, Any]:"
+  },
+  {
+    "file": "typing/stubs/riposte/category_rules.pyi",
+    "line": 37,
+    "declaration": "def category_rules(root: Path, *, categories: Sequence[str]=..., exclusions: Sequence[str]=..., priorities: Sequence[str]=..., slugs: Sequence[str]=..., clear: bool=..., save: bool=..., expected_revision: str | None=..., review: bool=..., progress: Progress | None=...) -> dict[str, Any]:"
+  },
+  {
+    "file": "typing/stubs/riposte/category_sort.pyi",
+    "line": 15,
+    "declaration": "def verify_source(root: Path, item: dict[str, Any]) -> None:"
+  },
+  {
+    "file": "typing/stubs/riposte/category_sort.pyi",
+    "line": 16,
+    "declaration": "def category_plan(root: Path, policy: Policy, *, assignments: Sequence[str]=..., progress: Callable[[dict[str, Any]], None] | None=...) -> dict[str, Any]:"
+  },
+  {
     "file": "typing/stubs/riposte/cli.pyi",
-    "line": 69,
+    "line": 71,
     "declaration": "def dispatch(ctx: typer.Context, name: str, root: Path | None=None, **values: Any) -> None:"
   },
   {
@@ -321,17 +371,17 @@
   },
   {
     "file": "typing/stubs/riposte/server.pyi",
-    "line": 103,
+    "line": 106,
     "declaration": "data: dict[str, Report]"
   },
   {
     "file": "typing/stubs/riposte/server.pyi",
-    "line": 108,
+    "line": 111,
     "declaration": "def start(self, fn: Callable[..., object], cancellable: bool=True, **kwargs: Any) -> JobStarted:"
   },
   {
     "file": "typing/stubs/riposte/server.pyi",
-    "line": 112,
+    "line": 115,
     "declaration": "def snapshot(self) -> list[Report]:"
   },
   {
@@ -346,7 +396,7 @@
   },
   {
     "file": "typing/stubs/riposte/sort_history.pyi",
-    "line": 24,
+    "line": 25,
     "declaration": "def _check(root: Path, journal: Report) -> UndoSortReport:"
   },
   {
@@ -357,17 +407,47 @@
   {
     "file": "typing/stubs/riposte/sort_history.pyi",
     "line": 19,
-    "declaration": "def prepare(self, source: Path, output: str | None, expected: Report | None, media: str, before_row: CatalogRow | None=...) -> Report:"
+    "declaration": "def record_title(self, row: Report) -> None:"
   },
   {
     "file": "typing/stubs/riposte/sort_history.pyi",
     "line": 20,
-    "declaration": "def reject_output(self, entry: Report) -> None:"
+    "declaration": "def prepare(self, source: Path, output: str | None, expected: Report | None, media: str, before_row: CatalogRow | None=...) -> Report:"
   },
   {
     "file": "typing/stubs/riposte/sort_history.pyi",
     "line": 21,
+    "declaration": "def reject_output(self, entry: Report) -> None:"
+  },
+  {
+    "file": "typing/stubs/riposte/sort_history.pyi",
+    "line": 22,
     "declaration": "def remove_source(self, entry: Report) -> None:"
+  },
+  {
+    "file": "typing/stubs/riposte/sort_titles.pyi",
+    "line": 9,
+    "declaration": "def validate_title(row: dict[str, Any]) -> None:"
+  },
+  {
+    "file": "typing/stubs/riposte/sort_titles.pyi",
+    "line": 10,
+    "declaration": "def title_records(root: Path) -> list[dict[str, Any]]:"
+  },
+  {
+    "file": "typing/stubs/riposte/sort_titles.pyi",
+    "line": 11,
+    "declaration": "def put_title(db: sqlite3.Connection, row: dict[str, Any]) -> None:"
+  },
+  {
+    "file": "typing/stubs/riposte/sort_titles.pyi",
+    "line": 12,
+    "declaration": "def restore_titles(db: sqlite3.Connection, rows: list[dict[str, Any]]) -> None:"
+  },
+  {
+    "file": "typing/stubs/riposte/sort_titles.pyi",
+    "line": 13,
+    "declaration": "def save_title(root: Path, row: dict[str, Any]) -> None:"
   },
   {
     "file": "typing/stubs/riposte/temporal.pyi",
@@ -468,6 +548,11 @@
     "file": "typing/stubs/riposte/terminal/render.pyi",
     "line": 14,
     "declaration": "def view_rows(state: Session) -> list[Report]:"
+  },
+  {
+    "file": "typing/stubs/riposte/terminal/reports.pyi",
+    "line": 58,
+    "declaration": "def category_destinations(w: Writer, data: dict[str, Any]) -> None:"
   },
   {
     "file": "typing/stubs/riposte/terminal/state.pyi",

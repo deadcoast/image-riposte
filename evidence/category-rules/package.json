@@ -1,0 +1,29 @@
+{
+  "result": "PASS",
+  "scope": "Fresh distribution bytes, moved design docs, installed CLI preview/save/reload and actual Windows wrapper; synthetic filenames only",
+  "source_files": 53,
+  "installed_origin": "C:\\Users\\ryanf\\github\\_new\\image-riposte\\typing\\.cache\\category-rules\\installed\\riposte\\__init__.py",
+  "saved_rules": {
+    "version": 1,
+    "categories": [
+      {
+        "label": "Hockey",
+        "slug": "hockey",
+        "terms": [
+          "goalie",
+          "goaltender",
+          "hockey"
+        ],
+        "exclusions": [
+          "toy"
+        ],
+        "priority": 10
+      }
+    ]
+  },
+  "match_counts": {
+    "hockey": 2,
+    "uncategorized": 2
+  },
+  "media_bytes_and_mtimes_unchanged": true
+}

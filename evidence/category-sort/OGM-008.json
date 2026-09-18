@@ -1,0 +1,28 @@
+{
+  "requirement": "OGM-008",
+  "meaning": "ebe4108e46373bb8a4b285032b92409cb91cbc204d40080dc92834a795a01ecc",
+  "sources": {
+    "evidence/browser-review/README.md": "c795f3774ca7c52e210313788e0b0869c92376387a753e797fa6e8c886784e73",
+    "tests/browser_review.cjs": "c8367e48924371bfcc20ee954a114153e2f98d3ae9f45e1f9ad9ca62d4dbf81a",
+    "tests/test_browser_review.py": "8be9063a792e733aad3b13eb56b61ffd2401ce4641834c9be6a1998bd008c181",
+    "src/riposte/static/publish.js": "639451897dd7402243571acf68a38785e75001bec50c310c969a3d10510b2b2c",
+    "src/riposte/static/app.js": "c2fbaf3078a897e8ac77785214b3b3bf5aa71799711341afff202d01d9d50999"
+  },
+  "result": "PASS",
+  "command": [
+    "uv",
+    "run",
+    "--no-sync",
+    "--locked",
+    "--cache-dir",
+    ".tmp/uv-cache",
+    "pytest",
+    "-q",
+    "-o",
+    "cache_dir=.tmp/category-sort/pytest-cache",
+    "--basetemp",
+    ".tmp/category-sort/full-final"
+  ],
+  "evidence": "evidence/category-sort/README.md; checks.json; full-final.txt; finish.txt; contracts.txt; package.json; browser-final.txt",
+  "scope": "Full regression suite plus final affected runtime/browser checks. Prior native-console and optional-model boundaries remain historical; see category-sort README."
+}

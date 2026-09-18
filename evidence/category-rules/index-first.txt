@@ -1,0 +1,45 @@
+warning: `VIRTUAL_ENV=.venv` does not match the project environment path `typing\.venv` and will be ignored; use `--active` to target the active environment instead
+{
+  "result": "FAIL",
+  "counts": {
+    "source_files": 53,
+    "source_modules": 47,
+    "paired_stubs": 47,
+    "indexed_files": 289,
+    "source_symbols": 514,
+    "tool_functions": 9,
+    "symbol_dependency_edges": 2070,
+    "static_definitions": 1374,
+    "local_dependency_edges": 597
+  },
+  "source_unchanged": true,
+  "issues": [
+    "Unregistered file: evidence/category-rules/README.md",
+    "Unregistered file: evidence/category-rules/acceptance.json",
+    "Unregistered file: src/riposte/category_rules.py",
+    "Stale index: src/riposte/cli.py: Exports",
+    "Stale index: src/riposte/terminal/service.py: Imports, Requires",
+    "Unregistered file: tests/test_category_rules.py",
+    "Unregistered file: typing/evidence/source-reviewed-category-rules.json",
+    "Unregistered file: typing/stubs/riposte/category_rules.pyi",
+    "Stale index: typing/stubs/riposte/cli.pyi: Exports",
+    "Unregistered symbol: src/riposte/category_rules.py:CategoryRule",
+    "Unregistered symbol: src/riposte/category_rules.py:MAX_RULE_BYTES",
+    "Unregistered symbol: src/riposte/category_rules.py:MISSING_REVISION",
+    "Unregistered symbol: src/riposte/category_rules.py:RESERVED_SLUGS",
+    "Unregistered symbol: src/riposte/category_rules.py:RuleSet",
+    "Unregistered symbol: src/riposte/category_rules.py:_parse_document",
+    "Unregistered symbol: src/riposte/category_rules.py:_slug",
+    "Unregistered symbol: src/riposte/category_rules.py:_terms",
+    "Unregistered symbol: src/riposte/category_rules.py:_unique_pairs",
+    "Unregistered symbol: src/riposte/category_rules.py:build_rules",
+    "Unregistered symbol: src/riposte/category_rules.py:category_rules",
+    "Unregistered symbol: src/riposte/category_rules.py:load_rules",
+    "Unregistered symbol: src/riposte/category_rules.py:match_title",
+    "Unregistered symbol: src/riposte/category_rules.py:review_matches",
+    "Unregistered symbol: src/riposte/category_rules.py:rules_document",
+    "Unregistered symbol: src/riposte/category_rules.py:save_rules",
+    "Unregistered symbol: src/riposte/cli.py:category_rules",
+    "Stale symbol: src/riposte/terminal/service.py:execute: Requires"
+  ]
+}

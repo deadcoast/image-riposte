@@ -1,0 +1,6 @@
+{
+  "result": "PASS",
+  "source_files": 56,
+  "installed_origin": "C:\\Users\\ryanf\\github\\_new\\image-riposte\\.tmp\\category-sort\\installed\\riposte\\__init__.py",
+  "scope": "Checkout/sdist/wheel/isolated target byte equality; installed CLI saved rules, exact preview, apply, audit and byte-exact undo; actual Windows wrapper preview."
+}

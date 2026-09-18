@@ -19,6 +19,7 @@ from .errors import RiposteError
 from .policy import is_link, same_file_state
 from .store import catalog, check_root, connect, safe_child, state_dir, state_name, state_relative, workspace_lock
 from .video import file_hash, video_catalog
+from .sort_titles import title_records, validate_title, save_title, restore_titles
 
 
 def _save(root: Path, journal: dict[str, Any]) -> None:
@@ -54,7 +55,7 @@ def latest_sort(root: Path) -> dict[str, Any] | None:
                 raise RiposteError("SORT_HISTORY_INVALID")
             path = safe_child(root, state_relative(root, f"sort-history/{entry.name}/journal.json"))
             journal = json.loads(path.read_text(encoding="utf-8"))
-            if not isinstance(journal, dict) or journal["version"] != 1 or journal["id"] != entry.name or journal["status"] not in {"APPLYING", "APPLIED", "UNDOING", "UNDONE"}:
+            if not isinstance(journal, dict) or journal["version"] not in {1, 2} or journal["id"] != entry.name or journal["status"] not in {"APPLYING", "APPLIED", "UNDOING", "UNDONE"}:
                 raise RiposteError("SORT_HISTORY_INVALID")
             if any(not isinstance(journal[k], list) or any(not isinstance(row, dict) for row in journal[k])
                    for k in ("entries", "images", "videos")):
@@ -67,7 +68,15 @@ def latest_sort(root: Path) -> dict[str, Any] | None:
                         or item["media"] not in {"img", "vid", "sidecar"}
                         or item["output"] is not None and (not isinstance(item["output"], str) or not isinstance(item["expected"], dict))):
                     raise RiposteError("SORT_HISTORY_INVALID")
-            if journal["status"] != "UNDONE" and journal["entries"]:
+            if journal["version"] == 2:
+                for key in ("titles", "title_updates"):
+                    if not isinstance(journal[key], list):
+                        raise RiposteError("SORT_HISTORY_INVALID")
+                    for row in journal[key]:
+                        validate_title(row)
+                    if len({r["id"] for r in journal[key]}) != len(journal[key]):
+                        raise RiposteError("SORT_HISTORY_INVALID")
+            if journal["status"] != "UNDONE" and (journal["entries"] or journal.get("title_updates")):
                 return journal
     except (OSError, ValueError, KeyError, TypeError):
         raise RiposteError("SORT_HISTORY_INVALID") from None
@@ -109,8 +118,19 @@ class SortHistory:
         if pending_sort(root):
             raise RiposteError("SORT_RECOVERY_REQUIRED")
         self.root = root
-        self.journal: dict[str, Any] = {"version": 1, "id": f"{time.time_ns():020d}-{uuid.uuid4().hex}",
-                        "status": "APPLYING", "entries": [], "images": catalog(root), "videos": video_catalog(root)}
+        self.journal: dict[str, Any] = {"version": 2, "id": f"{time.time_ns():020d}-{uuid.uuid4().hex}",
+                        "status": "APPLYING", "entries": [], "images": catalog(root), "videos": video_catalog(root),
+                        "titles": title_records(root), "title_updates": []}
+
+    def record_title(self, row: dict[str, Any]) -> None:
+        validate_title(row)
+        if row in self.journal["titles"]:
+            return
+        if any(r["id"] == row["id"] for r in self.journal["title_updates"]):
+            raise RiposteError("SORT_HISTORY_INVALID")
+        self.journal["title_updates"].append(row)
+        _save(self.root, self.journal)
+        save_title(self.root, row)
 
     def prepare(self, source: Path, output: str | None, expected: dict[str, Any] | None, media: str, before_row: dict[str, Any] | None = None) -> dict[str, Any]:
         if is_link(source) or source.stat().st_nlink != 1:
@@ -176,7 +196,7 @@ class SortHistory:
         _save(self.root, self.journal)
 
     def finish(self) -> str | None:
-        if not self.journal["entries"]:
+        if not self.journal["entries"] and not self.journal["title_updates"]:
             return None
         self.journal["status"] = "APPLIED"
         _save(self.root, self.journal)
@@ -226,6 +246,15 @@ def _check(root: Path, journal: dict[str, Any]) -> dict[str, Any]:
         for media in current:
             if sorted(current[media], key=lambda r: r["id"]) != sorted(before[media], key=lambda r: r["id"]):
                 blocked("UNDO_CATALOG_CHANGED")
+        if journal["version"] == 2:
+            titles = {r["id"]: r for r in title_records(root)}
+            old_titles = {r["id"]: r for r in journal["titles"]}
+            for row in journal["title_updates"]:
+                previous = old_titles.pop(row["id"], None)
+                if titles.pop(row["id"], None) not in (previous, row):
+                    blocked("UNDO_ASSIGNMENTS_CHANGED")
+            if titles != old_titles:
+                blocked("UNDO_ASSIGNMENTS_CHANGED")
     except (OSError, KeyError, TypeError, ValueError):
         blocked("SORT_HISTORY_INVALID")
     except RiposteError as exc:
@@ -291,6 +320,8 @@ def undo_sort(root: Path, apply: bool = False, sort_id: str | None = None) -> di
                     continue
                 db.execute(f"DELETE FROM {table}")
                 db.executemany(f"INSERT INTO {table} VALUES (:id,:relative,:day,:date_source,:width,:height,:sha256,:bytes)", rows)
+            if journal["version"] == 2:
+                restore_titles(db, journal["titles"])
             db.commit()
         journal["status"] = "UNDONE"
         _save(root, journal)

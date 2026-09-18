@@ -117,11 +117,34 @@ with `Hockey=hockey`, or merge explicit terms with `Hockey=hockey;goalie;goalten
 Separate groups with commas in the terminal form. Minimum count, filler words and
 ignored suggestions are editable; manual groups can match below the threshold.
 The direct equivalent is `riposte categories ROOT --category "Hockey=hockey;goalie"`.
-Groups are session drafts; they are not saved and cannot move files. Overlapping
+Groups in this screen are session drafts; they are not saved and cannot move files. Overlapping
 groups are shown for review. Discovery reads filename stems by media extension,
 without validating image/video contents. Generated numbered names are excluded
-because they need original-title provenance or a manual assignment. The planned
-`Year/Month/img-or-vid/Category/Size` sorting mode remains under development.
+because they need original-title provenance or a manual assignment. Opt-in category sorting uses the
+`Year/Month/img-or-vid/Category/Size` layout below.
+
+**Reusable rules can be saved through the CLI, terminal and browser.** Preview with
+`riposte category-rules ROOT --category "Hockey=hockey;goalie" --review`.
+Repeat that command with `--save --expected-revision missing` for the first save;
+later saves require the revision shown by the current preview. `--exclude`,
+`--priority`, and `--slug` customize exclusions, match priority and folder names.
+`riposte category-rules ROOT --review` reloads saved rules and shows filename
+matches. Rules are private workspace state; saving them does not enable category
+sorting. In the terminal Sort form, press `s` for saved rules. In the browser,
+enable Sort by filename category and open Discover and save category rules.
+See [the command reference](docs/CLI.md#saved-category-rules).
+
+**Category sorting is optional.** Run `riposte sort ROOT --categories` for a
+read-only plan containing every source, trusted original title, matching term,
+category and exact destination. Apply with `--categories --apply --plan-id ID`
+using the ID from that preview. Changed files, rules, assignments, catalogs or
+destinations require a refreshed preview. Unmatched titles go to Uncategorized;
+ties and old numbered files need an explicit `--assign "relative/path=slug"`.
+Sorts from this version retain original titles and assignments in the private
+`sort_titles` table, separate from the public media catalog. Undo restores these
+records together with the image/video catalog; output PNG metadata remains date
+only. Normal sorting preserves existing category folders without enabling
+categories for new files. Browser undo has its own preview and confirmation.
 
 **Preview is read-only.** It shows destination folders, image/video counts and
 blockers without creating application state. **Undo applies to sorts recorded

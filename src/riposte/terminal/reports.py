@@ -172,6 +172,21 @@ def blockers(w, data):
         w.text("Code: "+str(code),"code")
 
 
+def category_destinations(w: Writer, data: dict) -> None:
+    w.section("Exact category destinations")
+    counts = data.get("counts", {})
+    w.pair("Unmatched files", counts.get("unmatched_files", 0))
+    w.pair("Ambiguous files", counts.get("ambiguous_files", 0))
+    for item in data.get("files", []):
+        w.text(item["source"], bold=True)
+        w.pair("Original title", item.get("original_filename") or "Unknown: manual assignment required", 2)
+        w.pair("Category", (item.get("category") or {}).get("label", item.get("error", "None")), 2)
+        w.pair("Matched terms", ", ".join(item.get("matched_terms", [])) or item.get("match_status", "None"), 2)
+        w.pair("Destination", item.get("destination") or item.get("action", "Blocked"), 2)
+    w.pair("Preview ID", data.get("plan_id"))
+    w.text("Changed files, rules or destinations require a fresh preview.")
+
+
 def overview(data, command="", width=94) -> Report:
     w=Writer(width)
     r=Report("Operation result","RECORDED","accent","Read the outcome and its next action.")
@@ -219,6 +234,14 @@ def overview(data, command="", width=94) -> Report:
             w.text("Return to edit Category groups: Hockey=hockey;goalie. Use commas between groups. Clear a group to remove it.")
             w.text("Numbered sorted names are excluded. Details shows all samples and match evidence. Media contents were not validated.", "muted")
             if data.get("checkpoint") == "INCOMPLETE": w.text("Some paths could not be scanned; counts are incomplete.", "warn")
+        elif mode == "CATEGORY_RULES":
+            r = Report("Saved category rules", data.get("status", "STORED"), "accent", "Rules are reusable. Sorting requires its own preview and confirmation.")
+            for rule in data.get("rules", {}).get("categories", []):
+                w.section(rule["label"])
+                for key in ("slug", "terms", "exclusions", "priority"): w.pair(key, rule[key])
+            w.pair("Revision", data.get("revision"))
+            if data.get("status") == "DRAFT": w.text("Press s to review SAVE confirmation, or return to edit the draft.")
+            tree(w, data.get("review"))
         elif mode in {"SORT_RIPOSTE_PLAN", "SORT_RIPOSTE_RESULT"}:
             preview = mode == "SORT_RIPOSTE_PLAN"
             sorting = data.get("sorting", {})
@@ -228,6 +251,8 @@ def overview(data, command="", width=94) -> Report:
             tree(w, sorting.get("counts", {}))
             w.text("Sort images and videos separately; protect images only. Original copies are retained privately for undo.", "warn")
             blockers(w, sorting.get("blockers", {}))
+            if sorting.get("category_sorting"):
+                category_destinations(w, sorting)
             w.section("Protection")
             if preview:
                 w.text("Protect all matching organized images, including new additions." if data.get("selection") == "ALL_MATCHING_AFTER_SORT" else "Protect only the selected catalog images after sorting.")
@@ -249,8 +274,10 @@ def overview(data, command="", width=94) -> Report:
             preview=mode=="READ_ONLY";counts=data.get("counts",{});blocked=data.get("blockers",{})
             r=Report("Migration plan" if preview else "Clean & organize", "READ ONLY" if preview else data.get("checkpoint","RECORDED"),
                      "warn" if blocked else "good", "No files have been changed." if preview else "Verified sources were replaced; unsuccessful inputs remain.")
-            r.metrics=[("To rebuild" if preview else "Rebuilt",str(counts.get("images_to_migrate" if preview else "migrated",0))),
-                       ("Already clean",str(counts.get("already_clean",0))),("Blockers",str(sum(blocked.values())))]
+            planned = counts.get("files_to_sort", sum(counts.get(k, 0) for k in ("images_to_migrate", "images_to_relocate", "videos_to_sort")))
+            applied = sum(counts.get(k, 0) for k in ("migrated", "relocated", "videos_sorted"))
+            r.metrics=[("To sort" if preview else "Sorted",str(planned if preview else applied)),
+                       ("Already sorted",str(counts.get("already_sorted", counts.get("already_clean",0) + counts.get("already_sorted_videos",0)))),("Blockers",str(sum(blocked.values())))]
             w.section("What this operation does" if preview else "Source replacement receipt")
             w.text("Reconstruct date-only PNGs, classify by date and resolution, then name them consistently.")
             w.text("Images go into img; videos into vid. Videos keep all bytes and metadata; protection is image-only.")
@@ -260,6 +287,8 @@ def overview(data, command="", width=94) -> Report:
                 w.section("Calendar / output routes")
                 w.rows(("Destination","Files"),[(folder,str(count)) for folder,count in data["destinations"].items()],[5,1])
             blockers(w,blocked)
+            if data.get("category_sorting"):
+                category_destinations(w, data)
             if "remaining_unmanaged_inputs" in data:w.pair("Remaining unmanaged inputs",data["remaining_unmanaged_inputs"])
         elif mode=="PUBLICATION_PLAN":
             r=Report("Publishing plan","READ ONLY","good","Each final size is optimized independently. Clean masters remain unchanged.")

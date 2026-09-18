@@ -22,11 +22,20 @@ def test_full_migration_idempotence(root,make_image):
     assert audit_workspace(root)['checkpoint']=='COMPLETE'
 def test_catalog_does_not_record_original_name(root,make_image):
     make_image(root/'PRIVATE_SOURCE_NAME.png');organize(root,POLICY)
+    # PAC-027BB retains names only in the private sort_titles table and undo
+    # journal. The public image catalog still exposes exactly its old schema.
+    import sqlite3
+    with sqlite3.connect(root/'.riposte'/'catalog.sqlite3') as db:
+        assert b'PRIVATE_SOURCE_NAME' not in repr(db.execute('SELECT * FROM images').fetchall()).encode()
+        assert {row[1] for row in db.execute('PRAGMA table_info(images)')} == {'id','relative','day','date_source','width','height','sha256','bytes'}
+        assert 'PRIVATE_SOURCE_NAME' in db.execute('SELECT data FROM sort_titles').fetchone()[0]
     for p in (root/'.riposte').rglob('*'):
         # Undo is the explicitly private exception: original names and bytes are
         # necessary to restore a sort. Catalogs and generated images stay clean.
         if 'sort-history' in p.relative_to(root/'.riposte').parts:continue
-        if p.is_file():assert b'PRIVATE_SOURCE_NAME' not in p.read_bytes();assert b'PRIVATE_FIXTURE_PAYLOAD' not in p.read_bytes()
+        if p.is_file():
+            if p.name != 'catalog.sqlite3': assert b'PRIVATE_SOURCE_NAME' not in p.read_bytes()
+            assert b'PRIVATE_FIXTURE_PAYLOAD' not in p.read_bytes()
 def test_no_overwrite_and_existing_layout_translated(root,make_image):
     make_image(root/'2025'/'March'/'SML'/'SML01.png');make_image(root/'new.png',color=(22,24,88))
     assert organize(root,POLICY)['checkpoint']=='COMPLETE';rows=catalog(root);assert len(rows)==2;assert len({r['sha256'] for r in rows})==2

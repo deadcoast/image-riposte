@@ -88,9 +88,50 @@
   <main id="evidence-view" class="view evidence-view" hidden><div class="research-intro"><h2>Different threats.<br><em>Different evidence.</em></h2><p>Style training, image editing, recognition and video generation are separate targets. Research entries describe their published scope; they are not a list of installed engines.</p></div><div class="evidence-legend"><span class="chip mint">IMPLEMENTED · RIPOSTE BASELINE + COUPLED GUARD</span><span class="chip amber">PRETRAINED EFFICACY · UNVERIFIED</span></div><div id="methods" class="methods"></div></main>
 </div></div>
 <footer class="footer"><span class="dot"></span><span id="footer-state">READY</span><span id="footer-detail">Read-only until an operation is approved.</span><progress id="job-progress" max="100" value="0" hidden aria-label="Current operation progress"></progress><button id="cancel-job" hidden>Cancel operation</button><span class="footer-brand">RIPOSTE 0.3.0 <b>∕</b> LOCAL IMAGE SECURITY</span></footer>
-<dialog id="organize-dialog"><form method="dialog"><button class="dialog-close" aria-label="Close">×</button></form><div class="eyebrow">CLEAN & ORGANIZE</div><h2>Review before replacing.</h2><p>Images and videos in this folder and its subfolders are sorted into separate img and vid folders. Images become date-only PNGs; videos keep their bytes and metadata. Private recovery copies retain original names and metadata for Undo last sort and use extra disk space.</p><label>Date basis<select id="date-mode"><option value="download">Download approximation: creation date, else modified</option><option value="modified">Filesystem modified date</option><option value="embedded">Embedded date, else modified date</option></select></label><label class="checkbox"><input type="checkbox" id="discard-sidecars">Discard recognized metadata sidecars and thumbnail caches.</label><button id="run-plan" class="secondary">Inspect without changes</button><div id="plan-summary" class="plan-summary" hidden></div><details class="raw-report"><summary>Inspection details</summary><pre id="plan-result">Run an inspection to see the migration plan.</pre></details><label class="checkbox"><input type="checkbox" id="ack-remove">Sort these files; retain original copies privately for undo.</label><button id="apply" class="danger full" disabled>Clean, classify & replace sources <span>→</span></button><small class="field-help">Unprocessed or unreadable files remain untouched. To reverse a recorded sort, choose Undo last sort in the terminal menu or run riposte undo-sort ROOT.</small></dialog>
-<dialog id="report-dialog"><form method="dialog"><button class="dialog-close" aria-label="Close">×</button></form><div class="eyebrow">WORKSPACE EVIDENCE</div><h2 id="report-title">Audit result</h2><pre id="report-content"></pre></dialog>
+<dialog id="organize-dialog" aria-labelledby="organize-title">
+<form method="dialog" novalidate><button class="dialog-close" aria-label="Close sorting">×</button></form>
+<div class="eyebrow">CLEAN &amp; ORGANIZE</div><h2 id="organize-title">Review before replacing.</h2>
+<p>Sort images and videos into separate img and vid folders. Images become date-only PNGs; videos keep their bytes and metadata. Private recovery copies retain original names, metadata and category assignments for undo and use extra disk space.</p>
+<label>Date basis<select id="date-mode"><option value="download">Download approximation: creation date, else modified</option><option value="modified">Filesystem modified date</option><option value="embedded">Embedded date, else modified date</option></select></label>
+<label class="checkbox"><input type="checkbox" id="discard-sidecars">Discard recognized metadata sidecars and thumbnail caches.</label>
+<label class="checkbox"><input type="checkbox" id="sort-categories">Sort by filename category</label>
+<div id="category-options" hidden>
+<p class="field-help">Year / Month / img-or-vid / Category / Size. Unmatched titles go to Uncategorized. Ties and old numbered files need a manual category.</p>
+<details id="category-editor"><summary>Discover and save category rules</summary>
+<label>Minimum matching files<input id="category-min-count" type="number" min="1" value="2"></label>
+<button id="category-discover" class="secondary">Discover filename terms</button>
+<div id="category-suggestions" class="sort-file-list" aria-live="polite"></div>
+<p class="field-help">Choose terms below, rename their labels, or merge aliases on the same line. Removing a line ignores that suggestion. Saving replaces the complete rule set. Destination previews always use saved rules.</p>
+<label>Category rules<textarea class="resize-none" id="category-groups" rows="4" spellcheck="false" aria-describedby="category-syntax" placeholder="Hockey=hockey;goalie"></textarea></label>
+<p id="category-syntax" class="field-help">One Label=keyword;alias per line. Phrases match whole words anywhere in a title.</p>
+<label>Exclusions<textarea class="resize-none" id="category-exclusions" rows="2" placeholder="Hockey=street hockey"></textarea></label>
+<label>Priorities<textarea class="resize-none" id="category-priorities" rows="2" placeholder="Hockey=10"></textarea></label>
+<label>Stable folder names<textarea class="resize-none" id="category-slugs" rows="2" placeholder="Ice hockey=hockey"></textarea></label>
+<label class="checkbox"><input id="category-clear" type="checkbox">Clear all saved rules</label>
+<div class="sort-actions"><button id="category-load" class="secondary">Load saved rules</button><button id="category-review" class="secondary">Review rule changes</button></div>
+<div id="category-review-result" class="field-help" aria-live="polite"></div>
+<button id="category-save" class="primary" disabled>Save reviewed rules</button>
+</details>
+<label>Manual assignments<textarea class="resize-none" id="category-assignments" rows="3" spellcheck="false" aria-describedby="category-assignment-help" placeholder="2025/March/img/SML/SML01.png=hockey"></textarea></label>
+<p id="category-assignment-help" class="field-help">One source-relative-path=category-slug per line. Use =uncategorized for the fallback or =auto to clear a previous manual choice.</p>
+</div>
+<button id="run-plan" class="secondary">Inspect without changes</button>
+<p id="sort-status" class="field-help" role="status" aria-live="polite">Inspect this folder before applying.</p>
+<p id="sort-error" class="sort-error" role="alert" tabindex="-1" hidden></p>
+<div id="plan-summary" class="plan-summary" hidden></div>
+<div id="category-destinations" class="sort-file-list"></div>
+<details class="raw-report"><summary>Inspection details</summary><pre id="plan-result">Run an inspection to see the migration plan.</pre></details>
+<label class="checkbox"><input type="checkbox" id="ack-remove">Sort these files; retain original copies privately for undo.</label>
+<button id="apply" class="danger full" disabled>Apply reviewed sort <span>→</span></button>
+<details id="sort-recovery"><summary>Undo last sort</summary>
+<p class="field-help">Restore original names, bytes, modified times and category assignments. Changed or occupied files block undo. Protection outputs stay in place.</p>
+<button id="undo-preview" class="secondary">Preview undo</button><p id="undo-summary" class="field-help" role="status"></p>
+<label class="checkbox"><input type="checkbox" id="ack-undo">Restore this sort and remove its verified sorted copies.</label>
+<button id="undo-apply" class="danger" disabled>Restore reviewed sort</button>
+</details>
+</dialog>
+<dialog id="report-dialog"><form method="dialog" novalidate><button class="dialog-close" aria-label="Close">×</button></form><div class="eyebrow">WORKSPACE EVIDENCE</div><h2 id="report-title">Audit result</h2><pre id="report-content"></pre></dialog>
 <div id="toast" role="status" aria-live="polite" hidden></div>
 <dialog id="pub-review-dialog" aria-labelledby="pub-review-title"><button id="pub-review-close" class="dialog-close" aria-label="Close publishing review">×</button><div class="eyebrow">REVIEW THE FILE YOU WILL PUBLISH</div><div class="pub-review-heading"><h2 id="pub-review-title">Publishing image</h2><span class="chip amber">UNVERIFIED</span></div><div class="pub-review-toolbar"><label class="inline-select">Preview <select id="pub-review-view"><option value="identity">Exact publishing raster</option><option value="jpeg95">JPEG 95</option><option value="jpeg85">JPEG 85</option><option value="jpeg70">JPEG 70</option><option value="resize75">75% resize</option><option value="crop90">90% crop</option><option value="blur06">Mild blur</option><option value="resize75-jpeg85">75% resize + JPEG 85</option></select></label><div class="segmented"><button id="pub-review-fit" class="selected">Fit</button><button id="pub-review-native">1:1 pixels</button><button id="pub-review-difference">Difference ×12</button></div></div><div id="pub-review-pair" class="pub-review-pair"><figure><figcaption>CLEAN PUBLISHING BASELINE</figcaption><div><img id="pub-review-clean" alt="Clean publishing baseline"></div></figure><figure><figcaption id="pub-review-candidate-label">CANDIDATE · ACTUAL EXPORT PIXELS</figcaption><div><img id="pub-review-candidate" alt="Candidate publishing raster"></div></figure></div><div id="pub-review-metrics" class="pub-review-metrics"></div><p class="field-help" id="pub-review-help">Compare the actual pixels, including your line work and colour. Codec previews are stress tests; the exported file is the unchanged publishing PNG.</p><div class="pub-review-actions"><div><label class="checkbox tight"><input type="checkbox" id="pub-review-quality">I have reviewed this image and accept its visual quality.</label><label class="checkbox tight"><input type="checkbox" id="pub-review-ack">I understand AI resistance is unverified.</label></div><div><button id="pub-review-reject" class="secondary">Do not publish</button><button id="pub-review-accept" class="primary">Approve this file <span>✓</span></button></div></div><button id="pub-workshop" class="text-link">Advanced model testing in the workshop ↗</button></dialog>
 
-<script src="/static/app.js" defer></script><script src="/static/publish.js" defer></script></body></html>
+<script src="/static/app.js" defer></script><script src="/static/category-sort.js" defer></script><script src="/static/publish.js" defer></script></body></html>

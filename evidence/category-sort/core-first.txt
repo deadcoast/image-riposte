@@ -1,0 +1,25 @@
+..................F.................s................................... [ 72%]
+...........................                                              [100%]
+================================== FAILURES ===================================
+_________________ test_catalog_does_not_record_original_name __________________
+
+root = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/.tmp/category-sort/core/test_catalog_does_not_record_o0/workspace')
+make_image = <function make_image.<locals>.create at 0x00000222A84D3740>
+
+    def test_catalog_does_not_record_original_name(root,make_image):
+        make_image(root/'PRIVATE_SOURCE_NAME.png');organize(root,POLICY)
+        for p in (root/'.riposte').rglob('*'):
+            # Undo is the explicitly private exception: original names and bytes are
+            # necessary to restore a sort. Catalogs and generated images stay clean.
+            if 'sort-history' in p.relative_to(root/'.riposte').parts:continue
+>           if p.is_file():assert b'PRIVATE_SOURCE_NAME' not in p.read_bytes();assert b'PRIVATE_FIXTURE_PAYLOAD' not in p.read_bytes()
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           AssertionError: assert b'PRIVATE_SOURCE_NAME' not in b'SQLite format 3\x00\x10\x00\x01\x01\x00@  \x00\x00\x00\x04\x00\x00\x00\x06\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x...00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00#\x03M\ta818081c326342bb8d800dc4c07daa16'
+E            +  where b'SQLite format 3\x00\x10\x00\x01\x01\x00@  \x00\x00\x00\x04\x00\x00\x00\x06\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x...00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00#\x03M\ta818081c326342bb8d800dc4c07daa16' = read_bytes()
+E            +    where read_bytes = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/.tmp/category-sort/core/test_catalog_does_not_record_o0/workspace/.riposte/catalog.sqlite3').read_bytes
+
+tests\test_organizer.py:29: AssertionError
+=========================== short test summary info ===========================
+SKIPPED [1] tests\test_organizer.py:70: Symlinks unavailable
+FAILED tests/test_organizer.py::test_catalog_does_not_record_original_name - ...
+1 failed, 97 passed, 1 skipped in 15.84s

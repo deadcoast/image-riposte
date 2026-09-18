@@ -23,3 +23,17 @@ Explain selection scope before showing a location browser. Keep destructive
 replacement and visual acceptance explicit. See [UX-CONTRACT.md](UX-CONTRACT.md)
 for the behavior contract and [evidence/menu-startup/README.md](../evidence/menu-startup/README.md)
 for tested scope. Earlier visual specifications remain historical design context.
+
+
+## Browser sorting extension
+
+The browser retains its green local-workbench identity. `static/style.css` owns
+runtime tokens (`--text`, `--muted`, `--line`, `--mint`, `--amber`, `--mono`);
+category controls consume those tokens directly. No token generator or duplicate
+theme is introduced. `static/category-sort.js` owns the sorting dialog's draft,
+preview and consent state and uses `app.js` transport, job and feedback owners.
+Native dialog/select behavior is intentional. Details disclosures keep rule
+editing and undo secondary to reviewing exact destinations. Full paths wrap;
+the dialog scrolls within the viewport. See the maintained canonical map in
+`docs/UX-CONTRACT.md`. These documents intentionally live under `docs/`, following
+the user's repository move; a root duplicate must not be recreated for tooling.

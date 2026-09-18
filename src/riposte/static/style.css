@@ -14,3 +14,21 @@
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
 
 .generation-panel{padding-top:26px;border-top:1px solid var(--line);min-width:0}.generation-selectors{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin:20px 0}.generation-selectors label{min-width:0}.generation-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.generation-arm{margin:0;min-width:0;border:1px solid var(--line);background:#111314}.generation-arm:first-child{grid-column:1/-1;max-width:100%}.generation-arm img{display:block;width:100%;max-height:380px;object-fit:contain;background:#0d0f10}.generation-arm figcaption{padding:13px;display:flex;flex-direction:column;gap:6px}.generation-arm figcaption strong{font:11px var(--mono);letter-spacing:.07em}.generation-arm figcaption span{font:10px var(--mono);color:var(--muted)}@media(max-width:580px){.generation-selectors{grid-template-columns:1fr}.generation-arm figcaption{padding:8px}.generation-arm figcaption span{font-size:9px}.result-tabs{flex-wrap:wrap}}
+
+/* Sorting uses the existing palette and native form/dialog primitives. */
+:root{scrollbar-color:var(--muted) transparent;scrollbar-width:thin}
+*{scrollbar-color:var(--muted) transparent;scrollbar-width:thin}
+::-webkit-scrollbar{width:10px;height:10px}::-webkit-scrollbar-thumb{background:var(--muted);border-radius:6px}::-webkit-scrollbar-thumb:hover{background:var(--text)}::-webkit-scrollbar-thumb:active{background:var(--mint)}
+#organize-dialog{scrollbar-gutter:stable;max-height:90dvh}
+#organize-dialog label{display:block}#organize-dialog label.checkbox{display:flex}
+#organize-dialog textarea{display:block;width:100%;box-sizing:border-box;resize:none;min-height:64px;border:1px solid var(--line);border-radius:4px;background:transparent;color:var(--text);font:11px/1.7 var(--mono);padding:10px}
+#organize-dialog details{margin-block:20px}#organize-dialog summary{cursor:pointer;padding-block:10px}
+#organize-dialog button{min-height:36px}#organize-dialog :focus-visible{outline:2px solid var(--mint);outline-offset:3px}
+.sort-actions{display:flex;flex-wrap:wrap;gap:10px}.sort-file-list{max-height:360px;overflow:auto;overflow-wrap:anywhere;scrollbar-gutter:stable}
+.sort-file{padding:14px 0;border-bottom:1px solid var(--line);font:11px/1.7 var(--mono)}.sort-file p{margin:5px 0}.sort-destination{color:var(--mint)}
+.sort-suggestion{display:flex;align-items:center;gap:12px;padding:8px 0;font-size:11px}.sort-suggestion button{flex-shrink:0}
+.sort-error{color:var(--amber);overflow-wrap:anywhere}#sort-status{min-height:2.8em}.sort-file-list:empty{display:none}
+@media(max-width:580px){.sort-suggestion{display:block}.sort-suggestion span{display:block;margin-top:6px}}
+@media(forced-colors:active){*{scrollbar-color:auto}}
+
+html:has(dialog[open]){overflow:hidden;scrollbar-gutter:stable}

@@ -57,7 +57,9 @@ INPUT_FIELDS = tuple(Field(f"input{i}", "File or folder" if i == 1 else f"Additi
                            "Choose a file or a folder of images. Folders include subfolders. Originals stay in place.", optional=i > 1) for i in range(1, 5))
 SORT_FIELDS = (
     Field("date_mode", "Date basis", "choice", "download", "Creation/birth time with modified-time fallback, or an explicit alternative.", ("download", "modified", "embedded")),
-    Field("discard_sidecars", "Discard metadata sidecars", "bool", False, "Authorize known metadata sidecar deletion during Apply, not during preview."))
+    Field("discard_sidecars", "Discard metadata sidecars", "bool", False, "Authorize known metadata sidecar deletion during Apply, not during preview."),
+    Field("categories", "Sort by filename category", "bool", False, "Use saved rules. Preview exact Year/Month/img-or-vid/Category/Size destinations before Apply."),
+    Field("assignments", "Manual categories", "text", "", 'JSON list of source-relative-path=slug strings, for example ["2025/March/img/SML/SML01.png=hockey"]. Use =auto to clear a saved manual choice.', optional=True))
 
 ACTIONS = (
     Action("riposte", "RIPOSTE", "PRIMARY", "Protect files or folders. Keep originals and their folder structure.", (*INPUT_FIELDS, SORT_FIELDS[0], *PUB_FIELDS)),
@@ -72,6 +74,13 @@ ACTIONS = (
         Field("ignore", "Ignore suggestions", "words", (), "Comma-separated words or phrases to hide from suggestions.", optional=True),
         Field("fillers", "Filler words", "text", "a,an,and,at,by,for,from,in,of,on,or,the,to,with", "Comma-separated filler words. Clear to include every nonnumeric word.", optional=True))),
     Action("undo-sort", "Undo last sort", "PRIMARY", "Preview restoring original files and names. Conflicts block restoration."),
+    Action("category-rules", "Saved category rules", "PRIMARY", "Review reusable matching rules before explicitly saving a replacement.", (
+        Field("category_specs", "Category groups", "words", (), "Hockey=hockey;goalie. Separate categories with commas. Blank inspects stored rules.", optional=True),
+        Field("exclusions", "Exclusions", "words", (), "Hockey=street hockey. Comma-separated category=term;alias groups.", optional=True),
+        Field("priorities", "Priorities", "words", (), "Hockey=10. Higher priority wins; ties require manual assignment.", optional=True),
+        Field("slugs", "Stable folder names", "words", (), "Renamed label=existing-slug preserves category identity.", optional=True),
+        Field("clear", "Clear all saved rules", "bool", False, "Preview removal of all rules; saving requires separate confirmation."),
+        Field("review", "Show matching examples", "bool", True, "Review filenames without moving them."))),
     Action("audit", "Audit clean workspace", "PRIMARY", "Verify date-only images and calendar/size organization."),
     Action("doctor", "Local model setup", "SYSTEM", "Inspect runtime or execute a local encoder input-gradient probe.", (*VAE_FIELDS, DEVICE, Field("execute", "Run encoder probe", "bool", False, "Execution-only diagnostic; does not certify protection."))),
     Action("resume", "Resume publishing", "PRIMARY", "Reuse committed outputs; retry unfinished work with matching models.", (BATCH, *VAE_FIELDS, DEVICE, INPAINT, VIDEO)),
@@ -174,13 +183,21 @@ def make_request(key: str, root: Path | None, values: dict, selected=()) -> Requ
     if key == "riposte": parsed["input_paths"] = [Path(p) for p in values["input_paths"]] if values.get("input_paths") else [parsed.pop(f"input{i}") for i in range(1, 5) if parsed.get(f"input{i}")]
     for i in range(1, 5): parsed.pop(f"input{i}", None)
     if key == "sort-riposte": parsed["all_images"] = True
+    if key in {"organize", "sort-riposte"}:
+        import json
+        try:
+            assignments = json.loads(parsed["assignments"]) if parsed["assignments"] else []
+            if not isinstance(assignments, list) or any(not isinstance(a, str) for a in assignments): raise ValueError()
+            parsed["assignments"] = assignments
+        except (ValueError, TypeError):
+            raise RiposteError("CATEGORY_ASSIGNMENT_INVALID") from None
     if key == "review": parsed["item_ids"] = list(parsed["item_ids"])
     return Request(key, root, parsed)
 
 
 def request_argv(request: Request) -> list[str]:
     """Generate a real Typer command, never execute the rendered command line."""
-    name = {"plan": "publish", "riposte-plan": "riposte", "sort-riposte-plan": "sort-riposte", "apply": "organize", "undo-sort-apply": "undo-sort", "handoff": "workshop", "open-image": "image"}.get(request.name, request.name)
+    name = {"category-rules-save": "category-rules", "plan": "publish", "riposte-plan": "riposte", "sort-riposte-plan": "sort-riposte", "apply": "organize", "undo-sort-apply": "undo-sort", "handoff": "workshop", "open-image": "image"}.get(request.name, request.name)
     args = ["riposte", name]
     if request.root is not None and name != "doctor": args.append(str(request.root))
     values = request.values
@@ -190,7 +207,7 @@ def request_argv(request: Request) -> list[str]:
            "trials": ("trial_id",), "evaluations": ("trial_id",), "generations": ("trial_id",), "generation": ("run_id",), "frame": ("run_id", "relative"), "workshop": ("batch_id", "item_id")}.get(name, ())
     for key in pos:
         if values.get(key): args.append(str(values[key]))
-    aliases = {"category_specs": "category", "input_paths": "input", "open_viewer": "open", "vae_dirs": "vae", "image_ids": "image", "all_images": "all", "edges": "edge", "item_ids": "item", "seeds": "seed", "views": "view"}
+    aliases = {"assignments": "assign", "exclusions": "exclude", "priorities": "priority", "slugs": "slug", "category_specs": "category", "input_paths": "input", "open_viewer": "open", "vae_dirs": "vae", "image_ids": "image", "all_images": "all", "edges": "edge", "item_ids": "item", "seeds": "seed", "views": "view"}
     for key, value in values.items():
         if name == "categories" and key == "fillers" and value == "":
             args.extend(["--fillers", ""])
@@ -208,6 +225,7 @@ def request_argv(request: Request) -> list[str]:
     if request.name in {"plan", "riposte-plan", "sort-riposte-plan"}: args.append("--plan")
     if request.name in {"apply", "sort-riposte", "undo-sort-apply"}: args.append("--apply")
     if request.name == "open-image": args.append("--open")
+    if request.name == "category-rules-save": args.append("--save")
     return args
 
 

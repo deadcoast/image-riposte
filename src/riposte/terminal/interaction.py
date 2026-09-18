@@ -22,7 +22,7 @@ def fields_for(page):
     if page.action == "riposte" and page.values.get("input_paths"):
         fields = tuple(f for f in fields if f.key not in {"input2", "input3", "input4"})
     if page.action in {"publish", "riposte", "sort-riposte"} and not page.advanced:
-        return tuple(f for f in fields if f.key in {"input1", "date_mode", "discard_sidecars", "edges", "epsilon", "preserve_white", "device", "vae1"})
+        return tuple(f for f in fields if f.key in {"input1", "date_mode", "discard_sidecars", "categories", "assignments", "edges", "epsilon", "preserve_white", "device", "vae1"})
     return fields
 
 
@@ -56,11 +56,14 @@ def hints(state):
         if p.cursor<len(fields) and fields[p.cursor].kind=="path":controls.append(Hint("b","Browse","Choose this location in the file/folder browser."))
         if p.action in {"publish","riposte","sort-riposte","organize"}:controls.append(Hint("p","Preview","Read-only plan; no images are written."))
         if p.action=="organize":
+            controls.append(Hint("s","Saved rules","Inspect or draft reusable categories; saving requires SAVE confirmation."))
             controls.append(Hint("c","Categories","Discover recurring filename terms and review category groups without changing files."))
             controls.append(Hint("u","Undo last sort","Preview recovery before an explicit UNDO confirmation."))
             controls.append(Hint("v","Audit","Verify existing clean files and workspace organization."))
         elif p.action=="sort-riposte":controls.append(Hint("r","Preview","Preview both stages before confirming source replacement."))
-        elif p.action=="categories":controls.append(Hint("r","Discover / review","Read filename suggestions and category matches. No files or rules are saved."))
+        elif p.action=="categories":
+            controls.append(Hint("r","Discover / review","Read filename suggestions and category matches. No files or rules are saved."))
+            controls.append(Hint("s","Saved rules","Open reusable category rules after reviewing suggestions."))
         else:controls.append(Hint("r","Run","Run these settings. Review acceptance still requires its separate confirmation."))
         if p.action in {"publish","riposte","sort-riposte"}:controls.append(Hint("f","Basic" if p.advanced else "Advanced","Show additional inputs, engine, quality and extra-model fields; no setting is discarded when collapsed."))
         controls.append(Hint("Left/Right","Choice","Cycle a focused choice field; other fields use Enter."))
@@ -73,7 +76,8 @@ def hints(state):
                  else Hint("Enter","Start protection","Run this planned selection with its configured models.") if name in {"plan","riposte-plan"} and not p.code
                  else Hint("Enter","Batches","Open publishing batches.") if name=="package" and not p.code
                  else Hint("Enter","Return","Return to the previous screen."))
-        return [primary,Hint("t","Report view","Cycle Overview, complete Details, and syntax-coloured JSON."),Hint("Up/Down","Scroll","Scroll the selected report view; Page Up/Down move a page."),Hint("b","Batches","Open publishing batches."),Hint("Esc","Back","Return to the previous screen.")]
+        saving = [Hint("s", "Save rules", "Confirm SAVE to persist this reviewed replacement without moving files.")] if name == "category-rules" and p.result.get("status") == "DRAFT" else []
+        return [primary,*saving,Hint("t","Report view","Cycle Overview, complete Details, and syntax-coloured JSON."),Hint("Up/Down","Scroll","Scroll the selected report view; Page Up/Down move a page."),Hint("b","Batches","Open publishing batches."),Hint("Esc","Back","Return to the previous screen.")]
     controls=rows.get(p.name,[])
     if p.name=="picker":
         controls=[h for h in controls if p.result.multiple or h.key not in {"Space","s"}]

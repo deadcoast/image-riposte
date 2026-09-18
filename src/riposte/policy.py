@@ -2,6 +2,7 @@ from __future__ import annotations
 import datetime as dt
 import os
 import re
+import unicodedata
 from dataclasses import dataclass
 from pathlib import Path
 from .errors import RiposteError
@@ -13,7 +14,7 @@ FORMAT_NAMES = frozenset({"PNG", "JPEG", "WEBP", "BMP", "TIFF", "GIF"})
 IMAGE_SUFFIXES = frozenset({".png", ".jpg", ".jpeg", ".webp", ".bmp", ".tif", ".tiff", ".gif", ".avif", ".heic", ".heif", ".psd", ".svg", ".jxl", ".exr"})
 SIDECAR_SUFFIXES = frozenset({".xmp", ".exif", ".iptc", ".aae"})
 CACHE_NAMES = frozenset({".ds_store", "thumbs.db", "desktop.ini"})
-CANONICAL = re.compile(r"^(202[456]|EVERYTHING_ELSE)/(" + "|".join(MONTHS) + r")/(?:img/)?(SML|MED|LRG|XTL)/(SML|MED|LRG|XTL)([0-9]{2,})\.png$")
+CANONICAL = re.compile(r"^(202[456]|EVERYTHING_ELSE)/(" + "|".join(MONTHS) + r")/(?:img/(?:(?P<category>[^/]+)/)?)?(SML|MED|LRG|XTL)/(SML|MED|LRG|XTL)([0-9]{2,})\.png$")
 
 @dataclass(frozen=True)
 class Policy:
@@ -82,12 +83,28 @@ def folder_for(day: str, width: int, height: int) -> Path:
     return Path(year) / MONTHS[date.month - 1] / size_bin(width, height)
 
 
-def sort_folder_for(day: str, width: int, height: int, media: str = "img") -> Path:
+def category_slug(value: str) -> str:
+    reserved = {"con", "prn", "aux", "nul"} | {f"{p}{n}" for p in ("com", "lpt") for n in range(1, 10)}
+    if (not isinstance(value, str) or not 1 <= len(value) <= 80 or value in reserved
+            or value != unicodedata.normalize("NFKC", unicodedata.normalize("NFKC", value).casefold())
+            or any(not part or unicodedata.category(part[0])[0] not in "LN"
+                   or any(unicodedata.category(c)[0] not in "LNM" for c in part) for part in value.split("-"))):
+        raise RiposteError("CATEGORY_SLUG_INVALID")
+    return value
+
+
+def path_category(relative: str) -> str | None:
+    parts = relative.split("/")
+    return category_slug(parts[3]) if len(parts) == 6 and parts[2] in {"img", "vid"} else None
+
+
+def sort_folder_for(day: str, width: int, height: int, media: str = "img", category: str | None = None) -> Path:
     """Media layers apply to sorting; existing publishing routes stay compatible."""
     if media not in {"img", "vid"}:
         raise RiposteError("MEDIA_KIND_INVALID")
     folder = folder_for(day, width, height)
-    return folder.parent / media / folder.name
+    base = folder.parent / media
+    return base / category_slug(category) / folder.name if category is not None else base / folder.name
 
 def is_link(path: Path) -> bool:
     try:
@@ -101,6 +118,8 @@ def same_file_state(a, b) -> bool:
 
 def canonical_path(value: str) -> str:
     match = CANONICAL.fullmatch(value)
-    if not match or match.group(3) != match.group(4):
+    if not match or match.group(4) != match.group(5):
         raise RiposteError("CATALOG_PATH_INVALID")
+    if match.group("category") is not None:
+        category_slug(match.group("category"))
     return value

@@ -2,22 +2,26 @@ from __future__ import annotations
 import collections
 import contextlib
 import os
+import unicodedata
 from pathlib import Path
-from typing import Callable
+from typing import Callable, Sequence
 from PIL import Image, UnidentifiedImageError
 from .errors import RiposteError
-from .policy import Policy, IMAGE_SUFFIXES, SIDECAR_SUFFIXES, CACHE_NAMES, folder_for, sort_folder_for, is_link, same_file_state
+from .policy import Policy, IMAGE_SUFFIXES, SIDECAR_SUFFIXES, CACHE_NAMES, folder_for, sort_folder_for, path_category, is_link, same_file_state
 from .sanitize import decode_clean, encode_clean, png_audit
 from .store import check_root, workspace_lock, catalog, record_image, atomic_clean_write, write_report, safe_child, state_name, connect
 from .video import VIDEO_SUFFIXES, inspect_video, video_catalog, record_video, file_hash
 from .sort_history import SortHistory, copy_exclusive, pending_sort, undo_sort
+from .sort_titles import title_records
+from .title_categories import GENERATED_TITLE
 
 Progress = Callable[[dict], None]
 
 def walk_inputs(root: Path):
     """No generated previews, linked directories, junctions, or raw-path logging."""
     root = check_root(root)
-    for directory, dirs, names in os.walk(root, followlinks=False):
+    unreadable = []
+    for directory, dirs, names in os.walk(root, followlinks=False, onerror=unreadable.append):
         current = Path(directory)
         for name in sorted(dirs.copy()):
             path = current / name
@@ -44,6 +48,8 @@ def walk_inputs(root: Path):
                     yield path, "DECODE_FAILED" if path.suffix.lower() in IMAGE_SUFFIXES else "NONIMAGE_REQUIRES_REVIEW"
                 except Exception:
                     yield path, "DECODE_FAILED"
+    for error in unreadable:
+        yield Path(error.filename), "DIRECTORY_UNREADABLE"
 
 def known_good(root: Path) -> dict[str, dict]:
     return {row["relative"]: row for row in catalog(root) + video_catalog(root)}
@@ -57,9 +63,14 @@ def _validate_managed(path: Path, row: dict) -> bool:
     except (OSError, RiposteError):
         return False
 
-def plan(root: Path, policy: Policy = Policy(), progress: Progress | None = None) -> dict:
+def plan(root: Path, policy: Policy = Policy(), progress: Progress | None = None, *, categories: bool = False, assignments: Sequence[str] = ()) -> dict:
     """Read-only including an uninitialized workspace: no directories created."""
     root = check_root(root)
+    if categories:
+        from .category_sort import category_plan
+        return category_plan(root, policy, assignments=assignments, progress=progress)
+    if assignments:
+        raise RiposteError("CATEGORY_SORT_REQUIRED")
     managed = known_good(root)
     counts, folders, errors = collections.Counter(), collections.Counter(), collections.Counter()
     seen = set()
@@ -77,7 +88,7 @@ def plan(root: Path, policy: Policy = Policy(), progress: Progress | None = None
         if rel in managed:
             if _validate_managed(path, managed[rel]):
                 row = managed[rel]
-                target = sort_folder_for(row["day"], row["width"], row["height"], "vid" if kind == "VIDEO" else "img")
+                target = sort_folder_for(row["day"], row["width"], row["height"], "vid" if kind == "VIDEO" else "img", path_category(rel))
                 if path.parent.relative_to(root) != target:
                     counts["images_to_relocate"] += 1
                     folders[target.as_posix()] += 1
@@ -133,13 +144,31 @@ def _next_relative(root: Path, folder: Path, suffix: str = ".png", *, next_numbe
     next_numbers[folder] = number + 1
     return (folder / name).as_posix()
 
-def organize(root: Path, policy: Policy = Policy(), progress: Progress | None = None) -> dict:
+def organize(root: Path, policy: Policy = Policy(), progress: Progress | None = None, *, categories: bool = False, assignments: Sequence[str] = (), plan_id: str | None = None) -> dict:
     """Verified commit before source unlink. No silent deletion of undecodable data."""
     root = check_root(root)
+    from .category_sort import category_plan, verify_source
+    from .category_rules import load_rules
+    if not categories and (assignments or plan_id is not None):
+        raise RiposteError("CATEGORY_SORT_REQUIRED")
+    def reviewed_plan():
+        if not plan_id:
+            raise RiposteError("CATEGORY_PREVIEW_REQUIRED")
+        preview = category_plan(root, policy, assignments=assignments)
+        if preview["plan_id"] != plan_id:
+            raise RiposteError("CATEGORY_PREVIEW_CHANGED")
+        if not preview["ready"]:
+            raise RiposteError("CATEGORY_PREVIEW_BLOCKED")
+        return preview
+    if categories:
+        reviewed_plan()  # Invalid consent must not initialize workspace state.
     counts, errors = collections.Counter(), collections.Counter()
     with workspace_lock(root):
+        preview = reviewed_plan() if categories else None
+        frozen = {item["source"]: item for item in preview["files"]} if preview else {}
         history = SortHistory(root)
         managed = known_good(root)
+        titles = {row["id"]: row for row in title_records(root)}
         next_numbers: dict[Path, int] = {}
         # Snapshot paths; originals are copied privately before any source unlink.
         inputs = list(walk_inputs(root))
@@ -147,52 +176,84 @@ def organize(root: Path, policy: Policy = Policy(), progress: Progress | None = 
             if progress:
                 progress({"phase": "Cleansing / organizing", "processed": index, "total": len(inputs)})
             try:
+                rel = path.relative_to(root).as_posix()
+                item = frozen.get(rel)
+                if preview:
+                    if item is None or load_rules(root).revision != preview["rules_revision"]:
+                        raise RiposteError("CATEGORY_PREVIEW_CHANGED")
+                    if known_good(root) != managed or {r["id"]: r for r in title_records(root)} != titles:
+                        raise RiposteError("CATEGORY_PREVIEW_CHANGED")
+                    verify_source(root, item)
                 if kind not in {"IMAGE", "VIDEO"}:
                     if kind == "SIDECAR_REQUIRES_DISCARD" and policy.discard_sidecars:
                         if path.stat().st_nlink > 1:
                             raise RiposteError("HARDLINK_REQUIRES_REVIEW")
                         entry = history.prepare(path, None, None, "sidecar")
+                        if item:
+                            verify_source(root, item)
                         history.remove_source(entry)
                         counts["sidecars_discarded"] += 1
                     else:
                         errors[kind] += 1
                     continue
-                rel = path.relative_to(root).as_posix()
                 previous = managed.get(rel)
                 if previous is not None:
                     if not _validate_managed(path, previous):
                         errors["CATALOG_FILE_CHANGED"] += 1
                         continue
-                    target = sort_folder_for(previous["day"], previous["width"], previous["height"], "vid" if kind == "VIDEO" else "img")
+                    target = Path(item["destination"]).parent if item else sort_folder_for(previous["day"], previous["width"], previous["height"], "vid" if kind == "VIDEO" else "img", path_category(rel))
                     if path.parent.relative_to(root) == target:
+                        if item:
+                            history.record_title(item["title"])
+                            titles[item["title"]["id"]] = item["title"]
                         counts["already_sorted_videos" if kind == "VIDEO" else "already_clean"] += 1
                         continue
                 if kind == "VIDEO":
                     info = inspect_video(path, policy)
                     source_stat = info.pop("source_stat")
-                    folder = sort_folder_for(info["day"], info["width"], info["height"], "vid")
-                    relative = _next_relative(root, folder, path.suffix.lower(), next_numbers=next_numbers)
-                    entry = history.prepare(path, relative, {**info, "relative": relative}, "vid")
+                    if previous:
+                        info = {k: previous[k] for k in ("day", "date_source", "width", "height", "sha256", "bytes")}
+                    folder = sort_folder_for(info["day"], info["width"], info["height"], "vid", path_category(rel) if previous else None)
+                    relative = item["destination"] if item else _next_relative(root, folder, path.suffix.lower(), next_numbers=next_numbers)
+                    expected = {**info, "relative": relative}
+                    if previous:
+                        expected["id"] = previous["id"]
+                    entry = history.prepare(path, relative, expected, "vid", previous)
+                    if item:
+                        verify_source(root, item)
+                        if any(info[k] != item["expected"][k] for k in info):
+                            raise RiposteError("CATEGORY_PREVIEW_CHANGED")
                     try:
                         copy_exclusive(root, path, relative, info["sha256"])
                     except RiposteError as exc:
                         if exc.code == "DESTINATION_EXISTS":
                             history.reject_output(entry)
                         raise
-                    row = record_video(root, relative, info)
+                    if previous:
+                        with contextlib.closing(connect(root)) as db:
+                            db.execute("UPDATE videos SET relative=? WHERE id=?", (relative, previous["id"]))
+                            db.commit()
+                        row = expected
+                        del managed[rel]
+                    else:
+                        row = record_video(root, relative, info)
                 else:
                     clean = decode_clean(path, policy)
                     source_stat = clean.source_stat
                     data = path.read_bytes() if previous else encode_clean(clean.pixels, clean.day)
                     result = png_audit(data)
                     date_source = previous["date_source"] if previous else clean.date_source
-                    folder = sort_folder_for(result["date"], result["width"], result["height"])
-                    relative = _next_relative(root, folder, next_numbers=next_numbers)
+                    folder = sort_folder_for(result["date"], result["width"], result["height"], "img", path_category(rel) if previous else None)
+                    relative = item["destination"] if item else _next_relative(root, folder, next_numbers=next_numbers)
                     expected = {"relative": relative, "day": result["date"], "width": result["width"], "height": result["height"],
                                 "sha256": result["sha256"], "bytes": len(data), "date_source": date_source}
                     if previous:
                         expected["id"] = previous["id"]
                     entry = history.prepare(path, relative, expected, "img", previous)
+                    if item:
+                        verify_source(root, item)
+                        if any(expected[k] != v for k, v in item["expected"].items() if k != "relative"):
+                            raise RiposteError("CATEGORY_PREVIEW_CHANGED")
                     try:
                         atomic_clean_write(root, relative, data)
                     except RiposteError as exc:
@@ -208,6 +269,18 @@ def organize(root: Path, policy: Policy = Policy(), progress: Progress | None = 
                     else:
                         row = record_image(root, relative, result, len(data), date_source)
                 managed[relative] = row
+                if item:
+                    title = {**item["title"], "id": row["id"]}
+                elif previous:
+                    title = titles.get(previous["id"])
+                else:
+                    title = {"id": row["id"], "media": "vid" if kind == "VIDEO" else "img",
+                             "original_filename": None if GENERATED_TITLE.fullmatch(unicodedata.normalize("NFKC", path.stem)) else path.name,
+                             "category": None, "manual": False, "matched_terms": [], "rule_revision": None,
+                             "sha256": row["sha256"]}
+                if title:
+                    history.record_title(title)
+                    titles[title["id"]] = title
                 # Use fstat on both sides: Windows Path.stat and fstat do not
                 # consistently expose the same ctime. Keep ctime change checks,
                 # including edits that restore mtime, and bind the path to the
@@ -220,12 +293,20 @@ def organize(root: Path, policy: Policy = Policy(), progress: Progress | None = 
                 if (is_link(path) or not unchanged
                     or not same_file_state(path_state, path.stat())):
                     raise RiposteError("SOURCE_CHANGED_OUTPUT_RETAINED")
+                if preview and load_rules(root).revision != preview["rules_revision"]:
+                    raise RiposteError("CATEGORY_PREVIEW_CHANGED")
+                if preview and (known_good(root) != managed or {r["id"]: r for r in title_records(root)} != titles):
+                    raise RiposteError("CATEGORY_PREVIEW_CHANGED")
                 history.remove_source(entry)
                 counts["videos_sorted" if kind == "VIDEO" else "relocated" if previous else "migrated"] += 1
             except RiposteError as exc:
                 errors[exc.code] += 1
+                if preview:
+                    break
             except Exception:
                 errors["IO_OPERATION_FAILED"] += 1
+                if preview:
+                    break
         # Only truly empty old folders; files of unknown purpose are never discarded.
         for source, _ in inputs:
             for path in source.parents:
@@ -267,7 +348,12 @@ def audit_workspace(root: Path) -> dict:
             errors["CATALOG_FILE_CHANGED"] += 1
         else:
             row = managed[relative]
-            actual_folder = sort_folder_for(row["day"], row["width"], row["height"], "vid" if kind == "VIDEO" else "img")
+            category = path_category(relative)
+            actual_folder = sort_folder_for(row["day"], row["width"], row["height"], "vid" if kind == "VIDEO" else "img", category)
+            if category:
+                title = next((t for t in title_records(root) if t["id"] == row["id"]), None)
+                if not title or title["category"] != category or title["sha256"] != row["sha256"]:
+                    errors["CATEGORY_ASSIGNMENT_MISMATCH"] += 1
             allowed = {actual_folder}
             if kind == "IMAGE":
                 allowed.add(folder_for(row["day"], row["width"], row["height"]))
