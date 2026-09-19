@@ -1,0 +1,71 @@
+RIPOSTE / LINEAR ASCII
+Use visible keys; edit N VALUE; select 1,3; focus N; /cancel discards an edit.
+                                                                                                    
+   R I P O S T E    /  MAIN MENU                                            LOCAL   /   v0.5.0      
+                                                                                                    
+  ------------------------------------------------------------------------------------------------  
+   Choose what you want to do. Each action works independently.                                     
+                                                                             =---------- -          
+    RRRR   III  PPPP    OOO   SSSS  TTTTT  EEEEE                   /----------+/ -----.-----        
+    R   R   I   P   P  O   O  S       T    E                   ----..:=------------- ----           
+    RRRR    I   PPPP   O   O   SSS    T    EEEE           /------/-----.:.+.:-------:--------       
+    R  R    I   P      O   O      S   T    E      >      -------:- /---------.+:::/- ---            
+    R   R  III  P       OOO   SSSS    T    EEEEE         ---------.-+.::== --------                 
+                                                          -------- --------                         
+                                                                                                    
+   Choose an action, then browse images or folders.                                                 
+  -- MAIN MENU -----------------------------------------------------------------------------------  
+    > 1  RIPOSTE                                               FOCUS / RIPOSTE                      
+      2  Sort                                                                                       
+      3  Sort + RIPOSTE                                        Protect files or folders. Keep       
+      4  Image library                                         originals and their folder           
+      5  Publishing batches                                    structure.                           
+      6  Local models                                                                               
+      7  Terminal & workspace                                  No files change when you open an     
+      8  Workshop                                              action.                              
+      9  Undo last sort                                                                             
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+   Protect files or folders; preserve originals                                                     
+  ------------------------------------------------------------------------------------------------  
+   [Enter] Open   [Arrows] Move   [1-9] Choose   [/] Find   [q] Quit   [F1] Help                    
+                                                                                                    
+                                                                                                    
+riposte>                                                                                                     
+   R I P O S T E    /  MAIN MENU                                            LOCAL   /   v0.5.0      
+                                                                                                    
+  ------------------------------------------------------------------------------------------------  
+   Choose what you want to do. Each action works independently.                                     
+                                                                             =---------- -          
+    RRRR   III  PPPP    OOO   SSSS  TTTTT  EEEEE                   /----------+/ -----.-----        
+    R   R   I   P   P  O   O  S       T    E                   ----..:=------------- ----           
+    RRRR    I   PPPP   O   O   SSS    T    EEEE           /------/-----.:.+.:-------:--------       
+    R  R    I   P      O   O      S   T    E      >      -------:- /---------.+:::/- ---            
+    R   R  III  P       OOO   SSSS    T    EEEEE         ---------.-+.::== --------                 
+                                                          -------- --------                         
+                                                                                                    
+   Choose an action, then browse images or folders.                                                 
+  -- MAIN MENU -----------------------------------------------------------------------------------  
+    > 1  RIPOSTE                                               FOCUS / RIPOSTE                      
+      2  Sort                                                                                       
+      3  Sort + RIPOSTE                                        Protect files or folders. Keep       
+      4  Image library                                         originals and their folder           
+      5  Publishing batches                                    structure.                           
+      6  Local models                                                                               
+      7  Terminal & workspace                                  No files change when you open an     
+      8  Workshop                                              action.                              
+      9  Undo last sort                                                                             
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+   Protect files or folders; preserve originals                                                     
+  ------------------------------------------------------------------------------------------------  
+   [Enter] Open   [Arrows] Move   [1-9] Choose   [/] Find   [q] Quit   [F1] Help                    
+                                                                                                    
+                                                                                                    
+riposte>   RIPOSTE / terminal released. No unfinished worker was abandoned.

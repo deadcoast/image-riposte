@@ -1,22 +1,28 @@
 # Build and run this checkout
 
+Current version and audit/milestone limits are in [PROJECT-STATUS.md](PROJECT-STATUS.md).
+The root manifest is a development snapshot. Build and verify fresh artifacts at
+the completion milestone; historical wheels are not current installation proof.
+
 Use the existing uv-managed project and lockfile:
 
 ```powershell
-uv sync --frozen
-uv run --frozen riposte --version
-uv run --frozen riposte
+uv sync --frozen --inexact
+uv run --no-sync riposte --version
+uv run --no-sync riposte
 ```
 
 The default palette is `goks`; `--theme light`, `--theme mono` and `--theme dark`
 select foreground alternatives. The host terminal owns every background.
-`uv sync --frozen --extra lab` installs optional processing dependencies without
+`uv sync --frozen --inexact --extra lab` installs optional processing dependencies without
 downloading model weights. Selecting a workspace and previewing organization
 remain read-only; source replacement requires an explicit Apply request or REPLACE.
 
-For development checks, use `uv sync --frozen --extra test`, then
-`uv run --frozen --extra test python -m pytest`. See [PATCH-v05-MERGE.md](PATCH-v05-MERGE.md)
-for known baseline failures and the scope actually verified on this host.
+For development checks, explicitly install with `uv sync --frozen --inexact --extra test`,
+then run `uv run --no-sync python -m pytest`. The inexact sync preserves existing
+optional dependencies; no-sync runs use the installed environment unchanged.
+See [PROJECT-STATUS.md](PROJECT-STATUS.md) and its linked evidence for current
+scope. [PATCH-v05-MERGE.md](PATCH-v05-MERGE.md) preserves the earlier merge baseline.
 
 Build a fresh distribution with `uv build`. Archived wheels and manifests inside
 `packages/RIPOSTE_v0.5.0.zip` describe its original snapshot. They do not include

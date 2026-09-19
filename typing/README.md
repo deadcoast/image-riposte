@@ -1,4 +1,12 @@
-# MIVIM.spec mypy-engineer / source-derived typing
+# RIPOSTE / source-derived external typing
+
+Current project/milestone status is in [PROJECT-STATUS.md](../docs/PROJECT-STATUS.md).
+The Markdown audit is active and the PACER CSV TODO is frozen. This guide's
+current counts come from `evidence/verification.json`; earlier task records below
+remain historical. On 2026-09-18 the 56 current application hashes and all 387
+source/stub signatures were rechecked. The retained full contract result is
+passing; the separately retained, source-matching implementation audit still
+reports 1,103 diagnostics in 37 of 49 Python files.
 
 PAC-027BB reviews frozen category plans, private title-table validation, journal
 version 2 and exact assignment restoration, stable video relocation, category
@@ -124,7 +132,7 @@ application wheel, and does not add `py.typed` or claim installed-package suppor
 Consumers that need helper records should import them inside `TYPE_CHECKING`.
 
 The default [`../mypy.ini`](../mypy.ini) checks application implementation.
-From the repository root, both commands reach the same 46 source modules:
+From the repository root, both commands target the same 49 Python source files:
 
 ```powershell
 mypy
@@ -160,8 +168,8 @@ would select the application environment instead.
 For only the declaration/consumer check, use
 `uv run --project typing --frozen --cache-dir typing/.cache/uv python -m mypy --config-file typing/mypy-contracts.ini`.
 
-The suite checks source hashes and 326 source/stub signatures, runs strict
-mypy on contracts and its three tooling modules, checks 39 leaf modules with
+The suite checks source hashes and 387 source/stub signatures, runs strict
+mypy on contracts and its three tooling modules, checks 46 leaf modules with
 stubtest, verifies nine offline fixture tests and ten tooling regressions,
 and requires exactly 13 expected diagnostics from invalid consumers. The two
 package initializers and executable `__main__` are covered statically; they are
@@ -175,18 +183,20 @@ callback signatures, and consumer assertions check both aliases. As explained by
 runtime introspection cannot prove function return types; the fixture checks
 provide separate evidence for the particular record-producing paths they run.
 
-Current verification is recorded in [`evidence/verification.json`](evidence/verification.json):
+Retained verification for the current reviewed source is recorded in
+[`evidence/verification.json`](evidence/verification.json). These full-suite
+results are distinct from the fresh parity/hash review described above:
 
 | Check | Verified result |
 | --- | --- |
-| Strict declarations and consumer fixture | 44 files; no errors |
+| Strict declarations and consumer fixture | 51 files; no errors |
 | Strict typing of the checker, inventory and tooling tests | 3 files; no errors |
-| Source parameter parity | 326 signatures |
-| Runtime signature comparison | 39 leaf modules; four documented exceptions |
+| Source parameter parity | 387 signatures |
+| Runtime signature comparison | 46 leaf modules; four documented exceptions |
 | Incorrect consumer calls | All 13 expected errors; exact line and error-code match |
 | Offline record fixtures | 9 tests passed |
 | Tooling regressions | 10 tests passed, including discovery, interpreter selection, source identity and missing-symbol/dependency detection |
-| Application source identity | All 48 application files match the reviewed snapshot |
+| Application source identity | All 56 application files match the reviewed snapshot |
 
 The fixtures use temporary artwork only. Publication states and the export
 record use synthetic data; the export test injects ZIP bytes. They do not run
@@ -207,9 +217,10 @@ versions, the exact command and source hashes are saved in
 [`evidence/source-current-command.json`](evidence/source-current-command.json).
 For a deliberate comparison, pass `--source-python PATH_TO_PYTHON`.
 
-The application-environment run reports 973 diagnostics; the earlier isolated
-core run reported 980. They include annotation errors and untyped calls, not
-equivalent counts of runtime defects. The prior core output remains in
+The current retained application-environment run reports 1,103 diagnostics in
+37 files (49 checked). The historical repair-era application run reported 973
+and its isolated core run reported 980. These include annotation errors and
+untyped calls, not equivalent counts of runtime defects. The prior core output remains in
 `../evidence/development-repairs/raw-source.txt`; current output is in
 [`evidence/source-current.txt`](evidence/source-current.txt). The original
 817-error source audit remains in `../evidence/patch-v050/before-source-current.txt`.
@@ -221,7 +232,7 @@ declared Python 3.11 minimum was not changed or certified by this work. The
 validated typing configuration targets Python 3.13.
 
 The contract layer is not fully free of dynamic types. The current
-[`evidence/dynamic-boundaries.json`](evidence/dynamic-boundaries.json) lists 92
+[`evidence/dynamic-boundaries.json`](evidence/dynamic-boundaries.json) lists 124
 declarations containing explicit `Any`, `Report`, or `ModelTensor`. They cover
 optional Torch/Diffusers internals, extensible JSON reports/model configuration,
 dynamic form state, decorators and platform-specific terminal state. Model
@@ -232,8 +243,9 @@ The inventory resolves shared dynamic aliases by their imports; the new fully
 structured terminal `Report` dataclass does not count as the shared dynamic report type.
 
 Source bodies remain authoritative. The runner rejects application hashes that differ from
-[`evidence/source-reviewed-repairs.json`](evidence/source-reviewed-repairs.json).
-The repair review covered streamed-body middleware, version re-exports, optional
+[`evidence/source-reviewed-category-sort.json`](evidence/source-reviewed-category-sort.json).
+The earlier [`repair snapshot`](evidence/source-reviewed-repairs.json) covered
+streamed-body middleware, version re-exports, optional
 gradient probes, source identity, and publication status/revocation fixtures.
 The previous [`evidence/source-reviewed-v050.json`](evidence/source-reviewed-v050.json)
 is retained as historical evidence.
@@ -294,7 +306,7 @@ names; it is not a guarantee about Python's dynamic export behavior. The index
 excludes build/history trees and caches. Run the external contract checker before
 acceptance: a recorded pass read by the inventory is not a fresh test execution.
 The inventory still registers and hashes generated `.egg-info` inputs separately;
-its application identity comparison uses the same 48-file scope as the checker.
+its application identity comparison uses the same 56-file scope as the checker.
 Source/stub definitions are indexed in FILE exports and the JSON report, with
 source symbol rows checked independently. Previously authored extra dependency
 edges are retained. Missing, duplicate, retired or insufficiently linked symbol

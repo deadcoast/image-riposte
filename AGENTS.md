@@ -8,6 +8,24 @@ protection efficacy. Report validation at its actual tested scope.
 
 ## PACER
 
+### Audit freeze / user correction of 2026-09-18
+
+`todo-audit.PACER.md` is the working audit and checkpoint until its work is
+complete. The user has frozen `todo.PACER.csv`: do not add, approve, transition,
+checkpoint or otherwise rewrite its rows during this interval. PACER commands
+that indirectly update TODO through reciprocal links are also deferred. Keep
+the four related registers unchanged together until milestone reconciliation;
+onboarding, queries, evaluation and validation remain available read-only.
+
+Record observations, changes, executed evidence, unresolved work and the next
+action in the Markdown audit. PAC-028 completion means identification was
+completed; it does not mean the listed repairs/features were implemented.
+At the completion milestone, reconcile TODO, source references, requirements,
+evidence and nodules through guarded commands, then verify version,
+configuration, installation, startup, documentation and release artifacts as
+one project state. Preserve historical evidence and unavailable qualifications.
+The original user instruction is preserved in `todo-audit.PACER.md`.
+
 Use the installed PACER onboard and development workflow with this repository as
 the project root. The live registers are `todo.PACER.csv`, `overlord.PACER.csv`,
 `organism.PACER.csv`, and `nodule.PACER.csv`. Archived nodules remain resolvable.

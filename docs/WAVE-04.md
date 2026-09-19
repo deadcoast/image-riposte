@@ -1,5 +1,10 @@
 # Wave 04 / native product interface, not a testing handoff
 
+Historical 0.4 wave record. Later independent workflows, nine-action menu,
+INSTALL/START separation, video/undo and category work are indexed in
+[PROJECT-STATUS.md](PROJECT-STATUS.md). The continuity counts below apply to this
+wave only; the continuing proposals are tracked in the frozen Markdown audit.
+
 ## Completed development
 
 RIPOSTE now has one Typer command entry and a real Rich interactive terminal over its working product functions. The previous argparse module is preserved as historical source, not maintained as a competing parser. The existing browser remains optional. The main seven-action deck prioritizes clean collection and protect/publish/review/package; expert comparisons stay in the secondary workshop.

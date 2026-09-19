@@ -1,4 +1,14 @@
-# Current entry-point amendment / RIPOSTE 0.4
+# Historical development specification / current supersession
+
+The text below preserves earlier delivery contracts. Current implementation and
+evidence are indexed in [PROJECT-STATUS.md](PROJECT-STATUS.md), [README](../README.md)
+and [CLI.md](CLI.md). The old absolute bans on retaining originals, original names
+and source hashes are superseded for private undo history and private category
+provenance. Date-only sanitation still applies to generated images/public exports;
+videos retain original bytes and metadata. The earlier seven-action/27-command
+interface is historical. Current source and explicit operation consent prevail.
+
+# Historical entry-point amendment / RIPOSTE 0.4
 
 The main application now has a native Typer/Rich product entry as well as the retained browser alternative. Read `TERMINAL-DESIGN.spec.md`, `CLI.md`, and `WAVE-04.md` for the implemented command, interaction and development contracts. The shared operation service calls the original image, organization and publication modules; renderer state is never authoritative for a file write. Older sections below describe the inherited foundation and remain valid unless the current entry-point documentation explicitly supersedes them.
 

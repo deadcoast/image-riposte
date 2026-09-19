@@ -1,8 +1,9 @@
 # RIPOSTE 0.4 / internal development verification
 
 This page preserves the historical 0.4 verification record. It is not a claim
-about the current checkout. The selective 0.5 integration, current Windows
-results and retained baseline failures are recorded in [PATCH-v05-MERGE.md](PATCH-v05-MERGE.md).
+about the current checkout. Current scope and evidence are indexed in
+[PROJECT-STATUS.md](PROJECT-STATUS.md). The selective 0.5 integration and its
+historical Windows baseline are recorded in [PATCH-v05-MERGE.md](PATCH-v05-MERGE.md).
 
 These are developer checks performed as part of implementation, not a request for the user to test or qualify an unfinished application. Passing them does not establish adversarial effectiveness or independent visual preference.
 

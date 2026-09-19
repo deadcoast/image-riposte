@@ -1,5 +1,13 @@
 # Threat model and data lifecycle
 
+Current lifecycle amendment (0.5.0 development): the older no-original-retention
+text below predates undo and video sorting. Explicit sorts now retain private
+original bytes/metadata/names/timestamps for recovery; category provenance is
+private too. Videos retain their embedded metadata. Generated images and public
+publishing packs remain audited date-only PNGs. See
+[PROJECT-STATUS.md](PROJECT-STATUS.md) and [README](../README.md) for the current
+boundary. Keep recovery history private; deleting it removes recovery capability.
+
 ## Protected assets and attacker access
 
 The artist publishes a human-readable image. A recipient can obtain those published pixels; RIPOSTE does not encrypt them or control a recipient's software. The anti-AI track attempts to make specified model-mediated reuse harder while preserving acceptable appearance. It does not prevent downloading, manual redrawing or redistribution of the published file.

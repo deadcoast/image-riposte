@@ -1,4 +1,18 @@
-# 0.5.0 / terminal revision reconstruction
+# 0.5.0 / current development checkout
+
+The version remains 0.5.0. Later work in this checkout includes independent
+Sort / RIPOSTE / Sort + RIPOSTE workflows, explicit INSTALL and menu-first START,
+recorded undo, byte-preserving video sorting, filename discovery, saved category
+rules, exact category destinations and private original-title/assignment recovery.
+Publication/backend repairs and source-derived external typing contracts also
+postdate the original terminal patch. These changes have scoped evidence linked
+from [PROJECT-STATUS.md](PROJECT-STATUS.md).
+
+The 2026-09-18 review identified 16 open items. The Markdown audit is the working
+checkpoint and CSV TODO is frozen until the completion milestone. This status
+correction is not a new release or a claim that the open items are implemented.
+
+# 0.5.0 / historical terminal revision reconstruction
 
 See [REVISION-v05.md](REVISION-v05.md) for source provenance, transparent backgrounds, goks, semantic reports and interaction changes. Backends and image pixels are unchanged.
 

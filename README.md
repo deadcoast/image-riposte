@@ -2,6 +2,12 @@
 
 **Local image protection and organization. Interactive terminal menu and direct commands.**
 
+Current development status, version/configuration identity and validation limits
+are in [PROJECT-STATUS.md](docs/PROJECT-STATUS.md). The
+[Markdown audit](todo-audit.PACER.md) controls the current catch-up work;
+`todo.PACER.csv` remains frozen until the audit-completion milestone. Version
+0.5.0 identifies this checkout, not completion of the open audit or model qualification.
+
 RIPOSTE lets you protect selected images, sort a folder, or explicitly do both. Sorting separates images and videos, rebuilds images with date-only metadata, and retains original files privately for undo. Protection uses selected local models; exact reviewed outputs can be packaged for sharing. Direct commands and the interactive terminal share the same operations. The browser remains available; the workshop remains optional.
 
 ## Terminal revision 0.5
@@ -250,6 +256,7 @@ All inherited helper paths remain accessible, including standalone guard, extern
 - [Image-engine mathematics](docs/ENGINE-v03.md)
 - [Development record and next grouped implementation](docs/WAVE-04.md)
 - [Terminal revision and selective merge](docs/PATCH-v05-MERGE.md)
-- [Executed internal validation and provenance](docs/VALIDATION.md)
+- [Current project status and validation](docs/PROJECT-STATUS.md)
+- [Historical 0.4 validation and provenance](docs/VALIDATION.md)
 
 The previous CLI, README, validation and evidence are retained under `history/v0.3.0/`. The original 0.4.0 and supplied 0.5.0 snapshots remain in `packages/`. The merge preserves image-engine, sanitation, organization, publication, storage and browser files. Historical screenshots, wheels and test claims in those ZIPs are not validation of this checkout; current checks are recorded in the merge record. No user images was used in development captures; previews show original synthetic geometric fixtures.

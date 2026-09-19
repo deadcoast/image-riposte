@@ -1,0 +1,22 @@
+
+  RIPOSTE / IMAGE SECURITY
+  Inspect saved rules or preview a replacement. --save requires the current revision.
+
+  Usage: riposte category-rules [OPTIONS] ROOT
+PARAMETERS                                                                                          
++--------------------------+-----------------------------------------------------------------------+
+| ROOT                     | Existing dedicated image folder; everything inside is in scope.       |
+|                          | [required]                                                            |
+| --category TEXT          | Complete replacement selection: Hockey=hockey;goalie. Repeat for each |
+|                          | group.                                                                |
+| --exclude TEXT           | Exclude matching titles from this category: Hockey=table hockey;toy.  |
+| --priority TEXT          | Category priority: Hockey=10. Higher wins; equal highest matches need |
+|                          | review.                                                               |
+| --slug TEXT              | Stable folder name: Hockey=hockey. Repeat to override generated       |
+|                          | names.                                                                |
+| --clear                  | Preview an empty replacement ruleset; use --save to commit it.        |
+| --save                   | AUTHORIZE saving the complete ruleset privately. Never moves media.   |
+| --expected-revision TEXT | Revision from the rule preview; 'missing' for the first save.         |
+| --review                 | Read-only matching-file counts and examples using these rules.        |
+| --help                   | Show this message and exit.                                           |
++--------------------------+-----------------------------------------------------------------------+

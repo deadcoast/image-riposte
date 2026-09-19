@@ -1,0 +1,13 @@
+{
+  "checkpoint": "PASS",
+  "application_audit": "OPEN",
+  "release_milestone": "PENDING",
+  "frozen_registers_unchanged": true,
+  "application_source_unchanged": true,
+  "manifest_files": 85,
+  "version": "0.5.0",
+  "launcher_menu_tests": 29,
+  "reproduced_open_findings": 5,
+  "raw_source_typing": "FAIL_RETAINED_SOURCE_MATCHES",
+  "historical_manifest_preserved": true
+}
