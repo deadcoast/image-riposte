@@ -52,10 +52,34 @@ class Controller:
         self.browse("workspace", "preferences")
 
     def begin_action(self, key: str) -> None:
+        if key == "sorter": return self.sorter()
         if key == "riposte": return self.browse("inputs", key)
+        if key == "organize" and self.state.root: return self.action(key)
         if key in {"organize", "sort-riposte"}: return self.browse("sort", key)
         if key == "undo-sort": return self.browse("undo", key)
         return self.action(key)
+
+    def sorter(self) -> None:
+        self.show(Page("sorter", "Riposte Sorter", rows=[
+            {"key": "sort", "title": "Sort", "summary": "Review the plan, then confirm REPLACE"},
+            {"key": "dry-run", "title": "Dry Run", "summary": "Inspect destinations; change nothing"},
+            {"key": "path", "title": "Enter Path", "summary": "Paste the folder to sort"},
+        ]))
+
+    def sort_path(self, pending: str = "") -> None:
+        self.state.page.values["pending_sort"] = pending
+        self.state.editor = Editor(Field("location", "Enter Path", "path", "",
+            "Paste an existing image folder. Quotes are accepted. Esc keeps the current folder."),
+            "", target="sort-path")
+
+    def run_sorter(self, mode: str) -> None:
+        if self.state.root is None:
+            return self.sort_path(mode)
+        # Reuse the exact shared category planner and its consent-bound apply.
+        request = make_request("organize", self.state.root,
+                               {**defaults(BY_KEY["organize"]), "categories": True})
+        self.run(request)
+        self.state.page.values["sorter_mode"] = mode
 
     def browse(self, mode: str, action: str | None = None, inputs: Sequence[Path] = (), field: str | None = None) -> None:
         settings = dict(self.state.page.values) if self.state.page.name == "form" else {}
@@ -70,6 +94,7 @@ class Controller:
         if action == "sort-riposte": purpose = "Sort this folder and its subfolders, then protect the images. Preview first; replacing originals requires REPLACE."
         title = "RIPOSTE / SELECT INPUTS" if mode == "inputs" else "SORT + RIPOSTE / SELECT FOLDER" if action == "sort-riposte" else "SORT / SELECT FOLDER" if mode == "sort" else "SELECT RESULTS FOLDER" if mode == "workspace" else "SELECT FOLDER"
         if mode == "undo": title = "UNDO LAST SORT / SELECT FOLDER"
+        if action == "organize": title = "Full Sort Workshop / SELECT FOLDER"
         picker = Picker(starting_directory(self.state.root), multiple=mode == "inputs", selected=list(inputs))
         if field and self.state.page.values.get(field):
             picker.enter(Path(self.state.page.values[field]).expanduser())
@@ -80,21 +105,37 @@ class Controller:
         p = self.state.page
         picker = p.result
         row = self.selected_row()
-        if key.name == "backspace": picker.enter(picker.directory.parent); p.cursor = 0
+        if key.name == "backspace":
+            picker.enter(picker.directory.parent)
+            if picker.error:
+                self.state.notice = picker.error; return
+            p.cursor = 0
+            p.values.pop("locations", None)
         elif key.text == "l":
             p.rows = locations(); p.cursor = 0; p.values["locations"] = True; return
         elif key.text == "g":
-            value = str(picker.directory)
-            self.state.editor = Editor(Field("location", "Go to folder", "path", "", "Optional: paste an existing folder path, or Esc to keep browsing."), value, len(value), target="picker-location")
+            self.state.editor = Editor(Field("location", "Go to folder", "path", "", "Paste an existing folder path. Esc keeps the current folder."), "", target="picker-location")
             return
+        elif key.text == "s" and not picker.multiple:
+            if row and row["kind"] in {"directory", "parent"}:
+                picker.enter(row["path"])
+                if picker.error:
+                    self.state.notice = picker.error; return
+            return self.accept_picker()
         elif key.text == "s" and picker.multiple: picker.toggle(picker.directory)
         elif key.text == " " and row and row.get("path") and picker.multiple and not p.values.get("locations") and row["kind"] != "parent":
             picker.toggle(row["path"])
         elif key.name == "enter" and row:
             if row["kind"] == "accept": return self.accept_picker()
             if row["kind"] in {"directory", "parent"}:
-                picker.enter(row["path"]); p.cursor = 0; p.values.pop("locations", None)
+                picker.enter(row["path"])
+                if picker.error:
+                    self.state.notice = picker.error; return
+                p.cursor = 0; p.values.pop("locations", None)
             elif row["kind"] == "file": picker.toggle(row["path"])
+        else:
+            # Do not replace the displayed locations or rescan on ignored keys.
+            return
         p.rows = picker.rows()
         self.state.notice = picker.error
 
@@ -120,8 +161,12 @@ class Controller:
             return
         self.state.root = root
         self.state.selected.clear()
-        self.refresh()
         action = p.action
+        if action == "sorter":
+            self.state.catalog.clear(); self.state.batches.clear()
+            self.back()
+            return
+        self.refresh()
         if action == "browser":
             self.state.handoff = ["serve", str(root)]; self.state.running = False; return
         if action == "riposte":
@@ -164,6 +209,7 @@ class Controller:
         else: self.show(Page("preferences", "TERMINAL SETTINGS", rows=rows))
 
     def action(self, key: str, overrides: Mapping[str, object] | None = None) -> None:
+        if key == "sorter": return self.sorter()
         if key == "library": return self.library()
         if key == "batches": return self.batches()
         if key == "preferences": return self.preferences()
@@ -209,7 +255,9 @@ class Controller:
             raise RiposteError("OPERATION_ALREADY_RUNNING")
         self.state.last_request = request
         self.state.operation_request = request
-        self.show(Page("job", "ACTIVE OPERATION", request=request))
+        mode = self.state.page.values.get("sorter_mode") if self.state.page.name == "confirm" else None
+        self.show(Page("job", "ACTIVE OPERATION", request=request,
+                       values={"sorter_mode": mode} if mode else {}))
         self.state.operation = self.factory(request).start()
 
     def confirm(self, request: Request, word: str, title: str) -> None:
@@ -221,6 +269,14 @@ class Controller:
         operation.join()
         snapshot, result = operation.snapshot(), operation.result
         request = self.state.operation_request
+        sorter_mode = self.state.page.values.get("sorter_mode")
+        if sorter_mode == "apply":
+            # A completed/failed write returns to the three actions, never to
+            # a filled confirmation or an obsolete preview.
+            for index in range(len(self.state.stack)-1, -1, -1):
+                if self.state.stack[index].name == "sorter":
+                    self.state.stack = self.state.stack[:index+1]
+                    break
         self.state.operation = None
         try: self.refresh()
         except RiposteError as exc: self.state.notice = safe_code(exc.code)
@@ -238,6 +294,9 @@ class Controller:
             heading = {"plan": "PUBLISHING PLAN", "organize": "MIGRATION PREVIEW", "apply": "ORGANIZATION RESULT",
                        "package": "APPROVED IMAGE PACK", "doctor": "LOCAL RUNTIME"}.get(request.name, "OPERATION RESULT")
             self.show(Page("result", heading, result=result, request=request), remember=False)
+            if sorter_mode:
+                self.state.page.values["sorter_mode"] = sorter_mode
+                self.state.page.title = "Riposte Sorter / " + {"dry-run": "Dry Run", "sort": "Review Sort", "apply": "Sort Result"}[sorter_mode]
 
     def selected_row(self):
         rows = view_rows(self.state)
@@ -295,6 +354,17 @@ class Controller:
         e = cast(Editor, self.state.editor)
         try:
             value = parse_value(e.field, e.value)
+            if e.target == "sort-path":
+                root = validate_workspace(Path(value))
+                self.state.root = root
+                self.state.selected.clear()
+                # Library/batch screens refresh on entry. Choosing a folder
+                # should not synchronously load unrelated publishing history.
+                self.state.catalog.clear(); self.state.batches.clear()
+                self.state.editor = None
+                pending = self.state.page.values.pop("pending_sort", "")
+                if pending: self.run_sorter(pending)
+                return
             if e.target == "picker-location":
                 picker = self.state.page.result
                 path = Path(value).expanduser().absolute()
@@ -423,6 +493,7 @@ class Controller:
         if key.name == "end": return self.move(1000000)
         if ch == "/" and p.name in {"home", "library", "batches", "batch", "workshop"}: p.query_edit = True; return
         if p.name in {"home", "workshop"}:
+            if p.name == "home" and ch == "w": return self.begin_action("workshop")
             if ch.isdigit() and ch != "0":
                 n = int(ch)-1
                 if n < len(view_rows(self.state)):
@@ -433,6 +504,17 @@ class Controller:
                 row = self.selected_row()
                 if row: return self.begin_action(row["key"])
         elif p.name == "picker": return self.picker_key(key)
+        elif p.name == "sorter":
+            if ch == "g": return self.sort_path()
+            if ch == "b": return self.browse("sort", "sorter")
+            if ch == "u":
+                if self.require_workspace("undo-sort"): self.run(Request("undo-sort", self.state.root))
+                return
+            if ch in {"1", "2", "3"}: p.cursor = int(ch) - 1
+            if key.name == "enter" or ch in {"1", "2", "3"}:
+                selected = p.rows[p.cursor]["key"]
+                if selected == "path": return self.sort_path()
+                return self.run_sorter(selected)
         elif p.name == "library":
             row = self.selected_row()
             if (key.name == "enter" or ch == " ") and row: return self.toggle_selection(row)
@@ -451,6 +533,7 @@ class Controller:
                 if p.image_id not in self.state.selected: self.toggle_selection(cast(CatalogRow, p.report))
                 return self.action("publish")
         elif p.name == "form":
+            if ch == "g" and p.action == "organize": return self.sort_path()
             if ch == "b":
                 fields = fields_for(p)
                 if p.cursor < len(fields) and fields[p.cursor].kind == "path":
@@ -502,6 +585,11 @@ class Controller:
             if ch == "w": return self.action("handoff", {"batch_id":p.batch_id,"item_id":cast(str, p.item_id)})
         elif p.name == "result":
             request = p.request
+            if ch == "g" and p.values.get("sorter_mode"):
+                self.back()
+                return self.sort_path()
+            if p.values.get("sorter_mode") == "dry-run" and (key.name == "enter" or ch == "a"):
+                return self.back()
             if ch == "t" and not p.code:
                 report_views = ("overview", "details", "json")
                 p.report_view = report_views[(report_views.index(p.report_view) + 1) % len(report_views)]
@@ -516,9 +604,11 @@ class Controller:
                 else: return self.back()
             if ch == "a" and request and request.name == "organize":
                 if request.values.get("categories") and not p.result.get("ready"):
-                    self.state.notice = "Resolve the category blockers and refresh the preview."; return
+                    self.state.notice = "Resolve blockers in Full Sort Workshop (main-menu 8), then retry."; return
                 values = cast(RequestValues, {**request.values, "plan_id": p.result["plan_id"]})
-                return self.confirm(Request("apply", request.root, values), "REPLACE", "Apply the displayed sorting plan. Original names, bytes and category assignments remain privately recoverable.")
+                self.confirm(Request("apply", request.root, values), "REPLACE", "Apply the displayed sorting plan. Original names, bytes and category assignments remain privately recoverable.")
+                if p.values.get("sorter_mode"): self.state.page.values["sorter_mode"] = "apply"
+                return
             if ch == "s" and request and request.name == "category-rules" and p.result.get("status") == "DRAFT":
                 return self.confirm(Request("category-rules-save", request.root, cast(RequestValues, {**request.values, "expected_revision": p.result["revision"]})), "SAVE", "Save these reusable rules. Sorting remains a separate preview and confirmation.")
             if ch == "u" and request and request.name == "undo-sort" and p.result.get("ready"):

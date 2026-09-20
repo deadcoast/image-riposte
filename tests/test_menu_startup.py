@@ -47,7 +47,7 @@ def menu(tmp_path, monkeypatch):
     controller.shutdown()
 
 
-@pytest.mark.parametrize('number,action', [('1','riposte'), ('2','organize'), ('3','sort-riposte')])
+@pytest.mark.parametrize('number,action', [('2','riposte'), ('8','organize'), ('3','sort-riposte')])
 def test_visible_actions_open_explained_browser_before_root(menu, number, action):
     c, inputs, _ = menu
     c.key(Key('char',number))
@@ -102,7 +102,7 @@ def test_undo_menu_previews_then_requires_bound_confirmation(menu, make_image):
 def test_arrows_enter_and_escape_preserve_menu_focus(menu):
     c,_,_=menu
     c.key(Key('down'));c.key(Key('enter'))
-    assert c.state.page.action=='organize'
+    assert c.state.page.action=='riposte'
     c.key(Key('escape'))
     assert c.state.page.cursor==1 and c.state.page.name=='home'
 
@@ -111,7 +111,7 @@ def test_multiple_inputs_and_separate_results_preserve_originals(menu):
     c,inputs,results=menu
     files=[inputs/f'image {n}.png' for n in range(6)]
     for path in files:path.write_bytes(b'unchanged')
-    c.key(Key('enter'))
+    c.key(Key('char','2'))
     for n in range(2,8):
         c.state.page.cursor=n;c.key(Key('char',' '))
     assert len(c.state.page.result.selected)==6
@@ -134,7 +134,7 @@ def test_multiple_inputs_and_separate_results_preserve_originals(menu):
 
 def test_cancel_results_selection_returns_to_inputs_without_setting_root(menu):
     c,inputs,_=menu
-    c.key(Key('enter'));c.key(Key('char','s'));c.key(Key('enter'))
+    c.key(Key('char','2'));c.key(Key('char','s'));c.key(Key('enter'))
     c.key(Key('escape'))
     assert c.state.root is None
     assert c.state.page.result.selected==[inputs]
@@ -144,7 +144,7 @@ def test_cancel_results_selection_returns_to_inputs_without_setting_root(menu):
 def test_browse_parent_locations_and_optional_pasted_location(menu):
     c,inputs,results=menu
     child=inputs/'child';child.mkdir()
-    c.key(Key('char','2'));c.state.page.cursor=2;c.key(Key('enter'))
+    c.key(Key('char','8'));c.state.page.cursor=2;c.key(Key('enter'))
     assert c.state.page.result.directory==child
     c.key(Key('backspace'));assert c.state.page.result.directory==inputs
     c.key(Key('char','l'));assert c.state.page.values['locations']
@@ -161,7 +161,7 @@ def test_application_overlap_is_blocked_without_dismissing_picker(menu, monkeypa
     c,inputs,_=menu
     monkeypatch.setattr('riposte.store.application_directory',lambda:inputs)
     (inputs / 'inside').mkdir()
-    c.key(Key('char','2'));c.key(Key('enter'))
+    c.key(Key('char','8'));c.key(Key('enter'))
     assert c.state.root is None and c.state.page.name=='picker'
     assert 'separate' in c.state.notice
     for p in (inputs,inputs/'inside',inputs.parent):
@@ -171,7 +171,7 @@ def test_application_overlap_is_blocked_without_dismissing_picker(menu, monkeypa
 def test_permission_error_leaves_parent_navigation_available(tmp_path,monkeypatch):
     picker=Picker(tmp_path)
     def denied(self):raise PermissionError
-    monkeypatch.setattr(Path,'iterdir',denied)
+    monkeypatch.setattr('riposte.terminal.paths.os.scandir',denied)
     rows=picker.rows()
     assert rows[1]['kind']=='parent' and 'Cannot read' in picker.error
 

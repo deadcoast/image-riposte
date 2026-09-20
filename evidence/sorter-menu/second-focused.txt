@@ -1,0 +1,58 @@
+........F............................................................... [ 36%]
+........................................................................ [ 73%]
+.......ssss.............F...................F........                    [100%]
+================================== FAILURES ===================================
+__ test_sort_uses_saved_rules_exact_receipt_then_returns_to_sorter_and_undo ___
+
+root = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/pytest-of-ryanf/pytest-503/test_sort_uses_saved_rules_exa0/workspace')
+make_image = <function make_image.<locals>.create at 0x0000024DFB4CF740>
+
+    def test_sort_uses_saved_rules_exact_receipt_then_returns_to_sorter_and_undo(root, make_image):
+        from riposte.category_rules import category_rules
+        source = make_image(root / "hockey painting.png")
+        original = source.read_bytes()
+>       category_rules(root, category_specs=("Hockey=hockey",), save=True, expected_revision="missing")
+E       TypeError: category_rules() got an unexpected keyword argument 'category_specs'
+
+tests\test_sorter_menu.py:116: TypeError
+________ test_model_free_fresh_workspace_choosing_exiting_is_read_only ________
+
+root = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/pytest-of-ryanf/pytest-503/test_model_free_fresh_workspac0/workspace')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x0000024D8679F770>
+
+    def test_model_free_fresh_workspace_choosing_exiting_is_read_only(root, monkeypatch):
+        monkeypatch.setattr('riposte.store.application_directory', lambda: root.parent / 'application')
+        c=Controller(None,Presentation());assert c.state.editor is None
+        c.key(Key('char','2')); assert c.state.page.name=='picker'
+        c.state.page.result.enter(root);c.state.page.rows=c.state.page.result.rows();c.key(Key('enter'))
+>       assert c.state.root==root and not list(root.iterdir())
+E       AssertionError: assert (None == WindowsPath('C:/Users/ryanf/AppData/Local/Temp/pytest-of-ryanf/pytest-503/test_model_free_fresh_workspac0/workspace'))
+E        +  where None = Session(root=None, presentation=Presentation(json_output=None, plain=False, no_color=False, no_animation=False, theme=...ed=False, frozen_time=0.0, running=True, exit_after_job=False, switch_linear=False, handoff=None, width=100, height=34).root
+E        +    where Session(root=None, presentation=Presentation(json_output=None, plain=False, no_color=False, no_animation=False, theme=...ed=False, frozen_time=0.0, running=True, exit_after_job=False, switch_linear=False, handoff=None, width=100, height=34) = <riposte.terminal.controller.Controller object at 0x0000024D8679EC10>.state
+
+tests\test_v04_product_terminal.py:136: AssertionError
+________ test_linear_user_can_preview_file_without_catalog_or_commands ________
+
+root = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/pytest-of-ryanf/pytest-503/test_linear_user_can_preview_f0/workspace')
+make_image = <function make_image.<locals>.create at 0x0000024D869F2770>
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x0000024DDB713230>
+
+    def test_linear_user_can_preview_file_without_catalog_or_commands(root, make_image, monkeypatch):
+        monkeypatch.setattr('riposte.store.application_directory', lambda: root.parent / 'application')
+        source = make_image(root / 'input.png')
+        before = snapshot(root)
+        controller = Controller(root, Presentation(plain=True))
+        transcript = io.StringIO()
+        linear_session(controller, io.StringIO('1\ns\nenter\nenter\np\nq\n'), transcript)
+>       assert 'PUBLISHING PLAN' in transcript.getvalue()
+E       AssertionError: assert 'PUBLISHING PLAN' in 'RIPOSTE / LINEAR ASCII\nUse visible keys; edit N VALUE; select 1,3; focus N; /cancel discards an edit.\n             ...                                                                                                 \nconfirm (/cancel)> '
+E        +  where 'RIPOSTE / LINEAR ASCII\nUse visible keys; edit N VALUE; select 1,3; focus N; /cancel discards an edit.\n             ...                                                                                                 \nconfirm (/cancel)> ' = <built-in method getvalue of _io.StringIO object at 0x0000024D86916050>()
+E        +    where <built-in method getvalue of _io.StringIO object at 0x0000024D86916050> = <_io.StringIO object at 0x0000024D86916050>.getvalue
+
+tests\test_workflows.py:278: AssertionError
+=========================== short test summary info ===========================
+SKIPPED [4] tests\test_v04_terminal_host.py:8: POSIX pseudo-terminal contract
+FAILED tests/test_sorter_menu.py::test_sort_uses_saved_rules_exact_receipt_then_returns_to_sorter_and_undo
+FAILED tests/test_v04_product_terminal.py::test_model_free_fresh_workspace_choosing_exiting_is_read_only
+FAILED tests/test_workflows.py::test_linear_user_can_preview_file_without_catalog_or_commands
+3 failed, 190 passed, 4 skipped in 12.38s

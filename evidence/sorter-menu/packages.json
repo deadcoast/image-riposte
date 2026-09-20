@@ -1,0 +1,5 @@
+{
+  "result": "PASS",
+  "application_files": 66,
+  "scope": "Source, fresh wheel and sdist have identical reviewed application bytes. Native launchers use the existing editable installation; no clean-install qualification."
+}

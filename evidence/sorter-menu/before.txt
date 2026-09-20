@@ -1,0 +1,43 @@
+FF                                                                       [100%]
+================================== FAILURES ===================================
+___________________ test_locations_survive_unhandled_input ____________________
+
+tmp_path = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/.tmp/sorter-menu/before/test_locations_survive_unhandl0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x0000025C37E50640>
+
+    def test_locations_survive_unhandled_input(tmp_path, monkeypatch):
+        c = Controller(None, Presentation())
+        target = tmp_path / "chosen"
+        target.mkdir()
+        monkeypatch.setattr("riposte.terminal.controller.locations", lambda: [
+            {"kind": "directory", "title": "chosen", "path": target}])
+        try:
+            c.browse("sort", "organize")
+            c.key(Key("char", "l"))
+            c.key(Key("ignored"))
+>           assert c.state.page.rows[0]["path"] == target
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           KeyError: 'path'
+
+tests\test_sorter_menu.py:21: KeyError
+_______ test_windows_zero_timeout_polls_and_preserves_fragmented_escape _______
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x0000025C37E50770>
+
+    def test_windows_zero_timeout_polls_and_preserves_fragmented_escape(monkeypatch):
+        chars = deque(["\xe0", "P", "g"])
+        monkeypatch.setitem(sys.modules, "msvcrt", SimpleNamespace(
+            kbhit=lambda: bool(chars), getwch=chars.popleft))
+        monkeypatch.setattr("riposte.terminal.keyboard.os", SimpleNamespace(name="nt"))
+        keyboard = TerminalKeys()
+>       assert keyboard.read(0) == Key("down")
+E       AssertionError: assert None == Key(name='down', text='')
+E        +  where None = read(0)
+E        +    where read = <riposte.terminal.keyboard.TerminalKeys object at 0x0000025C37D6EE40>.read
+E        +  and   Key(name='down', text='') = Key('down')
+
+tests\test_sorter_menu.py:34: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/test_sorter_menu.py::test_locations_survive_unhandled_input - Ke...
+FAILED tests/test_sorter_menu.py::test_windows_zero_timeout_polls_and_preserves_fragmented_escape
+2 failed in 0.41s

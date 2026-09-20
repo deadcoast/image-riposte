@@ -30,9 +30,16 @@ def hints(state):
     p=state.page
     if state.editor:return [Hint("Enter","Save","Validate and save this field; it does not run an operation."),Hint("Esc","Discard","Leave the field unchanged."),Hint("Ctrl+U","Clear","Clear this field's input.")]
     if p.query_edit:return [Hint("Enter","Finish search","Keep the filter and return to the filtered list."),Hint("Esc","Finish search","Close search input without executing anything."),Hint("Ctrl+U","Clear filter","Show all rows again.")]
+    if p.name == "sorter":
+        return [Hint("Enter", "Choose", "Run the highlighted action; arrows move focus."),
+                Hint("1/2/3", "Choose", "Sort / Dry Run / Enter Path."),
+                Hint("g", "Enter Path", "Paste a folder without browsing."),
+                Hint("b", "Browse", "Choose a folder with the keyboard."),
+                Hint("u", "Undo", "Preview the last sort's recovery."),
+                Hint("Esc", "Back", "Return to the main menu.")]
     rows={
         "picker":[Hint("Enter","Open / choose","Open a folder, toggle a file, or confirm the highlighted selection row."),Hint("Up/Down","Move","Move the highlight."),Hint("Space","Select","Select or unselect a file or folder for protection."),Hint("s","This folder","Select or unselect the current folder for protection."),Hint("Backspace","Parent","Browse the parent folder."),Hint("l","Locations","Browse home, Pictures, and drives."),Hint("g","Go to path","Optionally type or paste a folder location."),Hint("Esc","Cancel","Return without starting an operation.")],
-        "home":[Hint("Enter","Open","Choose Sort, RIPOSTE, or Sort + RIPOSTE. Arrows or visible numbers open an action."),Hint("Arrows","Move","Move the highlight; Enter opens the selected action."),Hint("1-9","Choose","Open the numbered action."),Hint("/","Find","Filter the action list."),Hint("q","Quit","Leave RIPOSTE.")],
+        "home":[Hint("Enter","Open","Choose Riposte Sorter, RIPOSTE, or Sort + RIPOSTE. Arrows or visible numbers open an action."),Hint("Arrows","Move","Move the highlight; Enter opens the selected action."),Hint("1-9/w","Choose","Open the numbered action, or w for expert protection helpers."),Hint("/","Find","Filter the action list."),Hint("q","Quit","Leave RIPOSTE.")],
         "library":[Hint("Enter","Select","Add or remove the focused image from your publishing selection."),Hint("i","Inspect","Open the focused image without changing your selection."),Hint("p","Protect","Configure protection for selected images."),Hint("/","Find","Filter dates, canonical names or image IDs."),Hint("a","Select visible","Add every visible image, up to the selection limit."),Hint("n","Clear selection","Remove selected images from the current selection; files are unchanged.")],
         "asset":[Hint("Enter","Select","Toggle this image in your publishing selection."),Hint("p","Protect","Carry this image and the current selection into protection."),Hint("v","Open PNG","Open audited full-resolution pixels in your local viewer.")],
         "batches":[Hint("Enter","Open batch","See its output queue, approvals and blocked items."),Hint("/","Find","Filter the batch list.")],
@@ -56,6 +63,7 @@ def hints(state):
         if p.cursor<len(fields) and fields[p.cursor].kind=="path":controls.append(Hint("b","Browse","Choose this location in the file/folder browser."))
         if p.action in {"publish","riposte","sort-riposte","organize"}:controls.append(Hint("p","Preview","Read-only plan; no images are written."))
         if p.action=="organize":
+            controls.append(Hint("g","Enter Path","Change the image folder while keeping these settings."))
             controls.append(Hint("s","Saved rules","Inspect or draft reusable categories; saving requires SAVE confirmation."))
             controls.append(Hint("c","Categories","Discover recurring filename terms and review category groups without changing files."))
             controls.append(Hint("u","Undo last sort","Preview recovery before an explicit UNDO confirmation."))
@@ -76,13 +84,21 @@ def hints(state):
                  else Hint("Enter","Start protection","Run this planned selection with its configured models.") if name in {"plan","riposte-plan"} and not p.code
                  else Hint("Enter","Batches","Open publishing batches.") if name=="package" and not p.code
                  else Hint("Enter","Return","Return to the previous screen."))
+        if p.values.get("sorter_mode") == "dry-run":
+            primary = Hint("Enter", "Return", "Dry Run changes nothing. Return to Riposte Sorter to choose Sort.")
         saving = [Hint("s", "Save rules", "Confirm SAVE to persist this reviewed replacement without moving files.")] if name == "category-rules" and p.result.get("status") == "DRAFT" else []
+        if p.values.get("sorter_mode"):
+            saving.append(Hint("g", "Enter Path", "Return to Riposte Sorter and choose another folder."))
         return [primary,*saving,Hint("t","Report view","Cycle Overview, complete Details, and syntax-coloured JSON."),Hint("Up/Down","Scroll","Scroll the selected report view; Page Up/Down move a page."),Hint("b","Batches","Open publishing batches."),Hint("Esc","Back","Return to the previous screen.")]
     controls=rows.get(p.name,[])
     if p.name=="picker":
         controls=[h for h in controls if p.result.multiple or h.key not in {"Space","s"}]
+        if not p.result.multiple:
+            controls.insert(1, Hint("s", "Use folder", "Choose the highlighted folder directly, or the current folder on Use this folder."))
         cancel=next(h for h in controls if h.key=="Esc")
-        controls.remove(cancel);controls.insert(3 if p.result.multiple else 1,cancel)
+        controls.remove(cancel);controls.insert(3 if p.result.multiple else 2,cancel)
+        path = next(h for h in controls if h.key == "g")
+        controls.remove(path); controls.insert(3 if not p.result.multiple else 4, path)
         return controls
     if p.name not in {"home","confirm","help","command"}:controls=controls+[Hint("Esc","Back","Return to the previous screen.")]
     return controls
@@ -96,6 +112,7 @@ def context(state):
         rows=view_rows(state)
         return rows[min(p.cursor,len(rows)-1)]["summary"] if rows else "No matching actions."
     if p.name=="picker":return "Selection is read-only. Enter on the first row confirms your choice."
+    if p.name=="sorter":return "Includes subfolders. Sort previews before REPLACE; Dry Run only."
     if p.name=="form":
         fields=fields_for(p)
         return fields[p.cursor].help if p.cursor<len(fields) else BY_KEY[p.action].summary

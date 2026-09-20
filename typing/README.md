@@ -3,10 +3,21 @@
 Current project/milestone status is in [PROJECT-STATUS.md](../docs/PROJECT-STATUS.md).
 The Markdown audit is active and the PACER CSV TODO is frozen. This guide's
 current counts come from `evidence/verification.json`; earlier task records below
-remain historical. On 2026-09-19 all 66 application hashes and 473 source/stub
+remain historical. On 2026-09-19 all 66 application hashes and 478 source/stub
 signatures were checked by the full external contract suite, which passed.
-The separate fresh implementation audit reports 772 diagnostics in 36 of 59
+The separate fresh implementation audit reports 782 diagnostics in 36 of 59
 Python files. Strict settings are unchanged; the source tree remains unclean.
+
+The sorter interaction repair reviews eight terminal owners, with five new
+declarations for the three-action preset, direct path entry, preset execution,
+bounded key draining and rendering. Existing picker/service signatures and JSON
+report contracts remain unchanged. `source-reviewed-sorter-menu.json` admits
+these reviewed changes and verifies that every other application file matches
+the previous Kontext snapshot. The ten additional raw-source diagnostics expose
+calls into existing untyped terminal helpers, including the Surface drawing
+methods; no ignores, dynamic declarations or configuration relaxations were
+introduced. See `../evidence/sorter-menu/` for native Windows interaction,
+temporary-media regression, packaging and retained pre-repair evidence.
 
 PCUC-005 adds a typed fixed Kontext backend and optional model-aware conditioning
 and preparation arguments, retaining old default behavior. The reviewed

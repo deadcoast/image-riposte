@@ -541,17 +541,17 @@
   },
   {
     "file": "typing/stubs/riposte/terminal/controller.pyi",
-    "line": 53,
+    "line": 59,
     "declaration": "def action(self, key: str, overrides: Mapping[str, Any] | None=None) -> None:"
   },
   {
     "file": "typing/stubs/riposte/terminal/controller.pyi",
-    "line": 57,
+    "line": 63,
     "declaration": "def save_model_session(self, values: Mapping[str, Any]) -> None:"
   },
   {
     "file": "typing/stubs/riposte/terminal/controller.pyi",
-    "line": 67,
+    "line": 73,
     "declaration": "def selected_row(self) -> Report | None:"
   },
   {

@@ -12,7 +12,8 @@ No new font, component toolkit, theme configuration, or runtime dependency is
 introduced. F2 and `--no-animation` disable decorative motion.
 
 `terminal/render.py` owns all screen layouts. The minimum interactive viewport is
-72 columns by 24 rows. All nine main actions, including Undo last sort, must be visible there, with a
+72 columns by 24 rows. All main actions, including Undo last sort and the `w`
+expert Workshop shortcut, must be visible there, with a
 textual focus marker and visible arrow/Enter hints. Wider screens may show the
 wordmark and a description beside the menu. Number labels are keyboard shortcuts,
 not stages in a required pipeline. Headers show the current task, never a global
@@ -23,6 +24,20 @@ Explain selection scope before showing a location browser. Keep destructive
 replacement and visual acceptance explicit. See [UX-CONTRACT.md](UX-CONTRACT.md)
 for the behavior contract and [evidence/menu-startup/README.md](../evidence/menu-startup/README.md)
 for tested scope. Earlier visual specifications remain historical design context.
+
+## Riposte Sorter / 2026-09-19
+
+The default first action opens one stable screen: selected folder, **1. Sort**,
+**2. Dry Run**, **3. Enter Path**, followed by the date/media/category/size route.
+The existing configurable flow is **Full Sort Workshop**. Keep the same terminal
+monospace, foreground palette and explicit `>` focus marker. Numbering identifies
+actions, not required stages. Path input starts empty so a pasted path cannot be
+appended accidentally. Static screens repaint on input or resize; queued keys
+are drained in bounded bursts independently of decorative frame rate. Folder
+activation consumes the same row snapshot that was displayed. No new dependency
+or palette token is needed. Runtime palette values live in `terminal/palette.py`;
+`surface.py` applies them to cells. Native Windows evidence and production-cell
+captures are retained under `evidence/sorter-menu/`.
 
 
 ## Browser sorting extension

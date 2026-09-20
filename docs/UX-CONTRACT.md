@@ -9,11 +9,26 @@ controls/help; `terminal/service.py` for the operation boundary shared with CLI.
   requests a path before the menu. INSTALL handles explicit setup and returns.
 - Arrows move focus; Enter opens the highlighted action; visible menu numbers
   are equivalent shortcuts. Esc returns and restores the previous focus.
+- Riposte Sorter is the default first action, exposing exactly Sort, Dry Run and
+  Enter Path. The session retains the selected root. Its preset uses download
+  dates, saved category rules and Year/Month/img-or-vid/Category/Size, with
+  unmatched titles routed to uncategorized. It never infers rules or sidecar
+  deletion. Full Sort Workshop owns the existing configurable flow.
 - Sort explains its recursive folder scope before selection. It previews
   sanitation/organization and requires the exact `REPLACE` confirmation before
   replacing verified sources. Confirmation carries the displayed `plan_id`.
   File, destination, private-state or policy drift requires a new preview.
   Sidecar deletion has its own explicit option.
+- Dry Run exposes no apply action; Enter returns to the sorter. Sort uses the
+  existing result and exact confirmation owners. After apply or rejection of a
+  stale plan, returning goes directly to the sorter without reusable consent.
+- `g` pastes into an empty field in the sorter, workshop and every picker level.
+  Invalid input retains the old root. Picker `s` directly accepts the highlighted
+  folder for a single-folder choice. Location rows survive ignored input; arrows
+  and Enter consume a stable displayed list. Directory-entry attributes avoid
+  repeated filesystem probes when listing folders. Input bursts drain before
+  redraw; static screens repaint only on input or resize. Queued input is bounded
+  per drain without dropping events or turning partial escapes into shortcuts.
 - Sort previews show separate `img` and `vid` routes inside dated folders.
   Videos retain their bytes and metadata and never enter protection selection.
   Consent explains that private original copies are retained for recovery.
@@ -59,11 +74,12 @@ The public image/video catalog keeps its existing schema. Original titles and
 assignments live in its separate private `sort_titles` table and private undo
 journals; they are never PNG metadata or publishing pack contents.
 
-- Sort defaults to the existing layout. Enabling categories requires a fresh
+- Direct commands and Full Sort Workshop default to the existing layout;
+  Riposte Sorter explicitly enables saved categories. Enabling categories requires a fresh
   exact plan. Every file shows its source, original title (or unknown), matched
   terms, category and destination. A changed setting, rule revision, catalog,
   source or occupied destination invalidates apply consent.
-- The terminal Sort form exposes `s` for saved rules, `c` for discovery, `u` for
+- Full Sort Workshop exposes `s` for saved rules, `c` for discovery, `u` for
   undo, a category toggle and manual assignments. Rule replacement requires
   `SAVE`; file replacement requires `REPLACE` with the plan ID from the result.
   Sort + RIPOSTE binds that nested sorting plan in its top-level receipt and
@@ -98,3 +114,4 @@ journals; they are never PNG metadata or publishing pack contents.
 | Toast | Shared `app.js` toast | Existing live status region | Persistent sorting errors also appear inline | Error/retry browser checks |
 | CRUD | Rules service and sorting/undo service | PAC-027 and `category_rules.py`/`sort_history.py` | Review then replace complete rules; clear explicitly; no autosave | Stale revision and exact recovery tests |
 | Table Selection | Existing publication/library owners | Independent image selection policy | Category destination rows are read-only, with no row selection | Existing browser/publication regression suite |
+| Terminal menu and folder selection | `terminal/controller.py`, `paths.py`, `render.py`, `keyboard.py`, `app.py` | Three-action user request and existing operation consent | Riposte Sorter preset; Full Sort Workshop configuration; multi-input protection | `tests/test_sorter_menu.py`; Windows ConPTY burst/path tests in `evidence/sorter-menu/` |

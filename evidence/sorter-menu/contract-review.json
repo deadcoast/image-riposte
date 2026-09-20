@@ -1,0 +1,15 @@
+{
+  "changed_files": [
+    "src/riposte/terminal/actions.py",
+    "src/riposte/terminal/app.py",
+    "src/riposte/terminal/controller.py",
+    "src/riposte/terminal/interaction.py",
+    "src/riposte/terminal/keyboard.py",
+    "src/riposte/terminal/paths.py",
+    "src/riposte/terminal/render.py",
+    "src/riposte/terminal/state.py"
+  ],
+  "signatures": 478,
+  "leaf_modules": 56,
+  "application_files": 66
+}

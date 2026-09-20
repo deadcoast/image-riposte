@@ -39,14 +39,22 @@ class Picker:
         rows: list[dict[str, str | Path | bool]] = [{"kind": "accept", "title": f"Continue with {len(self.selected)} selected" if self.multiple else "Use this folder"},
                 {"kind": "parent", "title": "..  Parent folder", "path": self.directory.parent}]
         try:
-            children = sorted(self.directory.iterdir(), key=lambda p: (not p.is_dir(), p.name.casefold()))
-            for path in children:
-                if path.name in {".riposte", ".shroud"} or linked(path):
-                    continue
-                directory = path.is_dir()
-                if directory or self.multiple and path.is_file():
-                    rows.append({"kind": "directory" if directory else "file", "title": path.name,
-                                 "path": path, "selected": path in self.selected})
+            # Directory-entry attributes avoid statting every media file merely
+            # to browse folders, especially expensive on large/network libraries.
+            children: list[tuple[bool, Path]] = []
+            with os.scandir(self.directory) as entries:
+                for entry in entries:
+                    if entry.name in {".riposte", ".shroud"}:
+                        continue
+                    directory = entry.is_dir(follow_symlinks=False)
+                    if not directory and not (self.multiple and entry.is_file(follow_symlinks=False)):
+                        continue
+                    path = Path(entry.path)
+                    if not entry.is_symlink() and not linked(path):
+                        children.append((directory, path))
+            for directory, path in sorted(children, key=lambda item: (not item[0], item[1].name.casefold())):
+                rows.append({"kind": "directory" if directory else "file", "title": path.name,
+                             "path": path, "selected": path in self.selected})
             self.error = ""
         except OSError:
             self.error = "Cannot read this folder. Choose its parent or another location."

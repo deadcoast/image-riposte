@@ -66,7 +66,7 @@ ACTIONS = (
     Action("riposte", "RIPOSTE", "PRIMARY", "Protect files or folders. Keep originals and their folder structure.", (*INPUT_FIELDS, SORT_FIELDS[0], *PUB_FIELDS)),
     Action("sort-riposte", "Sort + RIPOSTE", "PRIMARY", "Preview sorting, confirm replacement, then protect the organized collection.", (*SORT_FIELDS, *PUB_FIELDS)),
     Action("publish", "Protect & publish", "PRIMARY", "Selected clean images -> independently optimized publishing files.", PUB_FIELDS),
-    Action("organize", "Sort", "PRIMARY", "Preview image/video sorting into img/vid folders; originals saved for undo.", SORT_FIELDS),
+    Action("organize", "Full Sort Workshop", "PRIMARY", "Configure image/video sorting, category rules and sidecar consent; originals saved for undo.", SORT_FIELDS),
     Action("categories", "Filename categories", "PRIMARY", "Discover filename terms and review session groups. No files or rules are written.", (
         Field("min_count", "Minimum file count", "int", 2, "Each term counts once per filename, wherever it occurs.", minimum=1, maximum=1_000_000_000),
         Field("max_words", "Maximum phrase words", "int", 3, "Suggest contiguous phrases up to three words.", minimum=1, maximum=3),

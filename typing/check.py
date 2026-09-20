@@ -18,7 +18,7 @@ HERE = ROOT / "typing"
 STUBS = HERE / "stubs" / "riposte"
 EVIDENCE = HERE / "evidence"
 CONTRACT_CONFIG = "typing/mypy-contracts.ini"
-REVIEWED_SOURCE = EVIDENCE / "source-reviewed-kontext.json"
+REVIEWED_SOURCE = EVIDENCE / "source-reviewed-sorter-menu.json"
 
 
 def is_application_source(path: Path) -> bool:
@@ -197,7 +197,7 @@ def main() -> int:
 
     before = source_hashes()
     reviewed = json.loads(REVIEWED_SOURCE.read_text(encoding="utf-8"))
-    # PAC-031 reviews exact ordinary/combined receipts and existing interface owners.
+    # Sorter menu review covers shared input, picker and preset UI contracts.
     # Earlier reviewed snapshots remain historical; no source-body typing claim.
     reviewed = {path: value for path, value in reviewed.items() if is_application_source(Path(path))}
     drift = sorted(k for k in before.keys() | reviewed.keys() if before.get(k) != reviewed.get(k))

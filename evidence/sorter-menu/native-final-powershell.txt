@@ -1,0 +1,16 @@
+{
+  "result": "PASS",
+  "checks": [
+    "powershell launcher without a path opens the raw interactive main menu",
+    "Default Enter opens Riposte Sorter with exactly the three requested actions",
+    "Pasted path replaces empty input without Ctrl+U and returns directly to the sorter",
+    "A burst of 25 arrows plus Enter opens the exact expected folder",
+    "Nested g works; s selects that folder; Dry Run returns without a write or settings screens",
+    "Static sorter stays idle without continuous full-screen redraws",
+    "Full Sort Workshop opens existing configuration and supports g directly",
+    "Enter opens purpose-labelled multi-input browser",
+    "Selection carries to an explained results-folder browser",
+    "Visible numeric shortcut opens combined workflow",
+    "Quit restores the cursor, exits zero, and leaves synthetic inputs unchanged"
+  ]
+}

@@ -66,10 +66,27 @@ Install once, then launch without a path:
 ```
 
 You can also double-click `START.cmd`. **START opens the interactive main menu.**
-Choose **RIPOSTE**, **Sort**, or **Sort + RIPOSTE** with arrows and Enter (or the
-visible number). The action explains what it does before opening a file/folder
-browser. Space selects files or folders; Enter opens a folder; Backspace goes up;
-`l` lists drives and home locations. `g` optionally accepts a pasted path.
+**Riposte Sorter** is the first, default action. Open it for **1. Sort**,
+**2. Dry Run**, or **3. Enter Path**. Paste your folder once, then choose Sort or
+Dry Run without configuring a series of menus. `g` also enters a path; quotes
+are accepted and a paste replaces the empty field. The folder stays selected
+for the session. **Full Sort Workshop** retains the configurable workflow.
+
+Riposte Sorter uses download dates (creation/birth time with modified-time
+fallback), saved filename-category rules, and
+`Year/Month/img-or-vid/Category/Size`. Unmatched titles go to `uncategorized`;
+ambiguous rules or missing title provenance remain blockers for the workshop.
+Images become date-only PNGs, videos keep their bytes, and originals remain
+privately recoverable. Sidecar deletion requires explicit workshop consent.
+**Sort** displays the exact preview, then requires `REPLACE`. **Dry Run** only
+displays the preview; its result cannot apply. Direct `sort` defaults are unchanged;
+`riposte sort ROOT --categories` previews the same preset.
+
+**RIPOSTE** and **Sort + RIPOSTE** remain independent main-menu choices.
+In the optional folder browser (`b`), Enter opens the highlighted folder and `s`
+uses it directly; Backspace goes up and `l` lists drives and home locations.
+For protection inputs, Space selects files or folders and `s` selects the current
+folder. `g` accepts a pasted path at every folder level and in Full Sort Workshop.
 Esc cancels and returns to the previous screen.
 
 INSTALL sets up the project-local `.venv` in editable mode and returns without
@@ -132,11 +149,12 @@ riposte publish --help                  All publishing controls
 
 Direct commands and interactive forms call the same operation service. The interface does not simulate an engine, shell out to a pretend CLI, or execute the text displayed in the command lens.
 
-The main action deck includes **RIPOSTE / Sort / Sort + RIPOSTE / Image library / Publishing batches / Local models / Terminal & workspace / Workshop / Undo last sort**. Choose the work you need on each run; the normal workflow never requires the workshop.
+The main action deck includes **Riposte Sorter / RIPOSTE / Sort + RIPOSTE / Image library / Publishing batches / Local models / Terminal & workspace / Full Sort Workshop / Undo last sort**, plus **Workshop** (`w`) for expert protection helpers.
 
 | Workflow | Interactive terminal | Direct command |
 | --- | --- | --- |
-| Sort | **Sort** previews the directory, then requires `REPLACE` | `riposte sort ROOT`; add `--apply --plan-id PLAN_ID` from that preview to replace sources |
+| Riposte Sorter | **Sort / Dry Run / Enter Path** with the category preset | `riposte sort ROOT --categories`; add `--apply --plan-id PLAN_ID` from that preview to replace sources |
+| Full Sort Workshop | Configure dates, sidecars, categories and assignments; preview before `REPLACE` | `riposte sort ROOT` plus the corresponding options |
 | Undo last sort | **Undo last sort** previews recovery, then requires `UNDO`; also available with `u` in the Sort form | `riposte undo-sort ROOT`; add `--apply` to restore |
 | RIPOSTE | **RIPOSTE** accepts a file or directory; library `p` protects selected catalog images | `riposte riposte ROOT --input PATH --vae MODEL`; repeat `--input` for more files/folders; add `--plan` for a read-only preview |
 | Sort + RIPOSTE | **Sort + RIPOSTE** previews sorting and protection, then requires `REPLACE` | `riposte sort-riposte ROOT --all --vae MODEL`; add `--apply --plan-id PLAN_ID` from the combined preview to run both |
@@ -157,7 +175,7 @@ protection do not need ffprobe. Common video extensions include MP4, MOV, MKV,
 WEBM, AVI, M4V, WMV, MPG/MPEG, MTS/M2TS, 3GP and OGV; the installed ffprobe must
 be able to read the actual stream. Unreadable videos remain in place as blockers.
 
-**Filename category discovery is read-only.** In the Sort form, press `c` for
+**Filename category discovery is read-only.** In Full Sort Workshop, press `c` for
 Categories, then run discovery to see recurring words and short phrases with
 matching-file counts and examples. Return to the form to select or rename a group
 with `Hockey=hockey`, or merge explicit terms with `Hockey=hockey;goalie;goaltender`.
@@ -177,11 +195,12 @@ later saves require the revision shown by the current preview. `--exclude`,
 `--priority`, and `--slug` customize exclusions, match priority and folder names.
 `riposte category-rules ROOT --review` reloads saved rules and shows filename
 matches. Rules are private workspace state; saving them does not enable category
-sorting. In the terminal Sort form, press `s` for saved rules. In the browser,
+sorting in the workshop or direct CLI. Riposte Sorter's preset uses saved rules.
+In Full Sort Workshop, press `s` for saved rules. In the browser,
 enable Sort by filename category and open Discover and save category rules.
 See [the command reference](docs/CLI.md#saved-category-rules).
 
-**Category sorting is optional.** Run `riposte sort ROOT --categories` for a
+**Category sorting is the Riposte Sorter preset and optional in other entries.** Run `riposte sort ROOT --categories` for a
 read-only plan containing every source, trusted original title, matching term,
 category and exact destination. Apply with `--categories --apply --plan-id ID`
 using the ID from that preview. Changed files, rules, assignments, catalogs or

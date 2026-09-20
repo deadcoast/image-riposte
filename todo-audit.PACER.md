@@ -590,6 +590,74 @@ interpreting real task outcomes. This host has no CUDA, pretrained qualification
 or independent rater evidence. Current geometry and tiny-model execution must not
 be represented as modern-family efficacy or industry-leading performance.
 
+## Sorter interaction repair / 2026-09-19 / implemented and verified at stated scope
+
+USER: "im trying to use the sorter. the menu is so insanely unresponse i cant even fucking pick what folder to select. HALF THE TIME ITS JUST WRONG; ITS NOT EVEN ON THE CORRECT HIGHLIGHTED ITEM. LITERALLY TRIED LIKE 10 TIMES CANT SELECT THE CORRECT FUCKING FOLDER.  PRESSING [g] ADD TO PATH WORKS HALF THE TIME, IT ONLY WORKS ON THE FIRST SCREEN. WHY IS THERE LIKE 10 FUCKING SCREENS JUST TO PREVIEW A SORT? THERE SHOULD BE A SORTER MODE SET ALREADY LIKE I HAVE DESIGNED 50 FUCKING TIMES ALREADY IN THIS REPOSITORY. THESE OPTIONS ARE FINE; BUT I DONT NEED 7 OR 8 OR 9 OR 10 MENUS EVERY TIME I SORT. THATS WHY I WANTED A DEFAULT SORT WITH THE ADVANCED METHODS WE HAVE ALREADY CREATED. THE CURRENT WORKFLOW SHOULD BE NAMED \"FULL SORT WORKSHOP\", THE DEFAULT ONE SHOULD BE NAMED \"Riposte Sorter\", WHICH IS OUR OPINIONATED DESIGNED METHOD. I INSIDE Riposte Sorter I SHOULD HAVE THE OPTIONS TO 1. SORT, 2. DRY RUN, 3. ENTER PATH"
+
+OBSERVED: the live loop consumes one key per complete render; Windows zero-timeout
+reads cannot consume queued input. Picker unhandled keys replace location rows
+with directory rows while retaining the locations flag. `g` exists only in the
+picker, and its prefilled path causes a fresh paste to append to that path.
+Two pre-repair failures are retained in `evidence/sorter-menu/before.txt`.
+
+INFERRED implementation scope: default Riposte Sorter exposes exactly Sort,
+Dry Run, Enter Path; uses the existing download-date, img/vid, saved-category,
+size-bin policy, title provenance and private undo. No inferred category aliases
+or sidecar deletion. Sort reviews its exact plan before REPLACE; Dry Run cannot
+apply from its result. The existing configurable sorter becomes Full Sort
+Workshop. Paths remain session-only. Repair shared input draining, stable picker
+rows and path entry; retain the independent protection workflows.
+
+PACER onboarding is valid with 11 pre-existing stale evidence records. Relevant
+OVR FILE owners: 038/039/040/043/047/050/160/875. The historical PAC-022 context
+exceeds the bounded packet (396114 bytes, 913 connected rows); its full projected
+task obligations were read, and this new assignment is paced here under the
+four-register freeze. No receipt-bound register writes are attempted. Complete
+source/symbol/contracts/evidence reconciliation remains deferred together.
+
+Implemented Riposte Sorter as the default main action with exactly Sort, Dry Run,
+Enter Path. Full Sort Workshop retains existing settings/discovery/rules/undo.
+The preset explicitly enables the established category sorter; saved rules and
+manual provenance remain authoritative. Sort keeps exact preview/REPLACE consent;
+Dry Run cannot apply. Direct CLI defaults and independent protection paths remain.
+
+Repaired bounded input draining, Windows nonblocking reads, idle static redraws,
+stable location/row selection, direct highlighted-folder acceptance (including
+parent rows), failed-navigation focus, and empty pasted-path inputs at every
+depth and in both sorting modes. Folder-only listing avoids per-media probes;
+sorter path selection does not load unrelated catalog/publication history.
+
+Final affected suite: **197 passed, 4 POSIX skips**. Broader run: **1325 passed,
+9 skips**, with the two native browser scenarios run separately and passing
+outside the sandbox. That broader run precedes the final parent/disappeared-folder
+correction; affected tests and native checks were repeated afterward. Original
+browser sandbox timeouts, fixture setup failures and pre-fix failures are retained.
+Actual Windows START.ps1 and START.cmd ConPTY runs verify burst arrows/Enter,
+nested pasted paths, the three-action flow and no idle redraw stream. Temporary
+media tests execute real saved-rule sorting, exact consent, stale rejection and
+byte-exact undo. Production terminal renders were visually inspected at 72x24
+and 100x34. Evidence and reproduction: `evidence/sorter-menu/README.md`.
+
+External contracts pass seven stages: 478 signatures, 56 leaf modules, 66 files;
+13 negative consumer diagnostics retained. Reviewed stubs add five declarations;
+eight terminal files changed, all other application hashes match the prior
+Kontext snapshot. Raw-source mypy remains FAIL with 782 diagnostics (36/59 files),
+including ten added call-site diagnostics into existing untyped UI helpers; no
+settings, suppressions or dynamic-boundary relaxation. Fresh wheel/sdist bytes
+match reviewed source. The web-oriented premium scanner retains 66 findings on
+unchanged browser source; it cannot qualify Python terminal interaction.
+
+All four CSV hashes remain unchanged. PACER structural validation is valid;
+11 stale requirement records remain. Source/symbol/new-test/contract/evidence
+registration and the development/release snapshot reconciliation are deferred
+together under the freeze. This repair does not establish clean installation,
+POSIX native behavior, real-library performance or model efficacy.
+
+Next action: use the repaired sorter on the user's chosen library; retain any
+remaining host/library-specific reproduction. Continue the wider audit only in
+its authorized lane, and reconcile the frozen registers at its completion
+milestone. PAC-034 remains shelved.
+
 ## Original PAC-028 handoff / historical identification result
 
 • Completed PAC-028: reviewed eight application areas and recorded 16 prioritized items in todo.PACER.csv. Each has source references and acceptance

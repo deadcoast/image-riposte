@@ -9,6 +9,24 @@ separate read-only source selection for standalone protection. See the
 [application-root evidence](../evidence/application-roots/README.md) for layout
 and compatibility details.
 
+## Quick terminal sorting
+
+Open **Riposte Sorter** (the default main-menu action): **1. Sort**, **2. Dry Run**,
+**3. Enter Path**. Enter a folder once per session using `3` or `g`; both Sort and
+Dry Run ask for it directly if none is selected. No configuration screens precede
+the preview. The preset uses download dates, saved categories, separate img/vid
+folders and existing size bins. Missing matches use `uncategorized`; ambiguous
+matches require correction in **Full Sort Workshop**. Sidecars are preserved
+unless separately authorized there. Sort reviews a fresh exact plan and requires
+REPLACE; Dry Run has no apply action. `b` optionally browses folders and `u`
+previews undo. Direct equivalent: `riposte sort ROOT --categories`.
+
+**Full Sort Workshop** (main-menu `8`) retains all earlier settings, discovery,
+saved rules, assignments and undo. `g` changes its folder without losing settings.
+Folder browsers keep `g` available at every depth, Enter opens the highlighted
+directory and `s` uses it directly. Protection's multi-input browser retains Space
+to select files/folders and `s` to select the current folder.
+
 ## Command inventory
 
 Every listed command is a real Typer command; use `riposte COMMAND --help` for parameter types, defaults, bounds and repeatable options.

@@ -8,6 +8,13 @@ PAC-029 through PAC-033 have bounded implementation acceptance in the Markdown a
 was the preceding identification audit. Remaining findings and CSV reconciliation
 are open.
 
+The terminal defaults to **Riposte Sorter** with **Sort / Dry Run / Enter Path**;
+**Full Sort Workshop** retains detailed configuration. The shared keyboard loop
+drains queued input and avoids continuous static-screen redraws. Folder selection
+uses stable displayed rows, and pasted paths work in both sorter modes and at
+every browsing depth. See [sorter interaction evidence](../evidence/sorter-menu/README.md)
+for exact native/test scope; this does not complete the wider release milestone.
+
 The user has shelved PAC-034 and directed research-led development under
 [Provable Claims and Use Cases](PCUC.md). PCUC-001 now integrates shared-view
 gradients into the production publishing engine. Its mathematical/CPU evidence

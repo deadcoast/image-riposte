@@ -124,7 +124,7 @@ class TerminalKeys:
         if os.name == "nt":
             import msvcrt
             deadline = time.monotonic() + timeout
-            while time.monotonic() < deadline:
+            while True:
                 if msvcrt.kbhit():
                     char = msvcrt.getwch()
                     if self._windows_prefix is not None:
@@ -135,6 +135,8 @@ class TerminalKeys:
                     self.decoder.feed(char)
                     value = self.decoder.next()
                     if value: return value
+                    continue
+                if time.monotonic() >= deadline: break
                 time.sleep(.006)
         else:
             import select
@@ -144,4 +146,5 @@ class TerminalKeys:
                 if not raw: return Key("eof")
                 self.decoder.feed(self._unicode.decode(raw))
                 return self.decoder.next()
-        return self.decoder.next(flush_escape=True)
+        # Nonblocking queue drains must retain a fragmented escape sequence.
+        return self.decoder.next(flush_escape=timeout > 0)

@@ -90,7 +90,7 @@ def home(c, state, time):
         top += 7
     else:
         c.text(3, top, "IMAGE PROTECTION & ORGANIZATION", "text", bold=True)
-        top += 2
+        top += 1
     counts = "Choose an action, then browse images or folders."
     c.text(3, top, counts, "accent", width=c.width - 6)
     c.rule(top + 1, label="MAIN MENU" if not state.page.query_edit else "FIND AN ACTION")
@@ -105,7 +105,8 @@ def home(c, state, time):
         if selected: c.fill(3, y, deck_width, stride, "raised")
         row = rows[n]
         marker = ">" if selected else " "
-        c.text(4, y, f"{marker} {n+1}  {row['title']}", "accent" if selected else "text", bold=selected, width=deck_width - 2)
+        shortcut = str(n+1) if n < 9 else "w"
+        c.text(4, y, f"{marker} {shortcut}  {row['title']}", "accent" if selected else "text", bold=selected, width=deck_width - 2)
         if stride > 1: c.text(10, y+1, row["summary"], "muted", width=deck_width-8)
     if not rows: c.text(4, top, "No matching actions. Clear the search.", "warn")
     if rows and c.width >= 100:
@@ -116,6 +117,23 @@ def home(c, state, time):
         c.wrap(x, top+2, action.summary if action else row["summary"], width, 4, "text")
         c.wrap(x, top+6, "No files change when you open an action.", width, 2)
     footer(c, state, "[1-7] choose   [Up/Down] focus   [Enter] open   [/] find   [q] quit")
+
+
+def sorter(c: Surface, state: Session) -> None:
+    c.text(3, 6, "FOLDER", "muted")
+    c.wrap(3, 7, str(state.root) if state.root else "No folder selected. Choose Enter Path.", c.width-6, 3, "accent")
+    c.rule(10, label="READY TO SORT")
+    for n, row in enumerate(view_rows(state)):
+        focused = n == state.page.cursor
+        c.text(4, 11+n*2, f"{'>' if focused else ' '} {n+1}. {row['title']}",
+               "accent" if focused else "text", bold=focused, width=c.width-8)
+        if c.width >= 100: c.text(24, 11+n*2, row["summary"], "muted", width=c.width-28)
+    c.text(3, 17, "Year / Month / img-or-vid / Category / Size", "text", width=c.width-6)
+    if c.height >= 28:
+        c.wrap(3, 19, "Download dates; saved category rules; unmatched titles go to Uncategorized. "
+               "Images become date-only PNGs; videos keep their bytes. Originals stay in private undo history. "
+               "Sidecars require Full Sort Workshop consent.", c.width-6, c.height-25, "muted")
+    footer(c, state)
 
 
 def picker(c, state):
@@ -135,7 +153,8 @@ def picker(c, state):
         mark = "[x] " if row.get("selected") else "[ ] " if browser.multiple and row["kind"] in {"file", "directory"} else "    "
         suffix = "/" if row["kind"] == "directory" else ""
         c.text(3, y, f"{'>' if focused else ' '} {n+1:2} {mark}{row['title']}{suffix}", "accent" if focused else "text", bold=focused, width=c.width-6)
-    c.text(3, c.height-6, f"{len(browser.selected)} selected   |   Rows {start+1}-{end}/{len(rows)}", "muted", width=c.width-6)
+    selection = f"{len(browser.selected)} selected" if browser.multiple else "s uses the highlighted folder"
+    c.text(3, c.height-6, f"Rows {start+1}-{end}/{len(rows)}   |   {selection}", "muted", width=c.width-6)
     footer(c, state)
 
 
@@ -437,7 +456,8 @@ def render(state:Session,width:int,height:int,time:float=0)->Surface:
                'form':lambda:form(c,state),'batches':lambda:batches(c,state),'batch':lambda:batches(c,state),
                'item':lambda:item(c,state),'workshop':lambda:workshop(c,state),'result':lambda:result(c,state),
                'job':lambda:job(c,state,time),'preferences':lambda:preferences(c,state),'help':lambda:help_page(c,state),
-               'command':lambda:command_page(c,state),'confirm':lambda:confirm(c,state),'picker':lambda:picker(c,state)}
+               'command':lambda:command_page(c,state),'confirm':lambda:confirm(c,state),'picker':lambda:picker(c,state),
+               'sorter':lambda:sorter(c,state)}
     renderers.get(page,lambda:home(c,state,time))()
     if state.page.query_edit:
         c.fill(3,c.height-5,c.width-6,1,"raised")

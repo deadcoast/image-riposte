@@ -233,7 +233,7 @@ def test_combined_incomplete_sort_stops_protection(root, make_image, models, mon
 @pytest.mark.parametrize('dimensions', [(79, 24), (100, 34), (132, 46)])
 def test_three_workflow_forms_render_and_preview_commands_do_not_apply(root, make_image, dimensions):
     make_image(root / 'input.png')
-    assert {'Sort', 'RIPOSTE', 'Sort + RIPOSTE'} <= {entry[1] for entry in HOME}
+    assert {'Riposte Sorter', 'Full Sort Workshop', 'RIPOSTE', 'Sort + RIPOSTE'} <= {entry[1] for entry in HOME}
     controller = Controller(root, Presentation())
     for key in ('organize', 'riposte', 'sort-riposte'):
         controller.action(key)
@@ -274,7 +274,7 @@ def test_linear_user_can_preview_file_without_catalog_or_commands(root, make_ima
     before = snapshot(root)
     controller = Controller(root, Presentation(plain=True))
     transcript = io.StringIO()
-    linear_session(controller, io.StringIO('1\ns\nenter\nenter\np\nq\n'), transcript)
+    linear_session(controller, io.StringIO('2\ns\nenter\nenter\np\nq\n'), transcript)
     assert 'PUBLISHING PLAN' in transcript.getvalue()
     assert controller.state.page.result['images'] == 1 and source.exists()
     assert snapshot(root) == before

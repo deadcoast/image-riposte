@@ -100,6 +100,18 @@ def linear_session(controller, input_stream=None, output_stream=None):
         _line_command(controller,line.rstrip("\r\n"))
 
 
+def _read_keys(controller: Controller, keyboard: TerminalKeys, timeout: float) -> bool:
+    """Drain a bounded input burst before the next expensive terminal repaint."""
+    key = keyboard.read(timeout)
+    changed = key is not None
+    for index in range(128):
+        if key is None: break
+        controller.key(key)
+        if not controller.state.running: break
+        if index < 127: key = keyboard.read(0)
+    return changed
+
+
 def launch(root:Path|None,presentation:Presentation,*,linear=False,initial="home") -> int:
     with termination_guard():
         return _launch(root,presentation,linear=linear,initial=initial)
@@ -121,15 +133,20 @@ def _launch(root:Path|None,presentation:Presentation,*,linear=False,initial="hom
             # and cursor restoration exit before browser or OS shell handoffs.
             with TerminalKeys(output=console.file) as keyboard:
                 with Live(console=console,screen=True,auto_refresh=False,redirect_stdout=False,redirect_stderr=False,vertical_overflow="crop") as live:
+                    dirty = True
                     while state.running:
                         try:
+                            previous_page = state.page
                             controller.pump()
-                            state.width=console.size.width;state.height=console.size.height
+                            size = console.size
+                            dirty |= previous_page is not state.page or (state.width, state.height) != (size.width, size.height)
+                            state.width, state.height = size.width, size.height
                             elapsed=time.monotonic()-controller.started
                             motion_time=state.frozen_time if state.paused else elapsed
-                            live.update(render(state,state.width,state.height,motion_time),refresh=True)
-                            key=keyboard.read(1/max(4,presentation.fps))
-                            if key:controller.key(key)
+                            animated = state.page.name == "job" or state.page.name == "home" and not state.paused
+                            if dirty or animated:
+                                live.update(render(state,state.width,state.height,motion_time),refresh=True)
+                            dirty = _read_keys(controller, keyboard, 1/max(4,presentation.fps))
                         except KeyboardInterrupt:controller.key(Key("interrupt"))
     except TerminationRequested:
         state.handoff=None;state.switch_linear=False;code=143

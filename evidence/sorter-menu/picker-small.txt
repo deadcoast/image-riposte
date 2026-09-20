@@ -1,0 +1,24 @@
+                                                                        
+   R I P O S T E    /  SORT / SELECT FOLDER                             
+                                                                        
+  --------------------------------------------------------------------  
+   MAIN MENU / SORT / SELECT FOLDER                                     
+                                                                        
+   Select the folder to sort, including its subfolders. Preview         
+   first; replacing originals requires REPLACE.                         
+                                                                        
+                                                                        
+   C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-capture-33_0j0_l    
+  -- FOLDERS ---------------------------------------------------------  
+      7     image-folder-04/                                            
+      8     image-folder-05/                                            
+   >  9     image-folder-06/                                            
+     10     image-folder-07/                                            
+     11     image-folder-08/                                            
+     12     image-folder-09/                                            
+   Rows 7-12/32   |   s uses the highlighted folder                     
+   Selection is read-only. Enter on the first row confirms your ch...   
+  --------------------------------------------------------------------  
+   [Enter] Open / choose   [s] Use folder   [Esc] Cancel                
+   [g] Go to path   [Backspace] Parent   [l] Locations   [F1] Help      
+                                                                        

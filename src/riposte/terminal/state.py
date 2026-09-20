@@ -7,15 +7,16 @@ from .actions import Field
 from .output import Presentation
 
 HOME = (
+    ("sorter", "Riposte Sorter", "Ready-to-use sorting: Sort, Dry Run, Enter Path"),
     ("riposte", "RIPOSTE", "Protect files or folders; preserve originals"),
-    ("organize", "Sort", "Preview and sort images/videos; undo available"),
     ("sort-riposte", "Sort + RIPOSTE", "Organize, then protect in one workflow"),
     ("library", "Image library", "Browse and select cleaned images"),
     ("batches", "Publishing batches", "Review, resume, package"),
     ("doctor", "Local models", "Configure local processing"),
     ("preferences", "Terminal & workspace", "Palette, motion, workspace"),
-    ("workshop", "Workshop", "Optional expert helpers"),
+    ("organize", "Full Sort Workshop", "Configure dates, categories, assignments and sidecars"),
     ("undo-sort", "Undo last sort", "Preview restoring original files and names"),
+    ("workshop", "Workshop", "Optional expert protection helpers"),
 )
 
 @dataclass
