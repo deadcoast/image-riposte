@@ -1,3 +1,4 @@
+from riposte.organizer import plan as _sort_preview
 import hashlib, io, json
 from pathlib import Path
 from zipfile import ZipFile
@@ -21,7 +22,7 @@ class Oracle:
 @pytest.fixture
 def prepared(root,make_image):
     for i,size in enumerate([(96,80),(64,48),(128,80)]):make_image(root/f'prior/sub/image-{i}.png',size=size,color=(30+i*15,90,150))
-    organize(root,Policy(date_mode='modified'))
+    organize(root,Policy(date_mode='modified'), plan_id=_sort_preview(root, Policy(date_mode='modified'))["plan_id"])
     return [r['id'] for r in catalog(root)]
 
 @pytest.fixture

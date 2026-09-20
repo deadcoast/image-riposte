@@ -1,0 +1,644 @@
+FFFFFFFFFFFFFFFFFF..                                                     [100%]
+================================== FAILURES ===================================
+_____ test_protocol_precedes_generation_and_packet_hides_conditions[edit] _____
+
+root = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/riposte-experiment-before-768c5c6646f44b7da8340d01448c1a06/pytest/test_protocol_precedes_generat0/workspace')
+tmp_path = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/riposte-experiment-before-768c5c6646f44b7da8340d01448c1a06/pytest/test_protocol_precedes_generat0')
+prepared = {'method': 'external', 'evidence_level': 'PIXEL_TRANSPORT_ONLY', 'ai_protection': 'UNVERIFIED', 'external_source': 'Not copied into workspace; original outside workspace is unchanged.', ...}
+task = 'edit'
+
+    @pytest.mark.parametrize('task', ['edit', 'inpaint', 'video'])
+    def test_protocol_precedes_generation_and_packet_hides_conditions(root, tmp_path, prepared, task):
+>       run = generate(root, tmp_path, prepared, task=task)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_experiment.py:54: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_experiment.py:40: in generate
+    return controlled_generation(root, prepared['id'], tmp_path, seeds=(7,), views=('identity',), steps=1, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\riposte\generation.py:151: in controlled_generation
+    return _execute(root, trial, pair, generator, task, seeds, views, steps, progress)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\riposte\generation.py:171: in _execute
+    frames = generator(image, seed, steps)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <test_experiment.prepared.<locals>.Generator object at 0x000002367EBD0830>
+image = <PIL.Image.Image image mode=RGB size=32x24 at 0x2367EBC7350>, seed = 7
+steps = 1
+
+    def __call__(self, image, seed, steps):
+        receipts = list((root / '.riposte/experiments').glob('*/protocol.json'))
+>       assert receipts, 'Protocol must exist before the first generation call'
+E       AssertionError: Protocol must exist before the first generation call
+E       assert []
+
+tests\test_experiment.py:31: AssertionError
+___ test_protocol_precedes_generation_and_packet_hides_conditions[inpaint] ____
+
+root = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/riposte-experiment-before-768c5c6646f44b7da8340d01448c1a06/pytest/test_protocol_precedes_generat1/workspace')
+tmp_path = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/riposte-experiment-before-768c5c6646f44b7da8340d01448c1a06/pytest/test_protocol_precedes_generat1')
+prepared = {'method': 'external', 'evidence_level': 'PIXEL_TRANSPORT_ONLY', 'ai_protection': 'UNVERIFIED', 'external_source': 'Not copied into workspace; original outside workspace is unchanged.', ...}
+task = 'inpaint'
+
+    @pytest.mark.parametrize('task', ['edit', 'inpaint', 'video'])
+    def test_protocol_precedes_generation_and_packet_hides_conditions(root, tmp_path, prepared, task):
+>       run = generate(root, tmp_path, prepared, task=task)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_experiment.py:54: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_experiment.py:40: in generate
+    return controlled_generation(root, prepared['id'], tmp_path, seeds=(7,), views=('identity',), steps=1, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\riposte\generation.py:151: in controlled_generation
+    return _execute(root, trial, pair, generator, task, seeds, views, steps, progress)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\riposte\generation.py:171: in _execute
+    frames = generator(image, seed, steps)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <test_experiment.prepared.<locals>.Generator object at 0x000002367ED58C20>
+image = <PIL.Image.Image image mode=RGB size=32x24 at 0x2367EBC7F50>, seed = 7
+steps = 1
+
+    def __call__(self, image, seed, steps):
+        receipts = list((root / '.riposte/experiments').glob('*/protocol.json'))
+>       assert receipts, 'Protocol must exist before the first generation call'
+E       AssertionError: Protocol must exist before the first generation call
+E       assert []
+
+tests\test_experiment.py:31: AssertionError
+____ test_protocol_precedes_generation_and_packet_hides_conditions[video] _____
+
+root = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/riposte-experiment-before-768c5c6646f44b7da8340d01448c1a06/pytest/test_protocol_precedes_generat2/workspace')
+tmp_path = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/riposte-experiment-before-768c5c6646f44b7da8340d01448c1a06/pytest/test_protocol_precedes_generat2')
+prepared = {'method': 'external', 'evidence_level': 'PIXEL_TRANSPORT_ONLY', 'ai_protection': 'UNVERIFIED', 'external_source': 'Not copied into workspace; original outside workspace is unchanged.', ...}
+task = 'video'
+
+    @pytest.mark.parametrize('task', ['edit', 'inpaint', 'video'])
+    def test_protocol_precedes_generation_and_packet_hides_conditions(root, tmp_path, prepared, task):
+>       run = generate(root, tmp_path, prepared, task=task)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_experiment.py:54: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_experiment.py:40: in generate
+    return controlled_generation(root, prepared['id'], tmp_path, seeds=(7,), views=('identity',), steps=1, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\riposte\generation.py:151: in controlled_generation
+    return _execute(root, trial, pair, generator, task, seeds, views, steps, progress)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\riposte\generation.py:171: in _execute
+    frames = generator(image, seed, steps)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <test_experiment.prepared.<locals>.Generator object at 0x000002367ED58D70>
+image = <PIL.Image.Image image mode=RGB size=1024x576 at 0x2367ED84AD0>
+seed = 7, steps = 1
+
+    def __call__(self, image, seed, steps):
+        receipts = list((root / '.riposte/experiments').glob('*/protocol.json'))
+>       assert receipts, 'Protocol must exist before the first generation call'
+E       AssertionError: Protocol must exist before the first generation call
+E       assert []
+
+tests\test_experiment.py:31: AssertionError
+_____ test_review_appends_exact_arithmetic_and_retains_incomplete_ratings _____
+
+root = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/riposte-experiment-before-768c5c6646f44b7da8340d01448c1a06/pytest/test_review_appends_exact_arit0/workspace')
+tmp_path = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/riposte-experiment-before-768c5c6646f44b7da8340d01448c1a06/pytest/test_review_appends_exact_arit0')
+prepared = {'method': 'external', 'evidence_level': 'PIXEL_TRANSPORT_ONLY', 'ai_protection': 'UNVERIFIED', 'external_source': 'Not copied into workspace; original outside workspace is unchanged.', ...}
+
+    def test_review_appends_exact_arithmetic_and_retains_incomplete_ratings(root, tmp_path, prepared):
+>       run = generate(root, tmp_path, prepared)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_experiment.py:78: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_experiment.py:40: in generate
+    return controlled_generation(root, prepared['id'], tmp_path, seeds=(7,), views=('identity',), steps=1, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\riposte\generation.py:151: in controlled_generation
+    return _execute(root, trial, pair, generator, task, seeds, views, steps, progress)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\riposte\generation.py:171: in _execute
+    frames = generator(image, seed, steps)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <test_experiment.prepared.<locals>.Generator object at 0x000002367ED58440>
+image = <PIL.Image.Image image mode=RGB size=32x24 at 0x2367ED85490>, seed = 7
+steps = 1
+
+    def __call__(self, image, seed, steps):
+        receipts = list((root / '.riposte/experiments').glob('*/protocol.json'))
+>       assert receipts, 'Protocol must exist before the first generation call'
+E       AssertionError: Protocol must exist before the first generation call
+E       assert []
+
+tests\test_experiment.py:31: AssertionError
+_ test_failed_generation_remains_discoverable_without_partial_frames[cancel] __
+
+root = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/riposte-experiment-before-768c5c6646f44b7da8340d01448c1a06/pytest/test_failed_generation_remains0/workspace')
+tmp_path = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/riposte-experiment-before-768c5c6646f44b7da8340d01448c1a06/pytest/test_failed_generation_remains0')
+prepared = {'method': 'external', 'evidence_level': 'PIXEL_TRANSPORT_ONLY', 'ai_protection': 'UNVERIFIED', 'external_source': 'Not copied into workspace; original outside workspace is unchanged.', ...}
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000002367ECE98C0>
+failure = 'cancel'
+
+    @pytest.mark.parametrize('failure', ['cancel', 'error', 'interrupt'])
+    def test_failed_generation_remains_discoverable_without_partial_frames(root, tmp_path, prepared, monkeypatch, failure):
+        calls = 0
+        def fail(self, image, seed, steps):
+            nonlocal calls
+            calls += 1
+            if calls == 2:
+                if failure == 'interrupt':
+                    raise KeyboardInterrupt()
+                raise RiposteError('JOB_CANCELLED') if failure == 'cancel' else RuntimeError(str(tmp_path))
+            return [image.copy()]
+        monkeypatch.setattr('riposte.generation.LocalGenerator.__call__', fail)
+        with pytest.raises((RiposteError, RuntimeError, KeyboardInterrupt)):
+            generate(root, tmp_path, prepared)
+        entries = experiment_status(root)['experiments']
+>       assert len(entries) == 1
+E       assert 0 == 1
+E        +  where 0 = len([])
+
+tests\test_experiment.py:111: AssertionError
+__ test_failed_generation_remains_discoverable_without_partial_frames[error] __
+
+root = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/riposte-experiment-before-768c5c6646f44b7da8340d01448c1a06/pytest/test_failed_generation_remains1/workspace')
+tmp_path = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/riposte-experiment-before-768c5c6646f44b7da8340d01448c1a06/pytest/test_failed_generation_remains1')
+prepared = {'method': 'external', 'evidence_level': 'PIXEL_TRANSPORT_ONLY', 'ai_protection': 'UNVERIFIED', 'external_source': 'Not copied into workspace; original outside workspace is unchanged.', ...}
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000002367ECBF650>
+failure = 'error'
+
+    @pytest.mark.parametrize('failure', ['cancel', 'error', 'interrupt'])
+    def test_failed_generation_remains_discoverable_without_partial_frames(root, tmp_path, prepared, monkeypatch, failure):
+        calls = 0
+        def fail(self, image, seed, steps):
+            nonlocal calls
+            calls += 1
+            if calls == 2:
+                if failure == 'interrupt':
+                    raise KeyboardInterrupt()
+                raise RiposteError('JOB_CANCELLED') if failure == 'cancel' else RuntimeError(str(tmp_path))
+            return [image.copy()]
+        monkeypatch.setattr('riposte.generation.LocalGenerator.__call__', fail)
+        with pytest.raises((RiposteError, RuntimeError, KeyboardInterrupt)):
+            generate(root, tmp_path, prepared)
+        entries = experiment_status(root)['experiments']
+>       assert len(entries) == 1
+E       assert 0 == 1
+E        +  where 0 = len([])
+
+tests\test_experiment.py:111: AssertionError
+_ test_failed_generation_remains_discoverable_without_partial_frames[interrupt] _
+
+root = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/riposte-experiment-before-768c5c6646f44b7da8340d01448c1a06/pytest/test_failed_generation_remains2/workspace')
+tmp_path = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/riposte-experiment-before-768c5c6646f44b7da8340d01448c1a06/pytest/test_failed_generation_remains2')
+prepared = {'method': 'external', 'evidence_level': 'PIXEL_TRANSPORT_ONLY', 'ai_protection': 'UNVERIFIED', 'external_source': 'Not copied into workspace; original outside workspace is unchanged.', ...}
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000002367ECBFD50>
+failure = 'interrupt'
+
+    @pytest.mark.parametrize('failure', ['cancel', 'error', 'interrupt'])
+    def test_failed_generation_remains_discoverable_without_partial_frames(root, tmp_path, prepared, monkeypatch, failure):
+        calls = 0
+        def fail(self, image, seed, steps):
+            nonlocal calls
+            calls += 1
+            if calls == 2:
+                if failure == 'interrupt':
+                    raise KeyboardInterrupt()
+                raise RiposteError('JOB_CANCELLED') if failure == 'cancel' else RuntimeError(str(tmp_path))
+            return [image.copy()]
+        monkeypatch.setattr('riposte.generation.LocalGenerator.__call__', fail)
+        with pytest.raises((RiposteError, RuntimeError, KeyboardInterrupt)):
+            generate(root, tmp_path, prepared)
+        entries = experiment_status(root)['experiments']
+>       assert len(entries) == 1
+E       assert 0 == 1
+E        +  where 0 = len([])
+
+tests\test_experiment.py:111: AssertionError
+_______________ test_drift_rejects_review_or_readback[protocol] _______________
+
+root = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/riposte-experiment-before-768c5c6646f44b7da8340d01448c1a06/pytest/test_drift_rejects_review_or_r0/workspace')
+tmp_path = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/riposte-experiment-before-768c5c6646f44b7da8340d01448c1a06/pytest/test_drift_rejects_review_or_r0')
+prepared = {'method': 'external', 'evidence_level': 'PIXEL_TRANSPORT_ONLY', 'ai_protection': 'UNVERIFIED', 'external_source': 'Not copied into workspace; original outside workspace is unchanged.', ...}
+target = 'protocol'
+
+    @pytest.mark.parametrize('target', ['protocol', 'report', 'frame', 'review', 'trial'])
+    def test_drift_rejects_review_or_readback(root, tmp_path, prepared, target):
+>       run = generate(root, tmp_path, prepared)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_experiment.py:122: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_experiment.py:40: in generate
+    return controlled_generation(root, prepared['id'], tmp_path, seeds=(7,), views=('identity',), steps=1, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\riposte\generation.py:151: in controlled_generation
+    return _execute(root, trial, pair, generator, task, seeds, views, steps, progress)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\riposte\generation.py:171: in _execute
+    frames = generator(image, seed, steps)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <test_experiment.prepared.<locals>.Generator object at 0x000002367ED59010>
+image = <PIL.Image.Image image mode=RGB size=32x24 at 0x2367ED86D50>, seed = 7
+steps = 1
+
+    def __call__(self, image, seed, steps):
+        receipts = list((root / '.riposte/experiments').glob('*/protocol.json'))
+>       assert receipts, 'Protocol must exist before the first generation call'
+E       AssertionError: Protocol must exist before the first generation call
+E       assert []
+
+tests\test_experiment.py:31: AssertionError
+________________ test_drift_rejects_review_or_readback[report] ________________
+
+root = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/riposte-experiment-before-768c5c6646f44b7da8340d01448c1a06/pytest/test_drift_rejects_review_or_r1/workspace')
+tmp_path = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/riposte-experiment-before-768c5c6646f44b7da8340d01448c1a06/pytest/test_drift_rejects_review_or_r1')
+prepared = {'method': 'external', 'evidence_level': 'PIXEL_TRANSPORT_ONLY', 'ai_protection': 'UNVERIFIED', 'external_source': 'Not copied into workspace; original outside workspace is unchanged.', ...}
+target = 'report'
+
+    @pytest.mark.parametrize('target', ['protocol', 'report', 'frame', 'review', 'trial'])
+    def test_drift_rejects_review_or_readback(root, tmp_path, prepared, target):
+>       run = generate(root, tmp_path, prepared)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_experiment.py:122: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_experiment.py:40: in generate
+    return controlled_generation(root, prepared['id'], tmp_path, seeds=(7,), views=('identity',), steps=1, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\riposte\generation.py:151: in controlled_generation
+    return _execute(root, trial, pair, generator, task, seeds, views, steps, progress)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\riposte\generation.py:171: in _execute
+    frames = generator(image, seed, steps)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <test_experiment.prepared.<locals>.Generator object at 0x000002367ED59160>
+image = <PIL.Image.Image image mode=RGB size=32x24 at 0x2367ED87590>, seed = 7
+steps = 1
+
+    def __call__(self, image, seed, steps):
+        receipts = list((root / '.riposte/experiments').glob('*/protocol.json'))
+>       assert receipts, 'Protocol must exist before the first generation call'
+E       AssertionError: Protocol must exist before the first generation call
+E       assert []
+
+tests\test_experiment.py:31: AssertionError
+________________ test_drift_rejects_review_or_readback[frame] _________________
+
+root = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/riposte-experiment-before-768c5c6646f44b7da8340d01448c1a06/pytest/test_drift_rejects_review_or_r2/workspace')
+tmp_path = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/riposte-experiment-before-768c5c6646f44b7da8340d01448c1a06/pytest/test_drift_rejects_review_or_r2')
+prepared = {'method': 'external', 'evidence_level': 'PIXEL_TRANSPORT_ONLY', 'ai_protection': 'UNVERIFIED', 'external_source': 'Not copied into workspace; original outside workspace is unchanged.', ...}
+target = 'frame'
+
+    @pytest.mark.parametrize('target', ['protocol', 'report', 'frame', 'review', 'trial'])
+    def test_drift_rejects_review_or_readback(root, tmp_path, prepared, target):
+>       run = generate(root, tmp_path, prepared)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_experiment.py:122: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_experiment.py:40: in generate
+    return controlled_generation(root, prepared['id'], tmp_path, seeds=(7,), views=('identity',), steps=1, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\riposte\generation.py:151: in controlled_generation
+    return _execute(root, trial, pair, generator, task, seeds, views, steps, progress)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\riposte\generation.py:171: in _execute
+    frames = generator(image, seed, steps)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <test_experiment.prepared.<locals>.Generator object at 0x000002367ED592B0>
+image = <PIL.Image.Image image mode=RGB size=32x24 at 0x2367EDC8890>, seed = 7
+steps = 1
+
+    def __call__(self, image, seed, steps):
+        receipts = list((root / '.riposte/experiments').glob('*/protocol.json'))
+>       assert receipts, 'Protocol must exist before the first generation call'
+E       AssertionError: Protocol must exist before the first generation call
+E       assert []
+
+tests\test_experiment.py:31: AssertionError
+________________ test_drift_rejects_review_or_readback[review] ________________
+
+root = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/riposte-experiment-before-768c5c6646f44b7da8340d01448c1a06/pytest/test_drift_rejects_review_or_r3/workspace')
+tmp_path = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/riposte-experiment-before-768c5c6646f44b7da8340d01448c1a06/pytest/test_drift_rejects_review_or_r3')
+prepared = {'method': 'external', 'evidence_level': 'PIXEL_TRANSPORT_ONLY', 'ai_protection': 'UNVERIFIED', 'external_source': 'Not copied into workspace; original outside workspace is unchanged.', ...}
+target = 'review'
+
+    @pytest.mark.parametrize('target', ['protocol', 'report', 'frame', 'review', 'trial'])
+    def test_drift_rejects_review_or_readback(root, tmp_path, prepared, target):
+>       run = generate(root, tmp_path, prepared)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_experiment.py:122: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_experiment.py:40: in generate
+    return controlled_generation(root, prepared['id'], tmp_path, seeds=(7,), views=('identity',), steps=1, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\riposte\generation.py:151: in controlled_generation
+    return _execute(root, trial, pair, generator, task, seeds, views, steps, progress)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\riposte\generation.py:171: in _execute
+    frames = generator(image, seed, steps)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <test_experiment.prepared.<locals>.Generator object at 0x000002367ED59400>
+image = <PIL.Image.Image image mode=RGB size=32x24 at 0x2367EDC9490>, seed = 7
+steps = 1
+
+    def __call__(self, image, seed, steps):
+        receipts = list((root / '.riposte/experiments').glob('*/protocol.json'))
+>       assert receipts, 'Protocol must exist before the first generation call'
+E       AssertionError: Protocol must exist before the first generation call
+E       assert []
+
+tests\test_experiment.py:31: AssertionError
+________________ test_drift_rejects_review_or_readback[trial] _________________
+
+root = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/riposte-experiment-before-768c5c6646f44b7da8340d01448c1a06/pytest/test_drift_rejects_review_or_r4/workspace')
+tmp_path = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/riposte-experiment-before-768c5c6646f44b7da8340d01448c1a06/pytest/test_drift_rejects_review_or_r4')
+prepared = {'method': 'external', 'evidence_level': 'PIXEL_TRANSPORT_ONLY', 'ai_protection': 'UNVERIFIED', 'external_source': 'Not copied into workspace; original outside workspace is unchanged.', ...}
+target = 'trial'
+
+    @pytest.mark.parametrize('target', ['protocol', 'report', 'frame', 'review', 'trial'])
+    def test_drift_rejects_review_or_readback(root, tmp_path, prepared, target):
+>       run = generate(root, tmp_path, prepared)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_experiment.py:122: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_experiment.py:40: in generate
+    return controlled_generation(root, prepared['id'], tmp_path, seeds=(7,), views=('identity',), steps=1, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\riposte\generation.py:151: in controlled_generation
+    return _execute(root, trial, pair, generator, task, seeds, views, steps, progress)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\riposte\generation.py:171: in _execute
+    frames = generator(image, seed, steps)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <test_experiment.prepared.<locals>.Generator object at 0x000002367ED59550>
+image = <PIL.Image.Image image mode=RGB size=32x24 at 0x2367EDCA690>, seed = 7
+steps = 1
+
+    def __call__(self, image, seed, steps):
+        receipts = list((root / '.riposte/experiments').glob('*/protocol.json'))
+>       assert receipts, 'Protocol must exist before the first generation call'
+E       AssertionError: Protocol must exist before the first generation call
+E       assert []
+
+tests\test_experiment.py:31: AssertionError
+_____________ test_invalid_ratings_do_not_create_review[missing] ______________
+
+root = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/riposte-experiment-before-768c5c6646f44b7da8340d01448c1a06/pytest/test_invalid_ratings_do_not_cr0/workspace')
+tmp_path = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/riposte-experiment-before-768c5c6646f44b7da8340d01448c1a06/pytest/test_invalid_ratings_do_not_cr0')
+prepared = {'method': 'external', 'evidence_level': 'PIXEL_TRANSPORT_ONLY', 'ai_protection': 'UNVERIFIED', 'external_source': 'Not copied into workspace; original outside workspace is unchanged.', ...}
+corruption = 'missing'
+
+    @pytest.mark.parametrize('corruption', ['missing', 'extra', 'integer', 'string', 'wrong_protocol', 'extra_field'])
+    def test_invalid_ratings_do_not_create_review(root, tmp_path, prepared, corruption):
+>       run = generate(root, tmp_path, prepared)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_experiment.py:150: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_experiment.py:40: in generate
+    return controlled_generation(root, prepared['id'], tmp_path, seeds=(7,), views=('identity',), steps=1, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\riposte\generation.py:151: in controlled_generation
+    return _execute(root, trial, pair, generator, task, seeds, views, steps, progress)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\riposte\generation.py:171: in _execute
+    frames = generator(image, seed, steps)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <test_experiment.prepared.<locals>.Generator object at 0x000002367ED596A0>
+image = <PIL.Image.Image image mode=RGB size=32x24 at 0x2367EDCB710>, seed = 7
+steps = 1
+
+    def __call__(self, image, seed, steps):
+        receipts = list((root / '.riposte/experiments').glob('*/protocol.json'))
+>       assert receipts, 'Protocol must exist before the first generation call'
+E       AssertionError: Protocol must exist before the first generation call
+E       assert []
+
+tests\test_experiment.py:31: AssertionError
+______________ test_invalid_ratings_do_not_create_review[extra] _______________
+
+root = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/riposte-experiment-before-768c5c6646f44b7da8340d01448c1a06/pytest/test_invalid_ratings_do_not_cr1/workspace')
+tmp_path = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/riposte-experiment-before-768c5c6646f44b7da8340d01448c1a06/pytest/test_invalid_ratings_do_not_cr1')
+prepared = {'method': 'external', 'evidence_level': 'PIXEL_TRANSPORT_ONLY', 'ai_protection': 'UNVERIFIED', 'external_source': 'Not copied into workspace; original outside workspace is unchanged.', ...}
+corruption = 'extra'
+
+    @pytest.mark.parametrize('corruption', ['missing', 'extra', 'integer', 'string', 'wrong_protocol', 'extra_field'])
+    def test_invalid_ratings_do_not_create_review(root, tmp_path, prepared, corruption):
+>       run = generate(root, tmp_path, prepared)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_experiment.py:150: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_experiment.py:40: in generate
+    return controlled_generation(root, prepared['id'], tmp_path, seeds=(7,), views=('identity',), steps=1, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\riposte\generation.py:151: in controlled_generation
+    return _execute(root, trial, pair, generator, task, seeds, views, steps, progress)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\riposte\generation.py:171: in _execute
+    frames = generator(image, seed, steps)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <test_experiment.prepared.<locals>.Generator object at 0x000002367ED597F0>
+image = <PIL.Image.Image image mode=RGB size=32x24 at 0x2367EE3CF50>, seed = 7
+steps = 1
+
+    def __call__(self, image, seed, steps):
+        receipts = list((root / '.riposte/experiments').glob('*/protocol.json'))
+>       assert receipts, 'Protocol must exist before the first generation call'
+E       AssertionError: Protocol must exist before the first generation call
+E       assert []
+
+tests\test_experiment.py:31: AssertionError
+_____________ test_invalid_ratings_do_not_create_review[integer] ______________
+
+root = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/riposte-experiment-before-768c5c6646f44b7da8340d01448c1a06/pytest/test_invalid_ratings_do_not_cr2/workspace')
+tmp_path = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/riposte-experiment-before-768c5c6646f44b7da8340d01448c1a06/pytest/test_invalid_ratings_do_not_cr2')
+prepared = {'method': 'external', 'evidence_level': 'PIXEL_TRANSPORT_ONLY', 'ai_protection': 'UNVERIFIED', 'external_source': 'Not copied into workspace; original outside workspace is unchanged.', ...}
+corruption = 'integer'
+
+    @pytest.mark.parametrize('corruption', ['missing', 'extra', 'integer', 'string', 'wrong_protocol', 'extra_field'])
+    def test_invalid_ratings_do_not_create_review(root, tmp_path, prepared, corruption):
+>       run = generate(root, tmp_path, prepared)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_experiment.py:150: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_experiment.py:40: in generate
+    return controlled_generation(root, prepared['id'], tmp_path, seeds=(7,), views=('identity',), steps=1, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\riposte\generation.py:151: in controlled_generation
+    return _execute(root, trial, pair, generator, task, seeds, views, steps, progress)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\riposte\generation.py:171: in _execute
+    frames = generator(image, seed, steps)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <test_experiment.prepared.<locals>.Generator object at 0x000002367ED59940>
+image = <PIL.Image.Image image mode=RGB size=32x24 at 0x2367EE3E390>, seed = 7
+steps = 1
+
+    def __call__(self, image, seed, steps):
+        receipts = list((root / '.riposte/experiments').glob('*/protocol.json'))
+>       assert receipts, 'Protocol must exist before the first generation call'
+E       AssertionError: Protocol must exist before the first generation call
+E       assert []
+
+tests\test_experiment.py:31: AssertionError
+______________ test_invalid_ratings_do_not_create_review[string] ______________
+
+root = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/riposte-experiment-before-768c5c6646f44b7da8340d01448c1a06/pytest/test_invalid_ratings_do_not_cr3/workspace')
+tmp_path = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/riposte-experiment-before-768c5c6646f44b7da8340d01448c1a06/pytest/test_invalid_ratings_do_not_cr3')
+prepared = {'method': 'external', 'evidence_level': 'PIXEL_TRANSPORT_ONLY', 'ai_protection': 'UNVERIFIED', 'external_source': 'Not copied into workspace; original outside workspace is unchanged.', ...}
+corruption = 'string'
+
+    @pytest.mark.parametrize('corruption', ['missing', 'extra', 'integer', 'string', 'wrong_protocol', 'extra_field'])
+    def test_invalid_ratings_do_not_create_review(root, tmp_path, prepared, corruption):
+>       run = generate(root, tmp_path, prepared)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_experiment.py:150: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_experiment.py:40: in generate
+    return controlled_generation(root, prepared['id'], tmp_path, seeds=(7,), views=('identity',), steps=1, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\riposte\generation.py:151: in controlled_generation
+    return _execute(root, trial, pair, generator, task, seeds, views, steps, progress)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\riposte\generation.py:171: in _execute
+    frames = generator(image, seed, steps)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <test_experiment.prepared.<locals>.Generator object at 0x000002367ED59A90>
+image = <PIL.Image.Image image mode=RGB size=32x24 at 0x2367EE3F410>, seed = 7
+steps = 1
+
+    def __call__(self, image, seed, steps):
+        receipts = list((root / '.riposte/experiments').glob('*/protocol.json'))
+>       assert receipts, 'Protocol must exist before the first generation call'
+E       AssertionError: Protocol must exist before the first generation call
+E       assert []
+
+tests\test_experiment.py:31: AssertionError
+__________ test_invalid_ratings_do_not_create_review[wrong_protocol] __________
+
+root = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/riposte-experiment-before-768c5c6646f44b7da8340d01448c1a06/pytest/test_invalid_ratings_do_not_cr4/workspace')
+tmp_path = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/riposte-experiment-before-768c5c6646f44b7da8340d01448c1a06/pytest/test_invalid_ratings_do_not_cr4')
+prepared = {'method': 'external', 'evidence_level': 'PIXEL_TRANSPORT_ONLY', 'ai_protection': 'UNVERIFIED', 'external_source': 'Not copied into workspace; original outside workspace is unchanged.', ...}
+corruption = 'wrong_protocol'
+
+    @pytest.mark.parametrize('corruption', ['missing', 'extra', 'integer', 'string', 'wrong_protocol', 'extra_field'])
+    def test_invalid_ratings_do_not_create_review(root, tmp_path, prepared, corruption):
+>       run = generate(root, tmp_path, prepared)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_experiment.py:150: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_experiment.py:40: in generate
+    return controlled_generation(root, prepared['id'], tmp_path, seeds=(7,), views=('identity',), steps=1, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\riposte\generation.py:151: in controlled_generation
+    return _execute(root, trial, pair, generator, task, seeds, views, steps, progress)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\riposte\generation.py:171: in _execute
+    frames = generator(image, seed, steps)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <test_experiment.prepared.<locals>.Generator object at 0x000002367ED59BE0>
+image = <PIL.Image.Image image mode=RGB size=32x24 at 0x2367EEDD250>, seed = 7
+steps = 1
+
+    def __call__(self, image, seed, steps):
+        receipts = list((root / '.riposte/experiments').glob('*/protocol.json'))
+>       assert receipts, 'Protocol must exist before the first generation call'
+E       AssertionError: Protocol must exist before the first generation call
+E       assert []
+
+tests\test_experiment.py:31: AssertionError
+___________ test_invalid_ratings_do_not_create_review[extra_field] ____________
+
+root = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/riposte-experiment-before-768c5c6646f44b7da8340d01448c1a06/pytest/test_invalid_ratings_do_not_cr5/workspace')
+tmp_path = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/riposte-experiment-before-768c5c6646f44b7da8340d01448c1a06/pytest/test_invalid_ratings_do_not_cr5')
+prepared = {'method': 'external', 'evidence_level': 'PIXEL_TRANSPORT_ONLY', 'ai_protection': 'UNVERIFIED', 'external_source': 'Not copied into workspace; original outside workspace is unchanged.', ...}
+corruption = 'extra_field'
+
+    @pytest.mark.parametrize('corruption', ['missing', 'extra', 'integer', 'string', 'wrong_protocol', 'extra_field'])
+    def test_invalid_ratings_do_not_create_review(root, tmp_path, prepared, corruption):
+>       run = generate(root, tmp_path, prepared)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_experiment.py:150: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_experiment.py:40: in generate
+    return controlled_generation(root, prepared['id'], tmp_path, seeds=(7,), views=('identity',), steps=1, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\riposte\generation.py:151: in controlled_generation
+    return _execute(root, trial, pair, generator, task, seeds, views, steps, progress)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\riposte\generation.py:171: in _execute
+    frames = generator(image, seed, steps)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <test_experiment.prepared.<locals>.Generator object at 0x000002367ED59D30>
+image = <PIL.Image.Image image mode=RGB size=32x24 at 0x2367EEDE510>, seed = 7
+steps = 1
+
+    def __call__(self, image, seed, steps):
+        receipts = list((root / '.riposte/experiments').glob('*/protocol.json'))
+>       assert receipts, 'Protocol must exist before the first generation call'
+E       AssertionError: Protocol must exist before the first generation call
+E       assert []
+
+tests\test_experiment.py:31: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/test_experiment.py::test_protocol_precedes_generation_and_packet_hides_conditions[edit]
+FAILED tests/test_experiment.py::test_protocol_precedes_generation_and_packet_hides_conditions[inpaint]
+FAILED tests/test_experiment.py::test_protocol_precedes_generation_and_packet_hides_conditions[video]
+FAILED tests/test_experiment.py::test_review_appends_exact_arithmetic_and_retains_incomplete_ratings
+FAILED tests/test_experiment.py::test_failed_generation_remains_discoverable_without_partial_frames[cancel]
+FAILED tests/test_experiment.py::test_failed_generation_remains_discoverable_without_partial_frames[error]
+FAILED tests/test_experiment.py::test_failed_generation_remains_discoverable_without_partial_frames[interrupt]
+FAILED tests/test_experiment.py::test_drift_rejects_review_or_readback[protocol]
+FAILED tests/test_experiment.py::test_drift_rejects_review_or_readback[report]
+FAILED tests/test_experiment.py::test_drift_rejects_review_or_readback[frame]
+FAILED tests/test_experiment.py::test_drift_rejects_review_or_readback[review]
+FAILED tests/test_experiment.py::test_drift_rejects_review_or_readback[trial]
+FAILED tests/test_experiment.py::test_invalid_ratings_do_not_create_review[missing]
+FAILED tests/test_experiment.py::test_invalid_ratings_do_not_create_review[extra]
+FAILED tests/test_experiment.py::test_invalid_ratings_do_not_create_review[integer]
+FAILED tests/test_experiment.py::test_invalid_ratings_do_not_create_review[string]
+FAILED tests/test_experiment.py::test_invalid_ratings_do_not_create_review[wrong_protocol]
+FAILED tests/test_experiment.py::test_invalid_ratings_do_not_create_review[extra_field]
+18 failed, 2 passed in 5.19s

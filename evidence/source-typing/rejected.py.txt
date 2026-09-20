@@ -1,0 +1,24 @@
+"""Expected source-consumer errors; never execute this fixture."""
+from pathlib import Path
+from riposte.records import Progress, ProgressEvent, RequestValues
+from riposte.sanitize import png_audit
+from riposte.store import find_image, record_image
+from riposte.terminal.jobs import Operation
+from riposte.terminal.service import Request, view_image
+
+root = Path("unused-static-workspace")
+misspelled: RequestValues = {"epsilonn": 4}  # error: typeddict-unknown-key
+wrong_scalar: RequestValues = {"epsilon": "four"}  # error: typeddict-item
+wrong_paths: RequestValues = {"vae_dirs": [123]}  # error: list-item
+event: ProgressEvent = {"total": "10"}  # error: typeddict-item
+record_image(root, "relative", png_audit(b"static"), "large", "modified")  # error: arg-type
+find_image(root, "a" * 32)["width"] = "wide"  # error: typeddict-item
+view_image(root, {"image_id": "a" * 32})["viewer"] = "APPROVED"  # error: typeddict-item
+
+
+def wrong(request: str, progress: Progress) -> object:
+    return None
+
+
+Operation(Request("doctor"), wrong)  # error: arg-type
+Operation(Request("doctor")).result["trusted"]  # error: index

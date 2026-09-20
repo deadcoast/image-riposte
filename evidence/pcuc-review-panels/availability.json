@@ -1,0 +1,7 @@
+{
+  "python": "3.14.3 (tags/v3.14.3:323c59a, Feb  3 2026, 16:04:56) [MSC v.1944 64 bit (AMD64)]",
+  "torch": "2.14.0+cpu",
+  "cuda_available": false,
+  "cuda_devices": 0,
+  "scope": "Runtime availability only; no pretrained models or real raters evaluated."
+}

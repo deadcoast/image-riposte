@@ -1,0 +1,10 @@
+{
+  "result": "PASS",
+  "version": "0.5.0",
+  "application_files": 57,
+  "artifact_sha256": {
+    "riposte_studio-0.5.0-py3-none-any.whl": "404001680f117d6f824edfd14cc3e434ad6025311b258d56f12c37856b13b6f3",
+    "riposte_studio-0.5.0.tar.gz": "01262dfd664d561f6c62e7da5a632b28ca923525c813aefc874ddf398006bc22"
+  },
+  "scope": "57-file source/sdist/wheel/isolated-target byte equality; shipping install/start/lockfile/README and declared documentation equality; installed child hard-exit, exact CLI undo and legacy upgrade. Existing Windows Python/dependencies; not a clean bootstrap or model qualification."
+}

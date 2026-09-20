@@ -1,0 +1,804 @@
+[
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "FILE",
+      "Path": "evidence/application-roots/README.md",
+      "Symbol": "",
+      "Exports": "",
+      "Imports": "",
+      "Requires": "",
+      "Purpose": "Typing validation input, evidence or development authority",
+      "ID": "OVR-1287",
+      "Tags": "#typing-index"
+    }
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "FILE",
+      "Path": "evidence/application-roots/acceptance.json",
+      "Symbol": "",
+      "Exports": "",
+      "Imports": "",
+      "Requires": "",
+      "Purpose": "Typing validation input, evidence or development authority",
+      "ID": "OVR-1288",
+      "Tags": "#typing-index"
+    }
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "FILE",
+      "Path": "evidence/application-roots/before-corrected.txt",
+      "Symbol": "",
+      "Exports": "",
+      "Imports": "",
+      "Requires": "",
+      "Purpose": "Typing validation input, evidence or development authority",
+      "ID": "OVR-1289",
+      "Tags": "#typing-index"
+    }
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "FILE",
+      "Path": "evidence/application-roots/compatibility.txt",
+      "Symbol": "",
+      "Exports": "",
+      "Imports": "",
+      "Requires": "",
+      "Purpose": "Typing validation input, evidence or development authority",
+      "ID": "OVR-1290",
+      "Tags": "#typing-index"
+    }
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "FILE",
+      "Path": "evidence/application-roots/compatibility.xml",
+      "Symbol": "",
+      "Exports": "",
+      "Imports": "",
+      "Requires": "",
+      "Purpose": "Typing validation input, evidence or development authority",
+      "ID": "OVR-1291",
+      "Tags": "#typing-index"
+    }
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "FILE",
+      "Path": "evidence/application-roots/contracts-final.txt",
+      "Symbol": "",
+      "Exports": "",
+      "Imports": "",
+      "Requires": "",
+      "Purpose": "Typing validation input, evidence or development authority",
+      "ID": "OVR-1292",
+      "Tags": "#typing-index"
+    }
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "FILE",
+      "Path": "evidence/application-roots/entries.json",
+      "Symbol": "",
+      "Exports": "",
+      "Imports": "",
+      "Requires": "",
+      "Purpose": "Typing validation input, evidence or development authority",
+      "ID": "OVR-1293",
+      "Tags": "#typing-index"
+    }
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "FILE",
+      "Path": "evidence/application-roots/full-native-final.txt",
+      "Symbol": "",
+      "Exports": "",
+      "Imports": "",
+      "Requires": "",
+      "Purpose": "Typing validation input, evidence or development authority",
+      "ID": "OVR-1294",
+      "Tags": "#typing-index"
+    }
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "FILE",
+      "Path": "evidence/application-roots/full-native-final.xml",
+      "Symbol": "",
+      "Exports": "",
+      "Imports": "",
+      "Requires": "",
+      "Purpose": "Typing validation input, evidence or development authority",
+      "ID": "OVR-1295",
+      "Tags": "#typing-index"
+    }
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "FILE",
+      "Path": "evidence/application-roots/full.txt",
+      "Symbol": "",
+      "Exports": "",
+      "Imports": "",
+      "Requires": "",
+      "Purpose": "Typing validation input, evidence or development authority",
+      "ID": "OVR-1296",
+      "Tags": "#typing-index"
+    }
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "FILE",
+      "Path": "evidence/application-roots/pacer-validation.json",
+      "Symbol": "",
+      "Exports": "",
+      "Imports": "",
+      "Requires": "",
+      "Purpose": "Typing validation input, evidence or development authority",
+      "ID": "OVR-1297",
+      "Tags": "#typing-index"
+    }
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "FILE",
+      "Path": "evidence/application-roots/package.json",
+      "Symbol": "",
+      "Exports": "",
+      "Imports": "",
+      "Requires": "",
+      "Purpose": "Typing validation input, evidence or development authority",
+      "ID": "OVR-1298",
+      "Tags": "#typing-index"
+    }
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "FILE",
+      "Path": "evidence/application-roots/raw-source.txt",
+      "Symbol": "",
+      "Exports": "",
+      "Imports": "",
+      "Requires": "",
+      "Purpose": "Typing validation input, evidence or development authority",
+      "ID": "OVR-1299",
+      "Tags": "#typing-index"
+    }
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "FILE",
+      "Path": "evidence/application-roots/verify.py",
+      "Symbol": "",
+      "Exports": "HERE;ROOT;capture;counts;digest;main;read",
+      "Imports": "from pathlib import Path\nimport hashlib\nimport importlib.util\nimport json\nimport pacer_inventory\nimport sys\nimport xml.etree.ElementTree as ET",
+      "Requires": "OVR-071",
+      "Purpose": "Typing validation input, evidence or development authority",
+      "ID": "OVR-1300",
+      "Tags": "#typing-index"
+    }
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "FILE",
+      "Path": "evidence/application-roots/verify_package.py",
+      "Symbol": "",
+      "Exports": "DIST;INSTALLED;ROOT;main",
+      "Imports": "from pathlib import Path\nfrom zipfile import ZipFile\nimport hashlib\nimport json\nimport os\nimport subprocess\nimport sys\nimport tarfile\nimport tempfile\nimport tomllib",
+      "Requires": "",
+      "Purpose": "Typing validation input, evidence or development authority",
+      "ID": "OVR-1301",
+      "Tags": "#typing-index"
+    }
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "FILE",
+      "Path": "evidence/workspace-lease/README.md",
+      "Symbol": "",
+      "Exports": "",
+      "Imports": "",
+      "Requires": "",
+      "Purpose": "Typing validation input, evidence or development authority",
+      "ID": "OVR-1302",
+      "Tags": "#typing-index"
+    }
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "FILE",
+      "Path": "evidence/workspace-lease/acceptance.json",
+      "Symbol": "",
+      "Exports": "",
+      "Imports": "",
+      "Requires": "",
+      "Purpose": "Typing validation input, evidence or development authority",
+      "ID": "OVR-1303",
+      "Tags": "#typing-index"
+    }
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "FILE",
+      "Path": "evidence/workspace-lease/before.txt",
+      "Symbol": "",
+      "Exports": "",
+      "Imports": "",
+      "Requires": "",
+      "Purpose": "Typing validation input, evidence or development authority",
+      "ID": "OVR-1304",
+      "Tags": "#typing-index"
+    }
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "FILE",
+      "Path": "evidence/workspace-lease/build.txt",
+      "Symbol": "",
+      "Exports": "",
+      "Imports": "",
+      "Requires": "",
+      "Purpose": "Typing validation input, evidence or development authority",
+      "ID": "OVR-1305",
+      "Tags": "#typing-index"
+    }
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "FILE",
+      "Path": "evidence/workspace-lease/contracts-final.txt",
+      "Symbol": "",
+      "Exports": "",
+      "Imports": "",
+      "Requires": "",
+      "Purpose": "Typing validation input, evidence or development authority",
+      "ID": "OVR-1306",
+      "Tags": "#typing-index"
+    }
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "FILE",
+      "Path": "evidence/workspace-lease/final.txt",
+      "Symbol": "",
+      "Exports": "",
+      "Imports": "",
+      "Requires": "",
+      "Purpose": "Typing validation input, evidence or development authority",
+      "ID": "OVR-1307",
+      "Tags": "#typing-index"
+    }
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "FILE",
+      "Path": "evidence/workspace-lease/final.xml",
+      "Symbol": "",
+      "Exports": "",
+      "Imports": "",
+      "Requires": "",
+      "Purpose": "Typing validation input, evidence or development authority",
+      "ID": "OVR-1308",
+      "Tags": "#typing-index"
+    }
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "FILE",
+      "Path": "evidence/workspace-lease/first.txt",
+      "Symbol": "",
+      "Exports": "",
+      "Imports": "",
+      "Requires": "",
+      "Purpose": "Typing validation input, evidence or development authority",
+      "ID": "OVR-1309",
+      "Tags": "#typing-index"
+    }
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "FILE",
+      "Path": "evidence/workspace-lease/full-native.txt",
+      "Symbol": "",
+      "Exports": "",
+      "Imports": "",
+      "Requires": "",
+      "Purpose": "Typing validation input, evidence or development authority",
+      "ID": "OVR-1310",
+      "Tags": "#typing-index"
+    }
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "FILE",
+      "Path": "evidence/workspace-lease/full-native.xml",
+      "Symbol": "",
+      "Exports": "",
+      "Imports": "",
+      "Requires": "",
+      "Purpose": "Typing validation input, evidence or development authority",
+      "ID": "OVR-1311",
+      "Tags": "#typing-index"
+    }
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "FILE",
+      "Path": "evidence/workspace-lease/full.txt",
+      "Symbol": "",
+      "Exports": "",
+      "Imports": "",
+      "Requires": "",
+      "Purpose": "Typing validation input, evidence or development authority",
+      "ID": "OVR-1312",
+      "Tags": "#typing-index"
+    }
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "FILE",
+      "Path": "evidence/workspace-lease/install.txt",
+      "Symbol": "",
+      "Exports": "",
+      "Imports": "",
+      "Requires": "",
+      "Purpose": "Typing validation input, evidence or development authority",
+      "ID": "OVR-1313",
+      "Tags": "#typing-index"
+    }
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "FILE",
+      "Path": "evidence/workspace-lease/pacer-validation.json",
+      "Symbol": "",
+      "Exports": "",
+      "Imports": "",
+      "Requires": "",
+      "Purpose": "Typing validation input, evidence or development authority",
+      "ID": "OVR-1314",
+      "Tags": "#typing-index"
+    }
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "FILE",
+      "Path": "evidence/workspace-lease/package.json",
+      "Symbol": "",
+      "Exports": "",
+      "Imports": "",
+      "Requires": "",
+      "Purpose": "Typing validation input, evidence or development authority",
+      "ID": "OVR-1315",
+      "Tags": "#typing-index"
+    }
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "FILE",
+      "Path": "evidence/workspace-lease/posix.json",
+      "Symbol": "",
+      "Exports": "",
+      "Imports": "",
+      "Requires": "",
+      "Purpose": "Typing validation input, evidence or development authority",
+      "ID": "OVR-1316",
+      "Tags": "#typing-index"
+    }
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "FILE",
+      "Path": "evidence/workspace-lease/posix_probe.py",
+      "Symbol": "",
+      "Exports": "ROOT;child;main",
+      "Imports": "from pathlib import Path\nfrom riposte.errors import RiposteError\nfrom riposte.locking import file_lease, file_identity\nimport json\nimport os\nimport platform\nimport subprocess\nimport sys\nimport tempfile",
+      "Requires": "OVR-014;OVR-1321",
+      "Purpose": "Typing validation input, evidence or development authority",
+      "ID": "OVR-1317",
+      "Tags": "#typing-index"
+    }
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "FILE",
+      "Path": "evidence/workspace-lease/raw-source.txt",
+      "Symbol": "",
+      "Exports": "",
+      "Imports": "",
+      "Requires": "",
+      "Purpose": "Typing validation input, evidence or development authority",
+      "ID": "OVR-1318",
+      "Tags": "#typing-index"
+    }
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "FILE",
+      "Path": "evidence/workspace-lease/verify.py",
+      "Symbol": "",
+      "Exports": "HERE;ROOT;capture;digest;main;read;test_counts",
+      "Imports": "from __future__ import annotations\nfrom pathlib import Path\nimport hashlib\nimport importlib.util\nimport json\nimport pacer_inventory\nimport sys\nimport xml.etree.ElementTree as ET",
+      "Requires": "OVR-071",
+      "Purpose": "Typing validation input, evidence or development authority",
+      "ID": "OVR-1319",
+      "Tags": "#typing-index"
+    }
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "FILE",
+      "Path": "evidence/workspace-lease/verify_package.py",
+      "Symbol": "",
+      "Exports": "DIST;HERE;INSTALLED;ROOT;main",
+      "Imports": "from PIL import Image\nfrom pathlib import Path\nfrom zipfile import ZipFile\nimport hashlib\nimport json\nimport os\nimport subprocess\nimport sys\nimport tarfile\nimport tempfile\nimport tomllib",
+      "Requires": "",
+      "Purpose": "Typing validation input, evidence or development authority",
+      "ID": "OVR-1320",
+      "Tags": "#typing-index"
+    }
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "FILE",
+      "Path": "src/riposte/locking.py",
+      "Symbol": "",
+      "Exports": "LEASE_NAME;_windows_lock;_windows_open;file_identity;file_lease",
+      "Imports": "from .errors import RiposteError\nfrom .policy import is_link\nfrom __future__ import annotations\nfrom collections.abc import Iterator\nfrom contextlib import contextmanager\nfrom ctypes import wintypes\nfrom pathlib import Path\nimport ctypes\nimport errno\nimport fcntl\nimport msvcrt\nimport os\nimport stat\nimport sys",
+      "Requires": "OVR-014;OVR-022",
+      "Purpose": "Existing application module riposte.locking",
+      "ID": "OVR-1321",
+      "Tags": "#typing-index"
+    }
+  },
+  {
+    "op": "set",
+    "id": "OVR-021",
+    "fields": {
+      "Imports": "from .category_rules import load_rules\nfrom .category_sort import category_plan\nfrom .category_sort import category_plan, verify_source\nfrom .errors import RiposteError\nfrom .locking import LEASE_NAME\nfrom .policy import Policy, IMAGE_SUFFIXES, SIDECAR_SUFFIXES, CACHE_NAMES, folder_for, sort_folder_for, path_category, is_link, same_file_state\nfrom .sanitize import decode_clean, encode_clean, png_audit\nfrom .sort_history import SortHistory, copy_exclusive, pending_sort, undo_sort\nfrom .sort_titles import title_records\nfrom .store import check_root, workspace_lock, catalog, record_image, atomic_clean_write, write_report, safe_child, state_name, connect\nfrom .title_categories import GENERATED_TITLE\nfrom .video import VIDEO_SUFFIXES, inspect_video, video_catalog, record_video, file_hash\nfrom PIL import Image, UnidentifiedImageError\nfrom __future__ import annotations\nfrom pathlib import Path\nfrom typing import Callable, Sequence\nimport collections\nimport contextlib\nimport os\nimport unicodedata",
+      "Requires": "OVR-014;OVR-022;OVR-028;OVR-035;OVR-1080;OVR-1169;OVR-1249;OVR-1250;OVR-1321;OVR-950;OVR-951"
+    }
+  },
+  {
+    "op": "set",
+    "id": "OVR-035",
+    "fields": {
+      "Exports": "LEGACY_SIGNATURE;SIGNATURE;_application_directory;_publish_lock_marker;_read_lock_marker;application_directory;atomic_clean_write;atomic_json_write;catalog;check_root;connect;find_image;legacy_workspace;record_image;safe_child;state_dir;state_name;state_relative;upgrade_workspace;workspace_lock;write_report",
+      "Imports": "from .errors import RiposteError\nfrom .locking import LEASE_NAME, file_identity, file_lease\nfrom .policy import canonical_path, is_link\nfrom .sanitize import png_audit, timestamp_day\nfrom __future__ import annotations\nfrom collections.abc import Iterator\nfrom functools import lru_cache\nfrom pathlib import Path\nimport contextlib\nimport json\nimport os\nimport sqlite3\nimport stat\nimport tomllib\nimport uuid",
+      "Requires": "OVR-014;OVR-022;OVR-028;OVR-1321"
+    }
+  },
+  {
+    "op": "set",
+    "id": "OVR-875",
+    "fields": {
+      "Imports": "from ..store import application_directory as shared_application_directory\nfrom .service import Request, root_of\nfrom __future__ import annotations\nfrom dataclasses import dataclass, field\nfrom pathlib import Path\nimport os",
+      "Requires": "OVR-035;OVR-048"
+    }
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "FILE",
+      "Path": "tests/test_application_roots.py",
+      "Symbol": "",
+      "Exports": "layout;test_all_boundaries_reject_overlap_without_writes;test_api_rechecks_root_at_execution;test_dotdot_paths_compare_canonical_locations;test_existing_nested_library_can_move_with_history_and_undo;test_independent_sibling_preview_sort_and_exact_undo;test_installed_package_has_no_fixed_parent_assumption;test_links_and_linked_parents_remain_rejected;test_unreadable_layout_fails_without_workspace_writes;test_unrelated_src_project_is_not_a_riposte_checkout;test_windows_case_alias_cannot_bypass_guard",
+      "Imports": "from fastapi.testclient import TestClient\nfrom pathlib import Path\nfrom riposte import store\nfrom riposte.cli import app\nfrom riposte.errors import RiposteError\nfrom riposte.organizer import organize, plan\nfrom riposte.policy import Policy\nfrom riposte.server import create_app\nfrom riposte.terminal.paths import validate_workspace\nfrom riposte.terminal.service import Request, execute\nfrom typer.testing import CliRunner\nimport json\nimport os\nimport pytest\nimport subprocess",
+      "Requires": "OVR-009;OVR-012;OVR-014;OVR-021;OVR-022;OVR-029;OVR-035;OVR-048;OVR-875",
+      "Purpose": "Typing validation input, evidence or development authority",
+      "ID": "OVR-1322",
+      "Tags": "#typing-index"
+    }
+  },
+  {
+    "op": "set",
+    "id": "OVR-1170",
+    "fields": {
+      "Imports": "from pathlib import Path\nfrom riposte import category_rules as cr\nfrom riposte.cli import app\nfrom riposte.errors import RiposteError\nfrom riposte.locking import LEASE_NAME\nfrom riposte.organizer import organize, plan\nfrom riposte.policy import Policy\nfrom riposte.sort_history import undo_sort\nfrom riposte.store import LEGACY_SIGNATURE, state_dir, state_relative, workspace_lock\nfrom riposte.terminal.service import EFFECTS, Request, execute\nfrom typer.testing import CliRunner\nimport json\nimport os\nimport pytest",
+      "Requires": "OVR-009;OVR-012;OVR-014;OVR-021;OVR-022;OVR-035;OVR-048;OVR-1169;OVR-1321;OVR-950"
+    }
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "FILE",
+      "Path": "tests/test_workspace_lease.py",
+      "Symbol": "",
+      "Exports": "CHILD;POLICY;start_child;test_body_io_failure_is_not_misreported_as_lock_failure;test_cleanup_never_removes_replacement_marker;test_concurrent_process_claims_admit_one_owner;test_hard_exit_during_marker_publication_leaves_recoverable_claim;test_invalid_lease_path_fails_closed;test_killed_sort_or_undo_restores_exact_original;test_legacy_claim_winning_marker_publication_is_preserved;test_live_owner_cannot_be_displaced_then_death_releases_ownership;test_nested_lock_is_not_reentrant_and_exception_releases_it;test_private_lease_is_stable_and_excluded_from_sort_preview;test_recovery_does_not_consult_pids_or_lock_age;test_replaced_lease_cannot_prove_ownership_of_old_marker;test_unknown_legacy_markers_are_never_reclaimed",
+      "Imports": "from concurrent.futures import ThreadPoolExecutor\nfrom pathlib import Path\nfrom riposte import organizer\nfrom riposte.errors import RiposteError\nfrom riposte.locking import LEASE_NAME, file_identity\nfrom riposte.policy import Policy\nfrom riposte.store import catalog, state_dir, workspace_lock\nimport json\nimport os\nimport pytest\nimport riposte.store as store\nimport subprocess\nimport sys\nimport time",
+      "Requires": "OVR-009;OVR-014;OVR-021;OVR-022;OVR-035;OVR-1321",
+      "Purpose": "Typing validation input, evidence or development authority",
+      "ID": "OVR-1323",
+      "Tags": "#typing-index"
+    }
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "FILE",
+      "Path": "typing/evidence/source-reviewed-application-roots.json",
+      "Symbol": "",
+      "Exports": "",
+      "Imports": "",
+      "Requires": "",
+      "Purpose": "Typing validation input, evidence or development authority",
+      "ID": "OVR-1324",
+      "Tags": "#typing-index"
+    }
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "FILE",
+      "Path": "typing/evidence/source-reviewed-workspace-lease.json",
+      "Symbol": "",
+      "Exports": "",
+      "Imports": "",
+      "Requires": "",
+      "Purpose": "Typing validation input, evidence or development authority",
+      "ID": "OVR-1325",
+      "Tags": "#typing-index"
+    }
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "FILE",
+      "Path": "typing/stubs/riposte/locking.pyi",
+      "Symbol": "",
+      "Exports": "LEASE_NAME;_windows_lock;_windows_open;file_identity;file_lease",
+      "Imports": "from .errors import RiposteError as RiposteError\nfrom .policy import is_link as is_link\nfrom contextlib import AbstractContextManager\nfrom pathlib import Path",
+      "Requires": "OVR-081;OVR-088;OVR-1321",
+      "Purpose": "External source-derived typing declarations",
+      "ID": "OVR-1326",
+      "Tags": "#typing-index"
+    }
+  },
+  {
+    "op": "set",
+    "id": "OVR-087",
+    "fields": {
+      "Imports": "from .errors import RiposteError as RiposteError\nfrom .locking import LEASE_NAME as LEASE_NAME\nfrom .policy import CACHE_NAMES as CACHE_NAMES, IMAGE_SUFFIXES as IMAGE_SUFFIXES, Policy as Policy, SIDECAR_SUFFIXES as SIDECAR_SUFFIXES, folder_for as folder_for, is_link as is_link, same_file_state as same_file_state\nfrom .policy import path_category as path_category\nfrom .policy import sort_folder_for as sort_folder_for\nfrom .sanitize import decode_clean as decode_clean, encode_clean as encode_clean, png_audit as png_audit\nfrom .sort_history import SortHistory as SortHistory, copy_exclusive as copy_exclusive, pending_sort as pending_sort, undo_sort as undo_sort\nfrom .sort_titles import title_records as title_records\nfrom .store import atomic_clean_write as atomic_clean_write, catalog as catalog, check_root as check_root, record_image as record_image, safe_child as safe_child, state_name as state_name, workspace_lock as workspace_lock, write_report as write_report\nfrom .store import connect as connect\nfrom .title_categories import GENERATED_TITLE as GENERATED_TITLE\nfrom .video import VIDEO_SUFFIXES as VIDEO_SUFFIXES, inspect_video as inspect_video, video_catalog as video_catalog, record_video as record_video, file_hash as file_hash\nfrom _riposte_types import CatalogRow, OrganizationPlan, OrganizationReport, WorkspaceAudit\nfrom _riposte_types import Progress as _Progress\nfrom pathlib import Path\nfrom typing import Iterator, Sequence",
+      "Requires": "OVR-021;OVR-075;OVR-081;OVR-088;OVR-094;OVR-096;OVR-1083;OVR-1258;OVR-1326;OVR-957;OVR-958"
+    }
+  },
+  {
+    "op": "set",
+    "id": "OVR-096",
+    "fields": {
+      "Exports": "LEGACY_SIGNATURE;SIGNATURE;_application_directory;_publish_lock_marker;_read_lock_marker;application_directory;atomic_clean_write;atomic_json_write;catalog;check_root;connect;find_image;legacy_workspace;record_image;safe_child;state_dir;state_name;state_relative;upgrade_workspace;workspace_lock;write_report",
+      "Imports": "from .errors import RiposteError as RiposteError\nfrom .locking import LEASE_NAME as LEASE_NAME, file_identity as file_identity, file_lease as file_lease\nfrom .policy import canonical_path as canonical_path, is_link as is_link\nfrom .sanitize import png_audit as png_audit, timestamp_day as timestamp_day\nfrom _riposte_types import PngAudit, CatalogRow, UpgradeReport\nfrom contextlib import AbstractContextManager\nfrom pathlib import Path\nfrom typing import Mapping\nimport sqlite3",
+      "Requires": "OVR-035;OVR-075;OVR-081;OVR-088;OVR-094;OVR-1326"
+    }
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "CONFIG",
+      "Path": "src/riposte/locking.py",
+      "Symbol": "LEASE_NAME",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-1321",
+      "Tags": "#source-symbol",
+      "ID": "OVR-1327"
+    }
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/locking.py",
+      "Symbol": "_windows_lock",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-1321;OVR-380",
+      "Tags": "#source-symbol",
+      "ID": "OVR-1328"
+    }
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/locking.py",
+      "Symbol": "_windows_open",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-1321;OVR-380",
+      "Tags": "#source-symbol",
+      "ID": "OVR-1329"
+    }
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/locking.py",
+      "Symbol": "file_identity",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-1321;OVR-380;OVR-451",
+      "Tags": "#source-symbol",
+      "ID": "OVR-1330"
+    }
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/locking.py",
+      "Symbol": "file_lease",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-1321;OVR-1328;OVR-1329;OVR-1330;OVR-380",
+      "Tags": "#source-symbol",
+      "ID": "OVR-1331"
+    }
+  },
+  {
+    "op": "set",
+    "id": "OVR-437",
+    "fields": {
+      "Requires": "OVR-021;OVR-1327;OVR-439;OVR-442;OVR-446;OVR-451;OVR-520;OVR-527;OVR-973"
+    }
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/store.py",
+      "Symbol": "_application_directory",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-035;OVR-380",
+      "Tags": "#source-symbol",
+      "ID": "OVR-1332"
+    }
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/store.py",
+      "Symbol": "_publish_lock_marker",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-035;OVR-380",
+      "Tags": "#source-symbol",
+      "ID": "OVR-1333"
+    }
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/store.py",
+      "Symbol": "_read_lock_marker",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-035;OVR-380;OVR-451",
+      "Tags": "#source-symbol",
+      "ID": "OVR-1334"
+    }
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/store.py",
+      "Symbol": "application_directory",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-035;OVR-1332",
+      "Tags": "#source-symbol",
+      "ID": "OVR-1335"
+    }
+  },
+  {
+    "op": "set",
+    "id": "OVR-520",
+    "fields": {
+      "Requires": "OVR-035;OVR-1327;OVR-1330;OVR-1335;OVR-380;OVR-451;OVR-515;OVR-516"
+    }
+  },
+  {
+    "op": "set",
+    "id": "OVR-529",
+    "fields": {
+      "Requires": "OVR-035;OVR-380;OVR-516;OVR-520;OVR-523;OVR-527;OVR-530"
+    }
+  },
+  {
+    "op": "set",
+    "id": "OVR-530",
+    "fields": {
+      "Requires": "OVR-035;OVR-1327;OVR-1330;OVR-1331;OVR-1333;OVR-1334;OVR-380;OVR-451;OVR-520;OVR-526;OVR-527"
+    }
+  },
+  {
+    "op": "set",
+    "id": "OVR-888",
+    "fields": {
+      "Requires": "OVR-1335;OVR-875"
+    }
+  }
+]

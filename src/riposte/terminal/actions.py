@@ -2,7 +2,8 @@
 from __future__ import annotations
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Any
+from typing import Any, Mapping, cast
+from ..records import RequestValues
 import math
 import shlex
 from ..errors import RiposteError
@@ -192,7 +193,7 @@ def make_request(key: str, root: Path | None, values: dict, selected=()) -> Requ
         except (ValueError, TypeError):
             raise RiposteError("CATEGORY_ASSIGNMENT_INVALID") from None
     if key == "review": parsed["item_ids"] = list(parsed["item_ids"])
-    return Request(key, root, parsed)
+    return Request(key, root, cast(RequestValues, parsed))
 
 
 def request_argv(request: Request) -> list[str]:
@@ -200,7 +201,7 @@ def request_argv(request: Request) -> list[str]:
     name = {"category-rules-save": "category-rules", "plan": "publish", "riposte-plan": "riposte", "sort-riposte-plan": "sort-riposte", "apply": "organize", "undo-sort-apply": "undo-sort", "handoff": "workshop", "open-image": "image"}.get(request.name, request.name)
     args = ["riposte", name]
     if request.root is not None and name != "doctor": args.append(str(request.root))
-    values = request.values
+    values: Mapping[str, object] = request.values
     pos = {"inspect": ("image_id",), "guard": ("image_id",), "compare": ("image_id", "candidate"),
            "qualify": ("trial_id",), "challenge": ("trial_id",), "benchmark": ("trial_id",), "export": ("trial_id",),
            "publications": ("batch_id",), "resume": ("batch_id",), "review": ("batch_id",), "package": ("batch_id",),

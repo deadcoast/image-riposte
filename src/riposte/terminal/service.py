@@ -7,7 +7,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Any, Callable
+from typing import Any, Literal, TYPE_CHECKING, cast
 import io
 import os
 import re
@@ -16,15 +16,17 @@ import sys
 
 from ..errors import RiposteError
 from ..policy import Policy, MONTHS, BINS, YEARS
+from ..records import CatalogRow, ImageInfo, ListOptions, PreviewSortOptions, Progress, RequestValues, SelectionFilters, SortOptions
 
-Progress = Callable[[dict], None]
+if TYPE_CHECKING:
+    from ..publication import PublishRecipe
 
 
 @dataclass(frozen=True)
 class Request:
     name: str
     root: Path | None = None
-    values: dict[str, Any] = field(default_factory=dict)
+    values: RequestValues = field(default_factory=RequestValues)
 
 
 # These are application effects, not a permission system for hostile local code.
@@ -40,11 +42,15 @@ EFFECTS = {
     "review": "RECORD_REVIEW", "package": "WRITE_APPROVED_PACK", "doctor": "INSPECT",
     "upgrade": "RENAME_APP_STATE", "guard": "CREATE_TRIAL", "compare": "CREATE_TRIAL",
     "qualify": "WRITE_EVALUATION", "challenge": "WRITE_GENERATIONS",
+    "experiment": "INSPECT", "experiment-packet": "WRITE_REVIEW_PACKET", "experiment-review": "RECORD_REVIEW",
+    "cohort": "INSPECT", "cohort-challenge": "WRITE_GENERATIONS",
+    "panel": "INSPECT", "panel-create": "COMMIT_REVIEW_PANEL",
+    "panel-packet": "WRITE_REVIEW_PACKET", "panel-review": "RECORD_REVIEW",
     "benchmark": "WRITE_GENERATIONS", "export": "WRITE_UNREVIEWED_EXPORT",
     "trials": "INSPECT", "evaluations": "INSPECT", "generations": "INSPECT",
     "generation": "INSPECT", "frame": "INSPECT", "handoff": "CREATE_EXACT_TRIAL", "image": "INSPECT", "open-image": "OPEN_LOCAL_VIEWER",
 }
-CANCELLABLE = frozenset({"categories", "category-rules", "organize", "audit", "list", "inspect", "plan", "publish", "resume",
+CANCELLABLE = frozenset({"cohort-challenge", "categories", "category-rules", "organize", "audit", "list", "inspect", "plan", "publish", "resume",
                          "guard", "qualify", "challenge", "doctor", "sort-riposte-plan", "riposte", "riposte-plan"})
 
 
@@ -67,7 +73,9 @@ def parse_month(value: str | int | None) -> str | None:
     raise RiposteError("MONTH_FILTER_INVALID")
 
 
-def select_rows(root: Path, *, year=None, month=None, size=None, search="", limit=None, offset=0) -> list[dict]:
+def select_rows(root: Path, *, year: str | None = None, month: str | int | None = None,
+                size: str | None = None, search: str = "", limit: int | None = None,
+                offset: int = 0) -> list[CatalogRow]:
     from ..store import catalog
     if year not in (None, "", "all", *YEARS, "EVERYTHING_ELSE"):
         raise RiposteError("YEAR_FILTER_INVALID")
@@ -88,7 +96,7 @@ def select_rows(root: Path, *, year=None, month=None, size=None, search="", limi
     return filtered[offset:] if limit is None else filtered[offset:offset + limit]
 
 
-def recipe(values: dict):
+def recipe(values: RequestValues) -> PublishRecipe:
     from ..publication import PublishRecipe
     from ..quality import QualityLimits
     from ..release_guard import ReleaseConfig
@@ -101,24 +109,24 @@ def recipe(values: dict):
                                        rms_fraction=values.get("rms_fraction", .95)))
 
 
-def image_selection(root, values):
+def image_selection(root: Path, values: RequestValues) -> list[str]:
     ids = list(values.get("image_ids") or [])
     all_images = values.get("all_images", False)
     if bool(ids) == bool(all_images):
         raise RiposteError("SELECT_IMAGES_OR_ALL")
-    filters = {k: values.get(k) for k in ("year", "month", "size")}
+    filters: SelectionFilters = {"year": values.get("year"), "month": values.get("month"), "size": values.get("size")}
     if ids and any(v not in (None, "", "all") for v in filters.values()):
         raise RiposteError("FILTERS_REQUIRE_ALL_SELECTION")
     return [r["id"] for r in select_rows(root, **filters)] if all_images else ids
 
 
-def _paths(values):
+def _paths(values: RequestValues) -> list[Path]:
     paths = values.get("vae_dirs", [])
     if len(paths) > 4: raise RiposteError("TOO_MANY_LOCAL_ENCODERS")
     return [Path(p).expanduser().absolute() for p in paths]
 
 
-def _optional(values, key):
+def _optional(values: RequestValues, key: Literal["inpaint", "video"]) -> Path | None:
     value = values.get(key)
     return Path(value).expanduser().absolute() if value else None
 
@@ -134,7 +142,7 @@ def execute(request: Request, progress: Progress | None = None) -> Any:
             from ..runtime_probe import execute_local_probe
             if not v.get("vae_dirs"): raise RiposteError("LOCAL_VAE_DIRECTORY_REQUIRED")
             return execute_local_probe(_paths(v), device=v.get("device", "auto"), progress=progress)
-        result = {"runtime": runtime_capabilities()}
+        result: dict[str, object] = {"runtime": runtime_capabilities()}
         if v.get("vae_dirs"):
             entries = [inspect_vae(p) for p in _paths(v)]
             result["model" if len(entries) == 1 else "models"] = entries[0] if len(entries) == 1 else entries
@@ -152,22 +160,24 @@ def execute(request: Request, progress: Progress | None = None) -> Any:
         fillers = v.get("fillers", DEFAULT_FILLERS)
         if isinstance(fillers, str): fillers = tuple(word.strip() for word in fillers.split(",") if word.strip())
         return discover_categories(root, min_count=v.get("min_count", 2), max_words=v.get("max_words", 3),
-                                   limit=v.get("limit", 100), fillers=fillers,
+                                   limit=cast(int, v.get("limit", 100)), fillers=fillers,
                                    ignore=v.get("ignore") or (), categories=v.get("category_specs") or (), progress=progress)
     if name in {"undo-sort", "undo-sort-apply"}:
         from ..sort_history import undo_sort
         return undo_sort(root, apply=name == "undo-sort-apply", sort_id=v.get("sort_id"))
     if name in {"organize", "apply"}:
         from ..organizer import plan, organize
-        options = {"categories": v.get("categories", False), "assignments": v.get("assignments") or ()} if v.get("categories") or v.get("assignments") else {}
+        options: SortOptions = {"categories": v.get("categories", False), "assignments": v.get("assignments") or ()} if v.get("categories") or v.get("assignments") else {}
         if name == "apply" and v.get("plan_id") is not None: options["plan_id"] = v["plan_id"]
-        return (organize if name == "apply" else plan)(
-            root, Policy(date_mode=v.get("date_mode", "download"), discard_sidecars=v.get("discard_sidecars", False)), progress, **options)
+        policy = Policy(date_mode=v.get("date_mode", "download"), discard_sidecars=v.get("discard_sidecars", False))
+        if name == "apply":
+            return organize(root, policy, progress, **options)
+        return plan(root, policy, progress, **cast(PreviewSortOptions, options))
     if name == "audit":
         from ..organizer import audit_workspace
         return audit_workspace(root)
     if name == "list":
-        return select_rows(root, **{k: v[k] for k in ("year", "month", "size", "search", "limit", "offset") if k in v})
+        return select_rows(root, **cast(ListOptions, {k: v[k] for k in ("year", "month", "size", "search", "limit", "offset") if k in v}))
     if name == "inspect":
         from ..store import find_image, safe_child
         from ..sanitize import png_audit
@@ -178,32 +188,53 @@ def execute(request: Request, progress: Progress | None = None) -> Any:
     if name in {"sort-riposte", "sort-riposte-plan"}:
         from ..organizer import plan, organize
         from ..publication import _models, publication_plan, start_publication
+        from ..sort_plan import receipt
         if v.get("input_paths"):
             raise RiposteError("SORT_USES_WORKSPACE_ROOT")
-        # Validate the selection grammar before source replacement. --all is
-        # resolved again after sorting so newly imported images are included.
+        # Validate selection before replacement; new IDs are resolved only for
+        # reviewed image destinations after sorting.
         selected = image_selection(root, v)
         configuration = recipe(v)
         if not v.get("all_images"):
             publication_plan(root, selected, configuration)
         policy = Policy(date_mode=v.get("date_mode", "download"), discard_sidecars=v.get("discard_sidecars", False))
         options = {"categories": v.get("categories", False), "assignments": v.get("assignments") or ()} if v.get("categories") or v.get("assignments") else {}
-        sorting = plan(root, policy, progress, **options)
+        sorting = plan(root, policy, progress, **cast(PreviewSortOptions, options))
+        filters: SelectionFilters = {"year": v.get("year"), "month": v.get("month"), "size": v.get("size")}
+        plan_id = receipt({"version": "riposte-combined-sort-1", "sorting": sorting["plan_id"],
+                           "all_images": v.get("all_images", False), "selected": sorted(selected),
+                           "filters": filters, "recipe": configuration.public(),
+                           "models": [str(path) for path in _paths(v)], "device": v.get("device", "auto"),
+                           "inpaint": str(_optional(v, "inpaint") or ""), "video": str(_optional(v, "video") or "")})
         if name == "sort-riposte-plan":
-            return {"mode": "SORT_RIPOSTE_PLAN", "sorting": sorting, "ready": sorting["ready"],
+            return {"mode": "SORT_RIPOSTE_PLAN", "sorting": sorting, "plan_id": plan_id, "ready": sorting["ready"],
                     "selection": "ALL_MATCHING_AFTER_SORT" if v.get("all_images") else "SELECTED_CATALOG_IMAGES",
                     "recipe": configuration.public(), "writes": False, "requires": "EXPLICIT_REPLACE_CONSENT"}
+        if not v.get("plan_id"):
+            raise RiposteError("SORT_PREVIEW_REQUIRED")
+        if v["plan_id"] != plan_id:
+            raise RiposteError("SORT_PREVIEW_CHANGED")
         if not sorting["ready"]:
             return {"mode": "SORT_RIPOSTE_RESULT", "checkpoint": "INCOMPLETE", "sorting": sorting, "protection": "NOT_STARTED"}
         # Execute all chosen model probes before replacing any source. Keep the
         # loaded models for the following publication instead of loading twice.
         loaded = _models(_paths(v), v.get("device", "auto"), _optional(v, "inpaint"), _optional(v, "video"), progress)
-        if v.get("plan_id") is not None: options["plan_id"] = v["plan_id"]
+        destinations = {item["destination"]: item["expected"]["sha256"] for item in sorting["files"]
+                        if item["kind"] == "IMAGE" and item.get("action") in {"KEEP", "SORT"}}
+        options["plan_id"] = sorting["plan_id"]
         sorting = organize(root, policy, progress, **options)
         if sorting["checkpoint"] != "COMPLETE":
             return {"mode": "SORT_RIPOSTE_RESULT", "checkpoint": "INCOMPLETE", "sorting": sorting, "protection": "NOT_STARTED"}
         try:
-            result = start_publication(root, image_selection(root, v), _paths(v), configuration,
+            current = {row["relative"]: row for row in select_rows(root)}
+            if any(relative not in current or current[relative]["sha256"] != digest for relative, digest in destinations.items()):
+                raise RiposteError("SORT_PREVIEW_CHANGED")
+            # Resolve new catalog IDs only for the exact reviewed destinations;
+            # a later unrelated catalog addition cannot join this selection.
+            if v.get("all_images"):
+                selected = [row["id"] for row in select_rows(root, **filters)
+                            if destinations.get(row["relative"]) == row["sha256"]]
+            result = start_publication(root, selected, _paths(v), configuration,
                                        device=v.get("device", "auto"), progress=progress, _loaded_models=loaded)
         except RiposteError as exc:
             return {"mode": "SORT_RIPOSTE_RESULT", "checkpoint": "INCOMPLETE", "sorting": sorting,
@@ -248,28 +279,58 @@ def execute(request: Request, progress: Progress | None = None) -> Any:
                                 v.get("max_edge", 1536), v.get("method", "external"))
     if name == "qualify":
         from ..qualification import qualify_trial
-        return qualify_trial(root, v["trial_id"], _paths(v), device=v.get("device", "auto"), progress=progress)
+        return qualify_trial(root, cast(str, v["trial_id"]), _paths(v), device=v.get("device", "auto"), progress=progress)
     if name == "challenge":
         from ..generation import controlled_generation
-        return controlled_generation(root, v["trial_id"], Path(v["model"]).expanduser().absolute(), v.get("task", "edit"),
+        return controlled_generation(root, cast(str, v["trial_id"]), Path(v["model"]).expanduser().absolute(), v.get("task", "edit"),
                                      seeds=tuple(v.get("seeds") or (7, 19)), views=tuple(v.get("views") or ("identity", "jpeg70")),
                                      steps=v.get("steps", 25), progress=progress)
     if name == "benchmark":
         from ..benchmark import run_benchmark
-        return run_benchmark(root, v["trial_id"], Path(v["model"]).expanduser().absolute(),
+        return run_benchmark(root, cast(str, v["trial_id"]), Path(v["model"]).expanduser().absolute(),
                              task=v.get("task", "edit"), steps=v.get("steps", 25))
     if name == "export":
         from ..lab import export_candidate
-        return export_candidate(root, v["trial_id"], v.get("acknowledge_unverified", False))
+        return export_candidate(root, cast(str, v["trial_id"]), v.get("acknowledge_unverified", False))
     if name == "trials":
         from ..lab import trials, trial_report
-        return trial_report(root, v["trial_id"]) if v.get("trial_id") else trials(root)
+        return trial_report(root, cast(str, v["trial_id"])) if v.get("trial_id") else trials(root)
     if name == "evaluations":
         from ..qualification import evaluations
-        return evaluations(root, v["trial_id"])
+        return evaluations(root, cast(str, v["trial_id"]))
+    if name == "experiment":
+        from ..experiment import experiment_status
+        return experiment_status(root, v.get("run_id"))
+    if name == "panel":
+        from ..review_panel import panel_status
+        return panel_status(root, v.get("panel_id"))
+    if name == "panel-create":
+        from ..review_panel import create_panel
+        return create_panel(root, v["run_ids"], v.get("reviewers", 2),
+                            Path(v["rubric"]).expanduser().absolute() if "rubric" in v else None)
+    if name == "panel-packet":
+        from ..review_panel import panel_packet
+        return panel_packet(root, v["panel_id"], v["reviewer_id"])
+    if name == "panel-review":
+        from ..review_panel import record_panel_review
+        return record_panel_review(root, v["panel_id"], Path(v["ratings"]).expanduser().absolute())
+    if name == "cohort":
+        from ..cohort import cohort_status
+        return cohort_status(root, v.get("cohort_id"))
+    if name == "cohort-challenge":
+        from ..cohort import cohort_challenge
+        return cohort_challenge(root, v["trial_ids"], Path(v["model"]).expanduser().absolute(), v["sample_size"],
+                                v.get("task", "edit"), tuple(v.get("seeds") or (7, 19)),
+                                tuple(v.get("views") or ("identity", "jpeg70")), v.get("steps", 25), progress)
+    if name == "experiment-packet":
+        from ..experiment import review_packet
+        return review_packet(root, v["run_id"])
+    if name == "experiment-review":
+        from ..experiment import record_review
+        return record_review(root, v["run_id"], Path(v["ratings"]).expanduser().absolute())
     if name == "generations":
         from ..generation import generation_runs
-        return generation_runs(root, v["trial_id"])
+        return generation_runs(root, cast(str, v["trial_id"]))
     if name == "generation":
         from ..generation import generation_report
         return generation_report(root, v["run_id"])
@@ -283,7 +344,7 @@ def execute(request: Request, progress: Progress | None = None) -> Any:
     raise RiposteError("COMMAND_NOT_AVAILABLE")
 
 
-def image_bytes(root, values) -> bytes:
+def image_bytes(root: Path, values: RequestValues) -> bytes:
     from ..store import find_image, safe_child
     from ..sanitize import png_audit
     if values.get("run_id"):
@@ -295,7 +356,7 @@ def image_bytes(root, values) -> bytes:
                                   values.get("kind", "candidate"), view=values.get("view", "identity"))
     if values.get("trial_id"):
         from ..lab import trial_pixels
-        return trial_pixels(root, values["trial_id"], values.get("kind", "candidate"), values.get("view", "identity"))
+        return trial_pixels(root, cast(str, values["trial_id"]), values.get("kind", "candidate"), values.get("view", "identity"))
     if values.get("view", "identity") != "identity" or values.get("kind", "candidate") not in {"candidate", "clean"}:
         raise RiposteError("CLEAN_MASTER_VIEW_INVALID")
     row = find_image(root, values["image_id"])
@@ -305,7 +366,7 @@ def image_bytes(root, values) -> bytes:
     return raw
 
 
-def view_image(root, values, open_viewer=False):
+def view_image(root: Path, values: RequestValues, open_viewer: bool = False) -> ImageInfo:
     """Return image information or explicitly open an audited clean PNG.
 
     For canonical images, open the canonical path. For transformed/review images,
@@ -316,7 +377,7 @@ def view_image(root, values, open_viewer=False):
     from ..store import safe_child, state_relative, atomic_clean_write, workspace_lock, find_image
     raw = image_bytes(root, values)
     audit = png_audit(raw)
-    result = {"mode": "VERIFIED_IMAGE", **audit, "viewer": "NOT_OPENED"}
+    result = cast(ImageInfo, {"mode": "VERIFIED_IMAGE", **audit, "viewer": "NOT_OPENED"})
     if not open_viewer: return result
     if values.get("image_id") and not values.get("batch_id") and not values.get("trial_id"):
         relative = find_image(root, values["image_id"])["relative"]
@@ -341,7 +402,7 @@ def view_image(root, values, open_viewer=False):
     return {**result, "relative": relative, "viewer": "HANDOFF_REQUESTED"}
 
 
-def result_exit_code(result):
+def result_exit_code(result: object) -> int:
     if isinstance(result, dict):
         if result.get("checkpoint") == "INCOMPLETE" or result.get("ready") is False:
             return 2

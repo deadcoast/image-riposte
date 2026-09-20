@@ -1,0 +1,192 @@
+FFFFF.FFFFFFF.FFFFFFF.FFFFFFF                                            [100%]
+================================== FAILURES ===================================
+______ test_all_boundaries_reject_overlap_without_writes[exact-backend] _______
+tests\test_application_roots.py:58: in test_all_boundaries_reject_overlap_without_writes
+    with pytest.raises(RiposteError, match="^IMAGE_FOLDER_OVERLAPS_APPLICATION$"):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   Failed: DID NOT RAISE RiposteError
+________ test_all_boundaries_reject_overlap_without_writes[exact-plan] ________
+tests\test_application_roots.py:58: in test_all_boundaries_reject_overlap_without_writes
+    with pytest.raises(RiposteError, match="^IMAGE_FOLDER_OVERLAPS_APPLICATION$"):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   Failed: DID NOT RAISE RiposteError
+______ test_all_boundaries_reject_overlap_without_writes[exact-service] _______
+tests\test_application_roots.py:58: in test_all_boundaries_reject_overlap_without_writes
+    with pytest.raises(RiposteError, match="^IMAGE_FOLDER_OVERLAPS_APPLICATION$"):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   Failed: DID NOT RAISE RiposteError
+______ test_all_boundaries_reject_overlap_without_writes[exact-combined] ______
+tests\test_application_roots.py:58: in test_all_boundaries_reject_overlap_without_writes
+    with pytest.raises(RiposteError, match="^IMAGE_FOLDER_OVERLAPS_APPLICATION$"):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   Failed: DID NOT RAISE RiposteError
+_______ test_all_boundaries_reject_overlap_without_writes[exact-rules] ________
+tests\test_application_roots.py:58: in test_all_boundaries_reject_overlap_without_writes
+    with pytest.raises(RiposteError, match="^IMAGE_FOLDER_OVERLAPS_APPLICATION$"):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   AssertionError: 
+E   - CATEGORY_OPTIONS_INVALID
+E   + IMAGE_FOLDER_OVERLAPS_APPLICATION
+________ test_all_boundaries_reject_overlap_without_writes[exact-api] _________
+tests\test_application_roots.py:58: in test_all_boundaries_reject_overlap_without_writes
+    with pytest.raises(RiposteError, match="^IMAGE_FOLDER_OVERLAPS_APPLICATION$"):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   Failed: DID NOT RAISE RiposteError
+________ test_all_boundaries_reject_overlap_without_writes[exact-cli] _________
+tests\test_application_roots.py:46: in test_all_boundaries_reject_overlap_without_writes
+    assert json.loads(result.stdout)["code"] == "IMAGE_FOLDER_OVERLAPS_APPLICATION"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   KeyError: 'code'
+_____ test_all_boundaries_reject_overlap_without_writes[ancestor-backend] _____
+tests\test_application_roots.py:58: in test_all_boundaries_reject_overlap_without_writes
+    with pytest.raises(RiposteError, match="^IMAGE_FOLDER_OVERLAPS_APPLICATION$"):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   Failed: DID NOT RAISE RiposteError
+______ test_all_boundaries_reject_overlap_without_writes[ancestor-plan] _______
+tests\test_application_roots.py:58: in test_all_boundaries_reject_overlap_without_writes
+    with pytest.raises(RiposteError, match="^IMAGE_FOLDER_OVERLAPS_APPLICATION$"):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   Failed: DID NOT RAISE RiposteError
+_____ test_all_boundaries_reject_overlap_without_writes[ancestor-service] _____
+tests\test_application_roots.py:58: in test_all_boundaries_reject_overlap_without_writes
+    with pytest.raises(RiposteError, match="^IMAGE_FOLDER_OVERLAPS_APPLICATION$"):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   Failed: DID NOT RAISE RiposteError
+____ test_all_boundaries_reject_overlap_without_writes[ancestor-combined] _____
+tests\test_application_roots.py:58: in test_all_boundaries_reject_overlap_without_writes
+    with pytest.raises(RiposteError, match="^IMAGE_FOLDER_OVERLAPS_APPLICATION$"):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   Failed: DID NOT RAISE RiposteError
+______ test_all_boundaries_reject_overlap_without_writes[ancestor-rules] ______
+tests\test_application_roots.py:58: in test_all_boundaries_reject_overlap_without_writes
+    with pytest.raises(RiposteError, match="^IMAGE_FOLDER_OVERLAPS_APPLICATION$"):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   AssertionError: 
+E   - CATEGORY_OPTIONS_INVALID
+E   + IMAGE_FOLDER_OVERLAPS_APPLICATION
+_______ test_all_boundaries_reject_overlap_without_writes[ancestor-api] _______
+tests\test_application_roots.py:58: in test_all_boundaries_reject_overlap_without_writes
+    with pytest.raises(RiposteError, match="^IMAGE_FOLDER_OVERLAPS_APPLICATION$"):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   Failed: DID NOT RAISE RiposteError
+_______ test_all_boundaries_reject_overlap_without_writes[ancestor-cli] _______
+tests\test_application_roots.py:46: in test_all_boundaries_reject_overlap_without_writes
+    assert json.loads(result.stdout)["code"] == "IMAGE_FOLDER_OVERLAPS_APPLICATION"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   KeyError: 'code'
+____ test_all_boundaries_reject_overlap_without_writes[descendant-backend] ____
+tests\test_application_roots.py:58: in test_all_boundaries_reject_overlap_without_writes
+    with pytest.raises(RiposteError, match="^IMAGE_FOLDER_OVERLAPS_APPLICATION$"):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   Failed: DID NOT RAISE RiposteError
+_____ test_all_boundaries_reject_overlap_without_writes[descendant-plan] ______
+tests\test_application_roots.py:58: in test_all_boundaries_reject_overlap_without_writes
+    with pytest.raises(RiposteError, match="^IMAGE_FOLDER_OVERLAPS_APPLICATION$"):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   Failed: DID NOT RAISE RiposteError
+____ test_all_boundaries_reject_overlap_without_writes[descendant-service] ____
+tests\test_application_roots.py:58: in test_all_boundaries_reject_overlap_without_writes
+    with pytest.raises(RiposteError, match="^IMAGE_FOLDER_OVERLAPS_APPLICATION$"):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   Failed: DID NOT RAISE RiposteError
+___ test_all_boundaries_reject_overlap_without_writes[descendant-combined] ____
+tests\test_application_roots.py:58: in test_all_boundaries_reject_overlap_without_writes
+    with pytest.raises(RiposteError, match="^IMAGE_FOLDER_OVERLAPS_APPLICATION$"):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   AssertionError: 
+E   - NO_MODEL_NO_PROTECTION
+E   + IMAGE_FOLDER_OVERLAPS_APPLICATION
+_____ test_all_boundaries_reject_overlap_without_writes[descendant-rules] _____
+tests\test_application_roots.py:58: in test_all_boundaries_reject_overlap_without_writes
+    with pytest.raises(RiposteError, match="^IMAGE_FOLDER_OVERLAPS_APPLICATION$"):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   AssertionError: 
+E   - CATEGORY_OPTIONS_INVALID
+E   + IMAGE_FOLDER_OVERLAPS_APPLICATION
+______ test_all_boundaries_reject_overlap_without_writes[descendant-api] ______
+tests\test_application_roots.py:58: in test_all_boundaries_reject_overlap_without_writes
+    with pytest.raises(RiposteError, match="^IMAGE_FOLDER_OVERLAPS_APPLICATION$"):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   Failed: DID NOT RAISE RiposteError
+______ test_all_boundaries_reject_overlap_without_writes[descendant-cli] ______
+tests\test_application_roots.py:45: in test_all_boundaries_reject_overlap_without_writes
+    assert result.exit_code == 2, result.stdout
+E   AssertionError: {
+E       "mode": "APPLY",
+E       "counts": {
+E         "migrated": 1
+E       },
+E       "blockers": {},
+E       "unmanaged_or_changed_remaining": 0,
+E       "checkpoint": "COMPLETE",
+E       "metadata_policy": "DATE_ONLY_IMAGES",
+E       "video_policy": "SORT_ONLY_BYTES_UNCHANGED",
+E       "source_backups": "PRIVATE_UNDO_HISTORY",
+E       "sort_id": "01789781057381815400-b2f8ebd89ea64e129c1f2dcc29571b5c"
+E     }
+E     
+E   assert 0 == 2
+E    +  where 0 = <Result okay>.exit_code
+____________ test_independent_sibling_preview_sort_and_exact_undo _____________
+tests\test_application_roots.py:75: in test_independent_sibling_preview_sort_and_exact_undo
+    assert response.json()["checkpoint"] == "COMPLETE"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   KeyError: 'checkpoint'
+_ test_installed_package_has_no_fixed_parent_assumption[Lib/site-packages/riposte] _
+tests\test_application_roots.py:94: in test_installed_package_has_no_fixed_parent_assumption
+    with pytest.raises(RiposteError, match="^IMAGE_FOLDER_OVERLAPS_APPLICATION$"):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   Failed: DID NOT RAISE RiposteError
+_ test_installed_package_has_no_fixed_parent_assumption[lib/python3.13/site-packages/riposte] _
+tests\test_application_roots.py:94: in test_installed_package_has_no_fixed_parent_assumption
+    with pytest.raises(RiposteError, match="^IMAGE_FOLDER_OVERLAPS_APPLICATION$"):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   Failed: DID NOT RAISE RiposteError
+____ test_installed_package_has_no_fixed_parent_assumption[target/riposte] ____
+tests\test_application_roots.py:94: in test_installed_package_has_no_fixed_parent_assumption
+    with pytest.raises(RiposteError, match="^IMAGE_FOLDER_OVERLAPS_APPLICATION$"):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   Failed: DID NOT RAISE RiposteError
+_____ test_installed_package_has_no_fixed_parent_assumption[src/riposte] ______
+tests\test_application_roots.py:94: in test_installed_package_has_no_fixed_parent_assumption
+    with pytest.raises(RiposteError, match="^IMAGE_FOLDER_OVERLAPS_APPLICATION$"):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   Failed: DID NOT RAISE RiposteError
+============================== warnings summary ===============================
+.venv\Lib\site-packages\fastapi\testclient.py:1
+  C:\Users\ryanf\github\_new\image-riposte\.venv\Lib\site-packages\fastapi\testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    from starlette.testclient import TestClient as TestClient  # noqa
+
+.venv\Lib\site-packages\starlette\testclient.py:53
+  C:\Users\ryanf\github\_new\image-riposte\.venv\Lib\site-packages\starlette\testclient.py:53: DeprecationWarning: The anyio.abc.BlockingPortal alias is deprecated, use anyio.from_thread.BlockingPortal instead.
+    _PortalFactoryType = Callable[[], AbstractContextManager[anyio.abc.BlockingPortal]]
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ===========================
+FAILED tests/test_application_roots.py::test_all_boundaries_reject_overlap_without_writes[exact-backend]
+FAILED tests/test_application_roots.py::test_all_boundaries_reject_overlap_without_writes[exact-plan]
+FAILED tests/test_application_roots.py::test_all_boundaries_reject_overlap_without_writes[exact-service]
+FAILED tests/test_application_roots.py::test_all_boundaries_reject_overlap_without_writes[exact-combined]
+FAILED tests/test_application_roots.py::test_all_boundaries_reject_overlap_without_writes[exact-rules]
+FAILED tests/test_application_roots.py::test_all_boundaries_reject_overlap_without_writes[exact-api]
+FAILED tests/test_application_roots.py::test_all_boundaries_reject_overlap_without_writes[exact-cli]
+FAILED tests/test_application_roots.py::test_all_boundaries_reject_overlap_without_writes[ancestor-backend]
+FAILED tests/test_application_roots.py::test_all_boundaries_reject_overlap_without_writes[ancestor-plan]
+FAILED tests/test_application_roots.py::test_all_boundaries_reject_overlap_without_writes[ancestor-service]
+FAILED tests/test_application_roots.py::test_all_boundaries_reject_overlap_without_writes[ancestor-combined]
+FAILED tests/test_application_roots.py::test_all_boundaries_reject_overlap_without_writes[ancestor-rules]
+FAILED tests/test_application_roots.py::test_all_boundaries_reject_overlap_without_writes[ancestor-api]
+FAILED tests/test_application_roots.py::test_all_boundaries_reject_overlap_without_writes[ancestor-cli]
+FAILED tests/test_application_roots.py::test_all_boundaries_reject_overlap_without_writes[descendant-backend]
+FAILED tests/test_application_roots.py::test_all_boundaries_reject_overlap_without_writes[descendant-plan]
+FAILED tests/test_application_roots.py::test_all_boundaries_reject_overlap_without_writes[descendant-service]
+FAILED tests/test_application_roots.py::test_all_boundaries_reject_overlap_without_writes[descendant-combined]
+FAILED tests/test_application_roots.py::test_all_boundaries_reject_overlap_without_writes[descendant-rules]
+FAILED tests/test_application_roots.py::test_all_boundaries_reject_overlap_without_writes[descendant-api]
+FAILED tests/test_application_roots.py::test_all_boundaries_reject_overlap_without_writes[descendant-cli]
+FAILED tests/test_application_roots.py::test_independent_sibling_preview_sort_and_exact_undo
+FAILED tests/test_application_roots.py::test_installed_package_has_no_fixed_parent_assumption[Lib/site-packages/riposte]
+FAILED tests/test_application_roots.py::test_installed_package_has_no_fixed_parent_assumption[lib/python3.13/site-packages/riposte]
+FAILED tests/test_application_roots.py::test_installed_package_has_no_fixed_parent_assumption[target/riposte]
+FAILED tests/test_application_roots.py::test_installed_package_has_no_fixed_parent_assumption[src/riposte]
+26 failed, 3 passed, 2 warnings in 1.95s

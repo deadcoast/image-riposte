@@ -1,0 +1,8 @@
+{
+  "identity": "PASS",
+  "task": "PAC-033",
+  "scope": "BOUNDED_REDUCTION_ACCEPTED_MARKDOWN_ONLY",
+  "frozen_registers_unchanged": true,
+  "audit": "OPEN",
+  "milestone": "PENDING"
+}

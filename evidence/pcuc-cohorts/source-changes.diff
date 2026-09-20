@@ -1,0 +1,496 @@
+--- before/src/riposte/cli.py
++++ after/src/riposte/cli.py
+@@ -334,6 +334,25 @@
+     dispatch(ctx, "experiment", root, **({"run_id": run_id} if run_id else {}))
+ 
+ 
++@command("cohort-challenge", "OPTIONAL WORKSHOP")
++def cohort_challenge(ctx: typer.Context, root: Root,
++                     trial: Annotated[list[str], typer.Option("--trial", help="Explicit sampling pool; repeat for every eligible trial.")],
++                     model: Annotated[Path, typer.Option(help="Local CUDA baseline used for every selected artwork.")],
++                     sample_size: Annotated[int, typer.Option(min=1, help="Number drawn without replacement from the fixed pool.")],
++                     task: Task = Task.edit, steps: Annotated[int, typer.Option(min=1, max=100)] = 25,
++                     seed: Annotated[Optional[list[int]], typer.Option("--seed", min=0, max=4294967295)] = None,
++                     view: Annotated[Optional[list[str]], typer.Option("--view")] = None) -> None:
++    """Commit the full cohort, then generate one attempt per selected artwork."""
++    dispatch(ctx, "cohort-challenge", root, trial_ids=trial, model=model, sample_size=sample_size,
++             task=task, steps=steps, seeds=seed, views=view)
++
++
++@command("cohort", "OPTIONAL WORKSHOP")
++def cohort(ctx: typer.Context, root: Root, cohort_id: Annotated[Optional[str], typer.Argument()] = None) -> None:
++    """List committed cohorts or inspect all members and missing-outcome bounds."""
++    dispatch(ctx, "cohort", root, **({"cohort_id": cohort_id} if cohort_id else {}))
++
++
+ @command("experiment-packet", "OPTIONAL WORKSHOP")
+ def experiment_packet(ctx: typer.Context, root: Root, run_id: str) -> None:
+     """Export verified frames with concealed arm labels and a ratings template."""
+--- before/src/riposte/cohort.py
++++ after/src/riposte/cohort.py
+@@ -0,0 +1,245 @@
++"""Prospective local artwork cohorts with exact finite-sample missingness bounds.
++
++These bounds are not confidence intervals. Distinct rasters and local random
++selection do not establish statistical independence or held-out model families.
++"""
++from __future__ import annotations
++
++from collections.abc import Mapping, Sequence
++from fractions import Fraction
++import hashlib
++from pathlib import Path
++import random
++import re
++import secrets
++import uuid
++
++from .errors import RiposteError
++from .experiment import (ENDPOINTS, _array, _bound_run, _digest, _object, _prefix as _experiment_prefix,
++                         _protocol as _experiment_protocol, _read, _reviews, _text,
++                         begin_experiment, conditioning, execution_identity, finish_experiment)
++from .qualification import CONTROL_SEEDS, _verified_pair
++from .records import Progress
++from .store import atomic_json_write, safe_child, state_relative, workspace_lock
++
++
++def _prefix(root: Path, identifier: str) -> str:
++    if not re.fullmatch(r"[0-9a-f]{32}", identifier):
++        raise RiposteError("COHORT_NOT_FOUND")
++    return state_relative(root, f"cohorts/{identifier}")
++
++
++def _integer(value: object) -> int:
++    if type(value) is not int:
++        raise RiposteError("COHORT_RECORD_INVALID")
++    return value
++
++
++def _fraction(value: Fraction) -> dict[str, object]:
++    return {"numerator": value.numerator, "denominator": value.denominator, "value": float(value)}
++
++
++def bounded_mean(values: Sequence[Fraction | None]) -> dict[str, object]:
++    """Sharp selected-sample bounds under only -1 <= each unknown score <= 1."""
++    if not values or any(value is not None and not -1 <= value <= 1 for value in values):
++        raise RiposteError("COHORT_SCORE_INVALID")
++    observed = [value for value in values if value is not None]
++    total = sum(observed, Fraction(0))
++    missing = len(values) - len(observed)
++    return {"selected_artworks": len(values), "scored_artworks": len(observed), "unscored_artworks": missing,
++            "mean": _fraction(total / len(values)) if not missing else None,
++            "bounds": {"lower": _fraction((total - missing) / len(values)),
++                       "upper": _fraction((total + missing) / len(values)),
++                       "kind": "FINITE_SAMPLE_MISSINGNESS_NOT_CONFIDENCE_INTERVAL"},
++            "ai_protection": "UNVERIFIED"}
++
++
++def _pool(root: Path, trial_ids: Sequence[str], progress: Progress | None = None) -> list[dict[str, object]]:
++    from .generation import generation_report
++    from .lab import trial_report
++    # One scan for prior outcomes, not a full run-directory scan for each trial.
++    folder = safe_child(root, state_relative(root, "generations"))
++    generated: set[str] = set()
++    generated_images: set[str] = set()
++    for child in folder.iterdir() if folder.exists() else []:
++        if re.fullmatch(r"[0-9a-f]{32}", child.name):
++            if not safe_child(root, state_relative(root, f"generations/{child.name}/report.json")).exists():
++                continue
++            try:
++                trial_id = _text(generation_report(root, child.name)["trial_id"])
++                generated.add(trial_id)
++                generated_images.add(_text(trial_report(root, trial_id)["image_id"]))
++            except RiposteError:
++                raise RiposteError("COHORT_PRIOR_GENERATION_INVALID") from None
++    entries: list[dict[str, object]] = []
++    fingerprints: set[str] = set()
++    image_ids: set[str] = set()
++    for index, identifier in enumerate(sorted(trial_ids)):
++        if progress:
++            progress({"phase": "Verifying cohort sampling pool", "processed": index, "total": len(trial_ids)})
++        trial, pair = _verified_pair(root, identifier)
++        # Canonical pixel identity excludes PNG metadata/date and candidate changes.
++        clean = pair["clean"].convert("RGB")
++        digest = hashlib.sha256(f"RGB:{clean.width}:{clean.height}:".encode() + clean.tobytes()).hexdigest()
++        if digest in fingerprints:
++            raise RiposteError("COHORT_DUPLICATE_CLEAN_RASTER")
++        fingerprints.add(digest)
++        image_id = _text(trial["image_id"])
++        if image_id in image_ids:
++            raise RiposteError("COHORT_DUPLICATE_SOURCE_IMAGE")
++        image_ids.add(image_id)
++        if identifier in generated or image_id in generated_images:
++            raise RiposteError("COHORT_TRIAL_ALREADY_GENERATED")
++        entries.append({"trial_id": identifier, "image_id": image_id,
++                        "trial_sha256": _digest(trial), "clean_pixels_sha256": digest})
++    return entries
++
++
++def cohort_challenge(root: Path, trial_ids: Sequence[str], model_dir: Path, sample_size: int,
++                     task: str = "edit", seeds: tuple[int, ...] = (7, 19),
++                     views: tuple[str, ...] = ("identity", "jpeg70"), steps: int = 25,
++                     progress: Progress | None = None) -> dict[str, object]:
++    """One explicit execution, one model load, one planned attempt per drawn artwork."""
++    from .generation import LocalGenerator, _execute, _validate
++    _validate(task, seeds, views, steps)
++    if (type(sample_size) is not int or not 1 <= sample_size <= len(trial_ids)
++            or len(set(trial_ids)) != len(trial_ids)):
++        raise RiposteError("COHORT_PARAMETERS_INVALID")
++    with workspace_lock(root):
++        from .organizer import audit_workspace
++        if audit_workspace(root)["checkpoint"] != "COMPLETE":
++            raise RiposteError("ORGANIZATION_CHECKPOINT_REQUIRED")
++        population = _pool(root, trial_ids, progress)
++        if progress:
++            progress({"phase": "Loading the selected cohort baseline", "processed": 0, "total": sample_size})
++        generator = LocalGenerator(model_dir, task)
++        # Canonical pool order makes the recorded draw replayable within this runtime.
++        selection_seed = secrets.randbits(128)
++        selected = random.Random(selection_seed).sample(population, sample_size)
++        members = [{**row, "run_id": uuid.uuid4().hex} for row in selected]
++        identifier = uuid.uuid4().hex
++        protocol: dict[str, object] = {
++            "schema": "riposte-cohort-v1", "id": identifier, "population": population, "members": members,
++            "selection": {"kind": "LOCAL_RANDOM_WITHOUT_REPLACEMENT", "seed": selection_seed,
++                          "scope": "Explicit pool only; near duplicates, independent authorship and prior external outcomes are not detectable."},
++            "task": task, "model": generator.identity, "seeds": list(seeds), "views": list(views), "steps": steps,
++            "control_seeds": list(CONTROL_SEEDS), "conditioning": conditioning(task), "endpoints": ENDPOINTS,
++            **execution_identity(),
++            "analysis": {"primary_review": "FIRST_COMPLETE_REVIEW_BY_APPEND_SEQUENCE",
++                         "artwork_score": "Sum eligible paired control-minus-candidate differences divided by ALL planned groups; filtered/clean-failed groups contribute zero, with counts retained.",
++                         "cohort_score": "Equal mean across selected artworks, not pooled eligible groups.",
++                         "missing": "Unattempted, failed, unreviewed or incomplete members remain unknown in [-1,1]; never drop or replace them.",
++                         "retries": "One planned attempt per member; a new command creates a separate cohort.",
++                         "inference": "Finite selected-sample descriptive bounds, not confidence intervals or population efficacy."},
++            "family_holdout": "UNKNOWN_NOT_ESTABLISHED_BY_WEIGHT_HASH",
++            "commitment": "LOCAL_BEFORE_GENERATION_NOT_INDEPENDENT_PREREGISTRATION",
++        }
++        sealed: dict[str, object] = {"protocol": protocol, "sha256": _digest(protocol)}
++        prefix = _prefix(root, identifier)
++        atomic_json_write(root, f"{prefix}/protocol.json", sealed)
++        if _read(safe_child(root, f"{prefix}/protocol.json")) != sealed:
++            raise RiposteError("COHORT_PROTOCOL_CHANGED")
++        try:
++            for index, member in enumerate(members):
++                if progress:
++                    progress({"phase": "Generating committed cohort member", "item": index + 1, "items": sample_size})
++                trial, pair = _verified_pair(root, _text(member["trial_id"]))
++                if _digest(trial) != member["trial_sha256"]:
++                    raise RiposteError("COHORT_TRIAL_CHANGED")
++                assignment = {"id": identifier, "sha256": sealed["sha256"], "run_id": member["run_id"]}
++                experiment = begin_experiment(root, trial, generator.identity, task, seeds, views, steps, CONTROL_SEEDS, assignment)
++                try:
++                    _execute(root, trial, pair, generator, task, seeds, views, steps, progress, experiment, sequence=1)
++                except BaseException as exc:
++                    finish_experiment(root, experiment, _failure_status(exc))
++                    raise
++                finish_experiment(root, experiment, "COMPLETE")
++        except BaseException as exc:
++            atomic_json_write(root, f"{prefix}/outcome.json", {"protocol_sha256": sealed["sha256"], "status": _failure_status(exc)})
++            raise
++        atomic_json_write(root, f"{prefix}/outcome.json", {"protocol_sha256": sealed["sha256"], "status": "COMPLETE"})
++        return _status(root, identifier)
++
++
++def _failure_status(exc: BaseException) -> str:
++    cancelled = isinstance(exc, (KeyboardInterrupt, SystemExit)) or isinstance(exc, RiposteError) and exc.code == "JOB_CANCELLED"
++    return "CANCELLED" if cancelled else "FAILED"
++
++
++def _protocol(root: Path, identifier: str) -> dict[str, object]:
++    sealed = _read(safe_child(root, f"{_prefix(root, identifier)}/protocol.json"))
++    protocol = _object(sealed.get("protocol"))
++    if (protocol.get("id") != identifier or protocol.get("schema") != "riposte-cohort-v1"
++            or _digest(protocol) != sealed.get("sha256")):
++        raise RiposteError("COHORT_PROTOCOL_CHANGED")
++    return sealed
++
++
++def _member(root: Path, member: Mapping[str, object], cohort: Mapping[str, object]) -> tuple[dict[str, object], Fraction | None]:
++    protocol = _object(cohort["protocol"])
++    identifier = _text(member["run_id"])
++    prefix = _experiment_prefix(root, identifier)
++    row: dict[str, object] = {"trial_id": member["trial_id"], "run_id": identifier, "status": "UNATTEMPTED", "score": None}
++    if not safe_child(root, f"{prefix}/protocol.json").exists():
++        return row, None
++    sealed = _experiment_protocol(root, identifier)
++    experiment = _object(sealed["protocol"])
++    if (experiment.get("cohort") != {"id": protocol["id"], "sha256": cohort["sha256"], "run_id": identifier}
++            or experiment.get("trial_id") != member["trial_id"] or experiment.get("trial_sha256") != member["trial_sha256"]
++            or any(experiment.get(key) != protocol[key] for key in ("model", "task", "seeds", "views", "steps", "conditioning", "endpoints", "engine_sha256", "runtime"))):
++        raise RiposteError("COHORT_MEMBER_CHANGED")
++    path = safe_child(root, f"{prefix}/outcome.json")
++    outcome = _read(path) if path.exists() else {"status": "OPEN", "protocol_sha256": sealed["sha256"]}
++    if outcome.get("protocol_sha256") != sealed["sha256"]:
++        raise RiposteError("COHORT_MEMBER_CHANGED")
++    row["status"] = outcome.get("status")
++    if row["status"] != "COMPLETE":
++        return row, None
++    _bound_run(root, identifier)
++    reviews = _reviews(root, identifier, sealed, outcome)
++    if any("sequence" not in review for review in reviews):
++        raise RiposteError("COHORT_REVIEW_ORDER_UNKNOWN")
++    primary = next((review for review in reviews if _object(review["analysis"])["status"] != "INCOMPLETE"), None)
++    row["review_count"] = len(reviews)
++    if primary is None:
++        row["review_status"] = "INCOMPLETE" if reviews else "UNREVIEWED"
++        return row, None
++    analysis = _object(primary["analysis"])
++    contrast = analysis["contrast"]
++    numerator = _integer(_object(contrast)["numerator"]) if contrast is not None else 0
++    score = Fraction(numerator, 3 * _integer(analysis["planned_groups"]))
++    row.update({"primary_review_id": primary["id"], "primary_review_sequence": primary["sequence"],
++                "review_status": analysis["status"], "analysis": analysis, "score": _fraction(score)})
++    return row, score
++
++
++def _status(root: Path, identifier: str) -> dict[str, object]:
++    sealed = _protocol(root, identifier)
++    protocol = _object(sealed["protocol"])
++    path = safe_child(root, f"{_prefix(root, identifier)}/outcome.json")
++    outcome = _read(path) if path.exists() else {"status": "OPEN", "protocol_sha256": sealed["sha256"]}
++    if outcome.get("protocol_sha256") != sealed["sha256"]:
++        raise RiposteError("COHORT_PROTOCOL_CHANGED")
++    results = [_member(root, _object(member), sealed) for member in _array(protocol["members"])]
++    if outcome["status"] == "COMPLETE" and any(row["status"] != "COMPLETE" for row, _ in results):
++        raise RiposteError("COHORT_MEMBER_CHANGED")
++    summary = bounded_mean([value for _, value in results])
++    return {**sealed, "outcome": outcome, "members": [row for row, _ in results], "summary": summary,
++            "ai_protection": "UNVERIFIED"}
++
++
++def cohort_status(root: Path, identifier: str | None = None) -> dict[str, object]:
++    with workspace_lock(root):
++        if identifier is not None:
++            return _status(root, identifier)
++        folder = safe_child(root, state_relative(root, "cohorts"))
++        cohorts: list[dict[str, object]] = []
++        for child in sorted(folder.iterdir()) if folder.exists() else []:
++            if not re.fullmatch(r"[0-9a-f]{32}", child.name):
++                continue
++            try:
++                sealed = _protocol(root, child.name)
++                cohorts.append({"id": child.name, "sha256": sealed["sha256"], "integrity": "PROTOCOL_ONLY"})
++            except RiposteError:
++                cohorts.append({"id": child.name, "integrity": "INVALID"})
++        return {"cohorts": cohorts, "ai_protection": "UNVERIFIED"}
+--- before/src/riposte/experiment.py
++++ after/src/riposte/experiment.py
+@@ -84,24 +84,28 @@
+             "strength": .65, "guidance_scale": 7.5}
+ 
+ 
++def execution_identity() -> dict[str, object]:
++    source = Path(__file__).parent
++    return {"engine_sha256": {name: hashlib.sha256((source / name).read_bytes()).hexdigest()
++            for name in ("experiment.py", "cohort.py", "generation.py", "models.py", "views.py", "sanitize.py")},
++            "runtime": {"python": sys.version.split()[0], "packages": {name: metadata.version(name)
++                        for name in ("torch", "diffusers", "transformers", "numpy", "Pillow")}}}
++
++
+ def begin_experiment(root: Path, trial: Mapping[str, object], model: Mapping[str, object],
+                      task: str, seeds: Sequence[int], views: Sequence[str], steps: int,
+-                     control_seeds: Sequence[int]) -> dict[str, object]:
++                     control_seeds: Sequence[int], assignment: Mapping[str, object] | None = None) -> dict[str, object]:
+     """Called under the generation workspace lock, before the first model call."""
+-    identifier = uuid.uuid4().hex
++    identifier = _text(assignment["run_id"]) if assignment is not None else uuid.uuid4().hex
+     optimization_views = trial.get("optimization_views")
+     groups = [{"view": view, "seed": seed,
+                "samples": {role: uuid.uuid4().hex for role in ROLES}}
+               for view in views for seed in seeds]
+-    source = Path(__file__).parent
+     protocol: dict[str, object] = {
+         "schema": "riposte-experiment-v1", "id": identifier, "trial_id": trial["id"],
+         "date": trial["date"], "artifact_sha256": trial["artifact_sha256"],
+         "trial_sha256": _digest(dict(trial)), "application_version": __version__,
+-        "engine_sha256": {name: hashlib.sha256((source / name).read_bytes()).hexdigest()
+-                          for name in ("experiment.py", "generation.py", "models.py", "views.py", "sanitize.py")},
+-        "runtime": {"python": sys.version.split()[0], "packages": {name: metadata.version(name)
+-                    for name in ("torch", "diffusers", "transformers", "numpy", "Pillow")}},
++        **execution_identity(),
+         "model": dict(model), "task": task, "seeds": list(seeds), "views": list(views), "steps": steps,
+         "conditioning": conditioning(task), "control_seeds": list(control_seeds), "groups": groups,
+         "optimization_views": optimization_views,
+@@ -116,6 +120,8 @@
+         "commitment": "LOCAL_BEFORE_GENERATION_NOT_INDEPENDENT_PREREGISTRATION",
+         "blinding": "Opaque sample labels in exported packet; operator can unblind using private protocol. Pixels may reveal conditions.",
+     }
++    if assignment is not None:
++        protocol["cohort"] = dict(assignment)
+     sealed: dict[str, object] = {"protocol": protocol, "sha256": _digest(protocol)}
+     atomic_json_write(root, f"{_prefix(root, identifier)}/protocol.json", sealed)
+     # Read back the exact receipt before spending generation work.
+@@ -226,14 +232,32 @@
+             raise RiposteError("EXPERIMENT_PROTOCOL_CHANGED")
+         if outcome.get("status") == "COMPLETE":
+             _bound_run(root, identifier)
+-        folder = safe_child(root, f"{_prefix(root, identifier)}/reviews")
+-        reviews = [_read(safe_child(root, f"{_prefix(root, identifier)}/reviews/{p.name}"))
+-                   for p in sorted(folder.iterdir()) if re.fullmatch(r"[0-9a-f]{32}\.json", p.name)] if folder.exists() else []
+-        for review in reviews:
+-            if (review.get("protocol_sha256") != sealed["sha256"] or review.get("report_sha256") != outcome.get("report_sha256")
+-                    or review.get("sha256") != _digest({k: v for k, v in review.items() if k != "sha256"})):
+-                raise RiposteError("EXPERIMENT_REVIEW_CHANGED")
++        reviews = _reviews(root, identifier, sealed, outcome)
+         return {**sealed, "outcome": outcome, "reviews": reviews, "ai_protection": "UNVERIFIED"}
++
++
++def _reviews(root: Path, identifier: str, sealed: Mapping[str, object],
++             outcome: Mapping[str, object]) -> list[dict[str, object]]:
++    """Verify append order. Legacy unsequenced receipts retain their old scope."""
++    folder = safe_child(root, f"{_prefix(root, identifier)}/reviews")
++    reviews = []
++    for path in sorted(folder.iterdir()) if folder.exists() else []:
++        if not re.fullmatch(r"[0-9a-f]{32}\.json", path.name):
++            continue
++        review = _read(safe_child(root, f"{_prefix(root, identifier)}/reviews/{path.name}"))
++        if (review.get("id") != path.stem or review.get("protocol_sha256") != sealed["sha256"]
++                or review.get("report_sha256") != outcome.get("report_sha256")
++                or review.get("sha256") != _digest({k: v for k, v in review.items() if k != "sha256"})):
++            raise RiposteError("EXPERIMENT_REVIEW_CHANGED")
++        reviews.append(review)
++    legacy = [row for row in reviews if "sequence" not in row]
++    numbered = [row for row in reviews if "sequence" in row]
++    if any(type(row["sequence"]) is not int for row in numbered):
++        raise RiposteError("EXPERIMENT_REVIEW_CHANGED")
++    numbered.sort(key=lambda row: cast(int, row["sequence"]))
++    if [row["sequence"] for row in numbered] != list(range(len(legacy) + 1, len(reviews) + 1)):
++        raise RiposteError("EXPERIMENT_REVIEW_CHANGED")
++    return legacy + numbered
+ 
+ 
+ def review_packet(root: Path, identifier: str) -> dict[str, object]:
+@@ -334,7 +358,9 @@
+                for row in ratings.values()):
+             raise RiposteError("EXPERIMENT_RATINGS_INVALID")
+         outcome = _read(safe_child(root, f"{_prefix(root, identifier)}/outcome.json"))
++        prior = _reviews(root, identifier, sealed, outcome)
+         result: dict[str, object] = {"id": uuid.uuid4().hex, "protocol_sha256": sealed["sha256"],
++            "sequence": len(prior) + 1,
+             "report_sha256": outcome["report_sha256"], "ratings": ratings,
+             "analysis": _analyze(_object(sealed["protocol"]), report, ratings),
+             "reviewer_independence": "NOT_ESTABLISHED"}
+--- before/src/riposte/generation.py
++++ after/src/riposte/generation.py
+@@ -13,11 +13,13 @@
+ import shutil
+ import uuid
+ from pathlib import Path
++from collections.abc import Mapping, Sequence
+ import numpy as np
+ from PIL import Image, ImageOps
+ from .errors import RiposteError
+ from .models import offline, read_config, model_fingerprint, configuration_fingerprint
+-from .experiment import begin_experiment, finish_experiment, conditioning
++from .experiment import begin_experiment, finish_experiment, conditioning, _object, _text
++from .records import Progress
+ from .qualification import _verified_pair, CONTROL_SEEDS
+ from .views import publication_view, matched_control, TRAIN_VIEWS, HOLDOUT_VIEWS
+ from .sanitize import encode_clean, png_audit, social_render
+@@ -135,7 +137,7 @@
+     return float(np.mean([fidelity(a, b)['rmse_255'] for a, b in zip(frames[:-1], frames[1:], strict=True)]))
+ 
+ 
+-def _validate(task, seeds, views, steps):
++def _validate(task: str, seeds: Sequence[int], views: Sequence[str], steps: int) -> None:
+     if (task not in {'edit', 'inpaint', 'video'} or not 1 <= len(seeds) <= 8 or len(set(seeds)) != len(seeds)
+         or not all(isinstance(s, int) and not isinstance(s, bool) and 0 <= s < 2**32 for s in seeds)
+         or not 1 <= len(views) <= 8 or len(set(views)) != len(views)
+@@ -166,20 +168,29 @@
+         return report
+ 
+ 
+-def _execute(root, trial, pair, generator, task, seeds, views, steps, progress, experiment=None):
++def _execute(root: Path, trial: Mapping[str, object], pair: dict[str, Image.Image], generator: LocalGenerator,
++             task: str, seeds: Sequence[int], views: Sequence[str], steps: int, progress: Progress | None,
++             experiment: Mapping[str, object] | None = None, *, sequence: int | None = None) -> dict[str, object]:
++    # Cohort execution proves these are first attempts under the same workspace lock.
++    # Ordinary generation retains discovery of its existing per-trial sequence.
++    if sequence is not None and (type(sequence) is not int or sequence < 1):
++        raise RiposteError('GENERATION_PARAMETERS_INVALID')
+     inputs = dict(pair)
+     inputs.update({f'control_{i}': matched_control(pair['clean'], pair['candidate'], seed)
+                    for i, seed in enumerate(CONTROL_SEEDS, 1)})
+-    run_id = experiment['protocol']['id'] if experiment is not None else uuid.uuid4().hex
++    run_id = _text(_object(experiment['protocol'])['id']) if experiment is not None else uuid.uuid4().hex
+     prefix = state_relative(root, f'generations/{run_id}')
+-    groups, artifacts = [], {}
++    groups: list[dict[str, object]] = []
++    artifacts: dict[str, str] = {}
+     total, processed = len(views) * len(seeds) * len(inputs), 0
+     try:
+         for view_index, view in enumerate(views):
+             prepared = {role: prepare_input(publication_view(image, view), task) for role, image in inputs.items()}
+             for seed_index, seed in enumerate(seeds):
+                 key = f'V{view_index:02d}-S{seed_index:02d}'
+-                outputs, roles, flags = {}, {}, {}
++                outputs: dict[str, list[Image.Image]] = {}
++                roles: dict[str, list[str]] = {}
++                flags: dict[str, object] = {}
+                 for role, image in prepared.items():
+                     if progress:
+                         progress({'phase': f'Generating matched {task} baseline', 'processed': processed, 'total': total})
+@@ -196,7 +207,7 @@
+                         if progress:
+                             progress({'phase': 'Writing date-only review frames', 'processed': processed, 'total': total})
+                         relative = f'{key}-{role}/F{fi:03d}.png'
+-                        data = encode_clean(frame.convert('RGB'), trial['date'])
++                        data = encode_clean(frame.convert('RGB'), _text(trial['date']))
+                         atomic_clean_write(root, f'{prefix}/{relative}', data)
+                         artifacts[relative] = png_audit(data)['sha256']
+                         roles[role].append(relative)
+@@ -212,8 +223,8 @@
+                                'pipeline_flags': flags, 'review': 'HUMAN_REVIEW_REQUIRED'})
+         if progress:
+             progress({'phase': 'Committing generation review', 'processed': total, 'total': total})
+-        report = {'id': run_id, 'trial_id': trial['id'], 'date': trial['date'], 'candidate_sha256': trial['artifact_sha256']['candidate'],
+-                  'sequence': max((r.get('sequence', 0) for r in generation_runs(root, trial['id'])), default=0) + 1,
++        report: dict[str, object] = {'id': run_id, 'trial_id': trial['id'], 'date': trial['date'], 'candidate_sha256': _object(trial['artifact_sha256'])['candidate'],
++                  'sequence': sequence if sequence is not None else max((r.get('sequence', 0) for r in generation_runs(root, _text(trial['id']))), default=0) + 1,
+                   'protocol': 'riposte-five-arm-v1', 'application_version': __version__,
+                   'task': task, 'conditioning': conditioning(task), 'model': generator.identity, 'seeds': list(seeds), 'steps': steps, 'views': list(views),
+                   'controls': {'kind': 'FEASIBLE_SIGN_SCRAMBLED_MATCHED_MAGNITUDE', 'seeds': list(CONTROL_SEEDS),
+--- before/src/riposte/records.py
++++ after/src/riposte/records.py
+@@ -67,6 +67,9 @@
+     trial_id: str | None
+     run_id: str
+     ratings: Path | str
++    trial_ids: Sequence[str]
++    cohort_id: str
++    sample_size: int
+     relative: str
+     vae_dirs: Sequence[Path | str]
+     model: Path | str
+--- before/src/riposte/terminal/service.py
++++ after/src/riposte/terminal/service.py
+@@ -43,11 +43,12 @@
+     "upgrade": "RENAME_APP_STATE", "guard": "CREATE_TRIAL", "compare": "CREATE_TRIAL",
+     "qualify": "WRITE_EVALUATION", "challenge": "WRITE_GENERATIONS",
+     "experiment": "INSPECT", "experiment-packet": "WRITE_REVIEW_PACKET", "experiment-review": "RECORD_REVIEW",
++    "cohort": "INSPECT", "cohort-challenge": "WRITE_GENERATIONS",
+     "benchmark": "WRITE_GENERATIONS", "export": "WRITE_UNREVIEWED_EXPORT",
+     "trials": "INSPECT", "evaluations": "INSPECT", "generations": "INSPECT",
+     "generation": "INSPECT", "frame": "INSPECT", "handoff": "CREATE_EXACT_TRIAL", "image": "INSPECT", "open-image": "OPEN_LOCAL_VIEWER",
+ }
+-CANCELLABLE = frozenset({"categories", "category-rules", "organize", "audit", "list", "inspect", "plan", "publish", "resume",
++CANCELLABLE = frozenset({"cohort-challenge", "categories", "category-rules", "organize", "audit", "list", "inspect", "plan", "publish", "resume",
+                          "guard", "qualify", "challenge", "doctor", "sort-riposte-plan", "riposte", "riposte-plan"})
+ 
+ 
+@@ -298,6 +299,14 @@
+     if name == "experiment":
+         from ..experiment import experiment_status
+         return experiment_status(root, v.get("run_id"))
++    if name == "cohort":
++        from ..cohort import cohort_status
++        return cohort_status(root, v.get("cohort_id"))
++    if name == "cohort-challenge":
++        from ..cohort import cohort_challenge
++        return cohort_challenge(root, v["trial_ids"], Path(v["model"]).expanduser().absolute(), v["sample_size"],
++                                v.get("task", "edit"), tuple(v.get("seeds") or (7, 19)),
++                                tuple(v.get("views") or ("identity", "jpeg70")), v.get("steps", 25), progress)
+     if name == "experiment-packet":
+         from ..experiment import review_packet
+         return review_packet(root, v["run_id"])

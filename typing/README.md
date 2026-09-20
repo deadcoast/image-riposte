@@ -3,22 +3,115 @@
 Current project/milestone status is in [PROJECT-STATUS.md](../docs/PROJECT-STATUS.md).
 The Markdown audit is active and the PACER CSV TODO is frozen. This guide's
 current counts come from `evidence/verification.json`; earlier task records below
-remain historical. On 2026-09-18 the 56 current application hashes and all 387
-source/stub signatures were rechecked. The retained full contract result is
-passing; the separately retained, source-matching implementation audit still
-reports 1,103 diagnostics in 37 of 49 Python files.
+remain historical. On 2026-09-19 all 66 application hashes and 473 source/stub
+signatures were checked by the full external contract suite, which passed.
+The separate fresh implementation audit reports 772 diagnostics in 36 of 59
+Python files. Strict settings are unchanged; the source tree remains unclean.
 
-PAC-027BB reviews frozen category plans, private title-table validation, journal
+PCUC-005 adds a typed fixed Kontext backend and optional model-aware conditioning
+and preparation arguments, retaining old default behavior. The reviewed
+`source-reviewed-kontext.json` admits four changed/added files against PCUC-004.
+All seven external stages pass across 473 signatures and 56 leaf modules, with
+13 negative checks retained. The new module has no raw diagnostics; both current
+raw audits retain the prior 772-error debt without settings, Any or ignore changes.
+See `../evidence/pcuc-kontext/` for source-bound native, tiny actual-library,
+geometry, drift, contract and package evidence, including before-review failures.
+
+Historical PCUC-004 adds source-typed exact binary agreement and immutable reviewer-panel
+operations. `source-reviewed-review-panels.json` admits five added/changed files
+against PCUC-003; 464 signatures and 55 leaf modules pass external checks. All
+thirteen negative checks remain. The first raw audit retained 779 diagnostics,
+including seven from two reused local variable names. Distinct variable names
+restore the prior 772-error debt without Any, ignores, changed strict settings or
+behavior changes; both new modules have no source-body diagnostics. Evidence is
+in `../evidence/pcuc-review-panels/`. Source-wide cleanliness remains unachieved.
+
+Historical PCUC-003 adds typed cohort sampling, execution and finite-sample bounds, with
+ordered review receipts and a typed shared generation executor. The optional
+assignment and known first-attempt sequence are declared; ordinary generation
+retains sequence discovery. `source-reviewed-cohorts.json` admits six changed or
+added application files against PCUC-002. External verification covers 441
+signatures and 53 leaf modules; thirteen negative checks remain. No Any/ignore
+was added, and neither cohort nor experiment has raw-source diagnostics.
+The initial 773-error audit included a redundant cast that was removed; the final
+772-error source audit still fails. Evidence is in `../evidence/pcuc-cohorts/`.
+
+Historical PCUC-002 adds source-typed local experiment protocols, exact-artifact review and
+CLI/service integration. `source-reviewed-experiments.json` admits five changed
+or added application files against PCUC-001. The CLI decorator/dispatch types
+describe their existing forwarding behavior; three new commands have explicit
+signatures. The new module's casts follow collection checks and add no Any or
+ignores. Seven external stages pass across 426 signatures and 52 leaf modules,
+retaining all thirteen negative checks. The before-review rejection, initial
+stubtest default mismatch and raw audits are in `../evidence/pcuc-experiments/`.
+The final source audit remains FAIL; the new experiment module has no diagnostics.
+
+Historical PCUC-001 introduces the typed shared-view graph kernel and reviews its feature
+adapter and production integration. `source-reviewed-shared-views.json` admits
+four changed/added application files against PAC-033. All seven external stages
+pass across 406 signatures and 51 leaf modules, including the existing thirteen
+negative checks. `../evidence/pcuc-shared-views/` retains raw-source and contract
+failures before source-derived corrections. No checker suppressions were added.
+
+Historical PAC-033 added source-owned request, progress and image/catalog records, annotated
+service/worker/controller boundaries and precise immediate consumer types.
+`source-reviewed-source-typing.json` admits fourteen changed/added application
+files against PAC-032. Shared external records now re-export those declarations;
+remaining external `Report` and model boundaries keep their documented scope.
+All seven external stages pass with 402 signatures and 50 leaf modules, including
+the unchanged 13 negative checks. Separate source consumers have zero positive
+errors and nine expected negative errors at exact lines/codes. Baseline/intermediate
+failures, original source bytes, localized cast review and remaining diagnostic
+classes are retained in `../evidence/source-typing/`. No Any or ignores were added
+to application source, and no diagnostic module/error class increased.
+
+Historical PAC-032 reviewed indexed image lookup, operation-local title maps and the live
+SQLite revision guard. `source-reviewed-catalog-scaling.json` admits six
+changed/added application files against PAC-031. Optional borrowed connections
+are declared for media/title writers and `SortHistory.record_title`; existing
+callers retain owned-connection behavior. `CatalogGuard` adds four declarations.
+All seven external stages pass, covering 402 signatures and 49 leaf modules.
+Pre-review rejection and prior contract/source evidence are preserved under
+`../evidence/catalog-scaling/`. The raw audit then remained at 1,100 diagnostics.
+
+Historical PAC-031 reviewed ordinary/combined preview receipts, exact destination execution,
+terminal/browser confirmation and CLI recovery guidance.
+`source-reviewed-sort-preview.json` admits seven changed/added application files
+against PAC-030. The new `sort_plan` module adds three declared functions;
+`OrganizationPlan` now always contains `plan_id` and `files`. Runtime fixtures
+supply explicit preview IDs, with production consent and root guards intact.
+The pre-review drift rejection and first raw audit (1,105 diagnostics, including
+five in the new planner) are retained in `../evidence/sort-preview/`. Direct
+codec imports and the callback annotation resolved those five without suppressions.
+Its seven external stages passed, covering 398 signatures and 48 leaf modules.
+
+Historical PAC-030 reviewed the shared application-root resolver, its cached layout helper,
+terminal delegation and two recovery messages. `source-reviewed-application-roots.json`
+admits those three changed application files; the other 54 match PAC-029. The two
+new store helpers have external declarations; existing public parameters remain
+unchanged. Runtime contract fixtures now use system temporary workspaces outside
+the checkout, retaining the real root guard. The first rejected-fixture run and
+preceding contract/source evidence are preserved in `../evidence/application-roots/`.
+
+Historical PAC-029 reviewed the new OS lease context manager, atomic marker helpers and
+organizer exclusion of the validated root lease file. The public workspace-lock
+contract is unchanged. `source-reviewed-workspace-lease.json` admits these three
+changed/added application files after source and contract review. The initial
+platform-typing failures and preceding audit are retained in
+`../evidence/workspace-lease/`; platform dispatch was corrected without suppressions.
+Source/symbol registration remains deferred under the CSV freeze.
+
+Historical PAC-027BB reviewed frozen category plans, private title-table validation, journal
 version 2 and exact assignment restoration, stable video relocation, category
 path validation, and CLI/service/terminal/API contracts. The browser controller
 has separate rule-draft and destination-preview consent with stale response
-checks. `source-reviewed-category-sort.json` is the current reviewed source
-identity; earlier snapshots remain historical. Original filenames are excluded
+checks. `source-reviewed-category-sort.json` records that reviewed source
+identity. Original filenames are excluded
 from public catalog rows, PNG metadata and publishing packs, and retained in the
 private title table/recovery journals only. Per-file plans and private journal
 records remain explicitly dynamic dictionaries at the external type boundary.
 These declarations do not establish source-body type safety or model efficacy.
-Current parity covers 387 signatures, 46 importable leaf modules and 56 application
+That milestone covered 387 signatures, 46 importable leaf modules and 56 application
 files (49 Python modules). See `../evidence/category-sort/README.md` for runtime and browser proof boundaries.
 
 
@@ -75,8 +168,8 @@ PAC-023 authorizes undo, preview validation and sort-only video compatibility.
 The organizer, media paths, CLI and recovery/video modules were reviewed against
 their implementation. Organization reports now declare private recovery history
 and distinguish date-only image outputs from unchanged video bytes. New video
-and undo report records describe that boundary. The current reviewed snapshot is
-`source-reviewed-sort-recovery.json`; previous snapshots remain historical.
+and undo report records describe that boundary. That reviewed snapshot is
+`source-reviewed-sort-recovery.json`; it remains historical.
 At that milestone, external validation covered 356 signatures, 42 importable leaf modules
 and 51 application files. Source-body mypy remains a separate failing audit;
 these external checks do not imply a clean implementation type check.
@@ -109,7 +202,7 @@ verifies that the other 48 application files match the previous snapshot.
 At that milestone, external parity covered 357 signatures; runtime evidence remains separate
 in [`../evidence/sort-collisions/README.md`](../evidence/sort-collisions/README.md).
 
-The external stub tree covers all 49 Python modules. The shared declarations in
+The external stub tree covers all 51 Python modules. The shared declarations in
 [`stubs/_riposte_types.pyi`](stubs/_riposte_types.pyi) define the shared record shapes,
 callback types, and callable model protocols. They preserve existing states such
 as `UNVERIFIED`, `INCOMPLETE`, nullable PSNR, absent publication-item fields, and
@@ -132,7 +225,7 @@ application wheel, and does not add `py.typed` or claim installed-package suppor
 Consumers that need helper records should import them inside `TYPE_CHECKING`.
 
 The default [`../mypy.ini`](../mypy.ini) checks application implementation.
-From the repository root, both commands target the same 49 Python source files:
+From the repository root, both commands target the same 51 Python source files:
 
 ```powershell
 mypy
@@ -168,8 +261,8 @@ would select the application environment instead.
 For only the declaration/consumer check, use
 `uv run --project typing --frozen --cache-dir typing/.cache/uv python -m mypy --config-file typing/mypy-contracts.ini`.
 
-The suite checks source hashes and 387 source/stub signatures, runs strict
-mypy on contracts and its three tooling modules, checks 46 leaf modules with
+The suite checks source hashes and 395 source/stub signatures, runs strict
+mypy on contracts and its three tooling modules, checks 47 leaf modules with
 stubtest, verifies nine offline fixture tests and ten tooling regressions,
 and requires exactly 13 expected diagnostics from invalid consumers. The two
 package initializers and executable `__main__` are covered statically; they are
@@ -185,18 +278,18 @@ provide separate evidence for the particular record-producing paths they run.
 
 Retained verification for the current reviewed source is recorded in
 [`evidence/verification.json`](evidence/verification.json). These full-suite
-results are distinct from the fresh parity/hash review described above:
+results include the fresh parity/hash review described above:
 
 | Check | Verified result |
 | --- | --- |
-| Strict declarations and consumer fixture | 51 files; no errors |
+| Strict declarations and consumer fixture | 52 files; no errors |
 | Strict typing of the checker, inventory and tooling tests | 3 files; no errors |
-| Source parameter parity | 387 signatures |
-| Runtime signature comparison | 46 leaf modules; four documented exceptions |
+| Source parameter parity | 393 signatures |
+| Runtime signature comparison | 47 leaf modules; four documented exceptions |
 | Incorrect consumer calls | All 13 expected errors; exact line and error-code match |
 | Offline record fixtures | 9 tests passed |
 | Tooling regressions | 10 tests passed, including discovery, interpreter selection, source identity and missing-symbol/dependency detection |
-| Application source identity | All 56 application files match the reviewed snapshot |
+| Application source identity | All 57 application files match the reviewed snapshot |
 
 The fixtures use temporary artwork only. Publication states and the export
 record use synthetic data; the export test injects ZIP bytes. They do not run
@@ -217,8 +310,10 @@ versions, the exact command and source hashes are saved in
 [`evidence/source-current-command.json`](evidence/source-current-command.json).
 For a deliberate comparison, pass `--source-python PATH_TO_PYTHON`.
 
-The current retained application-environment run reports 1,103 diagnostics in
-37 files (49 checked). The historical repair-era application run reported 973
+The current retained application-environment run reports 871 diagnostics in
+36 files (54 checked). The preceding 1,100-diagnostic baseline is retained under
+`../evidence/source-typing/`. The preceding 1,103-diagnostic audit is retained under
+`../evidence/workspace-lease/before-typing/`. The historical repair-era application run reported 973
 and its isolated core run reported 980. These include annotation errors and
 untyped calls, not equivalent counts of runtime defects. The prior core output remains in
 `../evidence/development-repairs/raw-source.txt`; current output is in
@@ -243,7 +338,7 @@ The inventory resolves shared dynamic aliases by their imports; the new fully
 structured terminal `Report` dataclass does not count as the shared dynamic report type.
 
 Source bodies remain authoritative. The runner rejects application hashes that differ from
-[`evidence/source-reviewed-category-sort.json`](evidence/source-reviewed-category-sort.json).
+[`evidence/source-reviewed-workspace-lease.json`](evidence/source-reviewed-workspace-lease.json).
 The earlier [`repair snapshot`](evidence/source-reviewed-repairs.json) covered
 streamed-body middleware, version re-exports, optional
 gradient probes, source identity, and publication status/revocation fixtures.
@@ -306,7 +401,7 @@ names; it is not a guarantee about Python's dynamic export behavior. The index
 excludes build/history trees and caches. Run the external contract checker before
 acceptance: a recorded pass read by the inventory is not a fresh test execution.
 The inventory still registers and hashes generated `.egg-info` inputs separately;
-its application identity comparison uses the same 56-file scope as the checker.
+its application identity comparison uses the same 57-file scope as the checker.
 Source/stub definitions are indexed in FILE exports and the JSON report, with
 source symbol rows checked independently. Previously authored extra dependency
 edges are retained. Missing, duplicate, retired or insufficiently linked symbol

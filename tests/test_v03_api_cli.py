@@ -1,3 +1,4 @@
+from riposte.organizer import plan as _sort_preview
 import io,json,time
 from pathlib import Path
 from zipfile import ZipFile
@@ -11,7 +12,7 @@ from riposte.store import catalog
 
 @pytest.fixture
 def fixture(root,make_image,monkeypatch):
-    make_image(root/'source.png',size=(96,64));organize(root,Policy(date_mode='modified'))
+    make_image(root/'source.png',size=(96,64));organize(root,Policy(date_mode='modified'), plan_id=_sort_preview(root, Policy(date_mode='modified'))["plan_id"])
     import riposte.models as models
     class Oracle:
         device='cpu';identity={'kind':'SYNTHETIC_TEST_ORACLE','weights_sha256':'a'*64}

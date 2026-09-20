@@ -1,0 +1,10 @@
+.tmp\source-typing\consumers\rejected.py:10:29: error: Extra key "epsilonn" for TypedDict "RequestValues"  [typeddict-unknown-key]
+.tmp\source-typing\consumers\rejected.py:11:43: error: Incompatible types (expression has type "str", TypedDict item "epsilon" has type "int")  [typeddict-item]
+.tmp\source-typing\consumers\rejected.py:12:44: error: List item 0 has incompatible type "int"; expected "Path | str"  [list-item]
+.tmp\source-typing\consumers\rejected.py:13:34: error: Incompatible types (expression has type "str", TypedDict item "total" has type "int")  [typeddict-item]
+.tmp\source-typing\consumers\rejected.py:14:54: error: Argument 4 to "record_image" has incompatible type "str"; expected "int"  [arg-type]
+.tmp\source-typing\consumers\rejected.py:15:39: error: Value of "width" has incompatible type "str"; expected "int"  [typeddict-item]
+.tmp\source-typing\consumers\rejected.py:16:54: error: Value of "viewer" has incompatible type "Literal['APPROVED']"; expected "Literal['NOT_OPENED', 'HANDOFF_REQUESTED']"  [typeddict-item]
+.tmp\source-typing\consumers\rejected.py:23:30: error: Argument 2 to "Operation" has incompatible type "Callable[[str, Callable[[Mapping[str, object]], None]], object]"; expected "Callable[[Request, Callable[[Mapping[str, object]], None]], object]"  [arg-type]
+.tmp\source-typing\consumers\rejected.py:24:1: error: Value of type "object" is not indexable  [index]
+Found 9 errors in 1 file (checked 2 source files)

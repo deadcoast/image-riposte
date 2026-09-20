@@ -1,0 +1,68 @@
+...............................s........................................ [  5%]
+...................................................................s.... [ 11%]
+.........................................F.............................. [ 17%]
+........................................................................ [ 22%]
+........................................................................ [ 28%]
+.......................................s................................ [ 34%]
+........................................................................ [ 40%]
+........................................................................ [ 45%]
+........................................................................ [ 51%]
+........................................................................ [ 57%]
+..............s......................................................... [ 62%]
+........................................................................ [ 68%]
+...................................................s.................... [ 74%]
+........................................................................ [ 80%]
+...................................ssss................................. [ 85%]
+........................................................................ [ 91%]
+........................................................................ [ 97%]
+...................................                                      [100%]
+================================== FAILURES ===================================
+_______ test_same_source_at_different_resolutions_is_one_sampling_unit ________
+
+root = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/riposte-pcuc-native-tnh2isfn/pytest/test_same_source_at_different_0/workspace')
+tmp_path = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/riposte-pcuc-native-tnh2isfn/pytest/test_same_source_at_different_0')
+population = ([{'method': 'external', 'evidence_level': 'PIXEL_TRANSPORT_ONLY', 'ai_protection': 'UNVERIFIED', 'external_source': '..._source': 'Not copied into workspace; original outside workspace is unchanged.', ...}], {'loads': 0, 'generations': 0})
+make_image = <function make_image.<locals>.create at 0x000001FD48B77B60>
+
+    def test_same_source_at_different_resolutions_is_one_sampling_unit(root, tmp_path, population, make_image):
+        from riposte.cohort import cohort_challenge
+        first = population[0][0]
+        smaller = make_image(tmp_path / 'smaller.png', size=(16, 12))
+>       variant = compare_external(root, first['image_id'], smaller, max_edge=16)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_cohort.py:157: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\riposte\lab.py:55: in compare_external
+    clean = social_render(master,max_edge)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+image = <PIL.Image.Image image mode=RGB size=32x24 at 0x1FD48792090>
+max_edge = 16
+
+    def social_render(image: Image.Image, max_edge: int = 1536) -> Image.Image:
+        if not 64 <= max_edge <= 4096:
+>           raise RiposteError("PUBLISH_SIZE_INVALID")
+E           riposte.errors.RiposteError: PUBLISH_SIZE_INVALID
+
+src\riposte\sanitize.py:200: RiposteError
+============================== warnings summary ===============================
+.venv\Lib\site-packages\fastapi\testclient.py:1
+  C:\Users\ryanf\github\_new\image-riposte\.venv\Lib\site-packages\fastapi\testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    from starlette.testclient import TestClient as TestClient  # noqa
+
+.venv\Lib\site-packages\starlette\testclient.py:53
+  C:\Users\ryanf\github\_new\image-riposte\.venv\Lib\site-packages\starlette\testclient.py:53: DeprecationWarning: The anyio.abc.BlockingPortal alias is deprecated, use anyio.from_thread.BlockingPortal instead.
+    _PortalFactoryType = Callable[[], AbstractContextManager[anyio.abc.BlockingPortal]]
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ===========================
+SKIPPED [1] tests\test_application_roots.py:139: Windows symlink privilege unavailable; junction exercised separately
+SKIPPED [1] tests\test_category_rules.py:185: symlinks unavailable
+SKIPPED [1] tests\test_organizer.py:80: Symlinks unavailable
+SKIPPED [1] tests\test_v02_models.py:38: Windows symlink creation privilege unavailable
+SKIPPED [1] tests\test_v03_temporal.py:134: Windows account lacks symlink privilege
+SKIPPED [4] tests\test_v04_terminal_host.py:8: POSIX pseudo-terminal contract
+FAILED tests/test_cohort.py::test_same_source_at_different_resolutions_is_one_sampling_unit
+1 failed, 1249 passed, 9 skipped, 2 warnings in 156.41s (0:02:36)

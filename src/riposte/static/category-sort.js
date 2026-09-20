@@ -16,6 +16,8 @@ window.RiposteSort = (() => {
   function status(text) {$('sort-status').textContent=text;}
   function fail(e) {
     const copy = {CATEGORY_PREVIEW_CHANGED:'Files, rules or destinations changed. Inspect again before applying.',
+      SORT_PREVIEW_CHANGED:'Files, destinations or settings changed. Inspect again before applying.',
+      SORT_PREVIEW_REQUIRED:'Inspect files and destinations, then confirm that preview before applying.',
       CATEGORY_RULES_CHANGED:'The saved rules changed. Load them and review your replacement again.',
       CATEGORY_ASSIGNMENT_INVALID:'Check manual assignments: one existing source path=category-slug per line.',
       CATEGORY_RULES_INVALID:'Check each rule: Label=keyword;alias. Clear all rules only with the explicit checkbox.',
@@ -28,7 +30,7 @@ window.RiposteSort = (() => {
     const busy=pending||!!busyJob;
     for(const id of buttons)$(id).disabled=busy;
     for(const button of document.querySelectorAll('.sort-suggestion button'))button.disabled=busy;
-    $('apply').disabled=busy||!preview?.ready||!$('ack-remove').checked;
+    $('apply').disabled=busy||!preview?.ready||!preview?.plan_id||!$('ack-remove').checked;
     $('category-save').disabled=busy||!draft;
     $('undo-apply').disabled=busy||!undo?.ready||!$('ack-undo').checked;
     for(const id of [...inputFields,...ruleFields,'category-min-count'])$(id).disabled=writing;
@@ -52,11 +54,13 @@ window.RiposteSort = (() => {
   function destinations(result) {
     const area=$('category-destinations');area.replaceChildren();
     const counts=result.counts||{};
-    area.append(el('p','',`${counts.unmatched_files||0} unmatched · ${counts.ambiguous_files||0} ambiguous`));
+    if(result.category_sorting)area.append(el('p','',`${counts.unmatched_files||0} unmatched · ${counts.ambiguous_files||0} ambiguous`));
     for(const item of result.files||[]) {
       const row=el('article','sort-file');row.append(el('strong','',item.source));
-      row.append(el('p','', 'Original title: '+(item.original_filename||'unknown')));
-      row.append(el('p','',(item.category?.label||'Needs assignment')+' · '+(item.matched_terms?.join(', ')||item.match_status||item.action||'')));
+      if(result.category_sorting) {
+        row.append(el('p','', 'Original title: '+(item.original_filename||'unknown')));
+        row.append(el('p','',(item.category?.label||'Needs assignment')+' · '+(item.matched_terms?.join(', ')||item.match_status||item.action||'')));
+      } else row.append(el('p','',item.action||'Blocked'));
       row.append(el('p','sort-destination',item.destination||item.error||item.action||'Blocked'));area.append(row);
     }
   }
@@ -106,7 +110,7 @@ window.RiposteSort = (() => {
     } catch(e) {draft=null;fail(e);} finally {pending=false;writing=false;updateDisabled();}
   }
   $('run-plan').onclick=()=>{invalidate();request('organize',options(),'plan');};
-  $('apply').onclick=()=>{if(!preview?.ready||!$('ack-remove').checked)return;const current=preview;preview=null;state.plan=false;request('organize',{...options(),apply:true,acknowledge_source_removal:true,plan_id:current.plan_id||null},'apply');};
+  $('apply').onclick=()=>{if(!preview?.ready||!preview?.plan_id||!$('ack-remove').checked)return;const current=preview;preview=null;state.plan=false;request('organize',{...options(),apply:true,acknowledge_source_removal:true,plan_id:current.plan_id},'apply');};
   for(const id of inputFields)$(id).oninput=()=>{if(id==='sort-categories')$('category-options').hidden=!$(id).checked;invalidate();};
   for(const id of ruleFields)$(id).oninput=ruleChanged;
   $('ack-remove').onchange=updateDisabled;$('ack-undo').onchange=updateDisabled;

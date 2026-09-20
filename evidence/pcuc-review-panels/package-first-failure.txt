@@ -1,0 +1,9 @@
+First package verification used require_escalated and exited 1 before any workflow
+execution, while opening the fresh wheel built by the sandboxed uv process:
+
+PermissionError: [Errno 13] Permission denied:
+C:\Users\ryanf\github\_new\image-riposte\.tmp\pcuc-review-panels\dist\riposte_studio-0.5.0-py3-none-any.whl
+
+The build and isolated no-dependency uv target installation had both exited 0.
+This is an artifact-access qualification failure, not an application test result.
+Next attempt uses the same sandbox identity as the builder and existing uv target.

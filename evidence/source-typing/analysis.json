@@ -1,0 +1,371 @@
+{
+  "result": "PASS",
+  "baseline_diagnostics": 1100,
+  "after_diagnostics": 876,
+  "reduction": 224,
+  "baseline_modules": 37,
+  "after_modules": 36,
+  "module_error_class_changes": [
+    {
+      "module": "src/riposte/organizer.py",
+      "code": "no-any-return",
+      "before": 2,
+      "after": 0
+    },
+    {
+      "module": "src/riposte/organizer.py",
+      "code": "type-arg",
+      "before": 6,
+      "after": 4
+    },
+    {
+      "module": "src/riposte/publication.py",
+      "code": "no-untyped-call",
+      "before": 65,
+      "after": 64
+    },
+    {
+      "module": "src/riposte/publication.py",
+      "code": "no-untyped-def",
+      "before": 27,
+      "after": 26
+    },
+    {
+      "module": "src/riposte/sanitize.py",
+      "code": "type-arg",
+      "before": 1,
+      "after": 0
+    },
+    {
+      "module": "src/riposte/store.py",
+      "code": "type-arg",
+      "before": 6,
+      "after": 3
+    },
+    {
+      "module": "src/riposte/terminal/app.py",
+      "code": "no-untyped-call",
+      "before": 15,
+      "after": 11
+    },
+    {
+      "module": "src/riposte/terminal/controller.py",
+      "code": "arg-type",
+      "before": 1,
+      "after": 0
+    },
+    {
+      "module": "src/riposte/terminal/controller.py",
+      "code": "assignment",
+      "before": 1,
+      "after": 0
+    },
+    {
+      "module": "src/riposte/terminal/controller.py",
+      "code": "no-untyped-call",
+      "before": 135,
+      "after": 22
+    },
+    {
+      "module": "src/riposte/terminal/controller.py",
+      "code": "no-untyped-def",
+      "before": 35,
+      "after": 3
+    },
+    {
+      "module": "src/riposte/terminal/controller.py",
+      "code": "union-attr",
+      "before": 25,
+      "after": 0
+    },
+    {
+      "module": "src/riposte/terminal/jobs.py",
+      "code": "no-untyped-call",
+      "before": 1,
+      "after": 0
+    },
+    {
+      "module": "src/riposte/terminal/jobs.py",
+      "code": "no-untyped-def",
+      "before": 4,
+      "after": 0
+    },
+    {
+      "module": "src/riposte/terminal/jobs.py",
+      "code": "type-arg",
+      "before": 2,
+      "after": 0
+    },
+    {
+      "module": "src/riposte/terminal/output.py",
+      "code": "no-untyped-call",
+      "before": 14,
+      "after": 13
+    },
+    {
+      "module": "src/riposte/terminal/service.py",
+      "code": "assignment",
+      "before": 1,
+      "after": 0
+    },
+    {
+      "module": "src/riposte/terminal/service.py",
+      "code": "no-untyped-call",
+      "before": 26,
+      "after": 8
+    },
+    {
+      "module": "src/riposte/terminal/service.py",
+      "code": "no-untyped-def",
+      "before": 8,
+      "after": 0
+    },
+    {
+      "module": "src/riposte/terminal/service.py",
+      "code": "type-arg",
+      "before": 3,
+      "after": 0
+    }
+  ],
+  "modified_existing_sources": [
+    "src/riposte/category_sort.py",
+    "src/riposte/cli.py",
+    "src/riposte/organizer.py",
+    "src/riposte/publication.py",
+    "src/riposte/sanitize.py",
+    "src/riposte/sort_history.py",
+    "src/riposte/sort_plan.py",
+    "src/riposte/store.py",
+    "src/riposte/terminal/actions.py",
+    "src/riposte/terminal/controller.py",
+    "src/riposte/terminal/jobs.py",
+    "src/riposte/terminal/service.py",
+    "src/riposte/video.py"
+  ],
+  "new_source": "src/riposte/records.py",
+  "localized_casts": [
+    {
+      "path": "src/riposte/category_sort.py",
+      "line": 119,
+      "type": "MediaInfo"
+    },
+    {
+      "path": "src/riposte/category_sort.py",
+      "line": 121,
+      "type": "MediaInfo"
+    },
+    {
+      "path": "src/riposte/cli.py",
+      "line": 68,
+      "type": "RequestValues"
+    },
+    {
+      "path": "src/riposte/organizer.py",
+      "line": 207,
+      "type": "CatalogRow"
+    },
+    {
+      "path": "src/riposte/organizer.py",
+      "line": 239,
+      "type": "CatalogRow"
+    },
+    {
+      "path": "src/riposte/sort_plan.py",
+      "line": 79,
+      "type": "MediaInfo"
+    },
+    {
+      "path": "src/riposte/sort_plan.py",
+      "line": 81,
+      "type": "MediaInfo"
+    },
+    {
+      "path": "src/riposte/store.py",
+      "line": 269,
+      "type": "CatalogRow"
+    },
+    {
+      "path": "src/riposte/store.py",
+      "line": 242,
+      "type": "CatalogRow"
+    },
+    {
+      "path": "src/riposte/video.py",
+      "line": 103,
+      "type": "CatalogRow"
+    },
+    {
+      "path": "src/riposte/video.py",
+      "line": 82,
+      "type": "CatalogRow"
+    },
+    {
+      "path": "src/riposte/terminal/actions.py",
+      "line": 196,
+      "type": "RequestValues"
+    },
+    {
+      "path": "src/riposte/terminal/controller.py",
+      "line": 295,
+      "type": "Editor"
+    },
+    {
+      "path": "src/riposte/terminal/controller.py",
+      "line": 330,
+      "type": "Editor"
+    },
+    {
+      "path": "src/riposte/terminal/controller.py",
+      "line": 187,
+      "type": "str"
+    },
+    {
+      "path": "src/riposte/terminal/controller.py",
+      "line": 250,
+      "type": "Path"
+    },
+    {
+      "path": "src/riposte/terminal/controller.py",
+      "line": 257,
+      "type": "Path"
+    },
+    {
+      "path": "src/riposte/terminal/controller.py",
+      "line": 262,
+      "type": "Path"
+    },
+    {
+      "path": "src/riposte/terminal/controller.py",
+      "line": 262,
+      "type": "str"
+    },
+    {
+      "path": "src/riposte/terminal/controller.py",
+      "line": 448,
+      "type": "CatalogRow"
+    },
+    {
+      "path": "src/riposte/terminal/controller.py",
+      "line": 451,
+      "type": "CatalogRow"
+    },
+    {
+      "path": "src/riposte/terminal/controller.py",
+      "line": 449,
+      "type": "str"
+    },
+    {
+      "path": "src/riposte/terminal/controller.py",
+      "line": 520,
+      "type": "RequestValues"
+    },
+    {
+      "path": "src/riposte/terminal/controller.py",
+      "line": 534,
+      "type": "RequestValues"
+    },
+    {
+      "path": "src/riposte/terminal/controller.py",
+      "line": 502,
+      "type": "str"
+    },
+    {
+      "path": "src/riposte/terminal/controller.py",
+      "line": 499,
+      "type": "str"
+    },
+    {
+      "path": "src/riposte/terminal/controller.py",
+      "line": 523,
+      "type": "RequestValues"
+    },
+    {
+      "path": "src/riposte/terminal/controller.py",
+      "line": 501,
+      "type": "str"
+    },
+    {
+      "path": "src/riposte/terminal/service.py",
+      "line": 346,
+      "type": "ImageInfo"
+    },
+    {
+      "path": "src/riposte/terminal/service.py",
+      "line": 278,
+      "type": "str"
+    },
+    {
+      "path": "src/riposte/terminal/service.py",
+      "line": 281,
+      "type": "str"
+    },
+    {
+      "path": "src/riposte/terminal/service.py",
+      "line": 286,
+      "type": "str"
+    },
+    {
+      "path": "src/riposte/terminal/service.py",
+      "line": 290,
+      "type": "str"
+    },
+    {
+      "path": "src/riposte/terminal/service.py",
+      "line": 296,
+      "type": "str"
+    },
+    {
+      "path": "src/riposte/terminal/service.py",
+      "line": 299,
+      "type": "str"
+    },
+    {
+      "path": "src/riposte/terminal/service.py",
+      "line": 325,
+      "type": "str"
+    },
+    {
+      "path": "src/riposte/terminal/service.py",
+      "line": 159,
+      "type": "int"
+    },
+    {
+      "path": "src/riposte/terminal/service.py",
+      "line": 171,
+      "type": "PreviewSortOptions"
+    },
+    {
+      "path": "src/riposte/terminal/service.py",
+      "line": 176,
+      "type": "ListOptions"
+    },
+    {
+      "path": "src/riposte/terminal/service.py",
+      "line": 198,
+      "type": "PreviewSortOptions"
+    },
+    {
+      "path": "src/riposte/terminal/service.py",
+      "line": 293,
+      "type": "str"
+    }
+  ],
+  "statement_changes_after_type_erasure": [
+    "src/riposte/sort_history.py:_check",
+    "src/riposte/terminal/controller.py:Controller._key",
+    "src/riposte/terminal/service.py:execute",
+    "src/riposte/terminal/service.py:image_selection"
+  ],
+  "statement_review": {
+    "sort_history._check": "Read-only Mapping alias of the same catalog row before comparing all expected keys; comparison and undo ordering retained.",
+    "controller._key": "Distinct local name for report-view choices; two call-and-return branches return None, as the called existing batch/inspect_item methods do.",
+    "service.execute": "Separate inspected/apply call branches retain identical policy and option values; explicit missing-destination check equals the preceding empty-dict lookup for validated CatalogRow values; filter fields remain year/month/size.",
+    "service.image_selection": "Explicit year/month/size fields preserve the prior comprehension order and values."
+  },
+  "limits": [
+    "AST erasure is a review aid, not proof of semantic equivalence; full runtime tests remain required.",
+    "Request default_factory changes from dict to the all-optional TypedDict constructor; both produce independent ordinary empty dictionaries.",
+    "Localized casts preserve producer-validated records and caller-established page/workspace/editor invariants; they add no runtime validation.",
+    "876 source diagnostics remain; diagnostic counts are not runtime defect counts."
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "result": "PASS",
+  "version": "0.5.0",
+  "application_files": 58,
+  "checks": {
+    "source": {
+      "ordinary_cli": "PASS",
+      "stale_no_initial_state": "PASS",
+      "api": "PASS",
+      "exact_undo": "PASS",
+      "combined_receipt_and_model_gate": "PASS"
+    },
+    "installed": {
+      "ordinary_cli": "PASS",
+      "stale_no_initial_state": "PASS",
+      "api": "PASS",
+      "exact_undo": "PASS",
+      "combined_receipt_and_model_gate": "PASS"
+    }
+  },
+  "artifact_sha256": {
+    "riposte_studio-0.5.0-py3-none-any.whl": "22ecde63994065738143525b5f467c7d4f34e239d2bcb6b2a8b5656e4996a5c0",
+    "riposte_studio-0.5.0.tar.gz": "4c4d64e233786c7504fcf0fcb50fabfac53e04e095d276479f1814df3e73ca50"
+  },
+  "scope": "Fresh source/sdist/wheel/isolated-target equality and real CLI/API/service preview/apply/exact-undo checks. Combined missing/stale receipt and missing-model gates. Existing Windows dependencies; not clean bootstrap, real-model execution or native Linux/macOS qualification."
+}

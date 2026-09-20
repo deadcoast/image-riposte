@@ -1,9 +1,11 @@
 # Source-derived external stub; see typing/README.md for scope.
 from typing import Iterator, Sequence
 from pathlib import Path
+from .catalog_guard import CatalogGuard as CatalogGuard
 from _riposte_types import CatalogRow, OrganizationPlan, OrganizationReport, WorkspaceAudit
 from _riposte_types import Progress as _Progress
 from .errors import RiposteError as RiposteError
+from .locking import LEASE_NAME as LEASE_NAME
 from .policy import CACHE_NAMES as CACHE_NAMES, IMAGE_SUFFIXES as IMAGE_SUFFIXES, Policy as Policy, SIDECAR_SUFFIXES as SIDECAR_SUFFIXES, folder_for as folder_for, is_link as is_link, same_file_state as same_file_state
 from .sanitize import decode_clean as decode_clean, encode_clean as encode_clean, png_audit as png_audit
 from .store import atomic_clean_write as atomic_clean_write, catalog as catalog, check_root as check_root, record_image as record_image, safe_child as safe_child, state_name as state_name, workspace_lock as workspace_lock, write_report as write_report

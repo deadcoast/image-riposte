@@ -1,3 +1,4 @@
+from riposte.organizer import plan as _sort_preview
 import hashlib
 from pathlib import Path
 import pytest
@@ -15,7 +16,7 @@ def snapshot(root):
     return {p.relative_to(root).as_posix():hashlib.sha256(p.read_bytes()).hexdigest() for p in root.rglob('*') if p.is_file()}
 
 def test_legacy_read_is_nonmutating_then_upgrade_keeps_art_ids(root,tmp_path,make_image):
-    make_image(root/'former/a.png');organize(root,Policy(date_mode='modified'))
+    make_image(root/'former/a.png');organize(root,Policy(date_mode='modified'), plan_id=_sort_preview(root, Policy(date_mode='modified'))["plan_id"])
     candidate=make_image(tmp_path/'external.png',color=(31,91,150))
     original=catalog(root);trial=compare_external(root,original[0]['id'],candidate);legacy(root)
     before=snapshot(root)
@@ -36,21 +37,21 @@ def test_empty_root_upgrade_has_no_scaffold(root):
     assert not list(root.iterdir())
 
 def test_interrupted_marker_upgrade_finishes(root,make_image):
-    make_image(root/'a.png');organize(root,Policy(date_mode='modified'))
+    make_image(root/'a.png');organize(root,Policy(date_mode='modified'), plan_id=_sort_preview(root, Policy(date_mode='modified'))["plan_id"])
     (root/'.riposte/WORKSPACE').write_text(LEGACY_SIGNATURE)
     assert legacy_workspace(root)
     assert upgrade_workspace(root)['status']=='UPGRADED'
     assert (root/'.riposte/WORKSPACE').read_text()==SIGNATURE
 
 def test_namespace_conflict_no_mutation(root,make_image):
-    make_image(root/'a.png');organize(root,Policy(date_mode='modified'))
+    make_image(root/'a.png');organize(root,Policy(date_mode='modified'), plan_id=_sort_preview(root, Policy(date_mode='modified'))["plan_id"])
     (root/'.shroud').mkdir();(root/'.shroud/WORKSPACE').write_text(LEGACY_SIGNATURE)
     before=snapshot(root)
     with pytest.raises(RiposteError,match='NAMESPACE_CONFLICT'):upgrade_workspace(root)
     assert snapshot(root)==before
 
 def test_locked_legacy_cannot_upgrade(root,make_image):
-    make_image(root/'a.png');organize(root,Policy(date_mode='modified'));legacy(root)
+    make_image(root/'a.png');organize(root,Policy(date_mode='modified'), plan_id=_sort_preview(root, Policy(date_mode='modified'))["plan_id"]);legacy(root)
     with workspace_lock(root):
         with pytest.raises(RiposteError,match='LOCKED'):upgrade_workspace(root)
     assert not (root/'.riposte').exists()

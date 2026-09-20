@@ -1,0 +1,10 @@
+{
+  "python": "3.14.3 (tags/v3.14.3:323c59a, Feb  3 2026, 16:04:56) [MSC v.1944 64 bit (AMD64)]",
+  "torch": "2.14.0+cpu",
+  "cuda_available": false,
+  "cuda_devices": 0,
+  "diffusers": "0.40.0",
+  "transformers": "5.17.0",
+  "installed_pipeline_sha256": "a95e4788bcd2f499558ce5a61c34a727188875645438d419328e611ca044d563",
+  "scope": "Tiny real library models on CPU with test-only placement overrides; no pretrained models or independent raters."
+}

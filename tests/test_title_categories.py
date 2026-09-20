@@ -1,4 +1,5 @@
 """Filename-only milestone: suggestions and explicit drafts cannot sort or save."""
+from riposte.organizer import plan as _sort_preview
 import hashlib
 import json
 from pathlib import Path
@@ -116,7 +117,7 @@ def test_no_media_reads_no_state_writes_and_private_directories_pruned(root, mon
 
 def test_known_generated_names_and_legacy_names_require_original_titles(root, make_image):
     make_image(root / "hockey-player.png")
-    organize(root, Policy(date_mode="modified"))
+    organize(root, Policy(date_mode="modified"), plan_id=_sort_preview(root, Policy(date_mode="modified"))["plan_id"])
     names(root, "2025/March/SML/SML99.png", "MED001.mp4", "new-hockey.png")
     before = snapshot(root)
     report = tc.discover_categories(root, min_count=1, categories=["Bad=sml01;med001"])

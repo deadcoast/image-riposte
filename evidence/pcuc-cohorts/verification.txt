@@ -1,0 +1,8 @@
+{
+  "identity": "PASS",
+  "study": "PCUC-003",
+  "result": "LOCAL_COHORT_WORKFLOW_AND_BOUNDS_VERIFIED",
+  "milestone": "OPEN",
+  "PAC-034": "SHELVED",
+  "frozen_registers_unchanged": true
+}

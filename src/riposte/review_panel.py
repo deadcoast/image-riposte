@@ -1,0 +1,348 @@
+"""Artifact-bound local rubric calibration with separate, immutable reviewer slots.
+
+Presentation blinding does not authenticate raters. Panel diagnostics never
+replace experiment/cohort primary reviews or qualify protection efficacy.
+"""
+from __future__ import annotations
+
+from collections.abc import Mapping, Sequence
+import hashlib
+import json
+import os
+from pathlib import Path
+import re
+import secrets
+from typing import cast
+import uuid
+from zipfile import ZipFile, ZipInfo
+
+from .agreement import binary_agreement
+from .errors import RiposteError
+from .experiment import ENDPOINTS, REVIEW_LIMIT, _bound_run, _digest, _frame, _object, _read, _text, _unique_fields
+from .sanitize import png_audit
+from .store import atomic_json_write, safe_child, state_relative, workspace_lock
+
+MAX_ITEMS = 320
+
+
+def default_rubric(task: str) -> dict[str, object]:
+    """Return editable, unvalidated task anchors. A panel freezes their exact text."""
+    success = {
+        "edit": ("Is a patterned background added while the requested illustration is retained?",
+                 "A discernible repeated pattern appears in the background.",
+                 "No patterned background is added, or only unrelated foreground changes occur."),
+        "inpaint": ("Does the requested patterned-background edit appear in the right-side masked region?",
+                    "The right-side replacement visibly adds a background pattern consistent with the request.",
+                    "The masked region is unchanged, blank, or lacks the requested pattern."),
+        "video": ("Does the full frame sequence contain coherent visible motion?",
+                  "A subject or camera changes position coherently across the sequence.",
+                  "Frames remain static or changes consist only of flicker, corruption or incoherent jumps."),
+    }
+    if task not in success:
+        raise RiposteError("PANEL_RUBRIC_INVALID")
+    questions = {"task_success": success[task],
+        "source_preserved": ("Is the reference illustration's central subject recognizable throughout the output?",
+                             "Its defining subject and identity remain recognizable in every frame.",
+                             "The central subject is replaced, lost, or becomes unrecognizable in any frame."),
+        "usable": ("Is the complete output usable for the requested task without severe defects?",
+                   "No severe structural, anatomical or temporal defect defeats the requested use.",
+                   "A severe structural, anatomical or temporal defect defeats the requested use.")}
+    return {"schema": "riposte-task-rubric-v1", "task": task, "name": f"RIPOSTE {task} calibration v1",
+            "validation": "UNVALIDATED_CANDIDATE",
+            "instructions": "Compare each entire output sequence with its reference. Work separately from other reviewers. Use true for yes, false for no, and null when uncertain. Submit only after reviewing all items; each slot accepts one final response, including null decisions.",
+            "endpoints": {key: {"question": q, "yes": yes, "no": no,
+                                "uncertain": "Use null when the visible evidence does not support a decision."}
+                          for key, (q, yes, no) in questions.items()}}
+
+
+def _input(path: Path) -> dict[str, object]:
+    try:
+        with path.open("rb") as stream:
+            raw = stream.read(REVIEW_LIMIT + 1)
+        if len(raw) > REVIEW_LIMIT:
+            raise RiposteError("PANEL_INPUT_INVALID")
+        return _object(json.loads(raw, object_pairs_hook=_unique_fields))
+    except (OSError, ValueError):
+        raise RiposteError("PANEL_INPUT_INVALID") from None
+
+
+def _rubric(value: dict[str, object], task: str) -> dict[str, object]:
+    if (set(value) != {"schema", "task", "name", "validation", "instructions", "endpoints"}
+            or value["schema"] != "riposte-task-rubric-v1" or value["task"] != task
+            or value["validation"] != "UNVALIDATED_CANDIDATE"):
+        raise RiposteError("PANEL_RUBRIC_INVALID")
+    endpoints = _object(value["endpoints"])
+    if set(endpoints) != set(ENDPOINTS):
+        raise RiposteError("PANEL_RUBRIC_INVALID")
+    texts = [value["name"], value["instructions"]]
+    for endpoint in endpoints.values():
+        row = _object(endpoint)
+        if set(row) != {"question", "yes", "no", "uncertain"}:
+            raise RiposteError("PANEL_RUBRIC_INVALID")
+        texts.extend(row.values())
+    if any(not isinstance(v, str) or not v.strip() or len(v) > 4000 for v in texts):
+        raise RiposteError("PANEL_RUBRIC_INVALID")
+    return value
+
+
+def _prefix(root: Path, identifier: str) -> str:
+    if not re.fullmatch(r"[0-9a-f]{32}", identifier):
+        raise RiposteError("PANEL_NOT_FOUND")
+    return state_relative(root, f"review-panels/{identifier}")
+
+
+def _sealed(path: Path, error: str) -> dict[str, object]:
+    value = _read(path)
+    if value.get("sha256") != _digest({k: v for k, v in value.items() if k != "sha256"}):
+        raise RiposteError(error)
+    return value
+
+
+def _protocol(root: Path, identifier: str) -> dict[str, object]:
+    value = _sealed(safe_child(root, f"{_prefix(root, identifier)}/protocol.json"), "PANEL_PROTOCOL_CHANGED")
+    body = _object(value.get("protocol"))
+    if body.get("schema") != "riposte-review-panel-v1" or body.get("id") != identifier:
+        raise RiposteError("PANEL_PROTOCOL_CHANGED")
+    return value
+
+
+def _bound_panel(root: Path, identifier: str) -> tuple[dict[str, object], dict[str, dict[str, object]], dict[str, list[str]]]:
+    sealed = _protocol(root, identifier)
+    protocol = _object(sealed["protocol"])
+    reports: dict[str, dict[str, object]] = {}
+    frames: dict[str, list[str]] = {}
+    run_samples: dict[str, dict[str, list[str]]] = {}
+    items = _object(protocol["items"])
+    for run_id, expected_value in _object(protocol["runs"]).items():
+        expected = _object(expected_value)
+        experiment, report, samples = _bound_run(root, run_id)
+        if (experiment["sha256"] != expected["protocol_sha256"]
+                or _digest(report) != expected["report_sha256"]):
+            raise RiposteError("PANEL_EXPERIMENT_CHANGED")
+        reports[run_id] = report
+        run_samples[run_id] = samples
+    for item, value in items.items():
+        row = _object(value)
+        frames[item] = run_samples[_text(row["run_id"])][_text(row["sample_id"])]
+    if set(frames) != set(items):
+        raise RiposteError("PANEL_EXPERIMENT_CHANGED")
+    return sealed, reports, frames
+
+
+def create_panel(root: Path, run_ids: Sequence[str], reviewers: int = 2,
+                 rubric_path: Path | None = None) -> dict[str, object]:
+    """Commit calibration selection and assignments before any packet export."""
+    if (not 1 <= len(run_ids) <= 32 or len(set(run_ids)) != len(run_ids)
+            or type(reviewers) is not int or not 2 <= reviewers <= 8):
+        raise RiposteError("PANEL_SELECTION_INVALID")
+    with workspace_lock(root):
+        runs: dict[str, object] = {}
+        items: dict[str, object] = {}
+        task: str | None = None
+        for run_id in run_ids:
+            sealed, report, samples = _bound_run(root, run_id)
+            experiment = _object(sealed["protocol"])
+            if task is not None and task != experiment["task"]:
+                raise RiposteError("PANEL_TASK_MISMATCH")
+            task = _text(experiment["task"])
+            runs[run_id] = {"protocol_sha256": sealed["sha256"], "report_sha256": _digest(report),
+                            "trial_id": experiment["trial_id"], "conditioning": experiment["conditioning"],
+                            "reference_sha256": _object(experiment["artifact_sha256"])["clean"]}
+            for sample in samples:
+                items[uuid.uuid4().hex] = {"run_id": run_id, "sample_id": sample}
+            if len(items) > MAX_ITEMS:
+                raise RiposteError("PANEL_SELECTION_INVALID")
+        assert task is not None
+        rubric = _rubric(_input(rubric_path) if rubric_path is not None else default_rubric(task), task)
+        assignments: dict[str, object] = {}
+        for _ in range(reviewers):
+            order = list(items)
+            secrets.SystemRandom().shuffle(order)
+            assignments[uuid.uuid4().hex] = {uuid.uuid4().hex: item for item in order}
+        identifier = uuid.uuid4().hex
+        protocol: dict[str, object] = {"schema": "riposte-review-panel-v1", "id": identifier,
+            "task": task, "rubric": rubric, "runs": runs, "items": items, "reviewers": assignments,
+            "source_sha256": {name: hashlib.sha256((Path(__file__).parent/name).read_bytes()).hexdigest()
+                              for name in ("review_panel.py", "agreement.py")},
+            "analysis": "All fixed items and reviewer slots; binary completion bounds; separate pairwise Cohen kappa only with complete pairs. No thresholds, inference or efficacy verdict.",
+            "review_policy": "ONE_FINAL_RESPONSE_PER_SLOT_INCLUDING_NULLS; corrections require a new panel",
+            "selection": "EXPLICIT_CALIBRATION_SELECTION_NOT_PREREGISTRATION",
+            "blinding": "PRESENTATION_ONLY; operator can unblind; pixels may reveal conditions",
+            "reviewer_independence": "NOT_ESTABLISHED"}
+        result: dict[str, object] = {"protocol": protocol}
+        result["sha256"] = _digest(result)
+        atomic_json_write(root, f"{_prefix(root, identifier)}/protocol.json", result)
+        return _status(root, identifier)
+
+
+def _assignment(protocol: Mapping[str, object], reviewer: str) -> dict[str, object]:
+    assignments = _object(protocol["reviewers"])
+    if reviewer not in assignments or not re.fullmatch(r"[0-9a-f]{32}", reviewer):
+        raise RiposteError("PANEL_REVIEWER_NOT_FOUND")
+    return _object(assignments[reviewer])
+
+
+def _packet_receipt(root: Path, identifier: str, reviewer: str, sealed: Mapping[str, object]) -> dict[str, object] | None:
+    prefix = f"{_prefix(root, identifier)}/packets/{reviewer}"
+    packet = safe_child(root, f"{prefix}.zip")
+    path = safe_child(root, f"{prefix}.json")
+    if not packet.exists() and not path.exists():
+        return None
+    if not packet.exists() or not path.exists():
+        raise RiposteError("PANEL_PACKET_INCOMPLETE")
+    receipt = _sealed(path, "PANEL_PACKET_CHANGED")
+    with packet.open("rb") as stream:
+        digest = hashlib.file_digest(stream, "sha256").hexdigest()
+    if (receipt.get("packet_sha256") != digest or receipt.get("panel_sha256") != sealed["sha256"]
+            or receipt.get("reviewer_id") != reviewer or receipt.get("relative") != f"{prefix}.zip"):
+        raise RiposteError("PANEL_PACKET_CHANGED")
+    return receipt
+
+
+def panel_packet(root: Path, identifier: str, reviewer_id: str) -> dict[str, object]:
+    """Explicit local export; one opaque ordering per slot, no role/run/model labels."""
+    with workspace_lock(root):
+        sealed, reports, frames = _bound_panel(root, identifier)
+        protocol = _object(sealed["protocol"])
+        assignment = _assignment(protocol, reviewer_id)
+        prefix = f"{_prefix(root, identifier)}/packets/{reviewer_id}"
+        relative = f"{prefix}.zip"
+        dest = safe_child(root, relative)
+        if _packet_receipt(root, identifier, reviewer_id, sealed) is not None:
+            raise RiposteError("DESTINATION_EXISTS")
+        dest.parent.mkdir(parents=True, exist_ok=True)
+        temp = safe_child(root, f"{prefix}.{uuid.uuid4().hex}.tmp")
+        template = {"panel_sha256": sealed["sha256"], "reviewer_id": reviewer_id,
+                    "ratings": {alias: dict.fromkeys(ENDPOINTS) for alias in assignment}}
+        try:
+            with temp.open("xb") as stream:
+                with ZipFile(stream, "w") as archive:
+                    def put(name: str, data: bytes) -> None:
+                        info = ZipInfo(name, (1980, 1, 1, 0, 0, 0))
+                        info.create_system = 0
+                        info.external_attr = 0x20
+                        archive.writestr(info, data)
+                    put("ratings.json", json.dumps(template, indent=2).encode())
+                    put("instructions.json", json.dumps({"rubric": protocol["rubric"], "presentation_order": list(assignment),
+                        "blinding": "Labels conceal conditions; pixels may reveal them. Work separately from other reviewers."}, indent=2).encode())
+                    for alias, item_value in assignment.items():
+                        item = _text(item_value)
+                        entry = _object(_object(protocol["items"])[item])
+                        run_id = _text(entry["run_id"])
+                        run = _object(_object(protocol["runs"])[run_id])
+                        report = reports[run_id]
+                        put(f"items/{alias}/task.json", json.dumps(run["conditioning"], indent=2).encode())
+                        reference = safe_child(root, state_relative(root, f"lab/{_text(run['trial_id'])}/clean.png")).read_bytes()
+                        if png_audit(reference)["sha256"] != run["reference_sha256"]:
+                            raise RiposteError("PANEL_EXPERIMENT_CHANGED")
+                        put(f"items/{alias}/reference.png", reference)
+                        for index, frame in enumerate(frames[item]):
+                            put(f"items/{alias}/F{index:03d}.png", _frame(root, run_id, frame, report))
+                stream.flush()
+                os.fsync(stream.fileno())
+            safe_child(root, relative)
+            try:
+                os.link(temp, dest)
+            except FileExistsError:
+                raise RiposteError("DESTINATION_EXISTS") from None
+        finally:
+            temp.unlink(missing_ok=True)
+        with dest.open("rb") as reader:
+            digest = hashlib.file_digest(reader, "sha256").hexdigest()
+        receipt: dict[str, object] = {"relative": relative, "packet_sha256": digest,
+            "panel_sha256": sealed["sha256"], "reviewer_id": reviewer_id, "items": len(assignment)}
+        receipt["sha256"] = _digest(receipt)
+        atomic_json_write(root, f"{prefix}.json", receipt)
+        return receipt
+
+
+def _ratings(value: object, assignment: Mapping[str, object]) -> dict[str, dict[str, bool | None]]:
+    rows = _object(value)
+    if set(rows) != set(assignment):
+        raise RiposteError("PANEL_RATINGS_INVALID")
+    for row_value in rows.values():
+        row = _object(row_value)
+        if set(row) != set(ENDPOINTS) or any(v is not None and type(v) is not bool for v in row.values()):
+            raise RiposteError("PANEL_RATINGS_INVALID")
+    return cast(dict[str, dict[str, bool | None]], rows)
+
+
+def _responses(root: Path, identifier: str, sealed: Mapping[str, object]) -> dict[str, dict[str, object]]:
+    responses: dict[str, dict[str, object]] = {}
+    protocol = _object(sealed["protocol"])
+    for reviewer in _object(protocol["reviewers"]):
+        packet = _packet_receipt(root, identifier, reviewer, sealed)
+        path = safe_child(root, f"{_prefix(root, identifier)}/responses/{reviewer}.json")
+        if not path.exists():
+            continue
+        response = _sealed(path, "PANEL_REVIEW_CHANGED")
+        if (packet is None or response.get("panel_sha256") != sealed["sha256"]
+                or response.get("reviewer_id") != reviewer or response.get("packet_sha256") != packet["packet_sha256"]):
+            raise RiposteError("PANEL_REVIEW_CHANGED")
+        _ratings(response.get("ratings"), _assignment(protocol, reviewer))
+        responses[reviewer] = response
+    return responses
+
+
+def _status(root: Path, identifier: str) -> dict[str, object]:
+    sealed, _, _ = _bound_panel(root, identifier)
+    protocol = _object(sealed["protocol"])
+    responses = _responses(root, identifier, sealed)
+    items = list(_object(protocol["items"]))
+    reviewers = list(_object(protocol["reviewers"]))
+    canonical: dict[str, dict[str, dict[str, bool | None]]] = {}
+    for reviewer, response in responses.items():
+        assignment = _assignment(protocol, reviewer)
+        canonical[reviewer] = {_text(assignment[alias]): row for alias, row in _ratings(response["ratings"], assignment).items()}
+    endpoints = {key: binary_agreement([[canonical[reviewer][item][key] if reviewer in canonical else None
+                                        for reviewer in reviewers] for item in items]) for key in ENDPOINTS}
+    disagreement: set[int] = set()
+    for endpoint in endpoints.values():
+        disagreement.update(cast(list[int], endpoint["disagreement_items"]))
+    return {**sealed, "responses": responses, "analysis": {
+        "status": "INCOMPLETE" if any(row["missing_decisions"] for row in endpoints.values()) else "DESCRIPTIVE",
+        "submitted_reviewers": len(responses), "planned_reviewers": len(reviewers),
+        "reviewer_order": reviewers, "item_order": items, "endpoints": endpoints,
+        "disagreement_items": [item for index, item in enumerate(items) if index in disagreement],
+        "unit": "Generated sequences; repeated outputs do not increase independent artwork count.",
+        "distinct_trials": len({_text(_object(run)["trial_id"]) for run in _object(protocol["runs"]).values()}),
+        "reviewer_independence": "NOT_ESTABLISHED", "rubric_validity": "UNVERIFIED", "ai_protection": "UNVERIFIED"}}
+
+
+def panel_status(root: Path, identifier: str | None = None) -> dict[str, object]:
+    with workspace_lock(root):
+        if identifier is not None:
+            return _status(root, identifier)
+        folder = safe_child(root, state_relative(root, "review-panels"))
+        entries = []
+        for child in sorted(folder.iterdir()) if folder.exists() else []:
+            if not re.fullmatch(r"[0-9a-f]{32}", child.name):
+                continue
+            try:
+                sealed = _protocol(root, child.name)
+                entries.append({"id": child.name, "sha256": sealed["sha256"], "integrity": "PROTOCOL_ONLY"})
+            except RiposteError:
+                entries.append({"id": child.name, "integrity": "INVALID"})
+        return {"panels": entries, "ai_protection": "UNVERIFIED"}
+
+
+def record_panel_review(root: Path, identifier: str, ratings_path: Path) -> dict[str, object]:
+    """One final submission per fixed slot; null decisions remain missing evidence."""
+    with workspace_lock(root):
+        sealed, _, _ = _bound_panel(root, identifier)
+        submitted = _input(ratings_path)
+        if set(submitted) != {"panel_sha256", "reviewer_id", "ratings"} or submitted["panel_sha256"] != sealed["sha256"]:
+            raise RiposteError("PANEL_RATINGS_INVALID")
+        reviewer = _text(submitted["reviewer_id"])
+        assignment = _assignment(_object(sealed["protocol"]), reviewer)
+        _ratings(submitted["ratings"], assignment)
+        prior = _responses(root, identifier, sealed)
+        if reviewer in prior:
+            raise RiposteError("PANEL_REVIEW_EXISTS")
+        packet = _packet_receipt(root, identifier, reviewer, sealed)
+        if packet is None:
+            raise RiposteError("PANEL_PACKET_REQUIRED")
+        response = {**submitted, "packet_sha256": packet["packet_sha256"]}
+        response["sha256"] = _digest(response)
+        atomic_json_write(root, f"{_prefix(root, identifier)}/responses/{reviewer}.json", response)
+        return response

@@ -1,4 +1,5 @@
 """Control-flow tests using stub generators, not pretrained-model efficacy tests."""
+from riposte.organizer import plan as _sort_preview
 import sys
 from types import SimpleNamespace
 import pytest
@@ -13,7 +14,7 @@ from riposte.sanitize import png_audit, encode_clean
 
 @pytest.fixture
 def trial(root,tmp_path,make_image):
-    make_image(root/'input.png');organize(root,Policy(date_mode='modified'))
+    make_image(root/'input.png');organize(root,Policy(date_mode='modified'), plan_id=_sort_preview(root, Policy(date_mode='modified'))["plan_id"])
     candidate=make_image(tmp_path/'candidate.png',color=(31,91,151))
     return compare_external(root,catalog(root)[0]['id'],candidate)
 

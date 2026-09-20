@@ -1,4 +1,5 @@
 """Native command contract and same-action CLI/menu parity; no pretrained claims."""
+from riposte.organizer import plan as _sort_preview
 import json
 from pathlib import Path
 import pytest
@@ -68,7 +69,7 @@ def test_invalid_form_values(kind,raw):
 
 
 def test_readonly_targeting_and_plan_no_files(root,make_image,capsys):
-    make_image(root/'raw.png',day='2026-09-10');organize(root,Policy(date_mode='modified'))
+    make_image(root/'raw.png',day='2026-09-10');organize(root,Policy(date_mode='modified'), plan_id=_sort_preview(root, Policy(date_mode='modified'))["plan_id"])
     before={str(f.relative_to(root)):f.read_bytes() for f in root.rglob('*') if f.is_file()}
     assert cli.main(['--json','list',str(root),'--year','2026','--month','sep','--size','SML'])==0
     rows=json.loads(capsys.readouterr().out);assert len(rows)==1
@@ -94,7 +95,7 @@ def test_human_and_machine_output_are_distinct(root,capsys):
 
 
 def test_master_transform_is_not_silently_ignored(root,make_image):
-    make_image(root/'raw.png');organize(root,Policy(date_mode='modified'))
+    make_image(root/'raw.png');organize(root,Policy(date_mode='modified'), plan_id=_sort_preview(root, Policy(date_mode='modified'))["plan_id"])
     row=catalog(root)[0]
     with pytest.raises(RiposteError,match='CLEAN_MASTER_VIEW_INVALID'):
         execute(Request('image',root,{'image_id':row['id'],'view':'jpeg70'}))

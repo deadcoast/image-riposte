@@ -2,6 +2,9 @@
 from __future__ import annotations
 from dataclasses import replace
 from pathlib import Path
+from collections.abc import Callable, Mapping, Sequence
+from typing import cast
+from ..records import CatalogRow, RequestValues
 import time
 from .actions import ACTIONS, BY_KEY, Field, defaults, make_request, parse_value
 from .jobs import Operation, safe_code
@@ -18,43 +21,43 @@ from ..metrics import TRANSFORMS
 
 
 class Controller:
-    def __init__(self, root: Path | None, presentation: Presentation, *, initial="home", operation_factory=Operation):
+    def __init__(self, root: Path | None, presentation: Presentation, *, initial: str = "home", operation_factory: Callable[[Request], Operation] = Operation) -> None:
         self.state = Session(root.expanduser().absolute() if root else None, presentation,
                              paused=presentation.no_animation)
         self.factory = operation_factory
         self.started = time.monotonic()
-        self.pending_action = None
+        self.pending_action: str | None = None
         if root:
             root_of(Request("list", self.state.root))
             self.refresh()
         if initial == "workshop": self.show(Page("workshop", "OPTIONAL WORKSHOP"), remember=False)
 
-    def refresh(self):
+    def refresh(self) -> None:
         if self.state.root is None: return
         self.state.catalog = execute(Request("list", self.state.root))
         self.state.batches = execute(Request("publications", self.state.root))
         self.state.selected.intersection_update(r["id"] for r in self.state.catalog)
 
-    def show(self, page, remember=True):
+    def show(self, page: Page, remember: bool = True) -> None:
         if remember and self.state.page.name != "job": self.state.stack.append(self.state.page)
         self.state.page = page
         self.state.notice = ""
 
-    def back(self):
+    def back(self) -> None:
         self.state.editor = None
         self.state.page = self.state.stack.pop() if self.state.stack else Page()
         self.state.notice = ""
 
-    def edit_workspace(self):
+    def edit_workspace(self) -> None:
         self.browse("workspace", "preferences")
 
-    def begin_action(self, key):
+    def begin_action(self, key: str) -> None:
         if key == "riposte": return self.browse("inputs", key)
         if key in {"organize", "sort-riposte"}: return self.browse("sort", key)
         if key == "undo-sort": return self.browse("undo", key)
         return self.action(key)
 
-    def browse(self, mode, action=None, inputs=(), field=None):
+    def browse(self, mode: str, action: str | None = None, inputs: Sequence[Path] = (), field: str | None = None) -> None:
         settings = dict(self.state.page.values) if self.state.page.name == "form" else {}
         purpose = {
             "inputs": "Select images or folders to protect, including subfolders. Originals stay in place; sorting is not required.",
@@ -73,7 +76,7 @@ class Controller:
         self.show(Page("picker", title, action=action, result=picker,
                        values={"mode": mode, "purpose": purpose, "inputs": list(inputs), "field": field, "settings": settings}, rows=picker.rows()))
 
-    def picker_key(self, key):
+    def picker_key(self, key: Key) -> None:
         p = self.state.page
         picker = p.result
         row = self.selected_row()
@@ -95,7 +98,7 @@ class Controller:
         p.rows = picker.rows()
         self.state.notice = picker.error
 
-    def accept_picker(self):
+    def accept_picker(self) -> None:
         p = self.state.page
         picker = p.result
         mode = p.values["mode"]
@@ -127,17 +130,17 @@ class Controller:
         if action: return self.action(action)
         self.back()
 
-    def require_workspace(self, next_action):
+    def require_workspace(self, next_action: str) -> bool:
         if self.state.root: return True
         self.browse("existing", next_action)
         return False
 
-    def library(self):
+    def library(self) -> None:
         if not self.require_workspace("library"): return
         self.refresh()
         self.show(Page("library", "CLEAN LIBRARY", rows=self.state.catalog))
 
-    def batches(self):
+    def batches(self) -> None:
         if not self.require_workspace("batches"): return
         self.refresh()
         self.show(Page("batches", "PUBLISHING BATCHES", rows=self.state.batches))
@@ -146,7 +149,7 @@ class Controller:
         value = result or execute(Request("publications", self.state.root, {"batch_id": identifier}))
         self.show(Page("batch", "REVIEW & PACKAGE", rows=value["items"], batch_id=identifier, result=value), remember=remember)
 
-    def preferences(self):
+    def preferences(self) -> None:
         rows = [
             {"key": "workspace", "title": "Image workspace", "value": "SELECTED" if self.state.root else "NOT SELECTED"},
             {"key": "theme", "title": "Palette", "value": self.state.presentation.theme.upper()},
@@ -160,7 +163,7 @@ class Controller:
             self.state.page.rows = rows
         else: self.show(Page("preferences", "TERMINAL SETTINGS", rows=rows))
 
-    def action(self, key, overrides=None):
+    def action(self, key: str, overrides: Mapping[str, object] | None = None) -> None:
         if key == "library": return self.library()
         if key == "batches": return self.batches()
         if key == "preferences": return self.preferences()
@@ -179,15 +182,15 @@ class Controller:
             return self.run(Request(key, self.state.root))
         self.show(Page("form", action.title.upper(), action=key, values=values))
 
-    def request_from_form(self):
+    def request_from_form(self) -> Request:
         p = self.state.page
-        return make_request(p.action, self.state.root, p.values, sorted(self.state.selected))
+        return make_request(cast(str, p.action), self.state.root, p.values, sorted(self.state.selected))
 
-    def save_model_session(self, values):
+    def save_model_session(self, values: Mapping[str, object]) -> None:
         for key in ("vae1", "vae2", "vae3", "vae4", "device", "inpaint", "video"):
             if key in values: self.state.models[key] = values[key]
 
-    def run_form(self, preview=False):
+    def run_form(self, preview: bool = False) -> None:
         p = self.state.page
         request = self.request_from_form()
         self.save_model_session(p.values)
@@ -201,7 +204,7 @@ class Controller:
             return self.confirm(request, "ACCEPT" if request.values["decision"] == "ACCEPTED" else "REJECT", title)
         self.run(request)
 
-    def run(self, request):
+    def run(self, request: Request) -> None:
         if self.state.operation and not self.state.operation.done.is_set():
             raise RiposteError("OPERATION_ALREADY_RUNNING")
         self.state.last_request = request
@@ -209,10 +212,10 @@ class Controller:
         self.show(Page("job", "ACTIVE OPERATION", request=request))
         self.state.operation = self.factory(request).start()
 
-    def confirm(self, request, word, title):
+    def confirm(self, request: Request, word: str, title: str) -> None:
         self.show(Page("confirm", title, confirm_word=word, confirm_request=request, values={"confirmation": ""}))
 
-    def pump(self):
+    def pump(self) -> None:
         operation = self.state.operation
         if operation is None or not operation.done.is_set(): return
         operation.join()
@@ -242,29 +245,29 @@ class Controller:
         self.state.page.cursor = min(self.state.page.cursor, len(rows) - 1)
         return rows[self.state.page.cursor]
 
-    def inspect_asset(self, row):
+    def inspect_asset(self, row: CatalogRow) -> None:
         report = execute(Request("inspect", self.state.root, {"image_id": row["id"]}))
-        preview = make_preview(image_bytes(self.state.root, {"image_id": row["id"]}))
+        preview = make_preview(image_bytes(cast(Path, self.state.root), {"image_id": row["id"]}))
         self.show(Page("asset", "CLEAN IMAGE", image_id=row["id"], report=report, preview=preview))
 
     def inspect_item(self, row, batch_id):
         if row.get("status") != "READY_FOR_REVIEW":
             self.show(Page("result", "OUTPUT NEEDS ATTENTION", result=row))
             return
-        preview = make_preview(image_bytes(self.state.root, {"batch_id": batch_id, "item_id": row["id"]}))
+        preview = make_preview(image_bytes(cast(Path, self.state.root), {"batch_id": batch_id, "item_id": row["id"]}))
         self.show(Page("item", "EXACT OUTPUT REVIEW", batch_id=batch_id, item_id=row["id"], report=row, preview=preview))
 
-    def reload_preview(self):
+    def reload_preview(self) -> None:
         p = self.state.page
-        p.preview = make_preview(image_bytes(self.state.root, {"batch_id": p.batch_id, "item_id": p.item_id,
+        p.preview = make_preview(image_bytes(cast(Path, self.state.root), {"batch_id": p.batch_id, "item_id": cast(str, p.item_id),
                                                               "kind": p.kind, "view": p.view}))
 
-    def toggle_selection(self, row):
+    def toggle_selection(self, row: CatalogRow) -> None:
         if row["id"] in self.state.selected: self.state.selected.remove(row["id"])
         elif len(self.state.selected) < 200: self.state.selected.add(row["id"])
         else: self.state.notice = "A publishing selection is limited to 200 images."
 
-    def move(self, amount):
+    def move(self, amount: int) -> None:
         p = self.state.page
         if p.name in {"result", "help", "command"}:
             p.scroll = min(scroll_limit(self.state), max(0, p.scroll + amount))
@@ -272,7 +275,7 @@ class Controller:
         count = len(fields_for(p)) + 1 if p.name == "form" else len(view_rows(self.state))
         p.cursor = max(0, min(max(0, count - 1), p.cursor + amount))
 
-    def field_edit(self):
+    def field_edit(self) -> None:
         p = self.state.page
         fields = fields_for(p)
         if p.cursor >= len(fields):
@@ -288,8 +291,8 @@ class Controller:
         value = ", ".join(str(x) for x in value) if isinstance(value, (list, tuple)) else str(value)
         self.state.editor = Editor(f, value, len(value))
 
-    def accept_editor(self):
-        e = self.state.editor
+    def accept_editor(self) -> None:
+        e = cast(Editor, self.state.editor)
         try:
             value = parse_value(e.field, e.value)
             if e.target == "picker-location":
@@ -323,8 +326,8 @@ class Controller:
             self.state.editor = None
         except (RiposteError, OSError, ValueError): e.error = True
 
-    def editor_key(self, key):
-        e = self.state.editor
+    def editor_key(self, key: Key) -> None:
+        e = cast(Editor, self.state.editor)
         if key.name == "escape": self.state.editor = None; self.pending_action = None; return
         if key.name == "enter": return self.accept_editor()
         if key.name in {"interrupt", "eof"}:
@@ -345,26 +348,26 @@ class Controller:
             e.value = e.value[:e.position] + text + e.value[e.position:]; e.position += len(text)
         e.error = False
 
-    def freeze_motion(self):
+    def freeze_motion(self) -> None:
         self.state.paused = not self.state.paused
         self.state.presentation.no_animation = self.state.paused
         if self.state.paused: self.state.frozen_time = time.monotonic()-self.started
         if self.state.page.name == "preferences": self.preferences()
 
-    def cycle_theme(self):
+    def cycle_theme(self) -> None:
         values = ("goks", "light", "mono", "dark")
         p = self.state.presentation
         p.theme = values[(values.index(p.theme)+1)%len(values)]
         if self.state.page.name == "preferences": self.preferences()
 
-    def key(self, key: Key):
+    def key(self, key: Key) -> None:
         try: self._key(key)
         except RiposteError as exc:
             self.show(Page("result", "OPERATION STOPPED", code=safe_code(exc.code), request=self.state.last_request))
         except Exception:
             self.show(Page("result", "OPERATION STOPPED", code="OPERATION_FAILED", request=self.state.last_request))
 
-    def _key(self, key):
+    def _key(self, key: Key) -> None:
         if self.state.width < 72 or self.state.height < 24:
             if self.state.operation:
                 if key.name in {"interrupt", "eof", "escape"} or key.text=="q":
@@ -442,10 +445,10 @@ class Controller:
             elif ch == "i" and row: return self.inspect_asset(row)
             elif ch == "p": return self.action("publish")
         elif p.name == "asset":
-            if key.name == "enter" or ch == " ": return self.toggle_selection(p.report)
-            if ch == "v": return self.run(Request("open-image", self.state.root, {"image_id": p.image_id}))
+            if key.name == "enter" or ch == " ": return self.toggle_selection(cast(CatalogRow, p.report))
+            if ch == "v": return self.run(Request("open-image", self.state.root, {"image_id": cast(str, p.image_id)}))
             if ch == "p":
-                if p.image_id not in self.state.selected: self.toggle_selection(p.report)
+                if p.image_id not in self.state.selected: self.toggle_selection(cast(CatalogRow, p.report))
                 return self.action("publish")
         elif p.name == "form":
             if ch == "b":
@@ -474,10 +477,14 @@ class Controller:
             if ch == "r": return self.run_form(preview=p.action=="organize")
         elif p.name == "batches":
             row = self.selected_row()
-            if key.name == "enter" and row: return self.batch(row["id"])
+            if key.name == "enter" and row:
+                self.batch(row["id"])
+                return
         elif p.name == "batch":
             row = self.selected_row()
-            if key.name == "enter" and row: return self.inspect_item(row, p.batch_id)
+            if key.name == "enter" and row:
+                self.inspect_item(row, p.batch_id)
+                return
             if ch == "d": return self.show(Page("result", "BATCH REPORT", result=p.result, request=Request("publications",self.state.root,{"batch_id":p.batch_id})))
             if ch == "p": return self.run(Request("package", self.state.root, {"batch_id": p.batch_id}))
             if ch == "r": return self.action("resume", {"batch_id": p.batch_id})
@@ -489,15 +496,15 @@ class Controller:
             if ch == "t":
                 views = list(TRANSFORMS); p.view = views[(views.index(p.view)+1)%len(views)]
                 return self.reload_preview()
-            if ch == "v": return self.run(Request("open-image", self.state.root, {"batch_id":p.batch_id,"item_id":p.item_id,"kind":p.kind,"view":p.view}))
+            if ch == "v": return self.run(Request("open-image", self.state.root, {"batch_id":p.batch_id,"item_id":cast(str, p.item_id),"kind":p.kind,"view":p.view}))
             if ch == "a": return self.action("review", {"batch_id":p.batch_id,"item_ids":(p.item_id,)})
-            if ch == "x": return self.confirm(Request("review", self.state.root, {"batch_id":p.batch_id,"item_ids":[p.item_id],"decision":"REJECTED"}), "REJECT", "Revoke this output's approval for future publishing packs.")
-            if ch == "w": return self.action("handoff", {"batch_id":p.batch_id,"item_id":p.item_id})
+            if ch == "x": return self.confirm(Request("review", self.state.root, {"batch_id":p.batch_id,"item_ids":[cast(str, p.item_id)],"decision":"REJECTED"}), "REJECT", "Revoke this output's approval for future publishing packs.")
+            if ch == "w": return self.action("handoff", {"batch_id":p.batch_id,"item_id":cast(str, p.item_id)})
         elif p.name == "result":
             request = p.request
             if ch == "t" and not p.code:
-                views = ("overview", "details", "json")
-                p.report_view = views[(views.index(p.report_view) + 1) % len(views)]
+                report_views = ("overview", "details", "json")
+                p.report_view = report_views[(report_views.index(p.report_view) + 1) % len(report_views)]
                 p.scroll = 0
                 return
             if key.name == "enter":
@@ -510,10 +517,10 @@ class Controller:
             if ch == "a" and request and request.name == "organize":
                 if request.values.get("categories") and not p.result.get("ready"):
                     self.state.notice = "Resolve the category blockers and refresh the preview."; return
-                values = {**request.values, **({"plan_id": p.result["plan_id"]} if p.result.get("category_sorting") else {})}
+                values = cast(RequestValues, {**request.values, "plan_id": p.result["plan_id"]})
                 return self.confirm(Request("apply", request.root, values), "REPLACE", "Apply the displayed sorting plan. Original names, bytes and category assignments remain privately recoverable.")
             if ch == "s" and request and request.name == "category-rules" and p.result.get("status") == "DRAFT":
-                return self.confirm(Request("category-rules-save", request.root, {**request.values, "expected_revision": p.result["revision"]}), "SAVE", "Save these reusable rules. Sorting remains a separate preview and confirmation.")
+                return self.confirm(Request("category-rules-save", request.root, cast(RequestValues, {**request.values, "expected_revision": p.result["revision"]})), "SAVE", "Save these reusable rules. Sorting remains a separate preview and confirmation.")
             if ch == "u" and request and request.name == "undo-sort" and p.result.get("ready"):
                 return self.confirm(Request("undo-sort-apply", request.root, {"sort_id": p.result["sort_id"]}), "UNDO", "Restore original names and bytes from the last sort. Remove only its verified sorted copies.")
             if ch == "r" and request and request.name == "plan":
@@ -524,7 +531,7 @@ class Controller:
                 sorting = p.result.get("sorting", {})
                 if request.values.get("categories") and not sorting.get("ready"):
                     self.state.notice = "Resolve the category blockers and refresh the preview."; return
-                values = {**request.values, **({"plan_id": sorting["plan_id"]} if sorting.get("category_sorting") else {})}
+                values = cast(RequestValues, {**request.values, "plan_id": p.result["plan_id"]})
                 return self.confirm(Request("sort-riposte", request.root, values), "REPLACE",
                                     "Replace verified sources during sorting, then protect the organized collection.")
             if ch == "b": return self.batches()
@@ -543,7 +550,7 @@ class Controller:
                 if not self.require_workspace("browser"): return
                 self.state.handoff=["serve",str(self.state.root)]; self.state.running=False
 
-    def shutdown(self):
+    def shutdown(self) -> None:
         op=self.state.operation
         if op:
             op.cancel()

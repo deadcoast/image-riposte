@@ -1,5 +1,78 @@
 # 0.5.0 / current development checkout
 
+PCUC-005 integrates a fixed local FLUX Kontext editing backend with existing
+experiment, cohort and reviewer-panel workflows. Explicit preferred-resolution
+preparation, model-specific conditioning and named component/tokenizer asset
+hashes prevent hidden resizing and incomplete model identity. Same-seed CPU
+execution with tiny random real-library components verifies numerical plumbing;
+pretrained CUDA/bfloat16 editing and efficacy remain unqualified. See
+[Kontext evidence](../evidence/pcuc-kontext/README.md).
+
+PCUC-004 adds committed reviewer calibration panels, task-specific rubric anchors,
+separate opaque packet assignments and one retained final response per reviewer
+slot. Exact agreement bounds include missing ratings; pairwise contingency tables
+and Cohen kappa expose disagreement, prevalence and undefined cases. Calibration
+does not change experiment/cohort scores or qualify rubric validity, reviewer
+independence or efficacy. See [panel evidence](../evidence/pcuc-review-panels/README.md).
+
+PCUC-003 adds prospective local artwork cohorts: a fixed sampling pool, one model
+load, one attempt per selected artwork, retained failures, ordered primary reviews
+and equal-artwork missingness bounds. Source aliases and exact-raster duplicates
+are rejected; per-member whole-run scans are avoided. Bounds are exact for the
+finite selected sample under boundedness, not confidence intervals or efficacy
+proof. See [cohort evidence](../evidence/pcuc-cohorts/README.md).
+
+PCUC-002 commits local experiment protocols before generation, retains failed
+attempts and adds concealed-label review packets with append-only endpoint ratings.
+Exact trial/report/frame identity gates review; missing ratings suppress aggregate
+contrasts and filter/clean failures remain counted. Local generation now checks
+configuration and weight drift across loading. This qualifies operational tooling
+using synthetic outputs, not real-model efficacy or independent preregistration.
+See [experiment evidence](../evidence/pcuc-experiments/README.md).
+
+PCUC-001 factors publication gradients through shared views, reducing repeated
+codec/resize work while retaining sequential model graphs, quality backtracking
+and best-feasible selection. The claim is supported by a chain-rule derivation,
+independent gradient checks and paired CPU benchmarks; real-model/GPU speed and
+protection efficacy remain unqualified. PAC-034 is shelved for later development.
+See [PCUC evidence](../evidence/pcuc-shared-views/README.md).
+
+PAC-033 adds source-owned request, media and inspection records and annotates
+shared service, worker and controller boundaries. The strict raw-source audit
+falls from 1,100 to 876 diagnostics, with no increased module/error-class count.
+Existing validation, preview consent, mutation ordering and recovery checks are
+retained. This is a bounded reduction; the source tree is still not type-clean.
+See [typing evidence and remaining debt](../evidence/source-typing/README.md).
+
+PAC-032 replaces repeated full-catalog reads with indexed image lookup and
+operation-local title maps. Sorting retains file integrity checks and detects
+external SQLite commits through an operation-local revision guard; changed
+catalogs require another preview. Journal ordering and exact undo remain intact.
+Measured returned rows scale with collection size in the tested audit, lookup
+and sorting cases. See [measurements and limits](../evidence/catalog-scaling/README.md).
+
+PAC-031 requires exact preview receipts for ordinary and combined sorting.
+Ordinary plans now include source identities/hashes and per-file destinations;
+combined receipts also bind protection settings and selection. Terminal/browser
+confirmation carries the displayed receipt. CLI apply requires `--plan-id`;
+combined apply uses the top-level ID. Stale consent is rejected before state,
+late files never join execution, collisions retain the reviewed destination,
+and partial-sort undo remains available.
+
+PAC-030 centralizes application-folder separation in the shared root check used
+by CLI, API and terminal operations, including previews. Source checkouts protect
+their project root; installed wheels protect the loaded package directory.
+Canonical overlap checks follow existing link rejection and precede workspace
+state/lease access. Independent sibling folders remain usable. See the
+[root-safeguard evidence](../evidence/application-roots/README.md).
+
+PAC-029 adds OS-owned workspace leases and atomic compatibility markers. Killed
+workers from this implementation no longer strand otherwise valid sort undo;
+live owners remain exclusive, including during legacy workspace upgrades.
+Unknown legacy locks remain blocked. The scoped Windows, POSIX lease, typing and
+packaged-install evidence is in [workspace-lease](../evidence/workspace-lease/README.md).
+The Markdown item is complete; CSV reconciliation and the overall milestone remain open.
+
 The version remains 0.5.0. Later work in this checkout includes independent
 Sort / RIPOSTE / Sort + RIPOSTE workflows, explicit INSTALL and menu-first START,
 recorded undo, byte-preserving video sorting, filename discovery, saved category

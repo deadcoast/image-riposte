@@ -1,0 +1,9 @@
+{
+  "reason": "Final contract rerun refreshed retained execution logs after deferred inventory capture; application hashes and acceptance were unchanged. Rebuild the read-only deferred plan against final evidence.",
+  "changed": {
+    "typing/evidence/tooling-regressions.txt": {
+      "before": "399bff63fafc83c2917828ef54a1f9856d8aeec2d8e28228f72b47d3a0ef6f46",
+      "after": "f0d28233c08a1d2301386b4f36c9809786dd32c78702ea9aaea41c71b0b3e406"
+    }
+  }
+}

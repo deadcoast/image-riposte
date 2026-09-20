@@ -9,9 +9,11 @@ from collections import deque
 import threading
 import time
 import re
-from typing import Any, Callable
+from collections.abc import Callable, Mapping
+from typing import Self
 from ..errors import RiposteError
 from .service import Request, CANCELLABLE, execute, result_exit_code
+from ..records import Progress
 
 
 def safe_code(value: object) -> str:
@@ -45,7 +47,7 @@ class Snapshot:
 
 
 class Operation:
-    def __init__(self, request: Request, function: Callable = execute):
+    def __init__(self, request: Request, function: Callable[[Request, Progress], object] = execute):
         self.request, self.function = request, function
         self.cancellable = request.name in CANCELLABLE
         self.started = time.monotonic()
@@ -54,15 +56,15 @@ class Operation:
         self.done = threading.Event()
         self._snapshot = Snapshot(cancellable=self.cancellable)
         self._events: deque[str] = deque(maxlen=10)
-        self.result: Any = None
+        self.result: object = None
         self.exit_code = 0
         self.thread = threading.Thread(target=self._run, name="riposte-foreground-operation", daemon=False)
 
-    def start(self):
+    def start(self) -> Self:
         self.thread.start()
         return self
 
-    def progress(self, event: dict):
+    def progress(self, event: Mapping[str, object]) -> None:
         if self._cancel.is_set() and self.cancellable:
             raise RiposteError("JOB_CANCELLED")
         if not isinstance(event, dict): return
@@ -91,7 +93,7 @@ class Operation:
         with self._lock:
             return Snapshot(**{**vars(self._snapshot), "events": tuple(self._events), "elapsed": time.monotonic() - self.started})
 
-    def _run(self):
+    def _run(self) -> None:
         try:
             self.progress({"phase": "Starting operation"})
             self.result = self.function(self.request, self.progress)
@@ -114,6 +116,6 @@ class Operation:
         finally:
             self.done.set()
 
-    def join(self):
+    def join(self) -> object:
         self.thread.join()
         return self.result

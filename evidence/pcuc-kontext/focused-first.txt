@@ -1,0 +1,8 @@
+..................                                                       [100%]
+============================== warnings summary ===============================
+tests/test_kontext.py::test_real_tiny_random_pipeline_cpu_numeric_path
+  C:\Users\ryanf\github\_new\image-riposte\.venv\Lib\site-packages\diffusers\utils\deprecation_utils.py:23: FutureWarning: `torch_dtype` is deprecated and will be removed in version 1.0.0. Please use `dtype` instead.
+    deprecate("torch_dtype", "1.0.0", _TORCH_DTYPE_DEPRECATION_MESSAGE)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+18 passed, 1 warning in 8.37s

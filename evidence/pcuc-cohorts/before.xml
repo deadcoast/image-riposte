@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="15" skipped="0" tests="15" time="7.172" timestamp="2026-09-18T23:22:10.501860-07:00" hostname="homeone"><testcase classname="tests.test_cohort" name="test_new_commands_available" time="0.097"><failure message="AssertionError: Usage: riposte [OPTIONS] COMMAND [ARGS]...&#10;  Try 'riposte --help' for help.&#10;  ┌─ Error ─────────────────────────────────────────────────────────────────────┐&#10;  │ No such command 'cohort'. Did you mean 'sort'?                              │&#10;  └─────────────────────────────────────────────────────────────────────────────┘&#10;  &#10;assert 2 == 0&#10; +  where 2 = &lt;Result SystemExit(2)&gt;.exit_code">def test_new_commands_available():
+        for command in ('cohort', 'cohort-challenge'):
+            result = CliRunner().invoke(app, [command, '--help'])
+&gt;           assert result.exit_code == 0, result.output
+E           AssertionError: Usage: riposte [OPTIONS] COMMAND [ARGS]...
+E             Try 'riposte --help' for help.
+E             ┌─ Error ─────────────────────────────────────────────────────────────────────┐
+E             │ No such command 'cohort'. Did you mean 'sort'?                              │
+E             └─────────────────────────────────────────────────────────────────────────────┘
+E             
+E           assert 2 == 0
+E            +  where 2 = &lt;Result SystemExit(2)&gt;.exit_code
+
+tests\test_cohort.py:60: AssertionError</failure></testcase><testcase classname="tests.test_cohort" name="test_draw_precedes_outputs_and_reuses_one_model" time="0.574"><failure message="ModuleNotFoundError: No module named 'riposte.cohort'">root = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/riposte-cohort-before-bsio1pcp/pytest/test_draw_precedes_outputs_and0/workspace')
+tmp_path = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/riposte-cohort-before-bsio1pcp/pytest/test_draw_precedes_outputs_and0')
+population = ([{'method': 'external', 'evidence_level': 'PIXEL_TRANSPORT_ONLY', 'ai_protection': 'UNVERIFIED', 'external_source': '..._source': 'Not copied into workspace; original outside workspace is unchanged.', ...}], {'loads': 0, 'generations': 0})
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x0000022DD72E8050&gt;
+
+    def test_draw_precedes_outputs_and_reuses_one_model(root, tmp_path, population, monkeypatch):
+&gt;       import riposte.cohort as cohort
+E       ModuleNotFoundError: No module named 'riposte.cohort'
+
+tests\test_cohort.py:64: ModuleNotFoundError</failure></testcase><testcase classname="tests.test_cohort" name="test_primary_review_order_and_missing_outcome_denominator" time="0.492"><failure message="ModuleNotFoundError: No module named 'riposte.cohort'">root = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/riposte-cohort-before-bsio1pcp/pytest/test_primary_review_order_and_0/workspace')
+tmp_path = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/riposte-cohort-before-bsio1pcp/pytest/test_primary_review_order_and_0')
+population = ([{'method': 'external', 'evidence_level': 'PIXEL_TRANSPORT_ONLY', 'ai_protection': 'UNVERIFIED', 'external_source': '..._source': 'Not copied into workspace; original outside workspace is unchanged.', ...}], {'loads': 0, 'generations': 0})
+
+    def test_primary_review_order_and_missing_outcome_denominator(root, tmp_path, population):
+&gt;       from riposte.cohort import cohort_status
+E       ModuleNotFoundError: No module named 'riposte.cohort'
+
+tests\test_cohort.py:85: ModuleNotFoundError</failure></testcase><testcase classname="tests.test_cohort" name="test_partial_cohort_keeps_unattempted_members_in_bounds[failure]" time="0.492"><failure message="ModuleNotFoundError: No module named 'riposte.cohort'">root = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/riposte-cohort-before-bsio1pcp/pytest/test_partial_cohort_keeps_unat0/workspace')
+tmp_path = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/riposte-cohort-before-bsio1pcp/pytest/test_partial_cohort_keeps_unat0')
+population = ([{'method': 'external', 'evidence_level': 'PIXEL_TRANSPORT_ONLY', 'ai_protection': 'UNVERIFIED', 'external_source': '..._source': 'Not copied into workspace; original outside workspace is unchanged.', ...}], {'loads': 0, 'generations': 0})
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x0000022DD73D1130&gt;
+kind = 'failure'
+
+    @pytest.mark.parametrize('kind', ['failure', 'cancel'])
+    def test_partial_cohort_keeps_unattempted_members_in_bounds(root, tmp_path, population, monkeypatch, kind):
+&gt;       from riposte.cohort import cohort_status
+E       ModuleNotFoundError: No module named 'riposte.cohort'
+
+tests\test_cohort.py:107: ModuleNotFoundError</failure></testcase><testcase classname="tests.test_cohort" name="test_partial_cohort_keeps_unattempted_members_in_bounds[cancel]" time="0.495"><failure message="ModuleNotFoundError: No module named 'riposte.cohort'">root = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/riposte-cohort-before-bsio1pcp/pytest/test_partial_cohort_keeps_unat1/workspace')
+tmp_path = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/riposte-cohort-before-bsio1pcp/pytest/test_partial_cohort_keeps_unat1')
+population = ([{'method': 'external', 'evidence_level': 'PIXEL_TRANSPORT_ONLY', 'ai_protection': 'UNVERIFIED', 'external_source': '..._source': 'Not copied into workspace; original outside workspace is unchanged.', ...}], {'loads': 0, 'generations': 0})
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x0000022DD7434AF0&gt;
+kind = 'cancel'
+
+    @pytest.mark.parametrize('kind', ['failure', 'cancel'])
+    def test_partial_cohort_keeps_unattempted_members_in_bounds(root, tmp_path, population, monkeypatch, kind):
+&gt;       from riposte.cohort import cohort_status
+E       ModuleNotFoundError: No module named 'riposte.cohort'
+
+tests\test_cohort.py:107: ModuleNotFoundError</failure></testcase><testcase classname="tests.test_cohort" name="test_invalid_sample_size_cannot_load_or_generate[0]" time="0.509"><failure message="ModuleNotFoundError: No module named 'riposte.cohort'">root = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/riposte-cohort-before-bsio1pcp/pytest/test_invalid_sample_size_canno0/workspace')
+tmp_path = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/riposte-cohort-before-bsio1pcp/pytest/test_invalid_sample_size_canno0')
+population = ([{'method': 'external', 'evidence_level': 'PIXEL_TRANSPORT_ONLY', 'ai_protection': 'UNVERIFIED', 'external_source': '..._source': 'Not copied into workspace; original outside workspace is unchanged.', ...}], {'loads': 0, 'generations': 0})
+sample_size = 0
+
+    @pytest.mark.parametrize('sample_size', [0, 4, True])
+    def test_invalid_sample_size_cannot_load_or_generate(root, tmp_path, population, sample_size):
+        with pytest.raises(RiposteError, match='PARAMETERS_INVALID'):
+&gt;           generate(root, tmp_path, population, sample_size=sample_size)
+
+tests\test_cohort.py:129: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+root = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/riposte-cohort-before-bsio1pcp/pytest/test_invalid_sample_size_canno0/workspace')
+tmp_path = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/riposte-cohort-before-bsio1pcp/pytest/test_invalid_sample_size_canno0')
+population = ([{'method': 'external', 'evidence_level': 'PIXEL_TRANSPORT_ONLY', 'ai_protection': 'UNVERIFIED', 'external_source': '..._source': 'Not copied into workspace; original outside workspace is unchanged.', ...}], {'loads': 0, 'generations': 0})
+sample_size = 0, kwargs = {}
+
+    def generate(root, tmp_path, population, sample_size=3, **kwargs):
+&gt;       from riposte.cohort import cohort_challenge
+E       ModuleNotFoundError: No module named 'riposte.cohort'
+
+tests\test_cohort.py:43: ModuleNotFoundError</failure></testcase><testcase classname="tests.test_cohort" name="test_invalid_sample_size_cannot_load_or_generate[4]" time="0.514"><failure message="ModuleNotFoundError: No module named 'riposte.cohort'">root = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/riposte-cohort-before-bsio1pcp/pytest/test_invalid_sample_size_canno1/workspace')
+tmp_path = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/riposte-cohort-before-bsio1pcp/pytest/test_invalid_sample_size_canno1')
+population = ([{'method': 'external', 'evidence_level': 'PIXEL_TRANSPORT_ONLY', 'ai_protection': 'UNVERIFIED', 'external_source': '..._source': 'Not copied into workspace; original outside workspace is unchanged.', ...}], {'loads': 0, 'generations': 0})
+sample_size = 4
+
+    @pytest.mark.parametrize('sample_size', [0, 4, True])
+    def test_invalid_sample_size_cannot_load_or_generate(root, tmp_path, population, sample_size):
+        with pytest.raises(RiposteError, match='PARAMETERS_INVALID'):
+&gt;           generate(root, tmp_path, population, sample_size=sample_size)
+
+tests\test_cohort.py:129: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+root = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/riposte-cohort-before-bsio1pcp/pytest/test_invalid_sample_size_canno1/workspace')
+tmp_path = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/riposte-cohort-before-bsio1pcp/pytest/test_invalid_sample_size_canno1')
+population = ([{'method': 'external', 'evidence_level': 'PIXEL_TRANSPORT_ONLY', 'ai_protection': 'UNVERIFIED', 'external_source': '..._source': 'Not copied into workspace; original outside workspace is unchanged.', ...}], {'loads': 0, 'generations': 0})
+sample_size = 4, kwargs = {}
+
+    def generate(root, tmp_path, population, sample_size=3, **kwargs):
+&gt;       from riposte.cohort import cohort_challenge
+E       ModuleNotFoundError: No module named 'riposte.cohort'
+
+tests\test_cohort.py:43: ModuleNotFoundError</failure></testcase><testcase classname="tests.test_cohort" name="test_invalid_sample_size_cannot_load_or_generate[True]" time="0.515"><failure message="ModuleNotFoundError: No module named 'riposte.cohort'">root = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/riposte-cohort-before-bsio1pcp/pytest/test_invalid_sample_size_canno2/workspace')
+tmp_path = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/riposte-cohort-before-bsio1pcp/pytest/test_invalid_sample_size_canno2')
+population = ([{'method': 'external', 'evidence_level': 'PIXEL_TRANSPORT_ONLY', 'ai_protection': 'UNVERIFIED', 'external_source': '..._source': 'Not copied into workspace; original outside workspace is unchanged.', ...}], {'loads': 0, 'generations': 0})
+sample_size = True
+
+    @pytest.mark.parametrize('sample_size', [0, 4, True])
+    def test_invalid_sample_size_cannot_load_or_generate(root, tmp_path, population, sample_size):
+        with pytest.raises(RiposteError, match='PARAMETERS_INVALID'):
+&gt;           generate(root, tmp_path, population, sample_size=sample_size)
+
+tests\test_cohort.py:129: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+root = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/riposte-cohort-before-bsio1pcp/pytest/test_invalid_sample_size_canno2/workspace')
+tmp_path = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/riposte-cohort-before-bsio1pcp/pytest/test_invalid_sample_size_canno2')
+population = ([{'method': 'external', 'evidence_level': 'PIXEL_TRANSPORT_ONLY', 'ai_protection': 'UNVERIFIED', 'external_source': '..._source': 'Not copied into workspace; original outside workspace is unchanged.', ...}], {'loads': 0, 'generations': 0})
+sample_size = True, kwargs = {}
+
+    def generate(root, tmp_path, population, sample_size=3, **kwargs):
+&gt;       from riposte.cohort import cohort_challenge
+E       ModuleNotFoundError: No module named 'riposte.cohort'
+
+tests\test_cohort.py:43: ModuleNotFoundError</failure></testcase><testcase classname="tests.test_cohort" name="test_duplicate_artworks_and_existing_outcomes_cannot_enter_pool" time="0.510"><failure message="ModuleNotFoundError: No module named 'riposte.cohort'">root = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/riposte-cohort-before-bsio1pcp/pytest/test_duplicate_artworks_and_ex0/workspace')
+tmp_path = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/riposte-cohort-before-bsio1pcp/pytest/test_duplicate_artworks_and_ex0')
+population = ([{'method': 'external', 'evidence_level': 'PIXEL_TRANSPORT_ONLY', 'ai_protection': 'UNVERIFIED', 'external_source': '..._source': 'Not copied into workspace; original outside workspace is unchanged.', ...}], {'loads': 0, 'generations': 0})
+
+    def test_duplicate_artworks_and_existing_outcomes_cannot_enter_pool(root, tmp_path, population):
+&gt;       from riposte.cohort import cohort_challenge
+E       ModuleNotFoundError: No module named 'riposte.cohort'
+
+tests\test_cohort.py:134: ModuleNotFoundError</failure></testcase><testcase classname="tests.test_cohort" name="test_drift_is_invalid_not_a_dropped_member[cohort]" time="0.510"><failure message="ModuleNotFoundError: No module named 'riposte.cohort'">root = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/riposte-cohort-before-bsio1pcp/pytest/test_drift_is_invalid_not_a_dr0/workspace')
+tmp_path = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/riposte-cohort-before-bsio1pcp/pytest/test_drift_is_invalid_not_a_dr0')
+population = ([{'method': 'external', 'evidence_level': 'PIXEL_TRANSPORT_ONLY', 'ai_protection': 'UNVERIFIED', 'external_source': '..._source': 'Not copied into workspace; original outside workspace is unchanged.', ...}], {'loads': 0, 'generations': 0})
+target = 'cohort'
+
+    @pytest.mark.parametrize('target', ['cohort', 'member', 'review_gap', 'frame'])
+    def test_drift_is_invalid_not_a_dropped_member(root, tmp_path, population, target):
+&gt;       from riposte.cohort import cohort_status
+E       ModuleNotFoundError: No module named 'riposte.cohort'
+
+tests\test_cohort.py:150: ModuleNotFoundError</failure></testcase><testcase classname="tests.test_cohort" name="test_drift_is_invalid_not_a_dropped_member[member]" time="0.507"><failure message="ModuleNotFoundError: No module named 'riposte.cohort'">root = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/riposte-cohort-before-bsio1pcp/pytest/test_drift_is_invalid_not_a_dr1/workspace')
+tmp_path = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/riposte-cohort-before-bsio1pcp/pytest/test_drift_is_invalid_not_a_dr1')
+population = ([{'method': 'external', 'evidence_level': 'PIXEL_TRANSPORT_ONLY', 'ai_protection': 'UNVERIFIED', 'external_source': '..._source': 'Not copied into workspace; original outside workspace is unchanged.', ...}], {'loads': 0, 'generations': 0})
+target = 'member'
+
+    @pytest.mark.parametrize('target', ['cohort', 'member', 'review_gap', 'frame'])
+    def test_drift_is_invalid_not_a_dropped_member(root, tmp_path, population, target):
+&gt;       from riposte.cohort import cohort_status
+E       ModuleNotFoundError: No module named 'riposte.cohort'
+
+tests\test_cohort.py:150: ModuleNotFoundError</failure></testcase><testcase classname="tests.test_cohort" name="test_drift_is_invalid_not_a_dropped_member[review_gap]" time="0.510"><failure message="ModuleNotFoundError: No module named 'riposte.cohort'">root = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/riposte-cohort-before-bsio1pcp/pytest/test_drift_is_invalid_not_a_dr2/workspace')
+tmp_path = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/riposte-cohort-before-bsio1pcp/pytest/test_drift_is_invalid_not_a_dr2')
+population = ([{'method': 'external', 'evidence_level': 'PIXEL_TRANSPORT_ONLY', 'ai_protection': 'UNVERIFIED', 'external_source': '..._source': 'Not copied into workspace; original outside workspace is unchanged.', ...}], {'loads': 0, 'generations': 0})
+target = 'review_gap'
+
+    @pytest.mark.parametrize('target', ['cohort', 'member', 'review_gap', 'frame'])
+    def test_drift_is_invalid_not_a_dropped_member(root, tmp_path, population, target):
+&gt;       from riposte.cohort import cohort_status
+E       ModuleNotFoundError: No module named 'riposte.cohort'
+
+tests\test_cohort.py:150: ModuleNotFoundError</failure></testcase><testcase classname="tests.test_cohort" name="test_drift_is_invalid_not_a_dropped_member[frame]" time="0.508"><failure message="ModuleNotFoundError: No module named 'riposte.cohort'">root = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/riposte-cohort-before-bsio1pcp/pytest/test_drift_is_invalid_not_a_dr3/workspace')
+tmp_path = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/riposte-cohort-before-bsio1pcp/pytest/test_drift_is_invalid_not_a_dr3')
+population = ([{'method': 'external', 'evidence_level': 'PIXEL_TRANSPORT_ONLY', 'ai_protection': 'UNVERIFIED', 'external_source': '..._source': 'Not copied into workspace; original outside workspace is unchanged.', ...}], {'loads': 0, 'generations': 0})
+target = 'frame'
+
+    @pytest.mark.parametrize('target', ['cohort', 'member', 'review_gap', 'frame'])
+    def test_drift_is_invalid_not_a_dropped_member(root, tmp_path, population, target):
+&gt;       from riposte.cohort import cohort_status
+E       ModuleNotFoundError: No module named 'riposte.cohort'
+
+tests\test_cohort.py:150: ModuleNotFoundError</failure></testcase><testcase classname="tests.test_cohort" name="test_finite_sample_bounds_exhaustively_enclose_all_completions" time="0.000"><failure message="ModuleNotFoundError: No module named 'riposte.cohort'">def test_finite_sample_bounds_exhaustively_enclose_all_completions():
+&gt;       from riposte.cohort import bounded_mean
+E       ModuleNotFoundError: No module named 'riposte.cohort'
+
+tests\test_cohort.py:171: ModuleNotFoundError</failure></testcase><testcase classname="tests.test_cohort" name="test_cli_executes_real_cohort_service_and_root_guards" time="0.519"><failure message="ModuleNotFoundError: No module named 'riposte.cohort'">root = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/riposte-cohort-before-bsio1pcp/pytest/test_cli_executes_real_cohort_0/workspace')
+tmp_path = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/riposte-cohort-before-bsio1pcp/pytest/test_cli_executes_real_cohort_0')
+population = ([{'method': 'external', 'evidence_level': 'PIXEL_TRANSPORT_ONLY', 'ai_protection': 'UNVERIFIED', 'external_source': '..._source': 'Not copied into workspace; original outside workspace is unchanged.', ...}], {'loads': 0, 'generations': 0})
+
+    def test_cli_executes_real_cohort_service_and_root_guards(root, tmp_path, population):
+        from pathlib import Path
+        from riposte.terminal.service import Request, execute
+&gt;       import riposte.cohort as module
+E       ModuleNotFoundError: No module named 'riposte.cohort'
+
+tests\test_cohort.py:192: ModuleNotFoundError</failure></testcase></testsuite></testsuites>

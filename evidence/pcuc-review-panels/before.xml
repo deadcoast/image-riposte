@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="3" skipped="0" tests="3" time="0.376" timestamp="2026-09-18T23:46:56.007401-07:00" hostname="homeone"><testcase classname="tests.test_review_panel" name="test_panel_workflow_is_available" time="0.001"><failure message="AssertionError: assert None is not None&#10; +  where None = &lt;function find_spec at 0x0000018B2C186E50&gt;('riposte.review_panel')&#10; +    where &lt;function find_spec at 0x0000018B2C186E50&gt; = &lt;module 'importlib.util' (frozen)&gt;.find_spec&#10; +      where &lt;module 'importlib.util' (frozen)&gt; = importlib.util">def test_panel_workflow_is_available():
+&gt;       assert importlib.util.find_spec('riposte.review_panel') is not None
+E       AssertionError: assert None is not None
+E        +  where None = &lt;function find_spec at 0x0000018B2C186E50&gt;('riposte.review_panel')
+E        +    where &lt;function find_spec at 0x0000018B2C186E50&gt; = &lt;module 'importlib.util' (frozen)&gt;.find_spec
+E        +      where &lt;module 'importlib.util' (frozen)&gt; = importlib.util
+
+tests\test_review_panel.py:20: AssertionError</failure></testcase><testcase classname="tests.test_review_panel" name="test_exact_agreement_is_available" time="0.001"><failure message="AssertionError: assert None is not None&#10; +  where None = &lt;function find_spec at 0x0000018B2C186E50&gt;('riposte.agreement')&#10; +    where &lt;function find_spec at 0x0000018B2C186E50&gt; = &lt;module 'importlib.util' (frozen)&gt;.find_spec&#10; +      where &lt;module 'importlib.util' (frozen)&gt; = importlib.util">def test_exact_agreement_is_available():
+&gt;       assert importlib.util.find_spec('riposte.agreement') is not None
+E       AssertionError: assert None is not None
+E        +  where None = &lt;function find_spec at 0x0000018B2C186E50&gt;('riposte.agreement')
+E        +    where &lt;function find_spec at 0x0000018B2C186E50&gt; = &lt;module 'importlib.util' (frozen)&gt;.find_spec
+E        +      where &lt;module 'importlib.util' (frozen)&gt; = importlib.util
+
+tests\test_review_panel.py:24: AssertionError</failure></testcase><testcase classname="tests.test_review_panel" name="test_panel_cli_is_available" time="0.088"><failure message="AssertionError: Usage: riposte [OPTIONS] COMMAND [ARGS]...&#10;  Try 'riposte --help' for help.&#10;  ┌─ Error ─────────────────────────────────────────────────────────────────────┐&#10;  │ No such command 'panel-create'.                                             │&#10;  └─────────────────────────────────────────────────────────────────────────────┘&#10;  &#10;assert 2 == 0&#10; +  where 2 = &lt;Result SystemExit(2)&gt;.exit_code">def test_panel_cli_is_available():
+        result = CliRunner().invoke(app, ['panel-create', '--help'])
+&gt;       assert result.exit_code == 0, result.output
+E       AssertionError: Usage: riposte [OPTIONS] COMMAND [ARGS]...
+E         Try 'riposte --help' for help.
+E         ┌─ Error ─────────────────────────────────────────────────────────────────────┐
+E         │ No such command 'panel-create'.                                             │
+E         └─────────────────────────────────────────────────────────────────────────────┘
+E         
+E       assert 2 == 0
+E        +  where 2 = &lt;Result SystemExit(2)&gt;.exit_code
+
+tests\test_review_panel.py:29: AssertionError</failure></testcase></testsuite></testsuites>

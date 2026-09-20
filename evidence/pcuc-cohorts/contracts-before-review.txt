@@ -1,0 +1,10 @@
+warning: `VIRTUAL_ENV=.venv` does not match the project environment path `typing\.venv` and will be ignored; use `--active` to target the active environment instead
+Source/stub parity: 430 signatures, 52 importable leaf modules
+Missing stub: cohort
+cli:cohort_challenge: missing declaration
+cli:cohort: missing declaration
+experiment:execution_identity: missing declaration
+experiment:begin_experiment: source/stub parameter mismatch
+experiment:_reviews: missing declaration
+generation:_execute: source/stub parameter mismatch
+Source differs from the reviewed snapshot; re-review these contracts: src/riposte/cli.py, src/riposte/cohort.py, src/riposte/experiment.py, src/riposte/generation.py, src/riposte/records.py, src/riposte/terminal/service.py

@@ -1,0 +1,4 @@
+warning: `VIRTUAL_ENV=.venv` does not match the project environment path `typing\.venv` and will be ignored; use `--active` to target the active environment instead
+Source/stub parity: 402 signatures, 49 importable leaf modules
+video:record_video: source/stub parameter mismatch
+Source differs from the reviewed snapshot; re-review these contracts: src/riposte/catalog_guard.py, src/riposte/organizer.py, src/riposte/sort_history.py, src/riposte/sort_titles.py, src/riposte/store.py, src/riposte/video.py

@@ -18,19 +18,14 @@ def starting_directory(root: Path | None = None) -> Path:
 
 
 def application_directory() -> Path:
-    return Path(__file__).resolve().parents[3]
+    from ..store import application_directory as shared_application_directory
+    return shared_application_directory()
 
 
 def validate_workspace(path: Path) -> Path:
-    from ..errors import RiposteError
     from .service import Request, root_of
     path = path.expanduser().absolute()
-    app = application_directory().resolve()
-    resolved = path.resolve()
-    if resolved == app or resolved.is_relative_to(app) or app.is_relative_to(resolved):
-        raise RiposteError("IMAGE_FOLDER_OVERLAPS_APPLICATION")
-    root_of(Request("list", path))
-    return path
+    return root_of(Request("list", path))
 
 
 @dataclass

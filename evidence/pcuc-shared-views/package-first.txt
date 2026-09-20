@@ -1,0 +1,12 @@
+Traceback (most recent call last):
+  File "C:\Users\ryanf\github\_new\image-riposte\evidence\pcuc-shared-views\verify_package.py", line 145, in <module>
+    print(json.dumps(main(), indent=2))
+                     ~~~~^^
+  File "C:\Users\ryanf\github\_new\image-riposte\evidence\pcuc-shared-views\verify_package.py", line 130, in main
+    assert sdist.extractfile(f"{name}/{path}").read() == (ROOT / path).read_bytes()
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\tarfile.py", line 2560, in extractfile
+    tarinfo = self.getmember(member)
+  File "C:\Python314\Lib\tarfile.py", line 2123, in getmember
+    raise KeyError("filename %r not found" % name)
+KeyError: "filename 'riposte_studio-0.5.0/docs/PCUC.md' not found"

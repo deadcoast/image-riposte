@@ -1,0 +1,6 @@
+warning: `VIRTUAL_ENV=.venv` does not match the project environment path `typing\.venv` and will be ignored; use `--active` to target the active environment instead
+Source/stub parity: 464 signatures, 55 importable leaf modules
+Missing stub: kontext
+experiment:conditioning: source/stub parameter mismatch
+generation:prepare_input: source/stub parameter mismatch
+Source differs from the reviewed snapshot; re-review these contracts: src/riposte/cohort.py, src/riposte/experiment.py, src/riposte/generation.py, src/riposte/kontext.py

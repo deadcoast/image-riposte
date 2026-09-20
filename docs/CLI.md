@@ -1,5 +1,14 @@
 # RIPOSTE / terminal and command reference
 
+`ROOT` must be an existing, unlinked directory separate from the loaded RIPOSTE
+application. The source checkout's project root, or an installed wheel's `riposte`
+package directory, cannot equal, contain or be contained by `ROOT`. CLI, terminal
+and API share this check for previews and execution; rejection creates no state.
+Independent sibling image/results folders are allowed. `--input` remains a
+separate read-only source selection for standalone protection. See the
+[application-root evidence](../evidence/application-roots/README.md) for layout
+and compatibility details.
+
 ## Command inventory
 
 Every listed command is a real Typer command; use `riposte COMMAND --help` for parameter types, defaults, bounds and repeatable options.
@@ -7,13 +16,13 @@ Every listed command is a real Typer command; use `riposte COMMAND --help` for p
 | Command | Direct target | Effect |
 |---|---|---|
 | `ui [ROOT]` | Optional workspace | Native Rich menu; `--linear` explicitly permits scripted stdin |
-| `organize ROOT` | Whole maintained workspace | Read-only plan; `--apply` explicitly replaces successfully reconstructed sources |
+| `organize ROOT` | Whole maintained workspace | Read-only plan; `--apply --plan-id PLAN_ID` replaces sources from the unchanged reviewed plan |
 | `sort ROOT` | Whole maintained workspace | Alias of `organize`; incremental sorting without protection |
 | `categories ROOT` | Filename stems under ROOT | Read-only term discovery and session category review; no media, catalog or rules writes |
 | `category-rules ROOT` | Private rules and optional filename review | Read-only preview; `--save --expected-revision REVISION` explicitly saves rules; never moves media |
 | `undo-sort ROOT` | Last recorded sort in this workspace | Read-only recovery preview; `--apply` restores originals if conflict checks pass; optional `--sort-id` binds confirmation to an exact preview |
 | `riposte ROOT` | Repeated `--input` files/folders, or catalog selection | Protect independently; raw originals stay unchanged; `--plan` writes nothing |
-| `sort-riposte ROOT` | Whole workspace, then catalog selection | Preview by default; `--apply` authorizes sorting followed by protection |
+| `sort-riposte ROOT` | Whole workspace, then catalog selection | Preview by default; `--apply --plan-id PLAN_ID` authorizes the reviewed sorting and protection choices |
 | `audit ROOT` | Whole workspace | Inspect clean PNGs, artifacts, catalog and calendar/size rules |
 | `list ROOT` | Filterable clean catalog | Inspect; `--year`, `--month`, `--size`, `--search`, `--offset`, `--limit` |
 | `inspect ROOT IMAGE_ID` | Clean master | Verify exact bytes and print complete technical metadata audit |
@@ -147,7 +156,7 @@ the private provenance/assignments and both catalogs in one transaction. Rule
 edits themselves are separate operations and are not undone with a sort.
 
 `sort-riposte ROOT --all --categories` previews both stages. Its apply command
-also requires `--apply --plan-id PLAN_ID`; model preflight still precedes sorting.
+requires `--apply --plan-id PLAN_ID` from the **top-level combined preview**, not `sorting.plan_id`; model preflight still precedes sorting.
 Protection consumes images only and its visual acceptance remains separate.
 
 The local API exposes `POST /api/categories`, `GET/POST /api/category-rules`,
@@ -169,7 +178,7 @@ Use exactly one selection style: `--input`, `--image`, or `--all`. Date and reso
 ```powershell
 # Repeat only sorting when new images arrives.
 riposte sort ROOT
-riposte sort ROOT --apply
+riposte sort ROOT --apply --plan-id PLAN_ID
 
 # Inspect recovery before explicitly restoring the last recorded sort.
 riposte undo-sort ROOT
@@ -181,8 +190,19 @@ riposte riposte ROOT --input "D:\Images\drawing.png" --input "D:\Images\New" --v
 
 # Preview both operations, then explicitly authorize source replacement.
 riposte sort-riposte ROOT --all --vae MODEL
-riposte sort-riposte ROOT --all --vae MODEL --apply
+riposte sort-riposte ROOT --all --vae MODEL --apply --plan-id COMBINED_PLAN_ID
 ```
+
+Copy `plan_id` from the preceding preview and repeat its options. Ordinary apply without an ID returns `SORT_PREVIEW_REQUIRED`; changed files, destinations, private state or policy return `SORT_PREVIEW_CHANGED`. Combined apply requires its top-level ID and also checks selection, recipe, device and model paths before model loading. Preview IDs are content receipts, not stored approvals or a live-directory mode.
+
+Sorting checks catalog revisions throughout execution without reloading every
+row for every input. External catalog changes produce `SORT_PREVIEW_CHANGED`
+(or `CATEGORY_PREVIEW_CHANGED` in category mode); inspect incomplete work and
+obtain a fresh preview before continuing. Existing journal-backed undo remains
+available subject to its conflict checks. A catalog change during an audit
+produces `CATALOG_CHANGED`; rerun the audit after the other writer has finished.
+An individual image lookup uses its indexed ID and still validates that image's
+path and bytes. A whole-workspace audit checks the complete collection.
 
 The combined command sorts the whole `ROOT`; it does not accept `--input`. Its protection selection is `--all` (optionally filtered) or existing `--image` IDs. `--discard-sidecars` is separate consent to delete metadata sidecars during sorting. Model preflight occurs before source replacement. An incomplete sort stops the pipeline; a later protection failure keeps the sorting receipt and supports a separate RIPOSTE retry. A created batch uses the existing `resume`, exact-pixel `review`, and `package` commands. Neither workflow approves images automatically.
 
@@ -228,7 +248,7 @@ Numbered actions and arrow/Enter navigation are always visible. The home screen 
 
 The image library supports search, multi-selection and selection-preserving inspection. Its `p` shortcut carries that selection into protection settings. Model directories entered in Local models remain available in the current process's publishing and helper forms. `F4` shows the configured command; in a publishing form it shows the default read-only preview invocation. After an operation it shows that actual operation. Copying/executing it is the user's separate action; RIPOSTE performs no clipboard write or shell evaluation.
 
-The source-migration preview shows the actual current plan, then `a` opens the explicit **REPLACE** boundary. The apply operation re-inspects the workspace rather than trusting a stale path list. Output acceptance has its own **ACCEPT** boundary and both underlying acknowledgements; a local viewer launch is not an acceptance event. The panel's numerical output checks are not an AI protection percentage.
+The source-migration preview shows the actual current plan, then `a` opens the explicit **REPLACE** boundary. Apply re-inspects the workspace and rejects a changed receipt before state initialization. Execution uses only the reviewed files and destinations. Later additions are retained and reported as incomplete; collisions never choose an unreviewed replacement destination. Ordinary sorting can still apply valid files from an unchanged plan with blockers, retaining undo for recorded changes. Category and combined sorting require a ready plan. Output acceptance has its own **ACCEPT** boundary and both underlying acknowledgements; a local viewer launch is not an acceptance event. The panel's numerical output checks are not an AI protection percentage.
 
 ## Linear interface
 
@@ -256,9 +276,183 @@ q                         leave menus
 /cancel                   discard a field or confirmation instead of entering data
 ```
 
-Typed text in a field replaces that field; it is not interpreted as a command. No stdin script is accepted as an implicit interactive session: select `--linear` explicitly. A source migration in a script must still provide the explicit confirmation or use direct `organize --apply`.
+Typed text in a field replaces that field; it is not interpreted as a command. No stdin script is accepted as an implicit interactive session: select `--linear` explicitly. A source migration in a script must still provide the explicit confirmation or use direct `organize --apply --plan-id PLAN_ID`.
 
 ## Images and exact frames
+
+### Committed generation experiments
+
+New `challenge` runs save a local protocol before the first generation call. It
+fixes artifacts, model identity, conditions, seeds, views, controls, review
+endpoints and analysis rules. This is local precommitment, not independently
+timestamped preregistration.
+
+```powershell
+riposte challenge ROOT TRIAL_ID --model LOCAL_MODEL --task edit --seed 7 --view identity
+riposte experiment ROOT
+riposte experiment ROOT RUN_ID
+riposte experiment-packet ROOT RUN_ID
+riposte experiment-review ROOT RUN_ID --ratings COMPLETED_RATINGS_JSON
+```
+
+`experiment` lists completed, failed, cancelled and interrupted/open attempts.
+With a run ID it verifies artifacts and shows the private protocol and all reviews.
+`experiment-packet` explicitly writes
+`.riposte/experiments/RUN_ID/review-packet.zip`, refusing to overwrite an existing
+packet. Extract it outside the managed artwork folder. Read the instructions,
+compare every frame of every sample to `reference.png`, and fill `ratings.json`
+with `true`, `false` or `null` for task success, source preservation and usability.
+Keep the protocol hash and every sample/endpoint key. Submit the completed file
+with `experiment-review`; each submission creates a separate retained receipt.
+
+Labels conceal conditions, but pixels may reveal them and the workspace owner
+can unblind through the protocol. All three endpoints must succeed for joint
+task success. Any null rating suppresses the aggregate contrast. Reported-filter
+and clean-failed groups are excluded and counted. Other complete groups contribute
+the mean of three control successes minus candidate success. The result remains
+`ai_protection: UNVERIFIED`; one artwork's seeds/views are not independent artworks.
+Unreported filtering is not proof of no filtering. Revisions are not pooled.
+
+Legacy reports stay readable without retroactive protocols. The existing local
+CUDA requirement remains; no models are downloaded. See
+[PCUC-002 evidence and limitations](../evidence/pcuc-experiments/README.md).
+
+### Local Kontext editing
+
+Select a local Diffusers `FluxKontextPipeline` directory through the existing
+editing commands:
+
+```powershell
+riposte challenge ROOT TRIAL_ID --model LOCAL_KONTEXT --task edit --seed 7 --view identity --steps 25
+riposte cohort-challenge ROOT --trial TRIAL_A --trial TRIAL_B --sample-size 2 --model LOCAL_KONTEXT --task edit
+```
+
+The directory must contain the fixed transformer/VAE/CLIP/T5/tokenizer/scheduler
+components and local safetensors. The VAE must have four levels and 16 latent
+channels, and the transformer must accept 64 packed channels with guidance
+embeddings. Linked/nested component directories, alternate executable weight
+formats, custom component classes and optional IP adapters are not admitted.
+Native CUDA bfloat16 is required; this backend has no CPU, quantized or offload
+mode. Insufficient GPU memory is a load/execution failure, not permission to
+silently change precision. The application does not acquire models or dependencies.
+
+Each publication-transformed arm is resized explicitly to the closest aspect
+ratio among 17 Kontext resolutions. Input-fidelity measurements describe these
+prepared pixels. The recorded group includes `prepared_input_size`. The backend
+disables additional automatic input resizing and matches output dimensions to the
+prepared image. This may upscale small inputs or distort extreme aspect ratios;
+the selected geometry is part of the measured task, not evidence of robustness
+at arbitrary resolutions.
+
+Kontext uses embedded guidance 2.5, true CFG scale 1 and a 512-token maximum;
+it does not use the SD strength setting. The protocol, generation report, cohort
+and review packet retain those settings. Every arm uses the same per-group seed.
+Complete named model assets, including binary tokenizer data, are hashed before
+and after loading. Only digests/counts and fixed technical fields leave that
+inspection; arbitrary asset names and configuration text are not reported.
+
+The model kind identifies the selected architecture path, not the origin/training
+of its weights or an independently held-out family. No content-filter response is
+reported by this path. Ordinary experiment/panel review and explicit UNVERIFIED
+efficacy boundaries still apply. CPU tests with a tiny randomly initialized real
+pipeline verify numerical plumbing; pretrained CUDA execution and useful editing
+remain unqualified. See [PCUC-005 evidence](../evidence/pcuc-kontext/README.md).
+
+### Committed artwork cohorts
+
+Use a cohort to fix a sampling pool and analysis before running multiple artworks.
+Each trial must represent a distinct source artwork; repeated source IDs and exact
+clean rasters are rejected. Known completed generation on a pool source also blocks
+intake. Use the existing `compare`, `guard` or `workshop` handoff to prepare trials.
+
+```powershell
+riposte cohort-challenge ROOT --trial TRIAL_A --trial TRIAL_B --trial TRIAL_C --sample-size 2 --model LOCAL_MODEL --task edit --seed 7 --view identity --steps 25
+riposte cohort ROOT
+riposte cohort ROOT COHORT_ID
+```
+
+The command selects without replacement from the explicit pool, records the draw
+and all planned run IDs before generation, then uses one loaded local CUDA model
+for every selected artwork. `--seed` controls generation; the sampling seed is
+generated and retained separately. No selected member is silently replaced on
+failure. There is no automatic retry within a cohort; a new command is separate
+history and can be rejected if its sources already have generation outcomes.
+
+Inspect a cohort to obtain member run IDs. Use `experiment-packet` and
+`experiment-review` on those IDs as described above. The first complete review by
+append sequence is primary. Incomplete drafts remain visible; later complete
+revisions cannot replace the primary cohort result. Legacy reviews without an
+append sequence retain their individual scope and cannot supply cohort ordering.
+
+For each artwork, the cohort divides its paired contrast numerator by ALL planned
+groups. Clean-failed and reported-filtered groups contribute zero and remain
+counted. This availability-weighted score differs from the individual experiment's
+conditional contrast over eligible groups. Selected artworks receive equal weight.
+Failed, unattempted, unreviewed and incompletely reviewed members stay unknown in
+[-1,1]; the report gives the corresponding possible range and suppresses a point
+mean until every selected artwork is scored. These bounds are not confidence
+intervals. Distinct rasters, local sampling and different model hashes establish
+neither statistical independence nor held-out model-family coverage.
+
+`cohort ROOT` lists committed protocol IDs; supply an ID for full artifact/review
+verification and current missingness bounds. Local history is not independent
+preregistration. See [PCUC-003 derivation and evidence](../evidence/pcuc-cohorts/README.md).
+
+### Reviewer calibration panels
+
+Calibration measures whether a task rubric produces consistent decisions on the
+selected generated outputs. Choose completed experiment run IDs of one task:
+
+```powershell
+riposte --json panel-create ROOT --run RUN_ID --reviewers 3
+riposte --json panel ROOT PANEL_ID
+riposte panel-packet ROOT PANEL_ID REVIEWER_ID
+riposte panel-review ROOT PANEL_ID --ratings completed-ratings.json
+riposte --json panel ROOT PANEL_ID
+riposte panel ROOT
+```
+
+Repeat `--run` to include more experiments. The panel accepts 2-8 reviewer slots,
+up to 32 runs and at most 320 output sequences; repeated runs from one artwork
+remain repeated observations. Creation returns a committed protocol containing
+the panel ID and reviewer IDs. Each reviewer gets a separately ordered ZIP at
+the returned local path. Its `instructions.json` contains the frozen rubric,
+and `ratings.json` is the response form. Each item has its own reference PNG,
+task settings and all output frames. Work through each complete sequence.
+
+Assign each slot to a separate person yourself. The software neither distributes
+packets nor authenticates people or actual viewing. Share only that reviewer's
+packet; the private panel protocol contains the label mappings. Pixel content may
+still reveal conditions. Fill every endpoint with `true`, `false`, or `null` for
+uncertainty, and submit only once finished. Each slot records one final response,
+including null decisions. `PANEL_REVIEW_EXISTS` prevents replacement; use a new
+panel for corrections and retain the original calibration result.
+
+Built-in edit, inpaint and video rubrics have explicit yes/no/uncertain anchors
+and are **unvalidated candidates**. To revise wording, save the `protocol.rubric`
+object from a panel as a JSON file, edit its name/instructions/endpoint anchors,
+then create a new panel with `--rubric rubric.json`. The schema, task, three
+endpoint keys and `UNVALIDATED_CANDIDATE` marker must remain intact. Custom text
+is included in packets; inspect it before sharing. Existing panels retain their
+original rubric even if the external JSON changes.
+
+Inspect by ID to verify the bound trial, generation, packet and response bytes.
+List mode checks protocols only. Missing packets/receipts or changed artifacts
+fail validation; an interrupted export leaves the committed panel visible and
+cleans its temporary ZIP. An orphan final ZIP without its receipt is reported as
+`PANEL_PACKET_INCOMPLETE`; preserve it and create a new panel.
+
+The report retains all planned items and slots. Null/unsubmitted ratings keep
+point agreement incomplete and produce exact binary-completion bounds. Per-pair
+Cohen kappa is withheld when that pair has missing decisions; constant identical
+marginals are explicitly undefined. Raw contingency counts and disagreement item
+IDs remain available. Pair indices map to `analysis.reviewer_order`; item indices
+map to `analysis.item_order`. No threshold automatically validates a rubric.
+There are no confidence intervals, population reliability claims or efficacy
+verdicts. Panel responses do not replace experiment/cohort primary reviews.
+See [PCUC-004 derivation and evidence](../evidence/pcuc-review-panels/README.md).
+
+### Viewing exact pixels
 
 The terminal's thumbnail is a composition aid. `image --open` hands verified PNG bytes to the local OS viewer. Transformed publication/trial previews are newly audited date-only PNGs cached under `.riposte/terminal-previews/`; raw image metadata, source paths and view reports are not copied into those PNGs. These cache images participate in the existing artifact audit. Canonical masters support identity inspection only; unsupported master-view combinations are rejected rather than silently ignored.
 
@@ -283,3 +477,12 @@ without processing. Sort and combined processing retain the preview and exact
 `INSTALL.ps1` / `INSTALL.sh` perform setup only. START never installs packages.
 The optional `-ImageFolder` (`-ArtworkFolder` alias) or shell positional folder
 preselects a location without skipping the menu. `-Lab` / `--lab` belongs to INSTALL.
+
+### Preview receipt API contract
+
+`POST /api/organize` without `apply` returns a read-only job result containing
+`plan_id` and per-file destinations for ordinary and category sorting. Submit
+the same options with `apply: true`, `acknowledge_source_removal: true`, and
+that `plan_id`. A missing or stale ordinary ID becomes a job error with
+`SORT_PREVIEW_REQUIRED` or `SORT_PREVIEW_CHANGED`. Inspect again after changes;
+acknowledgement alone does not permit a new directory scan to expand the work.

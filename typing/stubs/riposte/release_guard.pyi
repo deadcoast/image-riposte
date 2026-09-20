@@ -4,6 +4,8 @@ from PIL.Image import Image as _Image
 from _riposte_types import Report, ModelTensor, Encoder, InpaintProbe, TemporalProbe
 from _riposte_types import Progress as _Progress
 from .coupled import Branch as Branch, _branches as _branches, _features as _features
+from .coupled import _view_features as _view_features
+from .context_graph import context_groups as context_groups, context_values as context_values, context_gradient as context_gradient
 from .errors import RiposteError as RiposteError
 from .optimizer import _round_ste as _round_ste
 from .quality import QualityLimits as QualityLimits, quality_report as quality_report, spatial_budget as spatial_budget

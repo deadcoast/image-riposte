@@ -1,0 +1,8 @@
+warning: `VIRTUAL_ENV=.venv` does not match the project environment path `typing\.venv` and will be ignored; use `--active` to target the active environment instead
+Source/stub parity: 409 signatures, 51 importable leaf modules
+Missing stub: experiment
+cli:experiment: missing declaration
+cli:experiment_packet: missing declaration
+cli:experiment_review: missing declaration
+generation:_execute: source/stub parameter mismatch
+Source differs from the reviewed snapshot; re-review these contracts: src/riposte/cli.py, src/riposte/experiment.py, src/riposte/generation.py, src/riposte/records.py, src/riposte/terminal/service.py

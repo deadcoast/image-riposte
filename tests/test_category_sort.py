@@ -1,4 +1,5 @@
 """Exact category consent, private provenance and transactional undo regressions."""
+from riposte.organizer import plan as _sort_preview
 import contextlib
 import json
 import os
@@ -53,7 +54,7 @@ def test_sort_original_title_private_stable_repeat_and_exact_undo(root, make_ima
     assert "original_filename" not in rows[0]
     assert audit_workspace(root)["checkpoint"] == "COMPLETE"
     assert apply(root)["sort_id"] is None
-    assert organize(root, POLICY)["sort_id"] is None
+    assert organize(root, POLICY, plan_id=_sort_preview(root, POLICY)["plan_id"])["sort_id"] is None
     assert catalog(root) == rows and title_records(root) == titles
     assert undo_sort(root, apply=True)["checkpoint"] == "COMPLETE"
     assert image.read_bytes() == before and not catalog(root) and not title_records(root)
@@ -63,7 +64,7 @@ def test_sort_original_title_private_stable_repeat_and_exact_undo(root, make_ima
 def test_changed_preview_refuses_before_writes(root, make_image, change):
     rules(root)
     image = make_image(root / "hockey.png")
-    organize(root, POLICY)
+    organize(root, POLICY, plan_id=_sort_preview(root, POLICY)["plan_id"])
     p = plan(root, POLICY, categories=True)
     row = catalog(root)[0]
     args = {"policy": POLICY, "categories": True, "plan_id": p["plan_id"]}
@@ -88,7 +89,7 @@ def test_changed_preview_refuses_before_writes(root, make_image, change):
 def test_legacy_numbered_files_need_manual_assignment_and_restore_absence(root, make_image):
     rules(root)
     make_image(root / "hockey.png")
-    organize(root, POLICY)
+    organize(root, POLICY, plan_id=_sort_preview(root, POLICY)["plan_id"])
     row = catalog(root)[0]
     with contextlib.closing(connect(root)) as db:
         db.execute("DELETE FROM sort_titles")
@@ -173,7 +174,7 @@ def test_interruption_recovery_restores_private_state(root, make_image, monkeypa
     import riposte.sort_history as history
     rules(root)
     make_image(root / "hockey.png")
-    organize(root, POLICY)
+    organize(root, POLICY, plan_id=_sort_preview(root, POLICY)["plan_id"])
     rows, titles = catalog(root), title_records(root)
     if when == "after_catalog_restore":
         apply(root)
@@ -186,8 +187,8 @@ def test_interruption_recovery_restores_private_state(root, make_image, monkeypa
             with pytest.raises(KeyboardInterrupt): undo_sort(root, apply=True)
     else:
         save = history.save_title
-        def interrupted(root, row):
-            if when == "after_title": save(root, row)
+        def interrupted(root, row, **kwargs):
+            if when == "after_title": save(root, row, **kwargs)
             raise KeyboardInterrupt()
         with monkeypatch.context() as patch:
             patch.setattr(history, "save_title", interrupted)
@@ -213,7 +214,7 @@ def test_real_video_category_move_keeps_identity_bytes_and_undo(root, make_image
                    creationflags=getattr(subprocess, "CREATE_NO_WINDOW", 0))
     os.utime(video, (image.stat().st_mtime, image.stat().st_mtime))
     video_bytes = video.read_bytes()
-    assert organize(root, POLICY)["checkpoint"] == "COMPLETE"
+    assert organize(root, POLICY, plan_id=_sort_preview(root, POLICY)["plan_id"])["checkpoint"] == "COMPLETE"
     previous, titles = video_catalog(root), title_records(root)
     assert apply(root)["checkpoint"] == "COMPLETE"
     row = video_catalog(root)[0]
@@ -286,7 +287,7 @@ def test_version_one_recovery_and_legacy_namespace(root, make_image):
     from riposte.store import LEGACY_SIGNATURE
     source = make_image(root / "hockey.png")
     original = source.read_bytes()
-    organize(root, POLICY)
+    organize(root, POLICY, plan_id=_sort_preview(root, POLICY)["plan_id"])
     journal = latest_sort(root)
     journal["version"] = 1
     journal.pop("titles")

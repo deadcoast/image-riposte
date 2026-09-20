@@ -1,4 +1,5 @@
 """Real local ffmpeg/ffprobe fixtures; no protection model or video generation."""
+from riposte.organizer import plan as _sort_preview
 import datetime as dt
 import os
 import shutil
@@ -38,7 +39,7 @@ def test_real_mixed_video_sort_preview_idempotence_and_undo(root, make_image, ma
     assert preview["destinations"] == {"2025/March/img/SML": 1, "2025/March/vid/SML": 1}
     assert image.read_bytes() == original_image and video.read_bytes() == original_video
     assert not (root / ".riposte").exists()
-    result = organize(root, POLICY)
+    result = organize(root, POLICY, plan_id=_sort_preview(root, POLICY)["plan_id"])
     assert result["checkpoint"] == "COMPLETE"
     assert result["counts"]["videos_sorted"] == 1
     assert len(catalog(root)) == len(video_catalog(root)) == 1
@@ -47,7 +48,7 @@ def test_real_mixed_video_sort_preview_idempotence_and_undo(root, make_image, ma
     assert (root / row["relative"]).read_bytes() == original_video
     assert audit_workspace(root)["checkpoint"] == "COMPLETE"
     assert audit_workspace(root)["verified_videos"] == 1
-    assert organize(root, POLICY)["counts"]["already_sorted_videos"] == 1
+    assert organize(root, POLICY, plan_id=_sort_preview(root, POLICY)["plan_id"])["counts"]["already_sorted_videos"] == 1
     assert undo_sort(root, apply=True)["checkpoint"] == "COMPLETE"
     assert image.read_bytes() == original_image and video.read_bytes() == original_video
     assert catalog(root) == video_catalog(root) == []
@@ -60,7 +61,7 @@ def test_probe_missing_does_not_break_image_sorting(root, make_image, monkeypatc
     video = root / "clip.mp4"
     video.write_bytes(b"not probed")
     assert plan(root, POLICY)["blockers"] == {"VIDEO_PROBE_UNAVAILABLE": 1}
-    assert organize(root, POLICY)["checkpoint"] == "INCOMPLETE"
+    assert organize(root, POLICY, plan_id=_sort_preview(root, POLICY)["plan_id"])["checkpoint"] == "INCOMPLETE"
     assert video.read_bytes() == b"not probed"
     assert len(catalog(root)) == 1
 
@@ -71,12 +72,12 @@ def test_corrupt_video_is_never_moved_or_registered(root):
     video = root / "broken.mp4"
     video.write_bytes(b"not a video")
     assert plan(root, POLICY)["blockers"] == {"VIDEO_PROBE_FAILED": 1}
-    assert organize(root, POLICY)["checkpoint"] == "INCOMPLETE"
+    assert organize(root, POLICY, plan_id=_sort_preview(root, POLICY)["plan_id"])["checkpoint"] == "INCOMPLETE"
     assert video.read_bytes() == b"not a video" and not video_catalog(root)
 
 
 def test_video_only_sort_never_populates_protection_selection(root, make_video):
     from riposte.terminal.service import image_selection
     make_video(root / "video.mp4")
-    assert organize(root, POLICY)["checkpoint"] == "COMPLETE"
+    assert organize(root, POLICY, plan_id=_sort_preview(root, POLICY)["plan_id"])["checkpoint"] == "COMPLETE"
     assert image_selection(root, {"all_images": True}) == []

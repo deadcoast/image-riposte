@@ -19,7 +19,7 @@ from riposte.terminal.reports import overview, report_lines, raw_lines, Writer, 
 from riposte.terminal.interaction import fields_for, hints
 
 TOKENS={"gokn0":"#2E3440","gokn1":"#3B4252","gokn2":"#434C5E","gokn4":"#D8DEE9","gokn5":"#E5E9F0","gokn6":"#ECEFF4","gokn7":"#8FBCBB","gokn8":"#88C0D0","gokn9":"#81A1C1","gokn11":"#BF616A","gokn12":"#D08770","gokn13":"#EBCB8B"}
-PLAN={"mode":"READ_ONLY","counts":{"images_to_migrate":7,"already_clean":3,"input_bytes":2048},"destinations":{"2026/September/MED":7},"blockers":{},"ready":True,"source_policy":"Verified sources removed only on apply."}
+PLAN={"mode":"READ_ONLY","plan_id":"a"*64,"counts":{"images_to_migrate":7,"already_clean":3,"input_bytes":2048},"destinations":{"2026/September/MED":7},"blockers":{},"ready":True,"source_policy":"Verified sources removed only on apply."}
 
 
 def test_palette_exact_and_terminal_owned():
@@ -34,7 +34,7 @@ def test_all_terminal_surfaces_reject_background_fill(root,theme,page):
     if page=="form":c.action("doctor")
     elif page=="result":c.show(Page("result","Plan",result=PLAN,request=Request("organize",root)))
     elif page=="preferences":c.preferences()
-    elif page=="confirm":c.confirm(Request("apply",root),"REPLACE","Replace sources")
+    elif page=="confirm":c.confirm(Request("apply",root,{"plan_id":execute(Request("organize",root))["plan_id"]}),"REPLACE","Replace sources")
     elif page!="home":c.show(Page(page,page))
     surface=render(c.state,100,34,1)
     assert all(cell.bg=="bg" for row in surface.cells for cell in row)
@@ -52,7 +52,7 @@ def test_explicit_cell_colour_cannot_overwrite_host_background():
 
 
 def test_enter_select_i_inspect_and_space_compatibility(root,make_image):
-    make_image(root/"input.png");execute(Request("apply",root))
+    make_image(root/"input.png");execute(Request("apply",root,{"plan_id":execute(Request("organize",root))["plan_id"]}))
     c=Controller(root,Presentation());c.library();row=c.state.catalog[0]
     c.key(Key("enter"));assert c.state.page.name=="library" and row["id"] in c.state.selected
     c.key(Key("char","i"));assert c.state.page.name=="asset"

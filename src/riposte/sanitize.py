@@ -17,6 +17,7 @@ import numpy as np
 from PIL import Image, ImageCms, ImageOps, PngImagePlugin
 from .errors import RiposteError
 from .policy import Policy, FORMAT_NAMES, extract_day, valid_day, same_file_state
+from .records import PngAudit
 
 @dataclass
 class CleanImage:
@@ -29,7 +30,7 @@ class CleanImage:
 # Structural bytes, not personal metadata. Reject all ancillary chunks except date.
 PNG_MAGIC = b"\x89PNG\r\n\x1a\n"
 
-def png_audit(data: bytes) -> dict:
+def png_audit(data: bytes) -> PngAudit:
     if not data.startswith(PNG_MAGIC):
         raise RiposteError("NOT_CANONICAL_PNG")
     pos, kinds, day, idat_count = 8, [], None, 0

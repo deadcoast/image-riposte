@@ -11,7 +11,9 @@ controls/help; `terminal/service.py` for the operation boundary shared with CLI.
   are equivalent shortcuts. Esc returns and restores the previous focus.
 - Sort explains its recursive folder scope before selection. It previews
   sanitation/organization and requires the exact `REPLACE` confirmation before
-  replacing verified sources. Sidecar deletion has its own explicit option.
+  replacing verified sources. Confirmation carries the displayed `plan_id`.
+  File, destination, private-state or policy drift requires a new preview.
+  Sidecar deletion has its own explicit option.
 - Sort previews show separate `img` and `vid` routes inside dated folders.
   Videos retain their bytes and metadata and never enter protection selection.
   Consent explains that private original copies are retained for recovery.
@@ -25,7 +27,8 @@ controls/help; `terminal/service.py` for the operation boundary shared with CLI.
   Backspace goes to its parent, and `l` opens home/drive locations. `g` optionally
   accepts a pasted folder path. Selection itself performs no image writes.
 - Sort + RIPOSTE previews both operations and requires `REPLACE`. Model preflight
-  occurs before sorting; a failed sort blocks protection. Protection may be
+  occurs before sorting; the top-level combined receipt binds both the nested
+  sort plan and the selected protection configuration. A failed sort blocks protection. Protection may be
   retried separately after sorting.
 - Empty selections remain in the browser with a useful message. Unreadable
   folders retain parent/location navigation. Invalid pasted locations retain
@@ -40,8 +43,9 @@ controls/help; `terminal/service.py` for the operation boundary shared with CLI.
 
 The browser web application keeps its existing capabilities. Current copy uses
 image terminology; this terminal entry change does not introduce the new file
-picker into the web interface. Existing direct command names/options and JSON
-record keys remain compatible. `-ArtworkFolder` remains a PowerShell alias for
+picker into the web interface. Direct command names remain available. PAC-031 requires `--plan-id` for every
+sort apply, including ordinary sorting and the combined command; JSON previews
+add the receipt and exact per-file destinations. `-ArtworkFolder` remains a PowerShell alias for
 `-ImageFolder` so existing invocations keep working.
 
 
@@ -62,7 +66,8 @@ journals; they are never PNG metadata or publishing pack contents.
 - The terminal Sort form exposes `s` for saved rules, `c` for discovery, `u` for
   undo, a category toggle and manual assignments. Rule replacement requires
   `SAVE`; file replacement requires `REPLACE` with the plan ID from the result.
-  Sort + RIPOSTE carries the same plan through its separate model preflight.
+  Sort + RIPOSTE binds that nested sorting plan in its top-level receipt and
+  rechecks it after the separate model preflight.
 - The browser sorting dialog uses the existing native modal, form controls,
   buttons and palette. Native select popup geometry is deliberately platform
   owned. Escape closes the dialog and returns focus; drafts remain in memory.
@@ -72,7 +77,9 @@ journals; they are never PNG metadata or publishing pack contents.
   `uncategorized`). `auto` clears a manual override. Old numbered names without
   trustworthy provenance cannot be treated as descriptive titles.
 - Browser requests disable duplicate writes synchronously. A late inspection
-  cannot restore apply after settings change. Errors stay in the dialog with
+  cannot restore apply after settings change. Ordinary and category plans both
+  require a receipt before acknowledgement enables Apply. Ordinary destination
+  rows show source, action and exact destination without category-only warnings. Errors stay in the dialog with
   corrective text; failure keeps the draft and requires a refreshed preview.
   Undo has its own preview, acknowledgement and exact sort ID.
 - The dialog owns vertical scrolling; all actions remain reachable on narrow

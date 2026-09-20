@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="26" skipped="0" tests="29" time="1.547" timestamp="2026-09-18T18:24:15.957520-07:00" hostname="homeone"><testcase classname="tests.test_application_roots" name="test_all_boundaries_reject_overlap_without_writes[exact-backend]" time="0.125"><failure message="Failed: DID NOT RAISE RiposteError">tests\test_application_roots.py:58: in test_all_boundaries_reject_overlap_without_writes
+    with pytest.raises(RiposteError, match="^IMAGE_FOLDER_OVERLAPS_APPLICATION$"):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   Failed: DID NOT RAISE RiposteError</failure></testcase><testcase classname="tests.test_application_roots" name="test_all_boundaries_reject_overlap_without_writes[exact-plan]" time="0.010"><failure message="Failed: DID NOT RAISE RiposteError">tests\test_application_roots.py:58: in test_all_boundaries_reject_overlap_without_writes
+    with pytest.raises(RiposteError, match="^IMAGE_FOLDER_OVERLAPS_APPLICATION$"):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   Failed: DID NOT RAISE RiposteError</failure></testcase><testcase classname="tests.test_application_roots" name="test_all_boundaries_reject_overlap_without_writes[exact-service]" time="0.081"><failure message="Failed: DID NOT RAISE RiposteError">tests\test_application_roots.py:58: in test_all_boundaries_reject_overlap_without_writes
+    with pytest.raises(RiposteError, match="^IMAGE_FOLDER_OVERLAPS_APPLICATION$"):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   Failed: DID NOT RAISE RiposteError</failure></testcase><testcase classname="tests.test_application_roots" name="test_all_boundaries_reject_overlap_without_writes[exact-combined]" time="0.016"><failure message="Failed: DID NOT RAISE RiposteError">tests\test_application_roots.py:58: in test_all_boundaries_reject_overlap_without_writes
+    with pytest.raises(RiposteError, match="^IMAGE_FOLDER_OVERLAPS_APPLICATION$"):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   Failed: DID NOT RAISE RiposteError</failure></testcase><testcase classname="tests.test_application_roots" name="test_all_boundaries_reject_overlap_without_writes[exact-rules]" time="0.005"><failure message="AssertionError: &#10;- CATEGORY_OPTIONS_INVALID&#10;+ IMAGE_FOLDER_OVERLAPS_APPLICATION">tests\test_application_roots.py:58: in test_all_boundaries_reject_overlap_without_writes
+    with pytest.raises(RiposteError, match="^IMAGE_FOLDER_OVERLAPS_APPLICATION$"):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   AssertionError: 
+E   - CATEGORY_OPTIONS_INVALID
+E   + IMAGE_FOLDER_OVERLAPS_APPLICATION</failure></testcase><testcase classname="tests.test_application_roots" name="test_all_boundaries_reject_overlap_without_writes[exact-terminal]" time="0.005" /><testcase classname="tests.test_application_roots" name="test_all_boundaries_reject_overlap_without_writes[exact-api]" time="0.036"><failure message="Failed: DID NOT RAISE RiposteError">tests\test_application_roots.py:58: in test_all_boundaries_reject_overlap_without_writes
+    with pytest.raises(RiposteError, match="^IMAGE_FOLDER_OVERLAPS_APPLICATION$"):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   Failed: DID NOT RAISE RiposteError</failure></testcase><testcase classname="tests.test_application_roots" name="test_all_boundaries_reject_overlap_without_writes[exact-cli]" time="0.105"><failure message="KeyError: 'code'">tests\test_application_roots.py:46: in test_all_boundaries_reject_overlap_without_writes
+    assert json.loads(result.stdout)["code"] == "IMAGE_FOLDER_OVERLAPS_APPLICATION"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   KeyError: 'code'</failure></testcase><testcase classname="tests.test_application_roots" name="test_all_boundaries_reject_overlap_without_writes[ancestor-backend]" time="0.078"><failure message="Failed: DID NOT RAISE RiposteError">tests\test_application_roots.py:58: in test_all_boundaries_reject_overlap_without_writes
+    with pytest.raises(RiposteError, match="^IMAGE_FOLDER_OVERLAPS_APPLICATION$"):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   Failed: DID NOT RAISE RiposteError</failure></testcase><testcase classname="tests.test_application_roots" name="test_all_boundaries_reject_overlap_without_writes[ancestor-plan]" time="0.009"><failure message="Failed: DID NOT RAISE RiposteError">tests\test_application_roots.py:58: in test_all_boundaries_reject_overlap_without_writes
+    with pytest.raises(RiposteError, match="^IMAGE_FOLDER_OVERLAPS_APPLICATION$"):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   Failed: DID NOT RAISE RiposteError</failure></testcase><testcase classname="tests.test_application_roots" name="test_all_boundaries_reject_overlap_without_writes[ancestor-service]" time="0.076"><failure message="Failed: DID NOT RAISE RiposteError">tests\test_application_roots.py:58: in test_all_boundaries_reject_overlap_without_writes
+    with pytest.raises(RiposteError, match="^IMAGE_FOLDER_OVERLAPS_APPLICATION$"):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   Failed: DID NOT RAISE RiposteError</failure></testcase><testcase classname="tests.test_application_roots" name="test_all_boundaries_reject_overlap_without_writes[ancestor-combined]" time="0.010"><failure message="Failed: DID NOT RAISE RiposteError">tests\test_application_roots.py:58: in test_all_boundaries_reject_overlap_without_writes
+    with pytest.raises(RiposteError, match="^IMAGE_FOLDER_OVERLAPS_APPLICATION$"):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   Failed: DID NOT RAISE RiposteError</failure></testcase><testcase classname="tests.test_application_roots" name="test_all_boundaries_reject_overlap_without_writes[ancestor-rules]" time="0.005"><failure message="AssertionError: &#10;- CATEGORY_OPTIONS_INVALID&#10;+ IMAGE_FOLDER_OVERLAPS_APPLICATION">tests\test_application_roots.py:58: in test_all_boundaries_reject_overlap_without_writes
+    with pytest.raises(RiposteError, match="^IMAGE_FOLDER_OVERLAPS_APPLICATION$"):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   AssertionError: 
+E   - CATEGORY_OPTIONS_INVALID
+E   + IMAGE_FOLDER_OVERLAPS_APPLICATION</failure></testcase><testcase classname="tests.test_application_roots" name="test_all_boundaries_reject_overlap_without_writes[ancestor-terminal]" time="0.006" /><testcase classname="tests.test_application_roots" name="test_all_boundaries_reject_overlap_without_writes[ancestor-api]" time="0.011"><failure message="Failed: DID NOT RAISE RiposteError">tests\test_application_roots.py:58: in test_all_boundaries_reject_overlap_without_writes
+    with pytest.raises(RiposteError, match="^IMAGE_FOLDER_OVERLAPS_APPLICATION$"):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   Failed: DID NOT RAISE RiposteError</failure></testcase><testcase classname="tests.test_application_roots" name="test_all_boundaries_reject_overlap_without_writes[ancestor-cli]" time="0.103"><failure message="KeyError: 'code'">tests\test_application_roots.py:46: in test_all_boundaries_reject_overlap_without_writes
+    assert json.loads(result.stdout)["code"] == "IMAGE_FOLDER_OVERLAPS_APPLICATION"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   KeyError: 'code'</failure></testcase><testcase classname="tests.test_application_roots" name="test_all_boundaries_reject_overlap_without_writes[descendant-backend]" time="0.079"><failure message="Failed: DID NOT RAISE RiposteError">tests\test_application_roots.py:58: in test_all_boundaries_reject_overlap_without_writes
+    with pytest.raises(RiposteError, match="^IMAGE_FOLDER_OVERLAPS_APPLICATION$"):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   Failed: DID NOT RAISE RiposteError</failure></testcase><testcase classname="tests.test_application_roots" name="test_all_boundaries_reject_overlap_without_writes[descendant-plan]" time="0.008"><failure message="Failed: DID NOT RAISE RiposteError">tests\test_application_roots.py:58: in test_all_boundaries_reject_overlap_without_writes
+    with pytest.raises(RiposteError, match="^IMAGE_FOLDER_OVERLAPS_APPLICATION$"):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   Failed: DID NOT RAISE RiposteError</failure></testcase><testcase classname="tests.test_application_roots" name="test_all_boundaries_reject_overlap_without_writes[descendant-service]" time="0.081"><failure message="Failed: DID NOT RAISE RiposteError">tests\test_application_roots.py:58: in test_all_boundaries_reject_overlap_without_writes
+    with pytest.raises(RiposteError, match="^IMAGE_FOLDER_OVERLAPS_APPLICATION$"):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   Failed: DID NOT RAISE RiposteError</failure></testcase><testcase classname="tests.test_application_roots" name="test_all_boundaries_reject_overlap_without_writes[descendant-combined]" time="0.011"><failure message="AssertionError: &#10;- NO_MODEL_NO_PROTECTION&#10;+ IMAGE_FOLDER_OVERLAPS_APPLICATION">tests\test_application_roots.py:58: in test_all_boundaries_reject_overlap_without_writes
+    with pytest.raises(RiposteError, match="^IMAGE_FOLDER_OVERLAPS_APPLICATION$"):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   AssertionError: 
+E   - NO_MODEL_NO_PROTECTION
+E   + IMAGE_FOLDER_OVERLAPS_APPLICATION</failure></testcase><testcase classname="tests.test_application_roots" name="test_all_boundaries_reject_overlap_without_writes[descendant-rules]" time="0.005"><failure message="AssertionError: &#10;- CATEGORY_OPTIONS_INVALID&#10;+ IMAGE_FOLDER_OVERLAPS_APPLICATION">tests\test_application_roots.py:58: in test_all_boundaries_reject_overlap_without_writes
+    with pytest.raises(RiposteError, match="^IMAGE_FOLDER_OVERLAPS_APPLICATION$"):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   AssertionError: 
+E   - CATEGORY_OPTIONS_INVALID
+E   + IMAGE_FOLDER_OVERLAPS_APPLICATION</failure></testcase><testcase classname="tests.test_application_roots" name="test_all_boundaries_reject_overlap_without_writes[descendant-terminal]" time="0.005" /><testcase classname="tests.test_application_roots" name="test_all_boundaries_reject_overlap_without_writes[descendant-api]" time="0.013"><failure message="Failed: DID NOT RAISE RiposteError">tests\test_application_roots.py:58: in test_all_boundaries_reject_overlap_without_writes
+    with pytest.raises(RiposteError, match="^IMAGE_FOLDER_OVERLAPS_APPLICATION$"):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   Failed: DID NOT RAISE RiposteError</failure></testcase><testcase classname="tests.test_application_roots" name="test_all_boundaries_reject_overlap_without_writes[descendant-cli]" time="0.109"><failure message="AssertionError: {&#10;    &quot;mode&quot;: &quot;APPLY&quot;,&#10;    &quot;counts&quot;: {&#10;      &quot;migrated&quot;: 1&#10;    },&#10;    &quot;blockers&quot;: {},&#10;    &quot;unmanaged_or_changed_remaining&quot;: 0,&#10;    &quot;checkpoint&quot;: &quot;COMPLETE&quot;,&#10;    &quot;metadata_policy&quot;: &quot;DATE_ONLY_IMAGES&quot;,&#10;    &quot;video_policy&quot;: &quot;SORT_ONLY_BYTES_UNCHANGED&quot;,&#10;    &quot;source_backups&quot;: &quot;PRIVATE_UNDO_HISTORY&quot;,&#10;    &quot;sort_id&quot;: &quot;01789781057381815400-b2f8ebd89ea64e129c1f2dcc29571b5c&quot;&#10;  }&#10;  &#10;assert 0 == 2&#10; +  where 0 = &lt;Result okay&gt;.exit_code">tests\test_application_roots.py:45: in test_all_boundaries_reject_overlap_without_writes
+    assert result.exit_code == 2, result.stdout
+E   AssertionError: {
+E       "mode": "APPLY",
+E       "counts": {
+E         "migrated": 1
+E       },
+E       "blockers": {},
+E       "unmanaged_or_changed_remaining": 0,
+E       "checkpoint": "COMPLETE",
+E       "metadata_policy": "DATE_ONLY_IMAGES",
+E       "video_policy": "SORT_ONLY_BYTES_UNCHANGED",
+E       "source_backups": "PRIVATE_UNDO_HISTORY",
+E       "sort_id": "01789781057381815400-b2f8ebd89ea64e129c1f2dcc29571b5c"
+E     }
+E     
+E   assert 0 == 2
+E    +  where 0 = &lt;Result okay&gt;.exit_code</failure></testcase><testcase classname="tests.test_application_roots" name="test_independent_sibling_preview_sort_and_exact_undo" time="0.021"><failure message="KeyError: 'checkpoint'">tests\test_application_roots.py:75: in test_independent_sibling_preview_sort_and_exact_undo
+    assert response.json()["checkpoint"] == "COMPLETE"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   KeyError: 'checkpoint'</failure></testcase><testcase classname="tests.test_application_roots" name="test_installed_package_has_no_fixed_parent_assumption[Lib/site-packages/riposte]" time="0.005"><failure message="Failed: DID NOT RAISE RiposteError">tests\test_application_roots.py:94: in test_installed_package_has_no_fixed_parent_assumption
+    with pytest.raises(RiposteError, match="^IMAGE_FOLDER_OVERLAPS_APPLICATION$"):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   Failed: DID NOT RAISE RiposteError</failure></testcase><testcase classname="tests.test_application_roots" name="test_installed_package_has_no_fixed_parent_assumption[lib/python3.13/site-packages/riposte]" time="0.005"><failure message="Failed: DID NOT RAISE RiposteError">tests\test_application_roots.py:94: in test_installed_package_has_no_fixed_parent_assumption
+    with pytest.raises(RiposteError, match="^IMAGE_FOLDER_OVERLAPS_APPLICATION$"):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   Failed: DID NOT RAISE RiposteError</failure></testcase><testcase classname="tests.test_application_roots" name="test_installed_package_has_no_fixed_parent_assumption[target/riposte]" time="0.004"><failure message="Failed: DID NOT RAISE RiposteError">tests\test_application_roots.py:94: in test_installed_package_has_no_fixed_parent_assumption
+    with pytest.raises(RiposteError, match="^IMAGE_FOLDER_OVERLAPS_APPLICATION$"):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   Failed: DID NOT RAISE RiposteError</failure></testcase><testcase classname="tests.test_application_roots" name="test_installed_package_has_no_fixed_parent_assumption[src/riposte]" time="0.003"><failure message="Failed: DID NOT RAISE RiposteError">tests\test_application_roots.py:94: in test_installed_package_has_no_fixed_parent_assumption
+    with pytest.raises(RiposteError, match="^IMAGE_FOLDER_OVERLAPS_APPLICATION$"):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   Failed: DID NOT RAISE RiposteError</failure></testcase></testsuite></testsuites>

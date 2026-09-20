@@ -10,11 +10,12 @@ import sqlite3
 import subprocess
 import uuid
 from pathlib import Path
-from typing import Any
+from typing import Any, cast
 
 from .errors import RiposteError
 from .policy import Policy, extract_day, is_link, same_file_state, sort_folder_for, valid_day
 from .store import check_root, connect, safe_child, state_relative
+from .records import CatalogRow
 
 VIDEO_SUFFIXES = frozenset({".mp4", ".m4v", ".mov", ".mkv", ".webm", ".avi", ".wmv", ".mpg", ".mpeg", ".mts", ".m2ts", ".3gp", ".ogv"})
 
@@ -69,7 +70,7 @@ def inspect_video(path: Path, policy: Policy = Policy()) -> dict[str, Any]:
             "sha256": digest, "bytes": before.st_size, "source_stat": before}
 
 
-def video_catalog(root: Path) -> list[dict[str, Any]]:
+def video_catalog(root: Path) -> list[CatalogRow]:
     root = check_root(root)
     path = safe_child(root, state_relative(root, "catalog.sqlite3"))
     if not path.exists():
@@ -78,7 +79,7 @@ def video_catalog(root: Path) -> list[dict[str, Any]]:
         db.row_factory = sqlite3.Row
         if not db.execute("SELECT 1 FROM sqlite_master WHERE type='table' AND name='videos'").fetchone():
             return []
-        rows = [dict(row) for row in db.execute("SELECT * FROM videos ORDER BY day DESC, relative")]
+        rows = [cast(CatalogRow, dict(row)) for row in db.execute("SELECT * FROM videos ORDER BY day DESC, relative")]
     for row in rows:
         relative = Path(row["relative"])
         from .policy import path_category
@@ -92,11 +93,11 @@ def video_catalog(root: Path) -> list[dict[str, Any]]:
     return rows
 
 
-def record_video(root: Path, relative: str, info: dict[str, Any]) -> dict[str, Any]:
+def record_video(root: Path, relative: str, info: dict[str, Any], *, db: sqlite3.Connection | None = None) -> CatalogRow:
     row = {k: info[k] for k in ("day", "date_source", "width", "height", "sha256", "bytes")}
     row.update(id=uuid.uuid4().hex, relative=relative)
-    with contextlib.closing(connect(root)) as db:
+    with (contextlib.closing(connect(root)) if db is None else contextlib.nullcontext(db)) as db:
         db.execute("CREATE TABLE IF NOT EXISTS videos (id TEXT PRIMARY KEY, relative TEXT UNIQUE NOT NULL, day TEXT NOT NULL, date_source TEXT NOT NULL, width INTEGER NOT NULL, height INTEGER NOT NULL, sha256 TEXT NOT NULL, bytes INTEGER NOT NULL)")
         db.execute("INSERT INTO videos VALUES (:id,:relative,:day,:date_source,:width,:height,:sha256,:bytes)", row)
         db.commit()
-    return row
+    return cast(CatalogRow, row)

@@ -1,0 +1,22 @@
+{
+  "result": "PASS",
+  "version": "0.5.0",
+  "application_files": 57,
+  "checks": {
+    "source": {
+      "source_checkout": "PASS",
+      "cli_apply_descendant": "PASS"
+    },
+    "installed": {
+      "wheel_roots": "PASS",
+      "source_preserved": "PASS",
+      "sibling_sort_exact_undo": "PASS",
+      "api": "PASS"
+    }
+  },
+  "artifact_sha256": {
+    "riposte_studio-0.5.0-py3-none-any.whl": "89b42c175ec3a4ba27076b345fc566d377b17f6214a15dabe50fd218070b0bb0",
+    "riposte_studio-0.5.0.tar.gz": "c4e01586ac4cc695a5f3f7725898891cc3749f1fb5c2cfe62c39c576ceb4d466"
+  },
+  "scope": "Source/sdist/wheel/isolated-target equality; real source and installed package root/ancestor/descendant rejection; installed CLI/API/service/terminal and independent sibling sort/exact undo. Existing Windows Python/dependencies; not clean bootstrap or native Linux/macOS qualification."
+}

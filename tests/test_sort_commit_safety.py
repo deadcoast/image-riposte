@@ -1,4 +1,5 @@
 """Changes while the recovery journal is flushed must not be unlinked."""
+from riposte.organizer import plan as _sort_preview
 import hashlib
 import os
 
@@ -47,7 +48,7 @@ def test_source_changed_during_removal_journal_is_retained(root, make_image, mon
             os.link(source, root / "external-link.tmp")
 
     monkeypatch.setattr(history, "_save", change_during_save)
-    result = organizer.organize(root, Policy(date_mode="modified", discard_sidecars=True))
+    result = organizer.organize(root, Policy(date_mode="modified", discard_sidecars=True), plan_id=_sort_preview(root, Policy(date_mode="modified", discard_sidecars=True))["plan_id"])
     assert fired
     assert result["checkpoint"] == "INCOMPLETE"
     assert result["blockers"].get("SOURCE_CHANGED_OUTPUT_RETAINED") == 1

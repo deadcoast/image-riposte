@@ -1,0 +1,42 @@
+{
+  "result": "PASS",
+  "version": "0.5.0",
+  "application_files": 65,
+  "checks": {
+    "source": {
+      "reviewer_panel_packet_response_agreement": "PASS",
+      "cohort_commit_generation_review_bounds": "PASS",
+      "committed_experiment_packet_review": "PASS",
+      "shared_view_production_solver": "PASS",
+      "typed_record_defaults_and_keys": "PASS",
+      "indexed_lookup": "PASS",
+      "owned_and_external_commits": "PASS",
+      "catalog_audit": "PASS",
+      "ordinary_cli": "PASS",
+      "stale_no_initial_state": "PASS",
+      "api": "PASS",
+      "exact_undo": "PASS",
+      "combined_receipt_and_model_gate": "PASS"
+    },
+    "installed": {
+      "reviewer_panel_packet_response_agreement": "PASS",
+      "cohort_commit_generation_review_bounds": "PASS",
+      "committed_experiment_packet_review": "PASS",
+      "shared_view_production_solver": "PASS",
+      "typed_record_defaults_and_keys": "PASS",
+      "indexed_lookup": "PASS",
+      "owned_and_external_commits": "PASS",
+      "catalog_audit": "PASS",
+      "ordinary_cli": "PASS",
+      "stale_no_initial_state": "PASS",
+      "api": "PASS",
+      "exact_undo": "PASS",
+      "combined_receipt_and_model_gate": "PASS"
+    }
+  },
+  "artifact_sha256": {
+    "riposte_studio-0.5.0-py3-none-any.whl": "b136932ec5307e64c14846b444463582c9fe73699a9f4dfeb06bbc761c711270",
+    "riposte_studio-0.5.0.tar.gz": "d919d4f5527f06be0abd1705fd6a1889ad312ee617f985ed66c66ce88962fef5"
+  },
+  "scope": "Fresh source/sdist/wheel/isolated-target equality, reviewer panel/packet/response/agreement, committed cohort/generation/primary-review/bounds and experiment/packet/review workflows with synthetic generators and real shared-view production solver with synthetic encoder, record defaults/optional keys, indexed lookup, owned/external revision checks, audit and CLI/API/service preview/apply/exact-undo checks. Combined missing/stale receipt and missing-model gates. Existing Windows dependencies; not clean bootstrap, real-model execution or native Linux/macOS qualification."
+}

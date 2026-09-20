@@ -1,0 +1,10 @@
+{
+  "static_audit": "66 findings; unchanged from retained PAC-027BB audit",
+  "new_findings": 0,
+  "resolution": {
+    "64 actionless-button findings": "External JS handlers; touched sort/category/undo controls exercised in real Chromium. No blanket certification of unrelated controls.",
+    "design-missing": "Maintained docs/DESIGN.md and docs/UX-CONTRACT.md are authoritative; no root duplicate.",
+    "textarea-resize-missing": "Existing publication textarea outside this bounded repair; unchanged."
+  },
+  "browser": "Shipping HTML/CSS/JS at 1100x900 and 390x844, reduced motion, Escape/focus, ordinary and category receipts, duplicates, stale requests/errors/retry and undo; controlled network fixtures. Real backend tested separately."
+}

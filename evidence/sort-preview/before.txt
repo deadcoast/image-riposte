@@ -1,0 +1,154 @@
+FFFFFFFFFFFFFFFFFFFF                                                     [100%]
+================================== FAILURES ===================================
+________ test_ordinary_preview_binds_exact_destinations_without_writes ________
+tests\test_sort_preview_binding.py:31: in test_ordinary_preview_binds_exact_destinations_without_writes
+    assert len(preview["plan_id"]) == 64
+               ^^^^^^^^^^^^^^^^^^
+E   KeyError: 'plan_id'
+______________ test_ordinary_apply_requires_receipt_before_state ______________
+tests\test_sort_preview_binding.py:41: in test_ordinary_apply_requires_receipt_before_state
+    with pytest.raises(RiposteError, match="^SORT_PREVIEW_REQUIRED$"):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   Failed: DID NOT RAISE RiposteError
+__________ test_stale_ordinary_preview_rejected_without_state[added] __________
+tests\test_sort_preview_binding.py:63: in test_stale_ordinary_preview_rejected_without_state
+    with pytest.raises(RiposteError, match="^SORT_PREVIEW_CHANGED$"):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   Failed: DID NOT RAISE RiposteError
+_________ test_stale_ordinary_preview_rejected_without_state[removed] _________
+tests\test_sort_preview_binding.py:63: in test_stale_ordinary_preview_rejected_without_state
+    with pytest.raises(RiposteError, match="^SORT_PREVIEW_CHANGED$"):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   Failed: DID NOT RAISE RiposteError
+__________ test_stale_ordinary_preview_rejected_without_state[bytes] __________
+tests\test_sort_preview_binding.py:63: in test_stale_ordinary_preview_rejected_without_state
+    with pytest.raises(RiposteError, match="^SORT_PREVIEW_CHANGED$"):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   Failed: DID NOT RAISE RiposteError
+__________ test_stale_ordinary_preview_rejected_without_state[mtime] __________
+tests\test_sort_preview_binding.py:63: in test_stale_ordinary_preview_rejected_without_state
+    with pytest.raises(RiposteError, match="^SORT_PREVIEW_CHANGED$"):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   Failed: DID NOT RAISE RiposteError
+_________ test_stale_ordinary_preview_rejected_without_state[policy] __________
+tests\test_sort_preview_binding.py:63: in test_stale_ordinary_preview_rejected_without_state
+    with pytest.raises(RiposteError, match="^SORT_PREVIEW_CHANGED$"):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   Failed: DID NOT RAISE RiposteError
+_________ test_stale_ordinary_preview_rejected_without_state[limits] __________
+tests\test_sort_preview_binding.py:63: in test_stale_ordinary_preview_rejected_without_state
+    with pytest.raises(RiposteError, match="^SORT_PREVIEW_CHANGED$"):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   Failed: DID NOT RAISE RiposteError
+________ test_stale_ordinary_preview_rejected_without_state[sidecars] _________
+tests\test_sort_preview_binding.py:63: in test_stale_ordinary_preview_rejected_without_state
+    with pytest.raises(RiposteError, match="^SORT_PREVIEW_CHANGED$"):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   Failed: DID NOT RAISE RiposteError
+_______ test_stale_ordinary_preview_rejected_without_state[destination] _______
+tests\test_sort_preview_binding.py:63: in test_stale_ordinary_preview_rejected_without_state
+    with pytest.raises(RiposteError, match="^SORT_PREVIEW_CHANGED$"):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   Failed: DID NOT RAISE RiposteError
+_______________________ test_bound_sort_and_exact_undo ________________________
+tests\test_sort_preview_binding.py:75: in test_bound_sort_and_exact_undo
+    assert catalog(root)[0]["relative"] == preview["files"][0]["destination"]
+                                           ^^^^^^^^^^^^^^^^
+E   KeyError: 'files'
+____________ test_terminal_carries_the_displayed_ordinary_receipt _____________
+tests\test_sort_preview_binding.py:98: in test_terminal_carries_the_displayed_ordinary_receipt
+    assert controller.state.page.code == "SORT_PREVIEW_CHANGED"
+E   AssertionError: assert None == 'SORT_PREVIEW_CHANGED'
+E    +  where None = Page(name='result', title='ORGANIZATION RESULT', cursor=0, query='', query_edit=False, scroll=0, report_view='overview..., preview=None, kind='candidate', view='identity', report={}, confirm_word='', confirm_request=None, success_page=None).code
+E    +    where Page(name='result', title='ORGANIZATION RESULT', cursor=0, query='', query_edit=False, scroll=0, report_view='overview..., preview=None, kind='candidate', view='identity', report={}, confirm_word='', confirm_request=None, success_page=None) = Session(root=WindowsPath('C:/Users/ryanf/AppData/Local/Temp/pytest-of-ryanf/pytest-491/test_terminal_carries_the_disp0...ed=False, frozen_time=0.0, running=True, exit_after_job=False, switch_linear=False, handoff=None, width=100, height=34).page
+E    +      where Session(root=WindowsPath('C:/Users/ryanf/AppData/Local/Temp/pytest-of-ryanf/pytest-491/test_terminal_carries_the_disp0...ed=False, frozen_time=0.0, running=True, exit_after_job=False, switch_linear=False, handoff=None, width=100, height=34) = <riposte.terminal.controller.Controller object at 0x0000018A7EEC0C20>.state
+__________ test_combined_receipt_rejects_drift_before_models[source] __________
+tests\test_sort_preview_binding.py:119: in test_combined_receipt_rejects_drift_before_models
+    execute(Request("sort-riposte", root, {**values, "plan_id": preview.get("plan_id")}))
+src\riposte\terminal\service.py:206: in execute
+    result = start_publication(root, image_selection(root, v), _paths(v), configuration,
+src\riposte\publication.py:205: in start_publication
+    "recipe": recipe.public(), "models": models[3], "execution_probes": models[4],
+                                         ^^^^^^^^^
+E   IndexError: list index out of range
+__________ test_combined_receipt_rejects_drift_before_models[policy] __________
+tests\test_sort_preview_binding.py:119: in test_combined_receipt_rejects_drift_before_models
+    execute(Request("sort-riposte", root, {**values, "plan_id": preview.get("plan_id")}))
+src\riposte\terminal\service.py:206: in execute
+    result = start_publication(root, image_selection(root, v), _paths(v), configuration,
+src\riposte\publication.py:205: in start_publication
+    "recipe": recipe.public(), "models": models[3], "execution_probes": models[4],
+                                         ^^^^^^^^^
+E   IndexError: list index out of range
+_________ test_combined_receipt_rejects_drift_before_models[epsilon] __________
+tests\test_sort_preview_binding.py:119: in test_combined_receipt_rejects_drift_before_models
+    execute(Request("sort-riposte", root, {**values, "plan_id": preview.get("plan_id")}))
+src\riposte\terminal\service.py:206: in execute
+    result = start_publication(root, image_selection(root, v), _paths(v), configuration,
+src\riposte\publication.py:205: in start_publication
+    "recipe": recipe.public(), "models": models[3], "execution_probes": models[4],
+                                         ^^^^^^^^^
+E   IndexError: list index out of range
+__________ test_combined_receipt_rejects_drift_before_models[edges] ___________
+tests\test_sort_preview_binding.py:119: in test_combined_receipt_rejects_drift_before_models
+    execute(Request("sort-riposte", root, {**values, "plan_id": preview.get("plan_id")}))
+src\riposte\terminal\service.py:206: in execute
+    result = start_publication(root, image_selection(root, v), _paths(v), configuration,
+src\riposte\publication.py:205: in start_publication
+    "recipe": recipe.public(), "models": models[3], "execution_probes": models[4],
+                                         ^^^^^^^^^
+E   IndexError: list index out of range
+________ test_combined_receipt_rejects_drift_before_models[selection] _________
+tests\test_sort_preview_binding.py:119: in test_combined_receipt_rejects_drift_before_models
+    execute(Request("sort-riposte", root, {**values, "plan_id": preview.get("plan_id")}))
+src\riposte\terminal\service.py:206: in execute
+    result = start_publication(root, image_selection(root, v), _paths(v), configuration,
+src\riposte\publication.py:205: in start_publication
+    "recipe": recipe.public(), "models": models[3], "execution_probes": models[4],
+                                         ^^^^^^^^^
+E   IndexError: list index out of range
+__________ test_combined_receipt_rejects_drift_before_models[model] ___________
+tests\test_sort_preview_binding.py:119: in test_combined_receipt_rejects_drift_before_models
+    execute(Request("sort-riposte", root, {**values, "plan_id": preview.get("plan_id")}))
+src\riposte\terminal\service.py:206: in execute
+    result = start_publication(root, image_selection(root, v), _paths(v), configuration,
+src\riposte\publication.py:205: in start_publication
+    "recipe": recipe.public(), "models": models[3], "execution_probes": models[4],
+                                         ^^^^^^^^^
+E   IndexError: list index out of range
+________ test_change_during_model_preflight_rejects_sort_without_state ________
+tests\test_sort_preview_binding.py:133: in test_change_during_model_preflight_rejects_sort_without_state
+    execute(Request("sort-riposte", root, {**values, "plan_id": preview.get("plan_id")}))
+src\riposte\terminal\service.py:206: in execute
+    result = start_publication(root, image_selection(root, v), _paths(v), configuration,
+src\riposte\publication.py:205: in start_publication
+    "recipe": recipe.public(), "models": models[3], "execution_probes": models[4],
+                                         ^^^^^^^^^
+E   IndexError: list index out of range
+_______________ test_cli_receipt_roundtrip_and_missing_consent ________________
+tests\test_sort_preview_binding.py:143: in test_cli_receipt_roundtrip_and_missing_consent
+    receipt = json.loads(p.stdout)["plan_id"]
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   KeyError: 'plan_id'
+=========================== short test summary info ===========================
+FAILED tests/test_sort_preview_binding.py::test_ordinary_preview_binds_exact_destinations_without_writes
+FAILED tests/test_sort_preview_binding.py::test_ordinary_apply_requires_receipt_before_state
+FAILED tests/test_sort_preview_binding.py::test_stale_ordinary_preview_rejected_without_state[added]
+FAILED tests/test_sort_preview_binding.py::test_stale_ordinary_preview_rejected_without_state[removed]
+FAILED tests/test_sort_preview_binding.py::test_stale_ordinary_preview_rejected_without_state[bytes]
+FAILED tests/test_sort_preview_binding.py::test_stale_ordinary_preview_rejected_without_state[mtime]
+FAILED tests/test_sort_preview_binding.py::test_stale_ordinary_preview_rejected_without_state[policy]
+FAILED tests/test_sort_preview_binding.py::test_stale_ordinary_preview_rejected_without_state[limits]
+FAILED tests/test_sort_preview_binding.py::test_stale_ordinary_preview_rejected_without_state[sidecars]
+FAILED tests/test_sort_preview_binding.py::test_stale_ordinary_preview_rejected_without_state[destination]
+FAILED tests/test_sort_preview_binding.py::test_bound_sort_and_exact_undo - K...
+FAILED tests/test_sort_preview_binding.py::test_terminal_carries_the_displayed_ordinary_receipt
+FAILED tests/test_sort_preview_binding.py::test_combined_receipt_rejects_drift_before_models[source]
+FAILED tests/test_sort_preview_binding.py::test_combined_receipt_rejects_drift_before_models[policy]
+FAILED tests/test_sort_preview_binding.py::test_combined_receipt_rejects_drift_before_models[epsilon]
+FAILED tests/test_sort_preview_binding.py::test_combined_receipt_rejects_drift_before_models[edges]
+FAILED tests/test_sort_preview_binding.py::test_combined_receipt_rejects_drift_before_models[selection]
+FAILED tests/test_sort_preview_binding.py::test_combined_receipt_rejects_drift_before_models[model]
+FAILED tests/test_sort_preview_binding.py::test_change_during_model_preflight_rejects_sort_without_state
+FAILED tests/test_sort_preview_binding.py::test_cli_receipt_roundtrip_and_missing_consent
+20 failed in 3.11s

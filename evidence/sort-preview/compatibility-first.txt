@@ -1,0 +1,195 @@
+........................F......s..................................F..... [  6%]
+..........................................s............................. [ 12%]
+.....FF................................................................. [ 18%]
+.........FF............................................................. [ 25%]
+.....................s.................................................. [ 31%]
+........................................................................ [ 37%]
+...................................................FF................... [ 43%]
+.....................F.................................................. [ 50%]
+.......................................................s................ [ 56%]
+........................................................................ [ 62%]
+........................................................................ [ 68%]
+....................s................................................... [ 75%]
+........................................................................ [ 81%]
+....ssss................................................................ [ 87%]
+................................................................F.....F. [ 93%]
+.............................FFFFF.......F.F...........................  [100%]
+================================== FAILURES ===================================
+____________ test_independent_sibling_preview_sort_and_exact_undo _____________
+tests\test_application_roots.py:81: in test_independent_sibling_preview_sort_and_exact_undo
+    assert job["state"] == "done", job
+E   AssertionError: {'id': '8f90b94a86f24855974f2a4fa7dee26e', 'state': 'error', 'phase': 'Stopped', 'cancellable': False, ...}
+E   assert 'error' == 'done'
+E     
+E     - done
+E     + error
+_____________________ test_browser_review[native_browser] _____________________
+tests\test_browser_review.py:51: in test_browser_review
+    assert result.returncode == 0, result.stdout + result.stderr
+E   AssertionError: Error: Browser command timed out: Page.navigate
+E         at Timeout._onTimeout (C:\Users\ryanf\github\_new\image-riposte\tests\browser_review.cjs:388:66)
+E         at listOnTimeout (node:internal/timers:605:17)
+E         at process.processTimers (node:internal/timers:541:7)
+E     
+E   assert 1 == 0
+E    +  where 1 = CompletedProcess(args=['C:\\nvm4w\\nodejs\\node.EXE', 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\tests\\browser_r...:66)\n    at listOnTimeout (node:internal/timers:605:17)\n    at process.processTimers (node:internal/timers:541:7)\n').returncode
+______ test_combined_propagates_exact_category_consent_before_protection ______
+tests\test_category_sort_interfaces.py:126: in test_combined_propagates_exact_category_consent_before_protection
+    result = execute(Request('sort-riposte', root, {**values, 'plan_id': p['sorting']['plan_id']}))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\riposte\terminal\service.py:206: in execute
+    raise RiposteError("SORT_PREVIEW_CHANGED")
+E   riposte.errors.RiposteError: SORT_PREVIEW_CHANGED
+________________________ test_category_browser_native _________________________
+tests\test_category_sort_interfaces.py:142: in test_category_browser_native
+    assert run.returncode == 0, run.stdout + run.stderr
+E   AssertionError: Error: Browser command timed out: Page.navigate
+E         at Timeout._onTimeout (C:\Users\ryanf\github\_new\image-riposte\tests\category_sort_browser.cjs:47:66)
+E         at listOnTimeout (node:internal/timers:605:17)
+E         at process.processTimers (node:internal/timers:541:7)
+E     
+E   assert 1 == 0
+E    +  where 1 = CompletedProcess(args=['C:\\nvm4w\\nodejs\\node.EXE', 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\tests\\category_...:66)\n    at listOnTimeout (node:internal/timers:605:17)\n    at process.processTimers (node:internal/timers:541:7)\n').returncode
+_____________ test_focus_uses_visible_form_fields[publish-False] ______________
+tests\test_linear_focus.py:15: in test_focus_uses_visible_form_fields
+    execute(Request('apply', root))
+src\riposte\terminal\service.py:164: in execute
+    return (organize if name == "apply" else plan)(
+src\riposte\organizer.py:128: in organize
+    reviewed_plan()  # Invalid consent must not initialize workspace state.
+    ^^^^^^^^^^^^^^^
+src\riposte\organizer.py:121: in reviewed_plan
+    raise RiposteError("CATEGORY_PREVIEW_REQUIRED" if categories else "SORT_PREVIEW_REQUIRED")
+E   riposte.errors.RiposteError: SORT_PREVIEW_REQUIRED
+______________ test_focus_uses_visible_form_fields[publish-True] ______________
+tests\test_linear_focus.py:15: in test_focus_uses_visible_form_fields
+    execute(Request('apply', root))
+src\riposte\terminal\service.py:164: in execute
+    return (organize if name == "apply" else plan)(
+src\riposte\organizer.py:128: in organize
+    reviewed_plan()  # Invalid consent must not initialize workspace state.
+    ^^^^^^^^^^^^^^^
+src\riposte\organizer.py:121: in reviewed_plan
+    raise RiposteError("CATEGORY_PREVIEW_REQUIRED" if categories else "SORT_PREVIEW_REQUIRED")
+E   riposte.errors.RiposteError: SORT_PREVIEW_REQUIRED
+______________ test_destination_numbering_scans_each_folder_once ______________
+tests\test_sort_partial_failures.py:131: in test_destination_numbering_scans_each_folder_once
+    assert iterations == 1
+E   assert 3 == 1
+________________ test_late_destination_collision_is_preserved _________________
+tests\test_sort_partial_failures.py:149: in test_late_destination_collision_is_preserved
+    assert result["counts"]["migrated"] == 2
+E   assert 1 == 2
+_________________ test_direct_cli_undo_previews_then_applies __________________
+tests\test_sort_recovery.py:229: in test_direct_cli_undo_previews_then_applies
+    assert runner.invoke(app, ["--json", "sort", str(root), "--apply"]).exit_code == 0
+E   AssertionError: assert 2 == 0
+E    +  where 2 = <Result SystemExit(2)>.exit_code
+E    +    where <Result SystemExit(2)> = invoke(<typer.main.Typer object at 0x00000156E61AB620>, ['--json', 'sort', 'C:\\Users\\ryanf\\AppData\\Local\\Temp\\pytest-of-ryanf\\pytest-493\\test_direct_cli_undo_previews_0\\workspace', '--apply'])
+E    +      where invoke = <typer.testing.CliRunner object at 0x00000156FA12B570>.invoke
+_____________ test_enter_select_i_inspect_and_space_compatibility _____________
+tests\test_v05_revision.py:55: in test_enter_select_i_inspect_and_space_compatibility
+    make_image(root/"input.png");execute(Request("apply",root))
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\riposte\terminal\service.py:164: in execute
+    return (organize if name == "apply" else plan)(
+src\riposte\organizer.py:128: in organize
+    reviewed_plan()  # Invalid consent must not initialize workspace state.
+    ^^^^^^^^^^^^^^^
+src\riposte\organizer.py:121: in reviewed_plan
+    raise RiposteError("CATEGORY_PREVIEW_REQUIRED" if categories else "SORT_PREVIEW_REQUIRED")
+E   riposte.errors.RiposteError: SORT_PREVIEW_REQUIRED
+____________ test_enter_from_migration_plan_still_requires_replace ____________
+tests\test_v05_revision.py:97: in test_enter_from_migration_plan_still_requires_replace
+    c.key(Key("enter"));assert c.state.page.confirm_word=="REPLACE" and c.state.operation is None
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   AssertionError: assert ('' == 'REPLACE'
+E     
+E     - REPLACE)
+__________ test_sort_alias_and_incremental_sort_never_run_protection __________
+tests\test_workflows.py:172: in test_sort_alias_and_incremental_sort_never_run_protection
+    assert cli.main(['--json', 'sort', str(root), '--apply', '--date-mode', 'modified']) == 0
+E   AssertionError: assert 2 == 0
+E    +  where 2 = <function main at 0x00000156E62A81A0>(['--json', 'sort', 'C:\\Users\\ryanf\\AppData\\Local\\Temp\\pytest-of-ryanf\\pytest-493\\test_sort_alias_and_incrementa0\\workspace', '--apply', '--date-mode', 'modified'])
+E    +    where <function main at 0x00000156E62A81A0> = cli.main
+---------------------------- Captured stderr call -----------------------------
+{"error": "SORT_PREVIEW_REQUIRED"}
+_______ test_combined_default_is_preview_and_missing_model_cannot_sort ________
+tests\test_workflows.py:192: in test_combined_default_is_preview_and_missing_model_cannot_sort
+    assert json.loads(capsys.readouterr().err)['error'] == 'NO_MODEL_NO_PROTECTION'
+E   AssertionError: assert 'SORT_PREVIEW_REQUIRED' == 'NO_MODEL_NO_PROTECTION'
+E     
+E     - NO_MODEL_NO_PROTECTION
+E     + SORT_PREVIEW_REQUIRED
+___________________ test_combined_success_loads_models_once ___________________
+tests\test_workflows.py:198: in test_combined_success_loads_models_once
+    result = execute(Request('sort-riposte', root, values(all_images=True, date_mode='modified')))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\riposte\terminal\service.py:204: in execute
+    raise RiposteError("SORT_PREVIEW_REQUIRED")
+E   riposte.errors.RiposteError: SORT_PREVIEW_REQUIRED
+________ test_combined_blockers_do_not_start_models_or_modify_sources _________
+tests\test_workflows.py:209: in test_combined_blockers_do_not_start_models_or_modify_sources
+    result = execute(Request('sort-riposte', root, values(all_images=True)))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\riposte\terminal\service.py:204: in execute
+    raise RiposteError("SORT_PREVIEW_REQUIRED")
+E   riposte.errors.RiposteError: SORT_PREVIEW_REQUIRED
+_______________ test_combined_incomplete_sort_stops_protection ________________
+tests\test_workflows.py:222: in test_combined_incomplete_sort_stops_protection
+    result = execute(Request('sort-riposte', root, values(all_images=True)))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\riposte\terminal\service.py:204: in execute
+    raise RiposteError("SORT_PREVIEW_REQUIRED")
+E   riposte.errors.RiposteError: SORT_PREVIEW_REQUIRED
+________ test_cli_standalone_and_combined_use_real_publication_service ________
+tests\test_workflows.py:317: in test_cli_standalone_and_combined_use_real_publication_service
+    assert cli.main(['--json', 'sort-riposte', str(root), '--all', '--apply', *args]) == 0
+E   AssertionError: assert 2 == 0
+E    +  where 2 = <function main at 0x00000156E62A81A0>(['--json', 'sort-riposte', 'C:\\Users\\ryanf\\AppData\\Local\\Temp\\pytest-of-ryanf\\pytest-493\\test_cli_standalone_and_combin0\\workspace', '--all', '--apply', '--vae', ...])
+E    +    where <function main at 0x00000156E62A81A0> = cli.main
+---------------------------- Captured stderr call -----------------------------
+{"error": "SORT_PREVIEW_REQUIRED"}
+_________ test_combined_protection_failure_retains_sort_and_can_retry _________
+tests\test_workflows.py:336: in test_combined_protection_failure_retains_sort_and_can_retry
+    result = execute(Request('sort-riposte', root, values(all_images=True)))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\riposte\terminal\service.py:204: in execute
+    raise RiposteError("SORT_PREVIEW_REQUIRED")
+E   riposte.errors.RiposteError: SORT_PREVIEW_REQUIRED
+============================== warnings summary ===============================
+.venv\Lib\site-packages\fastapi\testclient.py:1
+  C:\Users\ryanf\github\_new\image-riposte\.venv\Lib\site-packages\fastapi\testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    from starlette.testclient import TestClient as TestClient  # noqa
+
+.venv\Lib\site-packages\starlette\testclient.py:53
+  C:\Users\ryanf\github\_new\image-riposte\.venv\Lib\site-packages\starlette\testclient.py:53: DeprecationWarning: The anyio.abc.BlockingPortal alias is deprecated, use anyio.from_thread.BlockingPortal instead.
+    _PortalFactoryType = Callable[[], AbstractContextManager[anyio.abc.BlockingPortal]]
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ===========================
+SKIPPED [1] tests\test_application_roots.py:138: Windows symlink privilege unavailable; junction exercised separately
+SKIPPED [1] tests\test_category_rules.py:185: symlinks unavailable
+SKIPPED [1] tests\test_organizer.py:80: Symlinks unavailable
+SKIPPED [1] tests\test_v02_models.py:38: Windows symlink creation privilege unavailable
+SKIPPED [1] tests\test_v03_temporal.py:134: Windows account lacks symlink privilege
+SKIPPED [4] tests\test_v04_terminal_host.py:8: POSIX pseudo-terminal contract
+FAILED tests/test_application_roots.py::test_independent_sibling_preview_sort_and_exact_undo
+FAILED tests/test_browser_review.py::test_browser_review[native_browser] - As...
+FAILED tests/test_category_sort_interfaces.py::test_combined_propagates_exact_category_consent_before_protection
+FAILED tests/test_category_sort_interfaces.py::test_category_browser_native
+FAILED tests/test_linear_focus.py::test_focus_uses_visible_form_fields[publish-False]
+FAILED tests/test_linear_focus.py::test_focus_uses_visible_form_fields[publish-True]
+FAILED tests/test_sort_partial_failures.py::test_destination_numbering_scans_each_folder_once
+FAILED tests/test_sort_partial_failures.py::test_late_destination_collision_is_preserved
+FAILED tests/test_sort_recovery.py::test_direct_cli_undo_previews_then_applies
+FAILED tests/test_v05_revision.py::test_enter_select_i_inspect_and_space_compatibility
+FAILED tests/test_v05_revision.py::test_enter_from_migration_plan_still_requires_replace
+FAILED tests/test_workflows.py::test_sort_alias_and_incremental_sort_never_run_protection
+FAILED tests/test_workflows.py::test_combined_default_is_preview_and_missing_model_cannot_sort
+FAILED tests/test_workflows.py::test_combined_success_loads_models_once - rip...
+FAILED tests/test_workflows.py::test_combined_blockers_do_not_start_models_or_modify_sources
+FAILED tests/test_workflows.py::test_combined_incomplete_sort_stops_protection
+FAILED tests/test_workflows.py::test_cli_standalone_and_combined_use_real_publication_service
+FAILED tests/test_workflows.py::test_combined_protection_failure_retains_sort_and_can_retry
+18 failed, 1124 passed, 9 skipped, 2 warnings in 122.73s (0:02:02)

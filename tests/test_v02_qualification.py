@@ -1,3 +1,4 @@
+from riposte.organizer import plan as _sort_preview
 import json
 import numpy as np
 import pytest
@@ -57,7 +58,7 @@ def test_nonfinite_encoder_rejected():
 
 @pytest.fixture
 def trial(root,tmp_path,make_image):
-    make_image(root/'a.png',size=(32,24));organize(root,Policy(date_mode='modified'))
+    make_image(root/'a.png',size=(32,24));organize(root,Policy(date_mode='modified'), plan_id=_sort_preview(root, Policy(date_mode='modified'))["plan_id"])
     other=make_image(tmp_path/'other.png',size=(32,24),color=(32,92,152))
     return compare_external(root,catalog(root)[0]['id'],other)
 

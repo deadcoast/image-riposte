@@ -1,0 +1,44 @@
+{
+  "result": "PASS",
+  "version": "0.5.0",
+  "application_files": 66,
+  "checks": {
+    "source": {
+      "kontext_local_loader_conditioning_and_packets": "PASS",
+      "reviewer_panel_packet_response_agreement": "PASS",
+      "cohort_commit_generation_review_bounds": "PASS",
+      "committed_experiment_packet_review": "PASS",
+      "shared_view_production_solver": "PASS",
+      "typed_record_defaults_and_keys": "PASS",
+      "indexed_lookup": "PASS",
+      "owned_and_external_commits": "PASS",
+      "catalog_audit": "PASS",
+      "ordinary_cli": "PASS",
+      "stale_no_initial_state": "PASS",
+      "api": "PASS",
+      "exact_undo": "PASS",
+      "combined_receipt_and_model_gate": "PASS"
+    },
+    "installed": {
+      "kontext_local_loader_conditioning_and_packets": "PASS",
+      "reviewer_panel_packet_response_agreement": "PASS",
+      "cohort_commit_generation_review_bounds": "PASS",
+      "committed_experiment_packet_review": "PASS",
+      "shared_view_production_solver": "PASS",
+      "typed_record_defaults_and_keys": "PASS",
+      "indexed_lookup": "PASS",
+      "owned_and_external_commits": "PASS",
+      "catalog_audit": "PASS",
+      "ordinary_cli": "PASS",
+      "stale_no_initial_state": "PASS",
+      "api": "PASS",
+      "exact_undo": "PASS",
+      "combined_receipt_and_model_gate": "PASS"
+    }
+  },
+  "artifact_sha256": {
+    "riposte_studio-0.5.0-py3-none-any.whl": "c81d53286d9a6663d8a8d96d123c20199208d84211e6119d1fa9b68bad2af98c",
+    "riposte_studio-0.5.0.tar.gz": "a05ac29b4f7a6a47c4835faa1fd2544f3edfe7a0c420ed4052dc85b7acee96f9"
+  },
+  "scope": "Fresh source/sdist/wheel/isolated-target equality, fixed Kontext loader/conditioning/packet, reviewer panel/packet/response/agreement, committed cohort/generation/primary-review/bounds and experiment/packet/review workflows with synthetic generators and real shared-view production solver with synthetic encoder, record defaults/optional keys, indexed lookup, owned/external revision checks, audit and CLI/API/service preview/apply/exact-undo checks. Combined missing/stale receipt and missing-model gates. Existing Windows dependencies; not clean bootstrap, real-model execution or native Linux/macOS qualification."
+}

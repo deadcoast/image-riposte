@@ -29,6 +29,15 @@ Positive values mean component displacement, not inability to recognize or reuse
 
 A frozen clean reference is held on CPU. Each update scores all contexts without retaining their graphs, computes detached soft-min weights `softmax(-d / max(mean(abs(d)),1e-6))`, and then recomputes each branch's gradient individually. A DCT frequency weighting modifies the combined search direction. It does not impose a strict frequency-support constraint on the final image. The projected sign step is bounded by the shared spatial map.
 
+PCUC-001 now shares each deterministic view across its contexts. Branch gradients
+are accumulated in view coordinates, followed by one vector-Jacobian product
+through that view. Reference preparation and scoring also construct each view
+once. Model graphs remain sequential; no dense Jacobian or persistent input cache
+is introduced. Exact chain-rule equivalence assumes deterministic, non-mutating
+context callbacks and fixed detached weights; floating-point summation order can
+change near-zero signs. The existing search, fidelity and eligibility rules below
+remain in force. See [derivation and measured limits](../evidence/pcuc-shared-views/README.md).
+
 ## Restarts, candidate selection and refusal
 
 Each restart has a deterministic CPU-seeded random initialization inside C(x). The initializer is only a search starting point and cannot become an output. A checked iterate is eligible only if:

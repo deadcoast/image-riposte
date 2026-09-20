@@ -1,0 +1,58 @@
+FFFFFF....FF......                                                       [100%]
+================================== FAILURES ===================================
+______ test_catalog_rows_scale_with_collection_not_its_square[audit-16] _______
+tests\test_catalog_scaling.py:77: in test_catalog_rows_scale_with_collection_not_its_square
+    assert reads["rows"] <= (12 if operation == "apply" else 2 if operation == "audit" else 1) * count, reads
+E   AssertionError: {'rows': 272, 'bytes': 104560, 'selects': 17}
+E   assert 272 <= (2 * 16)
+______ test_catalog_rows_scale_with_collection_not_its_square[audit-32] _______
+tests\test_catalog_scaling.py:77: in test_catalog_rows_scale_with_collection_not_its_square
+    assert reads["rows"] <= (12 if operation == "apply" else 2 if operation == "audit" else 1) * count, reads
+E   AssertionError: {'rows': 1056, 'bytes': 412384, 'selects': 33}
+E   assert 1056 <= (2 * 32)
+______ test_catalog_rows_scale_with_collection_not_its_square[lookup-16] ______
+tests\test_catalog_scaling.py:77: in test_catalog_rows_scale_with_collection_not_its_square
+    assert reads["rows"] <= (12 if operation == "apply" else 2 if operation == "audit" else 1) * count, reads
+E   AssertionError: {'rows': 256, 'bytes': 49408, 'selects': 16}
+E   assert 256 <= (1 * 16)
+______ test_catalog_rows_scale_with_collection_not_its_square[lookup-32] ______
+tests\test_catalog_scaling.py:77: in test_catalog_rows_scale_with_collection_not_its_square
+    assert reads["rows"] <= (12 if operation == "apply" else 2 if operation == "audit" else 1) * count, reads
+E   AssertionError: {'rows': 1024, 'bytes': 197632, 'selects': 32}
+E   assert 1024 <= (1 * 32)
+______ test_catalog_rows_scale_with_collection_not_its_square[apply-16] _______
+tests\test_catalog_scaling.py:77: in test_catalog_rows_scale_with_collection_not_its_square
+    assert reads["rows"] <= (12 if operation == "apply" else 2 if operation == "audit" else 1) * count, reads
+E   AssertionError: {'rows': 640, 'bytes': 188600, 'selects': 40}
+E   assert 640 <= (12 * 16)
+______ test_catalog_rows_scale_with_collection_not_its_square[apply-32] _______
+tests\test_catalog_scaling.py:77: in test_catalog_rows_scale_with_collection_not_its_square
+    assert reads["rows"] <= (12 if operation == "apply" else 2 if operation == "audit" else 1) * count, reads
+E   AssertionError: {'rows': 2304, 'bytes': 679320, 'selects': 72}
+E   assert 2304 <= (12 * 32)
+_ test_external_commit_during_apply_cannot_be_hidden_by_own_writes[video-False] _
+tests\test_catalog_scaling.py:99: in test_external_commit_during_apply_cannot_be_hidden_by_own_writes
+    assert fired and result["checkpoint"] == "INCOMPLETE"
+E   AssertionError: assert (True and 'COMPLETE' == 'INCOMPLETE'
+E     
+E     - INCOMPLETE
+E     ? --
+E     + COMPLETE)
+_ test_external_commit_during_apply_cannot_be_hidden_by_own_writes[video-True] _
+tests\test_catalog_scaling.py:99: in test_external_commit_during_apply_cannot_be_hidden_by_own_writes
+    assert fired and result["checkpoint"] == "INCOMPLETE"
+E   AssertionError: assert (True and 'COMPLETE' == 'INCOMPLETE'
+E     
+E     - INCOMPLETE
+E     ? --
+E     + COMPLETE)
+=========================== short test summary info ===========================
+FAILED tests/test_catalog_scaling.py::test_catalog_rows_scale_with_collection_not_its_square[audit-16]
+FAILED tests/test_catalog_scaling.py::test_catalog_rows_scale_with_collection_not_its_square[audit-32]
+FAILED tests/test_catalog_scaling.py::test_catalog_rows_scale_with_collection_not_its_square[lookup-16]
+FAILED tests/test_catalog_scaling.py::test_catalog_rows_scale_with_collection_not_its_square[lookup-32]
+FAILED tests/test_catalog_scaling.py::test_catalog_rows_scale_with_collection_not_its_square[apply-16]
+FAILED tests/test_catalog_scaling.py::test_catalog_rows_scale_with_collection_not_its_square[apply-32]
+FAILED tests/test_catalog_scaling.py::test_external_commit_during_apply_cannot_be_hidden_by_own_writes[video-False]
+FAILED tests/test_catalog_scaling.py::test_external_commit_during_apply_cannot_be_hidden_by_own_writes[video-True]
+8 failed, 10 passed in 8.95s

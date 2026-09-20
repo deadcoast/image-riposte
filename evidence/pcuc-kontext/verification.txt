@@ -1,0 +1,8 @@
+{
+  "identity": "PASS",
+  "study": "PCUC-005",
+  "result": "LOCAL_KONTEXT_BACKEND_AND_GEOMETRY_VERIFIED",
+  "milestone": "OPEN",
+  "PAC-034": "SHELVED",
+  "frozen_registers_unchanged": true
+}

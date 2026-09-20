@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="8" skipped="0" tests="18" time="7.996" timestamp="2026-09-18T19:48:47.867064-07:00" hostname="homeone"><testcase classname="tests.test_catalog_scaling" name="test_catalog_rows_scale_with_collection_not_its_square[audit-16]" time="0.649"><failure message="AssertionError: {'rows': 272, 'bytes': 104560, 'selects': 17}&#10;assert 272 &lt;= (2 * 16)">tests\test_catalog_scaling.py:77: in test_catalog_rows_scale_with_collection_not_its_square
+    assert reads["rows"] &lt;= (12 if operation == "apply" else 2 if operation == "audit" else 1) * count, reads
+E   AssertionError: {'rows': 272, 'bytes': 104560, 'selects': 17}
+E   assert 272 &lt;= (2 * 16)</failure></testcase><testcase classname="tests.test_catalog_scaling" name="test_catalog_rows_scale_with_collection_not_its_square[audit-32]" time="1.102"><failure message="AssertionError: {'rows': 1056, 'bytes': 412384, 'selects': 33}&#10;assert 1056 &lt;= (2 * 32)">tests\test_catalog_scaling.py:77: in test_catalog_rows_scale_with_collection_not_its_square
+    assert reads["rows"] &lt;= (12 if operation == "apply" else 2 if operation == "audit" else 1) * count, reads
+E   AssertionError: {'rows': 1056, 'bytes': 412384, 'selects': 33}
+E   assert 1056 &lt;= (2 * 32)</failure></testcase><testcase classname="tests.test_catalog_scaling" name="test_catalog_rows_scale_with_collection_not_its_square[lookup-16]" time="0.572"><failure message="AssertionError: {'rows': 256, 'bytes': 49408, 'selects': 16}&#10;assert 256 &lt;= (1 * 16)">tests\test_catalog_scaling.py:77: in test_catalog_rows_scale_with_collection_not_its_square
+    assert reads["rows"] &lt;= (12 if operation == "apply" else 2 if operation == "audit" else 1) * count, reads
+E   AssertionError: {'rows': 256, 'bytes': 49408, 'selects': 16}
+E   assert 256 &lt;= (1 * 16)</failure></testcase><testcase classname="tests.test_catalog_scaling" name="test_catalog_rows_scale_with_collection_not_its_square[lookup-32]" time="1.078"><failure message="AssertionError: {'rows': 1024, 'bytes': 197632, 'selects': 32}&#10;assert 1024 &lt;= (1 * 32)">tests\test_catalog_scaling.py:77: in test_catalog_rows_scale_with_collection_not_its_square
+    assert reads["rows"] &lt;= (12 if operation == "apply" else 2 if operation == "audit" else 1) * count, reads
+E   AssertionError: {'rows': 1024, 'bytes': 197632, 'selects': 32}
+E   assert 1024 &lt;= (1 * 32)</failure></testcase><testcase classname="tests.test_catalog_scaling" name="test_catalog_rows_scale_with_collection_not_its_square[apply-16]" time="0.803"><failure message="AssertionError: {'rows': 640, 'bytes': 188600, 'selects': 40}&#10;assert 640 &lt;= (12 * 16)">tests\test_catalog_scaling.py:77: in test_catalog_rows_scale_with_collection_not_its_square
+    assert reads["rows"] &lt;= (12 if operation == "apply" else 2 if operation == "audit" else 1) * count, reads
+E   AssertionError: {'rows': 640, 'bytes': 188600, 'selects': 40}
+E   assert 640 &lt;= (12 * 16)</failure></testcase><testcase classname="tests.test_catalog_scaling" name="test_catalog_rows_scale_with_collection_not_its_square[apply-32]" time="1.499"><failure message="AssertionError: {'rows': 2304, 'bytes': 679320, 'selects': 72}&#10;assert 2304 &lt;= (12 * 32)">tests\test_catalog_scaling.py:77: in test_catalog_rows_scale_with_collection_not_its_square
+    assert reads["rows"] &lt;= (12 if operation == "apply" else 2 if operation == "audit" else 1) * count, reads
+E   AssertionError: {'rows': 2304, 'bytes': 679320, 'selects': 72}
+E   assert 2304 &lt;= (12 * 32)</failure></testcase><testcase classname="tests.test_catalog_scaling" name="test_external_commit_during_apply_cannot_be_hidden_by_own_writes[image-False]" time="0.201" /><testcase classname="tests.test_catalog_scaling" name="test_external_commit_during_apply_cannot_be_hidden_by_own_writes[image-True]" time="0.203" /><testcase classname="tests.test_catalog_scaling" name="test_external_commit_during_apply_cannot_be_hidden_by_own_writes[title-False]" time="0.198" /><testcase classname="tests.test_catalog_scaling" name="test_external_commit_during_apply_cannot_be_hidden_by_own_writes[title-True]" time="0.207" /><testcase classname="tests.test_catalog_scaling" name="test_external_commit_during_apply_cannot_be_hidden_by_own_writes[video-False]" time="0.286"><failure message="AssertionError: assert (True and 'COMPLETE' == 'INCOMPLETE'&#10;  &#10;  - INCOMPLETE&#10;  ? --&#10;  + COMPLETE)">tests\test_catalog_scaling.py:99: in test_external_commit_during_apply_cannot_be_hidden_by_own_writes
+    assert fired and result["checkpoint"] == "INCOMPLETE"
+E   AssertionError: assert (True and 'COMPLETE' == 'INCOMPLETE'
+E     
+E     - INCOMPLETE
+E     ? --
+E     + COMPLETE)</failure></testcase><testcase classname="tests.test_catalog_scaling" name="test_external_commit_during_apply_cannot_be_hidden_by_own_writes[video-True]" time="0.297"><failure message="AssertionError: assert (True and 'COMPLETE' == 'INCOMPLETE'&#10;  &#10;  - INCOMPLETE&#10;  ? --&#10;  + COMPLETE)">tests\test_catalog_scaling.py:99: in test_external_commit_during_apply_cannot_be_hidden_by_own_writes
+    assert fired and result["checkpoint"] == "INCOMPLETE"
+E   AssertionError: assert (True and 'COMPLETE' == 'INCOMPLETE'
+E     
+E     - INCOMPLETE
+E     ? --
+E     + COMPLETE)</failure></testcase><testcase classname="tests.test_catalog_scaling" name="test_external_commit_during_apply_cannot_be_hidden_by_own_writes[remove-False]" time="0.195" /><testcase classname="tests.test_catalog_scaling" name="test_external_commit_during_apply_cannot_be_hidden_by_own_writes[remove-True]" time="0.207" /><testcase classname="tests.test_catalog_scaling" name="test_indexed_lookup_keeps_selected_file_integrity[missing]" time="0.105" /><testcase classname="tests.test_catalog_scaling" name="test_indexed_lookup_keeps_selected_file_integrity[bytes]" time="0.113" /><testcase classname="tests.test_catalog_scaling" name="test_indexed_lookup_keeps_selected_file_integrity[path]" time="0.110" /><testcase classname="tests.test_catalog_scaling" name="test_missing_lookup_is_readonly" time="0.002" /></testsuite></testsuites>

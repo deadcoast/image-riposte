@@ -1,0 +1,32 @@
+{
+  "result": "PASS",
+  "version": "0.5.0",
+  "application_files": 59,
+  "checks": {
+    "source": {
+      "indexed_lookup": "PASS",
+      "owned_and_external_commits": "PASS",
+      "catalog_audit": "PASS",
+      "ordinary_cli": "PASS",
+      "stale_no_initial_state": "PASS",
+      "api": "PASS",
+      "exact_undo": "PASS",
+      "combined_receipt_and_model_gate": "PASS"
+    },
+    "installed": {
+      "indexed_lookup": "PASS",
+      "owned_and_external_commits": "PASS",
+      "catalog_audit": "PASS",
+      "ordinary_cli": "PASS",
+      "stale_no_initial_state": "PASS",
+      "api": "PASS",
+      "exact_undo": "PASS",
+      "combined_receipt_and_model_gate": "PASS"
+    }
+  },
+  "artifact_sha256": {
+    "riposte_studio-0.5.0-py3-none-any.whl": "b4a224499d6a1207bee0bb429268f3784da805184ebb8e534b5884068ac53fa7",
+    "riposte_studio-0.5.0.tar.gz": "b47805e2a0b6f772e3833718b8f501091535cc124b0be5faaed4b739623da0e8"
+  },
+  "scope": "Fresh source/sdist/wheel/isolated-target equality and real indexed lookup, owned/external revision checks, audit and CLI/API/service preview/apply/exact-undo checks. Combined missing/stale receipt and missing-model gates. Existing Windows dependencies; not clean bootstrap, real-model execution or native Linux/macOS qualification."
+}

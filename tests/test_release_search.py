@@ -1,4 +1,5 @@
 """Production search regressions using actual gradients, codec views and quality gates."""
+from riposte.organizer import plan as _sort_preview
 from dataclasses import replace
 import io
 import json
@@ -98,7 +99,7 @@ def test_publishing_uses_recovered_exact_pixels(root, make_image, monkeypatch):
     from riposte.store import catalog, state_relative
 
     make_image(root / "art.png", size=(32, 32), color=(90, 120, 150))
-    organize(root, Policy(date_mode="modified"))
+    organize(root, Policy(date_mode="modified"), plan_id=_sort_preview(root, Policy(date_mode="modified"))["plan_id"])
     master = catalog(root)[0]
     master_path = root / master["relative"]
     original = master_path.read_bytes()

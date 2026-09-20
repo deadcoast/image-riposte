@@ -1,0 +1,31 @@
+"""Static source consumers only; never execute these filesystem operations."""
+from pathlib import Path
+from typing import assert_type
+from riposte.records import CatalogRow, ImageInfo, PngAudit, Progress, ProgressEvent, RequestValues
+from riposte.publication import PublishRecipe
+from riposte.sanitize import png_audit
+from riposte.store import find_image, record_image
+from riposte.terminal.jobs import Operation
+from riposte.terminal.service import Request, _paths, recipe, view_image
+
+root = Path("unused-static-workspace")
+options: RequestValues = {"categories": True, "assignments": ["hockey.png=hockey"],
+                          "category_specs": ["Hockey=hockey"], "sort_id": None,
+                          "image_ids": ["a" * 32], "vae_dirs": [Path("model")], "epsilon": 4}
+assert_type(_paths(options), list[Path])
+assert_type(recipe(options), PublishRecipe)
+audit = png_audit(b"static input")
+assert_type(audit, PngAudit)
+assert_type(record_image(root, "relative", audit, 100, "filesystem_modified"), CatalogRow)
+assert_type(find_image(root, "a" * 32)["width"], int)
+assert_type(view_image(root, {"image_id": "a" * 32}), ImageInfo)
+
+
+def work(request: Request, progress: Progress) -> object:
+    event: ProgressEvent = {"phase": "Checking", "processed": 1, "total": 2}
+    progress(event)
+    return {"checkpoint": "COMPLETE"}
+
+
+worker = Operation(Request("doctor"), work)
+assert_type(worker.join(), object)

@@ -1,0 +1,8 @@
+Observed first POSIX probe failure (2026-09-18):
+Command: wsl --distribution Ubuntu --exec python3 /mnt/c/Users/ryanf/github/_new/image-riposte/evidence/workspace-lease/posix_probe.py
+The nested/live-owner/killed-owner checks finished; the optional rename case raised
+PermissionError: [Errno 13] Permission denied while renaming a directory containing
+an open lease on the Windows-backed /mnt/c mount.
+This exercised the abandoned in-directory design, not the final root lease.
+The probe was corrected to hold the root lease while renaming adjacent state,
+matching production. The final result is separately recorded in posix.json.

@@ -39,6 +39,10 @@ class Presentation:
 
 
 RECOVERY = {
+    "SORT_PREVIEW_REQUIRED": "Preview this sort first, then apply with its plan ID. In the terminal, inspect and confirm the displayed plan.",
+    "SORT_PREVIEW_CHANGED": "Files, destinations or settings changed. Inspect again and confirm the refreshed plan before sorting.",
+    "IMAGE_FOLDER_OVERLAPS_APPLICATION": "Choose an image/results folder separate from the RIPOSTE application folder, outside it and its parents.",
+    "APPLICATION_LAYOUT_INVALID": "RIPOSTE could not verify its source checkout configuration. Restore pyproject.toml before selecting an image/results folder.",
     "VIDEO_PROBE_UNAVAILABLE": "Video sorting needs ffprobe from FFmpeg on PATH. Image-only sorting works without it.",
     "VIDEO_PROBE_FAILED": "This video could not be read. Its original stays in place; inspect or repair it separately.",
     "NO_SORT_TO_UNDO": "No recorded sort is available. Sorts made before undo history was introduced cannot be restored by this application.",

@@ -1,0 +1,1 @@
+First diff artifact write failed with UnicodeEncodeError for U+2713 under the Windows cp1252 default. No application file was changed. Corrected to explicit UTF-8 and raw-byte changed-file selection, with newline normalization only for the display diff.

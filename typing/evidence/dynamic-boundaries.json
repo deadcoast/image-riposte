@@ -1,37 +1,37 @@
 [
   {
     "file": "typing/stubs/_riposte_types.pyi",
-    "line": 12,
+    "line": 14,
     "declaration": "Report: TypeAlias = dict[str, Any]"
   },
   {
     "file": "typing/stubs/_riposte_types.pyi",
-    "line": 13,
+    "line": 15,
     "declaration": "ModelTensor: TypeAlias = Any"
   },
   {
     "file": "typing/stubs/_riposte_types.pyi",
-    "line": 54,
-    "declaration": "files: NotRequired[list[dict[str, Any]]]"
+    "line": 30,
+    "declaration": "files: list[dict[str, Any]]"
   },
   {
     "file": "typing/stubs/_riposte_types.pyi",
-    "line": 206,
+    "line": 182,
     "declaration": "recipe: Report"
   },
   {
     "file": "typing/stubs/_riposte_types.pyi",
-    "line": 274,
+    "line": 200,
     "declaration": "def __call__(self, x: ModelTensor, /) -> ModelTensor:"
   },
   {
     "file": "typing/stubs/_riposte_types.pyi",
-    "line": 279,
+    "line": 205,
     "declaration": "def __call__(self, x: ModelTensor, keep: ModelTensor, seed: int, early_fraction: float, prompt_key: str, /) -> ModelTensor:"
   },
   {
     "file": "typing/stubs/_riposte_types.pyi",
-    "line": 283,
+    "line": 209,
     "declaration": "def __call__(self, x: ModelTensor, seed: int, /) -> ModelTensor:"
   },
   {
@@ -85,9 +85,14 @@
     "declaration": "def category_plan(root: Path, policy: Policy, *, assignments: Sequence[str]=..., progress: Callable[[dict[str, Any]], None] | None=...) -> dict[str, Any]:"
   },
   {
-    "file": "typing/stubs/riposte/cli.pyi",
-    "line": 71,
-    "declaration": "def dispatch(ctx: typer.Context, name: str, root: Path | None=None, **values: Any) -> None:"
+    "file": "typing/stubs/riposte/context_graph.pyi",
+    "line": 11,
+    "declaration": "def context_values(pixels: ModelTensor, names: Sequence[str], evaluate: ContextScore, progress: ContextProgress | None=None) -> list[float]:"
+  },
+  {
+    "file": "typing/stubs/riposte/context_graph.pyi",
+    "line": 13,
+    "declaration": "def context_gradient(candidate: ModelTensor, names: Sequence[str], values: Sequence[float], evaluate: ContextScore, progress: ContextProgress | None=None) -> ModelTensor:"
   },
   {
     "file": "typing/stubs/riposte/coupled.pyi",
@@ -97,37 +102,32 @@
   {
     "file": "typing/stubs/riposte/coupled.pyi",
     "line": 38,
+    "declaration": "def _view_features(viewed: ModelTensor, branch: Branch, encoders: list[EncoderT], probe: InpaintProbe | None) -> ModelTensor:"
+  },
+  {
+    "file": "typing/stubs/riposte/coupled.pyi",
+    "line": 40,
     "declaration": "def protect_coupled(image: Image.Image, encoders: list[EncoderT], config: CoupledConfig=..., probe: InpaintProbe | None=None, progress: _Progress | None=None) -> tuple[_Image, Report]:"
   },
   {
     "file": "typing/stubs/riposte/generation.pyi",
-    "line": 35,
+    "line": 39,
     "declaration": "def controlled_generation(root: Path, trial_id: str, model_dir: Path, task: str='edit', seeds: tuple[int, ...]=(7, 19), views: tuple[str, ...]=('identity', 'jpeg70'), steps: int=25, progress: _Progress | None=None) -> dict[str, Any]:"
   },
   {
     "file": "typing/stubs/riposte/generation.pyi",
-    "line": 37,
-    "declaration": "def _execute(root: Path, trial: Report, pair: dict[str, _Image], generator: LocalGenerator, task: str, seeds: tuple[int, ...], views: tuple[str, ...], steps: int, progress: _Progress | None) -> Report:"
-  },
-  {
-    "file": "typing/stubs/riposte/generation.pyi",
-    "line": 39,
+    "line": 43,
     "declaration": "def generation_report(root: Path, identifier: str) -> dict[str, Any]:"
   },
   {
     "file": "typing/stubs/riposte/generation.pyi",
-    "line": 41,
+    "line": 45,
     "declaration": "def generation_runs(root: Path, trial_id: str) -> list[dict[str, Any]]:"
   },
   {
     "file": "typing/stubs/riposte/generation.pyi",
-    "line": 20,
+    "line": 24,
     "declaration": "pipeline: Any"
-  },
-  {
-    "file": "typing/stubs/riposte/generation.pyi",
-    "line": 22,
-    "declaration": "identity: Report"
   },
   {
     "file": "typing/stubs/riposte/intake.pyi",
@@ -336,12 +336,12 @@
   },
   {
     "file": "typing/stubs/riposte/release_guard.pyi",
-    "line": 25,
+    "line": 27,
     "declaration": "def temporal_energy(frames: ModelTensor) -> ModelTensor:"
   },
   {
     "file": "typing/stubs/riposte/release_guard.pyi",
-    "line": 27,
+    "line": 29,
     "declaration": "def protect_release(image: Image.Image, encoders: list[EncoderT], config: ReleaseConfig=..., limits: QualityLimits=..., probe: InpaintProbe | None=None, temporal: TemporalProbe | None=None, progress: _Progress | None=None) -> tuple[_Image, Report]:"
   },
   {
@@ -386,43 +386,58 @@
   },
   {
     "file": "typing/stubs/riposte/sort_history.pyi",
-    "line": 9,
+    "line": 10,
     "declaration": "def _save(root: Path, journal: Report) -> None:"
   },
   {
     "file": "typing/stubs/riposte/sort_history.pyi",
-    "line": 11,
+    "line": 12,
     "declaration": "def latest_sort(root: Path) -> Report | None:"
   },
   {
     "file": "typing/stubs/riposte/sort_history.pyi",
-    "line": 25,
+    "line": 26,
     "declaration": "def _check(root: Path, journal: Report) -> UndoSortReport:"
   },
   {
     "file": "typing/stubs/riposte/sort_history.pyi",
-    "line": 17,
+    "line": 18,
     "declaration": "journal: Report"
   },
   {
     "file": "typing/stubs/riposte/sort_history.pyi",
-    "line": 19,
-    "declaration": "def record_title(self, row: Report) -> None:"
-  },
-  {
-    "file": "typing/stubs/riposte/sort_history.pyi",
     "line": 20,
-    "declaration": "def prepare(self, source: Path, output: str | None, expected: Report | None, media: str, before_row: CatalogRow | None=...) -> Report:"
+    "declaration": "def record_title(self, row: Report, *, db: sqlite3.Connection | None=...) -> None:"
   },
   {
     "file": "typing/stubs/riposte/sort_history.pyi",
     "line": 21,
-    "declaration": "def reject_output(self, entry: Report) -> None:"
+    "declaration": "def prepare(self, source: Path, output: str | None, expected: Report | None, media: str, before_row: CatalogRow | None=...) -> Report:"
   },
   {
     "file": "typing/stubs/riposte/sort_history.pyi",
     "line": 22,
+    "declaration": "def reject_output(self, entry: Report) -> None:"
+  },
+  {
+    "file": "typing/stubs/riposte/sort_history.pyi",
+    "line": 23,
     "declaration": "def remove_source(self, entry: Report) -> None:"
+  },
+  {
+    "file": "typing/stubs/riposte/sort_plan.pyi",
+    "line": 14,
+    "declaration": "def receipt(basis: dict[str, Any]) -> str:"
+  },
+  {
+    "file": "typing/stubs/riposte/sort_plan.pyi",
+    "line": 15,
+    "declaration": "def verify_sort_source(root: Path, item: dict[str, Any]) -> None:"
+  },
+  {
+    "file": "typing/stubs/riposte/sort_plan.pyi",
+    "line": 16,
+    "declaration": "def ordinary_plan(root: Path, policy: Policy, progress: Callable[[dict[str, Any]], None] | None=...) -> dict[str, Any]:"
   },
   {
     "file": "typing/stubs/riposte/sort_titles.pyi",
@@ -447,7 +462,7 @@
   {
     "file": "typing/stubs/riposte/sort_titles.pyi",
     "line": 13,
-    "declaration": "def save_title(root: Path, row: dict[str, Any]) -> None:"
+    "declaration": "def save_title(root: Path, row: dict[str, Any], *, db: sqlite3.Connection | None=...) -> None:"
   },
   {
     "file": "typing/stubs/riposte/temporal.pyi",
@@ -586,8 +601,8 @@
   },
   {
     "file": "typing/stubs/riposte/video.pyi",
-    "line": 13,
-    "declaration": "def record_video(root: Path, relative: str, info: Report) -> CatalogRow:"
+    "line": 14,
+    "declaration": "def record_video(root: Path, relative: str, info: Report, *, db: sqlite3.Connection | None=...) -> CatalogRow:"
   },
   {
     "file": "typing/stubs/riposte/views.pyi",

@@ -3,6 +3,7 @@
 The encoder is a synthetic differentiable oracle, not a pretrained model or
 evidence of protection efficacy. All artwork is generated in pytest directories.
 """
+from riposte.organizer import plan as _sort_preview
 import io
 import json
 from pathlib import Path
@@ -60,6 +61,11 @@ def values(**extra):
     return {'vae_dirs': [Path('SYNTHETIC_LOCAL_MODEL')], 'steps': 2, 'restarts': 1, 'edges': [64], **extra}
 
 
+def reviewed_combined(root, options):
+    preview = execute(Request('sort-riposte-plan', root, options))
+    return Request('sort-riposte', root, {**options, 'plan_id': preview['plan_id']})
+
+
 def settled(controller):
     assert controller.state.operation is not None
     assert controller.state.operation.done.wait(10)
@@ -83,7 +89,7 @@ def test_raw_recursive_preview_is_readonly_and_deduplicates(root, tmp_path, make
 
 def test_unrelated_additions_do_not_block_selected_catalog(root, make_image, recipe):
     make_image(root / 'first.png')
-    organize(root, Policy(date_mode='modified'))
+    organize(root, Policy(date_mode='modified'), plan_id=_sort_preview(root, Policy(date_mode='modified'))["plan_id"])
     row = catalog(root)[0]
     make_image(root / 'addition.png')
     (root / 'notes.txt').write_text('unrelated')
@@ -168,12 +174,12 @@ def test_raw_selection_conflicts_are_explicit(root, args, capsys):
 def test_sort_alias_and_incremental_sort_never_run_protection(root, make_image, capsys, monkeypatch):
     monkeypatch.setattr(p, '_models', lambda *a, **kw: pytest.fail('sort loaded a model'))
     make_image(root / 'first.png')
-    assert cli.main(['--json', 'sort', str(root), '--apply', '--date-mode', 'modified']) == 0
+    assert cli.main(['--json', 'sort', str(root), '--apply', '--date-mode', 'modified', '--plan-id', _sort_preview(root, Policy(date_mode='modified'))['plan_id']]) == 0
     capsys.readouterr()
     row = catalog(root)[0]
     before = (root / row['relative']).read_bytes()
     make_image(root / 'second.png')
-    assert cli.main(['--json', 'sort', str(root), '--apply', '--date-mode', 'modified']) == 0
+    assert cli.main(['--json', 'sort', str(root), '--apply', '--date-mode', 'modified', '--plan-id', _sort_preview(root, Policy(date_mode='modified'))['plan_id']]) == 0
     report = json.loads(capsys.readouterr().out)
     assert report['counts'] == {'migrated': 1, 'already_clean': 1}
     assert (root / row['relative']).read_bytes() == before
@@ -187,14 +193,14 @@ def test_combined_default_is_preview_and_missing_model_cannot_sort(root, make_im
     report = json.loads(capsys.readouterr().out)
     assert report['mode'] == 'SORT_RIPOSTE_PLAN' and not report['writes']
     assert snapshot(root) == before
-    assert cli.main(['--json', 'sort-riposte', str(root), '--all', '--apply']) == 2
+    assert cli.main(['--json', 'sort-riposte', str(root), '--all', '--apply', '--plan-id', report['plan_id']]) == 2
     assert json.loads(capsys.readouterr().err)['error'] == 'NO_MODEL_NO_PROTECTION'
     assert snapshot(root) == before
 
 
 def test_combined_success_loads_models_once(root, make_image, models):
     source = make_image(root / 'input.png', size=(96, 80))
-    result = execute(Request('sort-riposte', root, values(all_images=True, date_mode='modified')))
+    result = execute(reviewed_combined(root, values(all_images=True, date_mode='modified')))
     assert not source.exists() and len(catalog(root)) == 1
     assert result['workflow'] == 'SORT_RIPOSTE'
     assert result['sorting']['checkpoint'] == 'COMPLETE'
@@ -205,7 +211,7 @@ def test_combined_blockers_do_not_start_models_or_modify_sources(root, make_imag
     make_image(root / 'input.png')
     (root / 'notes.txt').write_text('keep')
     before = snapshot(root)
-    result = execute(Request('sort-riposte', root, values(all_images=True)))
+    result = execute(reviewed_combined(root, values(all_images=True)))
     assert result['protection'] == 'NOT_STARTED'
     assert snapshot(root) == before and not models
 
@@ -213,12 +219,13 @@ def test_combined_blockers_do_not_start_models_or_modify_sources(root, make_imag
 def test_combined_incomplete_sort_stops_protection(root, make_image, models, monkeypatch):
     import riposte.organizer as organizer
     make_image(root / 'input.png')
-    real = organizer.organize
-    def concurrent_addition(*args):
-        (root / 'late.txt').write_text('arrived after preview')
-        return real(*args)
-    monkeypatch.setattr(organizer, 'organize', concurrent_addition)
-    result = execute(Request('sort-riposte', root, values(all_images=True)))
+    real = organizer.record_image
+    def concurrent_addition(*args, **kwargs):
+        row = real(*args, **kwargs)
+        (root / 'late.txt').write_text('arrived during sort')
+        return row
+    monkeypatch.setattr(organizer, 'record_image', concurrent_addition)
+    result = execute(reviewed_combined(root, values(all_images=True)))
     assert result['checkpoint'] == 'INCOMPLETE' and result['protection'] == 'NOT_STARTED'
     assert not (root / '.riposte/publishing').exists()
 
@@ -262,7 +269,7 @@ def test_interactive_standalone_and_combined_consent(root, make_image, models):
 
 
 def test_linear_user_can_preview_file_without_catalog_or_commands(root, make_image, monkeypatch):
-    monkeypatch.setattr('riposte.terminal.paths.application_directory', lambda: root.parent / 'application')
+    monkeypatch.setattr('riposte.store.application_directory', lambda: root.parent / 'application')
     source = make_image(root / 'input.png')
     before = snapshot(root)
     controller = Controller(root, Presentation(plain=True))
@@ -313,7 +320,9 @@ def test_cli_standalone_and_combined_use_real_publication_service(root, make_ima
     args = ['--vae', 'MODEL', '--steps', '2', '--restarts', '1', '--edge', '64']
     assert cli.main(['--json', 'riposte', str(root), '--input', str(source), *args]) == 0
     assert json.loads(capsys.readouterr().out)['source_mode'] == 'snapshot' and source.exists()
-    assert cli.main(['--json', 'sort-riposte', str(root), '--all', '--apply', *args]) == 0
+    assert cli.main(['--json', 'sort-riposte', str(root), '--all', *args]) == 0
+    combined = json.loads(capsys.readouterr().out)
+    assert cli.main(['--json', 'sort-riposte', str(root), '--all', '--apply', '--plan-id', combined['plan_id'], *args]) == 0
     assert json.loads(capsys.readouterr().out)['sorting']['checkpoint'] == 'COMPLETE'
     assert not source.exists() and len(catalog(root)) == 1
 
@@ -332,7 +341,7 @@ def test_combined_protection_failure_retains_sort_and_can_retry(root, make_image
     def fail(*args, **kwargs):
         raise RiposteError('WORKSPACE_LOCKED')
     monkeypatch.setattr(p, 'start_publication', fail)
-    result = execute(Request('sort-riposte', root, values(all_images=True)))
+    result = execute(reviewed_combined(root, values(all_images=True)))
     assert result['sorting']['checkpoint'] == 'COMPLETE' and result['protection'] == 'STOPPED'
     assert result['code'] == 'WORKSPACE_LOCKED' and not source.exists()
     monkeypatch.setattr(p, 'start_publication', original)

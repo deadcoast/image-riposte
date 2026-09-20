@@ -1,0 +1,18 @@
+{
+  "command": [
+    "C:\\Users\\ryanf\\github\\_new\\image-riposte\\.venv\\Scripts\\python.exe",
+    "-m",
+    "pytest",
+    "-q",
+    "-p",
+    "no:cacheprovider",
+    "tests/test_review_panel.py",
+    "-k",
+    "is_available",
+    "--basetemp",
+    "C:\\Users\\ryanf\\AppData\\Local\\Temp\\riposte-panel-before-qr8njxxm\\pytest",
+    "--junitxml",
+    "C:\\Users\\ryanf\\github\\_new\\image-riposte\\evidence\\pcuc-review-panels\\before.xml"
+  ],
+  "exit_code": 1
+}

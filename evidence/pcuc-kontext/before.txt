@@ -1,0 +1,22 @@
+FF                                                                       [100%]
+================================== FAILURES ===================================
+_________________ test_modern_conditioning_has_no_sd_strength _________________
+
+    def test_modern_conditioning_has_no_sd_strength():
+>       options = conditioning('edit', {'kind': 'FLUX_KONTEXT_EDIT'})
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       TypeError: conditioning() takes 1 positional argument but 2 were given
+
+tests\test_kontext.py:17: TypeError
+________________ test_modern_preparation_uses_explicit_bucket _________________
+
+    def test_modern_preparation_uses_explicit_bucket():
+>       result = prepare_input(Image.new('RGB', (32,32)), 'edit', {'kind':'FLUX_KONTEXT_EDIT'})
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       TypeError: prepare_input() takes 2 positional arguments but 3 were given
+
+tests\test_kontext.py:23: TypeError
+=========================== short test summary info ===========================
+FAILED tests/test_kontext.py::test_modern_conditioning_has_no_sd_strength - T...
+FAILED tests/test_kontext.py::test_modern_preparation_uses_explicit_bucket - ...
+2 failed, 16 deselected in 0.26s

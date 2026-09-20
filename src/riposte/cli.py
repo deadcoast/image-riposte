@@ -4,7 +4,9 @@ from enum import Enum
 import os
 from pathlib import Path
 import sys
-from typing import Annotated, Optional
+from typing import Annotated, Optional, ParamSpec, TypeVar, NoReturn, cast
+from collections.abc import Callable
+from .records import RequestValues
 import click
 import typer
 from . import __version__
@@ -57,14 +59,18 @@ def root_callback(ctx: typer.Context,
         raise typer.Exit(code)
 
 
-def command(name=None, panel="PRIMARY"):
+_P = ParamSpec("_P")
+_R = TypeVar("_R")
+
+
+def command(name: str | None = None, panel: str = "PRIMARY") -> Callable[[Callable[_P, _R]], Callable[_P, _R]]:
     return app.command(name, cls=RichCommand, rich_help_panel=panel)
 
 
-def dispatch(ctx, name, root=None, **values):
+def dispatch(ctx: typer.Context, name: str, root: Path | None = None, **values: object) -> NoReturn:
     for key, value in list(values.items()):
         if isinstance(value, Enum): values[key] = value.value
-    raise typer.Exit(run_direct(Request(name, root, values), ctx.obj or Presentation()))
+    raise typer.Exit(run_direct(Request(name, root, cast(RequestValues, values)), ctx.obj or Presentation()))
 
 
 @command("ui", "INTERFACE")
@@ -83,7 +89,7 @@ def organize(ctx: typer.Context, root: Root,
              date_mode: Annotated[DateMode, typer.Option(help="Date-only retention basis.")] = DateMode.download,
              categories: Annotated[bool, typer.Option("--categories", help="Use saved category rules and preview exact destinations.")] = False,
              assign: Annotated[Optional[list[str]], typer.Option("--assign", help="Manual source-relative-path=category-slug; repeat. Use =auto to clear a saved manual choice.")] = None,
-             plan_id: Annotated[Optional[str], typer.Option("--plan-id", help="Exact category preview ID; required with --categories --apply.")] = None):
+             plan_id: Annotated[Optional[str], typer.Option("--plan-id", help="Exact preview ID; required with --apply. Repreview after input or policy changes.")] = None):
     """Read-only recursive plan; --apply explicitly replaces sources."""
     dispatch(ctx, "apply" if apply else "organize", root, discard_sidecars=discard_sidecars, date_mode=date_mode,
              categories=categories, assignments=assign or [], plan_id=plan_id)
@@ -178,7 +184,7 @@ def publish(ctx: typer.Context, root: Root,
             discard_sidecars: Annotated[bool, typer.Option(help="Sort + RIPOSTE only: authorize metadata sidecar deletion during sorting.")] = False,
             categories: Annotated[bool, typer.Option("--categories", help="Sort + RIPOSTE only: use saved category rules.")] = False,
             assign: Annotated[Optional[list[str]], typer.Option("--assign", help="Manual source-relative-path=category-slug; repeat.")] = None,
-            plan_id: Annotated[Optional[str], typer.Option("--plan-id", help="Exact category preview ID required when applying category sorting.")] = None):
+            plan_id: Annotated[Optional[str], typer.Option("--plan-id", help="Combined preview ID required with sort-riposte --apply; binds sorting and protection choices.")] = None):
     """Protect a selected batch at each final size; clean masters stay unchanged."""
     combined = ctx.info_name == "sort-riposte"
     if not combined and (apply or discard_sidecars or categories or assign or plan_id):
@@ -320,6 +326,72 @@ def benchmark(ctx: typer.Context, root: Root, trial_id: str, model: Annotated[Pa
     """Legacy paired generation compatibility path."""
     if task == Task.inpaint: raise RiposteError("BENCHMARK_TASK_INVALID")
     dispatch(ctx, "benchmark", root, trial_id=trial_id, model=model, task=task, steps=steps)
+
+
+@command("experiment", "OPTIONAL WORKSHOP")
+def experiment(ctx: typer.Context, root: Root, run_id: Annotated[Optional[str], typer.Argument()] = None) -> None:
+    """List attempts or inspect a protocol, bound outputs and recorded reviews."""
+    dispatch(ctx, "experiment", root, **({"run_id": run_id} if run_id else {}))
+
+
+@command("cohort-challenge", "OPTIONAL WORKSHOP")
+def cohort_challenge(ctx: typer.Context, root: Root,
+                     trial: Annotated[list[str], typer.Option("--trial", help="Explicit sampling pool; repeat for every eligible trial.")],
+                     model: Annotated[Path, typer.Option(help="Local CUDA baseline used for every selected artwork.")],
+                     sample_size: Annotated[int, typer.Option(min=1, help="Number drawn without replacement from the fixed pool.")],
+                     task: Task = Task.edit, steps: Annotated[int, typer.Option(min=1, max=100)] = 25,
+                     seed: Annotated[Optional[list[int]], typer.Option("--seed", min=0, max=4294967295)] = None,
+                     view: Annotated[Optional[list[str]], typer.Option("--view")] = None) -> None:
+    """Commit the full cohort, then generate one attempt per selected artwork."""
+    dispatch(ctx, "cohort-challenge", root, trial_ids=trial, model=model, sample_size=sample_size,
+             task=task, steps=steps, seeds=seed, views=view)
+
+
+@command("cohort", "OPTIONAL WORKSHOP")
+def cohort(ctx: typer.Context, root: Root, cohort_id: Annotated[Optional[str], typer.Argument()] = None) -> None:
+    """List committed cohorts or inspect all members and missing-outcome bounds."""
+    dispatch(ctx, "cohort", root, **({"cohort_id": cohort_id} if cohort_id else {}))
+
+
+@command("panel-create", "OPTIONAL WORKSHOP")
+def panel_create(ctx: typer.Context, root: Root,
+                 run: Annotated[list[str], typer.Option(help="Completed experiment ID; repeat to include more.")],
+                 reviewers: Annotated[int, typer.Option(min=2, max=8)] = 2,
+                 rubric: Annotated[Optional[Path], typer.Option(help="Optional task-rubric JSON; default anchors are unvalidated.")] = None) -> None:
+    """Freeze calibration items, rubric and separate reviewer assignments."""
+    dispatch(ctx, "panel-create", root, run_ids=run, reviewers=reviewers, **({"rubric": rubric} if rubric else {}))
+
+
+@command("panel", "OPTIONAL WORKSHOP")
+def panel(ctx: typer.Context, root: Root, panel_id: Annotated[Optional[str], typer.Argument()] = None) -> None:
+    """List panels or inspect exact agreement, missing decisions and disagreement."""
+    dispatch(ctx, "panel", root, **({"panel_id": panel_id} if panel_id else {}))
+
+
+@command("panel-packet", "OPTIONAL WORKSHOP")
+def panel_packet(ctx: typer.Context, root: Root, panel_id: str, reviewer_id: str) -> None:
+    """Export the local blinded packet for one assigned reviewer slot."""
+    dispatch(ctx, "panel-packet", root, panel_id=panel_id, reviewer_id=reviewer_id)
+
+
+@command("panel-review", "OPTIONAL WORKSHOP")
+def panel_review(ctx: typer.Context, root: Root, panel_id: str,
+                 ratings: Annotated[Path, typer.Option(help="Final ratings.json for one slot; nulls remain missing.")]) -> None:
+    """Record one final response. Corrections require a new panel."""
+    dispatch(ctx, "panel-review", root, panel_id=panel_id, ratings=ratings)
+
+
+@command("experiment-packet", "OPTIONAL WORKSHOP")
+def experiment_packet(ctx: typer.Context, root: Root, run_id: str) -> None:
+    """Export verified frames with concealed arm labels and a ratings template."""
+    dispatch(ctx, "experiment-packet", root, run_id=run_id)
+
+
+@command("experiment-review", "OPTIONAL WORKSHOP")
+def experiment_review(ctx: typer.Context, root: Root, run_id: str,
+                      ratings: Annotated[Path, typer.Option(help="Completed ratings.json from this experiment's review packet.")]) -> None:
+    """Append endpoint decisions and a descriptive matched-control contrast."""
+    dispatch(ctx, "experiment-review", root, run_id=run_id, ratings=ratings)
 
 
 @command("export", "OPTIONAL WORKSHOP")

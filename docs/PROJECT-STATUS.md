@@ -1,10 +1,31 @@
 # RIPOSTE / current project status
 
-Reviewed 2026-09-18. **Version 0.5.0; development audit open; release milestone pending.**
+Reviewed 2026-09-19. **Version 0.5.0; development audit open; release milestone pending.**
 The working list, correction and resumption checkpoint are in
 [todo-audit.PACER.md](../todo-audit.PACER.md). The four PACER CSVs remain frozen
 until that work is complete and the specification can be reconciled together.
-The last completed task, PAC-028, identified work; it did not implement its findings.
+PAC-029 through PAC-033 have bounded implementation acceptance in the Markdown audit. PAC-028
+was the preceding identification audit. Remaining findings and CSV reconciliation
+are open.
+
+The user has shelved PAC-034 and directed research-led development under
+[Provable Claims and Use Cases](PCUC.md). PCUC-001 now integrates shared-view
+gradients into the production publishing engine. Its mathematical/CPU evidence
+establishes reduced transform work, not protection efficacy or industry leadership.
+PCUC-002 adds local experiment precommitment, concealed-label review packets and
+append-only endpoint ratings. Its matched-control contrast is descriptive;
+real-model task outcomes and independent preregistration remain unqualified.
+PCUC-003 integrates prospective artwork cohorts with a fixed selected-member
+denominator, primary-review order and finite-sample missingness bounds. Failed
+members cannot disappear into an aggregate of only completed outcomes.
+PCUC-004 adds fixed reviewer calibration panels with task-specific candidate
+rubrics, separate packet assignments, one final response per slot, exact binary
+agreement completion bounds and pairwise Cohen diagnostics. Actual reviewer
+independence, rubric validity and modern-family effectiveness remain unqualified.
+PCUC-005 integrates a fixed local Kontext editing backend. Model-aware preparation
+and conditioning propagate into experiments, cohorts and review packets. The real
+library numerical path passes with tiny random CPU models and test-only device
+overrides; pretrained CUDA/bfloat16 execution and useful editing remain unqualified.
 
 ## Version, configuration and entry points
 
@@ -43,35 +64,68 @@ certify every historical distribution, test artifact, model or native interface.
   journals. These are separate from public catalog/export contents.
 - Videos are sort-only and byte-preserved, including their metadata; optional
   `ffprobe` is required to inspect them. They do not enter protection processing.
-- Category sorting has exact bound previews. Ordinary sorting still has the
-  preview-drift finding in PAC-031. Undo supports recorded histories, but a hard
-  process exit can leave a lock that blocks apply (PAC-029). Do not remove a lock
-  based only on its age or assume its owner is dead.
+- CLI, terminal and API reject workspaces overlapping the loaded application,
+  including previews. Source checkouts protect their RIPOSTE project root; wheels
+  protect the loaded package directory. Independent siblings are allowed, and
+  links/junctions remain rejected before canonical overlap comparison.
+- Ordinary and category sorting require exact preview IDs. Combined sorting
+  requires its top-level ID binding sorting and protection choices. Files and
+  destinations are frozen; drift requires renewed preview. Current operations use an OS lease on the
+  persistent empty root file `.riposte-operation.lease`. A killed current worker's
+  matching marker can be recovered only after acquiring that lease. Explicit undo
+  retains its preview and integrity checks. Unknown legacy locks remain blocked;
+  neither a PID nor age proves ownership. Keep the lease file in place.
 - Visual acceptance, synthetic model regression checks and measured protection
   efficacy remain separate. Installed Torch/Diffusers/Transformers do not establish
   qualification of any real model or native platform.
+- Image lookup uses the existing primary-key index and validates the selected
+  file. Sorting and audits use operation-local title maps and catalog revision
+  checks. External database changes invalidate the operation; no consent cache
+  persists between operations. Whole-workspace auditing still checks every file.
 
 ## Evidence and its limits
 
 | Evidence | Result and boundary |
 | --- | --- |
-| Fresh install/start/menu regressions | 29 passed on Windows Python 3.14.3; adapted subprocesses, not clean installation or native macOS/Linux proof |
-| Fresh Windows entry checks | Real riposte.cmd version, START.ps1 linear menu open/exit, sort/category-rules CLI help: all exit 0; no artwork/model processing |
-| Fresh five audit probes | All observations reproduced; confirms open defects, not repair acceptance |
-| Fresh source/stub parameter parity | 387 signatures, 46 importable leaf modules, no mismatches; 56 source files match the reviewed snapshot |
-| Retained external contract suite | All recorded stages passed; declarations/consumers/signatures/offline fixtures only |
-| Retained source-body audit, current hashes rechecked | 1,103 diagnostics in 37 files, 49 Python files checked; still failing |
-| Retained category acceptance suite | 1,062 passed, 8 platform skips; synthetic local scope recorded in the category evidence |
-| PACER structural validation | Valid; documentation edits leave OGM-009/010/011/019 evidence stale, deferred under the CSV freeze |
+| Windows full suite | 1,311 passed, 9 platform skips outside sandbox; three dependency warnings; source-bound Kontext, panel, cohort, experiment, browser and publication regressions |
+| Focused initial typing verification | 254 passed, 1 Windows symlink-privilege skip before final consumer/controller annotations; final source is covered by the full suite |
+| Historical PAC-032 scaling measurements | At 16/32/64 cataloged images, returned audit rows are 32/64/128, all-ID lookup rows 16/32/64, and sorting rows 128/256/512; current full suite retains the row-budget regressions |
+| Historical PAC-029 POSIX lease probe | Passed on existing Ubuntu WSL Python 3.12.3: live exclusion, process death, persistent identity, adjacent state rename; low-level lease only |
+| Fresh external contract suite | All seven stages passed; 473 signatures, 56 importable leaf modules, 66 application files match reviewed identity; all 13 existing negative checks retained |
+| Fresh source-body audit | 772 diagnostics in 36 files, 59 Python files checked; still failing with unchanged strict settings; Kontext, agreement, panel, experiment and cohort modules have no diagnostics |
+| Historical PAC-033 source-consumer checks | Positive consumers passed and nine invalid uses failed at exact lines/codes against the then-current source |
+| PCUC gradient and memory checks | Eight independent sequential-VJP comparisons pass; maximum float32 absolute error 1.87e-9; logical saved-tensor peak 66,564 bytes for 1/4/16 repeated contexts, zero retained after return |
+| PCUC paired engine runs | Five synthetic CPU cases retain identical pixels/selection/scores; 1.23x–2.29x median speedup, including the convolution-heavy case; model call counts unchanged, no CUDA available |
+| PCUC experiment workflow | Protocol-before-generation, retained failures, blinded-label packets, append-only ratings, exhaustive binary contrast, drift rejection and loader binding exercised using synthetic model outputs; not a real protection experiment |
+| PCUC cohort workflow | 216 bounded sample states and 343 extreme completions verify exact bounds; prospective draw, shared loader, missing members, fixed denominators and primary-review ordering tested with synthetic generators |
+| PCUC panel mathematics | 9,837 patterns and 87,376 completions plus 729 two-item patterns, 4,096 completions and 1,024 Cohen cases; exact descriptive arithmetic, no real-rater reliability evidence |
+| PCUC Kontext path | 4,115 exact aspect selections and 17 lattice/area checks; real tiny random VAE/CLIP/T5/flow-transformer serialization and CPU execution preserve paired repeatability, context-token geometry and input sensitivity; no pretrained/native CUDA/bfloat16 qualification |
+| Fresh distributions and isolated target | All 66 application files match source/sdist/wheel/installed target; fixed Kontext loader/conditioning/packet and prior panel/cohort/experiment/solver/workflow guards checked with synthetic models; existing Windows dependencies, not clean bootstrap |
+| Real Windows entry points | Existing editable wrapper reports 0.5.0; PowerShell START opens the linear menu and exits on q with no stderr |
+| Prior review's entry/probe checks | 29 launcher/menu tests and real Windows entry checks passed; five then-open observations reproduced before PAC-029 implementation |
+| PACER structural validation | Valid; stale source/document evidence and missing new source registrations remain deferred under the CSV freeze |
 
-Fresh review data: [milestone reconciliation evidence](../evidence/milestone-reconciliation-2026-09-18/review.json).
-Prior implementation evidence: [category sorting](../evidence/category-sort/README.md),
+Current development evidence: [PCUC Kontext backend](../evidence/pcuc-kontext/README.md).
+Prior reviewer stage: [PCUC reviewer panels](../evidence/pcuc-review-panels/README.md).
+Prior cohort stage: [PCUC cohorts](../evidence/pcuc-cohorts/README.md).
+Prior experiment stage: [PCUC experiments](../evidence/pcuc-experiments/README.md).
+Prior engine study: [PCUC shared views](../evidence/pcuc-shared-views/README.md).
+Prior repair evidence: [source typing](../evidence/source-typing/README.md).
+Prior repairs: [catalog scaling](../evidence/catalog-scaling/README.md),
+[preview binding](../evidence/sort-preview/README.md),
+[application roots](../evidence/application-roots/README.md) and
+[workspace lease](../evidence/workspace-lease/README.md).
+Historical review baseline: [milestone reconciliation evidence](../evidence/milestone-reconciliation-2026-09-18/review.json).
+Earlier implementation evidence: [category sorting](../evidence/category-sort/README.md),
 [sort recovery](../evidence/sort-recovery/README.md), and
-[typing](../typing/README.md). The CSVs and application source are unchanged by
-this documentation/status reconciliation.
+[typing](../typing/README.md). PAC-033 changes fourteen application files, including
+the new shared records module. Earlier repairs and their
+evidence remain preserved. All four CSV hashes
+remain unchanged. Version, dependency lockfiles, installer and launcher code remain
+0.5.0-compatible; no dependencies or model weights were added.
 
-The four newly stale evidence records bind documentation changed by this review.
-No requirement acceptance was refreshed or rewritten during the freeze. They
+The current validation report and deferred source/symbol plan are retained with
+the repair evidence. No CSV requirement acceptance was refreshed during the freeze. They
 must be evaluated and reconciled with the other open evidence at the milestone;
 structural validity does not mean evidence freshness or product completion.
 
@@ -87,6 +141,9 @@ whole-product acceptance report. See [CHANGELOG.md](CHANGELOG.md) for later work
 The milestone requires completed Markdown acceptance, coordinated guarded PACER
 reconciliation, consistent release identity, fresh distribution equality/install
 checks, launcher/configuration verification and explicit qualification limits.
-It remains open. The next implementation priority is PAC-029, followed by PAC-030
-and PAC-031. No tag, new release number or product-complete claim is made by this
-review checkpoint.
+It remains open. PAC-034 (clean installation qualification) is shelved by the user.
+The next PCUC research phase is a preregistered, held-out misuse-task evaluation
+protocol that can test whether component proxies predict useful protection.
+It requires explicit model/task identities and cannot inherit synthetic speed results.
+Remaining source typing debt stays visible for further scoped work. No tag, new
+release number or product-complete claim is made by this bounded repair.

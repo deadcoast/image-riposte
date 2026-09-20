@@ -8,7 +8,7 @@ an ensemble of graphs at publication resolution.
 from __future__ import annotations
 from dataclasses import dataclass
 import math
-from typing import Callable
+from typing import Callable, TYPE_CHECKING
 import numpy as np
 from PIL import Image
 from .errors import RiposteError
@@ -16,6 +16,9 @@ from .metrics import fidelity
 from .optimizer import _round_ste
 from .views import (TRAIN_VIEWS, budget_map, differentiable_view, image_tensor,
                     keep_mask, spectral_direction, tensor_image)
+
+if TYPE_CHECKING:
+    from torch import Tensor
 
 
 @dataclass(frozen=True)
@@ -63,9 +66,16 @@ def _branches(encoders, probe, seed):
 
 def _features(x, branch, encoders, probe):
     viewed = differentiable_view(x, branch.view)
+    return _view_features(viewed, branch, encoders, probe)
+
+
+def _view_features(viewed: Tensor, branch: Branch, encoders: list[Callable[[Tensor], Tensor]],
+                   probe: Callable[[Tensor, Tensor, int, float, str], Tensor] | None) -> Tensor:
     keep = keep_mask(viewed.shape[-2:], branch.mask, branch.seed, viewed.device)
     if branch.kind == "encoder":
         return encoders[branch.index](viewed * keep + .5 * (1 - keep))
+    if probe is None:
+        raise RiposteError("MODEL_GRADIENT_UNAVAILABLE")
     return probe(viewed, keep, branch.seed, branch.early_fraction, branch.prompt)
 
 

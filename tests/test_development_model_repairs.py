@@ -1,4 +1,5 @@
 """Real CPU autograd with synthetic adapters; no pretrained efficacy claim."""
+from riposte.organizer import plan as _sort_preview
 from pathlib import Path
 
 import pytest
@@ -49,7 +50,7 @@ def test_optional_gradients_execute_before_request_commit(root, monkeypatch, tor
     import riposte.models as models
     import riposte.temporal as temporal
     Image.new('RGB', (64, 64), (100, 130, 150)).save(root / 'input.png')
-    assert organize(root, Policy(date_mode='modified'))['checkpoint'] == 'COMPLETE'
+    assert organize(root, Policy(date_mode='modified'), plan_id=_sort_preview(root, Policy(date_mode='modified'))["plan_id"])['checkpoint'] == 'COMPLETE'
     identifiers = [catalog(root)[0]['id']]
     calls = []
 

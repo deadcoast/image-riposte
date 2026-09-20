@@ -1,0 +1,16 @@
+warning: `VIRTUAL_ENV=.venv` does not match the project environment path `typing\.venv` and will be ignored; use `--active` to target the active environment instead
+Source/stub parity: 426 signatures, 52 importable leaf modules
+mypy-contracts: PASS
+mypy-tooling: PASS
+stubtest: FAIL
+error: riposte.cli.experiment is inconsistent, runtime parameter "run_id" has a default value of type typer.models.ArgumentInfo, which is incompatible with stub parameter type str | None
+Stub: in file C:\Users\ryanf\github\_new\image-riposte\typing\stubs\riposte\cli.pyi:111
+def (ctx: typer.models.Context, root: pathlib.Path, run_id: str | None =)
+Runtime: in file C:\Users\ryanf\github\_new\image-riposte\src\riposte\cli.py:331
+def (ctx: 'typer.Context', root: 'Root', run_id: 'Optional[str]' = <typer.models.ArgumentInfo object at 0x00000217A6919450>) -> 'None'
+
+Found 1 error (checked 52 modules)
+
+runtime-contracts: PASS
+tooling-regressions: PASS
+negative-consumers: 13/13 expected diagnostics; exact line/code match=True

@@ -7,13 +7,19 @@ success metric. Optimization and selection contexts are never called held out.
 from __future__ import annotations
 from dataclasses import asdict, dataclass
 import math
+from typing import TYPE_CHECKING
 import numpy as np
 from PIL import Image
 from .errors import RiposteError
 from .coupled import Branch, _branches, _features
+from .coupled import _view_features
+from .context_graph import context_groups, context_values, context_gradient
 from .optimizer import _round_ste
 from .quality import QualityLimits, spatial_budget, quality_report
 from .views import image_tensor, tensor_image, spectral_direction, differentiable_view, TRAIN_VIEWS
+
+if TYPE_CHECKING:
+    from torch import Tensor
 
 @dataclass(frozen=True)
 class ReleaseConfig:
@@ -62,22 +68,28 @@ def protect_release(image: Image.Image, encoders: list, config: ReleaseConfig = 
             progress({"phase": phase, "processed": restart * config.steps + step,
                       "total": config.steps * config.restarts, "branch": branch, "branches": len(branches)})
 
-    def feature(q, branch):
-        return (temporal(differentiable_view(q, branch.view), branch.seed) if branch.kind == "temporal"
-                else _features(q, branch, encoders, probe))
+    def feature(viewed, branch):
+        return (temporal(viewed, branch.seed) if branch.kind == "temporal"
+                else _view_features(viewed, branch, encoders, probe))
 
-    refs = []
+    names = [branch.view for branch in branches]
+    refs: dict[int, tuple[Tensor | None, float]] = {}
+    completed = 0
     with torch.no_grad():
-        for i, branch in enumerate(branches):
-            notify("Preparing protection contexts", branch=i + 1)
-            z = feature(x, branch).detach()
-            if not bool(torch.isfinite(z).all()): raise RiposteError("OPTIMIZER_NONFINITE")
-            if branch.kind == "temporal":
-                energy = float(temporal_energy(z).cpu())
-                if energy <= 1e-12: raise RiposteError("TEMPORAL_REFERENCE_HAS_NO_SIGNAL")
-                refs.append((None, energy))
-            else:
-                refs.append((z.cpu(), max(float(z.square().mean().cpu()), 1e-6)))
+        for name, indices in context_groups(names):
+            viewed = differentiable_view(x, name)
+            for i in indices:
+                completed += 1
+                branch = branches[i]
+                notify("Preparing protection contexts", branch=completed)
+                z = feature(viewed, branch).detach()
+                if not bool(torch.isfinite(z).all()): raise RiposteError("OPTIMIZER_NONFINITE")
+                if branch.kind == "temporal":
+                    energy = float(temporal_energy(z).cpu())
+                    if energy <= 1e-12: raise RiposteError("TEMPORAL_REFERENCE_HAS_NO_SIGNAL")
+                    refs[i] = (None, energy)
+                else:
+                    refs[i] = (z.cpu(), max(float(z.square().mean().cpu()), 1e-6))
 
     def score(q, branch, ref):
         z = feature(q, branch)
@@ -87,12 +99,8 @@ def protect_release(image: Image.Image, encoders: list, config: ReleaseConfig = 
         return val
 
     def scores(q, restart, step):
-        with torch.no_grad():
-            values = []
-            for i, (branch, ref) in enumerate(zip(branches, refs, strict=True)):
-                notify("Measuring quantized protection contexts", restart, step, i + 1)
-                values.append(float(score(q, branch, ref).cpu()))
-            return values
+        return context_values(q, names, lambda viewed, i: score(viewed, branches[i], refs[i]),
+                              lambda count: notify("Measuring quantized protection contexts", restart, step, count))
 
     best, best_key, best_info, trace, had_gradient = None, None, None, [], False
     for restart in range(config.restarts):
@@ -103,20 +111,9 @@ def protect_release(image: Image.Image, encoders: list, config: ReleaseConfig = 
         initial_min = min(initial_scores)
         values = initial_scores
         for step in range(1, config.steps + 1):
-            numbers = torch.tensor(values, device=device, dtype=x.dtype)
-            tau = numbers.abs().mean().clamp_min(1e-6)
-            weights = torch.softmax(-numbers / tau, dim=0).detach()
-            gradient = torch.zeros_like(x)
-            for index, (branch, ref) in enumerate(zip(branches, refs, strict=True)):
-                notify("Optimizing publishing raster", restart, step, index + 1)
-                leaf = candidate.detach().requires_grad_(True)
-                value = score(_round_ste(leaf * 255) / 255, branch, ref)
-                if not value.requires_grad: raise RiposteError("MODEL_GRADIENT_UNAVAILABLE")
-                g = torch.autograd.grad(value, leaf, allow_unused=True)[0]
-                if g is None: raise RiposteError("MODEL_GRADIENT_UNAVAILABLE")
-                if not bool(torch.isfinite(g).all()): raise RiposteError("OPTIMIZER_NONFINITE")
-                gradient.add_(g.detach() * weights[index])
-                del g, leaf, value
+            gradient = context_gradient(candidate, names, values,
+                lambda viewed, i: score(viewed, branches[i], refs[i]),
+                lambda count: notify("Optimizing publishing raster", restart, step, count))
             gradient = spectral_direction(gradient, config.frequency_weight)
             useful = bool(((gradient != 0) & (budget > 0)).any())
             had_gradient |= useful
@@ -173,7 +170,8 @@ def protect_release(image: Image.Image, encoders: list, config: ReleaseConfig = 
                   "config": asdict(config), "quality": quality, "selection": {k: v for k, v in best_info.items() if k != "quality"},
                   "trace": trace, "contexts": rows, "optimization_views": list(TRAIN_VIEWS),
                   "search_policy": {"selection": "EVERY_ACCEPTED_ITERATE", "quality_backtracks": 8,
-                                    "minimum_step_255": .05, "checkpoint_every": "TRACE_ONLY"},
+                                    "minimum_step_255": .05, "checkpoint_every": "TRACE_ONLY",
+                                    "gradient": "SHARED_VIEW_STREAMED_VJP", "unique_views": len(set(names))},
                   "optimization_masks": ["whole", "center", "left"], "selection_is_heldout": False,
                   "models": [getattr(e, "identity", {"kind": "UNIDENTIFIED_LOCAL_ORACLE"}) for e in encoders],
                   "probe_model": getattr(probe, "identity", None), "temporal_model": getattr(temporal, "identity", None),

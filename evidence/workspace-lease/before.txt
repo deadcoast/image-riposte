@@ -1,0 +1,346 @@
+FFFFFFF.                                                                 [100%]
+================================== FAILURES ===================================
+_______ test_killed_sort_or_undo_restores_exact_original[exit-prepare] ________
+
+root = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/.tmp/workspace-lease/before/test_killed_sort_or_undo_resto0/workspace')
+tmp_path = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/.tmp/workspace-lease/before/test_killed_sort_or_undo_resto0')
+make_image = <function make_image.<locals>.create at 0x00000205FA1EB3D0>
+stage = 'prepare', ending = 'exit'
+
+    @pytest.mark.parametrize("stage", ["prepare", "remove", "undo"])
+    @pytest.mark.parametrize("ending", ["exit", "terminate"])
+    def test_killed_sort_or_undo_restores_exact_original(root, tmp_path, make_image, stage, ending):
+        source = make_image(root / "originals/private-name.png")
+        original, modified = source.read_bytes(), source.stat().st_mtime_ns
+        if stage == "undo":
+            organizer.organize(root, POLICY)
+        child = start_child(root, tmp_path, stage, ending)
+        try:
+            if ending == "terminate":
+                child.kill()
+            child.communicate(timeout=10)
+            assert child.returncode != 0
+            preview = organizer.undo_sort(root)
+            assert preview["ready"]
+>           result = organizer.undo_sort(root, apply=True, sort_id=preview["sort_id"])
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_workspace_lease.py:80: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\riposte\sort_history.py:278: in undo_sort
+    with workspace_lock(root):
+         ^^^^^^^^^^^^^^^^^^^^
+C:\Python314\Lib\contextlib.py:141: in __enter__
+    return next(self.gen)
+           ^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+root = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/.tmp/workspace-lease/before/test_killed_sort_or_undo_resto0/workspace')
+
+    @contextlib.contextmanager
+    def workspace_lock(root: Path):
+        path = state_dir(root) / "operation.lock"
+        if path.exists() and is_link(path):
+            raise RiposteError("STATE_PATH_INVALID")
+        try:
+            fd = os.open(path, os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o600)
+        except FileExistsError:
+>           raise RiposteError("WORKSPACE_LOCKED") from None
+E           riposte.errors.RiposteError: WORKSPACE_LOCKED
+
+src\riposte\store.py:123: RiposteError
+________ test_killed_sort_or_undo_restores_exact_original[exit-remove] ________
+
+root = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/.tmp/workspace-lease/before/test_killed_sort_or_undo_resto1/workspace')
+tmp_path = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/.tmp/workspace-lease/before/test_killed_sort_or_undo_resto1')
+make_image = <function make_image.<locals>.create at 0x00000205FA1EA6C0>
+stage = 'remove', ending = 'exit'
+
+    @pytest.mark.parametrize("stage", ["prepare", "remove", "undo"])
+    @pytest.mark.parametrize("ending", ["exit", "terminate"])
+    def test_killed_sort_or_undo_restores_exact_original(root, tmp_path, make_image, stage, ending):
+        source = make_image(root / "originals/private-name.png")
+        original, modified = source.read_bytes(), source.stat().st_mtime_ns
+        if stage == "undo":
+            organizer.organize(root, POLICY)
+        child = start_child(root, tmp_path, stage, ending)
+        try:
+            if ending == "terminate":
+                child.kill()
+            child.communicate(timeout=10)
+            assert child.returncode != 0
+            preview = organizer.undo_sort(root)
+            assert preview["ready"]
+>           result = organizer.undo_sort(root, apply=True, sort_id=preview["sort_id"])
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_workspace_lease.py:80: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\riposte\sort_history.py:278: in undo_sort
+    with workspace_lock(root):
+         ^^^^^^^^^^^^^^^^^^^^
+C:\Python314\Lib\contextlib.py:141: in __enter__
+    return next(self.gen)
+           ^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+root = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/.tmp/workspace-lease/before/test_killed_sort_or_undo_resto1/workspace')
+
+    @contextlib.contextmanager
+    def workspace_lock(root: Path):
+        path = state_dir(root) / "operation.lock"
+        if path.exists() and is_link(path):
+            raise RiposteError("STATE_PATH_INVALID")
+        try:
+            fd = os.open(path, os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o600)
+        except FileExistsError:
+>           raise RiposteError("WORKSPACE_LOCKED") from None
+E           riposte.errors.RiposteError: WORKSPACE_LOCKED
+
+src\riposte\store.py:123: RiposteError
+_________ test_killed_sort_or_undo_restores_exact_original[exit-undo] _________
+
+root = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/.tmp/workspace-lease/before/test_killed_sort_or_undo_resto2/workspace')
+tmp_path = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/.tmp/workspace-lease/before/test_killed_sort_or_undo_resto2')
+make_image = <function make_image.<locals>.create at 0x00000205FA1EBCC0>
+stage = 'undo', ending = 'exit'
+
+    @pytest.mark.parametrize("stage", ["prepare", "remove", "undo"])
+    @pytest.mark.parametrize("ending", ["exit", "terminate"])
+    def test_killed_sort_or_undo_restores_exact_original(root, tmp_path, make_image, stage, ending):
+        source = make_image(root / "originals/private-name.png")
+        original, modified = source.read_bytes(), source.stat().st_mtime_ns
+        if stage == "undo":
+            organizer.organize(root, POLICY)
+        child = start_child(root, tmp_path, stage, ending)
+        try:
+            if ending == "terminate":
+                child.kill()
+            child.communicate(timeout=10)
+            assert child.returncode != 0
+            preview = organizer.undo_sort(root)
+            assert preview["ready"]
+>           result = organizer.undo_sort(root, apply=True, sort_id=preview["sort_id"])
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_workspace_lease.py:80: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\riposte\sort_history.py:278: in undo_sort
+    with workspace_lock(root):
+         ^^^^^^^^^^^^^^^^^^^^
+C:\Python314\Lib\contextlib.py:141: in __enter__
+    return next(self.gen)
+           ^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+root = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/.tmp/workspace-lease/before/test_killed_sort_or_undo_resto2/workspace')
+
+    @contextlib.contextmanager
+    def workspace_lock(root: Path):
+        path = state_dir(root) / "operation.lock"
+        if path.exists() and is_link(path):
+            raise RiposteError("STATE_PATH_INVALID")
+        try:
+            fd = os.open(path, os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o600)
+        except FileExistsError:
+>           raise RiposteError("WORKSPACE_LOCKED") from None
+E           riposte.errors.RiposteError: WORKSPACE_LOCKED
+
+src\riposte\store.py:123: RiposteError
+_____ test_killed_sort_or_undo_restores_exact_original[terminate-prepare] _____
+
+root = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/.tmp/workspace-lease/before/test_killed_sort_or_undo_resto3/workspace')
+tmp_path = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/.tmp/workspace-lease/before/test_killed_sort_or_undo_resto3')
+make_image = <function make_image.<locals>.create at 0x00000205FA3837F0>
+stage = 'prepare', ending = 'terminate'
+
+    @pytest.mark.parametrize("stage", ["prepare", "remove", "undo"])
+    @pytest.mark.parametrize("ending", ["exit", "terminate"])
+    def test_killed_sort_or_undo_restores_exact_original(root, tmp_path, make_image, stage, ending):
+        source = make_image(root / "originals/private-name.png")
+        original, modified = source.read_bytes(), source.stat().st_mtime_ns
+        if stage == "undo":
+            organizer.organize(root, POLICY)
+        child = start_child(root, tmp_path, stage, ending)
+        try:
+            if ending == "terminate":
+                child.kill()
+            child.communicate(timeout=10)
+            assert child.returncode != 0
+            preview = organizer.undo_sort(root)
+            assert preview["ready"]
+>           result = organizer.undo_sort(root, apply=True, sort_id=preview["sort_id"])
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_workspace_lease.py:80: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\riposte\sort_history.py:278: in undo_sort
+    with workspace_lock(root):
+         ^^^^^^^^^^^^^^^^^^^^
+C:\Python314\Lib\contextlib.py:141: in __enter__
+    return next(self.gen)
+           ^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+root = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/.tmp/workspace-lease/before/test_killed_sort_or_undo_resto3/workspace')
+
+    @contextlib.contextmanager
+    def workspace_lock(root: Path):
+        path = state_dir(root) / "operation.lock"
+        if path.exists() and is_link(path):
+            raise RiposteError("STATE_PATH_INVALID")
+        try:
+            fd = os.open(path, os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o600)
+        except FileExistsError:
+>           raise RiposteError("WORKSPACE_LOCKED") from None
+E           riposte.errors.RiposteError: WORKSPACE_LOCKED
+
+src\riposte\store.py:123: RiposteError
+_____ test_killed_sort_or_undo_restores_exact_original[terminate-remove] ______
+
+root = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/.tmp/workspace-lease/before/test_killed_sort_or_undo_resto4/workspace')
+tmp_path = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/.tmp/workspace-lease/before/test_killed_sort_or_undo_resto4')
+make_image = <function make_image.<locals>.create at 0x00000205FA330880>
+stage = 'remove', ending = 'terminate'
+
+    @pytest.mark.parametrize("stage", ["prepare", "remove", "undo"])
+    @pytest.mark.parametrize("ending", ["exit", "terminate"])
+    def test_killed_sort_or_undo_restores_exact_original(root, tmp_path, make_image, stage, ending):
+        source = make_image(root / "originals/private-name.png")
+        original, modified = source.read_bytes(), source.stat().st_mtime_ns
+        if stage == "undo":
+            organizer.organize(root, POLICY)
+        child = start_child(root, tmp_path, stage, ending)
+        try:
+            if ending == "terminate":
+                child.kill()
+            child.communicate(timeout=10)
+            assert child.returncode != 0
+            preview = organizer.undo_sort(root)
+            assert preview["ready"]
+>           result = organizer.undo_sort(root, apply=True, sort_id=preview["sort_id"])
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_workspace_lease.py:80: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\riposte\sort_history.py:278: in undo_sort
+    with workspace_lock(root):
+         ^^^^^^^^^^^^^^^^^^^^
+C:\Python314\Lib\contextlib.py:141: in __enter__
+    return next(self.gen)
+           ^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+root = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/.tmp/workspace-lease/before/test_killed_sort_or_undo_resto4/workspace')
+
+    @contextlib.contextmanager
+    def workspace_lock(root: Path):
+        path = state_dir(root) / "operation.lock"
+        if path.exists() and is_link(path):
+            raise RiposteError("STATE_PATH_INVALID")
+        try:
+            fd = os.open(path, os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o600)
+        except FileExistsError:
+>           raise RiposteError("WORKSPACE_LOCKED") from None
+E           riposte.errors.RiposteError: WORKSPACE_LOCKED
+
+src\riposte\store.py:123: RiposteError
+______ test_killed_sort_or_undo_restores_exact_original[terminate-undo] _______
+
+root = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/.tmp/workspace-lease/before/test_killed_sort_or_undo_resto5/workspace')
+tmp_path = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/.tmp/workspace-lease/before/test_killed_sort_or_undo_resto5')
+make_image = <function make_image.<locals>.create at 0x00000205FA3317A0>
+stage = 'undo', ending = 'terminate'
+
+    @pytest.mark.parametrize("stage", ["prepare", "remove", "undo"])
+    @pytest.mark.parametrize("ending", ["exit", "terminate"])
+    def test_killed_sort_or_undo_restores_exact_original(root, tmp_path, make_image, stage, ending):
+        source = make_image(root / "originals/private-name.png")
+        original, modified = source.read_bytes(), source.stat().st_mtime_ns
+        if stage == "undo":
+            organizer.organize(root, POLICY)
+        child = start_child(root, tmp_path, stage, ending)
+        try:
+            if ending == "terminate":
+                child.kill()
+            child.communicate(timeout=10)
+            assert child.returncode != 0
+            preview = organizer.undo_sort(root)
+            assert preview["ready"]
+>           result = organizer.undo_sort(root, apply=True, sort_id=preview["sort_id"])
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_workspace_lease.py:80: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\riposte\sort_history.py:278: in undo_sort
+    with workspace_lock(root):
+         ^^^^^^^^^^^^^^^^^^^^
+C:\Python314\Lib\contextlib.py:141: in __enter__
+    return next(self.gen)
+           ^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+root = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/.tmp/workspace-lease/before/test_killed_sort_or_undo_resto5/workspace')
+
+    @contextlib.contextmanager
+    def workspace_lock(root: Path):
+        path = state_dir(root) / "operation.lock"
+        if path.exists() and is_link(path):
+            raise RiposteError("STATE_PATH_INVALID")
+        try:
+            fd = os.open(path, os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o600)
+        except FileExistsError:
+>           raise RiposteError("WORKSPACE_LOCKED") from None
+E           riposte.errors.RiposteError: WORKSPACE_LOCKED
+
+src\riposte\store.py:123: RiposteError
+______ test_live_owner_cannot_be_displaced_then_death_releases_ownership ______
+
+root = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/.tmp/workspace-lease/before/test_live_owner_cannot_be_disp0/workspace')
+tmp_path = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/.tmp/workspace-lease/before/test_live_owner_cannot_be_disp0')
+
+    def test_live_owner_cannot_be_displaced_then_death_releases_ownership(root, tmp_path):
+        child = start_child(root, tmp_path, "hold")
+        marker = state_dir(root) / "operation.lock"
+        before = marker.read_bytes()
+        try:
+            with pytest.raises(RiposteError, match="WORKSPACE_LOCKED"):
+                with workspace_lock(root):
+                    pytest.fail("Live owner displaced")
+            assert marker.read_bytes() == before
+        finally:
+            child.kill()
+            child.communicate(timeout=10)
+>       with workspace_lock(root):
+             ^^^^^^^^^^^^^^^^^^^^
+
+tests\test_workspace_lease.py:102: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Python314\Lib\contextlib.py:141: in __enter__
+    return next(self.gen)
+           ^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+root = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/.tmp/workspace-lease/before/test_live_owner_cannot_be_disp0/workspace')
+
+    @contextlib.contextmanager
+    def workspace_lock(root: Path):
+        path = state_dir(root) / "operation.lock"
+        if path.exists() and is_link(path):
+            raise RiposteError("STATE_PATH_INVALID")
+        try:
+            fd = os.open(path, os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o600)
+        except FileExistsError:
+>           raise RiposteError("WORKSPACE_LOCKED") from None
+E           riposte.errors.RiposteError: WORKSPACE_LOCKED
+
+src\riposte\store.py:123: RiposteError
+=========================== short test summary info ===========================
+FAILED tests/test_workspace_lease.py::test_killed_sort_or_undo_restores_exact_original[exit-prepare]
+FAILED tests/test_workspace_lease.py::test_killed_sort_or_undo_restores_exact_original[exit-remove]
+FAILED tests/test_workspace_lease.py::test_killed_sort_or_undo_restores_exact_original[exit-undo]
+FAILED tests/test_workspace_lease.py::test_killed_sort_or_undo_restores_exact_original[terminate-prepare]
+FAILED tests/test_workspace_lease.py::test_killed_sort_or_undo_restores_exact_original[terminate-remove]
+FAILED tests/test_workspace_lease.py::test_killed_sort_or_undo_restores_exact_original[terminate-undo]
+FAILED tests/test_workspace_lease.py::test_live_owner_cannot_be_displaced_then_death_releases_ownership
+7 failed, 1 passed in 2.27s

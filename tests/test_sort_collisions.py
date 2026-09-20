@@ -1,4 +1,5 @@
 """External destination winners remain intact through sorting and recovery."""
+from riposte.organizer import plan as _sort_preview
 import os
 from pathlib import Path
 
@@ -80,7 +81,7 @@ def test_rejected_output_is_not_owned_by_undo(root, make_image, monkeypatch, med
 
         monkeypatch.setattr(organizer, name, add_before_write)
 
-    result = organizer.organize(root, POLICY)
+    result = organizer.organize(root, POLICY, plan_id=_sort_preview(root, POLICY)["plan_id"])
     assert winner, "collision injection did not execute"
     assert result["checkpoint"] == "INCOMPLETE"
     assert result["blockers"].get("DESTINATION_EXISTS") == 1

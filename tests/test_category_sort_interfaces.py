@@ -123,7 +123,7 @@ def test_combined_propagates_exact_category_consent_before_protection(root, make
     monkeypatch.setattr(publication, '_models', lambda *args: [])
     calls = []
     monkeypatch.setattr(publication, 'start_publication', lambda *args, **kwargs: calls.append(args) or {'mode': 'PUBLICATION_BATCH'})
-    result = execute(Request('sort-riposte', root, {**values, 'plan_id': p['sorting']['plan_id']}))
+    result = execute(Request('sort-riposte', root, {**values, 'plan_id': p['plan_id']}))
     assert result['sorting']['checkpoint'] == 'COMPLETE' and len(calls) == 1
 
 

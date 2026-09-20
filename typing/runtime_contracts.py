@@ -4,6 +4,7 @@ Publication records are synthetic fixtures, not executed model outputs. This
 checks record shapes and signatures, not protection efficacy or UI acceptance.
 """
 from __future__ import annotations
+from riposte.organizer import plan as _sort_preview
 
 import ast
 from collections.abc import Sequence
@@ -96,7 +97,9 @@ def matches(value, expected, label="result"):
 
 class ContractFixtures(unittest.TestCase):
     def setUp(self):
-        self.temp = tempfile.TemporaryDirectory(prefix="riposte-types-", dir=ROOT / "typing/.cache")
+        # Real workspaces must be outside the source checkout, just like users'
+        # image/results folders. Keep the production root guard enabled here.
+        self.temp = tempfile.TemporaryDirectory(prefix="riposte-types-")
         self.addCleanup(self.temp.cleanup)
         self.root = Path(self.temp.name)
         self.image = Image.new("RGB", (64, 64), (80, 90, 100))
@@ -104,7 +107,7 @@ class ContractFixtures(unittest.TestCase):
     def organized(self):
         self.image.save(self.root / "fixture.png")
         matches(organizer.plan(self.root), RECORDS.OrganizationPlan)
-        report = organizer.organize(self.root)
+        report = organizer.organize(self.root, plan_id=_sort_preview(self.root)["plan_id"])
         matches(report, RECORDS.OrganizationReport)
         self.assertEqual(report["checkpoint"], "COMPLETE")
         self.assertFalse((self.root / "fixture.png").exists())
@@ -153,7 +156,7 @@ class ContractFixtures(unittest.TestCase):
         preview = organizer.plan(self.root)
         matches(preview, RECORDS.OrganizationPlan)
         self.assertFalse(preview["ready"])
-        report = organizer.organize(self.root)
+        report = organizer.organize(self.root, plan_id=_sort_preview(self.root)["plan_id"])
         matches(report, RECORDS.OrganizationReport)
         self.assertEqual(report["checkpoint"], "INCOMPLETE")
         matches(organizer.audit_workspace(self.root), RECORDS.WorkspaceAudit)

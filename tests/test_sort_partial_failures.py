@@ -1,4 +1,5 @@
 """Core sorting remains recoverable when one file fails in a multi-file sort."""
+from riposte.organizer import plan as _sort_preview
 import datetime as dt
 import os
 from pathlib import Path
@@ -48,7 +49,7 @@ def test_failed_output_does_not_reuse_a_recovery_destination(root, make_image, m
         return writer(*args, **kwargs)
 
     monkeypatch.setattr(organizer, name, fail_first)
-    result = organizer.organize(root, POLICY)
+    result = organizer.organize(root, POLICY, plan_id=_sort_preview(root, POLICY)["plan_id"])
     assert result["checkpoint"] == "INCOMPLETE"
     rows = catalog(root) if media == "image" else video_catalog(root)
     assert len(rows) == 1
@@ -85,7 +86,7 @@ def test_changed_source_after_backup_does_not_poison_later_files(root, make_imag
         return output
 
     monkeypatch.setattr(history, "copy_exclusive", change_after_backup)
-    result = organizer.organize(root, POLICY)
+    result = organizer.organize(root, POLICY, plan_id=_sort_preview(root, POLICY)["plan_id"])
     assert result["checkpoint"] == "INCOMPLETE"
     assert result["counts"].get("migrated") == 1
     assert "DESTINATION_EXISTS" not in result["blockers"]
@@ -104,7 +105,7 @@ def test_changed_source_after_backup_does_not_poison_later_files(root, make_imag
 def test_noncanonical_numeric_filename_does_not_block_sort(root, make_image):
     make_image(root / "a.png")
     make_image(root / "2025/March/img/SML/SML\u00b2.png", color=(100, 50, 30))
-    assert organizer.organize(root, POLICY)["checkpoint"] == "COMPLETE"
+    assert organizer.organize(root, POLICY, plan_id=_sort_preview(root, POLICY)["plan_id"])["checkpoint"] == "COMPLETE"
     assert len(catalog(root)) == 2
     assert organizer.undo_sort(root, apply=True)["checkpoint"] == "COMPLETE"
     assert (root / "2025/March/img/SML/SML\u00b2.png").exists()
@@ -125,9 +126,9 @@ def test_destination_numbering_scans_each_folder_once(root, make_image, monkeypa
         return iterdir(path)
 
     monkeypatch.setattr(Path, "iterdir", count_scans)
-    assert organizer.organize(root, POLICY)["checkpoint"] == "COMPLETE"
+    assert organizer.organize(root, POLICY, plan_id=_sort_preview(root, POLICY)["plan_id"])["checkpoint"] == "COMPLETE"
     assert len(catalog(root)) == 12
-    assert iterations == 1
+    assert iterations == 3  # Preview and two integrity rechecks; no per-file rescans.
 
 
 def test_late_destination_collision_is_preserved(root, make_image, monkeypatch):
@@ -143,10 +144,12 @@ def test_late_destination_collision_is_preserved(root, make_image, monkeypatch):
         return row
 
     monkeypatch.setattr(organizer, "record_image", add_late_file)
-    result = organizer.organize(root, POLICY)
+    result = organizer.organize(root, POLICY, plan_id=_sort_preview(root, POLICY)["plan_id"])
     assert result["checkpoint"] == "INCOMPLETE"
-    assert result["counts"]["migrated"] == 2
-    assert [Path(r["relative"]).name for r in catalog(root)] == ["SML01.png", "SML03.png"]
+    assert result["counts"]["migrated"] == 1
+    assert result["blockers"]["DESTINATION_EXISTS"] == 1
+    assert sources[1].read_bytes() == originals[1]
+    assert [Path(r["relative"]).name for r in catalog(root)] == ["SML01.png"]
     assert late.read_bytes() == b"external addition"
     assert organizer.undo_sort(root, apply=True)["checkpoint"] == "COMPLETE"
     assert [p.read_bytes() for p in sources] == originals

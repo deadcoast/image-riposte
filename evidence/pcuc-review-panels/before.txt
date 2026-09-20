@@ -1,0 +1,42 @@
+FFF                                                                      [100%]
+================================== FAILURES ===================================
+______________________ test_panel_workflow_is_available _______________________
+
+    def test_panel_workflow_is_available():
+>       assert importlib.util.find_spec('riposte.review_panel') is not None
+E       AssertionError: assert None is not None
+E        +  where None = <function find_spec at 0x0000018B2C186E50>('riposte.review_panel')
+E        +    where <function find_spec at 0x0000018B2C186E50> = <module 'importlib.util' (frozen)>.find_spec
+E        +      where <module 'importlib.util' (frozen)> = importlib.util
+
+tests\test_review_panel.py:20: AssertionError
+______________________ test_exact_agreement_is_available ______________________
+
+    def test_exact_agreement_is_available():
+>       assert importlib.util.find_spec('riposte.agreement') is not None
+E       AssertionError: assert None is not None
+E        +  where None = <function find_spec at 0x0000018B2C186E50>('riposte.agreement')
+E        +    where <function find_spec at 0x0000018B2C186E50> = <module 'importlib.util' (frozen)>.find_spec
+E        +      where <module 'importlib.util' (frozen)> = importlib.util
+
+tests\test_review_panel.py:24: AssertionError
+_________________________ test_panel_cli_is_available _________________________
+
+    def test_panel_cli_is_available():
+        result = CliRunner().invoke(app, ['panel-create', '--help'])
+>       assert result.exit_code == 0, result.output
+E       AssertionError: Usage: riposte [OPTIONS] COMMAND [ARGS]...
+E         Try 'riposte --help' for help.
+E         ┌─ Error ─────────────────────────────────────────────────────────────────────┐
+E         │ No such command 'panel-create'.                                             │
+E         └─────────────────────────────────────────────────────────────────────────────┘
+E         
+E       assert 2 == 0
+E        +  where 2 = <Result SystemExit(2)>.exit_code
+
+tests\test_review_panel.py:29: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/test_review_panel.py::test_panel_workflow_is_available - Asserti...
+FAILED tests/test_review_panel.py::test_exact_agreement_is_available - Assert...
+FAILED tests/test_review_panel.py::test_panel_cli_is_available - AssertionErr...
+3 failed, 25 deselected in 0.41s

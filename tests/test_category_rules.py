@@ -1,4 +1,5 @@
 """Saved-rule contracts; no category movement or original-title recovery claimed."""
+from riposte.organizer import plan as _sort_preview
 import json
 import os
 from pathlib import Path
@@ -9,6 +10,7 @@ from typer.testing import CliRunner
 from riposte import category_rules as cr
 from riposte.cli import app
 from riposte.errors import RiposteError
+from riposte.locking import LEASE_NAME
 from riposte.organizer import organize, plan
 from riposte.policy import Policy
 from riposte.sort_history import undo_sort
@@ -41,7 +43,8 @@ def test_preview_save_reload_and_revision_consent(root):
     with pytest.raises(RiposteError, match="CATEGORY_RULES_CHANGED"):
         cr.category_rules(root, categories=["New=tennis"], save=True, expected_revision="missing")
     assert snapshot(root) == before
-    assert set(before) == {".riposte/WORKSPACE", ".riposte/category-rules.json"}
+    assert set(before) == {".riposte/WORKSPACE", ".riposte/category-rules.json", LEASE_NAME}
+    assert before[LEASE_NAME][0] == b""  # Persistent OS lease, never artwork or a held-lock marker.
 
 
 def test_priorities_aliases_exclusions_phrases_and_ties():
@@ -258,7 +261,7 @@ def test_saved_rules_do_not_enable_sorting_or_change_undo(root, make_image):
     before = snapshot(root)
     assert plan(root, Policy(date_mode="modified"))["ready"]
     assert snapshot(root) == before
-    result = organize(root, Policy(date_mode="modified"))
+    result = organize(root, Policy(date_mode="modified"), plan_id=_sort_preview(root, Policy(date_mode="modified"))["plan_id"])
     assert result["checkpoint"] == "COMPLETE"
     assert (root / "2025/March/img/SML/SML01.png").is_file()
     assert cr.load_rules(root) == stored

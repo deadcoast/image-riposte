@@ -1,0 +1,5 @@
+warning: `VIRTUAL_ENV=.venv` does not match the project environment path `typing\.venv` and will be ignored; use `--active` to target the active environment instead
+Source/stub parity: 403 signatures, 50 importable leaf modules
+Missing stub: context_graph
+coupled:_view_features: missing declaration
+Source differs from the reviewed snapshot; re-review these contracts: src/riposte/context_graph.py, src/riposte/coupled.py, src/riposte/release_guard.py

@@ -12,7 +12,7 @@ from riposte.terminal.service import Request, execute
 def test_focus_uses_visible_form_fields(root, make_image, action, advanced):
     if action == 'publish':
         make_image(root / 'input.png')
-        execute(Request('apply', root))
+        execute(Request('apply', root, {'plan_id': execute(Request('organize', root))['plan_id']}))
     controller = Controller(root, Presentation(plain=True))
     if action == 'publish':
         controller.library()

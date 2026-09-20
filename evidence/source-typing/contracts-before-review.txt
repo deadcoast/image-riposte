@@ -1,0 +1,4 @@
+warning: `VIRTUAL_ENV=.venv` does not match the project environment path `typing\.venv` and will be ignored; use `--active` to target the active environment instead
+Source/stub parity: 402 signatures, 49 importable leaf modules
+Missing stub: records
+Source differs from the reviewed snapshot; re-review these contracts: src/riposte/category_sort.py, src/riposte/cli.py, src/riposte/organizer.py, src/riposte/publication.py, src/riposte/records.py, src/riposte/sanitize.py, src/riposte/sort_history.py, src/riposte/sort_plan.py, src/riposte/store.py, src/riposte/terminal/actions.py, src/riposte/terminal/controller.py, src/riposte/terminal/jobs.py, src/riposte/terminal/service.py, src/riposte/video.py

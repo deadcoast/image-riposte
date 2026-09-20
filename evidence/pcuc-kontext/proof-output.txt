@@ -1,0 +1,7 @@
+{
+  "result": "PASS",
+  "aspect_cases": 4115,
+  "lattice_and_area_cases": 17,
+  "installed_buckets_equal": true,
+  "scope": "Exact finite bucket selection and packing geometry; not image quality or efficacy"
+}

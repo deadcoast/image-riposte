@@ -65,8 +65,8 @@ def restore_titles(db: sqlite3.Connection, rows: list[dict[str, Any]]) -> None:
         put_title(db, row)
 
 
-def save_title(root: Path, row: dict[str, Any]) -> None:
+def save_title(root: Path, row: dict[str, Any], *, db: sqlite3.Connection | None = None) -> None:
     """Caller holds the workspace lock and has persisted the recovery intent."""
-    with contextlib.closing(connect(root)) as db:
+    with (contextlib.closing(connect(root)) if db is None else contextlib.nullcontext(db)) as db:
         put_title(db, row)
         db.commit()

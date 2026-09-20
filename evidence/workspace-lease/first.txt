@@ -1,0 +1,144 @@
+........F.......................F....                                    [100%]
+================================== FAILURES ===================================
+_________ test_legacy_read_is_nonmutating_then_upgrade_keeps_art_ids __________
+
+root = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/.tmp/workspace-lease/first/test_legacy_read_is_nonmutatin0/workspace')
+tmp_path = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/.tmp/workspace-lease/first/test_legacy_read_is_nonmutatin0')
+make_image = <function make_image.<locals>.create at 0x00000289D6DEFC10>
+
+    def test_legacy_read_is_nonmutating_then_upgrade_keeps_art_ids(root,tmp_path,make_image):
+        make_image(root/'former/a.png');organize(root,Policy(date_mode='modified'))
+        candidate=make_image(tmp_path/'external.png',color=(31,91,150))
+        original=catalog(root);trial=compare_external(root,original[0]['id'],candidate);legacy(root)
+        before=snapshot(root)
+        assert legacy_workspace(root) and state_relative(root,'lab').startswith('.shroud/')
+        assert catalog(root)==original and trials(root)[0]['id']==trial['id']
+        assert trial_pixels(root,trial['id'],'candidate')
+        plan(root,Policy(date_mode='modified'));assert snapshot(root)==before
+>       result=upgrade_workspace(root)
+               ^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_v02_migration.py:26: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\riposte\store.py:75: in upgrade_workspace
+    with workspace_lock(root):
+         ^^^^^^^^^^^^^^^^^^^^
+C:\Python314\Lib\contextlib.py:162: in __exit__
+    self.gen.throw(value)
+src\riposte\store.py:155: in workspace_lock
+    with file_lease(state / "operation.lease") as lease_identity:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Python314\Lib\contextlib.py:162: in __exit__
+    self.gen.throw(value)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+path = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/.tmp/workspace-lease/first/test_legacy_read_is_nonmutatin0/workspace/.shroud/operation.lease')
+
+    @contextmanager
+    def file_lease(path: Path) -> Iterator[tuple[int, int]]:
+        """Acquire exclusive ownership, or fail closed without waiting/replacing."""
+        fd = -1
+        locked = False
+        try:
+            if path.exists() or path.is_symlink():
+                file_identity(path)
+            if os.name == "nt":
+                fd = _windows_open(path)
+            else:
+                fd = os.open(path, os.O_RDWR | os.O_CREAT | os.O_NOFOLLOW | os.O_NONBLOCK, 0o600)
+            os.set_inheritable(fd, False)
+            info = os.fstat(fd)
+            identity = info.st_dev, info.st_ino
+            if not stat.S_ISREG(info.st_mode) or info.st_nlink != 1 or file_identity(path) != identity:
+                raise RiposteError("STATE_PATH_INVALID")
+            if os.name == "nt":
+                _windows_lock(fd)
+            else:
+                import fcntl
+                try:
+                    fcntl.flock(fd, fcntl.LOCK_EX | fcntl.LOCK_NB)
+                except OSError as exc:
+                    if exc.errno in {errno.EACCES, errno.EAGAIN}:
+                        raise RiposteError("WORKSPACE_LOCKED") from None
+                    raise
+            locked = True
+            if file_identity(path) != identity:
+                raise RiposteError("STATE_PATH_INVALID")
+            yield identity
+        except OSError:
+>           raise RiposteError("WORKSPACE_LOCK_UNAVAILABLE") from None
+E           riposte.errors.RiposteError: WORKSPACE_LOCK_UNAVAILABLE
+
+src\riposte\locking.py:114: RiposteError
+____________ test_undo_survives_legacy_workspace_namespace_upgrade ____________
+
+root = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/.tmp/workspace-lease/first/test_undo_survives_legacy_work0/workspace')
+make_image = <function make_image.<locals>.create at 0x00000289D6F91590>
+
+    def test_undo_survives_legacy_workspace_namespace_upgrade(root, make_image):
+        from riposte.store import LEGACY_SIGNATURE, upgrade_workspace
+        state = root / ".shroud"
+        state.mkdir()
+        (state / "WORKSPACE").write_text(LEGACY_SIGNATURE)
+        source = make_image(root / "legacy.png")
+        original = source.read_bytes()
+        assert organizer.organize(root, POLICY)["checkpoint"] == "COMPLETE"
+>       assert upgrade_workspace(root)["status"] == "UPGRADED"
+               ^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_sort_recovery.py:187: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\riposte\store.py:75: in upgrade_workspace
+    with workspace_lock(root):
+         ^^^^^^^^^^^^^^^^^^^^
+C:\Python314\Lib\contextlib.py:162: in __exit__
+    self.gen.throw(value)
+src\riposte\store.py:155: in workspace_lock
+    with file_lease(state / "operation.lease") as lease_identity:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Python314\Lib\contextlib.py:162: in __exit__
+    self.gen.throw(value)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+path = WindowsPath('C:/Users/ryanf/github/_new/image-riposte/.tmp/workspace-lease/first/test_undo_survives_legacy_work0/workspace/.shroud/operation.lease')
+
+    @contextmanager
+    def file_lease(path: Path) -> Iterator[tuple[int, int]]:
+        """Acquire exclusive ownership, or fail closed without waiting/replacing."""
+        fd = -1
+        locked = False
+        try:
+            if path.exists() or path.is_symlink():
+                file_identity(path)
+            if os.name == "nt":
+                fd = _windows_open(path)
+            else:
+                fd = os.open(path, os.O_RDWR | os.O_CREAT | os.O_NOFOLLOW | os.O_NONBLOCK, 0o600)
+            os.set_inheritable(fd, False)
+            info = os.fstat(fd)
+            identity = info.st_dev, info.st_ino
+            if not stat.S_ISREG(info.st_mode) or info.st_nlink != 1 or file_identity(path) != identity:
+                raise RiposteError("STATE_PATH_INVALID")
+            if os.name == "nt":
+                _windows_lock(fd)
+            else:
+                import fcntl
+                try:
+                    fcntl.flock(fd, fcntl.LOCK_EX | fcntl.LOCK_NB)
+                except OSError as exc:
+                    if exc.errno in {errno.EACCES, errno.EAGAIN}:
+                        raise RiposteError("WORKSPACE_LOCKED") from None
+                    raise
+            locked = True
+            if file_identity(path) != identity:
+                raise RiposteError("STATE_PATH_INVALID")
+            yield identity
+        except OSError:
+>           raise RiposteError("WORKSPACE_LOCK_UNAVAILABLE") from None
+E           riposte.errors.RiposteError: WORKSPACE_LOCK_UNAVAILABLE
+
+src\riposte\locking.py:114: RiposteError
+=========================== short test summary info ===========================
+FAILED tests/test_v02_migration.py::test_legacy_read_is_nonmutating_then_upgrade_keeps_art_ids
+FAILED tests/test_sort_recovery.py::test_undo_survives_legacy_workspace_namespace_upgrade
+2 failed, 35 passed in 6.92s

@@ -1,0 +1,394 @@
+Building source distribution...
+running sdist
+running egg_info
+writing src\riposte_studio.egg-info\PKG-INFO
+writing dependency_links to src\riposte_studio.egg-info\dependency_links.txt
+writing entry points to src\riposte_studio.egg-info\entry_points.txt
+writing requirements to src\riposte_studio.egg-info\requires.txt
+writing top-level names to src\riposte_studio.egg-info\top_level.txt
+reading manifest file 'src\riposte_studio.egg-info\SOURCES.txt'
+reading manifest template 'MANIFEST.in'
+adding license file 'LICENSE'
+writing manifest file 'src\riposte_studio.egg-info\SOURCES.txt'
+running check
+creating riposte_studio-0.5.0
+creating riposte_studio-0.5.0\docs
+creating riposte_studio-0.5.0\src\riposte
+creating riposte_studio-0.5.0\src\riposte\static
+creating riposte_studio-0.5.0\src\riposte\terminal
+creating riposte_studio-0.5.0\src\riposte_studio.egg-info
+creating riposte_studio-0.5.0\tests
+copying files to riposte_studio-0.5.0...
+copying INSTALL.ps1 -> riposte_studio-0.5.0
+copying INSTALL.sh -> riposte_studio-0.5.0
+copying LICENSE -> riposte_studio-0.5.0
+copying MANIFEST.in -> riposte_studio-0.5.0
+copying README.md -> riposte_studio-0.5.0
+copying START.cmd -> riposte_studio-0.5.0
+copying START.ps1 -> riposte_studio-0.5.0
+copying START.sh -> riposte_studio-0.5.0
+copying pyproject.toml -> riposte_studio-0.5.0
+copying riposte.cmd -> riposte_studio-0.5.0
+copying uv.lock -> riposte_studio-0.5.0
+copying docs\CLI.md -> riposte_studio-0.5.0\docs
+copying docs\DESIGN.md -> riposte_studio-0.5.0\docs
+copying docs\PCUC.md -> riposte_studio-0.5.0\docs
+copying docs\REBUILD.md -> riposte_studio-0.5.0\docs
+copying docs\UX-CONTRACT.md -> riposte_studio-0.5.0\docs
+copying src\riposte\__init__.py -> riposte_studio-0.5.0\src\riposte
+copying src\riposte\__main__.py -> riposte_studio-0.5.0\src\riposte
+copying src\riposte\agreement.py -> riposte_studio-0.5.0\src\riposte
+copying src\riposte\benchmark.py -> riposte_studio-0.5.0\src\riposte
+copying src\riposte\catalog_guard.py -> riposte_studio-0.5.0\src\riposte
+copying src\riposte\category_rules.py -> riposte_studio-0.5.0\src\riposte
+copying src\riposte\category_sort.py -> riposte_studio-0.5.0\src\riposte
+copying src\riposte\cli.py -> riposte_studio-0.5.0\src\riposte
+copying src\riposte\cohort.py -> riposte_studio-0.5.0\src\riposte
+copying src\riposte\context_graph.py -> riposte_studio-0.5.0\src\riposte
+copying src\riposte\coupled.py -> riposte_studio-0.5.0\src\riposte
+copying src\riposte\errors.py -> riposte_studio-0.5.0\src\riposte
+copying src\riposte\experiment.py -> riposte_studio-0.5.0\src\riposte
+copying src\riposte\generation.py -> riposte_studio-0.5.0\src\riposte
+copying src\riposte\intake.py -> riposte_studio-0.5.0\src\riposte
+copying src\riposte\lab.py -> riposte_studio-0.5.0\src\riposte
+copying src\riposte\locking.py -> riposte_studio-0.5.0\src\riposte
+copying src\riposte\methods.json -> riposte_studio-0.5.0\src\riposte
+copying src\riposte\metrics.py -> riposte_studio-0.5.0\src\riposte
+copying src\riposte\models.py -> riposte_studio-0.5.0\src\riposte
+copying src\riposte\optimizer.py -> riposte_studio-0.5.0\src\riposte
+copying src\riposte\organizer.py -> riposte_studio-0.5.0\src\riposte
+copying src\riposte\policy.py -> riposte_studio-0.5.0\src\riposte
+copying src\riposte\publication.py -> riposte_studio-0.5.0\src\riposte
+copying src\riposte\qualification.py -> riposte_studio-0.5.0\src\riposte
+copying src\riposte\quality.py -> riposte_studio-0.5.0\src\riposte
+copying src\riposte\records.py -> riposte_studio-0.5.0\src\riposte
+copying src\riposte\release_guard.py -> riposte_studio-0.5.0\src\riposte
+copying src\riposte\review_panel.py -> riposte_studio-0.5.0\src\riposte
+copying src\riposte\runtime_probe.py -> riposte_studio-0.5.0\src\riposte
+copying src\riposte\sanitize.py -> riposte_studio-0.5.0\src\riposte
+copying src\riposte\server.py -> riposte_studio-0.5.0\src\riposte
+copying src\riposte\sort_history.py -> riposte_studio-0.5.0\src\riposte
+copying src\riposte\sort_plan.py -> riposte_studio-0.5.0\src\riposte
+copying src\riposte\sort_titles.py -> riposte_studio-0.5.0\src\riposte
+copying src\riposte\store.py -> riposte_studio-0.5.0\src\riposte
+copying src\riposte\temporal.py -> riposte_studio-0.5.0\src\riposte
+copying src\riposte\title_categories.py -> riposte_studio-0.5.0\src\riposte
+copying src\riposte\video.py -> riposte_studio-0.5.0\src\riposte
+copying src\riposte\views.py -> riposte_studio-0.5.0\src\riposte
+copying src\riposte\static\app.js -> riposte_studio-0.5.0\src\riposte\static
+copying src\riposte\static\category-sort.js -> riposte_studio-0.5.0\src\riposte\static
+copying src\riposte\static\index.html -> riposte_studio-0.5.0\src\riposte\static
+copying src\riposte\static\publish.css -> riposte_studio-0.5.0\src\riposte\static
+copying src\riposte\static\publish.js -> riposte_studio-0.5.0\src\riposte\static
+copying src\riposte\static\style.css -> riposte_studio-0.5.0\src\riposte\static
+copying src\riposte\terminal\__init__.py -> riposte_studio-0.5.0\src\riposte\terminal
+copying src\riposte\terminal\actions.py -> riposte_studio-0.5.0\src\riposte\terminal
+copying src\riposte\terminal\app.py -> riposte_studio-0.5.0\src\riposte\terminal
+copying src\riposte\terminal\controller.py -> riposte_studio-0.5.0\src\riposte\terminal
+copying src\riposte\terminal\help.py -> riposte_studio-0.5.0\src\riposte\terminal
+copying src\riposte\terminal\interaction.py -> riposte_studio-0.5.0\src\riposte\terminal
+copying src\riposte\terminal\jobs.py -> riposte_studio-0.5.0\src\riposte\terminal
+copying src\riposte\terminal\keyboard.py -> riposte_studio-0.5.0\src\riposte\terminal
+copying src\riposte\terminal\material.py -> riposte_studio-0.5.0\src\riposte\terminal
+copying src\riposte\terminal\output.py -> riposte_studio-0.5.0\src\riposte\terminal
+copying src\riposte\terminal\palette.py -> riposte_studio-0.5.0\src\riposte\terminal
+copying src\riposte\terminal\paths.py -> riposte_studio-0.5.0\src\riposte\terminal
+copying src\riposte\terminal\preview.py -> riposte_studio-0.5.0\src\riposte\terminal
+copying src\riposte\terminal\render.py -> riposte_studio-0.5.0\src\riposte\terminal
+copying src\riposte\terminal\reports.py -> riposte_studio-0.5.0\src\riposte\terminal
+copying src\riposte\terminal\service.py -> riposte_studio-0.5.0\src\riposte\terminal
+copying src\riposte\terminal\signals.py -> riposte_studio-0.5.0\src\riposte\terminal
+copying src\riposte\terminal\state.py -> riposte_studio-0.5.0\src\riposte\terminal
+copying src\riposte\terminal\surface.py -> riposte_studio-0.5.0\src\riposte\terminal
+copying src\riposte_studio.egg-info\PKG-INFO -> riposte_studio-0.5.0\src\riposte_studio.egg-info
+copying src\riposte_studio.egg-info\SOURCES.txt -> riposte_studio-0.5.0\src\riposte_studio.egg-info
+copying src\riposte_studio.egg-info\dependency_links.txt -> riposte_studio-0.5.0\src\riposte_studio.egg-info
+copying src\riposte_studio.egg-info\entry_points.txt -> riposte_studio-0.5.0\src\riposte_studio.egg-info
+copying src\riposte_studio.egg-info\requires.txt -> riposte_studio-0.5.0\src\riposte_studio.egg-info
+copying src\riposte_studio.egg-info\top_level.txt -> riposte_studio-0.5.0\src\riposte_studio.egg-info
+copying tests\test_application_roots.py -> riposte_studio-0.5.0\tests
+copying tests\test_benchmark.py -> riposte_studio-0.5.0\tests
+copying tests\test_browser_review.py -> riposte_studio-0.5.0\tests
+copying tests\test_catalog_scaling.py -> riposte_studio-0.5.0\tests
+copying tests\test_category_rules.py -> riposte_studio-0.5.0\tests
+copying tests\test_category_sort.py -> riposte_studio-0.5.0\tests
+copying tests\test_category_sort_interfaces.py -> riposte_studio-0.5.0\tests
+copying tests\test_cohort.py -> riposte_studio-0.5.0\tests
+copying tests\test_context_graph.py -> riposte_studio-0.5.0\tests
+copying tests\test_development_model_repairs.py -> riposte_studio-0.5.0\tests
+copying tests\test_development_repairs.py -> riposte_studio-0.5.0\tests
+copying tests\test_experiment.py -> riposte_studio-0.5.0\tests
+copying tests\test_lab.py -> riposte_studio-0.5.0\tests
+copying tests\test_launcher_refresh.py -> riposte_studio-0.5.0\tests
+copying tests\test_linear_focus.py -> riposte_studio-0.5.0\tests
+copying tests\test_menu_startup.py -> riposte_studio-0.5.0\tests
+copying tests\test_model_configuration_identity.py -> riposte_studio-0.5.0\tests
+copying tests\test_optimizer.py -> riposte_studio-0.5.0\tests
+copying tests\test_organizer.py -> riposte_studio-0.5.0\tests
+copying tests\test_policy.py -> riposte_studio-0.5.0\tests
+copying tests\test_publication_review_snapshots.py -> riposte_studio-0.5.0\tests
+copying tests\test_release_search.py -> riposte_studio-0.5.0\tests
+copying tests\test_review_panel.py -> riposte_studio-0.5.0\tests
+copying tests\test_sanitize.py -> riposte_studio-0.5.0\tests
+copying tests\test_server.py -> riposte_studio-0.5.0\tests
+copying tests\test_sort_collisions.py -> riposte_studio-0.5.0\tests
+copying tests\test_sort_commit_safety.py -> riposte_studio-0.5.0\tests
+copying tests\test_sort_partial_failures.py -> riposte_studio-0.5.0\tests
+copying tests\test_sort_preview_binding.py -> riposte_studio-0.5.0\tests
+copying tests\test_sort_recovery.py -> riposte_studio-0.5.0\tests
+copying tests\test_title_categories.py -> riposte_studio-0.5.0\tests
+copying tests\test_v02_api_cli.py -> riposte_studio-0.5.0\tests
+copying tests\test_v02_coupled.py -> riposte_studio-0.5.0\tests
+copying tests\test_v02_generation.py -> riposte_studio-0.5.0\tests
+copying tests\test_v02_migration.py -> riposte_studio-0.5.0\tests
+copying tests\test_v02_models.py -> riposte_studio-0.5.0\tests
+copying tests\test_v02_qualification.py -> riposte_studio-0.5.0\tests
+copying tests\test_v02_views.py -> riposte_studio-0.5.0\tests
+copying tests\test_v03_api_cli.py -> riposte_studio-0.5.0\tests
+copying tests\test_v03_publication.py -> riposte_studio-0.5.0\tests
+copying tests\test_v03_quality_guard.py -> riposte_studio-0.5.0\tests
+copying tests\test_v03_temporal.py -> riposte_studio-0.5.0\tests
+copying tests\test_v04_product_terminal.py -> riposte_studio-0.5.0\tests
+copying tests\test_v04_terminal_core.py -> riposte_studio-0.5.0\tests
+copying tests\test_v04_terminal_host.py -> riposte_studio-0.5.0\tests
+copying tests\test_v04_typer.py -> riposte_studio-0.5.0\tests
+copying tests\test_v05_revision.py -> riposte_studio-0.5.0\tests
+copying tests\test_video_sort.py -> riposte_studio-0.5.0\tests
+copying tests\test_workflows.py -> riposte_studio-0.5.0\tests
+copying tests\test_workspace_lease.py -> riposte_studio-0.5.0\tests
+Writing riposte_studio-0.5.0\setup.cfg
+Creating tar archive
+removing 'riposte_studio-0.5.0' (and everything under it)
+Building wheel from source distribution...
+running bdist_wheel
+running build
+running build_py
+creating build\lib\riposte
+copying src\riposte\agreement.py -> build\lib\riposte
+copying src\riposte\benchmark.py -> build\lib\riposte
+copying src\riposte\catalog_guard.py -> build\lib\riposte
+copying src\riposte\category_rules.py -> build\lib\riposte
+copying src\riposte\category_sort.py -> build\lib\riposte
+copying src\riposte\cli.py -> build\lib\riposte
+copying src\riposte\cohort.py -> build\lib\riposte
+copying src\riposte\context_graph.py -> build\lib\riposte
+copying src\riposte\coupled.py -> build\lib\riposte
+copying src\riposte\errors.py -> build\lib\riposte
+copying src\riposte\experiment.py -> build\lib\riposte
+copying src\riposte\generation.py -> build\lib\riposte
+copying src\riposte\intake.py -> build\lib\riposte
+copying src\riposte\lab.py -> build\lib\riposte
+copying src\riposte\locking.py -> build\lib\riposte
+copying src\riposte\metrics.py -> build\lib\riposte
+copying src\riposte\models.py -> build\lib\riposte
+copying src\riposte\optimizer.py -> build\lib\riposte
+copying src\riposte\organizer.py -> build\lib\riposte
+copying src\riposte\policy.py -> build\lib\riposte
+copying src\riposte\publication.py -> build\lib\riposte
+copying src\riposte\qualification.py -> build\lib\riposte
+copying src\riposte\quality.py -> build\lib\riposte
+copying src\riposte\records.py -> build\lib\riposte
+copying src\riposte\release_guard.py -> build\lib\riposte
+copying src\riposte\review_panel.py -> build\lib\riposte
+copying src\riposte\runtime_probe.py -> build\lib\riposte
+copying src\riposte\sanitize.py -> build\lib\riposte
+copying src\riposte\server.py -> build\lib\riposte
+copying src\riposte\sort_history.py -> build\lib\riposte
+copying src\riposte\sort_plan.py -> build\lib\riposte
+copying src\riposte\sort_titles.py -> build\lib\riposte
+copying src\riposte\store.py -> build\lib\riposte
+copying src\riposte\temporal.py -> build\lib\riposte
+copying src\riposte\title_categories.py -> build\lib\riposte
+copying src\riposte\video.py -> build\lib\riposte
+copying src\riposte\views.py -> build\lib\riposte
+copying src\riposte\__init__.py -> build\lib\riposte
+copying src\riposte\__main__.py -> build\lib\riposte
+creating build\lib\riposte\terminal
+copying src\riposte\terminal\actions.py -> build\lib\riposte\terminal
+copying src\riposte\terminal\app.py -> build\lib\riposte\terminal
+copying src\riposte\terminal\controller.py -> build\lib\riposte\terminal
+copying src\riposte\terminal\help.py -> build\lib\riposte\terminal
+copying src\riposte\terminal\interaction.py -> build\lib\riposte\terminal
+copying src\riposte\terminal\jobs.py -> build\lib\riposte\terminal
+copying src\riposte\terminal\keyboard.py -> build\lib\riposte\terminal
+copying src\riposte\terminal\material.py -> build\lib\riposte\terminal
+copying src\riposte\terminal\output.py -> build\lib\riposte\terminal
+copying src\riposte\terminal\palette.py -> build\lib\riposte\terminal
+copying src\riposte\terminal\paths.py -> build\lib\riposte\terminal
+copying src\riposte\terminal\preview.py -> build\lib\riposte\terminal
+copying src\riposte\terminal\render.py -> build\lib\riposte\terminal
+copying src\riposte\terminal\reports.py -> build\lib\riposte\terminal
+copying src\riposte\terminal\service.py -> build\lib\riposte\terminal
+copying src\riposte\terminal\signals.py -> build\lib\riposte\terminal
+copying src\riposte\terminal\state.py -> build\lib\riposte\terminal
+copying src\riposte\terminal\surface.py -> build\lib\riposte\terminal
+copying src\riposte\terminal\__init__.py -> build\lib\riposte\terminal
+running egg_info
+writing src\riposte_studio.egg-info\PKG-INFO
+writing dependency_links to src\riposte_studio.egg-info\dependency_links.txt
+writing entry points to src\riposte_studio.egg-info\entry_points.txt
+writing requirements to src\riposte_studio.egg-info\requires.txt
+writing top-level names to src\riposte_studio.egg-info\top_level.txt
+reading manifest file 'src\riposte_studio.egg-info\SOURCES.txt'
+reading manifest template 'MANIFEST.in'
+adding license file 'LICENSE'
+writing manifest file 'src\riposte_studio.egg-info\SOURCES.txt'
+copying src\riposte\methods.json -> build\lib\riposte
+creating build\lib\riposte\static
+copying src\riposte\static\app.js -> build\lib\riposte\static
+copying src\riposte\static\category-sort.js -> build\lib\riposte\static
+copying src\riposte\static\index.html -> build\lib\riposte\static
+copying src\riposte\static\publish.css -> build\lib\riposte\static
+copying src\riposte\static\publish.js -> build\lib\riposte\static
+copying src\riposte\static\style.css -> build\lib\riposte\static
+installing to build\bdist.win-amd64\wheel
+running install
+running install_lib
+creating build\bdist.win-amd64\wheel
+creating build\bdist.win-amd64\wheel\riposte
+copying build\lib\riposte\agreement.py -> build\bdist.win-amd64\wheel\.\riposte
+copying build\lib\riposte\benchmark.py -> build\bdist.win-amd64\wheel\.\riposte
+copying build\lib\riposte\catalog_guard.py -> build\bdist.win-amd64\wheel\.\riposte
+copying build\lib\riposte\category_rules.py -> build\bdist.win-amd64\wheel\.\riposte
+copying build\lib\riposte\category_sort.py -> build\bdist.win-amd64\wheel\.\riposte
+copying build\lib\riposte\cli.py -> build\bdist.win-amd64\wheel\.\riposte
+copying build\lib\riposte\cohort.py -> build\bdist.win-amd64\wheel\.\riposte
+copying build\lib\riposte\context_graph.py -> build\bdist.win-amd64\wheel\.\riposte
+copying build\lib\riposte\coupled.py -> build\bdist.win-amd64\wheel\.\riposte
+copying build\lib\riposte\errors.py -> build\bdist.win-amd64\wheel\.\riposte
+copying build\lib\riposte\experiment.py -> build\bdist.win-amd64\wheel\.\riposte
+copying build\lib\riposte\generation.py -> build\bdist.win-amd64\wheel\.\riposte
+copying build\lib\riposte\intake.py -> build\bdist.win-amd64\wheel\.\riposte
+copying build\lib\riposte\lab.py -> build\bdist.win-amd64\wheel\.\riposte
+copying build\lib\riposte\locking.py -> build\bdist.win-amd64\wheel\.\riposte
+copying build\lib\riposte\methods.json -> build\bdist.win-amd64\wheel\.\riposte
+copying build\lib\riposte\metrics.py -> build\bdist.win-amd64\wheel\.\riposte
+copying build\lib\riposte\models.py -> build\bdist.win-amd64\wheel\.\riposte
+copying build\lib\riposte\optimizer.py -> build\bdist.win-amd64\wheel\.\riposte
+copying build\lib\riposte\organizer.py -> build\bdist.win-amd64\wheel\.\riposte
+copying build\lib\riposte\policy.py -> build\bdist.win-amd64\wheel\.\riposte
+copying build\lib\riposte\publication.py -> build\bdist.win-amd64\wheel\.\riposte
+copying build\lib\riposte\qualification.py -> build\bdist.win-amd64\wheel\.\riposte
+copying build\lib\riposte\quality.py -> build\bdist.win-amd64\wheel\.\riposte
+copying build\lib\riposte\records.py -> build\bdist.win-amd64\wheel\.\riposte
+copying build\lib\riposte\release_guard.py -> build\bdist.win-amd64\wheel\.\riposte
+copying build\lib\riposte\review_panel.py -> build\bdist.win-amd64\wheel\.\riposte
+copying build\lib\riposte\runtime_probe.py -> build\bdist.win-amd64\wheel\.\riposte
+copying build\lib\riposte\sanitize.py -> build\bdist.win-amd64\wheel\.\riposte
+copying build\lib\riposte\server.py -> build\bdist.win-amd64\wheel\.\riposte
+copying build\lib\riposte\sort_history.py -> build\bdist.win-amd64\wheel\.\riposte
+copying build\lib\riposte\sort_plan.py -> build\bdist.win-amd64\wheel\.\riposte
+copying build\lib\riposte\sort_titles.py -> build\bdist.win-amd64\wheel\.\riposte
+creating build\bdist.win-amd64\wheel\riposte\static
+copying build\lib\riposte\static\app.js -> build\bdist.win-amd64\wheel\.\riposte\static
+copying build\lib\riposte\static\category-sort.js -> build\bdist.win-amd64\wheel\.\riposte\static
+copying build\lib\riposte\static\index.html -> build\bdist.win-amd64\wheel\.\riposte\static
+copying build\lib\riposte\static\publish.css -> build\bdist.win-amd64\wheel\.\riposte\static
+copying build\lib\riposte\static\publish.js -> build\bdist.win-amd64\wheel\.\riposte\static
+copying build\lib\riposte\static\style.css -> build\bdist.win-amd64\wheel\.\riposte\static
+copying build\lib\riposte\store.py -> build\bdist.win-amd64\wheel\.\riposte
+copying build\lib\riposte\temporal.py -> build\bdist.win-amd64\wheel\.\riposte
+creating build\bdist.win-amd64\wheel\riposte\terminal
+copying build\lib\riposte\terminal\actions.py -> build\bdist.win-amd64\wheel\.\riposte\terminal
+copying build\lib\riposte\terminal\app.py -> build\bdist.win-amd64\wheel\.\riposte\terminal
+copying build\lib\riposte\terminal\controller.py -> build\bdist.win-amd64\wheel\.\riposte\terminal
+copying build\lib\riposte\terminal\help.py -> build\bdist.win-amd64\wheel\.\riposte\terminal
+copying build\lib\riposte\terminal\interaction.py -> build\bdist.win-amd64\wheel\.\riposte\terminal
+copying build\lib\riposte\terminal\jobs.py -> build\bdist.win-amd64\wheel\.\riposte\terminal
+copying build\lib\riposte\terminal\keyboard.py -> build\bdist.win-amd64\wheel\.\riposte\terminal
+copying build\lib\riposte\terminal\material.py -> build\bdist.win-amd64\wheel\.\riposte\terminal
+copying build\lib\riposte\terminal\output.py -> build\bdist.win-amd64\wheel\.\riposte\terminal
+copying build\lib\riposte\terminal\palette.py -> build\bdist.win-amd64\wheel\.\riposte\terminal
+copying build\lib\riposte\terminal\paths.py -> build\bdist.win-amd64\wheel\.\riposte\terminal
+copying build\lib\riposte\terminal\preview.py -> build\bdist.win-amd64\wheel\.\riposte\terminal
+copying build\lib\riposte\terminal\render.py -> build\bdist.win-amd64\wheel\.\riposte\terminal
+copying build\lib\riposte\terminal\reports.py -> build\bdist.win-amd64\wheel\.\riposte\terminal
+copying build\lib\riposte\terminal\service.py -> build\bdist.win-amd64\wheel\.\riposte\terminal
+copying build\lib\riposte\terminal\signals.py -> build\bdist.win-amd64\wheel\.\riposte\terminal
+copying build\lib\riposte\terminal\state.py -> build\bdist.win-amd64\wheel\.\riposte\terminal
+copying build\lib\riposte\terminal\surface.py -> build\bdist.win-amd64\wheel\.\riposte\terminal
+copying build\lib\riposte\terminal\__init__.py -> build\bdist.win-amd64\wheel\.\riposte\terminal
+copying build\lib\riposte\title_categories.py -> build\bdist.win-amd64\wheel\.\riposte
+copying build\lib\riposte\video.py -> build\bdist.win-amd64\wheel\.\riposte
+copying build\lib\riposte\views.py -> build\bdist.win-amd64\wheel\.\riposte
+copying build\lib\riposte\__init__.py -> build\bdist.win-amd64\wheel\.\riposte
+copying build\lib\riposte\__main__.py -> build\bdist.win-amd64\wheel\.\riposte
+running install_egg_info
+Copying src\riposte_studio.egg-info to build\bdist.win-amd64\wheel\.\riposte_studio-0.5.0-py3.14.egg-info
+running install_scripts
+creating build\bdist.win-amd64\wheel\riposte_studio-0.5.0.dist-info\WHEEL
+creating 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\.tmp\\pcuc-review-panels\\dist\\.tmp-tfnlapn7\\riposte_studio-0.5.0-py3-none-any.whl' and adding 'build\\bdist.win-amd64\\wheel' to it
+adding 'riposte/__init__.py'
+adding 'riposte/__main__.py'
+adding 'riposte/agreement.py'
+adding 'riposte/benchmark.py'
+adding 'riposte/catalog_guard.py'
+adding 'riposte/category_rules.py'
+adding 'riposte/category_sort.py'
+adding 'riposte/cli.py'
+adding 'riposte/cohort.py'
+adding 'riposte/context_graph.py'
+adding 'riposte/coupled.py'
+adding 'riposte/errors.py'
+adding 'riposte/experiment.py'
+adding 'riposte/generation.py'
+adding 'riposte/intake.py'
+adding 'riposte/lab.py'
+adding 'riposte/locking.py'
+adding 'riposte/methods.json'
+adding 'riposte/metrics.py'
+adding 'riposte/models.py'
+adding 'riposte/optimizer.py'
+adding 'riposte/organizer.py'
+adding 'riposte/policy.py'
+adding 'riposte/publication.py'
+adding 'riposte/qualification.py'
+adding 'riposte/quality.py'
+adding 'riposte/records.py'
+adding 'riposte/release_guard.py'
+adding 'riposte/review_panel.py'
+adding 'riposte/runtime_probe.py'
+adding 'riposte/sanitize.py'
+adding 'riposte/server.py'
+adding 'riposte/sort_history.py'
+adding 'riposte/sort_plan.py'
+adding 'riposte/sort_titles.py'
+adding 'riposte/store.py'
+adding 'riposte/temporal.py'
+adding 'riposte/title_categories.py'
+adding 'riposte/video.py'
+adding 'riposte/views.py'
+adding 'riposte/static/app.js'
+adding 'riposte/static/category-sort.js'
+adding 'riposte/static/index.html'
+adding 'riposte/static/publish.css'
+adding 'riposte/static/publish.js'
+adding 'riposte/static/style.css'
+adding 'riposte/terminal/__init__.py'
+adding 'riposte/terminal/actions.py'
+adding 'riposte/terminal/app.py'
+adding 'riposte/terminal/controller.py'
+adding 'riposte/terminal/help.py'
+adding 'riposte/terminal/interaction.py'
+adding 'riposte/terminal/jobs.py'
+adding 'riposte/terminal/keyboard.py'
+adding 'riposte/terminal/material.py'
+adding 'riposte/terminal/output.py'
+adding 'riposte/terminal/palette.py'
+adding 'riposte/terminal/paths.py'
+adding 'riposte/terminal/preview.py'
+adding 'riposte/terminal/render.py'
+adding 'riposte/terminal/reports.py'
+adding 'riposte/terminal/service.py'
+adding 'riposte/terminal/signals.py'
+adding 'riposte/terminal/state.py'
+adding 'riposte/terminal/surface.py'
+adding 'riposte_studio-0.5.0.dist-info/licenses/LICENSE'
+adding 'riposte_studio-0.5.0.dist-info/METADATA'
+adding 'riposte_studio-0.5.0.dist-info/WHEEL'
+adding 'riposte_studio-0.5.0.dist-info/entry_points.txt'
+adding 'riposte_studio-0.5.0.dist-info/top_level.txt'
+adding 'riposte_studio-0.5.0.dist-info/RECORD'
+removing build\bdist.win-amd64\wheel
+Successfully built .tmp\pcuc-review-panels\dist\riposte_studio-0.5.0.tar.gz
+Successfully built .tmp\pcuc-review-panels\dist\riposte_studio-0.5.0-py3-none-any.whl

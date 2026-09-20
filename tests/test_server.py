@@ -1,3 +1,4 @@
+from riposte.organizer import plan as _sort_preview
 import time
 import pytest
 from fastapi.testclient import TestClient
@@ -27,7 +28,7 @@ def test_validation_never_echoes_input(client):
     r=client.post('/api/guard',json={'vae_directory':'PRIVATE_SOURCE_NAME','steps':'PRIVATE_FIXTURE_PAYLOAD'},headers=HEADERS)
     assert r.status_code==422;assert 'PRIVATE' not in r.text
 def test_image_bytes_are_clean(client,root,make_image):
-    make_image(root/'source.png');organize(root,Policy(date_mode='modified'));row=catalog(root)[0]
+    make_image(root/'source.png');organize(root,Policy(date_mode='modified'), plan_id=_sort_preview(root, Policy(date_mode='modified'))["plan_id"]);row=catalog(root)[0]
     r=client.get('/api/image/'+row['id']+'?thumb=true',headers=HEADERS);assert r.status_code==200;assert b'PRIVATE_FIXTURE_PAYLOAD' not in r.content
     from riposte.sanitize import png_audit
     png_audit(r.content)

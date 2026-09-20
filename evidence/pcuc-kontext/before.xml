@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="2" skipped="0" tests="2" time="0.234" timestamp="2026-09-19T00:17:56.579327-07:00" hostname="homeone"><testcase classname="tests.test_kontext" name="test_modern_conditioning_has_no_sd_strength" time="0.002"><failure message="TypeError: conditioning() takes 1 positional argument but 2 were given">def test_modern_conditioning_has_no_sd_strength():
+&gt;       options = conditioning('edit', {'kind': 'FLUX_KONTEXT_EDIT'})
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       TypeError: conditioning() takes 1 positional argument but 2 were given
+
+tests\test_kontext.py:17: TypeError</failure></testcase><testcase classname="tests.test_kontext" name="test_modern_preparation_uses_explicit_bucket" time="0.000"><failure message="TypeError: prepare_input() takes 2 positional arguments but 3 were given">def test_modern_preparation_uses_explicit_bucket():
+&gt;       result = prepare_input(Image.new('RGB', (32,32)), 'edit', {'kind':'FLUX_KONTEXT_EDIT'})
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       TypeError: prepare_input() takes 2 positional arguments but 3 were given
+
+tests\test_kontext.py:23: TypeError</failure></testcase></testsuite></testsuites>

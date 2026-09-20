@@ -1,0 +1,823 @@
+{
+  "task": "PAC-033",
+  "result": "BOUNDED_REDUCTION_ACCEPTED_MARKDOWN_ONLY",
+  "audit": "OPEN",
+  "milestone": "PENDING",
+  "version": "0.5.0",
+  "application_sources": {
+    "src/riposte/__init__.py": "a9e9d2abdceaac2c47ed5846a874787f47337c407e2b2aa8064a32b53489f28d",
+    "src/riposte/__main__.py": "79ee6f134c5c5193377cf9b189cbdcc3e2095e49ba9cec310114441c15a917c4",
+    "src/riposte/benchmark.py": "a7fbb359fb87d7ed6c5593a6fb0c194e5a34d20dfe0e9dd549200fe1007c7d68",
+    "src/riposte/catalog_guard.py": "e79d817cf428c1655d713f369d34806bedfb12b46c871e21f10c2cb3fb5bae38",
+    "src/riposte/category_rules.py": "7e4d056b08acd55632c2c9b0132f3782518e0d25c8e42ea67dabc2ac26b90a60",
+    "src/riposte/category_sort.py": "ea2fcd19a2d62bc10f2a4ba91446ea6ab070d4107c0115d6683bdd72f37501ad",
+    "src/riposte/cli.py": "5c15da7feca542a6725d164e88980320ca5f89330ca841485f4c35824b2120ac",
+    "src/riposte/coupled.py": "eca0afb9e0de03b740029864a5ddeeb7212cc9676c5e9cc191a6f4d1274641a8",
+    "src/riposte/errors.py": "7a9c08b799d1c713fbd82e30fd145a6dc3085c215848893e31d1ec066abc5244",
+    "src/riposte/generation.py": "674e942d9781c2ef640a65b39873b484336d08e99251f12eb3277b5e333c5525",
+    "src/riposte/intake.py": "5fdea54e8c89d58230c68521317b89044de39e9b40e1cf173e5b9cd4575a97c4",
+    "src/riposte/lab.py": "3845f3e3abedd03d1f0c200b84395e6b46f67b2ff120f6e8a8fc75a2d8c03093",
+    "src/riposte/locking.py": "90200f7b491d378b4c1e5a0e663d11a6e89f59fbdb489979541b97e981a10b17",
+    "src/riposte/methods.json": "4405d32fac499c6f3b7fbce0afa04abea62e2509e130844a20899c39a6283920",
+    "src/riposte/metrics.py": "0d873a0cb8972b5bdce14eb3cdc49ab391af31a297981fda1ad37603496c22eb",
+    "src/riposte/models.py": "cd6d2fd05c0288e270879bc260dcd299a3fcbe378bc564b571826ad1992c1fcf",
+    "src/riposte/optimizer.py": "c41b3ee66835aea8feab01985434844ee9fb96b217f19ecf0ec8d47a1a047918",
+    "src/riposte/organizer.py": "5c83a961e6b727c436e004400c720a04397edb4bcff011651f6e891ee38c12a9",
+    "src/riposte/policy.py": "5d3250a13fd462665131bc1370016c3b4d915ed86a936ee8e8d6ce38d91f5432",
+    "src/riposte/publication.py": "35fb3dfccdb3cb23095db5b631d1ee07abaddedaf402281e54db42cb4408e05e",
+    "src/riposte/qualification.py": "4fc049f680adc31c34f02499d8dfe4ebed9af46f47fa1cd554f50ead273231ce",
+    "src/riposte/quality.py": "3af92838360f5f9ce65d69973eef37a6dd006d733f56c376443a2228d3c9656d",
+    "src/riposte/records.py": "a810f923fef9e3fefd945fff877bf604b446d20a43ed3f273608c9ffdca5f176",
+    "src/riposte/release_guard.py": "52787a6620ccab6efdd1446cb469d8e966212ae2fad0f6bd8219aebe031cd391",
+    "src/riposte/runtime_probe.py": "67178701646b2d6e144b42400398394c85c14963a27f3e4a359d0942221f712d",
+    "src/riposte/sanitize.py": "f73004a30ae104ea6ace31b65f97212391ccdb80f7e13573181135d280c31f4e",
+    "src/riposte/server.py": "ef8dbc63999eae63e9019976e25842ac26fdabe3baae4bd72019e6c1c102649f",
+    "src/riposte/sort_history.py": "08c33c08c20ccec43b415902ab7e1fa820987185a03ea3cf9c0ef12c4d739c92",
+    "src/riposte/sort_plan.py": "68cc6d65e5db87f267323ea171c06ed1daf6b98588a95d8b14af0602168feea4",
+    "src/riposte/sort_titles.py": "12ca0b37e91007cbe45c6dd7f83d3a1e71665eeb1c72c0702c278ff9f78e8bf0",
+    "src/riposte/store.py": "b4ba88fd1c207b82eef4e9b6b2fe9aef9cf19ce9a0e3d29dadfe8c2a5ce6210d",
+    "src/riposte/temporal.py": "e224555e5fdd1f98fcf030d5c66d99ee38440a0154959e63a2fe434fe42bbef9",
+    "src/riposte/title_categories.py": "0933a01ab42b5299e9257d0f410f647e50d107d542238b521ea4d70148e4c6ba",
+    "src/riposte/video.py": "cb24f3aa04392f927cd4713f60b7faed95362f04f0638d90a09600a8661693ce",
+    "src/riposte/views.py": "901a71db135ce03b0c929d230de1bacb73542dcc1570df166f36013a906b90e7",
+    "src/riposte/static/app.js": "c2fbaf3078a897e8ac77785214b3b3bf5aa71799711341afff202d01d9d50999",
+    "src/riposte/static/category-sort.js": "005ff391b8f85de310d16b3560fba9d5198bc35ffeda0975a74db8a3ad97ef2c",
+    "src/riposte/static/index.html": "2403d1b7ec5a0b12937d321e732471b5844347a26563163e8589f646f23dbf2d",
+    "src/riposte/static/publish.css": "3194ff34f6648c32432a8a85fcd7cbe8d2103f4fe0e4506e5af3e759c460261b",
+    "src/riposte/static/publish.js": "639451897dd7402243571acf68a38785e75001bec50c310c969a3d10510b2b2c",
+    "src/riposte/static/style.css": "6007968f2ef01b68952a5c8616298808a73546ae7162890b425ca78a7b527cea",
+    "src/riposte/terminal/__init__.py": "3205c2b37274b4a78cad648f40635e4b02474f77515b94e506510e521ec79fa2",
+    "src/riposte/terminal/actions.py": "cfc60bd3656f589bd22526eea797569504af54b986b9cb52a7fee03cab59f3f7",
+    "src/riposte/terminal/app.py": "abd4db345de03dca12650e4713063b09277ebf67ff84c993a38b6e1b6f104a2a",
+    "src/riposte/terminal/controller.py": "44f399090387693de0eb9d51e4221eaf2317fb1d0f06fbd938b199351b91f50c",
+    "src/riposte/terminal/help.py": "a8602fc471cc001809b87d9e3145096914229e4ddaef7271cacfbba739c6dd8f",
+    "src/riposte/terminal/interaction.py": "814882a17220d0157b0321ccbbda8bf74b5de5b3359565ffb36bc52e3b840e12",
+    "src/riposte/terminal/jobs.py": "7379a480bac85385b9df4194534e54e8cd2d101df54f24f0877f78195ed9a468",
+    "src/riposte/terminal/keyboard.py": "5506f92c9999aad2658ed012f808c90043c4ea830cc1c6f6e32871518c83a4e0",
+    "src/riposte/terminal/material.py": "522d5080177faae021905b94851bf3836bb2c18805a38d0a1d56b8402f5cebeb",
+    "src/riposte/terminal/output.py": "31b9fe712cc51fa96c2371fc6280f1e81b768c49001c8dbe4ea7ea99fce0486a",
+    "src/riposte/terminal/palette.py": "ab05080d75402a964ce73e25755fb3476b693ab8b79ab10982b4f74f42ee3e41",
+    "src/riposte/terminal/paths.py": "c34f8bc92a4b42667bc8e2fc8bf87653fa9757b49a65fae6febc66e6d34eea03",
+    "src/riposte/terminal/preview.py": "446b57630ee54c99070082b28f67e6d1d647b201577fb55d9ff5fb39259a67bc",
+    "src/riposte/terminal/render.py": "cae305ac50474ffd4ca011869af94baf408ec9ed98d14b02628fa5be9d08027b",
+    "src/riposte/terminal/reports.py": "5dfa1aa03c1918d2d0e1303a37e216157dd2b396a7afbce077c5faddddae5f62",
+    "src/riposte/terminal/service.py": "c99e4511c4dabb0d8e4c8a36860994386fe8ef19d64677db572dfbcdd993827e",
+    "src/riposte/terminal/signals.py": "dd7ef5eac1860b126ceebeecb6aa6c6151f14dd4813254870b061ce71470ce19",
+    "src/riposte/terminal/state.py": "db1465f9efdf6ce167e42c36e56f9ef1416d16bc2ef793107e4a39a9cf2064f0",
+    "src/riposte/terminal/surface.py": "8088e77ab12aa16868beb09dcae60a2e3b67de64f106e7ea0b0245646bb110d1"
+  },
+  "changed_application_files": [
+    "src/riposte/category_sort.py",
+    "src/riposte/cli.py",
+    "src/riposte/organizer.py",
+    "src/riposte/publication.py",
+    "src/riposte/records.py",
+    "src/riposte/sanitize.py",
+    "src/riposte/sort_history.py",
+    "src/riposte/sort_plan.py",
+    "src/riposte/store.py",
+    "src/riposte/terminal/actions.py",
+    "src/riposte/terminal/controller.py",
+    "src/riposte/terminal/jobs.py",
+    "src/riposte/terminal/service.py",
+    "src/riposte/video.py"
+  ],
+  "frozen_registers": {
+    "todo.PACER.csv": "5f2de198797cbab6a5158bdd58110540deeb5d561818319bfa73ecb24c806d8f",
+    "overlord.PACER.csv": "c1f9c6c89313af6def227215349cb6d0f56a2b3963147d709a07b4e6ae160f77",
+    "organism.PACER.csv": "1fd9e0c4a63faab5622a5bebdf56a27087d5ae4dfac1602b81e0691d4ea57a72",
+    "nodule.PACER.csv": "11da396f4773a2544f62f778800d14bfdd5550256350a4cc56b65a16aedf224b"
+  },
+  "unchanged_configuration_and_launchers": [
+    "pyproject.toml",
+    "uv.lock",
+    "mypy.ini",
+    "typing/pyproject.toml",
+    "typing/uv.lock",
+    "typing/mypy-source.ini",
+    "typing/mypy-contracts.ini",
+    "typing/stubtest-allowlist.txt",
+    "INSTALL.ps1",
+    "INSTALL.sh",
+    "START.ps1",
+    "START.sh",
+    "START.cmd",
+    "riposte.cmd"
+  ],
+  "analysis": {
+    "result": "PASS",
+    "baseline_diagnostics": 1100,
+    "after_diagnostics": 876,
+    "reduction": 224,
+    "baseline_modules": 37,
+    "after_modules": 36,
+    "module_error_class_changes": [
+      {
+        "module": "src/riposte/organizer.py",
+        "code": "no-any-return",
+        "before": 2,
+        "after": 0
+      },
+      {
+        "module": "src/riposte/organizer.py",
+        "code": "type-arg",
+        "before": 6,
+        "after": 4
+      },
+      {
+        "module": "src/riposte/publication.py",
+        "code": "no-untyped-call",
+        "before": 65,
+        "after": 64
+      },
+      {
+        "module": "src/riposte/publication.py",
+        "code": "no-untyped-def",
+        "before": 27,
+        "after": 26
+      },
+      {
+        "module": "src/riposte/sanitize.py",
+        "code": "type-arg",
+        "before": 1,
+        "after": 0
+      },
+      {
+        "module": "src/riposte/store.py",
+        "code": "type-arg",
+        "before": 6,
+        "after": 3
+      },
+      {
+        "module": "src/riposte/terminal/app.py",
+        "code": "no-untyped-call",
+        "before": 15,
+        "after": 11
+      },
+      {
+        "module": "src/riposte/terminal/controller.py",
+        "code": "arg-type",
+        "before": 1,
+        "after": 0
+      },
+      {
+        "module": "src/riposte/terminal/controller.py",
+        "code": "assignment",
+        "before": 1,
+        "after": 0
+      },
+      {
+        "module": "src/riposte/terminal/controller.py",
+        "code": "no-untyped-call",
+        "before": 135,
+        "after": 22
+      },
+      {
+        "module": "src/riposte/terminal/controller.py",
+        "code": "no-untyped-def",
+        "before": 35,
+        "after": 3
+      },
+      {
+        "module": "src/riposte/terminal/controller.py",
+        "code": "union-attr",
+        "before": 25,
+        "after": 0
+      },
+      {
+        "module": "src/riposte/terminal/jobs.py",
+        "code": "no-untyped-call",
+        "before": 1,
+        "after": 0
+      },
+      {
+        "module": "src/riposte/terminal/jobs.py",
+        "code": "no-untyped-def",
+        "before": 4,
+        "after": 0
+      },
+      {
+        "module": "src/riposte/terminal/jobs.py",
+        "code": "type-arg",
+        "before": 2,
+        "after": 0
+      },
+      {
+        "module": "src/riposte/terminal/output.py",
+        "code": "no-untyped-call",
+        "before": 14,
+        "after": 13
+      },
+      {
+        "module": "src/riposte/terminal/service.py",
+        "code": "assignment",
+        "before": 1,
+        "after": 0
+      },
+      {
+        "module": "src/riposte/terminal/service.py",
+        "code": "no-untyped-call",
+        "before": 26,
+        "after": 8
+      },
+      {
+        "module": "src/riposte/terminal/service.py",
+        "code": "no-untyped-def",
+        "before": 8,
+        "after": 0
+      },
+      {
+        "module": "src/riposte/terminal/service.py",
+        "code": "type-arg",
+        "before": 3,
+        "after": 0
+      }
+    ],
+    "modified_existing_sources": [
+      "src/riposte/category_sort.py",
+      "src/riposte/cli.py",
+      "src/riposte/organizer.py",
+      "src/riposte/publication.py",
+      "src/riposte/sanitize.py",
+      "src/riposte/sort_history.py",
+      "src/riposte/sort_plan.py",
+      "src/riposte/store.py",
+      "src/riposte/terminal/actions.py",
+      "src/riposte/terminal/controller.py",
+      "src/riposte/terminal/jobs.py",
+      "src/riposte/terminal/service.py",
+      "src/riposte/video.py"
+    ],
+    "new_source": "src/riposte/records.py",
+    "localized_casts": [
+      {
+        "path": "src/riposte/category_sort.py",
+        "line": 119,
+        "type": "MediaInfo"
+      },
+      {
+        "path": "src/riposte/category_sort.py",
+        "line": 121,
+        "type": "MediaInfo"
+      },
+      {
+        "path": "src/riposte/cli.py",
+        "line": 68,
+        "type": "RequestValues"
+      },
+      {
+        "path": "src/riposte/organizer.py",
+        "line": 207,
+        "type": "CatalogRow"
+      },
+      {
+        "path": "src/riposte/organizer.py",
+        "line": 239,
+        "type": "CatalogRow"
+      },
+      {
+        "path": "src/riposte/sort_plan.py",
+        "line": 79,
+        "type": "MediaInfo"
+      },
+      {
+        "path": "src/riposte/sort_plan.py",
+        "line": 81,
+        "type": "MediaInfo"
+      },
+      {
+        "path": "src/riposte/store.py",
+        "line": 269,
+        "type": "CatalogRow"
+      },
+      {
+        "path": "src/riposte/store.py",
+        "line": 242,
+        "type": "CatalogRow"
+      },
+      {
+        "path": "src/riposte/video.py",
+        "line": 103,
+        "type": "CatalogRow"
+      },
+      {
+        "path": "src/riposte/video.py",
+        "line": 82,
+        "type": "CatalogRow"
+      },
+      {
+        "path": "src/riposte/terminal/actions.py",
+        "line": 196,
+        "type": "RequestValues"
+      },
+      {
+        "path": "src/riposte/terminal/controller.py",
+        "line": 295,
+        "type": "Editor"
+      },
+      {
+        "path": "src/riposte/terminal/controller.py",
+        "line": 330,
+        "type": "Editor"
+      },
+      {
+        "path": "src/riposte/terminal/controller.py",
+        "line": 187,
+        "type": "str"
+      },
+      {
+        "path": "src/riposte/terminal/controller.py",
+        "line": 250,
+        "type": "Path"
+      },
+      {
+        "path": "src/riposte/terminal/controller.py",
+        "line": 257,
+        "type": "Path"
+      },
+      {
+        "path": "src/riposte/terminal/controller.py",
+        "line": 262,
+        "type": "Path"
+      },
+      {
+        "path": "src/riposte/terminal/controller.py",
+        "line": 262,
+        "type": "str"
+      },
+      {
+        "path": "src/riposte/terminal/controller.py",
+        "line": 448,
+        "type": "CatalogRow"
+      },
+      {
+        "path": "src/riposte/terminal/controller.py",
+        "line": 451,
+        "type": "CatalogRow"
+      },
+      {
+        "path": "src/riposte/terminal/controller.py",
+        "line": 449,
+        "type": "str"
+      },
+      {
+        "path": "src/riposte/terminal/controller.py",
+        "line": 520,
+        "type": "RequestValues"
+      },
+      {
+        "path": "src/riposte/terminal/controller.py",
+        "line": 534,
+        "type": "RequestValues"
+      },
+      {
+        "path": "src/riposte/terminal/controller.py",
+        "line": 502,
+        "type": "str"
+      },
+      {
+        "path": "src/riposte/terminal/controller.py",
+        "line": 499,
+        "type": "str"
+      },
+      {
+        "path": "src/riposte/terminal/controller.py",
+        "line": 523,
+        "type": "RequestValues"
+      },
+      {
+        "path": "src/riposte/terminal/controller.py",
+        "line": 501,
+        "type": "str"
+      },
+      {
+        "path": "src/riposte/terminal/service.py",
+        "line": 346,
+        "type": "ImageInfo"
+      },
+      {
+        "path": "src/riposte/terminal/service.py",
+        "line": 278,
+        "type": "str"
+      },
+      {
+        "path": "src/riposte/terminal/service.py",
+        "line": 281,
+        "type": "str"
+      },
+      {
+        "path": "src/riposte/terminal/service.py",
+        "line": 286,
+        "type": "str"
+      },
+      {
+        "path": "src/riposte/terminal/service.py",
+        "line": 290,
+        "type": "str"
+      },
+      {
+        "path": "src/riposte/terminal/service.py",
+        "line": 296,
+        "type": "str"
+      },
+      {
+        "path": "src/riposte/terminal/service.py",
+        "line": 299,
+        "type": "str"
+      },
+      {
+        "path": "src/riposte/terminal/service.py",
+        "line": 325,
+        "type": "str"
+      },
+      {
+        "path": "src/riposte/terminal/service.py",
+        "line": 159,
+        "type": "int"
+      },
+      {
+        "path": "src/riposte/terminal/service.py",
+        "line": 171,
+        "type": "PreviewSortOptions"
+      },
+      {
+        "path": "src/riposte/terminal/service.py",
+        "line": 176,
+        "type": "ListOptions"
+      },
+      {
+        "path": "src/riposte/terminal/service.py",
+        "line": 198,
+        "type": "PreviewSortOptions"
+      },
+      {
+        "path": "src/riposte/terminal/service.py",
+        "line": 293,
+        "type": "str"
+      }
+    ],
+    "statement_changes_after_type_erasure": [
+      "src/riposte/sort_history.py:_check",
+      "src/riposte/terminal/controller.py:Controller._key",
+      "src/riposte/terminal/service.py:execute",
+      "src/riposte/terminal/service.py:image_selection"
+    ],
+    "statement_review": {
+      "sort_history._check": "Read-only Mapping alias of the same catalog row before comparing all expected keys; comparison and undo ordering retained.",
+      "controller._key": "Distinct local name for report-view choices; two call-and-return branches return None, as the called existing batch/inspect_item methods do.",
+      "service.execute": "Separate inspected/apply call branches retain identical policy and option values; explicit missing-destination check equals the preceding empty-dict lookup for validated CatalogRow values; filter fields remain year/month/size.",
+      "service.image_selection": "Explicit year/month/size fields preserve the prior comprehension order and values."
+    },
+    "limits": [
+      "AST erasure is a review aid, not proof of semantic equivalence; full runtime tests remain required.",
+      "Request default_factory changes from dict to the all-optional TypedDict constructor; both produce independent ordinary empty dictionaries.",
+      "Localized casts preserve producer-validated records and caller-established page/workspace/editor invariants; they add no runtime validation.",
+      "876 source diagnostics remain; diagnostic counts are not runtime defect counts."
+    ]
+  },
+  "focused_initial": {
+    "tests": 255,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 1,
+    "passed": 254
+  },
+  "full_suite": {
+    "tests": 1189,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 9,
+    "passed": 1180
+  },
+  "contracts": {
+    "scope": "External declarations, consumer typing, signatures, and offline record fixtures; not source-body or model-execution certification",
+    "python": "3.13.9 (main, Oct 14 2025, 21:22:32) [MSC v.1944 64 bit (AMD64)]",
+    "versions": {
+      "mypy": "2.3.1",
+      "numpy": "2.5.3",
+      "Pillow": "12.3.0",
+      "typer": "0.26.8",
+      "fastapi": "0.141.1",
+      "rich": "15.0.0"
+    },
+    "source_files": 60,
+    "source_signatures": 402,
+    "stubtest_leaf_modules": 50,
+    "stubtest_allowlist_entries": 4,
+    "dynamic_declarations": 127,
+    "results": {
+      "mypy-contracts": true,
+      "mypy-tooling": true,
+      "stubtest": true,
+      "runtime-contracts": true,
+      "tooling-regressions": true,
+      "negative-consumers": true,
+      "source-stable": true
+    }
+  },
+  "source_consumers": {
+    "result": "PASS",
+    "command": [
+      "C:\\Users\\ryanf\\github\\_new\\image-riposte\\.venv\\Scripts\\python.exe",
+      "-m",
+      "mypy",
+      "--config-file",
+      "typing/mypy-source.ini",
+      "--python-version",
+      "3.13",
+      "C:\\Users\\ryanf\\github\\_new\\image-riposte\\.tmp\\source-typing\\consumers\\consumers.py",
+      "C:\\Users\\ryanf\\github\\_new\\image-riposte\\.tmp\\source-typing\\consumers\\rejected.py",
+      "C:\\Users\\ryanf\\github\\_new\\image-riposte\\src\\riposte"
+    ],
+    "exit_code": 1,
+    "positive_errors": 0,
+    "expected_negative_errors": 9,
+    "exact_lines_and_codes": true,
+    "sources": {
+      "src/riposte/benchmark.py": "a7fbb359fb87d7ed6c5593a6fb0c194e5a34d20dfe0e9dd549200fe1007c7d68",
+      "src/riposte/catalog_guard.py": "e79d817cf428c1655d713f369d34806bedfb12b46c871e21f10c2cb3fb5bae38",
+      "src/riposte/category_rules.py": "7e4d056b08acd55632c2c9b0132f3782518e0d25c8e42ea67dabc2ac26b90a60",
+      "src/riposte/category_sort.py": "ea2fcd19a2d62bc10f2a4ba91446ea6ab070d4107c0115d6683bdd72f37501ad",
+      "src/riposte/cli.py": "5c15da7feca542a6725d164e88980320ca5f89330ca841485f4c35824b2120ac",
+      "src/riposte/coupled.py": "eca0afb9e0de03b740029864a5ddeeb7212cc9676c5e9cc191a6f4d1274641a8",
+      "src/riposte/errors.py": "7a9c08b799d1c713fbd82e30fd145a6dc3085c215848893e31d1ec066abc5244",
+      "src/riposte/generation.py": "674e942d9781c2ef640a65b39873b484336d08e99251f12eb3277b5e333c5525",
+      "src/riposte/intake.py": "5fdea54e8c89d58230c68521317b89044de39e9b40e1cf173e5b9cd4575a97c4",
+      "src/riposte/lab.py": "3845f3e3abedd03d1f0c200b84395e6b46f67b2ff120f6e8a8fc75a2d8c03093",
+      "src/riposte/locking.py": "90200f7b491d378b4c1e5a0e663d11a6e89f59fbdb489979541b97e981a10b17",
+      "src/riposte/methods.json": "4405d32fac499c6f3b7fbce0afa04abea62e2509e130844a20899c39a6283920",
+      "src/riposte/metrics.py": "0d873a0cb8972b5bdce14eb3cdc49ab391af31a297981fda1ad37603496c22eb",
+      "src/riposte/models.py": "cd6d2fd05c0288e270879bc260dcd299a3fcbe378bc564b571826ad1992c1fcf",
+      "src/riposte/optimizer.py": "c41b3ee66835aea8feab01985434844ee9fb96b217f19ecf0ec8d47a1a047918",
+      "src/riposte/organizer.py": "5c83a961e6b727c436e004400c720a04397edb4bcff011651f6e891ee38c12a9",
+      "src/riposte/policy.py": "5d3250a13fd462665131bc1370016c3b4d915ed86a936ee8e8d6ce38d91f5432",
+      "src/riposte/publication.py": "35fb3dfccdb3cb23095db5b631d1ee07abaddedaf402281e54db42cb4408e05e",
+      "src/riposte/qualification.py": "4fc049f680adc31c34f02499d8dfe4ebed9af46f47fa1cd554f50ead273231ce",
+      "src/riposte/quality.py": "3af92838360f5f9ce65d69973eef37a6dd006d733f56c376443a2228d3c9656d",
+      "src/riposte/records.py": "a810f923fef9e3fefd945fff877bf604b446d20a43ed3f273608c9ffdca5f176",
+      "src/riposte/release_guard.py": "52787a6620ccab6efdd1446cb469d8e966212ae2fad0f6bd8219aebe031cd391",
+      "src/riposte/runtime_probe.py": "67178701646b2d6e144b42400398394c85c14963a27f3e4a359d0942221f712d",
+      "src/riposte/sanitize.py": "f73004a30ae104ea6ace31b65f97212391ccdb80f7e13573181135d280c31f4e",
+      "src/riposte/server.py": "ef8dbc63999eae63e9019976e25842ac26fdabe3baae4bd72019e6c1c102649f",
+      "src/riposte/sort_history.py": "08c33c08c20ccec43b415902ab7e1fa820987185a03ea3cf9c0ef12c4d739c92",
+      "src/riposte/sort_plan.py": "68cc6d65e5db87f267323ea171c06ed1daf6b98588a95d8b14af0602168feea4",
+      "src/riposte/sort_titles.py": "12ca0b37e91007cbe45c6dd7f83d3a1e71665eeb1c72c0702c278ff9f78e8bf0",
+      "src/riposte/store.py": "b4ba88fd1c207b82eef4e9b6b2fe9aef9cf19ce9a0e3d29dadfe8c2a5ce6210d",
+      "src/riposte/temporal.py": "e224555e5fdd1f98fcf030d5c66d99ee38440a0154959e63a2fe434fe42bbef9",
+      "src/riposte/title_categories.py": "0933a01ab42b5299e9257d0f410f647e50d107d542238b521ea4d70148e4c6ba",
+      "src/riposte/video.py": "cb24f3aa04392f927cd4713f60b7faed95362f04f0638d90a09600a8661693ce",
+      "src/riposte/views.py": "901a71db135ce03b0c929d230de1bacb73542dcc1570df166f36013a906b90e7",
+      "src/riposte/__init__.py": "a9e9d2abdceaac2c47ed5846a874787f47337c407e2b2aa8064a32b53489f28d",
+      "src/riposte/__main__.py": "79ee6f134c5c5193377cf9b189cbdcc3e2095e49ba9cec310114441c15a917c4",
+      "src/riposte/static/app.js": "c2fbaf3078a897e8ac77785214b3b3bf5aa71799711341afff202d01d9d50999",
+      "src/riposte/static/category-sort.js": "005ff391b8f85de310d16b3560fba9d5198bc35ffeda0975a74db8a3ad97ef2c",
+      "src/riposte/static/index.html": "2403d1b7ec5a0b12937d321e732471b5844347a26563163e8589f646f23dbf2d",
+      "src/riposte/static/publish.css": "3194ff34f6648c32432a8a85fcd7cbe8d2103f4fe0e4506e5af3e759c460261b",
+      "src/riposte/static/publish.js": "639451897dd7402243571acf68a38785e75001bec50c310c969a3d10510b2b2c",
+      "src/riposte/static/style.css": "6007968f2ef01b68952a5c8616298808a73546ae7162890b425ca78a7b527cea",
+      "src/riposte/terminal/actions.py": "cfc60bd3656f589bd22526eea797569504af54b986b9cb52a7fee03cab59f3f7",
+      "src/riposte/terminal/app.py": "abd4db345de03dca12650e4713063b09277ebf67ff84c993a38b6e1b6f104a2a",
+      "src/riposte/terminal/controller.py": "44f399090387693de0eb9d51e4221eaf2317fb1d0f06fbd938b199351b91f50c",
+      "src/riposte/terminal/help.py": "a8602fc471cc001809b87d9e3145096914229e4ddaef7271cacfbba739c6dd8f",
+      "src/riposte/terminal/interaction.py": "814882a17220d0157b0321ccbbda8bf74b5de5b3359565ffb36bc52e3b840e12",
+      "src/riposte/terminal/jobs.py": "7379a480bac85385b9df4194534e54e8cd2d101df54f24f0877f78195ed9a468",
+      "src/riposte/terminal/keyboard.py": "5506f92c9999aad2658ed012f808c90043c4ea830cc1c6f6e32871518c83a4e0",
+      "src/riposte/terminal/material.py": "522d5080177faae021905b94851bf3836bb2c18805a38d0a1d56b8402f5cebeb",
+      "src/riposte/terminal/output.py": "31b9fe712cc51fa96c2371fc6280f1e81b768c49001c8dbe4ea7ea99fce0486a",
+      "src/riposte/terminal/palette.py": "ab05080d75402a964ce73e25755fb3476b693ab8b79ab10982b4f74f42ee3e41",
+      "src/riposte/terminal/paths.py": "c34f8bc92a4b42667bc8e2fc8bf87653fa9757b49a65fae6febc66e6d34eea03",
+      "src/riposte/terminal/preview.py": "446b57630ee54c99070082b28f67e6d1d647b201577fb55d9ff5fb39259a67bc",
+      "src/riposte/terminal/render.py": "cae305ac50474ffd4ca011869af94baf408ec9ed98d14b02628fa5be9d08027b",
+      "src/riposte/terminal/reports.py": "5dfa1aa03c1918d2d0e1303a37e216157dd2b396a7afbce077c5faddddae5f62",
+      "src/riposte/terminal/service.py": "c99e4511c4dabb0d8e4c8a36860994386fe8ef19d64677db572dfbcdd993827e",
+      "src/riposte/terminal/signals.py": "dd7ef5eac1860b126ceebeecb6aa6c6151f14dd4813254870b061ce71470ce19",
+      "src/riposte/terminal/state.py": "db1465f9efdf6ce167e42c36e56f9ef1416d16bc2ef793107e4a39a9cf2064f0",
+      "src/riposte/terminal/surface.py": "8088e77ab12aa16868beb09dcae60a2e3b67de64f106e7ea0b0245646bb110d1",
+      "src/riposte/terminal/__init__.py": "3205c2b37274b4a78cad648f40635e4b02474f77515b94e506510e521ec79fa2"
+    },
+    "scope": "Real source consumers with normal import following and unchanged strict configuration; imported source debt is retained in consumers.txt and remains separately failing."
+  },
+  "raw_source": "876 diagnostics in 36 files, 53 checked; remains FAIL",
+  "package": {
+    "result": "PASS",
+    "version": "0.5.0",
+    "application_files": 60,
+    "checks": {
+      "source": {
+        "typed_record_defaults_and_keys": "PASS",
+        "indexed_lookup": "PASS",
+        "owned_and_external_commits": "PASS",
+        "catalog_audit": "PASS",
+        "ordinary_cli": "PASS",
+        "stale_no_initial_state": "PASS",
+        "api": "PASS",
+        "exact_undo": "PASS",
+        "combined_receipt_and_model_gate": "PASS"
+      },
+      "installed": {
+        "typed_record_defaults_and_keys": "PASS",
+        "indexed_lookup": "PASS",
+        "owned_and_external_commits": "PASS",
+        "catalog_audit": "PASS",
+        "ordinary_cli": "PASS",
+        "stale_no_initial_state": "PASS",
+        "api": "PASS",
+        "exact_undo": "PASS",
+        "combined_receipt_and_model_gate": "PASS"
+      }
+    },
+    "artifact_sha256": {
+      "riposte_studio-0.5.0-py3-none-any.whl": "4a8b0011d3f6ae1c99ed47bc7389dff947c28b1471c3248118cfe8b506f3b2cf",
+      "riposte_studio-0.5.0.tar.gz": "8312be9f0dd786d539adaa2164d12e0e1f02db23e7a5b08ca749670868dd0009"
+    },
+    "scope": "Fresh source/sdist/wheel/isolated-target equality and real record defaults/optional keys, indexed lookup, owned/external revision checks, audit and CLI/API/service preview/apply/exact-undo checks. Combined missing/stale receipt and missing-model gates. Existing Windows dependencies; not clean bootstrap, real-model execution or native Linux/macOS qualification."
+  },
+  "entries": {
+    "wrapper_version": "RIPOSTE 0.5.0",
+    "start_linear": {
+      "exit_code": 0,
+      "main_menu": true,
+      "explicit_q_exit": true,
+      "stderr_empty": true
+    }
+  },
+  "stale_evidence": [
+    "OGM-005",
+    "OGM-007",
+    "OGM-009",
+    "OGM-010",
+    "OGM-011",
+    "OGM-013",
+    "OGM-014",
+    "OGM-015",
+    "OGM-016",
+    "OGM-017",
+    "OGM-019"
+  ],
+  "evidence_sha256": {
+    "evidence/source-typing/analysis.json": "f9c872912af635347136ee14368db36a0618b67832137a9f46fa4faf977a2dc3",
+    "evidence/source-typing/analyze.py": "c77a1fc010b4a8b92a28efbf9bf5b27df272aa8c451d0f50f892b05ba48caea3",
+    "evidence/source-typing/baseline-command.json": "6dc76ece6ddf9ec5a42e30609d35d0119bad2510495778c6b4fe237b40c4a939",
+    "evidence/source-typing/baseline.txt": "3692f0b1c8fe0a875373b4417c18651ad52bd8928400878164d0637bb52fc828",
+    "evidence/source-typing/before-typing/dynamic-boundaries.json": "e601dbda69cab4b2cd32dcf52180f56218d294683bf88df1c5b1f1e30d94f19c",
+    "evidence/source-typing/before-typing/mypy-contracts.txt": "dcb694f11778ae44041ad96d947549bf77cffe07393be2e8e5cf5e5974810786",
+    "evidence/source-typing/before-typing/runtime-contracts.txt": "dcfdd62c0e46a36a76b5fd6c1d1ee1f0db9a3e450e8fd2da796d2cae5fc6296d",
+    "evidence/source-typing/before-typing/source-after.json": "e4c0ec344a998cc3af0f4e272fef75f61ae09f89da3747a32b76d1c3dfa24aa2",
+    "evidence/source-typing/before-typing/source-current-command.json": "6dc76ece6ddf9ec5a42e30609d35d0119bad2510495778c6b4fe237b40c4a939",
+    "evidence/source-typing/before-typing/source-current.txt": "0bbdfe51357ff27a546833d3344405fabc802457e70b205303084a89ad9d76c5",
+    "evidence/source-typing/before-typing/stubtest.txt": "4110cbb00805f62e8fba3310051c98efa1184471717a28a0ff1ddaa30704fc88",
+    "evidence/source-typing/before-typing/verification.json": "c6315169e02aca4922f8827e8dc5c82c5636d98a9a16b847aaba2da23db3a52d",
+    "evidence/source-typing/build.txt": "d29f7f2f8f010be9516cd2282a766092de48c3e576603c6c1f603214694dabed",
+    "evidence/source-typing/check_consumers.py": "3733dc2efc87003a5fa0ee6a09d95f53c589c3594695a478fa42826328ec56cc",
+    "evidence/source-typing/check_entries.py": "4b9c72ce0a2c798c967642d66a49066798e2725b784d248dd602188a3325bae5",
+    "evidence/source-typing/consumers-imports-only.json": "4cf4e37c5ba8002c4aaee8718025262cf1dbf28bd290fab383a296ec1c7e2937",
+    "evidence/source-typing/consumers-imports-only.txt": "fa08796478b556fb3ce5f3f5d78378235bd4e2acc374984e711e1af03535f32d",
+    "evidence/source-typing/consumers-run.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/source-typing/consumers.json": "6af97901699fc5514742a34d3b7a07b0ad560bb93239202d1e767a7aa2392cc1",
+    "evidence/source-typing/consumers.py.txt": "b449cc17bef88ee8c4a6cdf375ad3acde7e6e2294697da44c09298e99fb19422",
+    "evidence/source-typing/consumers.txt": "f15255e2df3e78d009a1362accb51962ff66c2071278fcda426fe08169b0cd1a",
+    "evidence/source-typing/contracts-before-review.txt": "15972c3eb5c572e90ba199e90fd469247fc29a8bb688d05b08ce2bcc8faca1dd",
+    "evidence/source-typing/contracts-final.txt": "c15320c25f499db9aed290f74a540bab0c5da755504287578a496982ddf84bbe",
+    "evidence/source-typing/contracts-first.txt": "c15320c25f499db9aed290f74a540bab0c5da755504287578a496982ddf84bbe",
+    "evidence/source-typing/entries.json": "297f9d0c854ec46854bbe1c69b5b1bc6afd9f52a6bd7369e0d370bb5ea9f42d0",
+    "evidence/source-typing/focused-first.txt": "5647a7b6fad6983c15be2f7adbab5348976f064dc4fbe21f49bf7c9dbe5e22f6",
+    "evidence/source-typing/focused-first.xml": "2aab11106a310418aa808b9a1b10d994978b5769d3ca3dbe24443f946c328911",
+    "evidence/source-typing/full-native.txt": "b6b44b646679232fe4ee490b1c49e9948c7150f2d634131e2c865ecc6d8bdb99",
+    "evidence/source-typing/full-native.xml": "37a4be849168ef8260a90d98f80ab9a5e94b1c0d98fe1ffe3a98e05f71b4dafd",
+    "evidence/source-typing/install.txt": "9d4b959283d08d15f5114facc098f037fee1c19921b6ab0b02ac522021ac7dd1",
+    "evidence/source-typing/pacer-validation.json": "bb47d10133243f71808213564eee18c341646e3f8aae6400afe47f34373768b8",
+    "evidence/source-typing/package.json": "5a3a25c9ebdfc7f56d84f29da307ef068b3cfbd9d8f72b5fe3c3f36ed86a4fc6",
+    "evidence/source-typing/README.md": "f546f733bcfc7cb64d2ee6bfaab5b60f3b41c1a45eb1fd4ed8a9759bab118e69",
+    "evidence/source-typing/rejected.py.txt": "0a555a6f89cedfaec5ee885f12b00a4f3634969ed2ab2260670c4647a003d606",
+    "evidence/source-typing/reviewed-source.diff": "f3d7290089d02e364f9229dda9b9d473f0e9b1d5e09bfbb3ebc6983c60dc7c28",
+    "evidence/source-typing/source-before.zip": "520475e916970a54738d616ff0b413366ea00fba8623c58a7dad6cdabd881b24",
+    "evidence/source-typing/source-first-command.json": "202666345ea55a9c1bd6db26c1a0fc16a99ef2953c0d434ecfdaec00f64474c4",
+    "evidence/source-typing/source-first.txt": "47e6a3f26b9968a3c5a36d6cab82042ddb7a4efde70ee0595b100b880018ea7d",
+    "evidence/source-typing/source-second-command.json": "190da9dbab7f8f3548da6c32712d053fff76ab4ec5d45ebcc6f3fbc32c5bfe15",
+    "evidence/source-typing/source-second.txt": "13e9008a26cd896f08811f0660cba8c82492d59fe1991da5fb93697e4aaca03a",
+    "evidence/source-typing/source-third-command.json": "4f21678ca23a4c74754ae339f88ae24b72101993a3a7f5d0489799be17a60e36",
+    "evidence/source-typing/source-third.txt": "484797322edc970d86becbbd43d593596ca26d68b40a05cf618d8722160a60e2",
+    "evidence/source-typing/start-transcript.txt": "fd2132e3f7b2228e850d1c4cce66941a56a49095d94a0e643d5fc4ace56a20a5",
+    "evidence/source-typing/verify.py": "5a3556f2b6ed8af26b4a890f6cc315abbd778286fdeb2bb1fa52ce62db7ab31f",
+    "evidence/source-typing/verify_package.py": "a95fc3c286a92f0e791ba20c54c0bb6bbc5c3bbc7087b7abfae7f8388f0aac2b",
+    "tests/browser_review.cjs": "c8367e48924371bfcc20ee954a114153e2f98d3ae9f45e1f9ad9ca62d4dbf81a",
+    "tests/category_sort_browser.cjs": "304f04d8bfa9494093a0c326f35f33b5d1721b47f64d7800b910369e9a770729",
+    "tests/category_sort_probe.js": "ec93a043f60e58850a0a4f9fc46023c086c0e7a5e846156e679c00636c6213aa",
+    "tests/conftest.py": "f343e55b7e8d08b47fdf82580d05cef39cb11b7de3c87a0dabd94617e5c2762e",
+    "tests/test_application_roots.py": "03431bc837d9b75999bb20a339f708570f4f636aff9b0ca63d6b778450ddb60d",
+    "tests/test_benchmark.py": "209a39b1678f49b365b8f9c5c524ed5f9ca504ea29555aac19abdadf2ac5d379",
+    "tests/test_browser_review.py": "8be9063a792e733aad3b13eb56b61ffd2401ce4641834c9be6a1998bd008c181",
+    "tests/test_catalog_scaling.py": "c3e3cbec0465c5647f802c8d4e23c4a2e998dfef5fc1a7f631509c2ccececafd",
+    "tests/test_category_rules.py": "734b33c85912fecc1ade986fc9f0fb39b454644bf8008eb2649080418daf329b",
+    "tests/test_category_sort.py": "fa1eb99d9d489de9fd96108167fa10a63e37b5b07354c49d5d8de7788ad1edee",
+    "tests/test_category_sort_interfaces.py": "c5acafe1b9d0a62cc7d40c7ce79c1d0e0f71bb3b00fb28c5846e5b8204dbce5b",
+    "tests/test_development_model_repairs.py": "9d589fe02e1f95f05bc8fc929de6a7360fc118cc088f025b8a23fb9cf1d5cbc1",
+    "tests/test_development_repairs.py": "a92d523bd66d296a952010ed69c35a9052b18a17a632311653f860d3712461ff",
+    "tests/test_lab.py": "eb223d86e27397f2aab910e96a12e34a3482c0ae07ecadc8296ac82149cf44cc",
+    "tests/test_launcher_refresh.py": "ab47e19a0ad95524f1ce3e16f50c68f0eb9eac73e5328f41a8c5f576cdd0ba28",
+    "tests/test_linear_focus.py": "8c4859b185c9d2520e1407aaba50dc1277fd0fc9c9c4c6c5c8acfd94be37d79c",
+    "tests/test_menu_startup.py": "86cd7cf601cd629ecafd4c2af4e9e3efaf7525c640750e922ee6ddcbfc278cf3",
+    "tests/test_model_configuration_identity.py": "dd3476a0546601a2ce31a3b1e3efac0bfca390217a573b67a78961bc26ddd6db",
+    "tests/test_optimizer.py": "0c505e526377f0d45a9981530a72b3a869b56b972a2e8ca5fa60bd2b1656b62e",
+    "tests/test_organizer.py": "75ad559a95f5ba3237f879377272ce751e71f067024c7f1a4bf1d3781d4759f3",
+    "tests/test_policy.py": "8e4b2d0734ed125f66161e240af5ba146eb0c8e701edd824ebd6ac57bda61f70",
+    "tests/test_publication_review_snapshots.py": "4fee88a5d7fa0dd68498ffbd825ad86eb6f5d629ff3fabc715b2ec9779faa2f4",
+    "tests/test_release_search.py": "3078cf02222f5732de88a56b3769d1babca35a0fecc13948b9b18f723938ad65",
+    "tests/test_sanitize.py": "a9da860ddd24716c0c69decf1d68c2ba509a889756eaf58c38a59750f5b26c78",
+    "tests/test_server.py": "cdb932c9f7a445598a591defa3e3ae53591585b20575969ae911d7cedf2b7d4d",
+    "tests/test_sort_collisions.py": "2699c40dcbea319a2185477565483e31f12f8eefeeb6821aa5097864c2f0eb1f",
+    "tests/test_sort_commit_safety.py": "a255c6558b6d51392d277c6ad7de8b7ea587effff29b084c92eb31a5a5331924",
+    "tests/test_sort_partial_failures.py": "73ea0d81c3851767acb93792cf0727d3c9d37ddb4c2321204203bf147e2af760",
+    "tests/test_sort_preview_binding.py": "b2f7e96bf58bb2d5040893e34aa7f837ca7db6b73b1054db2a8d3de7465801d8",
+    "tests/test_sort_recovery.py": "113b488971f18c49d1d1f0c125b783626a056bf7cb0fbe603d22504de9b97138",
+    "tests/test_title_categories.py": "975adfe9c4ace31a190203edeb65868910a581734d0ba7a8ec639e5c2f10737e",
+    "tests/test_v02_api_cli.py": "cb38562f6abaeca8b66c70cf8a3adb8efb4c5934ed4627c2e7977bbc0383642d",
+    "tests/test_v02_coupled.py": "e3ac83e2d3fb29fcdd92687dd5864e8894f0cd52aa29915d67c48ce1f57b1281",
+    "tests/test_v02_generation.py": "a04cfd24f78bcc667781ccdedf22db149221377d7e19e82ae87489903ec0d9f8",
+    "tests/test_v02_migration.py": "a562900504b117b7bd958fe59cc6abad3b26f34ccb1d7a944da451cb6c8d94a8",
+    "tests/test_v02_models.py": "946cdb1629fcb4f5eba1d47088e8fb5af21afdaeed8e16ce1d00578306d86b94",
+    "tests/test_v02_qualification.py": "534bf2d636ca54f44f3dbbb9b36355908652b70e67dd6e7d44fc2b6413b8f2c3",
+    "tests/test_v02_views.py": "c9e03018ca5b11ad49957fc77d55fc4287aa8a4aec26344ab133cf70cdda318c",
+    "tests/test_v03_api_cli.py": "a346a846f23da69de58c64573298aea7fd4daff8fc430f71794b175d1cb52528",
+    "tests/test_v03_publication.py": "e6b1ba793ca18e188a7ecbbf95ffe2c0973ecf2b86fabcaa361b4d232b3cadb0",
+    "tests/test_v03_quality_guard.py": "f4247e4339ae23a70a59cd42873a2f26067701924ad9df509a2a20f0a09e929d",
+    "tests/test_v03_temporal.py": "9ab272f568dc17e50e51dcab3c842e2552f84418fac0de1b8fe4f61499225924",
+    "tests/test_v04_product_terminal.py": "89c1e811cd768ac9176ce3fc9b9c52fd1c9bf1bec3310396b82b47c1bebd07d3",
+    "tests/test_v04_terminal_core.py": "997c2d2ce8b3dfe72b110ee8636bdabb0b33c53317b9edaac92377686dc2c7c0",
+    "tests/test_v04_terminal_host.py": "1ba97569986eb39030d4500950d14e397e31db9597b87b0d90f5cdd97da51a1c",
+    "tests/test_v04_typer.py": "976cf16c40aea1bdbca7156fbcf3b9b08d34fcedfbb7fb96e77849f9f2676774",
+    "tests/test_v05_revision.py": "90c674eeb7afe5acdf5d7e5b49e2a1fe6044fb901a383dd867d321cb100e73f0",
+    "tests/test_video_sort.py": "d7b35bb6c68c1fca2f2f4cc06ba9f4f863a9f8dadb802c1d6b35a2348e1781d0",
+    "tests/test_workflows.py": "7cdb43ccc736415950198f03b9226a00db3f3d786d43294f69e2646a6d5a921e",
+    "tests/test_workspace_lease.py": "678daab6e4174acb7d3c1516ab7a8daafbd139f3ce8a5bbf0eaa513669455f39",
+    "typing/stubs/_riposte_types.pyi": "20749e43b1a3c1d05d63e62506423d88f1ba5da75e7e8e508d8f9b4214f0a908",
+    "typing/stubs/riposte/benchmark.pyi": "45fc6c5448fb1aa21618fcdaea41277a0a54b57810b42d63995188e0b9630b6f",
+    "typing/stubs/riposte/catalog_guard.pyi": "78f501b67a6839a6c398fe5cfeccf46099a8fc99be834a1a06d811bd19fc5e78",
+    "typing/stubs/riposte/category_rules.pyi": "ade975078a1a632d17d0c57c109734d34d510022e823dcd72461b27016e5222d",
+    "typing/stubs/riposte/category_sort.pyi": "808d7b43de7c1fe0d9ba7a17facc6ea17adfc70c7c2009dae6815a63811d14f5",
+    "typing/stubs/riposte/cli.pyi": "dcc85b273edc9971617a2bf75c51876059df71985c58aad1f114910bef22c51a",
+    "typing/stubs/riposte/coupled.pyi": "fc1da15312c0e65852796b327f2b5fca6ad2ef97be34b6b7dabcf5c18a00495f",
+    "typing/stubs/riposte/errors.pyi": "09294254fa034c3b927925cf853a7004f3bf02c75cf4129065b285e8268cdc0f",
+    "typing/stubs/riposte/generation.pyi": "a8033d6e2a713a55f506532840b1301c4ea36de75fe77930ce4b80535e65cd06",
+    "typing/stubs/riposte/intake.pyi": "d1db68c7d723d71053ec16842a695dbccc0dde38ea1832b08e57f9edb4b777c2",
+    "typing/stubs/riposte/lab.pyi": "dbfc1c582d8b7223ff61c4970f219d10fa438897d5770208cd4eee71d8dd8af2",
+    "typing/stubs/riposte/locking.pyi": "b78a717d5405a048655c1c0c499678ed95dd4b6ec10d4334c8839eed5121ef36",
+    "typing/stubs/riposte/metrics.pyi": "c062241120b5a53dc44709cb8f9ab605629e74af93a54f678b606cdc1bacb71a",
+    "typing/stubs/riposte/models.pyi": "ce8b0ccaef7d0ddcd9cf155c2afa894cd695dfb635688e18c731bf59a7fe971d",
+    "typing/stubs/riposte/optimizer.pyi": "4826e402f6445ad4d10d240eccfb34f7a572867f5f1f7467daedea1afbd08d93",
+    "typing/stubs/riposte/organizer.pyi": "56d375ce96c0b3f1a90ec6bc7acc6a113de9628f8f360e0c9ba27c446639d588",
+    "typing/stubs/riposte/policy.pyi": "dc1fdf388cb8059b01ed88a4b6a167e0e4d5588cbdae1484e70e131c558a7b22",
+    "typing/stubs/riposte/publication.pyi": "647d935ce087b269dd4039d062a7e5014783e671bd0db82d7a48adb7b07ca12b",
+    "typing/stubs/riposte/qualification.pyi": "3160462ef5bf3909f0c1ec24131496d20ba755d66de97a0796986fa9f60b3eb0",
+    "typing/stubs/riposte/quality.pyi": "3b04366e1973b69021f96cbd7a1ee05929b95dc5fd1fd242116713c1cb6f62f9",
+    "typing/stubs/riposte/records.pyi": "7ca09545c1ab9d1d167fa58a81f4eefe3ea8f8937e287e07946dbed6bd647005",
+    "typing/stubs/riposte/release_guard.pyi": "9a8cdc6b88f7622f4c424fc1d9b91928c53946bbb48705e8a5abd9ced78eb9fe",
+    "typing/stubs/riposte/runtime_probe.pyi": "b2bbd20ba850122e7aa35eea8d7bed18ab70ede61034b4b60b1401f269ee7040",
+    "typing/stubs/riposte/sanitize.pyi": "7389450202abf94d5a6dd7bf2582bcd00d8fe851265a845db8844b8aa37d3381",
+    "typing/stubs/riposte/server.pyi": "1d46c3d5de23498843fc36b6600ee49bad1df9728629a245486597f2d2313fa9",
+    "typing/stubs/riposte/sort_history.pyi": "6e5aafa001dac1f14b8520ac8d374c21e303726543356e4edcbe9b0f3933f0bc",
+    "typing/stubs/riposte/sort_plan.pyi": "bc3f814eb6cdcdabbbd4fe8a6f302f02c55f6fe784da9a9c04c10be9436b5d36",
+    "typing/stubs/riposte/sort_titles.pyi": "ea78e287ce60907222bb8f3711191814a6791e877ef723428212dd0eefa4e6dd",
+    "typing/stubs/riposte/store.pyi": "3ee087d30804d299eae58f1a05bd592df65e1a6a27259e60fdd3338d98dc9afa",
+    "typing/stubs/riposte/temporal.pyi": "94f89035069f13090317d5b0515818f481ac71aa8bdb9be13916063ff9e16f5c",
+    "typing/stubs/riposte/title_categories.pyi": "079989e82abb0de68702dd65b93d371b31d8bfe80881fca6da69a91d744db04e",
+    "typing/stubs/riposte/video.pyi": "2ce5336640497d25fb0de5fd61d9e1e6209da066326720c4d311221ac5f34f33",
+    "typing/stubs/riposte/views.pyi": "65c462a5a6ae73e831ad2d5779642ccda34d8e3d6925d77ad5e394e8128f6794",
+    "typing/stubs/riposte/__init__.pyi": "b572e2c4973b7500c42501d3e0d44c4a27d8fd35c6f7af6aaf1219357afcdf5d",
+    "typing/stubs/riposte/__main__.pyi": "2f159ea3d0f9b62e80f64cbdf2bff8cd42a52fc8f4f709465e15bb1fcbce5ce0",
+    "typing/stubs/riposte/terminal/actions.pyi": "6b9d2c111ed5da8bc0627da3e050b83c43ffa96e43d444ddcf76eb2daabdbf5e",
+    "typing/stubs/riposte/terminal/app.pyi": "85ef2f4db7f8ae9bb30df113cdbb7a5a62858b6c9e41acd2f790ec80e16620ec",
+    "typing/stubs/riposte/terminal/controller.pyi": "b67c93ecc6279245e7871beb9868d841c88e0e29315490df2debf977ccab74ea",
+    "typing/stubs/riposte/terminal/help.pyi": "d3fed65d5cfa8c33fbd87af9e65ad9a0dc47dc836a55452aaa1389fcc4cd0726",
+    "typing/stubs/riposte/terminal/interaction.pyi": "a45c882b885b7eeaf07f020dff51406897b58d1804853fcd92b1be145640fd16",
+    "typing/stubs/riposte/terminal/jobs.pyi": "46d2821083900ef022cc98588597ead676272d3e1c57fed7992fa362696c7e35",
+    "typing/stubs/riposte/terminal/keyboard.pyi": "ba172f115da3daf97b937bdb31bac7741ced3fc127a95e1cf56ea0d9ba9aca56",
+    "typing/stubs/riposte/terminal/material.pyi": "0bd62cdfda2ab15b3b61f0babd99969a0e61888ad8b9a2df61785e95e2679628",
+    "typing/stubs/riposte/terminal/output.pyi": "3b636c4230d643c7f01de1195ab6c3a8eb77dd8239ded118c0f70164c61eec5c",
+    "typing/stubs/riposte/terminal/palette.pyi": "4cb52a84c9c9d2fbb725b590532aa6bcd683cf56378f49d4dfca3f3b28876ba2",
+    "typing/stubs/riposte/terminal/paths.pyi": "76dc80da768bbbe1b5be771a9fad4039f0fb555fcf95ea492475ad33167be1f8",
+    "typing/stubs/riposte/terminal/preview.pyi": "6a3a4ac74cae2524bb2985e0a0ef7a71998d6c444c00b1101069132a9ab41671",
+    "typing/stubs/riposte/terminal/render.pyi": "8f0234e8497ec338a7a464d69c30aa7049e8ceb40270ba8d93d2917511986897",
+    "typing/stubs/riposte/terminal/reports.pyi": "dcfa7dcf3fa056a46a08519c4e437b928da4a1eca3d7a2a9206eee4d5267ad14",
+    "typing/stubs/riposte/terminal/service.pyi": "97009079186d4edaf618ef68ac3e39cc06b1197a1ec00f55ec64c183f656e649",
+    "typing/stubs/riposte/terminal/signals.pyi": "87116e0ebd0dcf3299f183a6f609d272907a3075f44fdfdc0759ee2c6d91d059",
+    "typing/stubs/riposte/terminal/state.pyi": "fa2525235a2a8cdad8a78c44abb15920717a76d3ce36a13d76a1503e471d532a",
+    "typing/stubs/riposte/terminal/surface.pyi": "f5eeea647607c1d35349bc8eaade051be6d075d590fe323591c7dd3a8b3129f2",
+    "typing/stubs/riposte/terminal/__init__.pyi": "17022212ba4ef7ca2de53e12cd9398edc248af0cd389c9e23e34ec6c641518dc",
+    "typing/check.py": "385cc9fb71a8954d829d616a4afeb47aa6dd820f66b6d6543f0af800231d68d6",
+    "typing/pacer_inventory.py": "a7479f37e68d293cc333dea1bc711e9642611d86636c67364950d72091b5aa72",
+    "typing/runtime_contracts.py": "4c318ed70d094705c5a88a136eecc44fa86bcb77b8e59074ca7aead47c67209e",
+    "typing/evidence/verification.json": "503f21bc42b085a055003d38d5a4cfff4e48abf899232e50f55b2311b85466b1",
+    "typing/evidence/source-current-command.json": "4f21678ca23a4c74754ae339f88ae24b72101993a3a7f5d0489799be17a60e36",
+    "RELEASE-MANIFEST.json": "f46e853cba2561dccb7caff3e2fcca8ad548e3b23cdf84dfa7cdba68be9f89d1"
+  },
+  "limits": [
+    "224 fewer checker diagnostics, not a claim of runtime defect fixes or source-wide cleanliness.",
+    "Source consumer compatibility is separate from the retained 876 source-body diagnostics.",
+    "AST erasure and localized casts require behavior review; annotations add no runtime validation.",
+    "Initial focused tests precede final annotations; full suite covers final application source.",
+    "Five Windows symlink-privilege and four POSIX terminal skips.",
+    "No clean bootstrap, native Linux/macOS application or real-model efficacy qualification.",
+    "Frozen CSV source/symbol/requirement reconciliation remains deferred."
+  ]
+}

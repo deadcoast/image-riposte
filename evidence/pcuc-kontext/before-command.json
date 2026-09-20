@@ -1,0 +1,19 @@
+{
+  "command": [
+    "C:\\Users\\ryanf\\github\\_new\\image-riposte\\.venv\\Scripts\\python.exe",
+    "-m",
+    "pytest",
+    "-q",
+    "-p",
+    "no:cacheprovider",
+    "tests/test_kontext.py",
+    "-k",
+    "modern_conditioning or modern_preparation",
+    "--basetemp",
+    "C:\\Users\\ryanf\\AppData\\Local\\Temp\\riposte-kontext-tests-1p9yrqh1\\pytest",
+    "--junitxml",
+    "C:\\Users\\ryanf\\github\\_new\\image-riposte\\evidence\\pcuc-kontext\\before.xml"
+  ],
+  "exit_code": 1,
+  "PYTHONPATH": "C:\\Users\\ryanf\\github\\_new\\image-riposte\\.tmp\\pcuc-kontext\\before\\src"
+}

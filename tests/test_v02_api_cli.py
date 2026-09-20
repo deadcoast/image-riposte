@@ -1,3 +1,4 @@
+from riposte.organizer import plan as _sort_preview
 import json
 import threading
 import time
@@ -13,7 +14,7 @@ from riposte.lab import compare_external
 
 @pytest.fixture
 def trial(root,tmp_path,make_image):
-    make_image(root/'a.png');organize(root,Policy(date_mode='modified'))
+    make_image(root/'a.png');organize(root,Policy(date_mode='modified'), plan_id=_sort_preview(root, Policy(date_mode='modified'))["plan_id"])
     return compare_external(root,catalog(root)[0]['id'],make_image(tmp_path/'candidate.png',color=(31,91,151)))
 
 @pytest.fixture

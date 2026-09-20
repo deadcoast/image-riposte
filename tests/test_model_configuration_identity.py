@@ -1,4 +1,5 @@
 """Configuration identity through real adapters with deterministic component fixtures."""
+from riposte.organizer import plan as _sort_preview
 import json
 import shutil
 import sys
@@ -160,7 +161,7 @@ def test_configuration_mutated_during_loading_is_rejected(bundle, pipeline, comp
 def test_interrupted_publication_resume_checks_configuration(root, make_image, bundle, components, tmp_path, change):
     for name in ("first.png", "second.png"):
         make_image(root / name, size=(32, 32), color=(90, 120, 150))
-    organize(root, Policy(date_mode="modified"))
+    organize(root, Policy(date_mode="modified"), plan_id=_sort_preview(root, Policy(date_mode="modified"))["plan_id"])
     ids = [row["id"] for row in catalog(root)]
     recipe = publication.PublishRecipe((64,), ReleaseConfig(steps=3, restarts=1))
 

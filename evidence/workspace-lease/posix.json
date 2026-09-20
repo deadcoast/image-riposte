@@ -1,0 +1,13 @@
+{
+  "result": "PASS",
+  "python": "3.12.3 (main, Jan  8 2026, 11:30:50) [GCC 13.3.0]",
+  "platform": "Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+  "checks": [
+    "nested owner blocked",
+    "live subprocess blocked",
+    "killed process released lease",
+    "persistent lease identity",
+    "adjacent state rename retains ownership"
+  ],
+  "scope": "Native POSIX file_lease only, on the existing Ubuntu WSL runtime and mounted checkout; not full Linux/macOS application qualification."
+}

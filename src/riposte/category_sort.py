@@ -8,6 +8,8 @@ import json
 import os
 import unicodedata
 from pathlib import Path
+from typing import cast
+from .records import MediaInfo
 from typing import Any, Callable, Sequence
 
 from .category_rules import load_rules, match_title
@@ -114,9 +116,9 @@ def category_plan(root: Path, policy: Policy, *, assignments: Sequence[str] = ()
             if previous:
                 if not _validate_managed(path, previous):
                     raise RiposteError("CATALOG_FILE_CHANGED")
-                info = dict(previous)
+                info = cast(MediaInfo, dict(previous))
             elif media == "vid":
-                info = inspect_video(path, policy)
+                info = cast(MediaInfo, inspect_video(path, policy))
                 info.pop("source_stat")
             else:
                 clean = decode_clean(path, policy)

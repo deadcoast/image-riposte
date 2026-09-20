@@ -1,4 +1,5 @@
 """Regression coverage for the audit; synthetic artwork, no model dependency."""
+from riposte.organizer import plan as _sort_preview
 import asyncio
 import hashlib
 import json
@@ -40,7 +41,7 @@ def test_organization_retries_are_idempotent(root, dated):
         time.sleep(.02)
         os.utime(source, (1725984000, 1725984000))
     for _ in range(3):
-        assert organize(root, Policy(date_mode='modified'))['checkpoint'] == 'COMPLETE'
+        assert organize(root, Policy(date_mode='modified'), plan_id=_sort_preview(root, Policy(date_mode='modified'))["plan_id"])['checkpoint'] == 'COMPLETE'
         assert len(catalog(root)) == 1
         assert not source.exists()
 
@@ -67,7 +68,7 @@ def test_changed_source_is_retained_at_commit(root, monkeypatch, change):
         return row
 
     monkeypatch.setattr('riposte.organizer.record_image', commit)
-    result = organize(root, Policy(date_mode='modified'))
+    result = organize(root, Policy(date_mode='modified'), plan_id=_sort_preview(root, Policy(date_mode='modified'))["plan_id"])
     assert result['checkpoint'] == 'INCOMPLETE'
     assert result['blockers']['SOURCE_CHANGED_OUTPUT_RETAINED'] == 1
     assert source.exists()

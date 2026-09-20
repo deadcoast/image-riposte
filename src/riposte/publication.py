@@ -39,7 +39,7 @@ class PublishRecipe:
             or not isinstance(self.guard, ReleaseConfig) or not isinstance(self.quality, QualityLimits)):
             raise RiposteError("PUBLICATION_RECIPE_INVALID")
 
-    def public(self): return asdict(self)
+    def public(self) -> dict[str, object]: return asdict(self)
 
     @classmethod
     def from_dict(cls, data):
@@ -226,6 +226,8 @@ def resume_publication(root, batch_id, vae_dirs, device="auto", pipeline_dir=Non
 
 def _source_row(root, request, task):
     """Verify only the selected master or its private, date-only input snapshot."""
+    from .records import ImageSource
+    row: ImageSource
     if request.get("source_mode", "catalog") == "catalog":
         row = find_image(root, task["image_id"])
     else:

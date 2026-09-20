@@ -1,0 +1,5 @@
+Using CPython 3.14.3 interpreter at: .venv\Scripts\python.exe
+Resolved 1 package in 6ms
+Prepared 1 package in 31ms
+Installed 1 package in 41ms
+ + riposte-studio==0.5.0 (from file:///C:/Users/ryanf/github/_new/image-riposte/.tmp/workspace-lease/dist/riposte_studio-0.5.0-py3-none-any.whl)

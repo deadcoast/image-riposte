@@ -1,3 +1,4 @@
+from riposte.organizer import plan as _sort_preview
 import numpy as np
 import json
 from pathlib import Path
@@ -14,7 +15,7 @@ from riposte.sanitize import png_audit,encode_clean
 
 @pytest.fixture
 def trial(root,tmp_path,make_image):
-    make_image(root/'a.png',size=(32,24));organize(root,Policy(date_mode='modified'))
+    make_image(root/'a.png',size=(32,24));organize(root,Policy(date_mode='modified'), plan_id=_sort_preview(root, Policy(date_mode='modified'))["plan_id"])
     path=make_image(tmp_path/'candidate.png',size=(32,24),color=(33,93,153))
     return compare_external(root,catalog(root)[0]['id'],path)
 
@@ -135,9 +136,24 @@ def test_fixed_local_generation_loader_with_stub_components(tmp_path,monkeypatch
             return SimpleNamespace(images=[image],frames=[[image,image]],nsfw_content_detected=[False])
     monkeypatch.setitem(sys.modules,'diffusers',SimpleNamespace(StableDiffusionImg2ImgPipeline=Pipeline,StableDiffusionInpaintPipeline=Pipeline,StableVideoDiffusionPipeline=Pipeline))
     generator=LocalGenerator(model,task);result=generator(Image.new('RGB',(32,24),'gray'),7,2)
+    from riposte.models import configuration_fingerprint
+    assert generator.identity['configuration_sha256'] == configuration_fingerprint(model, tuple(name for name in config if not name.startswith('_')))
     assert result and calls[0]['generator'].initial_seed()==7
     assert ('mask_image' in calls[0])==(task=='inpaint')
     if task=='inpaint':assert set(np.asarray(calls[0]['mask_image']).ravel())=={0,255}
     assert generator.last_flags['content_filter_reported']==(task!='video')
     config['_class_name']='UnrecognizedRemotePipeline';(model/'model_index.json').write_text(json.dumps(config))
     with pytest.raises(RiposteError,match='ARCHITECTURE_UNSUPPORTED'):LocalGenerator(model,task)
+    config['_class_name'] = {'edit':'StableDiffusionImg2ImgPipeline','inpaint':'StableDiffusionInpaintPipeline','video':'StableVideoDiffusionPipeline'}[task]
+    (model/'model_index.json').write_text(json.dumps(config))
+    for target, code in ((model/'unet/config.json', 'MODEL_CONFIGURATION_CHANGED'),
+                         (model/'vae/model.safetensors', 'MODEL_WEIGHTS_CHANGED')):
+        original = target.read_bytes()
+        def changed(cls, path, **kw):
+            target.write_bytes(original + b' ')
+            return cls()
+        with monkeypatch.context() as patch:
+            patch.setattr(Pipeline, 'from_pretrained', classmethod(changed))
+            with pytest.raises(RiposteError, match=code):
+                LocalGenerator(model, task)
+        target.write_bytes(original)

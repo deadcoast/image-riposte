@@ -3,6 +3,8 @@
 Report and ModelTensor mark unresolved dynamic JSON and optional ML boundaries.
 They do not certify report validation, tensor shapes, or model execution.
 """
+from riposte.records import (ProgressEvent as ProgressEvent, PngAudit as PngAudit,
+                             CatalogRow as CatalogRow, ImageInfo as ImageInfo, RequestValues as RequestValues)
 from collections.abc import Callable, Sequence
 from pathlib import Path
 import os
@@ -16,42 +18,16 @@ DateSource: TypeAlias = Literal["embedded", "filesystem_creation", "filesystem_m
 # The existing "words" parser preserves sequence elements without coercion.
 FormValue: TypeAlias = str | bool | int | float | tuple[object, ...]
 
-class ProgressEvent(TypedDict, total=False):
-    phase: str
-    processed: int
-    total: int
-    item: int
-    items: int
-    branch: int
-    branches: int
-    batch_id: str
-    state: str
 
 Progress: TypeAlias = Callable[[ProgressEvent], None]
 
-class PngAudit(TypedDict):
-    date: str
-    width: int
-    height: int
-    chunks: list[str]
-    metadata: Literal["DATE_ONLY"]
-    sha256: str
 
-class CatalogRow(TypedDict):
-    id: str
-    relative: str
-    day: str
-    date_source: str
-    width: int
-    height: int
-    sha256: str
-    bytes: int
 
 class OrganizationPlan(TypedDict):
     category_sorting: NotRequired[bool]
-    plan_id: NotRequired[str]
+    plan_id: str
     rules_revision: NotRequired[str]
-    files: NotRequired[list[dict[str, Any]]]
+    files: list[dict[str, Any]]
     mode: Literal["READ_ONLY"]
     counts: dict[str, int]
     destinations: dict[str, int]
@@ -218,57 +194,7 @@ class PublicationExport(TypedDict):
     contents: Literal["APPROVED_DATE_ONLY_PNGS"]
     ai_protection: Literal["UNVERIFIED"]
 
-class ImageInfo(PngAudit):
-    mode: Literal["VERIFIED_IMAGE"]
-    viewer: Literal["NOT_OPENED", "HANDOFF_REQUESTED"]
-    relative: NotRequired[str]
 
-class RequestValues(TypedDict, total=False):
-    input_paths: Sequence[Path | str]
-    image_id: str
-    image_ids: list[str] | tuple[str, ...]
-    all_images: bool
-    batch_id: str | None
-    item_id: str
-    item_ids: list[str] | tuple[str, ...]
-    trial_id: str | None
-    run_id: str
-    relative: str
-    vae_dirs: Sequence[Path | str]
-    model: Path | str
-    candidate: Path | str
-    inpaint: Path | str | None
-    video: Path | str | None
-    edges: list[int] | tuple[int, ...]
-    epsilon: int
-    steps: int
-    restarts: int
-    seed: int
-    seeds: list[int] | tuple[int, ...]
-    views: list[str] | tuple[str, ...]
-    max_edge: int
-    device: str
-    engine: str
-    task: str
-    method: str
-    date_mode: str
-    discard_sidecars: bool
-    preserve_white: bool
-    delta_e76_p95: float
-    rms_fraction: float
-    decision: str
-    visual_accepted: bool
-    acknowledge_unverified: bool
-    execute: bool
-    kind: str
-    view: str
-    open_viewer: bool
-    year: str | None
-    month: str | int | None
-    size: str | None
-    search: str
-    limit: int | None
-    offset: int
 
 class Encoder(Protocol):
     def __call__(self, x: ModelTensor, /) -> ModelTensor: ...

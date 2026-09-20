@@ -1,0 +1,9 @@
+"""Source-derived finite-panel binary agreement, with exact rational outputs."""
+from collections.abc import Sequence
+from fractions import Fraction
+from itertools import combinations as combinations
+from math import comb as comb
+
+def _fraction(value: Fraction) -> dict[str, object]: ...
+def _pair(rows: Sequence[Sequence[bool | None]], left: int, right: int) -> dict[str, object]: ...
+def binary_agreement(rows: Sequence[Sequence[bool | None]]) -> dict[str, object]: ...

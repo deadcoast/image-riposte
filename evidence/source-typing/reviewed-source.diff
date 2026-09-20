@@ -1,0 +1,959 @@
+--- src/riposte/category_sort.py before
++++ src/riposte/category_sort.py after
+@@ -8,6 +8,8 @@
+ import os
+ import unicodedata
+ from pathlib import Path
++from typing import cast
++from .records import MediaInfo
+ from typing import Any, Callable, Sequence
+ 
+ from .category_rules import load_rules, match_title
+@@ -114,9 +116,9 @@
+             if previous:
+                 if not _validate_managed(path, previous):
+                     raise RiposteError("CATALOG_FILE_CHANGED")
+-                info = dict(previous)
++                info = cast(MediaInfo, dict(previous))
+             elif media == "vid":
+-                info = inspect_video(path, policy)
++                info = cast(MediaInfo, inspect_video(path, policy))
+                 info.pop("source_stat")
+             else:
+                 clean = decode_clean(path, policy)
+--- src/riposte/cli.py before
++++ src/riposte/cli.py after
+@@ -4,7 +4,8 @@
+ import os
+ from pathlib import Path
+ import sys
+-from typing import Annotated, Optional
++from typing import Annotated, Optional, cast
++from .records import RequestValues
+ import click
+ import typer
+ from . import __version__
+@@ -64,7 +65,7 @@
+ def dispatch(ctx, name, root=None, **values):
+     for key, value in list(values.items()):
+         if isinstance(value, Enum): values[key] = value.value
+-    raise typer.Exit(run_direct(Request(name, root, values), ctx.obj or Presentation()))
++    raise typer.Exit(run_direct(Request(name, root, cast(RequestValues, values)), ctx.obj or Presentation()))
+ 
+ 
+ @command("ui", "INTERFACE")
+--- src/riposte/organizer.py before
++++ src/riposte/organizer.py after
+@@ -4,7 +4,7 @@
+ import os
+ import unicodedata
+ from pathlib import Path
+-from typing import Callable, Sequence
++from typing import Callable, Sequence, cast
+ from PIL import Image, UnidentifiedImageError
+ from .errors import RiposteError
+ from .catalog_guard import CatalogGuard
+@@ -16,6 +16,7 @@
+ from .sort_history import SortHistory, copy_exclusive, pending_sort, undo_sort
+ from .sort_titles import title_records
+ from .title_categories import GENERATED_TITLE
++from .records import CatalogRow
+ 
+ Progress = Callable[[dict], None]
+ 
+@@ -57,10 +58,10 @@
+     for error in unreadable:
+         yield Path(error.filename), "DIRECTORY_UNREADABLE"
+ 
+-def known_good(root: Path) -> dict[str, dict]:
++def known_good(root: Path) -> dict[str, CatalogRow]:
+     return {row["relative"]: row for row in catalog(root) + video_catalog(root)}
+ 
+-def _validate_managed(path: Path, row: dict) -> bool:
++def _validate_managed(path: Path, row: CatalogRow) -> bool:
+     try:
+         if "/vid/" in row["relative"]:
+             return file_hash(path) == row["sha256"]
+@@ -203,7 +204,7 @@
+                         with guard.write() as db:
+                             db.execute("UPDATE videos SET relative=? WHERE id=?", (relative, previous["id"]))
+                             db.commit()
+-                        row = expected
++                        row = cast(CatalogRow, expected)
+                         del managed[rel]
+                     else:
+                         with guard.write() as db:
+@@ -235,7 +236,7 @@
+                         with guard.write() as db:
+                             db.execute("UPDATE images SET relative=? WHERE id=?", (relative, previous["id"]))
+                             db.commit()
+-                        row = expected
++                        row = cast(CatalogRow, expected)
+                         del managed[rel]
+                     else:
+                         with guard.write() as db:
+--- src/riposte/publication.py before
++++ src/riposte/publication.py after
+@@ -39,7 +39,7 @@
+             or not isinstance(self.guard, ReleaseConfig) or not isinstance(self.quality, QualityLimits)):
+             raise RiposteError("PUBLICATION_RECIPE_INVALID")
+ 
+-    def public(self): return asdict(self)
++    def public(self) -> dict[str, object]: return asdict(self)
+ 
+     @classmethod
+     def from_dict(cls, data):
+@@ -226,6 +226,8 @@
+ 
+ def _source_row(root, request, task):
+     """Verify only the selected master or its private, date-only input snapshot."""
++    from .records import ImageSource
++    row: ImageSource
+     if request.get("source_mode", "catalog") == "catalog":
+         row = find_image(root, task["image_id"])
+     else:
+--- src/riposte/sanitize.py before
++++ src/riposte/sanitize.py after
+@@ -17,6 +17,7 @@
+ from PIL import Image, ImageCms, ImageOps, PngImagePlugin
+ from .errors import RiposteError
+ from .policy import Policy, FORMAT_NAMES, extract_day, valid_day, same_file_state
++from .records import PngAudit
+ 
+ @dataclass
+ class CleanImage:
+@@ -29,7 +30,7 @@
+ # Structural bytes, not personal metadata. Reject all ancillary chunks except date.
+ PNG_MAGIC = b"\x89PNG\r\n\x1a\n"
+ 
+-def png_audit(data: bytes) -> dict:
++def png_audit(data: bytes) -> PngAudit:
+     if not data.startswith(PNG_MAGIC):
+         raise RiposteError("NOT_CANONICAL_PNG")
+     pos, kinds, day, idat_count = 8, [], None, 0
+--- src/riposte/sort_history.py before
++++ src/riposte/sort_history.py after
+@@ -14,13 +14,14 @@
+ import time
+ import uuid
+ from pathlib import Path
+-from typing import Any
++from typing import Any, Mapping
+ 
+ from .errors import RiposteError
+ from .policy import is_link, same_file_state
+ from .store import catalog, check_root, connect, safe_child, state_dir, state_name, state_relative, workspace_lock
+ from .video import file_hash, video_catalog
+ from .sort_titles import title_records, validate_title, save_title, restore_titles
++from .records import CatalogRow
+ 
+ 
+ def _save(root: Path, journal: dict[str, Any]) -> None:
+@@ -136,7 +137,7 @@
+         _save(self.root, self.journal)
+         save_title(self.root, row, **({"db": db} if db is not None else {}))
+ 
+-    def prepare(self, source: Path, output: str | None, expected: dict[str, Any] | None, media: str, before_row: dict[str, Any] | None = None) -> dict[str, Any]:
++    def prepare(self, source: Path, output: str | None, expected: dict[str, Any] | None, media: str, before_row: CatalogRow | None = None) -> dict[str, Any]:
+         if is_link(source) or source.stat().st_nlink != 1:
+             raise RiposteError("HARDLINK_REQUIRES_REVIEW")
+         relative = source.relative_to(self.root).as_posix()
+@@ -239,7 +240,8 @@
+                     raise RiposteError("SORT_HISTORY_INVALID")
+                 rows = [r for r in current[media] if r["relative"] == entry["output"]]
+                 for row in rows:
+-                    if any(row[k] != v for k, v in entry["expected"].items()):
++                    compared: Mapping[str, object] = row
++                    if any(compared[k] != v for k, v in entry["expected"].items()):
+                         blocked("UNDO_CATALOG_CHANGED")
+                     current[media].remove(row)
+                 previous = entry["before_row"]
+--- src/riposte/sort_plan.py before
++++ src/riposte/sort_plan.py after
+@@ -6,6 +6,8 @@
+ import hashlib
+ import json
+ from pathlib import Path
++from typing import cast
++from .records import MediaInfo
+ from typing import Any, Callable
+ import unicodedata
+ 
+@@ -74,9 +76,9 @@
+             if previous:
+                 if not _validate_managed(path, previous):
+                     raise RiposteError("CATALOG_FILE_CHANGED")
+-                info = dict(previous)
++                info = cast(MediaInfo, dict(previous))
+             elif kind == "VIDEO":
+-                info = inspect_video(path, policy)
++                info = cast(MediaInfo, inspect_video(path, policy))
+                 info.pop("source_stat")
+             else:
+                 clean = decode_clean(path, policy)
+--- src/riposte/store.py before
++++ src/riposte/store.py after
+@@ -8,11 +8,13 @@
+ import uuid
+ from collections.abc import Iterator
+ from functools import lru_cache
++from typing import cast
+ from pathlib import Path
+ from .errors import RiposteError
+ from .locking import LEASE_NAME, file_identity, file_lease
+ from .policy import canonical_path, is_link
+ from .sanitize import png_audit, timestamp_day
++from .records import CatalogRow, PngAudit
+ 
+ SIGNATURE = 'RIPOSTE_WORKSPACE_1\n'
+ LEGACY_SIGNATURE = 'SHROUD_WORKSPACE_1\n'
+@@ -231,20 +233,20 @@
+     db.commit()
+     return db
+ 
+-def catalog(root: Path) -> list[dict]:
++def catalog(root: Path) -> list[CatalogRow]:
+     check_root(root)
+     if not (root / state_relative(root, "catalog.sqlite3")).exists():
+         return []
+     with contextlib.closing(sqlite3.connect(safe_child(root, state_relative(root, "catalog.sqlite3")).as_uri() + "?mode=ro", uri=True)) as db:
+         db.row_factory = sqlite3.Row
+-        result = [dict(row) for row in db.execute("SELECT * FROM images ORDER BY day DESC, relative")]
++        result = [cast(CatalogRow, dict(row)) for row in db.execute("SELECT * FROM images ORDER BY day DESC, relative")]
+     for row in result:
+         canonical_path(row["relative"])
+     return result
+ 
+-def record_image(root: Path, relative: str, audit: dict, size: int, date_source: str, *, db: sqlite3.Connection | None = None) -> dict:
++def record_image(root: Path, relative: str, audit: PngAudit, size: int, date_source: str, *, db: sqlite3.Connection | None = None) -> CatalogRow:
+     canonical_path(relative)
+-    row = {"id": uuid.uuid4().hex, "relative": relative, "day": audit["date"],
++    row: CatalogRow = {"id": uuid.uuid4().hex, "relative": relative, "day": audit["date"],
+            "date_source": date_source, "width": audit["width"], "height": audit["height"],
+            "sha256": audit["sha256"], "bytes": size}
+     with (contextlib.closing(connect(root)) if db is None else contextlib.nullcontext(db)) as db:
+@@ -252,7 +254,7 @@
+         db.commit()
+     return row
+ 
+-def find_image(root: Path, identifier: str) -> dict:
++def find_image(root: Path, identifier: str) -> CatalogRow:
+     if len(identifier) != 32 or any(c not in "0123456789abcdef" for c in identifier):
+         raise RiposteError("IMAGE_NOT_FOUND")
+     root = check_root(root)
+@@ -264,7 +266,7 @@
+         found = db.execute("SELECT * FROM images WHERE id=?", (identifier,)).fetchone()
+     if found is None:
+         raise RiposteError("IMAGE_NOT_FOUND")
+-    row = dict(found)
++    row = cast(CatalogRow, dict(found))
+     path = safe_child(root, canonical_path(row["relative"]))
+     try:
+         result = png_audit(path.read_bytes())
+--- src/riposte/video.py before
++++ src/riposte/video.py after
+@@ -10,11 +10,12 @@
+ import subprocess
+ import uuid
+ from pathlib import Path
+-from typing import Any
++from typing import Any, cast
+ 
+ from .errors import RiposteError
+ from .policy import Policy, extract_day, is_link, same_file_state, sort_folder_for, valid_day
+ from .store import check_root, connect, safe_child, state_relative
++from .records import CatalogRow
+ 
+ VIDEO_SUFFIXES = frozenset({".mp4", ".m4v", ".mov", ".mkv", ".webm", ".avi", ".wmv", ".mpg", ".mpeg", ".mts", ".m2ts", ".3gp", ".ogv"})
+ 
+@@ -69,7 +70,7 @@
+             "sha256": digest, "bytes": before.st_size, "source_stat": before}
+ 
+ 
+-def video_catalog(root: Path) -> list[dict[str, Any]]:
++def video_catalog(root: Path) -> list[CatalogRow]:
+     root = check_root(root)
+     path = safe_child(root, state_relative(root, "catalog.sqlite3"))
+     if not path.exists():
+@@ -78,7 +79,7 @@
+         db.row_factory = sqlite3.Row
+         if not db.execute("SELECT 1 FROM sqlite_master WHERE type='table' AND name='videos'").fetchone():
+             return []
+-        rows = [dict(row) for row in db.execute("SELECT * FROM videos ORDER BY day DESC, relative")]
++        rows = [cast(CatalogRow, dict(row)) for row in db.execute("SELECT * FROM videos ORDER BY day DESC, relative")]
+     for row in rows:
+         relative = Path(row["relative"])
+         from .policy import path_category
+@@ -92,11 +93,11 @@
+     return rows
+ 
+ 
+-def record_video(root: Path, relative: str, info: dict[str, Any], *, db: sqlite3.Connection | None = None) -> dict[str, Any]:
++def record_video(root: Path, relative: str, info: dict[str, Any], *, db: sqlite3.Connection | None = None) -> CatalogRow:
+     row = {k: info[k] for k in ("day", "date_source", "width", "height", "sha256", "bytes")}
+     row.update(id=uuid.uuid4().hex, relative=relative)
+     with (contextlib.closing(connect(root)) if db is None else contextlib.nullcontext(db)) as db:
+         db.execute("CREATE TABLE IF NOT EXISTS videos (id TEXT PRIMARY KEY, relative TEXT UNIQUE NOT NULL, day TEXT NOT NULL, date_source TEXT NOT NULL, width INTEGER NOT NULL, height INTEGER NOT NULL, sha256 TEXT NOT NULL, bytes INTEGER NOT NULL)")
+         db.execute("INSERT INTO videos VALUES (:id,:relative,:day,:date_source,:width,:height,:sha256,:bytes)", row)
+         db.commit()
+-    return row
++    return cast(CatalogRow, row)
+--- src/riposte/terminal/actions.py before
++++ src/riposte/terminal/actions.py after
+@@ -2,7 +2,8 @@
+ from __future__ import annotations
+ from dataclasses import dataclass
+ from pathlib import Path
+-from typing import Any
++from typing import Any, Mapping, cast
++from ..records import RequestValues
+ import math
+ import shlex
+ from ..errors import RiposteError
+@@ -192,7 +193,7 @@
+         except (ValueError, TypeError):
+             raise RiposteError("CATEGORY_ASSIGNMENT_INVALID") from None
+     if key == "review": parsed["item_ids"] = list(parsed["item_ids"])
+-    return Request(key, root, parsed)
++    return Request(key, root, cast(RequestValues, parsed))
+ 
+ 
+ def request_argv(request: Request) -> list[str]:
+@@ -200,7 +201,7 @@
+     name = {"category-rules-save": "category-rules", "plan": "publish", "riposte-plan": "riposte", "sort-riposte-plan": "sort-riposte", "apply": "organize", "undo-sort-apply": "undo-sort", "handoff": "workshop", "open-image": "image"}.get(request.name, request.name)
+     args = ["riposte", name]
+     if request.root is not None and name != "doctor": args.append(str(request.root))
+-    values = request.values
++    values: Mapping[str, object] = request.values
+     pos = {"inspect": ("image_id",), "guard": ("image_id",), "compare": ("image_id", "candidate"),
+            "qualify": ("trial_id",), "challenge": ("trial_id",), "benchmark": ("trial_id",), "export": ("trial_id",),
+            "publications": ("batch_id",), "resume": ("batch_id",), "review": ("batch_id",), "package": ("batch_id",),
+--- src/riposte/terminal/controller.py before
++++ src/riposte/terminal/controller.py after
+@@ -2,6 +2,9 @@
+ from __future__ import annotations
+ from dataclasses import replace
+ from pathlib import Path
++from collections.abc import Callable, Mapping, Sequence
++from typing import cast
++from ..records import CatalogRow, RequestValues
+ import time
+ from .actions import ACTIONS, BY_KEY, Field, defaults, make_request, parse_value
+ from .jobs import Operation, safe_code
+@@ -18,43 +21,43 @@
+ 
+ 
+ class Controller:
+-    def __init__(self, root: Path | None, presentation: Presentation, *, initial="home", operation_factory=Operation):
++    def __init__(self, root: Path | None, presentation: Presentation, *, initial: str = "home", operation_factory: Callable[[Request], Operation] = Operation) -> None:
+         self.state = Session(root.expanduser().absolute() if root else None, presentation,
+                              paused=presentation.no_animation)
+         self.factory = operation_factory
+         self.started = time.monotonic()
+-        self.pending_action = None
++        self.pending_action: str | None = None
+         if root:
+             root_of(Request("list", self.state.root))
+             self.refresh()
+         if initial == "workshop": self.show(Page("workshop", "OPTIONAL WORKSHOP"), remember=False)
+ 
+-    def refresh(self):
++    def refresh(self) -> None:
+         if self.state.root is None: return
+         self.state.catalog = execute(Request("list", self.state.root))
+         self.state.batches = execute(Request("publications", self.state.root))
+         self.state.selected.intersection_update(r["id"] for r in self.state.catalog)
+ 
+-    def show(self, page, remember=True):
++    def show(self, page: Page, remember: bool = True) -> None:
+         if remember and self.state.page.name != "job": self.state.stack.append(self.state.page)
+         self.state.page = page
+         self.state.notice = ""
+ 
+-    def back(self):
++    def back(self) -> None:
+         self.state.editor = None
+         self.state.page = self.state.stack.pop() if self.state.stack else Page()
+         self.state.notice = ""
+ 
+-    def edit_workspace(self):
++    def edit_workspace(self) -> None:
+         self.browse("workspace", "preferences")
+ 
+-    def begin_action(self, key):
++    def begin_action(self, key: str) -> None:
+         if key == "riposte": return self.browse("inputs", key)
+         if key in {"organize", "sort-riposte"}: return self.browse("sort", key)
+         if key == "undo-sort": return self.browse("undo", key)
+         return self.action(key)
+ 
+-    def browse(self, mode, action=None, inputs=(), field=None):
++    def browse(self, mode: str, action: str | None = None, inputs: Sequence[Path] = (), field: str | None = None) -> None:
+         settings = dict(self.state.page.values) if self.state.page.name == "form" else {}
+         purpose = {
+             "inputs": "Select images or folders to protect, including subfolders. Originals stay in place; sorting is not required.",
+@@ -73,7 +76,7 @@
+         self.show(Page("picker", title, action=action, result=picker,
+                        values={"mode": mode, "purpose": purpose, "inputs": list(inputs), "field": field, "settings": settings}, rows=picker.rows()))
+ 
+-    def picker_key(self, key):
++    def picker_key(self, key: Key) -> None:
+         p = self.state.page
+         picker = p.result
+         row = self.selected_row()
+@@ -95,7 +98,7 @@
+         p.rows = picker.rows()
+         self.state.notice = picker.error
+ 
+-    def accept_picker(self):
++    def accept_picker(self) -> None:
+         p = self.state.page
+         picker = p.result
+         mode = p.values["mode"]
+@@ -127,17 +130,17 @@
+         if action: return self.action(action)
+         self.back()
+ 
+-    def require_workspace(self, next_action):
++    def require_workspace(self, next_action: str) -> bool:
+         if self.state.root: return True
+         self.browse("existing", next_action)
+         return False
+ 
+-    def library(self):
++    def library(self) -> None:
+         if not self.require_workspace("library"): return
+         self.refresh()
+         self.show(Page("library", "CLEAN LIBRARY", rows=self.state.catalog))
+ 
+-    def batches(self):
++    def batches(self) -> None:
+         if not self.require_workspace("batches"): return
+         self.refresh()
+         self.show(Page("batches", "PUBLISHING BATCHES", rows=self.state.batches))
+@@ -146,7 +149,7 @@
+         value = result or execute(Request("publications", self.state.root, {"batch_id": identifier}))
+         self.show(Page("batch", "REVIEW & PACKAGE", rows=value["items"], batch_id=identifier, result=value), remember=remember)
+ 
+-    def preferences(self):
++    def preferences(self) -> None:
+         rows = [
+             {"key": "workspace", "title": "Image workspace", "value": "SELECTED" if self.state.root else "NOT SELECTED"},
+             {"key": "theme", "title": "Palette", "value": self.state.presentation.theme.upper()},
+@@ -160,7 +163,7 @@
+             self.state.page.rows = rows
+         else: self.show(Page("preferences", "TERMINAL SETTINGS", rows=rows))
+ 
+-    def action(self, key, overrides=None):
++    def action(self, key: str, overrides: Mapping[str, object] | None = None) -> None:
+         if key == "library": return self.library()
+         if key == "batches": return self.batches()
+         if key == "preferences": return self.preferences()
+@@ -179,15 +182,15 @@
+             return self.run(Request(key, self.state.root))
+         self.show(Page("form", action.title.upper(), action=key, values=values))
+ 
+-    def request_from_form(self):
+-        p = self.state.page
+-        return make_request(p.action, self.state.root, p.values, sorted(self.state.selected))
+-
+-    def save_model_session(self, values):
++    def request_from_form(self) -> Request:
++        p = self.state.page
++        return make_request(cast(str, p.action), self.state.root, p.values, sorted(self.state.selected))
++
++    def save_model_session(self, values: Mapping[str, object]) -> None:
+         for key in ("vae1", "vae2", "vae3", "vae4", "device", "inpaint", "video"):
+             if key in values: self.state.models[key] = values[key]
+ 
+-    def run_form(self, preview=False):
++    def run_form(self, preview: bool = False) -> None:
+         p = self.state.page
+         request = self.request_from_form()
+         self.save_model_session(p.values)
+@@ -201,7 +204,7 @@
+             return self.confirm(request, "ACCEPT" if request.values["decision"] == "ACCEPTED" else "REJECT", title)
+         self.run(request)
+ 
+-    def run(self, request):
++    def run(self, request: Request) -> None:
+         if self.state.operation and not self.state.operation.done.is_set():
+             raise RiposteError("OPERATION_ALREADY_RUNNING")
+         self.state.last_request = request
+@@ -209,10 +212,10 @@
+         self.show(Page("job", "ACTIVE OPERATION", request=request))
+         self.state.operation = self.factory(request).start()
+ 
+-    def confirm(self, request, word, title):
++    def confirm(self, request: Request, word: str, title: str) -> None:
+         self.show(Page("confirm", title, confirm_word=word, confirm_request=request, values={"confirmation": ""}))
+ 
+-    def pump(self):
++    def pump(self) -> None:
+         operation = self.state.operation
+         if operation is None or not operation.done.is_set(): return
+         operation.join()
+@@ -242,29 +245,29 @@
+         self.state.page.cursor = min(self.state.page.cursor, len(rows) - 1)
+         return rows[self.state.page.cursor]
+ 
+-    def inspect_asset(self, row):
++    def inspect_asset(self, row: CatalogRow) -> None:
+         report = execute(Request("inspect", self.state.root, {"image_id": row["id"]}))
+-        preview = make_preview(image_bytes(self.state.root, {"image_id": row["id"]}))
++        preview = make_preview(image_bytes(cast(Path, self.state.root), {"image_id": row["id"]}))
+         self.show(Page("asset", "CLEAN IMAGE", image_id=row["id"], report=report, preview=preview))
+ 
+     def inspect_item(self, row, batch_id):
+         if row.get("status") != "READY_FOR_REVIEW":
+             self.show(Page("result", "OUTPUT NEEDS ATTENTION", result=row))
+             return
+-        preview = make_preview(image_bytes(self.state.root, {"batch_id": batch_id, "item_id": row["id"]}))
++        preview = make_preview(image_bytes(cast(Path, self.state.root), {"batch_id": batch_id, "item_id": row["id"]}))
+         self.show(Page("item", "EXACT OUTPUT REVIEW", batch_id=batch_id, item_id=row["id"], report=row, preview=preview))
+ 
+-    def reload_preview(self):
+-        p = self.state.page
+-        p.preview = make_preview(image_bytes(self.state.root, {"batch_id": p.batch_id, "item_id": p.item_id,
++    def reload_preview(self) -> None:
++        p = self.state.page
++        p.preview = make_preview(image_bytes(cast(Path, self.state.root), {"batch_id": p.batch_id, "item_id": cast(str, p.item_id),
+                                                               "kind": p.kind, "view": p.view}))
+ 
+-    def toggle_selection(self, row):
++    def toggle_selection(self, row: CatalogRow) -> None:
+         if row["id"] in self.state.selected: self.state.selected.remove(row["id"])
+         elif len(self.state.selected) < 200: self.state.selected.add(row["id"])
+         else: self.state.notice = "A publishing selection is limited to 200 images."
+ 
+-    def move(self, amount):
++    def move(self, amount: int) -> None:
+         p = self.state.page
+         if p.name in {"result", "help", "command"}:
+             p.scroll = min(scroll_limit(self.state), max(0, p.scroll + amount))
+@@ -272,7 +275,7 @@
+         count = len(fields_for(p)) + 1 if p.name == "form" else len(view_rows(self.state))
+         p.cursor = max(0, min(max(0, count - 1), p.cursor + amount))
+ 
+-    def field_edit(self):
++    def field_edit(self) -> None:
+         p = self.state.page
+         fields = fields_for(p)
+         if p.cursor >= len(fields):
+@@ -288,8 +291,8 @@
+         value = ", ".join(str(x) for x in value) if isinstance(value, (list, tuple)) else str(value)
+         self.state.editor = Editor(f, value, len(value))
+ 
+-    def accept_editor(self):
+-        e = self.state.editor
++    def accept_editor(self) -> None:
++        e = cast(Editor, self.state.editor)
+         try:
+             value = parse_value(e.field, e.value)
+             if e.target == "picker-location":
+@@ -323,8 +326,8 @@
+             self.state.editor = None
+         except (RiposteError, OSError, ValueError): e.error = True
+ 
+-    def editor_key(self, key):
+-        e = self.state.editor
++    def editor_key(self, key: Key) -> None:
++        e = cast(Editor, self.state.editor)
+         if key.name == "escape": self.state.editor = None; self.pending_action = None; return
+         if key.name == "enter": return self.accept_editor()
+         if key.name in {"interrupt", "eof"}:
+@@ -345,26 +348,26 @@
+             e.value = e.value[:e.position] + text + e.value[e.position:]; e.position += len(text)
+         e.error = False
+ 
+-    def freeze_motion(self):
++    def freeze_motion(self) -> None:
+         self.state.paused = not self.state.paused
+         self.state.presentation.no_animation = self.state.paused
+         if self.state.paused: self.state.frozen_time = time.monotonic()-self.started
+         if self.state.page.name == "preferences": self.preferences()
+ 
+-    def cycle_theme(self):
++    def cycle_theme(self) -> None:
+         values = ("goks", "light", "mono", "dark")
+         p = self.state.presentation
+         p.theme = values[(values.index(p.theme)+1)%len(values)]
+         if self.state.page.name == "preferences": self.preferences()
+ 
+-    def key(self, key: Key):
++    def key(self, key: Key) -> None:
+         try: self._key(key)
+         except RiposteError as exc:
+             self.show(Page("result", "OPERATION STOPPED", code=safe_code(exc.code), request=self.state.last_request))
+         except Exception:
+             self.show(Page("result", "OPERATION STOPPED", code="OPERATION_FAILED", request=self.state.last_request))
+ 
+-    def _key(self, key):
++    def _key(self, key: Key) -> None:
+         if self.state.width < 72 or self.state.height < 24:
+             if self.state.operation:
+                 if key.name in {"interrupt", "eof", "escape"} or key.text=="q":
+@@ -442,10 +445,10 @@
+             elif ch == "i" and row: return self.inspect_asset(row)
+             elif ch == "p": return self.action("publish")
+         elif p.name == "asset":
+-            if key.name == "enter" or ch == " ": return self.toggle_selection(p.report)
+-            if ch == "v": return self.run(Request("open-image", self.state.root, {"image_id": p.image_id}))
++            if key.name == "enter" or ch == " ": return self.toggle_selection(cast(CatalogRow, p.report))
++            if ch == "v": return self.run(Request("open-image", self.state.root, {"image_id": cast(str, p.image_id)}))
+             if ch == "p":
+-                if p.image_id not in self.state.selected: self.toggle_selection(p.report)
++                if p.image_id not in self.state.selected: self.toggle_selection(cast(CatalogRow, p.report))
+                 return self.action("publish")
+         elif p.name == "form":
+             if ch == "b":
+@@ -474,10 +477,14 @@
+             if ch == "r": return self.run_form(preview=p.action=="organize")
+         elif p.name == "batches":
+             row = self.selected_row()
+-            if key.name == "enter" and row: return self.batch(row["id"])
++            if key.name == "enter" and row:
++                self.batch(row["id"])
++                return
+         elif p.name == "batch":
+             row = self.selected_row()
+-            if key.name == "enter" and row: return self.inspect_item(row, p.batch_id)
++            if key.name == "enter" and row:
++                self.inspect_item(row, p.batch_id)
++                return
+             if ch == "d": return self.show(Page("result", "BATCH REPORT", result=p.result, request=Request("publications",self.state.root,{"batch_id":p.batch_id})))
+             if ch == "p": return self.run(Request("package", self.state.root, {"batch_id": p.batch_id}))
+             if ch == "r": return self.action("resume", {"batch_id": p.batch_id})
+@@ -489,15 +496,15 @@
+             if ch == "t":
+                 views = list(TRANSFORMS); p.view = views[(views.index(p.view)+1)%len(views)]
+                 return self.reload_preview()
+-            if ch == "v": return self.run(Request("open-image", self.state.root, {"batch_id":p.batch_id,"item_id":p.item_id,"kind":p.kind,"view":p.view}))
++            if ch == "v": return self.run(Request("open-image", self.state.root, {"batch_id":p.batch_id,"item_id":cast(str, p.item_id),"kind":p.kind,"view":p.view}))
+             if ch == "a": return self.action("review", {"batch_id":p.batch_id,"item_ids":(p.item_id,)})
+-            if ch == "x": return self.confirm(Request("review", self.state.root, {"batch_id":p.batch_id,"item_ids":[p.item_id],"decision":"REJECTED"}), "REJECT", "Revoke this output's approval for future publishing packs.")
+-            if ch == "w": return self.action("handoff", {"batch_id":p.batch_id,"item_id":p.item_id})
++            if ch == "x": return self.confirm(Request("review", self.state.root, {"batch_id":p.batch_id,"item_ids":[cast(str, p.item_id)],"decision":"REJECTED"}), "REJECT", "Revoke this output's approval for future publishing packs.")
++            if ch == "w": return self.action("handoff", {"batch_id":p.batch_id,"item_id":cast(str, p.item_id)})
+         elif p.name == "result":
+             request = p.request
+             if ch == "t" and not p.code:
+-                views = ("overview", "details", "json")
+-                p.report_view = views[(views.index(p.report_view) + 1) % len(views)]
++                report_views = ("overview", "details", "json")
++                p.report_view = report_views[(report_views.index(p.report_view) + 1) % len(report_views)]
+                 p.scroll = 0
+                 return
+             if key.name == "enter":
+@@ -510,10 +517,10 @@
+             if ch == "a" and request and request.name == "organize":
+                 if request.values.get("categories") and not p.result.get("ready"):
+                     self.state.notice = "Resolve the category blockers and refresh the preview."; return
+-                values = {**request.values, "plan_id": p.result["plan_id"]}
++                values = cast(RequestValues, {**request.values, "plan_id": p.result["plan_id"]})
+                 return self.confirm(Request("apply", request.root, values), "REPLACE", "Apply the displayed sorting plan. Original names, bytes and category assignments remain privately recoverable.")
+             if ch == "s" and request and request.name == "category-rules" and p.result.get("status") == "DRAFT":
+-                return self.confirm(Request("category-rules-save", request.root, {**request.values, "expected_revision": p.result["revision"]}), "SAVE", "Save these reusable rules. Sorting remains a separate preview and confirmation.")
++                return self.confirm(Request("category-rules-save", request.root, cast(RequestValues, {**request.values, "expected_revision": p.result["revision"]})), "SAVE", "Save these reusable rules. Sorting remains a separate preview and confirmation.")
+             if ch == "u" and request and request.name == "undo-sort" and p.result.get("ready"):
+                 return self.confirm(Request("undo-sort-apply", request.root, {"sort_id": p.result["sort_id"]}), "UNDO", "Restore original names and bytes from the last sort. Remove only its verified sorted copies.")
+             if ch == "r" and request and request.name == "plan":
+@@ -524,7 +531,7 @@
+                 sorting = p.result.get("sorting", {})
+                 if request.values.get("categories") and not sorting.get("ready"):
+                     self.state.notice = "Resolve the category blockers and refresh the preview."; return
+-                values = {**request.values, "plan_id": p.result["plan_id"]}
++                values = cast(RequestValues, {**request.values, "plan_id": p.result["plan_id"]})
+                 return self.confirm(Request("sort-riposte", request.root, values), "REPLACE",
+                                     "Replace verified sources during sorting, then protect the organized collection.")
+             if ch == "b": return self.batches()
+@@ -543,7 +550,7 @@
+                 if not self.require_workspace("browser"): return
+                 self.state.handoff=["serve",str(self.state.root)]; self.state.running=False
+ 
+-    def shutdown(self):
++    def shutdown(self) -> None:
+         op=self.state.operation
+         if op:
+             op.cancel()
+--- src/riposte/terminal/jobs.py before
++++ src/riposte/terminal/jobs.py after
+@@ -9,9 +9,11 @@
+ import threading
+ import time
+ import re
+-from typing import Any, Callable
++from collections.abc import Callable, Mapping
++from typing import Self
+ from ..errors import RiposteError
+ from .service import Request, CANCELLABLE, execute, result_exit_code
++from ..records import Progress
+ 
+ 
+ def safe_code(value: object) -> str:
+@@ -45,7 +47,7 @@
+ 
+ 
+ class Operation:
+-    def __init__(self, request: Request, function: Callable = execute):
++    def __init__(self, request: Request, function: Callable[[Request, Progress], object] = execute):
+         self.request, self.function = request, function
+         self.cancellable = request.name in CANCELLABLE
+         self.started = time.monotonic()
+@@ -54,15 +56,15 @@
+         self.done = threading.Event()
+         self._snapshot = Snapshot(cancellable=self.cancellable)
+         self._events: deque[str] = deque(maxlen=10)
+-        self.result: Any = None
++        self.result: object = None
+         self.exit_code = 0
+         self.thread = threading.Thread(target=self._run, name="riposte-foreground-operation", daemon=False)
+ 
+-    def start(self):
++    def start(self) -> Self:
+         self.thread.start()
+         return self
+ 
+-    def progress(self, event: dict):
++    def progress(self, event: Mapping[str, object]) -> None:
+         if self._cancel.is_set() and self.cancellable:
+             raise RiposteError("JOB_CANCELLED")
+         if not isinstance(event, dict): return
+@@ -91,7 +93,7 @@
+         with self._lock:
+             return Snapshot(**{**vars(self._snapshot), "events": tuple(self._events), "elapsed": time.monotonic() - self.started})
+ 
+-    def _run(self):
++    def _run(self) -> None:
+         try:
+             self.progress({"phase": "Starting operation"})
+             self.result = self.function(self.request, self.progress)
+@@ -114,6 +116,6 @@
+         finally:
+             self.done.set()
+ 
+-    def join(self):
++    def join(self) -> object:
+         self.thread.join()
+         return self.result
+--- src/riposte/terminal/service.py before
++++ src/riposte/terminal/service.py after
+@@ -7,7 +7,7 @@
+ 
+ from dataclasses import dataclass, field
+ from pathlib import Path
+-from typing import Any, Callable
++from typing import Any, Literal, TYPE_CHECKING, cast
+ import io
+ import os
+ import re
+@@ -16,15 +16,17 @@
+ 
+ from ..errors import RiposteError
+ from ..policy import Policy, MONTHS, BINS, YEARS
+-
+-Progress = Callable[[dict], None]
++from ..records import CatalogRow, ImageInfo, ListOptions, PreviewSortOptions, Progress, RequestValues, SelectionFilters, SortOptions
++
++if TYPE_CHECKING:
++    from ..publication import PublishRecipe
+ 
+ 
+ @dataclass(frozen=True)
+ class Request:
+     name: str
+     root: Path | None = None
+-    values: dict[str, Any] = field(default_factory=dict)
++    values: RequestValues = field(default_factory=RequestValues)
+ 
+ 
+ # These are application effects, not a permission system for hostile local code.
+@@ -67,7 +69,9 @@
+     raise RiposteError("MONTH_FILTER_INVALID")
+ 
+ 
+-def select_rows(root: Path, *, year=None, month=None, size=None, search="", limit=None, offset=0) -> list[dict]:
++def select_rows(root: Path, *, year: str | None = None, month: str | int | None = None,
++                size: str | None = None, search: str = "", limit: int | None = None,
++                offset: int = 0) -> list[CatalogRow]:
+     from ..store import catalog
+     if year not in (None, "", "all", *YEARS, "EVERYTHING_ELSE"):
+         raise RiposteError("YEAR_FILTER_INVALID")
+@@ -88,7 +92,7 @@
+     return filtered[offset:] if limit is None else filtered[offset:offset + limit]
+ 
+ 
+-def recipe(values: dict):
++def recipe(values: RequestValues) -> PublishRecipe:
+     from ..publication import PublishRecipe
+     from ..quality import QualityLimits
+     from ..release_guard import ReleaseConfig
+@@ -101,24 +105,24 @@
+                                        rms_fraction=values.get("rms_fraction", .95)))
+ 
+ 
+-def image_selection(root, values):
++def image_selection(root: Path, values: RequestValues) -> list[str]:
+     ids = list(values.get("image_ids") or [])
+     all_images = values.get("all_images", False)
+     if bool(ids) == bool(all_images):
+         raise RiposteError("SELECT_IMAGES_OR_ALL")
+-    filters = {k: values.get(k) for k in ("year", "month", "size")}
++    filters: SelectionFilters = {"year": values.get("year"), "month": values.get("month"), "size": values.get("size")}
+     if ids and any(v not in (None, "", "all") for v in filters.values()):
+         raise RiposteError("FILTERS_REQUIRE_ALL_SELECTION")
+     return [r["id"] for r in select_rows(root, **filters)] if all_images else ids
+ 
+ 
+-def _paths(values):
++def _paths(values: RequestValues) -> list[Path]:
+     paths = values.get("vae_dirs", [])
+     if len(paths) > 4: raise RiposteError("TOO_MANY_LOCAL_ENCODERS")
+     return [Path(p).expanduser().absolute() for p in paths]
+ 
+ 
+-def _optional(values, key):
++def _optional(values: RequestValues, key: Literal["inpaint", "video"]) -> Path | None:
+     value = values.get(key)
+     return Path(value).expanduser().absolute() if value else None
+ 
+@@ -134,7 +138,7 @@
+             from ..runtime_probe import execute_local_probe
+             if not v.get("vae_dirs"): raise RiposteError("LOCAL_VAE_DIRECTORY_REQUIRED")
+             return execute_local_probe(_paths(v), device=v.get("device", "auto"), progress=progress)
+-        result = {"runtime": runtime_capabilities()}
++        result: dict[str, object] = {"runtime": runtime_capabilities()}
+         if v.get("vae_dirs"):
+             entries = [inspect_vae(p) for p in _paths(v)]
+             result["model" if len(entries) == 1 else "models"] = entries[0] if len(entries) == 1 else entries
+@@ -152,22 +156,24 @@
+         fillers = v.get("fillers", DEFAULT_FILLERS)
+         if isinstance(fillers, str): fillers = tuple(word.strip() for word in fillers.split(",") if word.strip())
+         return discover_categories(root, min_count=v.get("min_count", 2), max_words=v.get("max_words", 3),
+-                                   limit=v.get("limit", 100), fillers=fillers,
++                                   limit=cast(int, v.get("limit", 100)), fillers=fillers,
+                                    ignore=v.get("ignore") or (), categories=v.get("category_specs") or (), progress=progress)
+     if name in {"undo-sort", "undo-sort-apply"}:
+         from ..sort_history import undo_sort
+         return undo_sort(root, apply=name == "undo-sort-apply", sort_id=v.get("sort_id"))
+     if name in {"organize", "apply"}:
+         from ..organizer import plan, organize
+-        options = {"categories": v.get("categories", False), "assignments": v.get("assignments") or ()} if v.get("categories") or v.get("assignments") else {}
++        options: SortOptions = {"categories": v.get("categories", False), "assignments": v.get("assignments") or ()} if v.get("categories") or v.get("assignments") else {}
+         if name == "apply" and v.get("plan_id") is not None: options["plan_id"] = v["plan_id"]
+-        return (organize if name == "apply" else plan)(
+-            root, Policy(date_mode=v.get("date_mode", "download"), discard_sidecars=v.get("discard_sidecars", False)), progress, **options)
++        policy = Policy(date_mode=v.get("date_mode", "download"), discard_sidecars=v.get("discard_sidecars", False))
++        if name == "apply":
++            return organize(root, policy, progress, **options)
++        return plan(root, policy, progress, **cast(PreviewSortOptions, options))
+     if name == "audit":
+         from ..organizer import audit_workspace
+         return audit_workspace(root)
+     if name == "list":
+-        return select_rows(root, **{k: v[k] for k in ("year", "month", "size", "search", "limit", "offset") if k in v})
++        return select_rows(root, **cast(ListOptions, {k: v[k] for k in ("year", "month", "size", "search", "limit", "offset") if k in v}))
+     if name == "inspect":
+         from ..store import find_image, safe_child
+         from ..sanitize import png_audit
+@@ -189,8 +195,8 @@
+             publication_plan(root, selected, configuration)
+         policy = Policy(date_mode=v.get("date_mode", "download"), discard_sidecars=v.get("discard_sidecars", False))
+         options = {"categories": v.get("categories", False), "assignments": v.get("assignments") or ()} if v.get("categories") or v.get("assignments") else {}
+-        sorting = plan(root, policy, progress, **options)
+-        filters = {key: v.get(key) for key in ("year", "month", "size")}
++        sorting = plan(root, policy, progress, **cast(PreviewSortOptions, options))
++        filters: SelectionFilters = {"year": v.get("year"), "month": v.get("month"), "size": v.get("size")}
+         plan_id = receipt({"version": "riposte-combined-sort-1", "sorting": sorting["plan_id"],
+                            "all_images": v.get("all_images", False), "selected": sorted(selected),
+                            "filters": filters, "recipe": configuration.public(),
+@@ -217,7 +223,7 @@
+             return {"mode": "SORT_RIPOSTE_RESULT", "checkpoint": "INCOMPLETE", "sorting": sorting, "protection": "NOT_STARTED"}
+         try:
+             current = {row["relative"]: row for row in select_rows(root)}
+-            if any(current.get(relative, {}).get("sha256") != digest for relative, digest in destinations.items()):
++            if any(relative not in current or current[relative]["sha256"] != digest for relative, digest in destinations.items()):
+                 raise RiposteError("SORT_PREVIEW_CHANGED")
+             # Resolve new catalog IDs only for the exact reviewed destinations;
+             # a later unrelated catalog addition cannot join this selection.
+@@ -269,28 +275,28 @@
+                                 v.get("max_edge", 1536), v.get("method", "external"))
+     if name == "qualify":
+         from ..qualification import qualify_trial
+-        return qualify_trial(root, v["trial_id"], _paths(v), device=v.get("device", "auto"), progress=progress)
++        return qualify_trial(root, cast(str, v["trial_id"]), _paths(v), device=v.get("device", "auto"), progress=progress)
+     if name == "challenge":
+         from ..generation import controlled_generation
+-        return controlled_generation(root, v["trial_id"], Path(v["model"]).expanduser().absolute(), v.get("task", "edit"),
++        return controlled_generation(root, cast(str, v["trial_id"]), Path(v["model"]).expanduser().absolute(), v.get("task", "edit"),
+                                      seeds=tuple(v.get("seeds") or (7, 19)), views=tuple(v.get("views") or ("identity", "jpeg70")),
+                                      steps=v.get("steps", 25), progress=progress)
+     if name == "benchmark":
+         from ..benchmark import run_benchmark
+-        return run_benchmark(root, v["trial_id"], Path(v["model"]).expanduser().absolute(),
++        return run_benchmark(root, cast(str, v["trial_id"]), Path(v["model"]).expanduser().absolute(),
+                              task=v.get("task", "edit"), steps=v.get("steps", 25))
+     if name == "export":
+         from ..lab import export_candidate
+-        return export_candidate(root, v["trial_id"], v.get("acknowledge_unverified", False))
++        return export_candidate(root, cast(str, v["trial_id"]), v.get("acknowledge_unverified", False))
+     if name == "trials":
+         from ..lab import trials, trial_report
+-        return trial_report(root, v["trial_id"]) if v.get("trial_id") else trials(root)
++        return trial_report(root, cast(str, v["trial_id"])) if v.get("trial_id") else trials(root)
+     if name == "evaluations":
+         from ..qualification import evaluations
+-        return evaluations(root, v["trial_id"])
++        return evaluations(root, cast(str, v["trial_id"]))
+     if name == "generations":
+         from ..generation import generation_runs
+-        return generation_runs(root, v["trial_id"])
++        return generation_runs(root, cast(str, v["trial_id"]))
+     if name == "generation":
+         from ..generation import generation_report
+         return generation_report(root, v["run_id"])
+@@ -304,7 +310,7 @@
+     raise RiposteError("COMMAND_NOT_AVAILABLE")
+ 
+ 
+-def image_bytes(root, values) -> bytes:
++def image_bytes(root: Path, values: RequestValues) -> bytes:
+     from ..store import find_image, safe_child
+     from ..sanitize import png_audit
+     if values.get("run_id"):
+@@ -316,7 +322,7 @@
+                                   values.get("kind", "candidate"), view=values.get("view", "identity"))
+     if values.get("trial_id"):
+         from ..lab import trial_pixels
+-        return trial_pixels(root, values["trial_id"], values.get("kind", "candidate"), values.get("view", "identity"))
++        return trial_pixels(root, cast(str, values["trial_id"]), values.get("kind", "candidate"), values.get("view", "identity"))
+     if values.get("view", "identity") != "identity" or values.get("kind", "candidate") not in {"candidate", "clean"}:
+         raise RiposteError("CLEAN_MASTER_VIEW_INVALID")
+     row = find_image(root, values["image_id"])
+@@ -326,7 +332,7 @@
+     return raw
+ 
+ 
+-def view_image(root, values, open_viewer=False):
++def view_image(root: Path, values: RequestValues, open_viewer: bool = False) -> ImageInfo:
+     """Return image information or explicitly open an audited clean PNG.
+ 
+     For canonical images, open the canonical path. For transformed/review images,
+@@ -337,7 +343,7 @@
+     from ..store import safe_child, state_relative, atomic_clean_write, workspace_lock, find_image
+     raw = image_bytes(root, values)
+     audit = png_audit(raw)
+-    result = {"mode": "VERIFIED_IMAGE", **audit, "viewer": "NOT_OPENED"}
++    result = cast(ImageInfo, {"mode": "VERIFIED_IMAGE", **audit, "viewer": "NOT_OPENED"})
+     if not open_viewer: return result
+     if values.get("image_id") and not values.get("batch_id") and not values.get("trial_id"):
+         relative = find_image(root, values["image_id"])["relative"]
+@@ -362,7 +368,7 @@
+     return {**result, "relative": relative, "viewer": "HANDOFF_REQUESTED"}
+ 
+ 
+-def result_exit_code(result):
++def result_exit_code(result: object) -> int:
+     if isinstance(result, dict):
+         if result.get("checkpoint") == "INCOMPLETE" or result.get("ready") is False:
+             return 2

@@ -1,0 +1,8 @@
+warning: `VIRTUAL_ENV=.venv` does not match the project environment path `typing\.venv` and will be ignored; use `--active` to target the active environment instead
+Source/stub parity: 402 signatures, 50 importable leaf modules
+mypy-contracts: PASS
+mypy-tooling: PASS
+stubtest: PASS
+runtime-contracts: PASS
+tooling-regressions: PASS
+negative-consumers: 13/13 expected diagnostics; exact line/code match=True

@@ -6,7 +6,7 @@
   clearInterval(pollTimer);await wait(()=>!refreshing);
   const held=[],posts=[],jobs=[];let hold=false,failApply=false,serial=0;
   const rules={version:1,categories:[{label:'Hockey',slug:'hockey',terms:['hockey','goalie'],exclusions:[],priority:0}]};
-  const plan={mode:'READ_ONLY',category_sorting:true,plan_id:'a'.repeat(64),ready:true,counts:{files_to_sort:1},blockers:{},files:[
+  let plan={mode:'READ_ONLY',category_sorting:true,plan_id:'a'.repeat(64),ready:true,counts:{files_to_sort:1},blockers:{},files:[
     {source:'winter-hockey-goalie-practice.png',original_filename:'winter-hockey-goalie-practice.png',category:{slug:'hockey',label:'Hockey'},matched_terms:['goalie','hockey'],destination:'2025/March/img/hockey/SML/SML01.png'}]};
   window.fetch=async(url,options={})=>{
     const body=options.body?JSON.parse(options.body):null;
@@ -18,7 +18,7 @@
     else if(url==='/api/organize'||url==='/api/undo-sort'){
       if(hold)await new Promise(resolve=>held.push(resolve));
       const id=String(++serial),result=url.endsWith('undo-sort')?(body.apply?{mode:'UNDO_SORT',checkpoint:'COMPLETE'}:{mode:'UNDO_SORT_PREVIEW',sort_id:'sort-one',ready:true,files_to_restore:1,outputs_to_remove:1}):body.apply?{mode:'APPLY',checkpoint:'COMPLETE',counts:{migrated:1}}:plan;
-      jobs.push(body.apply&&failApply?{id,state:'error',code:'CATEGORY_PREVIEW_CHANGED'}:{id,state:'done',result});value={job_id:id};
+      jobs.push(body.apply&&failApply?{id,state:'error',code:body.categories?'CATEGORY_PREVIEW_CHANGED':'SORT_PREVIEW_CHANGED'}:{id,state:'done',result});value={job_id:id};
     } else value={};
     return new Response(JSON.stringify(value),{headers:{'Content-Type':'application/json'}});
   };
@@ -63,7 +63,26 @@
   assert($('undo-apply').disabled,'undo preview needs consent');
   $('ack-undo').click();$('undo-apply').click();await wait(()=>$('undo-summary').textContent==='Undo: COMPLETE');
   assert(posts.find(p=>p.url==='/api/undo-sort'&&p.body.apply).body.sort_id==='sort-one','undo bound to preview');
-  $('sort-recovery').open=false;$('run-plan').click();await wait(()=>$('sort-status').textContent.includes('Review the destinations'));
+  $('sort-recovery').open=false;
+  $('sort-categories').click();assert($('category-options').hidden,'ordinary sorting hides category editor');
+  plan={mode:'READ_ONLY',category_sorting:false,plan_id:'c'.repeat(64),ready:true,counts:{images_to_migrate:1},blockers:{},files:[
+    {source:'ordinary-private-title.png',action:'SORT',destination:'2025/March/img/SML/SML01.png'}]};
+  hold=true;$('run-plan').click();await wait(()=>held.length===1);
+  change('date-mode','download');hold=false;held.splice(0).forEach(release=>release());
+  await wait(()=>$('sort-status').textContent.includes('outdated'));
+  assert($('apply').disabled&&!$('ack-remove').checked,'ordinary setting change clears consent');
+  $('run-plan').click();await wait(()=>$('sort-status').textContent.includes('Review the destinations'));
+  assert($('category-destinations').textContent.includes('2025/March/img/SML/SML01.png'),'ordinary exact destination visible');
+  assert(!$('category-destinations').textContent.includes('Needs assignment'),'ordinary view has no category assignment error');
+  $('ack-remove').click();failApply=true;$('apply').click();await wait(()=>!$('sort-error').hidden);
+  assert($('sort-error').textContent.includes('Inspect again')&&$('apply').disabled,'ordinary stale receipt recovery');
+  failApply=false;$('run-plan').click();await wait(()=>$('sort-status').textContent.includes('Review the destinations'));
+  $('ack-remove').click();$('apply').click();$('apply').click();await wait(()=>$('sort-status').textContent.includes('Sort: COMPLETE'));
+  const ordinary=posts.filter(p=>p.url==='/api/organize'&&p.body.apply&&!p.body.categories);
+  assert(ordinary.length===2&&ordinary.every(p=>p.body.plan_id==='c'.repeat(64)),'ordinary receipt transported without duplicate apply');
+  delete plan.plan_id;$('run-plan').click();await wait(()=>$('sort-status').textContent.includes('Review the destinations'));
+  $('ack-remove').click();assert($('apply').disabled,'receiptless response cannot enable apply');
+  plan.plan_id='c'.repeat(64);$('run-plan').click();await wait(()=>$('sort-status').textContent.includes('Review the destinations'));
   $('organize-dialog').scrollTop=0;
   document.getElementById('native-proof').textContent='PASS';
 })().catch(error=>{document.getElementById('native-proof').textContent=error.stack;});

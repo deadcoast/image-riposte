@@ -1,0 +1,8 @@
+{
+  "identity": "PASS",
+  "study": "PCUC-004",
+  "result": "LOCAL_REVIEW_PANEL_AND_AGREEMENT_VERIFIED",
+  "milestone": "OPEN",
+  "PAC-034": "SHELVED",
+  "frozen_registers_unchanged": true
+}

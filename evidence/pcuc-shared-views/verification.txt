@@ -1,0 +1,8 @@
+{
+  "identity": "PASS",
+  "study": "PCUC-001",
+  "result": "SHARED_VIEW_COMPUTATION_VERIFIED",
+  "PAC-034": "SHELVED",
+  "milestone": "OPEN",
+  "frozen_registers_unchanged": true
+}

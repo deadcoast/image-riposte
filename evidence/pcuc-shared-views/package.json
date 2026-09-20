@@ -1,0 +1,36 @@
+{
+  "result": "PASS",
+  "version": "0.5.0",
+  "application_files": 61,
+  "checks": {
+    "source": {
+      "shared_view_production_solver": "PASS",
+      "typed_record_defaults_and_keys": "PASS",
+      "indexed_lookup": "PASS",
+      "owned_and_external_commits": "PASS",
+      "catalog_audit": "PASS",
+      "ordinary_cli": "PASS",
+      "stale_no_initial_state": "PASS",
+      "api": "PASS",
+      "exact_undo": "PASS",
+      "combined_receipt_and_model_gate": "PASS"
+    },
+    "installed": {
+      "shared_view_production_solver": "PASS",
+      "typed_record_defaults_and_keys": "PASS",
+      "indexed_lookup": "PASS",
+      "owned_and_external_commits": "PASS",
+      "catalog_audit": "PASS",
+      "ordinary_cli": "PASS",
+      "stale_no_initial_state": "PASS",
+      "api": "PASS",
+      "exact_undo": "PASS",
+      "combined_receipt_and_model_gate": "PASS"
+    }
+  },
+  "artifact_sha256": {
+    "riposte_studio-0.5.0-py3-none-any.whl": "63c4687e6a5183f97563d172abfaa340c171440fa140348b3992891e7bd3586d",
+    "riposte_studio-0.5.0.tar.gz": "d12fcfd2b3fd534aa613743ba37568aa2317bbacdb1c339dafaff43bc2695b56"
+  },
+  "scope": "Fresh source/sdist/wheel/isolated-target equality and real shared-view production solver with synthetic encoder, record defaults/optional keys, indexed lookup, owned/external revision checks, audit and CLI/API/service preview/apply/exact-undo checks. Combined missing/stale receipt and missing-model gates. Existing Windows dependencies; not clean bootstrap, real-model execution or native Linux/macOS qualification."
+}

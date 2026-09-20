@@ -1,0 +1,7 @@
+{
+  "revision": "09463d2ffc947c0d5c06aa0bc797a42ba097678846d6f4d1f40abb3ed93d7fd5",
+  "valid": true,
+  "errors": [],
+  "warnings": [],
+  "stale_evidence": ["OGM-005", "OGM-007", "OGM-009", "OGM-010", "OGM-011", "OGM-013", "OGM-014", "OGM-015", "OGM-016", "OGM-017", "OGM-019"]
+}

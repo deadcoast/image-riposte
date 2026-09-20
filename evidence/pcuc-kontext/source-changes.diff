@@ -1,0 +1,292 @@
+--- before/src/riposte/cohort.py
++++ after/src/riposte/cohort.py
+@@ -123,7 +123,7 @@
+             "selection": {"kind": "LOCAL_RANDOM_WITHOUT_REPLACEMENT", "seed": selection_seed,
+                           "scope": "Explicit pool only; near duplicates, independent authorship and prior external outcomes are not detectable."},
+             "task": task, "model": generator.identity, "seeds": list(seeds), "views": list(views), "steps": steps,
+-            "control_seeds": list(CONTROL_SEEDS), "conditioning": conditioning(task), "endpoints": ENDPOINTS,
++            "control_seeds": list(CONTROL_SEEDS), "conditioning": conditioning(task, generator.identity), "endpoints": ENDPOINTS,
+             **execution_identity(),
+             "analysis": {"primary_review": "FIRST_COMPLETE_REVIEW_BY_APPEND_SEQUENCE",
+                          "artwork_score": "Sum eligible paired control-minus-candidate differences divided by ALL planned groups; filtered/clean-failed groups contribute zero, with counts retained.",
+--- before/src/riposte/experiment.py
++++ after/src/riposte/experiment.py
+@@ -75,7 +75,12 @@
+     return result
+ 
+ 
+-def conditioning(task: str) -> dict[str, object]:
++def conditioning(task: str, model: Mapping[str, object] | None = None) -> dict[str, object]:
++    from .kontext import KIND, conditioning as kontext_conditioning
++    if model is not None and model.get("kind") == KIND:
++        if task != "edit":
++            raise RiposteError("GENERATION_ARCHITECTURE_UNSUPPORTED")
++        return kontext_conditioning()
+     if task == "video":
+         return {"mask_family": None, "prompt": None, "num_frames": 14, "decode_chunk_size": 2}
+     return {"mask_family": "right" if task == "inpaint" else None,
+@@ -87,7 +92,7 @@
+ def execution_identity() -> dict[str, object]:
+     source = Path(__file__).parent
+     return {"engine_sha256": {name: hashlib.sha256((source / name).read_bytes()).hexdigest()
+-            for name in ("experiment.py", "cohort.py", "generation.py", "models.py", "views.py", "sanitize.py")},
++            for name in ("experiment.py", "cohort.py", "generation.py", "kontext.py", "models.py", "views.py", "sanitize.py")},
+             "runtime": {"python": sys.version.split()[0], "packages": {name: metadata.version(name)
+                         for name in ("torch", "diffusers", "transformers", "numpy", "Pillow")}}}
+ 
+@@ -107,7 +112,7 @@
+         "trial_sha256": _digest(dict(trial)), "application_version": __version__,
+         **execution_identity(),
+         "model": dict(model), "task": task, "seeds": list(seeds), "views": list(views), "steps": steps,
+-        "conditioning": conditioning(task), "control_seeds": list(control_seeds), "groups": groups,
++        "conditioning": conditioning(task, model), "control_seeds": list(control_seeds), "groups": groups,
+         "optimization_views": optimization_views,
+         "model_family_holdout": "UNKNOWN_NOT_ESTABLISHED_BY_WEIGHT_HASH",
+         "endpoints": ENDPOINTS,
+--- before/src/riposte/generation.py
++++ after/src/riposte/generation.py
+@@ -4,6 +4,8 @@
+ human inspection and binds every served raster to its committed report hash.
+ SD img2img, 9-channel SD inpainting and SVD are reference baselines,
+ not modern-family coverage. Local pretrained integration is not qualified.
++The fixed Kontext editing path adds one architecture, with separate conditioning
++and geometry; a declared architecture does not attest to its weights or efficacy.
+ """
+ from __future__ import annotations
+ from . import __version__
+@@ -18,6 +20,7 @@
+ from PIL import Image, ImageOps
+ from .errors import RiposteError
+ from .models import offline, read_config, model_fingerprint, configuration_fingerprint
++from .kontext import KIND as KONTEXT_KIND, KontextGenerator, prepare as prepare_kontext
+ from .experiment import begin_experiment, finish_experiment, conditioning, _object, _text
+ from .records import Progress
+ from .qualification import _verified_pair, CONTROL_SEEDS
+@@ -38,7 +41,10 @@
+ 
+ 
+ class LocalGenerator:
++    identity: dict[str, object]
++
+     def __init__(self, folder: Path, task: str):
++        self._kontext: KontextGenerator | None = None
+         offline()
+         try:
+             import torch
+@@ -50,6 +56,13 @@
+         if not torch.cuda.is_available():
+             raise RiposteError('GENERATION_BENCHMARK_REQUIRES_CUDA')
+         config = read_config(folder / 'model_index.json')
++        if config.get('_class_name') == 'FluxKontextPipeline':
++            if task != 'edit':
++                raise RiposteError('GENERATION_ARCHITECTURE_UNSUPPORTED')
++            self._kontext = KontextGenerator(folder)
++            self.identity = self._kontext.identity
++            self.task = task
++            return
+         allowed = ({'StableDiffusionPipeline', 'StableDiffusionImg2ImgPipeline'} if task == 'edit' else
+                    {'StableDiffusionInpaintPipeline'} if task == 'inpaint' else {'StableVideoDiffusionPipeline'})
+         if config.get('_class_name') not in allowed:
+@@ -100,6 +113,10 @@
+                          'precision': 'float16', 'device': 'cuda'}
+ 
+     def __call__(self, image: Image.Image, seed: int, steps: int) -> list[Image.Image]:
++        if self._kontext is not None:
++            frames = self._kontext(image, seed, steps)
++            self.last_flags = dict(self._kontext.last_flags)
++            return frames
+         import torch
+         generator = torch.Generator('cuda').manual_seed(seed)
+         with torch.inference_mode():
+@@ -120,7 +137,11 @@
+                                  decode_chunk_size=2, generator=generator).frames[0]
+ 
+ 
+-def prepare_input(image: Image.Image, task: str) -> Image.Image:
++def prepare_input(image: Image.Image, task: str, model: Mapping[str, object] | None = None) -> Image.Image:
++    if model is not None and model.get('kind') == KONTEXT_KIND:
++        if task != 'edit':
++            raise RiposteError('GENERATION_ARCHITECTURE_UNSUPPORTED')
++        return prepare_kontext(image)
+     if task == 'video':
+         return ImageOps.pad(image.convert('RGB'), (1024, 576), color='white')
+     if task not in {'edit','inpaint'}:
+@@ -185,7 +206,7 @@
+     total, processed = len(views) * len(seeds) * len(inputs), 0
+     try:
+         for view_index, view in enumerate(views):
+-            prepared = {role: prepare_input(publication_view(image, view), task) for role, image in inputs.items()}
++            prepared = {role: prepare_input(publication_view(image, view), task, generator.identity) for role, image in inputs.items()}
+             for seed_index, seed in enumerate(seeds):
+                 key = f'V{view_index:02d}-S{seed_index:02d}'
+                 outputs: dict[str, list[Image.Image]] = {}
+@@ -220,13 +241,14 @@
+                                'adjacent_frame_rmse_255': {role: frame_motion(frames) for role, frames in outputs.items()},
+                                'prepared_input_fidelity': {role: fidelity(prepared['clean'], image)
+                                                           for role, image in prepared.items() if role != 'clean'},
+-                               'pipeline_flags': flags, 'review': 'HUMAN_REVIEW_REQUIRED'})
++                               'pipeline_flags': flags, 'review': 'HUMAN_REVIEW_REQUIRED',
++                               **({'prepared_input_size': list(prepared['clean'].size)} if generator.identity.get('kind') == KONTEXT_KIND else {})})
+         if progress:
+             progress({'phase': 'Committing generation review', 'processed': total, 'total': total})
+         report: dict[str, object] = {'id': run_id, 'trial_id': trial['id'], 'date': trial['date'], 'candidate_sha256': _object(trial['artifact_sha256'])['candidate'],
+                   'sequence': sequence if sequence is not None else max((r.get('sequence', 0) for r in generation_runs(root, _text(trial['id']))), default=0) + 1,
+                   'protocol': 'riposte-five-arm-v1', 'application_version': __version__,
+-                  'task': task, 'conditioning': conditioning(task), 'model': generator.identity, 'seeds': list(seeds), 'steps': steps, 'views': list(views),
++                  'task': task, 'conditioning': conditioning(task, generator.identity), 'model': generator.identity, 'seeds': list(seeds), 'steps': steps, 'views': list(views),
+                   'controls': {'kind': 'FEASIBLE_SIGN_SCRAMBLED_MATCHED_MAGNITUDE', 'seeds': list(CONTROL_SEEDS),
+                     'matching_scope': 'Before publication transforms; post-transform input fidelity recorded separately.'},
+                   'groups': groups, 'artifacts': artifacts, 'evidence_level': 'CONTROLLED_GENERATIONS_UNSCORED',
+--- before/src/riposte/kontext.py
++++ after/src/riposte/kontext.py
+@@ -0,0 +1,150 @@
++"""Fixed local FLUX Kontext edit backend with explicit geometry and bundle identity."""
++from __future__ import annotations
++
++from collections.abc import Callable, Mapping
++from fractions import Fraction
++import hashlib
++import json
++from pathlib import Path
++from typing import Protocol, cast
++
++from PIL import Image
++
++from .errors import RiposteError
++from .models import _weights, offline, read_config
++from .policy import is_link
++
++KIND = "FLUX_KONTEXT_EDIT"
++# Resolution data from Diffusers 0.40.0's documented Kontext implementation.
++RESOLUTIONS = ((672, 1568), (688, 1504), (720, 1456), (752, 1392), (800, 1328),
++               (832, 1248), (880, 1184), (944, 1104), (1024, 1024), (1104, 944),
++               (1184, 880), (1248, 832), (1328, 800), (1392, 752), (1456, 720),
++               (1504, 688), (1568, 672))
++COMPONENTS = {
++    "vae": ("diffusers", ("AutoencoderKL",)),
++    "transformer": ("diffusers", ("FluxTransformer2DModel",)),
++    "scheduler": ("diffusers", ("FlowMatchEulerDiscreteScheduler",)),
++    "text_encoder": ("transformers", ("CLIPTextModel",)),
++    "text_encoder_2": ("transformers", ("T5EncoderModel",)),
++    "tokenizer": ("transformers", ("CLIPTokenizer", "CLIPTokenizerFast")),
++    "tokenizer_2": ("transformers", ("T5Tokenizer", "T5TokenizerFast")),
++}
++
++
++def target_size(width: int, height: int) -> tuple[int, int]:
++    """Exact nearest aspect ratio among fixed buckets, with a stable lexical tie."""
++    if type(width) is not int or type(height) is not int or min(width, height) < 1:
++        raise RiposteError("GENERATION_INPUT_INVALID")
++    ratio = Fraction(width, height)
++    return min(RESOLUTIONS, key=lambda size: (abs(ratio - Fraction(*size)), *size))
++
++
++def prepare(image: Image.Image) -> Image.Image:
++    return image.convert("RGB").resize(target_size(*image.size), Image.Resampling.LANCZOS)
++
++
++def conditioning() -> dict[str, object]:
++    return {"mask_family": None, "prompt": "Preserve the main illustration and add a patterned background.",
++            "guidance_scale": 2.5, "true_cfg_scale": 1.0, "max_sequence_length": 512,
++            "guidance_mode": "DISTILLED_EMBEDDING", "input_geometry": "NEAREST_ASPECT_KONTEXT_17_V1",
++            "resolutions": [list(size) for size in RESOLUTIONS], "resampling": "LANCZOS",
++            "auto_resize": False, "output_geometry": "PREPARED_INPUT", "max_area": "prepared_width*prepared_height"}
++
++
++def bundle_identity(folder: Path) -> dict[str, object]:
++    """Hash named local assets, including binary tokenizer data; no remote code."""
++    if not folder.is_dir() or is_link(folder) or any(is_link(p) for p in folder.parents):
++        raise RiposteError("LOCAL_MODEL_DIRECTORY_REQUIRED")
++    config: Mapping[str, object] = read_config(folder / "model_index.json")
++    if config.get("_class_name") != "FluxKontextPipeline":
++        raise RiposteError("GENERATION_ARCHITECTURE_UNSUPPORTED")
++    for name, (library, classes) in COMPONENTS.items():
++        descriptor = config.get(name)
++        if (not isinstance(descriptor, list) or len(descriptor) != 2
++                or descriptor[0] != library or descriptor[1] not in classes):
++            raise RiposteError("GENERATION_COMPONENTS_UNSUPPORTED")
++    for name, value in config.items():
++        if name in COMPONENTS or name.startswith("_"):
++            continue
++        if name in {"image_encoder", "feature_extractor"} and value == [None, None]:
++            continue
++        raise RiposteError("GENERATION_COMPONENTS_UNSUPPORTED")
++    assets = {"model_index.json": hashlib.sha256((folder / "model_index.json").read_bytes()).hexdigest()}
++    for name in COMPONENTS:
++        directory = folder / name
++        if not directory.is_dir() or is_link(directory):
++            raise RiposteError("LOCAL_MODEL_DIRECTORY_REQUIRED")
++        for path in sorted(directory.iterdir()):
++            if is_link(path) or not path.is_file():
++                raise RiposteError("LOCAL_MODEL_DIRECTORY_REQUIRED")
++            # Local loading is fixed to safetensors. Alternative executable/weight
++            # formats are outside this admitted bundle, even if not selected.
++            if path.suffix.lower() in {".py", ".pyc", ".bin", ".pt", ".pth", ".ckpt"}:
++                raise RiposteError("GENERATION_COMPONENTS_UNSUPPORTED")
++            with path.open("rb") as stream:
++                assets[path.relative_to(folder).as_posix()] = hashlib.file_digest(stream, "sha256").hexdigest()
++    weights = {}
++    for name in ("vae", "transformer", "text_encoder", "text_encoder_2"):
++        digest = hashlib.sha256()
++        for path in _weights(folder / name):
++            digest.update(bytes.fromhex(assets[path.relative_to(folder).as_posix()]))
++        weights[name] = digest.hexdigest()
++    vae: Mapping[str, object] = read_config(folder / "vae/config.json")
++    transformer: Mapping[str, object] = read_config(folder / "transformer/config.json")
++    channels = vae.get("block_out_channels")
++    if (not isinstance(channels, list) or len(channels) != 4 or vae.get("latent_channels") != 16
++            or transformer.get("in_channels") != 64 or transformer.get("guidance_embeds") is not True):
++        raise RiposteError("KONTEXT_LATENT_LAYOUT_UNSUPPORTED")
++    return {"kind": KIND, "bundle_sha256": hashlib.sha256(json.dumps(assets, sort_keys=True).encode()).hexdigest(),
++            "bundle_algorithm": "NAMED_FLAT_COMPONENT_ASSETS_SHA256_V1", "asset_files": len(assets),
++            "component_sha256": weights, "precision": "bfloat16", "device": "cuda",
++            "weight_provenance": "NOT_ATTESTED_BY_ARCHITECTURE_OR_HASH"}
++
++
++class _Pipeline(Protocol):
++    def to(self, device: str) -> _Pipeline: ...
++    def set_progress_bar_config(self, *, disable: bool) -> None: ...
++    def __call__(self, **kwargs: object) -> object: ...
++
++
++class KontextGenerator:
++    def __init__(self, folder: Path) -> None:
++        offline()
++        try:
++            import torch
++            from diffusers import FluxKontextPipeline
++        except ImportError:
++            raise RiposteError("INSTALL_LAB_DEPENDENCIES") from None
++        if not torch.cuda.is_available():
++            raise RiposteError("GENERATION_BENCHMARK_REQUIRES_CUDA")
++        if not torch.cuda.is_bf16_supported(including_emulation=False):
++            raise RiposteError("KONTEXT_REQUIRES_NATIVE_BFLOAT16")
++        identity = bundle_identity(folder)
++        try:
++            load = cast(Callable[..., object], FluxKontextPipeline.from_pretrained)
++            self.pipeline = cast(_Pipeline, load(str(folder), local_files_only=True, use_safetensors=True,
++                                                torch_dtype=torch.bfloat16)).to("cuda")
++            self.pipeline.set_progress_bar_config(disable=True)
++        except Exception:
++            raise RiposteError("LOCAL_PIPELINE_LOAD_FAILED") from None
++        if bundle_identity(folder) != identity:
++            raise RiposteError("MODEL_BUNDLE_CHANGED")
++        self.identity = identity
++        self.last_flags: dict[str, object] = {"content_filter_reported": False, "content_filter_flags": None}
++
++    def __call__(self, image: Image.Image, seed: int, steps: int) -> list[Image.Image]:
++        import torch
++        if (image.mode != "RGB" or any(d % 16 or d < 16 or d > 4096 for d in image.size)
++                or type(seed) is not int or not 0 <= seed < 2**32 or type(steps) is not int or not 1 <= steps <= 100):
++            raise RiposteError("GENERATION_PARAMETERS_INVALID")
++        options = conditioning()
++        with torch.inference_mode():
++            result = self.pipeline(image=image, prompt=options["prompt"], guidance_scale=options["guidance_scale"],
++                true_cfg_scale=options["true_cfg_scale"], max_sequence_length=options["max_sequence_length"],
++                height=image.height, width=image.width, max_area=image.width*image.height, _auto_resize=False,
++                num_inference_steps=steps, generator=torch.Generator("cuda").manual_seed(seed))
++        frames: object = getattr(result, "images", None)
++        if (not isinstance(frames, list) or len(frames) != 1
++                or not isinstance(frames[0], Image.Image) or frames[0].size != image.size):
++            raise RiposteError("GENERATION_OUTPUT_INVALID")
++        return [frames[0]]

@@ -1,4 +1,5 @@
 """Menu entry, navigation and action-specific path intent regressions."""
+from riposte.organizer import plan as _sort_preview
 import io
 from pathlib import Path
 import pytest
@@ -40,7 +41,7 @@ def menu(tmp_path, monkeypatch):
     inputs = tmp_path / 'inputs'; inputs.mkdir()
     results = tmp_path / 'results'; results.mkdir()
     monkeypatch.setattr('riposte.terminal.controller.starting_directory', lambda root=None: root or inputs)
-    monkeypatch.setattr('riposte.terminal.paths.application_directory', lambda: tmp_path / 'application')
+    monkeypatch.setattr('riposte.store.application_directory', lambda: tmp_path / 'application')
     controller = Controller(None, Presentation())
     yield controller, inputs, results
     controller.shutdown()
@@ -76,7 +77,7 @@ def test_undo_menu_previews_then_requires_bound_confirmation(menu, make_image):
     c, inputs, _ = menu
     source = make_image(inputs / 'original.png')
     data = source.read_bytes()
-    organize(inputs, Policy(date_mode='modified'))
+    organize(inputs, Policy(date_mode='modified'), plan_id=_sort_preview(inputs, Policy(date_mode='modified'))["plan_id"])
     c.key(Key('char', '9'))
     assert c.state.page.name == 'picker' and c.state.page.action == 'undo-sort'
     assert 'UNDO' in render(c.state, 72, 24).plain()
@@ -158,7 +159,8 @@ def test_browse_parent_locations_and_optional_pasted_location(menu):
 
 def test_application_overlap_is_blocked_without_dismissing_picker(menu, monkeypatch):
     c,inputs,_=menu
-    monkeypatch.setattr('riposte.terminal.paths.application_directory',lambda:inputs)
+    monkeypatch.setattr('riposte.store.application_directory',lambda:inputs)
+    (inputs / 'inside').mkdir()
     c.key(Key('char','2'));c.key(Key('enter'))
     assert c.state.root is None and c.state.page.name=='picker'
     assert 'separate' in c.state.notice

@@ -8,6 +8,35 @@ are in [PROJECT-STATUS.md](docs/PROJECT-STATUS.md). The
 `todo.PACER.csv` remains frozen until the audit-completion milestone. Version
 0.5.0 identifies this checkout, not completion of the open audit or model qualification.
 
+Development follows [Provable Claims and Use Cases](docs/PCUC.md). The publishing
+engine now shares transform work across model contexts; the
+[derivation and CPU measurements](evidence/pcuc-shared-views/README.md) distinguish
+verified computational improvements from unverified protection efficacy.
+
+New five-arm generation runs commit their protocol before generation and support
+concealed-label review packets plus retained task-outcome ratings. The
+[experiment workflow](docs/CLI.md#committed-generation-experiments) reports a
+descriptive matched-control contrast, with protection efficacy still unverified.
+
+The [cohort workflow](docs/CLI.md#committed-artwork-cohorts) commits a sampling pool
+and selected artworks before generation, retains missing outcomes and reports
+equal-artwork scores with exact missingness bounds. These are descriptive results,
+not confidence intervals or proof of protection.
+
+The [reviewer-panel workflow](docs/CLI.md#reviewer-calibration-panels) freezes a
+task rubric and separate reviewer assignments for exact generated outputs. It
+reports agreement, disagreement and missing-rating bounds; rubric validity and
+reviewer independence still require empirical qualification.
+
+`challenge` and `cohort-challenge` also accept an explicitly selected local
+[FLUX Kontext editing bundle](docs/CLI.md#local-kontext-editing). Its preparation,
+conditioning and model assets are bound to the experiment. Pretrained editing
+quality and protection efficacy remain unqualified.
+
+Catalog lookup and sorting now avoid repeated full-catalog reads while retaining
+file checks and rejection of catalog changes during apply. See the
+[catalog-scaling evidence](evidence/catalog-scaling/README.md) for measured scope.
+
 RIPOSTE lets you protect selected images, sort a folder, or explicitly do both. Sorting separates images and videos, rebuilds images with date-only metadata, and retains original files privately for undo. Protection uses selected local models; exact reviewed outputs can be packaged for sharing. Direct commands and the interactive terminal share the same operations. The browser remains available; the workshop remains optional.
 
 ## Terminal revision 0.5
@@ -19,6 +48,16 @@ The shelved revision was selectively integrated against the 0.4.0 archive while 
 ## Install, then open the menu
 
 Keep the application separate from image and model folders. Python 3.11+ is required.
+Workspace selection, previews and execution reject the application folder, its
+parents and its subfolders across the CLI, terminal and API. A source checkout
+protects the RIPOSTE project root; a wheel installation protects the loaded
+`riposte` package directory. Independent sibling image/results folders are allowed.
+Linked folders and junctions remain rejected. If a library was previously placed
+inside the application, move the whole library, including its private `.riposte`
+or `.shroud` state and `.riposte-operation.lease`, to a separate folder on the
+same filesystem while no operation is running, then preview it there. See the
+[safeguard evidence and layout boundary](evidence/application-roots/README.md).
+
 Install once, then launch without a path:
 
 ```powershell
@@ -97,12 +136,14 @@ The main action deck includes **RIPOSTE / Sort / Sort + RIPOSTE / Image library 
 
 | Workflow | Interactive terminal | Direct command |
 | --- | --- | --- |
-| Sort | **Sort** previews the directory, then requires `REPLACE` | `riposte sort ROOT`; add `--apply` to replace sources |
+| Sort | **Sort** previews the directory, then requires `REPLACE` | `riposte sort ROOT`; add `--apply --plan-id PLAN_ID` from that preview to replace sources |
 | Undo last sort | **Undo last sort** previews recovery, then requires `UNDO`; also available with `u` in the Sort form | `riposte undo-sort ROOT`; add `--apply` to restore |
 | RIPOSTE | **RIPOSTE** accepts a file or directory; library `p` protects selected catalog images | `riposte riposte ROOT --input PATH --vae MODEL`; repeat `--input` for more files/folders; add `--plan` for a read-only preview |
-| Sort + RIPOSTE | **Sort + RIPOSTE** previews sorting and protection, then requires `REPLACE` | `riposte sort-riposte ROOT --all --vae MODEL`; add `--apply` to run both |
+| Sort + RIPOSTE | **Sort + RIPOSTE** previews sorting and protection, then requires `REPLACE` | `riposte sort-riposte ROOT --all --vae MODEL`; add `--apply --plan-id PLAN_ID` from the combined preview to run both |
 
 Standalone RIPOSTE preserves original files and folders. `ROOT` holds its application state and reviewed exports; inputs may be elsewhere. It creates date-only clean snapshots for resumable protection without reorganizing the input library. Directory inputs are recursive; the terminal browser accepts multiple selected files and folders. For existing catalog images use `--image ID` or `--all` with filters instead of `--input`. Unrelated additions no longer block publishing, reviewing or packaging selected catalog images.
+
+**Every sort apply requires a reviewed preview ID.** Ordinary previews now show exact per-file destinations and bind source identity, content, date/sidecar policy, catalogs and private title records. Reinspect after adding, removing or changing inputs or settings. Combined sorting uses its **top-level** `plan_id`, which also binds the protection recipe, selection, device and model paths; the nested sorting ID cannot authorize both operations. Terminal and browser confirmation carry the displayed ID automatically. Direct callers must pass it explicitly. Pre-existing stale or missing consent is rejected before creating workspace state.
 
 Sort retains the established reconstruction and source-replacement behavior, including explicit sidecar consent. Repeating it processes new additions and leaves verified clean masters alone. The combined workflow sorts `ROOT` and protects matching catalog images, including newly sorted additions. Model preflight happens before replacement; an incomplete sort stops protection. After successful sorting, protection can be retried separately. Existing `organize`, `publish`, `protect`, and expert commands remain available. Candidate creation never grants visual approval or verified protection efficacy.
 
@@ -171,6 +212,15 @@ that depends on that image can resume. Already created publishing packs remain
 unchanged. Legacy image paths remain readable; the next explicit sort moves
 them into `img` while preserving image IDs, dates and bytes.
 
+Workspace operations now hold an OS lease on the empty root file
+`.riposte-operation.lease`. Keep that file in place. If a current-version worker
+is killed, the next explicit operation can reclaim its matching abandoned marker
+after acquiring the lease; undo still requires its preview and integrity checks.
+Recovery never guesses from a PID or a lock's age. Unidentified legacy/empty lock
+markers remain blocked, and unsupported locking or atomic publication fails
+closed. Older versions may report the new root file as an unsupported input.
+See the [PAC-029 evidence and compatibility limits](evidence/workspace-lease/README.md).
+
 ## The ASCII experience
 
 COUNTERSTROKE is an authored depth-resolved lamellar image-plane material with moving hinges, travelling light and a reflected stroke. It is drawn from ordinary ASCII cells by Rich, not from terminal bitmaps, web views, a font pack or a pre-rendered movie. The entrance is immediately interactive: no artificial loading countdown or minimum animation duration.
@@ -201,10 +251,10 @@ riposte list ROOT --search September --limit 20 --offset 0
 riposte inspect ROOT IMAGE_ID
 
 # Preview the reconstruction and organization; this writes nothing.
-riposte organize ROOT --date-mode modified
+riposte --json organize ROOT --date-mode modified --discard-sidecars
 
-# Explicitly authorize reconstruction followed by removal of verified sources.
-riposte organize ROOT --apply --date-mode modified --discard-sidecars
+# Review the destinations and copy plan_id; repeat the same options.
+riposte organize ROOT --apply --plan-id PLAN_ID --date-mode modified --discard-sidecars
 riposte audit ROOT
 
 # Preview selected final-size outputs, without a model requirement.

@@ -1,0 +1,29 @@
+..............................F......................................... [ 40%]
+.................................................s...................... [ 80%]
+....................................                                     [100%]
+================================== FAILURES ===================================
+_ test_combined_selection_cannot_expand_or_silently_shrink_after_sort[extra] __
+tests\test_sort_preview_binding.py:246: in test_combined_selection_cannot_expand_or_silently_shrink_after_sort
+    result = execute(Request("sort-riposte", root, {**values, "plan_id": preview["plan_id"]}))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\riposte\terminal\service.py:215: in execute
+    sorting = organize(root, policy, progress, **options)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\test_sort_preview_binding.py:237: in sorted_then_changed
+    extra.append(record_image(root, "2025/March/img/SML/SML99.png", row)["id"])
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   TypeError: record_image() missing 2 required positional arguments: 'size' and 'date_source'
+============================== warnings summary ===============================
+.venv\Lib\site-packages\fastapi\testclient.py:1
+  C:\Users\ryanf\github\_new\image-riposte\.venv\Lib\site-packages\fastapi\testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    from starlette.testclient import TestClient as TestClient  # noqa
+
+.venv\Lib\site-packages\starlette\testclient.py:53
+  C:\Users\ryanf\github\_new\image-riposte\.venv\Lib\site-packages\starlette\testclient.py:53: DeprecationWarning: The anyio.abc.BlockingPortal alias is deprecated, use anyio.from_thread.BlockingPortal instead.
+    _PortalFactoryType = Callable[[], AbstractContextManager[anyio.abc.BlockingPortal]]
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ===========================
+SKIPPED [1] tests\test_application_roots.py:139: Windows symlink privilege unavailable; junction exercised separately
+FAILED tests/test_sort_preview_binding.py::test_combined_selection_cannot_expand_or_silently_shrink_after_sort[extra]
+1 failed, 178 passed, 1 skipped, 2 warnings in 19.90s

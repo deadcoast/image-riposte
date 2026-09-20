@@ -1,0 +1,17 @@
+{
+  "command": [
+    "C:\\Users\\ryanf\\github\\_new\\image-riposte\\.venv\\Scripts\\python.exe",
+    "-m",
+    "pytest",
+    "-q",
+    "-p",
+    "no:cacheprovider",
+    "tests/test_kontext.py",
+    "--basetemp",
+    "C:\\Users\\ryanf\\AppData\\Local\\Temp\\riposte-kontext-tests-7upxqcs3\\pytest",
+    "--junitxml",
+    "C:\\Users\\ryanf\\github\\_new\\image-riposte\\evidence\\pcuc-kontext\\focused.xml"
+  ],
+  "exit_code": 0,
+  "PYTHONPATH": null
+}

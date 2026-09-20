@@ -1,0 +1,14 @@
+test_incomplete_organization_records (__main__.ContractFixtures.test_incomplete_organization_records) ... ok
+test_operation_callback_and_form_contracts (__main__.ContractFixtures.test_operation_callback_and_form_contracts) ... ok
+test_organization_catalog_and_image_selection (__main__.ContractFixtures.test_organization_catalog_and_image_selection) ... ok
+test_png_fidelity_quality_and_budget (__main__.ContractFixtures.test_png_fidelity_quality_and_budget) ... ok
+test_runtime_and_preflight_shapes_without_model_loading (__main__.ContractFixtures.test_runtime_and_preflight_shapes_without_model_loading) ... ok
+test_synthetic_publication_pending_and_blocked_shapes (__main__.ContractFixtures.test_synthetic_publication_pending_and_blocked_shapes) ... ok
+test_synthetic_publication_ready_and_export_shape (__main__.ContractFixtures.test_synthetic_publication_ready_and_export_shape) ... ok
+test_upgrade_optional_fields (__main__.ContractFixtures.test_upgrade_optional_fields) ... ok
+test_validator_rejects_drift (__main__.ContractFixtures.test_validator_rejects_drift) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.609s
+
+OK

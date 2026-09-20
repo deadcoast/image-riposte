@@ -10,16 +10,18 @@ import json
 import os
 import re
 import shutil
+import sqlite3
 import time
 import uuid
 from pathlib import Path
-from typing import Any
+from typing import Any, Mapping
 
 from .errors import RiposteError
 from .policy import is_link, same_file_state
 from .store import catalog, check_root, connect, safe_child, state_dir, state_name, state_relative, workspace_lock
 from .video import file_hash, video_catalog
 from .sort_titles import title_records, validate_title, save_title, restore_titles
+from .records import CatalogRow
 
 
 def _save(root: Path, journal: dict[str, Any]) -> None:
@@ -121,18 +123,21 @@ class SortHistory:
         self.journal: dict[str, Any] = {"version": 2, "id": f"{time.time_ns():020d}-{uuid.uuid4().hex}",
                         "status": "APPLYING", "entries": [], "images": catalog(root), "videos": video_catalog(root),
                         "titles": title_records(root), "title_updates": []}
+        self._titles = {row["id"]: row for row in self.journal["titles"]}
+        self._updated: set[str] = set()
 
-    def record_title(self, row: dict[str, Any]) -> None:
+    def record_title(self, row: dict[str, Any], *, db: sqlite3.Connection | None = None) -> None:
         validate_title(row)
-        if row in self.journal["titles"]:
+        if self._titles.get(row["id"]) == row:
             return
-        if any(r["id"] == row["id"] for r in self.journal["title_updates"]):
+        if row["id"] in self._updated:
             raise RiposteError("SORT_HISTORY_INVALID")
         self.journal["title_updates"].append(row)
+        self._updated.add(row["id"])
         _save(self.root, self.journal)
-        save_title(self.root, row)
+        save_title(self.root, row, **({"db": db} if db is not None else {}))
 
-    def prepare(self, source: Path, output: str | None, expected: dict[str, Any] | None, media: str, before_row: dict[str, Any] | None = None) -> dict[str, Any]:
+    def prepare(self, source: Path, output: str | None, expected: dict[str, Any] | None, media: str, before_row: CatalogRow | None = None) -> dict[str, Any]:
         if is_link(source) or source.stat().st_nlink != 1:
             raise RiposteError("HARDLINK_REQUIRES_REVIEW")
         relative = source.relative_to(self.root).as_posix()
@@ -235,7 +240,8 @@ def _check(root: Path, journal: dict[str, Any]) -> dict[str, Any]:
                     raise RiposteError("SORT_HISTORY_INVALID")
                 rows = [r for r in current[media] if r["relative"] == entry["output"]]
                 for row in rows:
-                    if any(row[k] != v for k, v in entry["expected"].items()):
+                    compared: Mapping[str, object] = row
+                    if any(compared[k] != v for k, v in entry["expected"].items()):
                         blocked("UNDO_CATALOG_CHANGED")
                     current[media].remove(row)
                 previous = entry["before_row"]

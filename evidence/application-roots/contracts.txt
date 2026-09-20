@@ -1,0 +1,98 @@
+warning: `VIRTUAL_ENV=.venv` does not match the project environment path `typing\.venv` and will be ignored; use `--active` to target the active environment instead
+Source/stub parity: 395 signatures, 47 importable leaf modules
+mypy-contracts: PASS
+mypy-tooling: PASS
+stubtest: PASS
+runtime-contracts: FAIL
+test_incomplete_organization_records (__main__.ContractFixtures.test_incomplete_organization_records) ... ERROR
+test_operation_callback_and_form_contracts (__main__.ContractFixtures.test_operation_callback_and_form_contracts) ... ok
+test_organization_catalog_and_image_selection (__main__.ContractFixtures.test_organization_catalog_and_image_selection) ... ERROR
+test_png_fidelity_quality_and_budget (__main__.ContractFixtures.test_png_fidelity_quality_and_budget) ... ok
+test_runtime_and_preflight_shapes_without_model_loading (__main__.ContractFixtures.test_runtime_and_preflight_shapes_without_model_loading) ... ok
+test_synthetic_publication_pending_and_blocked_shapes (__main__.ContractFixtures.test_synthetic_publication_pending_and_blocked_shapes) ... ERROR
+test_synthetic_publication_ready_and_export_shape (__main__.ContractFixtures.test_synthetic_publication_ready_and_export_shape) ... ERROR
+test_upgrade_optional_fields (__main__.ContractFixtures.test_upgrade_optional_fields) ... ERROR
+test_validator_rejects_drift (__main__.ContractFixtures.test_validator_rejects_drift) ... ok
+
+======================================================================
+ERROR: test_incomplete_organization_records (__main__.ContractFixtures.test_incomplete_organization_records)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ryanf\github\_new\image-riposte\typing\runtime_contracts.py", line 153, in test_incomplete_organization_records
+    preview = organizer.plan(self.root)
+  File "C:\Users\ryanf\github\_new\image-riposte\src\riposte\organizer.py", line 73, in plan
+    root = check_root(root)
+  File "C:\Users\ryanf\github\_new\image-riposte\src\riposte\store.py", line 66, in check_root
+    raise RiposteError("IMAGE_FOLDER_OVERLAPS_APPLICATION")
+riposte.errors.RiposteError: IMAGE_FOLDER_OVERLAPS_APPLICATION
+
+======================================================================
+ERROR: test_organization_catalog_and_image_selection (__main__.ContractFixtures.test_organization_catalog_and_image_selection)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ryanf\github\_new\image-riposte\typing\runtime_contracts.py", line 138, in test_organization_catalog_and_image_selection
+    row = self.organized()
+  File "C:\Users\ryanf\github\_new\image-riposte\typing\runtime_contracts.py", line 106, in organized
+    matches(organizer.plan(self.root), RECORDS.OrganizationPlan)
+            ~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "C:\Users\ryanf\github\_new\image-riposte\src\riposte\organizer.py", line 73, in plan
+    root = check_root(root)
+  File "C:\Users\ryanf\github\_new\image-riposte\src\riposte\store.py", line 66, in check_root
+    raise RiposteError("IMAGE_FOLDER_OVERLAPS_APPLICATION")
+riposte.errors.RiposteError: IMAGE_FOLDER_OVERLAPS_APPLICATION
+
+======================================================================
+ERROR: test_synthetic_publication_pending_and_blocked_shapes (__main__.ContractFixtures.test_synthetic_publication_pending_and_blocked_shapes)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ryanf\github\_new\image-riposte\typing\runtime_contracts.py", line 196, in test_synthetic_publication_pending_and_blocked_shapes
+    batch_id, item_id, prefix = self.fixture_batch()
+                                ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\ryanf\github\_new\image-riposte\typing\runtime_contracts.py", line 177, in fixture_batch
+    store.atomic_clean_write(self.root, relative, raw)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ryanf\github\_new\image-riposte\src\riposte\store.py", line 272, in atomic_clean_write
+    dest = safe_child(root, relative)
+  File "C:\Users\ryanf\github\_new\image-riposte\src\riposte\store.py", line 133, in safe_child
+    root = check_root(root)
+  File "C:\Users\ryanf\github\_new\image-riposte\src\riposte\store.py", line 66, in check_root
+    raise RiposteError("IMAGE_FOLDER_OVERLAPS_APPLICATION")
+riposte.errors.RiposteError: IMAGE_FOLDER_OVERLAPS_APPLICATION
+
+======================================================================
+ERROR: test_synthetic_publication_ready_and_export_shape (__main__.ContractFixtures.test_synthetic_publication_ready_and_export_shape)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ryanf\github\_new\image-riposte\typing\runtime_contracts.py", line 208, in test_synthetic_publication_ready_and_export_shape
+    batch_id, item_id, prefix = self.fixture_batch()
+                                ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\ryanf\github\_new\image-riposte\typing\runtime_contracts.py", line 177, in fixture_batch
+    store.atomic_clean_write(self.root, relative, raw)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ryanf\github\_new\image-riposte\src\riposte\store.py", line 272, in atomic_clean_write
+    dest = safe_child(root, relative)
+  File "C:\Users\ryanf\github\_new\image-riposte\src\riposte\store.py", line 133, in safe_child
+    root = check_root(root)
+  File "C:\Users\ryanf\github\_new\image-riposte\src\riposte\store.py", line 66, in check_root
+    raise RiposteError("IMAGE_FOLDER_OVERLAPS_APPLICATION")
+riposte.errors.RiposteError: IMAGE_FOLDER_OVERLAPS_APPLICATION
+
+======================================================================
+ERROR: test_upgrade_optional_fields (__main__.ContractFixtures.test_upgrade_optional_fields)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ryanf\github\_new\image-riposte\typing\runtime_contracts.py", line 162, in test_upgrade_optional_fields
+    current = store.upgrade_workspace(self.root)
+  File "C:\Users\ryanf\github\_new\image-riposte\src\riposte\store.py", line 108, in upgrade_workspace
+    root = check_root(root)
+  File "C:\Users\ryanf\github\_new\image-riposte\src\riposte\store.py", line 66, in check_root
+    raise RiposteError("IMAGE_FOLDER_OVERLAPS_APPLICATION")
+riposte.errors.RiposteError: IMAGE_FOLDER_OVERLAPS_APPLICATION
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.039s
+
+FAILED (errors=5)
+
+tooling-regressions: PASS
+negative-consumers: 13/13 expected diagnostics; exact line/code match=True

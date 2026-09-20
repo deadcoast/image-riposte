@@ -8,6 +8,33 @@ protection efficacy. Report validation at its actual tested scope.
 
 ## PACER
 
+### PCUC development direction / 2026-09-18
+
+The user shelved "Next: PAC-034 — clean installation qualification. FOR LATER
+DEVELOPMENT" and authorized agent-led research, formulation, critical critique,
+planning and development under "Provable Claims and Use Cases (PCUC)". Expand
+phases/modules as the problem requires; do not substitute illustrative code for
+working integration. This authorizes the shared-view engine work and its tests,
+contracts, documentation and evidence without repeated approval. See
+`docs/PCUC.md` and `evidence/pcuc-shared-views/README.md` for the claim/support chain.
+PAC-034 stays shelved. The four-register audit freeze still applies; record PCUC
+phases and observations in the Markdown audit until coordinated reconciliation.
+
+Subsequent "continue decelopment! you have the floor" requests continue that
+authority through PCUC-002 experiment protocols, PCUC-003 artwork cohorts and
+PCUC-004 reviewer calibration panels. The latest continuation adds PCUC-005's
+fixed local Kontext edit backend and its model-aware experiment integration.
+These are operational research tools with synthetic regression evidence; local
+commitments, descriptive scores and missingness bounds do not qualify model
+efficacy, independent preregistration or held-out model families.
+Panel slots do not authenticate people or prove independent viewing. Candidate
+rubrics and descriptive agreement diagnostics do not establish rubric validity;
+panel responses do not replace primary experiment/cohort reviews.
+Tiny random-model CPU runs qualify numerical plumbing only. They do not qualify
+pretrained CUDA/bfloat16 execution, available GPU memory, useful editing or
+independently held-out model families. Existing local model acquisition and
+explicit operation boundaries remain in force.
+
 ### Audit freeze / user correction of 2026-09-18
 
 `todo-audit.PACER.md` is the working audit and checkpoint until its work is
@@ -25,6 +52,32 @@ evidence and nodules through guarded commands, then verify version,
 configuration, installation, startup, documentation and release artifacts as
 one project state. Preserve historical evidence and unavailable qualifications.
 The original user instruction is preserved in `todo-audit.PACER.md`.
+
+The user's subsequent "CONTINUE THE NEXT STAGE IN PLANNED DEVELOPMENT" resumes
+the named PAC-029 checkpoint and authorizes that bounded crash-lock repair,
+including its source, tests, external contracts, documentation and evidence.
+This is a development assignment separate from the historical typing-only
+assignment below. During the freeze, record its scope/changes in the Markdown
+audit and retain deferred source/symbol registration for the milestone.
+
+The subsequent "CONTINUE TO DEVELOPING WHERE YOU LEFT OFF" names PAC-030 shared
+application-root safeguards and authorizes that bounded source, tests, contracts,
+documentation and installed-layout verification. The CSV freeze still applies.
+
+The subsequent "CONTINUE WITH THE NEXT STEP IN DEVELOPMENT; PAC-031 — ordinary
+and combined preview binding." authorizes that bounded source, interface, test,
+contract, documentation and package work. Record it in the Markdown audit while
+preserving the four frozen registers.
+
+The subsequent "CONTINUE Next: PAC-032 — quadratic catalog reads." authorizes
+the bounded catalog lookup/map repair, integrity guards, scaling measurements,
+tests, external contracts, documentation and package verification. Keep its
+checkpoint in the Markdown audit and retain the four-register freeze.
+
+The subsequent "CONTINUE   Next: PAC-033 — raw-source typing debt." authorizes
+source-derived request/result and mutation-boundary typing, with measured
+diagnostic reduction, unchanged safeguards and fresh regression evidence.
+This bounded development assignment does not lift the register freeze.
 
 Use the installed PACER onboard and development workflow with this repository as
 the project root. The live registers are `todo.PACER.csv`, `overlord.PACER.csv`,

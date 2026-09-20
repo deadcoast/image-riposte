@@ -1,3 +1,4 @@
+from riposte.organizer import plan as _sort_preview
 import hashlib
 import os
 import json
@@ -20,7 +21,7 @@ def inventory(root):
 def test_undo_restores_original_bytes_names_and_modified_time(root, make_image):
     source = make_image(root / "originals" / "personal-name.png")
     original, stamp = source.read_bytes(), source.stat().st_mtime_ns
-    assert organizer.organize(root, POLICY)["checkpoint"] == "COMPLETE"
+    assert organizer.organize(root, POLICY, plan_id=_sort_preview(root, POLICY)["plan_id"])["checkpoint"] == "COMPLETE"
     before = inventory(root)
     preview = organizer.undo_sort(root)
     assert preview["ready"] and preview["mode"] == "UNDO_SORT_PREVIEW"
@@ -44,7 +45,7 @@ def test_preview_has_no_state_or_mutations(root, make_image):
 @pytest.mark.parametrize("conflict", ["original", "output", "backup", "catalog"])
 def test_undo_conflicts_leave_every_file_unchanged(root, make_image, conflict):
     source = make_image(root / "private.png")
-    organizer.organize(root, POLICY)
+    organizer.organize(root, POLICY, plan_id=_sort_preview(root, POLICY)["plan_id"])
     if conflict == "original":
         source.write_bytes(b"later addition")
     elif conflict == "output":
@@ -64,12 +65,12 @@ def test_undo_conflicts_leave_every_file_unchanged(root, make_image, conflict):
 def test_multiple_sorts_undo_in_reverse_order_and_noop_does_not_hide_history(root, make_image):
     a = make_image(root / "a.png")
     a_bytes = a.read_bytes()
-    organizer.organize(root, POLICY)
+    organizer.organize(root, POLICY, plan_id=_sort_preview(root, POLICY)["plan_id"])
     rows = catalog(root)
     b = make_image(root / "added" / "b.png", color=(12, 34, 56))
     b_bytes = b.read_bytes()
-    organizer.organize(root, POLICY)
-    organizer.organize(root, POLICY)
+    organizer.organize(root, POLICY, plan_id=_sort_preview(root, POLICY)["plan_id"])
+    organizer.organize(root, POLICY, plan_id=_sort_preview(root, POLICY)["plan_id"])
     assert organizer.undo_sort(root, apply=True)["checkpoint"] == "COMPLETE"
     assert catalog(root) == rows and b.read_bytes() == b_bytes
     assert organizer.undo_sort(root, apply=True)["checkpoint"] == "COMPLETE"
@@ -90,7 +91,7 @@ def test_sidecars_and_legacy_catalog_paths_are_recoverable(root, make_image):
     side = root / "original.xmp"
     side.write_bytes(b"private sidecar data")
     assert organizer.audit_workspace(root)["blockers"] == {"UNMANAGED_INPUT": 1}
-    result = organizer.organize(root, Policy(date_mode="modified", discard_sidecars=True))
+    result = organizer.organize(root, Policy(date_mode="modified", discard_sidecars=True), plan_id=_sort_preview(root, Policy(date_mode="modified", discard_sidecars=True))["plan_id"])
     assert result["checkpoint"] == "COMPLETE"
     assert catalog(root)[0]["id"] == row["id"]
     assert catalog(root)[0]["relative"] == "2025/March/img/SML/SML01.png"
@@ -108,7 +109,7 @@ def test_failed_source_removal_can_undo_verified_output_without_losing_later_sou
         source.write_bytes(b"edited after decode")
         return row
     monkeypatch.setattr(organizer, "record_image", change_source)
-    assert organizer.organize(root, POLICY)["checkpoint"] == "INCOMPLETE"
+    assert organizer.organize(root, POLICY, plan_id=_sort_preview(root, POLICY)["plan_id"])["checkpoint"] == "INCOMPLETE"
     assert organizer.undo_sort(root, apply=True)["checkpoint"] == "COMPLETE"
     assert source.read_bytes() == b"edited after decode"
     assert not catalog(root)
@@ -124,10 +125,10 @@ def test_interrupted_sort_recovery(root, make_image, monkeypatch):
         raise KeyboardInterrupt
     monkeypatch.setattr(SortHistory, "remove_source", interrupt)
     with pytest.raises(KeyboardInterrupt):
-        organizer.organize(root, POLICY)
+        organizer.organize(root, POLICY, plan_id=_sort_preview(root, POLICY)["plan_id"])
     assert organizer.plan(root, POLICY)["blockers"] == {"SORT_RECOVERY_REQUIRED": 1}
     with pytest.raises(RiposteError, match="SORT_RECOVERY_REQUIRED"):
-        organizer.organize(root, POLICY)
+        organizer.organize(root, POLICY, plan_id=_sort_preview(root, POLICY)["plan_id"])
     assert organizer.undo_sort(root, apply=True)["checkpoint"] == "COMPLETE"
     assert source.read_bytes() == original
 
@@ -137,7 +138,7 @@ def test_undo_resumes_after_restoration_before_output_removal(root, make_image, 
     source = make_image(root / "source.png")
     original = source.read_bytes()
     stamp = source.stat().st_mtime_ns
-    organizer.organize(root, POLICY)
+    organizer.organize(root, POLICY, plan_id=_sort_preview(root, POLICY)["plan_id"])
     real = history.copy_exclusive
     def interrupt(*args, **kwargs):
         value = real(*args, **kwargs)
@@ -155,7 +156,7 @@ def test_undo_resumes_after_restoration_before_output_removal(root, make_image, 
 @pytest.mark.parametrize("entries", [None, "invalid", [None], [{}]])
 def test_malformed_journal_fails_closed(root, make_image, entries):
     make_image(root / "source.png")
-    organizer.organize(root, POLICY)
+    organizer.organize(root, POLICY, plan_id=_sort_preview(root, POLICY)["plan_id"])
     path = next((root / ".riposte/sort-history").rglob("journal.json"))
     journal = json.loads(path.read_text())
     journal["entries"] = entries
@@ -172,7 +173,7 @@ def test_backup_write_failure_never_removes_source(root, make_image, monkeypatch
     def fail(*args, **kwargs):
         raise OSError("disk full")
     monkeypatch.setattr("riposte.sort_history.copy_exclusive", fail)
-    assert organizer.organize(root, POLICY)["checkpoint"] == "INCOMPLETE"
+    assert organizer.organize(root, POLICY, plan_id=_sort_preview(root, POLICY)["plan_id"])["checkpoint"] == "INCOMPLETE"
     assert source.read_bytes() == original and not catalog(root)
 
 
@@ -183,7 +184,7 @@ def test_undo_survives_legacy_workspace_namespace_upgrade(root, make_image):
     (state / "WORKSPACE").write_text(LEGACY_SIGNATURE)
     source = make_image(root / "legacy.png")
     original = source.read_bytes()
-    assert organizer.organize(root, POLICY)["checkpoint"] == "COMPLETE"
+    assert organizer.organize(root, POLICY, plan_id=_sort_preview(root, POLICY)["plan_id"])["checkpoint"] == "COMPLETE"
     assert upgrade_workspace(root)["status"] == "UPGRADED"
     assert organizer.undo_sort(root, apply=True)["checkpoint"] == "COMPLETE"
     assert source.read_bytes() == original and not catalog(root)
@@ -191,10 +192,10 @@ def test_undo_survives_legacy_workspace_namespace_upgrade(root, make_image):
 
 def test_undo_confirmation_is_bound_to_previewed_sort(root, make_image):
     make_image(root / "a.png")
-    organizer.organize(root, POLICY)
+    organizer.organize(root, POLICY, plan_id=_sort_preview(root, POLICY)["plan_id"])
     previous = organizer.undo_sort(root)["sort_id"]
     make_image(root / "b.png")
-    organizer.organize(root, POLICY)
+    organizer.organize(root, POLICY, plan_id=_sort_preview(root, POLICY)["plan_id"])
     before = inventory(root)
     with pytest.raises(RiposteError, match="SORT_HISTORY_CHANGED_REPREVIEW"):
         organizer.undo_sort(root, apply=True, sort_id=previous)
@@ -203,7 +204,7 @@ def test_undo_confirmation_is_bound_to_previewed_sort(root, make_image):
 
 def test_undo_history_cannot_escape_workspace(root, make_image, tmp_path):
     make_image(root / "a.png")
-    organizer.organize(root, POLICY)
+    organizer.organize(root, POLICY, plan_id=_sort_preview(root, POLICY)["plan_id"])
     journal_path = next((root / ".riposte/sort-history").rglob("journal.json"))
     journal = json.loads(journal_path.read_text())
     journal["entries"][0]["source"] = "../outside.png"
@@ -225,7 +226,7 @@ def test_direct_cli_undo_previews_then_applies(root, make_image):
     source = make_image(root / "source.png")
     original = source.read_bytes()
     runner = CliRunner()
-    assert runner.invoke(app, ["--json", "sort", str(root), "--apply"]).exit_code == 0
+    assert runner.invoke(app, ["--json", "sort", str(root), "--apply", "--plan-id", organizer.plan(root)["plan_id"]]).exit_code == 0
     before = inventory(root)
     preview = runner.invoke(app, ["--json", "undo-sort", str(root)])
     assert preview.exit_code == 0, preview.output

@@ -6,12 +6,15 @@ upstream defense nor establishes downstream editing/video/style protection.
 from __future__ import annotations
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Callable
+from typing import Callable, TYPE_CHECKING
 import math
 import numpy as np
 from PIL import Image
 from .errors import RiposteError
 from .metrics import fidelity
+
+if TYPE_CHECKING:
+    from torch import Tensor
 
 @dataclass(frozen=True)
 class GuardConfig:
@@ -58,7 +61,7 @@ class LocalVAE:
         x = F.pad(x, (0, (-w)%factor, 0, (-h)%factor), mode="replicate")
         return self.model.encode(x*2-1).latent_dist.mean
 
-def _round_ste(x):
+def _round_ste(x: Tensor) -> Tensor:
     return x + (x.round()-x).detach()
 
 def jpeg_surrogate(x, quality: int = 85):
