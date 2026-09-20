@@ -14,7 +14,7 @@ INFERRED: keep all four connected CSVs byte-identical during catch-up, so recipr
 links cannot advance TODO indirectly. Reconcile them together through guarded
 PACER commands only at the completion milestone.
 
-### Independent duplicate finder / 2026-09-20 / in progress
+### Independent duplicate finder / 2026-09-20 / implementation and bounded verification
 
 USER (original wording):
 
@@ -31,15 +31,54 @@ report export. No removal, sorting, automatic keeper choice or cloud/model fetch
 Float storage may be inspected here because the user's exclusion is sorting-only;
 offer an explicit include/exclude scan option. Keep internal recovery state out.
 
-OBSERVED: current application has no independent duplicate workflow. Existing
+OBSERVED before this task: the application had no independent duplicate workflow. Existing
 cohort equality checks are experiment-specific and not a general file scanner.
 Read-only onboarding is structurally valid with twelve stale evidence records.
 Source owners queried for CLI/server, terminal actions/service/controller/render/
 reports/state/output, static index/app/style and proposed new detector modules.
 New assets and records.py registration remain deferred under the four-register
 freeze. Preserve the current uncommitted sorter work and unrelated research move.
-Evidence checkpoint: `evidence/duplicates/`. Next: implement engine and adversarial
-fixtures, then integrate full review flows and execute native/interface checks.
+OBSERVED implementation: five new detector/review modules perform verified byte
+and complete normalized-pixel equality, bounded DCT retrieval, structural/colour/
+alpha/gradient/geometry confirmation, fixed transform/crop matching and sampled
+video-sequence checks. Exact groups stay separate from direct similarity pairs.
+Versioned reports preserve options, file identities/hashes, matching basis,
+per-file issues, configured/query limits and final source revalidation. Private
+state is skipped without requiring sorter state in the standalone detector.
+
+Terminal **d** opens scan settings, with direct **g** path entry; results support
+classification filters, every-member search, paging, evidence, coverage, rescan
+and explicit new-file JSON/CSV export. CLI `duplicates` uses the same service.
+The local browser adds independent navigation, filtered/paged relationships,
+paired fresh previews, complete group-member paging, typed API endpoints,
+stale-response rejection, cancellation and exports. No sort/delete/keeper action.
+The browser retains two most recent scan reports in memory. Source contracts,
+README/CLI/design/UX/current status and the packaged duplicate guide are updated.
+`MANIFEST.in` was queried as OVR-830 before adding the guide to source archives.
+
+Executed evidence: 49 final focused tests; 1,484 broad regression passes with
+nine platform skips and three native browser tests selected separately; four
+native-path checks pass. Actual START.ps1 through Windows ConPTY and an actual
+local server/scanner/Chromium run pass with unchanged synthetic inputs. A 5,101-file
+scan took 62.674s and retained matching pre/post content+mtime inventory. External
+contracts pass at 531 signatures / 62 leaf modules / 73 application files, with
+13 negative diagnostics retained. Wheel and sdist match all 73 reviewed files;
+README and the new guide match the sdist. No clean-install qualification claimed.
+
+Strict source typing remains failing at 823 diagnostics (baseline 797); the 26
+additions are existing untyped presentation-helper call boundaries. New detector
+modules are clean. No settings or allowlists were weakened. The report-mode UI
+audit retains 73 mostly static-handler/context findings; this is not a whole-UI
+clean bill. Initial integration, native sandbox, video seek and alias-introspection
+failures are retained with repairs in `evidence/duplicates/README.md`.
+
+Bounded task delivery: integrated finder and exercised operations. Independent
+artwork precision/recall, probability calibration, arbitrary semantic matching,
+full video/audio equality, human usability and all-platform qualification remain
+unproven. Next optional qualification: a separately labeled artwork/video corpus.
+The next project action remains the open Markdown audit and milestone
+reconciliation; all four CSVs remain byte-identical, with twelve stale evidence
+records and new owners/requirements deferred under the freeze.
 
 ### Research-led sorter enhancement / 2026-09-20 / implementation and bounded verification
 

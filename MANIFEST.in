@@ -1,4 +1,5 @@
 include INSTALL.ps1 INSTALL.sh START.ps1 START.sh START.cmd riposte.cmd uv.lock
 include docs/DESIGN.md docs/UX-CONTRACT.md
 include docs/CLI.md docs/REBUILD.md
+include docs/DUPLICATES.md
 include docs/PCUC.md

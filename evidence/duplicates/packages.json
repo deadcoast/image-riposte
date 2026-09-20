@@ -2,5 +2,6 @@
   "result": "PASS",
   "application_files": 73,
   "readme_current": true,
+  "duplicate_guide_current": true,
   "scope": "Current source and fresh wheel/sdist bytes; native execution uses the existing editable installation. Clean installation remains shelved."
 }

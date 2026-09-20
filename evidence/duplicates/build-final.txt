@@ -42,6 +42,7 @@ copying riposte.cmd -> riposte_studio-0.5.0
 copying uv.lock -> riposte_studio-0.5.0
 copying docs\CLI.md -> riposte_studio-0.5.0\docs
 copying docs\DESIGN.md -> riposte_studio-0.5.0\docs
+copying docs\DUPLICATES.md -> riposte_studio-0.5.0\docs
 copying docs\PCUC.md -> riposte_studio-0.5.0\docs
 copying docs\REBUILD.md -> riposte_studio-0.5.0\docs
 copying docs\UX-CONTRACT.md -> riposte_studio-0.5.0\docs
@@ -371,7 +372,7 @@ running install_egg_info
 Copying src\riposte_studio.egg-info to build\bdist.win-amd64\wheel\.\riposte_studio-0.5.0-py3.14.egg-info
 running install_scripts
 creating build\bdist.win-amd64\wheel\riposte_studio-0.5.0.dist-info\WHEEL
-creating 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\.tmp\\duplicates\\dist\\.tmp-dw0cz8p8\\riposte_studio-0.5.0-py3-none-any.whl' and adding 'build\\bdist.win-amd64\\wheel' to it
+creating 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\.tmp\\duplicates\\dist\\.tmp-66u7w48v\\riposte_studio-0.5.0-py3-none-any.whl' and adding 'build\\bdist.win-amd64\\wheel' to it
 adding 'riposte/__init__.py'
 adding 'riposte/__main__.py'
 adding 'riposte/agreement.py'

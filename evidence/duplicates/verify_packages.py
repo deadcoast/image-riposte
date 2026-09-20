@@ -15,7 +15,8 @@ with zipfile.ZipFile(next(dist.glob('*.whl'))) as wheel,tarfile.open(next(dist.g
         assert hashlib.sha256(wheel.read(name.removeprefix('src/'))).hexdigest()==digest,name
         assert hashlib.sha256(sdist.extractfile(prefix+'/'+name).read()).hexdigest()==digest,name
     assert sdist.extractfile(prefix+'/README.md').read()==(ROOT/'README.md').read_bytes()
-result={'result':'PASS','application_files':len(sources),'readme_current':True,
+    assert sdist.extractfile(prefix+'/docs/DUPLICATES.md').read()==(ROOT/'docs/DUPLICATES.md').read_bytes()
+result={'result':'PASS','application_files':len(sources),'readme_current':True,'duplicate_guide_current':True,
         'scope':'Current source and fresh wheel/sdist bytes; native execution uses the existing editable installation. Clean installation remains shelved.'}
 (Path(__file__).parent/'packages.json').write_text(json.dumps(result,indent=2)+'\n')
 print(json.dumps(result,indent=2))

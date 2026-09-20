@@ -113,12 +113,14 @@ certify every historical distribution, test artifact, model or native interface.
 
 | Evidence | Result and boundary |
 | --- | --- |
-| Windows full suite | 1,311 passed, 9 platform skips outside sandbox; three dependency warnings; source-bound Kontext, panel, cohort, experiment, browser and publication regressions |
+| Windows full suite | 1,484 passed, 9 platform skips, 3 browser tests separately selected; final Duplicate Finder focused run: 49 passed after the last API annotations and cancellation cases; warnings retained |
 | Focused initial typing verification | 254 passed, 1 Windows symlink-privilege skip before final consumer/controller annotations; final source is covered by the full suite |
 | Historical PAC-032 scaling measurements | At 16/32/64 cataloged images, returned audit rows are 32/64/128, all-ID lookup rows 16/32/64, and sorting rows 128/256/512; current full suite retains the row-budget regressions |
 | Historical PAC-029 POSIX lease probe | Passed on existing Ubuntu WSL Python 3.12.3: live exclusion, process death, persistent identity, adjacent state rename; low-level lease only |
-| Fresh external contract suite | All seven stages passed; 473 signatures, 56 importable leaf modules, 66 application files match reviewed identity; all 13 existing negative checks retained |
-| Fresh source-body audit | 772 diagnostics in 36 files, 59 Python files checked; still failing with unchanged strict settings; Kontext, agreement, panel, experiment and cohort modules have no diagnostics |
+| Fresh external contract suite | All seven stages passed; 531 signatures, 62 importable leaf modules, 73 application files match reviewed identity; all 13 existing negative checks retained |
+| Fresh source-body audit | 823 diagnostics in 36 files, 65 Python files checked; still failing with unchanged strict settings; the five duplicate modules have no diagnostics; 26 added calls into existing untyped presentation helpers |
+| Duplicate Finder native and scale checks | Actual START.ps1 via Windows ConPTY; local Chromium state/race tests plus a real server/scanner run; 5,101 synthetic files scanned in 62.674s with content and mtime preservation; no independent artwork precision/recall claim |
+| Duplicate Finder packages | All 73 application files byte-match reviewed source, fresh wheel and sdist; current README and duplicate guide included in sdist; existing editable native execution, not a clean installation |
 | Historical PAC-033 source-consumer checks | Positive consumers passed and nine invalid uses failed at exact lines/codes against the then-current source |
 | PCUC gradient and memory checks | Eight independent sequential-VJP comparisons pass; maximum float32 absolute error 1.87e-9; logical saved-tensor peak 66,564 bytes for 1/4/16 repeated contexts, zero retained after return |
 | PCUC paired engine runs | Five synthetic CPU cases retain identical pixels/selection/scores; 1.23x–2.29x median speedup, including the convolution-heavy case; model call counts unchanged, no CUDA available |
@@ -126,12 +128,13 @@ certify every historical distribution, test artifact, model or native interface.
 | PCUC cohort workflow | 216 bounded sample states and 343 extreme completions verify exact bounds; prospective draw, shared loader, missing members, fixed denominators and primary-review ordering tested with synthetic generators |
 | PCUC panel mathematics | 9,837 patterns and 87,376 completions plus 729 two-item patterns, 4,096 completions and 1,024 Cohen cases; exact descriptive arithmetic, no real-rater reliability evidence |
 | PCUC Kontext path | 4,115 exact aspect selections and 17 lattice/area checks; real tiny random VAE/CLIP/T5/flow-transformer serialization and CPU execution preserve paired repeatability, context-token geometry and input sensitivity; no pretrained/native CUDA/bfloat16 qualification |
-| Fresh distributions and isolated target | All 66 application files match source/sdist/wheel/installed target; fixed Kontext loader/conditioning/packet and prior panel/cohort/experiment/solver/workflow guards checked with synthetic models; existing Windows dependencies, not clean bootstrap |
-| Real Windows entry points | Existing editable wrapper reports 0.5.0; PowerShell START opens the linear menu and exits on q with no stderr |
+| Historical Kontext distributions and isolated target | All 66 then-current application files matched source/sdist/wheel/installed target; fixed Kontext loader/conditioning/packet and prior panel/cohort/experiment/solver/workflow guards checked with synthetic models; existing Windows dependencies, not clean bootstrap |
+| Real Windows entry points | Existing editable wrapper reports 0.5.0; PowerShell START opens the raw interactive duplicate workflow, scans, filters, searches and returns before exiting zero with cursor restored |
 | Prior review's entry/probe checks | 29 launcher/menu tests and real Windows entry checks passed; five then-open observations reproduced before PAC-029 implementation |
 | PACER structural validation | Valid; stale source/document evidence and missing new source registrations remain deferred under the CSV freeze |
 
-Current development evidence: [PCUC Kontext backend](../evidence/pcuc-kontext/README.md).
+Current development evidence: [Duplicate Finder](../evidence/duplicates/README.md).
+Prior research stage: [PCUC Kontext backend](../evidence/pcuc-kontext/README.md).
 Prior reviewer stage: [PCUC reviewer panels](../evidence/pcuc-review-panels/README.md).
 Prior cohort stage: [PCUC cohorts](../evidence/pcuc-cohorts/README.md).
 Prior experiment stage: [PCUC experiments](../evidence/pcuc-experiments/README.md).
