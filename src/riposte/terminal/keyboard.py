@@ -89,7 +89,6 @@ class TerminalKeys:
         self.decoder = KeyDecoder()
         self._unicode = codecs.getincrementaldecoder("utf-8")("replace")
         self._saved = None
-        self._windows_prefix = None
         self.active = False
 
     def __enter__(self):
@@ -127,11 +126,12 @@ class TerminalKeys:
             while True:
                 if msvcrt.kbhit():
                     char = msvcrt.getwch()
-                    if self._windows_prefix is not None:
-                        self._windows_prefix = None
-                        return Key({"H":"up","P":"down","K":"left","M":"right","G":"home","O":"end","I":"pageup","Q":"pagedown","S":"delete",";":"f1","<":"f2","=":"f3",">":"f4"}.get(char,"ignored"))
                     if char in ("\x00", "\xe0"):
-                        self._windows_prefix = char; continue
+                        # getwch has already cached this physical key's scan
+                        # code. kbhit does not report that wide-character cache;
+                        # polling again strands the code until a later keypress.
+                        char = msvcrt.getwch()
+                        return Key({"H":"up","P":"down","K":"left","M":"right","G":"home","O":"end","I":"pageup","Q":"pagedown","S":"delete",";":"f1","<":"f2","=":"f3",">":"f4"}.get(char,"ignored"))
                     self.decoder.feed(char)
                     value = self.decoder.next()
                     if value: return value

@@ -8,6 +8,14 @@ signatures were checked by the full external contract suite, which passed.
 The separate fresh implementation audit reports 782 diagnostics in 36 of 59
 Python files. Strict settings are unchanged; the source tree remains unclean.
 
+The subsequent direction-reversal repair changes only `terminal/keyboard.py`:
+Windows extended keys consume their cached second code immediately. The obsolete
+private `_windows_prefix` attribute is removed from the matching external stub;
+public signatures are unchanged. `source-reviewed-terminal-direction.json`
+admits that single reviewed file against the previous sorter snapshot. Isolated
+native keypress failures and corrected reversals are retained separately under
+`../evidence/terminal-direction/`; prior burst tests did not cover this case.
+
 The sorter interaction repair reviews eight terminal owners, with five new
 declarations for the three-action preset, direct path entry, preset execution,
 bounded key draining and rendering. Existing picker/service signatures and JSON

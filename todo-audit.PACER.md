@@ -658,6 +658,55 @@ remaining host/library-specific reproduction. Continue the wider audit only in
 its authorized lane, and reconcile the frozen registers at its completion
 milestone. PAC-034 remains shelved.
 
+## Terminal direction reversal follow-up / 2026-09-19 / reproduced and repaired
+
+USER: "nope. something is wrong. switching directions seems to not work untill
+the second press; but that could be only the highlighter color; but it makes the
+user feel like the input is oging the wrong way; and then the real input is
+offset; its impossible to navigate the menus. THAT IS FROM A NON TECHNICAL
+STANDPOINT AND ONLY A THEORY; IT IS NOT THE ACTUAL PROBLEM CONFIRMED ONLY A GUESS"
+The user reports both Windows Terminal/PowerShell and VS Code's terminal using
+START.ps1. Treat the description as a symptom, not a confirmed mechanism.
+
+OBSERVED reproduction: an isolated Down sent to the actual Windows ConPTY
+application never updates the menu within 15 seconds. Forwarding instrumentation
+of the native `msvcrt.getwch` call records prefix U+00E0 followed by
+`kbhit_after_read=false`. The implementation then waits for another physical key
+instead of consuming the scan code already cached by the CRT. Microsoft's
+getwch contract requires the second read after an extended-key prefix.
+Twenty-four new cached-wide-code regressions fail before repair. Evidence:
+`evidence/terminal-direction/before-native.txt`, `before-input-trace.jsonl`,
+`before-unit.txt`. Earlier burst-only native tests missed this idle-key gap.
+
+Bounded repair: consume both Windows extended-key parts atomically; remove the
+obsolete pending-prefix field from source and its external declaration. Keep
+the three-action sorter, safeguards, and all other prior changes. Verify every
+isolated reversal and Enter destination using the native launchers. Four-register
+freeze remains; source/symbol reconciliation is deferred together.
+
+The fix consumes the cached scan code immediately, without a second kbhit gate.
+Native START.ps1/START.cmd tests with default animation now pass isolated
+Down/Up presses, repeated reversals, visible-focus checks and Enter activation
+of the expected main action and folder. No-animation and forwarding trace runs
+also pass. The trace confirms consecutive prefix/scan-code reads while kbhit
+is false; no later physical key is required. The user's actual VS Code window
+was not controlled. Full evidence: `evidence/terminal-direction/README.md`.
+
+Affected suite: **193 passed, 4 POSIX skips**. External contracts: **478
+signatures, 56 leaf modules, 66 application files**, seven stages pass and
+13 expected negative diagnostics retained. Only keyboard.py changed relative
+to the prior sorter snapshot; public signatures are unchanged, the private
+pending-prefix declaration is removed. Raw-source mypy remains FAIL at **782
+diagnostics in 36/59 files**, unchanged. Fresh wheel/sdist application bytes
+match the new reviewed snapshot. No clean-install, POSIX-native or efficacy
+qualification is added. All four CSVs remain unchanged; PACER validation is
+structurally valid with eleven retained stale evidence records.
+
+Next action: launch a fresh RIPOSTE process for the repaired reader. Any further
+host-specific discrepancy needs its own reproduction; do not substitute the
+earlier burst tests for isolated input acceptance. Reconcile new tests,
+contracts, source and evidence together at the still-open audit milestone.
+
 ## Original PAC-028 handoff / historical identification result
 
 • Completed PAC-028: reviewed eight application areas and recorded 16 prioritized items in todo.PACER.csv. Each has source references and acceptance

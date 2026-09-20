@@ -28,7 +28,6 @@ class TerminalKeys:
     decoder: KeyDecoder
     _unicode: codecs.IncrementalDecoder
     _saved: list[Any] | None
-    _windows_prefix: str | None
     active: bool
 
     def __init__(self, stream: TextIO | None=None, output: TextIO | None=None) -> None: ...

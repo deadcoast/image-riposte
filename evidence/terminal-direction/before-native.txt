@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "C:\Users\ryanf\github\_new\image-riposte\evidence\terminal-direction\native_console.py", line 191, in <module>
+    main(parser.parse_args().entry)
+    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ryanf\github\_new\image-riposte\evidence\terminal-direction\native_console.py", line 127, in main
+    offset = send('\x1b[B'); expect('> 2  RIPOSTE', offset)
+                             ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ryanf\github\_new\image-riposte\evidence\terminal-direction\native_console.py", line 114, in expect
+    raise AssertionError(f'Missing native screen: {value}\n{plain(start)[-1500:]}')
+AssertionError: Missing native screen: > 2  RIPOSTE
+

@@ -9,6 +9,9 @@ controls/help; `terminal/service.py` for the operation boundary shared with CLI.
   requests a path before the menu. INSTALL handles explicit setup and returns.
 - Arrows move focus; Enter opens the highlighted action; visible menu numbers
   are equivalent shortcuts. Esc returns and restores the previous focus.
+  Each isolated press, including the first reversal, must update focus without
+  a later key to release it. Windows extended-key prefixes consume their cached
+  scan code immediately; a second keyboard-availability poll is not appropriate.
 - Riposte Sorter is the default first action, exposing exactly Sort, Dry Run and
   Enter Path. The session retains the selected root. Its preset uses download
   dates, saved category rules and Year/Month/img-or-vid/Category/Size, with

@@ -50,7 +50,7 @@
   "src/riposte/terminal/help.py": "a8602fc471cc001809b87d9e3145096914229e4ddaef7271cacfbba739c6dd8f",
   "src/riposte/terminal/interaction.py": "d4a4e7e7bce2e6f37d4685fcd326063dc5f9d17e9a967c524eec2733e60c69e5",
   "src/riposte/terminal/jobs.py": "7379a480bac85385b9df4194534e54e8cd2d101df54f24f0877f78195ed9a468",
-  "src/riposte/terminal/keyboard.py": "32d114eb82f33b9b4c1771893c793084c485929de20e9da0aa2e719dc9851be8",
+  "src/riposte/terminal/keyboard.py": "dd71262467037c66addd4aed0a73175e90fee133d2d05bbd6d3494bf9483ee01",
   "src/riposte/terminal/material.py": "522d5080177faae021905b94851bf3836bb2c18805a38d0a1d56b8402f5cebeb",
   "src/riposte/terminal/output.py": "31b9fe712cc51fa96c2371fc6280f1e81b768c49001c8dbe4ea7ea99fce0486a",
   "src/riposte/terminal/palette.py": "ab05080d75402a964ce73e25755fb3476b693ab8b79ab10982b4f74f42ee3e41",

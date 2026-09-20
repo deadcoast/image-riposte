@@ -1,0 +1,8 @@
+{
+  "changed_files": [
+    "src/riposte/terminal/keyboard.py"
+  ],
+  "signatures": 478,
+  "leaf_modules": 56,
+  "application_files": 66
+}

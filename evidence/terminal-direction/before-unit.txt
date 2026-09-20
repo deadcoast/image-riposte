@@ -1,0 +1,820 @@
+FFFFFFFFFFFFFFFFFFFFFFFF                                                 [100%]
+================================== FAILURES ===================================
+_ test_extended_key_consumes_cached_scan_code_without_another_kbhit[H-up-\x00] _
+
+prefix = '\x00', code = 'H', expected = 'up'
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x00000298F25B8B00>
+
+    @pytest.mark.parametrize("prefix", ["\x00", "\xe0"])
+    @pytest.mark.parametrize("code,expected", [("H", "up"), ("P", "down"), ("K", "left"),
+        ("M", "right"), ("G", "home"), ("O", "end"), ("I", "pageup"),
+        ("Q", "pagedown"), (";", "f1"), ("<", "f2"), ("=", "f3"), (">", "f4")])
+    def test_extended_key_consumes_cached_scan_code_without_another_kbhit(prefix, code, expected, monkeypatch):
+        # Physical input and the CRT's cached wide scan-code buffer are separate.
+        # kbhit becomes false once getwch consumes the physical key's prefix.
+        physical = deque([(prefix, code)])
+        cached = []
+    
+        def read():
+            if cached:
+                return cached.pop()
+            lead, scan = physical.popleft()
+            cached.append(scan)
+            return lead
+    
+        monkeypatch.setitem(sys.modules, "msvcrt", SimpleNamespace(
+            kbhit=lambda: bool(physical), getwch=read))
+        monkeypatch.setattr("riposte.terminal.keyboard.os", SimpleNamespace(name="nt"))
+        keyboard = TerminalKeys()
+>       assert keyboard.read(0) == Key(expected)
+E       AssertionError: assert None == Key(name='up', text='')
+E        +  where None = read(0)
+E        +    where read = <riposte.terminal.keyboard.TerminalKeys object at 0x00000298F25AC1A0>.read
+E        +  and   Key(name='up', text='') = Key('up')
+
+tests\test_terminal_direction.py:32: AssertionError
+_ test_extended_key_consumes_cached_scan_code_without_another_kbhit[H-up-\xe0] _
+
+prefix = 'à', code = 'H', expected = 'up'
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x00000298F25B8C30>
+
+    @pytest.mark.parametrize("prefix", ["\x00", "\xe0"])
+    @pytest.mark.parametrize("code,expected", [("H", "up"), ("P", "down"), ("K", "left"),
+        ("M", "right"), ("G", "home"), ("O", "end"), ("I", "pageup"),
+        ("Q", "pagedown"), (";", "f1"), ("<", "f2"), ("=", "f3"), (">", "f4")])
+    def test_extended_key_consumes_cached_scan_code_without_another_kbhit(prefix, code, expected, monkeypatch):
+        # Physical input and the CRT's cached wide scan-code buffer are separate.
+        # kbhit becomes false once getwch consumes the physical key's prefix.
+        physical = deque([(prefix, code)])
+        cached = []
+    
+        def read():
+            if cached:
+                return cached.pop()
+            lead, scan = physical.popleft()
+            cached.append(scan)
+            return lead
+    
+        monkeypatch.setitem(sys.modules, "msvcrt", SimpleNamespace(
+            kbhit=lambda: bool(physical), getwch=read))
+        monkeypatch.setattr("riposte.terminal.keyboard.os", SimpleNamespace(name="nt"))
+        keyboard = TerminalKeys()
+>       assert keyboard.read(0) == Key(expected)
+E       AssertionError: assert None == Key(name='up', text='')
+E        +  where None = read(0)
+E        +    where read = <riposte.terminal.keyboard.TerminalKeys object at 0x00000298F2662E90>.read
+E        +  and   Key(name='up', text='') = Key('up')
+
+tests\test_terminal_direction.py:32: AssertionError
+_ test_extended_key_consumes_cached_scan_code_without_another_kbhit[P-down-\x00] _
+
+prefix = '\x00', code = 'P', expected = 'down'
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x00000298F2774830>
+
+    @pytest.mark.parametrize("prefix", ["\x00", "\xe0"])
+    @pytest.mark.parametrize("code,expected", [("H", "up"), ("P", "down"), ("K", "left"),
+        ("M", "right"), ("G", "home"), ("O", "end"), ("I", "pageup"),
+        ("Q", "pagedown"), (";", "f1"), ("<", "f2"), ("=", "f3"), (">", "f4")])
+    def test_extended_key_consumes_cached_scan_code_without_another_kbhit(prefix, code, expected, monkeypatch):
+        # Physical input and the CRT's cached wide scan-code buffer are separate.
+        # kbhit becomes false once getwch consumes the physical key's prefix.
+        physical = deque([(prefix, code)])
+        cached = []
+    
+        def read():
+            if cached:
+                return cached.pop()
+            lead, scan = physical.popleft()
+            cached.append(scan)
+            return lead
+    
+        monkeypatch.setitem(sys.modules, "msvcrt", SimpleNamespace(
+            kbhit=lambda: bool(physical), getwch=read))
+        monkeypatch.setattr("riposte.terminal.keyboard.os", SimpleNamespace(name="nt"))
+        keyboard = TerminalKeys()
+>       assert keyboard.read(0) == Key(expected)
+E       AssertionError: assert None == Key(name='down', text='')
+E        +  where None = read(0)
+E        +    where read = <riposte.terminal.keyboard.TerminalKeys object at 0x00000298F2662C10>.read
+E        +  and   Key(name='down', text='') = Key('down')
+
+tests\test_terminal_direction.py:32: AssertionError
+_ test_extended_key_consumes_cached_scan_code_without_another_kbhit[P-down-\xe0] _
+
+prefix = 'à', code = 'P', expected = 'down'
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x00000298F25C9480>
+
+    @pytest.mark.parametrize("prefix", ["\x00", "\xe0"])
+    @pytest.mark.parametrize("code,expected", [("H", "up"), ("P", "down"), ("K", "left"),
+        ("M", "right"), ("G", "home"), ("O", "end"), ("I", "pageup"),
+        ("Q", "pagedown"), (";", "f1"), ("<", "f2"), ("=", "f3"), (">", "f4")])
+    def test_extended_key_consumes_cached_scan_code_without_another_kbhit(prefix, code, expected, monkeypatch):
+        # Physical input and the CRT's cached wide scan-code buffer are separate.
+        # kbhit becomes false once getwch consumes the physical key's prefix.
+        physical = deque([(prefix, code)])
+        cached = []
+    
+        def read():
+            if cached:
+                return cached.pop()
+            lead, scan = physical.popleft()
+            cached.append(scan)
+            return lead
+    
+        monkeypatch.setitem(sys.modules, "msvcrt", SimpleNamespace(
+            kbhit=lambda: bool(physical), getwch=read))
+        monkeypatch.setattr("riposte.terminal.keyboard.os", SimpleNamespace(name="nt"))
+        keyboard = TerminalKeys()
+>       assert keyboard.read(0) == Key(expected)
+E       AssertionError: assert None == Key(name='down', text='')
+E        +  where None = read(0)
+E        +    where read = <riposte.terminal.keyboard.TerminalKeys object at 0x00000298F25B9480>.read
+E        +  and   Key(name='down', text='') = Key('down')
+
+tests\test_terminal_direction.py:32: AssertionError
+_ test_extended_key_consumes_cached_scan_code_without_another_kbhit[K-left-\x00] _
+
+prefix = '\x00', code = 'K', expected = 'left'
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x00000298F25C9AE0>
+
+    @pytest.mark.parametrize("prefix", ["\x00", "\xe0"])
+    @pytest.mark.parametrize("code,expected", [("H", "up"), ("P", "down"), ("K", "left"),
+        ("M", "right"), ("G", "home"), ("O", "end"), ("I", "pageup"),
+        ("Q", "pagedown"), (";", "f1"), ("<", "f2"), ("=", "f3"), (">", "f4")])
+    def test_extended_key_consumes_cached_scan_code_without_another_kbhit(prefix, code, expected, monkeypatch):
+        # Physical input and the CRT's cached wide scan-code buffer are separate.
+        # kbhit becomes false once getwch consumes the physical key's prefix.
+        physical = deque([(prefix, code)])
+        cached = []
+    
+        def read():
+            if cached:
+                return cached.pop()
+            lead, scan = physical.popleft()
+            cached.append(scan)
+            return lead
+    
+        monkeypatch.setitem(sys.modules, "msvcrt", SimpleNamespace(
+            kbhit=lambda: bool(physical), getwch=read))
+        monkeypatch.setattr("riposte.terminal.keyboard.os", SimpleNamespace(name="nt"))
+        keyboard = TerminalKeys()
+>       assert keyboard.read(0) == Key(expected)
+E       AssertionError: assert None == Key(name='left', text='')
+E        +  where None = read(0)
+E        +    where read = <riposte.terminal.keyboard.TerminalKeys object at 0x00000298F25B9F30>.read
+E        +  and   Key(name='left', text='') = Key('left')
+
+tests\test_terminal_direction.py:32: AssertionError
+_ test_extended_key_consumes_cached_scan_code_without_another_kbhit[K-left-\xe0] _
+
+prefix = 'à', code = 'K', expected = 'left'
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x00000298F2745850>
+
+    @pytest.mark.parametrize("prefix", ["\x00", "\xe0"])
+    @pytest.mark.parametrize("code,expected", [("H", "up"), ("P", "down"), ("K", "left"),
+        ("M", "right"), ("G", "home"), ("O", "end"), ("I", "pageup"),
+        ("Q", "pagedown"), (";", "f1"), ("<", "f2"), ("=", "f3"), (">", "f4")])
+    def test_extended_key_consumes_cached_scan_code_without_another_kbhit(prefix, code, expected, monkeypatch):
+        # Physical input and the CRT's cached wide scan-code buffer are separate.
+        # kbhit becomes false once getwch consumes the physical key's prefix.
+        physical = deque([(prefix, code)])
+        cached = []
+    
+        def read():
+            if cached:
+                return cached.pop()
+            lead, scan = physical.popleft()
+            cached.append(scan)
+            return lead
+    
+        monkeypatch.setitem(sys.modules, "msvcrt", SimpleNamespace(
+            kbhit=lambda: bool(physical), getwch=read))
+        monkeypatch.setattr("riposte.terminal.keyboard.os", SimpleNamespace(name="nt"))
+        keyboard = TerminalKeys()
+>       assert keyboard.read(0) == Key(expected)
+E       AssertionError: assert None == Key(name='left', text='')
+E        +  where None = read(0)
+E        +    where read = <riposte.terminal.keyboard.TerminalKeys object at 0x00000298F2517BF0>.read
+E        +  and   Key(name='left', text='') = Key('left')
+
+tests\test_terminal_direction.py:32: AssertionError
+_ test_extended_key_consumes_cached_scan_code_without_another_kbhit[M-right-\x00] _
+
+prefix = '\x00', code = 'M', expected = 'right'
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x00000298F2746050>
+
+    @pytest.mark.parametrize("prefix", ["\x00", "\xe0"])
+    @pytest.mark.parametrize("code,expected", [("H", "up"), ("P", "down"), ("K", "left"),
+        ("M", "right"), ("G", "home"), ("O", "end"), ("I", "pageup"),
+        ("Q", "pagedown"), (";", "f1"), ("<", "f2"), ("=", "f3"), (">", "f4")])
+    def test_extended_key_consumes_cached_scan_code_without_another_kbhit(prefix, code, expected, monkeypatch):
+        # Physical input and the CRT's cached wide scan-code buffer are separate.
+        # kbhit becomes false once getwch consumes the physical key's prefix.
+        physical = deque([(prefix, code)])
+        cached = []
+    
+        def read():
+            if cached:
+                return cached.pop()
+            lead, scan = physical.popleft()
+            cached.append(scan)
+            return lead
+    
+        monkeypatch.setitem(sys.modules, "msvcrt", SimpleNamespace(
+            kbhit=lambda: bool(physical), getwch=read))
+        monkeypatch.setattr("riposte.terminal.keyboard.os", SimpleNamespace(name="nt"))
+        keyboard = TerminalKeys()
+>       assert keyboard.read(0) == Key(expected)
+E       AssertionError: assert None == Key(name='right', text='')
+E        +  where None = read(0)
+E        +    where read = <riposte.terminal.keyboard.TerminalKeys object at 0x00000298F25C9F20>.read
+E        +  and   Key(name='right', text='') = Key('right')
+
+tests\test_terminal_direction.py:32: AssertionError
+_ test_extended_key_consumes_cached_scan_code_without_another_kbhit[M-right-\xe0] _
+
+prefix = 'à', code = 'M', expected = 'right'
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x00000298F27348C0>
+
+    @pytest.mark.parametrize("prefix", ["\x00", "\xe0"])
+    @pytest.mark.parametrize("code,expected", [("H", "up"), ("P", "down"), ("K", "left"),
+        ("M", "right"), ("G", "home"), ("O", "end"), ("I", "pageup"),
+        ("Q", "pagedown"), (";", "f1"), ("<", "f2"), ("=", "f3"), (">", "f4")])
+    def test_extended_key_consumes_cached_scan_code_without_another_kbhit(prefix, code, expected, monkeypatch):
+        # Physical input and the CRT's cached wide scan-code buffer are separate.
+        # kbhit becomes false once getwch consumes the physical key's prefix.
+        physical = deque([(prefix, code)])
+        cached = []
+    
+        def read():
+            if cached:
+                return cached.pop()
+            lead, scan = physical.popleft()
+            cached.append(scan)
+            return lead
+    
+        monkeypatch.setitem(sys.modules, "msvcrt", SimpleNamespace(
+            kbhit=lambda: bool(physical), getwch=read))
+        monkeypatch.setattr("riposte.terminal.keyboard.os", SimpleNamespace(name="nt"))
+        keyboard = TerminalKeys()
+>       assert keyboard.read(0) == Key(expected)
+E       AssertionError: assert None == Key(name='right', text='')
+E        +  where None = read(0)
+E        +    where read = <riposte.terminal.keyboard.TerminalKeys object at 0x00000298F25CA8B0>.read
+E        +  and   Key(name='right', text='') = Key('right')
+
+tests\test_terminal_direction.py:32: AssertionError
+_ test_extended_key_consumes_cached_scan_code_without_another_kbhit[G-home-\x00] _
+
+prefix = '\x00', code = 'G', expected = 'home'
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x00000298F27356D0>
+
+    @pytest.mark.parametrize("prefix", ["\x00", "\xe0"])
+    @pytest.mark.parametrize("code,expected", [("H", "up"), ("P", "down"), ("K", "left"),
+        ("M", "right"), ("G", "home"), ("O", "end"), ("I", "pageup"),
+        ("Q", "pagedown"), (";", "f1"), ("<", "f2"), ("=", "f3"), (">", "f4")])
+    def test_extended_key_consumes_cached_scan_code_without_another_kbhit(prefix, code, expected, monkeypatch):
+        # Physical input and the CRT's cached wide scan-code buffer are separate.
+        # kbhit becomes false once getwch consumes the physical key's prefix.
+        physical = deque([(prefix, code)])
+        cached = []
+    
+        def read():
+            if cached:
+                return cached.pop()
+            lead, scan = physical.popleft()
+            cached.append(scan)
+            return lead
+    
+        monkeypatch.setitem(sys.modules, "msvcrt", SimpleNamespace(
+            kbhit=lambda: bool(physical), getwch=read))
+        monkeypatch.setattr("riposte.terminal.keyboard.os", SimpleNamespace(name="nt"))
+        keyboard = TerminalKeys()
+>       assert keyboard.read(0) == Key(expected)
+E       AssertionError: assert None == Key(name='home', text='')
+E        +  where None = read(0)
+E        +    where read = <riposte.terminal.keyboard.TerminalKeys object at 0x00000298F2746A50>.read
+E        +  and   Key(name='home', text='') = Key('home')
+
+tests\test_terminal_direction.py:32: AssertionError
+_ test_extended_key_consumes_cached_scan_code_without_another_kbhit[G-home-\xe0] _
+
+prefix = 'à', code = 'G', expected = 'home'
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x00000298F277A430>
+
+    @pytest.mark.parametrize("prefix", ["\x00", "\xe0"])
+    @pytest.mark.parametrize("code,expected", [("H", "up"), ("P", "down"), ("K", "left"),
+        ("M", "right"), ("G", "home"), ("O", "end"), ("I", "pageup"),
+        ("Q", "pagedown"), (";", "f1"), ("<", "f2"), ("=", "f3"), (">", "f4")])
+    def test_extended_key_consumes_cached_scan_code_without_another_kbhit(prefix, code, expected, monkeypatch):
+        # Physical input and the CRT's cached wide scan-code buffer are separate.
+        # kbhit becomes false once getwch consumes the physical key's prefix.
+        physical = deque([(prefix, code)])
+        cached = []
+    
+        def read():
+            if cached:
+                return cached.pop()
+            lead, scan = physical.popleft()
+            cached.append(scan)
+            return lead
+    
+        monkeypatch.setitem(sys.modules, "msvcrt", SimpleNamespace(
+            kbhit=lambda: bool(physical), getwch=read))
+        monkeypatch.setattr("riposte.terminal.keyboard.os", SimpleNamespace(name="nt"))
+        keyboard = TerminalKeys()
+>       assert keyboard.read(0) == Key(expected)
+E       AssertionError: assert None == Key(name='home', text='')
+E        +  where None = read(0)
+E        +    where read = <riposte.terminal.keyboard.TerminalKeys object at 0x00000298F2747950>.read
+E        +  and   Key(name='home', text='') = Key('home')
+
+tests\test_terminal_direction.py:32: AssertionError
+_ test_extended_key_consumes_cached_scan_code_without_another_kbhit[O-end-\x00] _
+
+prefix = '\x00', code = 'O', expected = 'end'
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x00000298F277A5F0>
+
+    @pytest.mark.parametrize("prefix", ["\x00", "\xe0"])
+    @pytest.mark.parametrize("code,expected", [("H", "up"), ("P", "down"), ("K", "left"),
+        ("M", "right"), ("G", "home"), ("O", "end"), ("I", "pageup"),
+        ("Q", "pagedown"), (";", "f1"), ("<", "f2"), ("=", "f3"), (">", "f4")])
+    def test_extended_key_consumes_cached_scan_code_without_another_kbhit(prefix, code, expected, monkeypatch):
+        # Physical input and the CRT's cached wide scan-code buffer are separate.
+        # kbhit becomes false once getwch consumes the physical key's prefix.
+        physical = deque([(prefix, code)])
+        cached = []
+    
+        def read():
+            if cached:
+                return cached.pop()
+            lead, scan = physical.popleft()
+            cached.append(scan)
+            return lead
+    
+        monkeypatch.setitem(sys.modules, "msvcrt", SimpleNamespace(
+            kbhit=lambda: bool(physical), getwch=read))
+        monkeypatch.setattr("riposte.terminal.keyboard.os", SimpleNamespace(name="nt"))
+        keyboard = TerminalKeys()
+>       assert keyboard.read(0) == Key(expected)
+E       AssertionError: assert None == Key(name='end', text='')
+E        +  where None = read(0)
+E        +    where read = <riposte.terminal.keyboard.TerminalKeys object at 0x00000298F27373E0>.read
+E        +  and   Key(name='end', text='') = Key('end')
+
+tests\test_terminal_direction.py:32: AssertionError
+_ test_extended_key_consumes_cached_scan_code_without_another_kbhit[O-end-\xe0] _
+
+prefix = 'à', code = 'O', expected = 'end'
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x00000298F25BFD40>
+
+    @pytest.mark.parametrize("prefix", ["\x00", "\xe0"])
+    @pytest.mark.parametrize("code,expected", [("H", "up"), ("P", "down"), ("K", "left"),
+        ("M", "right"), ("G", "home"), ("O", "end"), ("I", "pageup"),
+        ("Q", "pagedown"), (";", "f1"), ("<", "f2"), ("=", "f3"), (">", "f4")])
+    def test_extended_key_consumes_cached_scan_code_without_another_kbhit(prefix, code, expected, monkeypatch):
+        # Physical input and the CRT's cached wide scan-code buffer are separate.
+        # kbhit becomes false once getwch consumes the physical key's prefix.
+        physical = deque([(prefix, code)])
+        cached = []
+    
+        def read():
+            if cached:
+                return cached.pop()
+            lead, scan = physical.popleft()
+            cached.append(scan)
+            return lead
+    
+        monkeypatch.setitem(sys.modules, "msvcrt", SimpleNamespace(
+            kbhit=lambda: bool(physical), getwch=read))
+        monkeypatch.setattr("riposte.terminal.keyboard.os", SimpleNamespace(name="nt"))
+        keyboard = TerminalKeys()
+>       assert keyboard.read(0) == Key(expected)
+E       AssertionError: assert None == Key(name='end', text='')
+E        +  where None = read(0)
+E        +    where read = <riposte.terminal.keyboard.TerminalKeys object at 0x00000298F27286E0>.read
+E        +  and   Key(name='end', text='') = Key('end')
+
+tests\test_terminal_direction.py:32: AssertionError
+_ test_extended_key_consumes_cached_scan_code_without_another_kbhit[I-pageup-\x00] _
+
+prefix = '\x00', code = 'I', expected = 'pageup'
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x00000298F25FE390>
+
+    @pytest.mark.parametrize("prefix", ["\x00", "\xe0"])
+    @pytest.mark.parametrize("code,expected", [("H", "up"), ("P", "down"), ("K", "left"),
+        ("M", "right"), ("G", "home"), ("O", "end"), ("I", "pageup"),
+        ("Q", "pagedown"), (";", "f1"), ("<", "f2"), ("=", "f3"), (">", "f4")])
+    def test_extended_key_consumes_cached_scan_code_without_another_kbhit(prefix, code, expected, monkeypatch):
+        # Physical input and the CRT's cached wide scan-code buffer are separate.
+        # kbhit becomes false once getwch consumes the physical key's prefix.
+        physical = deque([(prefix, code)])
+        cached = []
+    
+        def read():
+            if cached:
+                return cached.pop()
+            lead, scan = physical.popleft()
+            cached.append(scan)
+            return lead
+    
+        monkeypatch.setitem(sys.modules, "msvcrt", SimpleNamespace(
+            kbhit=lambda: bool(physical), getwch=read))
+        monkeypatch.setattr("riposte.terminal.keyboard.os", SimpleNamespace(name="nt"))
+        keyboard = TerminalKeys()
+>       assert keyboard.read(0) == Key(expected)
+E       AssertionError: assert None == Key(name='pageup', text='')
+E        +  where None = read(0)
+E        +    where read = <riposte.terminal.keyboard.TerminalKeys object at 0x00000298F277AA50>.read
+E        +  and   Key(name='pageup', text='') = Key('pageup')
+
+tests\test_terminal_direction.py:32: AssertionError
+_ test_extended_key_consumes_cached_scan_code_without_another_kbhit[I-pageup-\xe0] _
+
+prefix = 'à', code = 'I', expected = 'pageup'
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x00000298F25FE450>
+
+    @pytest.mark.parametrize("prefix", ["\x00", "\xe0"])
+    @pytest.mark.parametrize("code,expected", [("H", "up"), ("P", "down"), ("K", "left"),
+        ("M", "right"), ("G", "home"), ("O", "end"), ("I", "pageup"),
+        ("Q", "pagedown"), (";", "f1"), ("<", "f2"), ("=", "f3"), (">", "f4")])
+    def test_extended_key_consumes_cached_scan_code_without_another_kbhit(prefix, code, expected, monkeypatch):
+        # Physical input and the CRT's cached wide scan-code buffer are separate.
+        # kbhit becomes false once getwch consumes the physical key's prefix.
+        physical = deque([(prefix, code)])
+        cached = []
+    
+        def read():
+            if cached:
+                return cached.pop()
+            lead, scan = physical.popleft()
+            cached.append(scan)
+            return lead
+    
+        monkeypatch.setitem(sys.modules, "msvcrt", SimpleNamespace(
+            kbhit=lambda: bool(physical), getwch=read))
+        monkeypatch.setattr("riposte.terminal.keyboard.os", SimpleNamespace(name="nt"))
+        keyboard = TerminalKeys()
+>       assert keyboard.read(0) == Key(expected)
+E       AssertionError: assert None == Key(name='pageup', text='')
+E        +  where None = read(0)
+E        +    where read = <riposte.terminal.keyboard.TerminalKeys object at 0x00000298F277AC10>.read
+E        +  and   Key(name='pageup', text='') = Key('pageup')
+
+tests\test_terminal_direction.py:32: AssertionError
+_ test_extended_key_consumes_cached_scan_code_without_another_kbhit[Q-pagedown-\x00] _
+
+prefix = '\x00', code = 'Q', expected = 'pagedown'
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x00000298F27397B0>
+
+    @pytest.mark.parametrize("prefix", ["\x00", "\xe0"])
+    @pytest.mark.parametrize("code,expected", [("H", "up"), ("P", "down"), ("K", "left"),
+        ("M", "right"), ("G", "home"), ("O", "end"), ("I", "pageup"),
+        ("Q", "pagedown"), (";", "f1"), ("<", "f2"), ("=", "f3"), (">", "f4")])
+    def test_extended_key_consumes_cached_scan_code_without_another_kbhit(prefix, code, expected, monkeypatch):
+        # Physical input and the CRT's cached wide scan-code buffer are separate.
+        # kbhit becomes false once getwch consumes the physical key's prefix.
+        physical = deque([(prefix, code)])
+        cached = []
+    
+        def read():
+            if cached:
+                return cached.pop()
+            lead, scan = physical.popleft()
+            cached.append(scan)
+            return lead
+    
+        monkeypatch.setitem(sys.modules, "msvcrt", SimpleNamespace(
+            kbhit=lambda: bool(physical), getwch=read))
+        monkeypatch.setattr("riposte.terminal.keyboard.os", SimpleNamespace(name="nt"))
+        keyboard = TerminalKeys()
+>       assert keyboard.read(0) == Key(expected)
+E       AssertionError: assert None == Key(name='pagedown', text='')
+E        +  where None = read(0)
+E        +    where read = <riposte.terminal.keyboard.TerminalKeys object at 0x00000298F2669640>.read
+E        +  and   Key(name='pagedown', text='') = Key('pagedown')
+
+tests\test_terminal_direction.py:32: AssertionError
+_ test_extended_key_consumes_cached_scan_code_without_another_kbhit[Q-pagedown-\xe0] _
+
+prefix = 'à', code = 'Q', expected = 'pagedown'
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x00000298F2739700>
+
+    @pytest.mark.parametrize("prefix", ["\x00", "\xe0"])
+    @pytest.mark.parametrize("code,expected", [("H", "up"), ("P", "down"), ("K", "left"),
+        ("M", "right"), ("G", "home"), ("O", "end"), ("I", "pageup"),
+        ("Q", "pagedown"), (";", "f1"), ("<", "f2"), ("=", "f3"), (">", "f4")])
+    def test_extended_key_consumes_cached_scan_code_without_another_kbhit(prefix, code, expected, monkeypatch):
+        # Physical input and the CRT's cached wide scan-code buffer are separate.
+        # kbhit becomes false once getwch consumes the physical key's prefix.
+        physical = deque([(prefix, code)])
+        cached = []
+    
+        def read():
+            if cached:
+                return cached.pop()
+            lead, scan = physical.popleft()
+            cached.append(scan)
+            return lead
+    
+        monkeypatch.setitem(sys.modules, "msvcrt", SimpleNamespace(
+            kbhit=lambda: bool(physical), getwch=read))
+        monkeypatch.setattr("riposte.terminal.keyboard.os", SimpleNamespace(name="nt"))
+        keyboard = TerminalKeys()
+>       assert keyboard.read(0) == Key(expected)
+E       AssertionError: assert None == Key(name='pagedown', text='')
+E        +  where None = read(0)
+E        +    where read = <riposte.terminal.keyboard.TerminalKeys object at 0x00000298F25FD910>.read
+E        +  and   Key(name='pagedown', text='') = Key('pagedown')
+
+tests\test_terminal_direction.py:32: AssertionError
+_ test_extended_key_consumes_cached_scan_code_without_another_kbhit[;-f1-\x00] _
+
+prefix = '\x00', code = ';', expected = 'f1'
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x00000298F25A6CB0>
+
+    @pytest.mark.parametrize("prefix", ["\x00", "\xe0"])
+    @pytest.mark.parametrize("code,expected", [("H", "up"), ("P", "down"), ("K", "left"),
+        ("M", "right"), ("G", "home"), ("O", "end"), ("I", "pageup"),
+        ("Q", "pagedown"), (";", "f1"), ("<", "f2"), ("=", "f3"), (">", "f4")])
+    def test_extended_key_consumes_cached_scan_code_without_another_kbhit(prefix, code, expected, monkeypatch):
+        # Physical input and the CRT's cached wide scan-code buffer are separate.
+        # kbhit becomes false once getwch consumes the physical key's prefix.
+        physical = deque([(prefix, code)])
+        cached = []
+    
+        def read():
+            if cached:
+                return cached.pop()
+            lead, scan = physical.popleft()
+            cached.append(scan)
+            return lead
+    
+        monkeypatch.setitem(sys.modules, "msvcrt", SimpleNamespace(
+            kbhit=lambda: bool(physical), getwch=read))
+        monkeypatch.setattr("riposte.terminal.keyboard.os", SimpleNamespace(name="nt"))
+        keyboard = TerminalKeys()
+>       assert keyboard.read(0) == Key(expected)
+E       AssertionError: assert None == Key(name='f1', text='')
+E        +  where None = read(0)
+E        +    where read = <riposte.terminal.keyboard.TerminalKeys object at 0x00000298F25FD550>.read
+E        +  and   Key(name='f1', text='') = Key('f1')
+
+tests\test_terminal_direction.py:32: AssertionError
+_ test_extended_key_consumes_cached_scan_code_without_another_kbhit[;-f1-\xe0] _
+
+prefix = 'à', code = ';', expected = 'f1'
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x00000298F25A6E90>
+
+    @pytest.mark.parametrize("prefix", ["\x00", "\xe0"])
+    @pytest.mark.parametrize("code,expected", [("H", "up"), ("P", "down"), ("K", "left"),
+        ("M", "right"), ("G", "home"), ("O", "end"), ("I", "pageup"),
+        ("Q", "pagedown"), (";", "f1"), ("<", "f2"), ("=", "f3"), (">", "f4")])
+    def test_extended_key_consumes_cached_scan_code_without_another_kbhit(prefix, code, expected, monkeypatch):
+        # Physical input and the CRT's cached wide scan-code buffer are separate.
+        # kbhit becomes false once getwch consumes the physical key's prefix.
+        physical = deque([(prefix, code)])
+        cached = []
+    
+        def read():
+            if cached:
+                return cached.pop()
+            lead, scan = physical.popleft()
+            cached.append(scan)
+            return lead
+    
+        monkeypatch.setitem(sys.modules, "msvcrt", SimpleNamespace(
+            kbhit=lambda: bool(physical), getwch=read))
+        monkeypatch.setattr("riposte.terminal.keyboard.os", SimpleNamespace(name="nt"))
+        keyboard = TerminalKeys()
+>       assert keyboard.read(0) == Key(expected)
+E       AssertionError: assert None == Key(name='f1', text='')
+E        +  where None = read(0)
+E        +    where read = <riposte.terminal.keyboard.TerminalKeys object at 0x00000298F2700C00>.read
+E        +  and   Key(name='f1', text='') = Key('f1')
+
+tests\test_terminal_direction.py:32: AssertionError
+_ test_extended_key_consumes_cached_scan_code_without_another_kbhit[<-f2-\x00] _
+
+prefix = '\x00', code = '<', expected = 'f2'
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x00000298F2582F90>
+
+    @pytest.mark.parametrize("prefix", ["\x00", "\xe0"])
+    @pytest.mark.parametrize("code,expected", [("H", "up"), ("P", "down"), ("K", "left"),
+        ("M", "right"), ("G", "home"), ("O", "end"), ("I", "pageup"),
+        ("Q", "pagedown"), (";", "f1"), ("<", "f2"), ("=", "f3"), (">", "f4")])
+    def test_extended_key_consumes_cached_scan_code_without_another_kbhit(prefix, code, expected, monkeypatch):
+        # Physical input and the CRT's cached wide scan-code buffer are separate.
+        # kbhit becomes false once getwch consumes the physical key's prefix.
+        physical = deque([(prefix, code)])
+        cached = []
+    
+        def read():
+            if cached:
+                return cached.pop()
+            lead, scan = physical.popleft()
+            cached.append(scan)
+            return lead
+    
+        monkeypatch.setitem(sys.modules, "msvcrt", SimpleNamespace(
+            kbhit=lambda: bool(physical), getwch=read))
+        monkeypatch.setattr("riposte.terminal.keyboard.os", SimpleNamespace(name="nt"))
+        keyboard = TerminalKeys()
+>       assert keyboard.read(0) == Key(expected)
+E       AssertionError: assert None == Key(name='f2', text='')
+E        +  where None = read(0)
+E        +    where read = <riposte.terminal.keyboard.TerminalKeys object at 0x00000298F2701700>.read
+E        +  and   Key(name='f2', text='') = Key('f2')
+
+tests\test_terminal_direction.py:32: AssertionError
+_ test_extended_key_consumes_cached_scan_code_without_another_kbhit[<-f2-\xe0] _
+
+prefix = 'à', code = '<', expected = 'f2'
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x00000298F26F82D0>
+
+    @pytest.mark.parametrize("prefix", ["\x00", "\xe0"])
+    @pytest.mark.parametrize("code,expected", [("H", "up"), ("P", "down"), ("K", "left"),
+        ("M", "right"), ("G", "home"), ("O", "end"), ("I", "pageup"),
+        ("Q", "pagedown"), (";", "f1"), ("<", "f2"), ("=", "f3"), (">", "f4")])
+    def test_extended_key_consumes_cached_scan_code_without_another_kbhit(prefix, code, expected, monkeypatch):
+        # Physical input and the CRT's cached wide scan-code buffer are separate.
+        # kbhit becomes false once getwch consumes the physical key's prefix.
+        physical = deque([(prefix, code)])
+        cached = []
+    
+        def read():
+            if cached:
+                return cached.pop()
+            lead, scan = physical.popleft()
+            cached.append(scan)
+            return lead
+    
+        monkeypatch.setitem(sys.modules, "msvcrt", SimpleNamespace(
+            kbhit=lambda: bool(physical), getwch=read))
+        monkeypatch.setattr("riposte.terminal.keyboard.os", SimpleNamespace(name="nt"))
+        keyboard = TerminalKeys()
+>       assert keyboard.read(0) == Key(expected)
+E       AssertionError: assert None == Key(name='f2', text='')
+E        +  where None = read(0)
+E        +    where read = <riposte.terminal.keyboard.TerminalKeys object at 0x00000298F25A6D50>.read
+E        +  and   Key(name='f2', text='') = Key('f2')
+
+tests\test_terminal_direction.py:32: AssertionError
+_ test_extended_key_consumes_cached_scan_code_without_another_kbhit[=-f3-\x00] _
+
+prefix = '\x00', code = '=', expected = 'f3'
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x00000298F26F88D0>
+
+    @pytest.mark.parametrize("prefix", ["\x00", "\xe0"])
+    @pytest.mark.parametrize("code,expected", [("H", "up"), ("P", "down"), ("K", "left"),
+        ("M", "right"), ("G", "home"), ("O", "end"), ("I", "pageup"),
+        ("Q", "pagedown"), (";", "f1"), ("<", "f2"), ("=", "f3"), (">", "f4")])
+    def test_extended_key_consumes_cached_scan_code_without_another_kbhit(prefix, code, expected, monkeypatch):
+        # Physical input and the CRT's cached wide scan-code buffer are separate.
+        # kbhit becomes false once getwch consumes the physical key's prefix.
+        physical = deque([(prefix, code)])
+        cached = []
+    
+        def read():
+            if cached:
+                return cached.pop()
+            lead, scan = physical.popleft()
+            cached.append(scan)
+            return lead
+    
+        monkeypatch.setitem(sys.modules, "msvcrt", SimpleNamespace(
+            kbhit=lambda: bool(physical), getwch=read))
+        monkeypatch.setattr("riposte.terminal.keyboard.os", SimpleNamespace(name="nt"))
+        keyboard = TerminalKeys()
+>       assert keyboard.read(0) == Key(expected)
+E       AssertionError: assert None == Key(name='f3', text='')
+E        +  where None = read(0)
+E        +    where read = <riposte.terminal.keyboard.TerminalKeys object at 0x00000298F25A6DF0>.read
+E        +  and   Key(name='f3', text='') = Key('f3')
+
+tests\test_terminal_direction.py:32: AssertionError
+_ test_extended_key_consumes_cached_scan_code_without_another_kbhit[=-f3-\xe0] _
+
+prefix = 'à', code = '=', expected = 'f3'
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x00000298F277FAF0>
+
+    @pytest.mark.parametrize("prefix", ["\x00", "\xe0"])
+    @pytest.mark.parametrize("code,expected", [("H", "up"), ("P", "down"), ("K", "left"),
+        ("M", "right"), ("G", "home"), ("O", "end"), ("I", "pageup"),
+        ("Q", "pagedown"), (";", "f1"), ("<", "f2"), ("=", "f3"), (">", "f4")])
+    def test_extended_key_consumes_cached_scan_code_without_another_kbhit(prefix, code, expected, monkeypatch):
+        # Physical input and the CRT's cached wide scan-code buffer are separate.
+        # kbhit becomes false once getwch consumes the physical key's prefix.
+        physical = deque([(prefix, code)])
+        cached = []
+    
+        def read():
+            if cached:
+                return cached.pop()
+            lead, scan = physical.popleft()
+            cached.append(scan)
+            return lead
+    
+        monkeypatch.setitem(sys.modules, "msvcrt", SimpleNamespace(
+            kbhit=lambda: bool(physical), getwch=read))
+        monkeypatch.setattr("riposte.terminal.keyboard.os", SimpleNamespace(name="nt"))
+        keyboard = TerminalKeys()
+>       assert keyboard.read(0) == Key(expected)
+E       AssertionError: assert None == Key(name='f3', text='')
+E        +  where None = read(0)
+E        +    where read = <riposte.terminal.keyboard.TerminalKeys object at 0x00000298F2767F50>.read
+E        +  and   Key(name='f3', text='') = Key('f3')
+
+tests\test_terminal_direction.py:32: AssertionError
+_ test_extended_key_consumes_cached_scan_code_without_another_kbhit[>-f4-\x00] _
+
+prefix = '\x00', code = '>', expected = 'f4'
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x00000298F277FD90>
+
+    @pytest.mark.parametrize("prefix", ["\x00", "\xe0"])
+    @pytest.mark.parametrize("code,expected", [("H", "up"), ("P", "down"), ("K", "left"),
+        ("M", "right"), ("G", "home"), ("O", "end"), ("I", "pageup"),
+        ("Q", "pagedown"), (";", "f1"), ("<", "f2"), ("=", "f3"), (">", "f4")])
+    def test_extended_key_consumes_cached_scan_code_without_another_kbhit(prefix, code, expected, monkeypatch):
+        # Physical input and the CRT's cached wide scan-code buffer are separate.
+        # kbhit becomes false once getwch consumes the physical key's prefix.
+        physical = deque([(prefix, code)])
+        cached = []
+    
+        def read():
+            if cached:
+                return cached.pop()
+            lead, scan = physical.popleft()
+            cached.append(scan)
+            return lead
+    
+        monkeypatch.setitem(sys.modules, "msvcrt", SimpleNamespace(
+            kbhit=lambda: bool(physical), getwch=read))
+        monkeypatch.setattr("riposte.terminal.keyboard.os", SimpleNamespace(name="nt"))
+        keyboard = TerminalKeys()
+>       assert keyboard.read(0) == Key(expected)
+E       AssertionError: assert None == Key(name='f4', text='')
+E        +  where None = read(0)
+E        +    where read = <riposte.terminal.keyboard.TerminalKeys object at 0x00000298F26F9850>.read
+E        +  and   Key(name='f4', text='') = Key('f4')
+
+tests\test_terminal_direction.py:32: AssertionError
+_ test_extended_key_consumes_cached_scan_code_without_another_kbhit[>-f4-\xe0] _
+
+prefix = 'à', code = '>', expected = 'f4'
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x00000298F26A4050>
+
+    @pytest.mark.parametrize("prefix", ["\x00", "\xe0"])
+    @pytest.mark.parametrize("code,expected", [("H", "up"), ("P", "down"), ("K", "left"),
+        ("M", "right"), ("G", "home"), ("O", "end"), ("I", "pageup"),
+        ("Q", "pagedown"), (";", "f1"), ("<", "f2"), ("=", "f3"), (">", "f4")])
+    def test_extended_key_consumes_cached_scan_code_without_another_kbhit(prefix, code, expected, monkeypatch):
+        # Physical input and the CRT's cached wide scan-code buffer are separate.
+        # kbhit becomes false once getwch consumes the physical key's prefix.
+        physical = deque([(prefix, code)])
+        cached = []
+    
+        def read():
+            if cached:
+                return cached.pop()
+            lead, scan = physical.popleft()
+            cached.append(scan)
+            return lead
+    
+        monkeypatch.setitem(sys.modules, "msvcrt", SimpleNamespace(
+            kbhit=lambda: bool(physical), getwch=read))
+        monkeypatch.setattr("riposte.terminal.keyboard.os", SimpleNamespace(name="nt"))
+        keyboard = TerminalKeys()
+>       assert keyboard.read(0) == Key(expected)
+E       AssertionError: assert None == Key(name='f4', text='')
+E        +  where None = read(0)
+E        +    where read = <riposte.terminal.keyboard.TerminalKeys object at 0x00000298F26F9DD0>.read
+E        +  and   Key(name='f4', text='') = Key('f4')
+
+tests\test_terminal_direction.py:32: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/test_terminal_direction.py::test_extended_key_consumes_cached_scan_code_without_another_kbhit[H-up-\x00]
+FAILED tests/test_terminal_direction.py::test_extended_key_consumes_cached_scan_code_without_another_kbhit[H-up-\xe0]
+FAILED tests/test_terminal_direction.py::test_extended_key_consumes_cached_scan_code_without_another_kbhit[P-down-\x00]
+FAILED tests/test_terminal_direction.py::test_extended_key_consumes_cached_scan_code_without_another_kbhit[P-down-\xe0]
+FAILED tests/test_terminal_direction.py::test_extended_key_consumes_cached_scan_code_without_another_kbhit[K-left-\x00]
+FAILED tests/test_terminal_direction.py::test_extended_key_consumes_cached_scan_code_without_another_kbhit[K-left-\xe0]
+FAILED tests/test_terminal_direction.py::test_extended_key_consumes_cached_scan_code_without_another_kbhit[M-right-\x00]
+FAILED tests/test_terminal_direction.py::test_extended_key_consumes_cached_scan_code_without_another_kbhit[M-right-\xe0]
+FAILED tests/test_terminal_direction.py::test_extended_key_consumes_cached_scan_code_without_another_kbhit[G-home-\x00]
+FAILED tests/test_terminal_direction.py::test_extended_key_consumes_cached_scan_code_without_another_kbhit[G-home-\xe0]
+FAILED tests/test_terminal_direction.py::test_extended_key_consumes_cached_scan_code_without_another_kbhit[O-end-\x00]
+FAILED tests/test_terminal_direction.py::test_extended_key_consumes_cached_scan_code_without_another_kbhit[O-end-\xe0]
+FAILED tests/test_terminal_direction.py::test_extended_key_consumes_cached_scan_code_without_another_kbhit[I-pageup-\x00]
+FAILED tests/test_terminal_direction.py::test_extended_key_consumes_cached_scan_code_without_another_kbhit[I-pageup-\xe0]
+FAILED tests/test_terminal_direction.py::test_extended_key_consumes_cached_scan_code_without_another_kbhit[Q-pagedown-\x00]
+FAILED tests/test_terminal_direction.py::test_extended_key_consumes_cached_scan_code_without_another_kbhit[Q-pagedown-\xe0]
+FAILED tests/test_terminal_direction.py::test_extended_key_consumes_cached_scan_code_without_another_kbhit[;-f1-\x00]
+FAILED tests/test_terminal_direction.py::test_extended_key_consumes_cached_scan_code_without_another_kbhit[;-f1-\xe0]
+FAILED tests/test_terminal_direction.py::test_extended_key_consumes_cached_scan_code_without_another_kbhit[<-f2-\x00]
+FAILED tests/test_terminal_direction.py::test_extended_key_consumes_cached_scan_code_without_another_kbhit[<-f2-\xe0]
+FAILED tests/test_terminal_direction.py::test_extended_key_consumes_cached_scan_code_without_another_kbhit[=-f3-\x00]
+FAILED tests/test_terminal_direction.py::test_extended_key_consumes_cached_scan_code_without_another_kbhit[=-f3-\xe0]
+FAILED tests/test_terminal_direction.py::test_extended_key_consumes_cached_scan_code_without_another_kbhit[>-f4-\x00]
+FAILED tests/test_terminal_direction.py::test_extended_key_consumes_cached_scan_code_without_another_kbhit[>-f4-\xe0]
+24 failed in 0.12s
