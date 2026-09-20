@@ -207,6 +207,32 @@ def test_combined_success_loads_models_once(root, make_image, models):
     assert result['counts']['READY_FOR_REVIEW'] == 1 and len(models) == 1
 
 
+@pytest.mark.parametrize('name', ['_float_', '__float__'])
+@pytest.mark.parametrize('workspace_inside', [False, True])
+def test_float_images_can_be_protected_without_sorting(root, make_image, recipe, models, name, workspace_inside):
+    source = make_image(root / name / 'nested' / 'private painting.png', size=(96, 80))
+    original = source.read_bytes()
+    workspace = source.parent if workspace_inside else root
+    batch = p.start_publication(workspace, [], [Path('MODEL')], recipe, input_paths=[source.parent], date_mode='modified')
+    assert source.read_bytes() == original and not catalog(root)
+    assert batch['source_mode'] == 'snapshot' and batch['counts']['READY_FOR_REVIEW'] == 1
+    exact = p.publication_pixels(workspace, batch['id'], batch['items'][0]['id'])
+    assert png_audit(exact)['date'] == '2025-03-12'
+    assert b'PRIVATE_FIXTURE_PAYLOAD' not in exact
+
+
+@pytest.mark.parametrize('categories', [False, True])
+def test_combined_sort_keeps_float_storage_and_protects_sorted_images(root, make_image, models, categories):
+    held = make_image(root / '__float__' / 'private painting.png', size=(96, 80))
+    (held.parent / 'notes.txt').write_text('user storage')
+    original = held.read_bytes()
+    source = make_image(root / 'sort this.png', size=(96, 80))
+    result = execute(reviewed_combined(root, values(all_images=True, categories=categories)))
+    assert result['workflow'] == 'SORT_RIPOSTE' and result['sorting']['checkpoint'] == 'COMPLETE'
+    assert result['counts']['READY_FOR_REVIEW'] == 1 and not source.exists()
+    assert held.read_bytes() == original and (held.parent / 'notes.txt').read_text() == 'user storage'
+
+
 def test_combined_blockers_do_not_start_models_or_modify_sources(root, make_image, models):
     make_image(root / 'input.png')
     (root / 'notes.txt').write_text('keep')

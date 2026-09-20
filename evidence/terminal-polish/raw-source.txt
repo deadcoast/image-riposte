@@ -1,4 +1,4 @@
-❯ mypy --incremental  
+warning: `VIRTUAL_ENV=.venv` does not match the project environment path `typing\.venv` and will be ignored; use `--active` to target the active environment instead
 src\riposte\terminal\keyboard.py:31:5: error: Function is missing a return type annotation  [no-untyped-def]
 src\riposte\terminal\keyboard.py:31:5: note: Use "-> None" if function does not return a value
 src\riposte\terminal\keyboard.py:37:5: error: Function is missing a return type annotation  [no-untyped-def]
@@ -81,16 +81,16 @@ src\riposte\intake.py:119:51: error: Argument 3 to "InputSource" has incompatibl
 src\riposte\organizer.py:21:22: error: Missing type arguments for generic type "dict"  [type-arg]
 src\riposte\organizer.py:23:1: error: Function is missing a return type annotation  [no-untyped-def]
 src\riposte\organizer.py:28:5: error: Need type annotation for "unreadable" (hint: "unreadable: list[<type>] = ...")  [var-annotated]
-src\riposte\organizer.py:76:148: error: Missing type arguments for generic type "dict"  [type-arg]
-src\riposte\organizer.py:114:180: error: Missing type arguments for generic type "dict"  [type-arg]
-src\riposte\organizer.py:124:5: error: Function is missing a return type annotation  [no-untyped-def]
-src\riposte\organizer.py:133:5: error: Call to untyped function "reviewed_plan" in typed context  [no-untyped-call]
-src\riposte\organizer.py:134:22: error: Need type annotation for "counts"  [var-annotated]
-src\riposte\organizer.py:134:45: error: Need type annotation for "errors"  [var-annotated]
-src\riposte\organizer.py:136:19: error: Call to untyped function "reviewed_plan" in typed context  [no-untyped-call]
-src\riposte\organizer.py:251:29: error: Incompatible types in assignment (expression has type "dict[str, Any] | None", variable has type "dict[Any, Any]")  [assignment]
-src\riposte\organizer.py:317:36: error: Missing type arguments for generic type "dict"  [type-arg]
-src\riposte\organizer.py:322:18: error: Need type annotation for "errors"  [var-annotated]
+src\riposte\organizer.py:77:148: error: Missing type arguments for generic type "dict"  [type-arg]
+src\riposte\organizer.py:115:180: error: Missing type arguments for generic type "dict"  [type-arg]
+src\riposte\organizer.py:125:5: error: Function is missing a return type annotation  [no-untyped-def]
+src\riposte\organizer.py:134:5: error: Call to untyped function "reviewed_plan" in typed context  [no-untyped-call]
+src\riposte\organizer.py:135:22: error: Need type annotation for "counts"  [var-annotated]
+src\riposte\organizer.py:135:45: error: Need type annotation for "errors"  [var-annotated]
+src\riposte\organizer.py:137:19: error: Call to untyped function "reviewed_plan" in typed context  [no-untyped-call]
+src\riposte\organizer.py:252:29: error: Incompatible types in assignment (expression has type "dict[str, Any] | None", variable has type "dict[Any, Any]")  [assignment]
+src\riposte\organizer.py:318:36: error: Missing type arguments for generic type "dict"  [type-arg]
+src\riposte\organizer.py:323:18: error: Need type annotation for "errors"  [var-annotated]
 src\riposte\optimizer.py:26:5: error: Function is missing a return type annotation  [no-untyped-def]
 src\riposte\optimizer.py:26:5: note: Use "-> None" if function does not return a value
 src\riposte\optimizer.py:51:26: error: Call to untyped function "from_pretrained" of "AutoencoderKL" in typed context  [no-untyped-call]

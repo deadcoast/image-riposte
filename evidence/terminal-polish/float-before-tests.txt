@@ -1,0 +1,434 @@
+FFFFFFFFFFFFFFFF....FFF                                                  [100%]
+================================== FAILURES ===================================
+_ test_sort_ignores_entire_float_tree_and_undo_leaves_it_alone[_float_-False] _
+
+root = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/pytest-of-ryanf/pytest-512/test_sort_ignores_entire_float0/workspace')
+make_image = <function make_image.<locals>.create at 0x000001B6D8E3C040>
+categories = False, name = '_float_'
+
+    @pytest.mark.parametrize("categories", [False, True])
+    @pytest.mark.parametrize("name", ["_float_", "__float__", "_FLOAT_", "__FLOAT__"])
+    def test_sort_ignores_entire_float_tree_and_undo_leaves_it_alone(root, make_image, categories, name):
+        held = root / "user folders" / name
+        inside = make_image(held / "nested" / "private hockey painting.png")
+        (held / "private.xmp").write_bytes(b"retained metadata")
+        (held / "unreadable-video.mp4").write_bytes(b"not a decodable video")
+        (held / "notes.txt").write_text("user-owned storage")
+        (held / "empty").mkdir()
+        before = snapshot(held)
+        outside = make_image(root / "sort me.png")
+        original = outside.read_bytes()
+        preview = plan(root, POLICY, categories=categories)
+>       assert preview["ready"] and [f["source"] for f in preview["files"]] == [outside.name]
+E       assert (False)
+
+tests\test_float_sort.py:34: AssertionError
+_ test_sort_ignores_entire_float_tree_and_undo_leaves_it_alone[_float_-True] __
+
+root = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/pytest-of-ryanf/pytest-512/test_sort_ignores_entire_float1/workspace')
+make_image = <function make_image.<locals>.create at 0x000001B6D8EBD900>
+categories = True, name = '_float_'
+
+    @pytest.mark.parametrize("categories", [False, True])
+    @pytest.mark.parametrize("name", ["_float_", "__float__", "_FLOAT_", "__FLOAT__"])
+    def test_sort_ignores_entire_float_tree_and_undo_leaves_it_alone(root, make_image, categories, name):
+        held = root / "user folders" / name
+        inside = make_image(held / "nested" / "private hockey painting.png")
+        (held / "private.xmp").write_bytes(b"retained metadata")
+        (held / "unreadable-video.mp4").write_bytes(b"not a decodable video")
+        (held / "notes.txt").write_text("user-owned storage")
+        (held / "empty").mkdir()
+        before = snapshot(held)
+        outside = make_image(root / "sort me.png")
+        original = outside.read_bytes()
+        preview = plan(root, POLICY, categories=categories)
+>       assert preview["ready"] and [f["source"] for f in preview["files"]] == [outside.name]
+E       assert (False)
+
+tests\test_float_sort.py:34: AssertionError
+_ test_sort_ignores_entire_float_tree_and_undo_leaves_it_alone[__float__-False] _
+
+root = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/pytest-of-ryanf/pytest-512/test_sort_ignores_entire_float2/workspace')
+make_image = <function make_image.<locals>.create at 0x000001B6D8EBD850>
+categories = False, name = '__float__'
+
+    @pytest.mark.parametrize("categories", [False, True])
+    @pytest.mark.parametrize("name", ["_float_", "__float__", "_FLOAT_", "__FLOAT__"])
+    def test_sort_ignores_entire_float_tree_and_undo_leaves_it_alone(root, make_image, categories, name):
+        held = root / "user folders" / name
+        inside = make_image(held / "nested" / "private hockey painting.png")
+        (held / "private.xmp").write_bytes(b"retained metadata")
+        (held / "unreadable-video.mp4").write_bytes(b"not a decodable video")
+        (held / "notes.txt").write_text("user-owned storage")
+        (held / "empty").mkdir()
+        before = snapshot(held)
+        outside = make_image(root / "sort me.png")
+        original = outside.read_bytes()
+        preview = plan(root, POLICY, categories=categories)
+>       assert preview["ready"] and [f["source"] for f in preview["files"]] == [outside.name]
+E       assert (False)
+
+tests\test_float_sort.py:34: AssertionError
+_ test_sort_ignores_entire_float_tree_and_undo_leaves_it_alone[__float__-True] _
+
+root = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/pytest-of-ryanf/pytest-512/test_sort_ignores_entire_float3/workspace')
+make_image = <function make_image.<locals>.create at 0x000001B6D90700F0>
+categories = True, name = '__float__'
+
+    @pytest.mark.parametrize("categories", [False, True])
+    @pytest.mark.parametrize("name", ["_float_", "__float__", "_FLOAT_", "__FLOAT__"])
+    def test_sort_ignores_entire_float_tree_and_undo_leaves_it_alone(root, make_image, categories, name):
+        held = root / "user folders" / name
+        inside = make_image(held / "nested" / "private hockey painting.png")
+        (held / "private.xmp").write_bytes(b"retained metadata")
+        (held / "unreadable-video.mp4").write_bytes(b"not a decodable video")
+        (held / "notes.txt").write_text("user-owned storage")
+        (held / "empty").mkdir()
+        before = snapshot(held)
+        outside = make_image(root / "sort me.png")
+        original = outside.read_bytes()
+        preview = plan(root, POLICY, categories=categories)
+>       assert preview["ready"] and [f["source"] for f in preview["files"]] == [outside.name]
+E       assert (False)
+
+tests\test_float_sort.py:34: AssertionError
+_ test_sort_ignores_entire_float_tree_and_undo_leaves_it_alone[_FLOAT_-False] _
+
+root = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/pytest-of-ryanf/pytest-512/test_sort_ignores_entire_float4/workspace')
+make_image = <function make_image.<locals>.create at 0x000001B6D8E273D0>
+categories = False, name = '_FLOAT_'
+
+    @pytest.mark.parametrize("categories", [False, True])
+    @pytest.mark.parametrize("name", ["_float_", "__float__", "_FLOAT_", "__FLOAT__"])
+    def test_sort_ignores_entire_float_tree_and_undo_leaves_it_alone(root, make_image, categories, name):
+        held = root / "user folders" / name
+        inside = make_image(held / "nested" / "private hockey painting.png")
+        (held / "private.xmp").write_bytes(b"retained metadata")
+        (held / "unreadable-video.mp4").write_bytes(b"not a decodable video")
+        (held / "notes.txt").write_text("user-owned storage")
+        (held / "empty").mkdir()
+        before = snapshot(held)
+        outside = make_image(root / "sort me.png")
+        original = outside.read_bytes()
+        preview = plan(root, POLICY, categories=categories)
+>       assert preview["ready"] and [f["source"] for f in preview["files"]] == [outside.name]
+E       assert (False)
+
+tests\test_float_sort.py:34: AssertionError
+_ test_sort_ignores_entire_float_tree_and_undo_leaves_it_alone[_FLOAT_-True] __
+
+root = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/pytest-of-ryanf/pytest-512/test_sort_ignores_entire_float5/workspace')
+make_image = <function make_image.<locals>.create at 0x000001B6D8E3C0F0>
+categories = True, name = '_FLOAT_'
+
+    @pytest.mark.parametrize("categories", [False, True])
+    @pytest.mark.parametrize("name", ["_float_", "__float__", "_FLOAT_", "__FLOAT__"])
+    def test_sort_ignores_entire_float_tree_and_undo_leaves_it_alone(root, make_image, categories, name):
+        held = root / "user folders" / name
+        inside = make_image(held / "nested" / "private hockey painting.png")
+        (held / "private.xmp").write_bytes(b"retained metadata")
+        (held / "unreadable-video.mp4").write_bytes(b"not a decodable video")
+        (held / "notes.txt").write_text("user-owned storage")
+        (held / "empty").mkdir()
+        before = snapshot(held)
+        outside = make_image(root / "sort me.png")
+        original = outside.read_bytes()
+        preview = plan(root, POLICY, categories=categories)
+>       assert preview["ready"] and [f["source"] for f in preview["files"]] == [outside.name]
+E       assert (False)
+
+tests\test_float_sort.py:34: AssertionError
+_ test_sort_ignores_entire_float_tree_and_undo_leaves_it_alone[__FLOAT__-False] _
+
+root = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/pytest-of-ryanf/pytest-512/test_sort_ignores_entire_float6/workspace')
+make_image = <function make_image.<locals>.create at 0x000001B6D9070510>
+categories = False, name = '__FLOAT__'
+
+    @pytest.mark.parametrize("categories", [False, True])
+    @pytest.mark.parametrize("name", ["_float_", "__float__", "_FLOAT_", "__FLOAT__"])
+    def test_sort_ignores_entire_float_tree_and_undo_leaves_it_alone(root, make_image, categories, name):
+        held = root / "user folders" / name
+        inside = make_image(held / "nested" / "private hockey painting.png")
+        (held / "private.xmp").write_bytes(b"retained metadata")
+        (held / "unreadable-video.mp4").write_bytes(b"not a decodable video")
+        (held / "notes.txt").write_text("user-owned storage")
+        (held / "empty").mkdir()
+        before = snapshot(held)
+        outside = make_image(root / "sort me.png")
+        original = outside.read_bytes()
+        preview = plan(root, POLICY, categories=categories)
+>       assert preview["ready"] and [f["source"] for f in preview["files"]] == [outside.name]
+E       assert (False)
+
+tests\test_float_sort.py:34: AssertionError
+_ test_sort_ignores_entire_float_tree_and_undo_leaves_it_alone[__FLOAT__-True] _
+
+root = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/pytest-of-ryanf/pytest-512/test_sort_ignores_entire_float7/workspace')
+make_image = <function make_image.<locals>.create at 0x000001B6D9070720>
+categories = True, name = '__FLOAT__'
+
+    @pytest.mark.parametrize("categories", [False, True])
+    @pytest.mark.parametrize("name", ["_float_", "__float__", "_FLOAT_", "__FLOAT__"])
+    def test_sort_ignores_entire_float_tree_and_undo_leaves_it_alone(root, make_image, categories, name):
+        held = root / "user folders" / name
+        inside = make_image(held / "nested" / "private hockey painting.png")
+        (held / "private.xmp").write_bytes(b"retained metadata")
+        (held / "unreadable-video.mp4").write_bytes(b"not a decodable video")
+        (held / "notes.txt").write_text("user-owned storage")
+        (held / "empty").mkdir()
+        before = snapshot(held)
+        outside = make_image(root / "sort me.png")
+        original = outside.read_bytes()
+        preview = plan(root, POLICY, categories=categories)
+>       assert preview["ready"] and [f["source"] for f in preview["files"]] == [outside.name]
+E       assert (False)
+
+tests\test_float_sort.py:34: AssertionError
+____ test_direct_float_or_descendant_cannot_be_sorted[False-False-_float_] ____
+
+root = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/pytest-of-ryanf/pytest-512/test_direct_float_or_descendan0/workspace')
+make_image = <function make_image.<locals>.create at 0x000001B6D9070930>
+name = '_float_', nested = False, categories = False
+
+    @pytest.mark.parametrize("name", ["_float_", "__float__"])
+    @pytest.mark.parametrize("nested", [False, True])
+    @pytest.mark.parametrize("categories", [False, True])
+    def test_direct_float_or_descendant_cannot_be_sorted(root, make_image, name, nested, categories):
+        selected = root / name / "nested" if nested else root / name
+        source = make_image(selected / "painting.png")
+        before = snapshot(root)
+>       with pytest.raises(RiposteError, match="SORT_FLOAT_ROOT"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE RiposteError
+
+tests\test_float_sort.py:57: Failed
+___ test_direct_float_or_descendant_cannot_be_sorted[False-False-__float__] ___
+
+root = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/pytest-of-ryanf/pytest-512/test_direct_float_or_descendan1/workspace')
+make_image = <function make_image.<locals>.create at 0x000001B6D90716F0>
+name = '__float__', nested = False, categories = False
+
+    @pytest.mark.parametrize("name", ["_float_", "__float__"])
+    @pytest.mark.parametrize("nested", [False, True])
+    @pytest.mark.parametrize("categories", [False, True])
+    def test_direct_float_or_descendant_cannot_be_sorted(root, make_image, name, nested, categories):
+        selected = root / name / "nested" if nested else root / name
+        source = make_image(selected / "painting.png")
+        before = snapshot(root)
+>       with pytest.raises(RiposteError, match="SORT_FLOAT_ROOT"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE RiposteError
+
+tests\test_float_sort.py:57: Failed
+____ test_direct_float_or_descendant_cannot_be_sorted[False-True-_float_] _____
+
+root = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/pytest-of-ryanf/pytest-512/test_direct_float_or_descendan2/workspace')
+make_image = <function make_image.<locals>.create at 0x000001B6D90721F0>
+name = '_float_', nested = True, categories = False
+
+    @pytest.mark.parametrize("name", ["_float_", "__float__"])
+    @pytest.mark.parametrize("nested", [False, True])
+    @pytest.mark.parametrize("categories", [False, True])
+    def test_direct_float_or_descendant_cannot_be_sorted(root, make_image, name, nested, categories):
+        selected = root / name / "nested" if nested else root / name
+        source = make_image(selected / "painting.png")
+        before = snapshot(root)
+>       with pytest.raises(RiposteError, match="SORT_FLOAT_ROOT"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE RiposteError
+
+tests\test_float_sort.py:57: Failed
+___ test_direct_float_or_descendant_cannot_be_sorted[False-True-__float__] ____
+
+root = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/pytest-of-ryanf/pytest-512/test_direct_float_or_descendan3/workspace')
+make_image = <function make_image.<locals>.create at 0x000001B6D9072820>
+name = '__float__', nested = True, categories = False
+
+    @pytest.mark.parametrize("name", ["_float_", "__float__"])
+    @pytest.mark.parametrize("nested", [False, True])
+    @pytest.mark.parametrize("categories", [False, True])
+    def test_direct_float_or_descendant_cannot_be_sorted(root, make_image, name, nested, categories):
+        selected = root / name / "nested" if nested else root / name
+        source = make_image(selected / "painting.png")
+        before = snapshot(root)
+>       with pytest.raises(RiposteError, match="SORT_FLOAT_ROOT"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE RiposteError
+
+tests\test_float_sort.py:57: Failed
+____ test_direct_float_or_descendant_cannot_be_sorted[True-False-_float_] _____
+
+root = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/pytest-of-ryanf/pytest-512/test_direct_float_or_descendan4/workspace')
+make_image = <function make_image.<locals>.create at 0x000001B6D9072CF0>
+name = '_float_', nested = False, categories = True
+
+    @pytest.mark.parametrize("name", ["_float_", "__float__"])
+    @pytest.mark.parametrize("nested", [False, True])
+    @pytest.mark.parametrize("categories", [False, True])
+    def test_direct_float_or_descendant_cannot_be_sorted(root, make_image, name, nested, categories):
+        selected = root / name / "nested" if nested else root / name
+        source = make_image(selected / "painting.png")
+        before = snapshot(root)
+>       with pytest.raises(RiposteError, match="SORT_FLOAT_ROOT"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE RiposteError
+
+tests\test_float_sort.py:57: Failed
+___ test_direct_float_or_descendant_cannot_be_sorted[True-False-__float__] ____
+
+root = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/pytest-of-ryanf/pytest-512/test_direct_float_or_descendan5/workspace')
+make_image = <function make_image.<locals>.create at 0x000001B6D90735E0>
+name = '__float__', nested = False, categories = True
+
+    @pytest.mark.parametrize("name", ["_float_", "__float__"])
+    @pytest.mark.parametrize("nested", [False, True])
+    @pytest.mark.parametrize("categories", [False, True])
+    def test_direct_float_or_descendant_cannot_be_sorted(root, make_image, name, nested, categories):
+        selected = root / name / "nested" if nested else root / name
+        source = make_image(selected / "painting.png")
+        before = snapshot(root)
+>       with pytest.raises(RiposteError, match="SORT_FLOAT_ROOT"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE RiposteError
+
+tests\test_float_sort.py:57: Failed
+_____ test_direct_float_or_descendant_cannot_be_sorted[True-True-_float_] _____
+
+root = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/pytest-of-ryanf/pytest-512/test_direct_float_or_descendan6/workspace')
+make_image = <function make_image.<locals>.create at 0x000001B6D9072A30>
+name = '_float_', nested = True, categories = True
+
+    @pytest.mark.parametrize("name", ["_float_", "__float__"])
+    @pytest.mark.parametrize("nested", [False, True])
+    @pytest.mark.parametrize("categories", [False, True])
+    def test_direct_float_or_descendant_cannot_be_sorted(root, make_image, name, nested, categories):
+        selected = root / name / "nested" if nested else root / name
+        source = make_image(selected / "painting.png")
+        before = snapshot(root)
+>       with pytest.raises(RiposteError, match="SORT_FLOAT_ROOT"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE RiposteError
+
+tests\test_float_sort.py:57: Failed
+____ test_direct_float_or_descendant_cannot_be_sorted[True-True-__float__] ____
+
+root = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/pytest-of-ryanf/pytest-512/test_direct_float_or_descendan7/workspace')
+make_image = <function make_image.<locals>.create at 0x000001B6D9104040>
+name = '__float__', nested = True, categories = True
+
+    @pytest.mark.parametrize("name", ["_float_", "__float__"])
+    @pytest.mark.parametrize("nested", [False, True])
+    @pytest.mark.parametrize("categories", [False, True])
+    def test_direct_float_or_descendant_cannot_be_sorted(root, make_image, name, nested, categories):
+        selected = root / name / "nested" if nested else root / name
+        source = make_image(selected / "painting.png")
+        before = snapshot(root)
+>       with pytest.raises(RiposteError, match="SORT_FLOAT_ROOT"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE RiposteError
+
+tests\test_float_sort.py:57: Failed
+____________ test_sort_discovery_does_not_enter_float_directories _____________
+
+root = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/pytest-of-ryanf/pytest-512/test_sort_discovery_does_not_e0/workspace')
+make_image = <function make_image.<locals>.create at 0x000001B6D9105640>
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001B6D8FEF950>
+
+    def test_sort_discovery_does_not_enter_float_directories(root, make_image, monkeypatch):
+        make_image(root / "visible painting.png")
+        for name in ("_float_", "__float__"):
+            make_image(root / name / "private hockey painting.png")
+        import os
+        real = os.scandir
+    
+        def guarded(path):
+            assert not any(p.casefold() in {"_float_", "__float__"} for p in Path(path).parts)
+            return real(path)
+    
+        with monkeypatch.context() as patch:
+            patch.setattr(os, "scandir", guarded)
+>           preview = plan(root, POLICY, categories=True)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_float_sort.py:102: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\riposte\organizer.py:78: in plan
+    return category_plan(root, policy, assignments=assignments, progress=progress)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\riposte\category_sort.py:72: in category_plan
+    for index, (path, kind) in enumerate(walk_inputs(root), 1):
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\riposte\organizer.py:27: in walk_inputs
+    for directory, dirs, names in os.walk(root, followlinks=False, onerror=unreadable.append):
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen os>:377: in walk
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+path = 'C:\\Users\\ryanf\\AppData\\Local\\Temp\\pytest-of-ryanf\\pytest-512\\test_sort_discovery_does_not_e0\\workspace\\__float__'
+
+    def guarded(path):
+>       assert not any(p.casefold() in {"_float_", "__float__"} for p in Path(path).parts)
+E       assert not True
+E        +  where True = any(<generator object test_sort_discovery_does_not_enter_float_directories.<locals>.guarded.<locals>.<genexpr> at 0x000001B6D9062740>)
+
+tests\test_float_sort.py:97: AssertionError
+__________ test_combined_sort_preview_uses_the_same_exclusion[False] __________
+
+root = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/pytest-of-ryanf/pytest-512/test_combined_sort_preview_use0/workspace')
+make_image = <function make_image.<locals>.create at 0x000001B6D91064B0>
+categories = False
+
+    @pytest.mark.parametrize("categories", [False, True])
+    def test_combined_sort_preview_uses_the_same_exclusion(root, make_image, categories):
+        make_image(root / "visible.png")
+        held = make_image(root / "__float__" / "held.png")
+        preview = execute(Request("sort-riposte-plan", root, {"all_images": True, "categories": categories}))
+        assert preview["ready"]
+>       assert [f["source"] for f in preview["sorting"]["files"]] == ["visible.png"]
+E       AssertionError: assert ['visible.png...t__/held.png'] == ['visible.png']
+E         
+E         Left contains one more item: '__float__/held.png'
+E         Use -v to get more diff
+
+tests\test_float_sort.py:115: AssertionError
+__________ test_combined_sort_preview_uses_the_same_exclusion[True] ___________
+
+root = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/pytest-of-ryanf/pytest-512/test_combined_sort_preview_use1/workspace')
+make_image = <function make_image.<locals>.create at 0x000001B6D9184040>
+categories = True
+
+    @pytest.mark.parametrize("categories", [False, True])
+    def test_combined_sort_preview_uses_the_same_exclusion(root, make_image, categories):
+        make_image(root / "visible.png")
+        held = make_image(root / "__float__" / "held.png")
+        preview = execute(Request("sort-riposte-plan", root, {"all_images": True, "categories": categories}))
+        assert preview["ready"]
+>       assert [f["source"] for f in preview["sorting"]["files"]] == ["visible.png"]
+E       AssertionError: assert ['visible.png...t__/held.png'] == ['visible.png']
+E         
+E         Left contains one more item: '__float__/held.png'
+E         Use -v to get more diff
+
+tests\test_float_sort.py:115: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/test_float_sort.py::test_sort_ignores_entire_float_tree_and_undo_leaves_it_alone[_float_-False]
+FAILED tests/test_float_sort.py::test_sort_ignores_entire_float_tree_and_undo_leaves_it_alone[_float_-True]
+FAILED tests/test_float_sort.py::test_sort_ignores_entire_float_tree_and_undo_leaves_it_alone[__float__-False]
+FAILED tests/test_float_sort.py::test_sort_ignores_entire_float_tree_and_undo_leaves_it_alone[__float__-True]
+FAILED tests/test_float_sort.py::test_sort_ignores_entire_float_tree_and_undo_leaves_it_alone[_FLOAT_-False]
+FAILED tests/test_float_sort.py::test_sort_ignores_entire_float_tree_and_undo_leaves_it_alone[_FLOAT_-True]
+FAILED tests/test_float_sort.py::test_sort_ignores_entire_float_tree_and_undo_leaves_it_alone[__FLOAT__-False]
+FAILED tests/test_float_sort.py::test_sort_ignores_entire_float_tree_and_undo_leaves_it_alone[__FLOAT__-True]
+FAILED tests/test_float_sort.py::test_direct_float_or_descendant_cannot_be_sorted[False-False-_float_]
+FAILED tests/test_float_sort.py::test_direct_float_or_descendant_cannot_be_sorted[False-False-__float__]
+FAILED tests/test_float_sort.py::test_direct_float_or_descendant_cannot_be_sorted[False-True-_float_]
+FAILED tests/test_float_sort.py::test_direct_float_or_descendant_cannot_be_sorted[False-True-__float__]
+FAILED tests/test_float_sort.py::test_direct_float_or_descendant_cannot_be_sorted[True-False-_float_]
+FAILED tests/test_float_sort.py::test_direct_float_or_descendant_cannot_be_sorted[True-False-__float__]
+FAILED tests/test_float_sort.py::test_direct_float_or_descendant_cannot_be_sorted[True-True-_float_]
+FAILED tests/test_float_sort.py::test_direct_float_or_descendant_cannot_be_sorted[True-True-__float__]
+FAILED tests/test_float_sort.py::test_sort_discovery_does_not_enter_float_directories
+FAILED tests/test_float_sort.py::test_combined_sort_preview_uses_the_same_exclusion[False]
+FAILED tests/test_float_sort.py::test_combined_sort_preview_uses_the_same_exclusion[True]
+19 failed, 4 passed in 2.00s

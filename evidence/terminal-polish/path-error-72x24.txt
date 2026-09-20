@@ -1,0 +1,24 @@
+                                                                        
+   R I P O S T E    /  Riposte Sorter                                   
+                                                                        
+  --------------------------------------------------------------------  
+   MAIN MENU / Riposte Sorter                                           
+  +- EDIT / ENTER PATH ----------------------------------------------+  
+  |                                                                  |  
+  |  Paste an existing image folder. Quotes are accepted. Esc keeps  |  
+  |  the current folder.                                             |  
+  |                                                                  |  
+  |                                                                  |  
+  |   a\Local\Temp\riposte-polish-capture-v206lg1s\missing-folder    |  
+  |                                                              ^   |  
+  |  Folder not found. Choose an existing folder.                    |  
+  |                                                                  |  
+  |  [Enter] save   [Esc] discard   [Ctrl+U] clear                   |  
+  |                                                                  |  
+  +------------------------------------------------------------------+  
+   _float_ / __float__: never sorted; RIPOSTE allowed.                  
+   Paste an existing image folder. Quotes are accepted. Esc keeps...    
+  --------------------------------------------------------------------  
+   [Enter] Save   [Esc] Discard   [Ctrl+U] Clear   [F1] Help            
+                                                                        
+                                                                        

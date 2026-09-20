@@ -106,6 +106,31 @@ journals; they are never PNG metadata or publishing pack contents.
   This English-language workflow accepts Unicode titles/categories; it does
   not claim translated UI or cross-platform assistive technology certification.
 
+### Terminal polish and reserved user storage / 2026-09-20
+
+- Folder paging matches the visible row count. Both Backspace and the parent
+  row restore the child folder's focus. Failed navigation retains the current
+  selection. Invalid pasted paths retain input and show actionable correction.
+- Blocked sorter previews show BLOCKED and Return, with `w` opening Full Sort
+  Workshop using the reviewed settings. Empty/already-sorted previews show
+  NO CHANGES and cannot open unnecessary REPLACE confirmation. Dry Run cannot
+  apply. Read-only sort/undo previews do not reload unrelated publishing history.
+- Confirmation displays the bound root, complete replacement/undo warning, and
+  working F1/F4 help/command views. A submitted confirmation and consumed preview
+  leave the back stack on success or failure; cancellation before submission
+  still returns to the preview. Failed sorter results retain `g` path recovery.
+- `policy.FLOAT_DIRECTORIES` and `sort_excluded` own the exact case-insensitive
+  `_float_` / `__float__` directory rule. The organizer prunes these subtrees
+  before reading media; ordinary/category planners, discovery and organization
+  audit use the same scope. A selected sort root inside either is refused before
+  workspace initialization. Similarly named files and directories are included.
+- The exclusion applies to menu, CLI, API and combined sorting through the shared
+  engine. It does not apply to `intake.input_files`: standalone RIPOSTE can process
+  float storage, even using it as its results workspace. Existing explicit undo
+  follows its recorded journal; the rule does not rewrite historical recovery.
+- No optional model or protection efficacy is qualified by synthetic CPU tests.
+  Frozen register reconciliation and clean-install qualification remain deferred.
+
 ### Canonical UI Map
 
 | Capability | Canonical owner | Source of truth | Allowed variants | Verification |

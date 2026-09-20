@@ -1,0 +1,24 @@
+                                                                        
+   R I P O S T E    /  Riposte Sorter / Review Sort                     
+                                                                        
+  --------------------------------------------------------------------  
+   MAIN MENU / Riposte Sorter / Review Sort                             
+                                                                        
+   SORT PREVIEW                                          [NO CHANGES]   
+                                                                        
+   > Overview       Details       JSON                                  
+   ----------                                                           
+    0 To sort   |   0 Already sorted   |   0 Blockers                   
+                                                                        
+    WHAT THIS OPERATION DOES  --------------------------------------    
+    Reconstruct date-only PNGs, classify by date and resolution,        
+    then name them consistently.                                        
+    Images go into img; videos into vid. Videos keep all bytes and      
+    metadata; protection is image-only.                                 
+    Private undo history retains original files, names and metadata     
+   OVERVIEW / lines 1-8 of 19                                           
+   Nothing to sort. No files changed. Enter returns to the sorter.      
+  --------------------------------------------------------------------  
+   [Enter] Return   [w] Full Sort Workshop   [g] Enter Path             
+   [t] Report view   [Esc] Back   [F1] Help                             
+                                                                        

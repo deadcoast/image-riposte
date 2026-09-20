@@ -14,6 +14,7 @@ FORMAT_NAMES = frozenset({"PNG", "JPEG", "WEBP", "BMP", "TIFF", "GIF"})
 IMAGE_SUFFIXES = frozenset({".png", ".jpg", ".jpeg", ".webp", ".bmp", ".tif", ".tiff", ".gif", ".avif", ".heic", ".heif", ".psd", ".svg", ".jxl", ".exr"})
 SIDECAR_SUFFIXES = frozenset({".xmp", ".exif", ".iptc", ".aae"})
 CACHE_NAMES = frozenset({".ds_store", "thumbs.db", "desktop.ini"})
+FLOAT_DIRECTORIES = frozenset({"_float_", "__float__"})
 CANONICAL = re.compile(r"^(202[456]|EVERYTHING_ELSE)/(" + "|".join(MONTHS) + r")/(?:img/(?:(?P<category>[^/]+)/)?)?(SML|MED|LRG|XTL)/(SML|MED|LRG|XTL)([0-9]{2,})\.png$")
 
 @dataclass(frozen=True)
@@ -27,6 +28,15 @@ class Policy:
             raise RiposteError("DATE_POLICY_INVALID")
         if self.max_pixels < 1 or self.max_file_bytes < 1:
             raise RiposteError("RESOURCE_LIMIT_INVALID")
+
+def sort_excluded(directory: Path) -> bool:
+    """Reserved user directories and their descendants are outside sorting.
+
+    Pass a directory (a file's parent for catalog records). Protection intake
+    deliberately does not use this policy. Match exact names, ignoring case.
+    """
+    return any(part.casefold() in FLOAT_DIRECTORIES for part in directory.parts)
+
 
 def size_bin(width: int, height: int) -> str:
     """Fixed, pixel-area bins; neither file size nor an aesthetic quality claim."""

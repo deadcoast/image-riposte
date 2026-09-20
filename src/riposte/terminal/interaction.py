@@ -28,7 +28,9 @@ def fields_for(page):
 
 def hints(state):
     p=state.page
-    if state.editor:return [Hint("Enter","Save","Validate and save this field; it does not run an operation."),Hint("Esc","Discard","Leave the field unchanged."),Hint("Ctrl+U","Clear","Clear this field's input.")]
+    if state.editor:
+        primary = Hint("Enter", "Preview", "Use this folder and run the requested read-only sort preview.") if state.editor.target == "sort-path" and p.values.get("pending_sort") else Hint("Enter","Save","Validate and save this field; it does not run an operation.")
+        return [primary,Hint("Esc","Discard","Leave the field unchanged."),Hint("Ctrl+U","Clear","Clear this field's input.")]
     if p.query_edit:return [Hint("Enter","Finish search","Keep the filter and return to the filtered list."),Hint("Esc","Finish search","Close search input without executing anything."),Hint("Ctrl+U","Clear filter","Show all rows again.")]
     if p.name == "sorter":
         return [Hint("Enter", "Choose", "Run the highlighted action; arrows move focus."),
@@ -78,17 +80,26 @@ def hints(state):
         return controls+[Hint("Esc","Back","Return without starting another action.")]
     if p.name=="result":
         name=p.request.name if p.request else ""
+        if p.code:
+            controls = [Hint("Enter", "Return", "Return without starting another operation.")]
+            if p.values.get("sorter_mode"): controls.append(Hint("g", "Enter Path", "Return to Riposte Sorter and choose another folder."))
+            return controls + [Hint("Esc", "Back", "Return to the previous screen.")]
         primary=(Hint("Enter","Confirm undo","Open the explicit UNDO confirmation; conflicts block restoration.") if name=="undo-sort" and not p.code and p.result.get("ready")
-                 else Hint("Enter","Apply policy","Open the explicit REPLACE confirmation; no write from a single Enter.") if name=="organize" and not p.code
+                 else Hint("Enter","Confirm sort","Open the explicit REPLACE confirmation; no write from a single Enter.") if name=="organize" and not p.code and (not p.request.values.get("categories") or p.result.get("ready"))
                  else Hint("Enter","Confirm both stages","Open REPLACE confirmation before sorting and protection.") if name=="sort-riposte-plan" and not p.code
                  else Hint("Enter","Start protection","Run this planned selection with its configured models.") if name in {"plan","riposte-plan"} and not p.code
                  else Hint("Enter","Batches","Open publishing batches.") if name=="package" and not p.code
                  else Hint("Enter","Return","Return to the previous screen."))
         if p.values.get("sorter_mode") == "dry-run":
             primary = Hint("Enter", "Return", "Dry Run changes nothing. Return to Riposte Sorter to choose Sort.")
-        saving = [Hint("s", "Save rules", "Confirm SAVE to persist this reviewed replacement without moving files.")] if name == "category-rules" and p.result.get("status") == "DRAFT" else []
+        elif p.values.get("sort_changes") is False:
+            primary = Hint("Enter", "Return", "This preview has no changes to apply. Return to Riposte Sorter.")
+        saving = [Hint("s", "Save rules", "Confirm SAVE to persist this reviewed replacement without moving files.")] if name == "category-rules" and not p.code and p.result.get("status") == "DRAFT" else []
         if p.values.get("sorter_mode"):
+            if name == "organize" and not p.code:
+                saving.append(Hint("w", "Full Sort Workshop", "Adjust this preview's settings; inspect blockers before previewing again."))
             saving.append(Hint("g", "Enter Path", "Return to Riposte Sorter and choose another folder."))
+            return [primary,*saving,Hint("t","Report view","Cycle Overview, complete Details, and syntax-coloured JSON."),Hint("Up/Down","Scroll","Scroll the report; Page Up/Down move a page."),Hint("Esc","Back","Return to Riposte Sorter.")]
         return [primary,*saving,Hint("t","Report view","Cycle Overview, complete Details, and syntax-coloured JSON."),Hint("Up/Down","Scroll","Scroll the selected report view; Page Up/Down move a page."),Hint("b","Batches","Open publishing batches."),Hint("Esc","Back","Return to the previous screen.")]
     controls=rows.get(p.name,[])
     if p.name=="picker":
@@ -112,13 +123,18 @@ def context(state):
         rows=view_rows(state)
         return rows[min(p.cursor,len(rows)-1)]["summary"] if rows else "No matching actions."
     if p.name=="picker":return "Selection is read-only. Enter on the first row confirms your choice."
-    if p.name=="sorter":return "Includes subfolders. Sort previews before REPLACE; Dry Run only."
+    if p.name=="sorter":return "Subfolders included; float storage excluded. Sort previews first."
     if p.name=="form":
         fields=fields_for(p)
         return fields[p.cursor].help if p.cursor<len(fields) else BY_KEY[p.action].summary
     if p.name=="library":return f"{len(state.selected)} selected. Enter selects; i inspects. Selection never changes files."
     if p.name=="item":return "Review actual pixels before approval. An ASCII preview is not a quality decision."
-    if p.name=="result":return "Overview explains the result; Details preserves every field; JSON is optional."
+    if p.name=="result":
+        if p.values.get("sorter_mode") and not p.code:
+            if p.request.name == "organize" and not p.result.get("ready"): return "Blocked. Nothing changed. Review blockers; w opens the workshop."
+            if p.values.get("sort_changes") is False: return "Nothing to sort. No files changed. Enter returns to the sorter."
+            if p.values["sorter_mode"] == "dry-run": return "Dry Run only. No files changed. Enter returns to the sorter."
+        return "Overview explains the result; Details preserves every field; JSON is optional."
     if p.name=="batch":return "Ready means generated, not approved. Only approved images enter a pack."
     return ""
 

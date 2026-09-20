@@ -9,7 +9,7 @@ from PIL import Image, UnidentifiedImageError
 from .errors import RiposteError
 from .catalog_guard import CatalogGuard
 from .locking import LEASE_NAME
-from .policy import Policy, IMAGE_SUFFIXES, SIDECAR_SUFFIXES, CACHE_NAMES, folder_for, sort_folder_for, path_category, is_link, same_file_state
+from .policy import Policy, IMAGE_SUFFIXES, SIDECAR_SUFFIXES, CACHE_NAMES, FLOAT_DIRECTORIES, folder_for, sort_folder_for, path_category, is_link, same_file_state, sort_excluded
 from .sanitize import decode_clean, encode_clean, png_audit
 from .store import check_root, workspace_lock, catalog, record_image, atomic_clean_write, write_report, safe_child, state_name, connect
 from .video import VIDEO_SUFFIXES, inspect_video, video_catalog, record_video, file_hash
@@ -21,14 +21,16 @@ from .records import CatalogRow
 Progress = Callable[[dict], None]
 
 def walk_inputs(root: Path):
-    """No generated previews, linked directories, junctions, or raw-path logging."""
+    """Sort scope excludes float storage, generated previews and linked paths."""
     root = check_root(root)
+    if sort_excluded(root.resolve()):
+        return
     unreadable = []
     for directory, dirs, names in os.walk(root, followlinks=False, onerror=unreadable.append):
         current = Path(directory)
         for name in sorted(dirs.copy()):
             path = current / name
-            if current == root and name == state_name(root):
+            if name.casefold() in FLOAT_DIRECTORIES or current == root and name == state_name(root):
                 dirs.remove(name)
             elif is_link(path):
                 dirs.remove(name)
@@ -59,7 +61,9 @@ def walk_inputs(root: Path):
         yield Path(error.filename), "DIRECTORY_UNREADABLE"
 
 def known_good(root: Path) -> dict[str, CatalogRow]:
-    return {row["relative"]: row for row in catalog(root) + video_catalog(root)}
+    directory = root.resolve()
+    return {row["relative"]: row for row in catalog(root) + video_catalog(root)
+            if not sort_excluded((directory / row["relative"]).parent)}
 
 def _validate_managed(path: Path, row: CatalogRow) -> bool:
     try:

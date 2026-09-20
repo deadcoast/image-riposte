@@ -9,7 +9,7 @@ import time
 from .actions import ACTIONS, BY_KEY, Field, defaults, make_request, parse_value
 from .jobs import Operation, safe_code
 from .keyboard import Key
-from .output import Presentation
+from .output import Presentation, RECOVERY
 from .preview import make_preview
 from .render import view_rows, scroll_limit
 from .service import Request, execute, image_bytes, root_of
@@ -105,12 +105,15 @@ class Controller:
         p = self.state.page
         picker = p.result
         row = self.selected_row()
+        previous_directory = picker.directory
+        returning_to_parent = False
         if key.name == "backspace":
             picker.enter(picker.directory.parent)
             if picker.error:
                 self.state.notice = picker.error; return
             p.cursor = 0
             p.values.pop("locations", None)
+            returning_to_parent = True
         elif key.text == "l":
             p.rows = locations(); p.cursor = 0; p.values["locations"] = True; return
         elif key.text == "g":
@@ -132,11 +135,15 @@ class Controller:
                 if picker.error:
                     self.state.notice = picker.error; return
                 p.cursor = 0; p.values.pop("locations", None)
+                returning_to_parent = row["kind"] == "parent"
             elif row["kind"] == "file": picker.toggle(row["path"])
         else:
             # Do not replace the displayed locations or rescan on ignored keys.
             return
         p.rows = picker.rows()
+        if returning_to_parent:
+            p.cursor = next((i for i, item in enumerate(p.rows)
+                             if item.get("path") == previous_directory and item["kind"] == "directory"), 0)
         self.state.notice = picker.error
 
     def accept_picker(self) -> None:
@@ -256,8 +263,13 @@ class Controller:
         self.state.last_request = request
         self.state.operation_request = request
         mode = self.state.page.values.get("sorter_mode") if self.state.page.name == "confirm" else None
+        confirmed = self.state.page.name == "confirm"
+        if confirmed and self.state.stack and self.state.stack[-1].name == "result":
+            # A submitted confirmation and its consumed preview cannot be
+            # revisited after success, cancellation or failure.
+            self.state.stack.pop()
         self.show(Page("job", "ACTIVE OPERATION", request=request,
-                       values={"sorter_mode": mode} if mode else {}))
+                       values={"sorter_mode": mode} if mode else {}), remember=not confirmed)
         self.state.operation = self.factory(request).start()
 
     def confirm(self, request: Request, word: str, title: str) -> None:
@@ -278,13 +290,16 @@ class Controller:
                     self.state.stack = self.state.stack[:index+1]
                     break
         self.state.operation = None
-        try: self.refresh()
+        try:
+            if request.name not in {"organize", "undo-sort"}: self.refresh()
         except RiposteError as exc: self.state.notice = safe_code(exc.code)
         if self.state.exit_after_job:
             self.state.running = False
             return
         if snapshot.code:
-            self.show(Page("result", "OPERATION STOPPED", code=snapshot.code, request=request), remember=False)
+            self.show(Page("result", "Riposte Sorter / Stopped" if sorter_mode else "OPERATION STOPPED",
+                           code=snapshot.code, request=request,
+                           values={"sorter_mode": sorter_mode} if sorter_mode else {}), remember=False)
         elif request.name in {"publish", "riposte", "sort-riposte", "resume", "review"} and isinstance(result, dict) and result.get("id"):
             self.batch(result["id"], remember=False, result=result)
         elif request.name == "open-image":
@@ -296,6 +311,9 @@ class Controller:
             self.show(Page("result", heading, result=result, request=request), remember=False)
             if sorter_mode:
                 self.state.page.values["sorter_mode"] = sorter_mode
+                if request.name == "organize":
+                    counts = result.get("counts", {})
+                    self.state.page.values["sort_changes"] = bool(counts.get("files_to_sort") or counts.get("sidecars_to_discard"))
                 self.state.page.title = "Riposte Sorter / " + {"dry-run": "Dry Run", "sort": "Review Sort", "apply": "Sort Result"}[sorter_mode]
 
     def selected_row(self):
@@ -368,9 +386,9 @@ class Controller:
             if e.target == "picker-location":
                 picker = self.state.page.result
                 path = Path(value).expanduser().absolute()
-                if not path.is_dir(): raise ValueError
+                if not path.is_dir(): raise RiposteError("ROOT_INVALID")
                 picker.enter(path)
-                if picker.error: raise ValueError
+                if picker.error: raise RiposteError("INPUT_LINK_REQUIRES_REVIEW")
                 self.state.page.rows = picker.rows()
                 self.state.page.cursor = 0
                 self.state.page.values.pop("locations", None)
@@ -394,7 +412,12 @@ class Controller:
                 self.state.page.values[e.field.key] = value
                 if e.field.key.startswith("input"): self.state.page.values.pop("input_paths", None)
             self.state.editor = None
-        except (RiposteError, OSError, ValueError): e.error = True
+        except (RiposteError, OSError, ValueError) as exc:
+            e.error = True
+            e.error_message = ("Folder not found. Choose an existing folder." if isinstance(exc, RiposteError) and exc.code == "ROOT_INVALID"
+                               else RECOVERY.get(exc.code, "Check this value, then try again.") if isinstance(exc, RiposteError)
+                               else "Cannot read this location. Check access and try again." if isinstance(exc, OSError)
+                               else "Invalid value. Correct this field.")
 
     def editor_key(self, key: Key) -> None:
         e = cast(Editor, self.state.editor)
@@ -417,6 +440,7 @@ class Controller:
             text = text[:4096-len(e.value)]
             e.value = e.value[:e.position] + text + e.value[e.position:]; e.position += len(text)
         e.error = False
+        e.error_message = ""
 
     def freeze_motion(self) -> None:
         self.state.paused = not self.state.paused
@@ -463,6 +487,8 @@ class Controller:
             elif key.name in {"eof", "interrupt"}: p.query_edit = False
             return
         if p.name == "confirm":
+            if key.name == "f1": return self.show(Page("help", "CONTEXTUAL HELP", result=contextual_help(self.state)))
+            if key.name == "f4": return self.show(Page("command", "DIRECT COMMAND", request=p.confirm_request))
             if key.name in {"escape", "interrupt"}: return self.back()
             if key.name == "eof": self.state.running = False; return
             if key.name == "backspace": p.values["confirmation"] = p.values["confirmation"][:-1]
@@ -487,8 +513,9 @@ class Controller:
         if key.name == "escape" or ch == "0": return self.back()
         if key.name in {"up", "backtab"} or ch == "k": return self.move(-1)
         if key.name in {"down", "tab"} or ch == "j": return self.move(1)
-        if key.name == "pageup": return self.move(-max(1, self.state.height-16))
-        if key.name == "pagedown": return self.move(max(1, self.state.height-16))
+        page_size = max(1, self.state.height - (18 if p.name == "picker" else 16))
+        if key.name == "pageup": return self.move(-page_size)
+        if key.name == "pagedown": return self.move(page_size)
         if key.name == "home": p.cursor = 0; p.scroll = 0; return
         if key.name == "end": return self.move(1000000)
         if ch == "/" and p.name in {"home", "library", "batches", "batch", "workshop"}: p.query_edit = True; return
@@ -588,7 +615,13 @@ class Controller:
             if ch == "g" and p.values.get("sorter_mode"):
                 self.back()
                 return self.sort_path()
-            if p.values.get("sorter_mode") == "dry-run" and (key.name == "enter" or ch == "a"):
+            if p.code:
+                if key.name == "enter": return self.back()
+                return
+            if ch == "w" and p.values.get("sorter_mode") and request and request.name == "organize":
+                self.back()
+                return self.action("organize", request.values)
+            if (p.values.get("sorter_mode") == "dry-run" or p.values.get("sort_changes") is False) and (key.name == "enter" or ch == "a"):
                 return self.back()
             if ch == "t" and not p.code:
                 report_views = ("overview", "details", "json")
@@ -597,7 +630,9 @@ class Controller:
                 return
             if key.name == "enter":
                 if p.code: return self.back()
-                if request and request.name == "organize": ch = "a"
+                if request and request.name == "organize":
+                    if request.values.get("categories") and not p.result.get("ready"): return self.back()
+                    ch = "a"
                 elif request and request.name == "undo-sort" and p.result.get("ready"): ch = "u"
                 elif request and request.name in {"plan", "riposte-plan", "sort-riposte-plan"}: ch = "r"
                 elif request and request.name == "package": return self.batches()
@@ -606,7 +641,7 @@ class Controller:
                 if request.values.get("categories") and not p.result.get("ready"):
                     self.state.notice = "Resolve blockers in Full Sort Workshop (main-menu 8), then retry."; return
                 values = cast(RequestValues, {**request.values, "plan_id": p.result["plan_id"]})
-                self.confirm(Request("apply", request.root, values), "REPLACE", "Apply the displayed sorting plan. Original names, bytes and category assignments remain privately recoverable.")
+                self.confirm(Request("apply", request.root, values), "REPLACE", "Apply the displayed sorting plan.")
                 if p.values.get("sorter_mode"): self.state.page.values["sorter_mode"] = "apply"
                 return
             if ch == "s" and request and request.name == "category-rules" and p.result.get("status") == "DRAFT":

@@ -1,0 +1,262 @@
+FFFFFFFFFFFFF                                                            [100%]
+================================== FAILURES ===================================
+__ test_picker_page_jump_matches_visible_rows_and_parent_restores_focus[24] ___
+
+menu = <riposte.terminal.controller.Controller object at 0x0000024A3A43EBA0>
+root = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/pytest-of-ryanf/pytest-509/test_picker_page_jump_matches_0/workspace')
+height = 24
+
+    @pytest.mark.parametrize("height", [24, 34, 46])
+    def test_picker_page_jump_matches_visible_rows_and_parent_restores_focus(menu, root, height):
+        for n in range(80): (root / f"folder-{n:02d}").mkdir()
+        menu.state.height = height
+        menu.key(Key("char", "b"))
+        menu.key(Key("pagedown"))
+>       assert menu.state.page.cursor == height - 18
+E       AssertionError: assert 8 == (24 - 18)
+E        +  where 8 = Page(name='picker', title='SORT / SELECT FOLDER', cursor=8, query='', query_edit=False, scroll=0, report_view='overvie..., preview=None, kind='candidate', view='identity', report={}, confirm_word='', confirm_request=None, success_page=None).cursor
+E        +    where Page(name='picker', title='SORT / SELECT FOLDER', cursor=8, query='', query_edit=False, scroll=0, report_view='overvie..., preview=None, kind='candidate', view='identity', report={}, confirm_word='', confirm_request=None, success_page=None) = Session(root=WindowsPath('C:/Users/ryanf/AppData/Local/Temp/pytest-of-ryanf/pytest-509/test_picker_page_jump_matches_0...sed=True, frozen_time=0.0, running=True, exit_after_job=False, switch_linear=False, handoff=None, width=100, height=24).page
+E        +      where Session(root=WindowsPath('C:/Users/ryanf/AppData/Local/Temp/pytest-of-ryanf/pytest-509/test_picker_page_jump_matches_0...sed=True, frozen_time=0.0, running=True, exit_after_job=False, switch_linear=False, handoff=None, width=100, height=24) = <riposte.terminal.controller.Controller object at 0x0000024A3A43EBA0>.state
+
+tests\test_terminal_polish.py:33: AssertionError
+__ test_picker_page_jump_matches_visible_rows_and_parent_restores_focus[34] ___
+
+menu = <riposte.terminal.controller.Controller object at 0x0000024A3A5F0E10>
+root = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/pytest-of-ryanf/pytest-509/test_picker_page_jump_matches_1/workspace')
+height = 34
+
+    @pytest.mark.parametrize("height", [24, 34, 46])
+    def test_picker_page_jump_matches_visible_rows_and_parent_restores_focus(menu, root, height):
+        for n in range(80): (root / f"folder-{n:02d}").mkdir()
+        menu.state.height = height
+        menu.key(Key("char", "b"))
+        menu.key(Key("pagedown"))
+>       assert menu.state.page.cursor == height - 18
+E       AssertionError: assert 18 == (34 - 18)
+E        +  where 18 = Page(name='picker', title='SORT / SELECT FOLDER', cursor=18, query='', query_edit=False, scroll=0, report_view='overvi..., preview=None, kind='candidate', view='identity', report={}, confirm_word='', confirm_request=None, success_page=None).cursor
+E        +    where Page(name='picker', title='SORT / SELECT FOLDER', cursor=18, query='', query_edit=False, scroll=0, report_view='overvi..., preview=None, kind='candidate', view='identity', report={}, confirm_word='', confirm_request=None, success_page=None) = Session(root=WindowsPath('C:/Users/ryanf/AppData/Local/Temp/pytest-of-ryanf/pytest-509/test_picker_page_jump_matches_1...sed=True, frozen_time=0.0, running=True, exit_after_job=False, switch_linear=False, handoff=None, width=100, height=34).page
+E        +      where Session(root=WindowsPath('C:/Users/ryanf/AppData/Local/Temp/pytest-of-ryanf/pytest-509/test_picker_page_jump_matches_1...sed=True, frozen_time=0.0, running=True, exit_after_job=False, switch_linear=False, handoff=None, width=100, height=34) = <riposte.terminal.controller.Controller object at 0x0000024A3A5F0E10>.state
+
+tests\test_terminal_polish.py:33: AssertionError
+__ test_picker_page_jump_matches_visible_rows_and_parent_restores_focus[46] ___
+
+menu = <riposte.terminal.controller.Controller object at 0x0000024A3A5F1D10>
+root = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/pytest-of-ryanf/pytest-509/test_picker_page_jump_matches_2/workspace')
+height = 46
+
+    @pytest.mark.parametrize("height", [24, 34, 46])
+    def test_picker_page_jump_matches_visible_rows_and_parent_restores_focus(menu, root, height):
+        for n in range(80): (root / f"folder-{n:02d}").mkdir()
+        menu.state.height = height
+        menu.key(Key("char", "b"))
+        menu.key(Key("pagedown"))
+>       assert menu.state.page.cursor == height - 18
+E       AssertionError: assert 30 == (46 - 18)
+E        +  where 30 = Page(name='picker', title='SORT / SELECT FOLDER', cursor=30, query='', query_edit=False, scroll=0, report_view='overvi..., preview=None, kind='candidate', view='identity', report={}, confirm_word='', confirm_request=None, success_page=None).cursor
+E        +    where Page(name='picker', title='SORT / SELECT FOLDER', cursor=30, query='', query_edit=False, scroll=0, report_view='overvi..., preview=None, kind='candidate', view='identity', report={}, confirm_word='', confirm_request=None, success_page=None) = Session(root=WindowsPath('C:/Users/ryanf/AppData/Local/Temp/pytest-of-ryanf/pytest-509/test_picker_page_jump_matches_2...sed=True, frozen_time=0.0, running=True, exit_after_job=False, switch_linear=False, handoff=None, width=100, height=46).page
+E        +      where Session(root=WindowsPath('C:/Users/ryanf/AppData/Local/Temp/pytest-of-ryanf/pytest-509/test_picker_page_jump_matches_2...sed=True, frozen_time=0.0, running=True, exit_after_job=False, switch_linear=False, handoff=None, width=100, height=46) = <riposte.terminal.controller.Controller object at 0x0000024A3A5F1D10>.state
+
+tests\test_terminal_polish.py:33: AssertionError
+__________________ test_parent_row_also_restores_child_focus __________________
+
+menu = <riposte.terminal.controller.Controller object at 0x0000024A3A4DBBB0>
+root = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/pytest-of-ryanf/pytest-509/test_parent_row_also_restores_0/workspace')
+
+    def test_parent_row_also_restores_child_focus(menu, root):
+        for name in ("a", "b", "c"): (root / name).mkdir()
+        menu.key(Key("char", "b")); menu.key(Key("end")); menu.key(Key("enter"))
+        menu.key(Key("down")); menu.key(Key("enter"))
+>       assert menu.selected_row()["path"] == root / "c"
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       KeyError: 'path'
+
+tests\test_terminal_polish.py:48: KeyError
+____________ test_sort_preview_does_not_refresh_publishing_history ____________
+
+menu = <riposte.terminal.controller.Controller object at 0x0000024A3A6A0D60>
+root = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/pytest-of-ryanf/pytest-509/test_sort_preview_does_not_ref0/workspace')
+make_image = <function make_image.<locals>.create at 0x0000024A3A5A3E20>
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x0000024A3A6A1220>
+
+    def test_sort_preview_does_not_refresh_publishing_history(menu, root, make_image, monkeypatch):
+        make_image(root / "painting.png")
+        monkeypatch.setattr(menu, "refresh", lambda: pytest.fail("unrelated publishing history read"))
+>       menu.key(Key("char", "2")); finish(menu)
+                                    ^^^^^^^^^^^^
+
+tests\test_terminal_polish.py:54: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_terminal_polish.py:14: in finish
+    c.pump()
+src\riposte\terminal\controller.py:281: in pump
+    try: self.refresh()
+         ^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+>   monkeypatch.setattr(menu, "refresh", lambda: pytest.fail("unrelated publishing history read"))
+                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   Failed: unrelated publishing history read
+
+tests\test_terminal_polish.py:53: Failed
+____________ test_blocked_preview_offers_workshop_without_apply[1] ____________
+
+menu = <riposte.terminal.controller.Controller object at 0x0000024A3A6F0A70>
+root = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/pytest-of-ryanf/pytest-509/test_blocked_preview_offers_wo0/workspace')
+make_image = <function make_image.<locals>.create at 0x0000024A3A721850>
+mode = '1'
+
+    @pytest.mark.parametrize("mode", ["1", "2"])
+    def test_blocked_preview_offers_workshop_without_apply(menu, root, make_image, mode):
+        source = make_image(root / "painting.png")
+        sidecar = root / "painting.xmp"; sidecar.write_text("retained metadata")
+        original = source.read_bytes()
+        menu.key(Key("char", mode)); finish(menu)
+        assert not menu.state.page.result["ready"]
+>       assert hints(menu.state)[0].label == "Return"
+E       AssertionError: assert 'Apply policy' == 'Return'
+E         
+E         - Return
+E         + Apply policy
+
+tests\test_terminal_polish.py:65: AssertionError
+____________ test_blocked_preview_offers_workshop_without_apply[2] ____________
+
+menu = <riposte.terminal.controller.Controller object at 0x0000024A3A6D59D0>
+root = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/pytest-of-ryanf/pytest-509/test_blocked_preview_offers_wo1/workspace')
+make_image = <function make_image.<locals>.create at 0x0000024A3A722140>
+mode = '2'
+
+    @pytest.mark.parametrize("mode", ["1", "2"])
+    def test_blocked_preview_offers_workshop_without_apply(menu, root, make_image, mode):
+        source = make_image(root / "painting.png")
+        sidecar = root / "painting.xmp"; sidecar.write_text("retained metadata")
+        original = source.read_bytes()
+        menu.key(Key("char", mode)); finish(menu)
+        assert not menu.state.page.result["ready"]
+        assert hints(menu.state)[0].label == "Return"
+>       assert "[w] Full Sort Workshop" in render(menu.state, 72, 24).plain()
+E       AssertionError: assert '[w] Full Sort Workshop' in '                                                                        \n   R I P O S T E    /  Riposte Sorter / Dry...                                            \n                                                                        '
+E        +  where '                                                                        \n   R I P O S T E    /  Riposte Sorter / Dry...                                            \n                                                                        ' = plain()
+E        +    where plain = <riposte.terminal.surface.Surface object at 0x0000024A3A619550>.plain
+E        +      where <riposte.terminal.surface.Surface object at 0x0000024A3A619550> = render(Session(root=WindowsPath('C:/Users/ryanf/AppData/Local/Temp/pytest-of-ryanf/pytest-509/test_blocked_preview_offers_wo1...sed=True, frozen_time=0.0, running=True, exit_after_job=False, switch_linear=False, handoff=None, width=100, height=34), 72, 24)
+E        +        where Session(root=WindowsPath('C:/Users/ryanf/AppData/Local/Temp/pytest-of-ryanf/pytest-509/test_blocked_preview_offers_wo1...sed=True, frozen_time=0.0, running=True, exit_after_job=False, switch_linear=False, handoff=None, width=100, height=34) = <riposte.terminal.controller.Controller object at 0x0000024A3A6D59D0>.state
+
+tests\test_terminal_polish.py:66: AssertionError
+_____________________ test_blocked_preview_enter_returns ______________________
+
+menu = <riposte.terminal.controller.Controller object at 0x0000024A3A6D6690>
+root = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/pytest-of-ryanf/pytest-509/test_blocked_preview_enter_ret0/workspace')
+
+    def test_blocked_preview_enter_returns(menu, root):
+        (root / "painting.xmp").touch()
+        menu.key(Key("char", "1")); finish(menu)
+        menu.key(Key("enter"))
+>       assert menu.state.page.name == "sorter" and menu.state.operation is None
+E       AssertionError: assert ('result' == 'sorter'
+E         
+E         - sorter
+E         + result)
+
+tests\test_terminal_polish.py:81: AssertionError
+_____________ test_stale_sort_retains_recovery_and_path_shortcut ______________
+
+menu = <riposte.terminal.controller.Controller object at 0x0000024A3A70BE50>
+root = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/pytest-of-ryanf/pytest-509/test_stale_sort_retains_recove0/workspace')
+make_image = <function make_image.<locals>.create at 0x0000024A3A723110>
+
+    def test_stale_sort_retains_recovery_and_path_shortcut(menu, root, make_image):
+        source = make_image(root / "painting.png")
+        menu.key(Key("char", "1")); finish(menu)
+        menu.key(Key("enter"))
+        source.write_bytes(b"changed after preview")
+        menu.key(Key("char", "REPLACE")); menu.key(Key("enter")); finish(menu)
+        assert menu.state.page.code == "CATEGORY_PREVIEW_CHANGED"
+        screen = render(menu.state, 72, 24).plain()
+>       assert "Preview again" in screen and "[g] Enter Path" in screen
+E       AssertionError: assert ('Preview again' in '                                                                        \n   R I P O S T E    /  OPERATION STOPPED   ...                                            \n                                                                        ')
+
+tests\test_terminal_polish.py:92: AssertionError
+___________ test_completed_undo_returns_without_filled_confirmation ___________
+
+menu = <riposte.terminal.controller.Controller object at 0x0000024A3A9AF350>
+root = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/pytest-of-ryanf/pytest-509/test_completed_undo_returns_wi0/workspace')
+make_image = <function make_image.<locals>.create at 0x0000024A3A722980>
+
+    def test_completed_undo_returns_without_filled_confirmation(menu, root, make_image):
+        source = make_image(root / "painting.png"); original = source.read_bytes()
+        menu.key(Key("char", "1")); finish(menu)
+        menu.key(Key("enter")); menu.key(Key("char", "REPLACE")); menu.key(Key("enter")); finish(menu)
+        menu.key(Key("enter")); menu.key(Key("char", "u")); finish(menu)
+        menu.key(Key("enter")); menu.key(Key("char", "UNDO")); menu.key(Key("enter")); finish(menu)
+        assert source.read_bytes() == original
+        menu.key(Key("enter"))
+>       assert menu.state.page.name == "sorter"
+E       AssertionError: assert 'confirm' == 'sorter'
+E         
+E         - sorter
+E         + confirm
+
+tests\test_terminal_polish.py:108: AssertionError
+__ test_confirmation_displays_bound_folder_and_complete_warning[dimensions0] __
+
+menu = <riposte.terminal.controller.Controller object at 0x0000024A3A8BAF30>
+root = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/pytest-of-ryanf/pytest-509/test_confirmation_displays_bou0/workspace')
+make_image = <function make_image.<locals>.create at 0x0000024A3A8F9010>
+dimensions = (72, 24)
+
+    @pytest.mark.parametrize("dimensions", [(72, 24), (100, 34)])
+    def test_confirmation_displays_bound_folder_and_complete_warning(menu, root, make_image, dimensions):
+        make_image(root / "painting.png")
+        menu.key(Key("char", "1")); finish(menu); menu.key(Key("enter"))
+        text = render(menu.state, *dimensions).plain()
+>       assert root.name in text
+E       AssertionError: assert 'workspace' in '                                                                        \n   R I P O S T E    /  Apply the displayed ...                                            \n                                                                        '
+E        +  where 'workspace' = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/pytest-of-ryanf/pytest-509/test_confirmation_displays_bou0/workspace').name
+
+tests\test_terminal_polish.py:118: AssertionError
+__ test_confirmation_displays_bound_folder_and_complete_warning[dimensions1] __
+
+menu = <riposte.terminal.controller.Controller object at 0x0000024A3A900050>
+root = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/pytest-of-ryanf/pytest-509/test_confirmation_displays_bou1/workspace')
+make_image = <function make_image.<locals>.create at 0x0000024A3A8F96F0>
+dimensions = (100, 34)
+
+    @pytest.mark.parametrize("dimensions", [(72, 24), (100, 34)])
+    def test_confirmation_displays_bound_folder_and_complete_warning(menu, root, make_image, dimensions):
+        make_image(root / "painting.png")
+        menu.key(Key("char", "1")); finish(menu); menu.key(Key("enter"))
+        text = render(menu.state, *dimensions).plain()
+>       assert root.name in text
+E       AssertionError: assert 'workspace' in '                                                                                                    \n   R I P O S T ...                \n                                                                                                    '
+E        +  where 'workspace' = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/pytest-of-ryanf/pytest-509/test_confirmation_displays_bou1/workspace').name
+
+tests\test_terminal_polish.py:118: AssertionError
+__________ test_path_validation_explains_error_without_losing_input ___________
+
+menu = <riposte.terminal.controller.Controller object at 0x0000024A3A8E8AD0>
+root = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/pytest-of-ryanf/pytest-509/test_path_validation_explains_0/workspace')
+
+    def test_path_validation_explains_error_without_losing_input(menu, root):
+        menu.key(Key("char", "g"))
+        path = str(root / "missing-folder")
+        menu.key(Key("paste", path)); menu.key(Key("enter"))
+        text = render(menu.state, 72, 24).plain()
+>       assert "Folder not found" in text and "[Esc]" in text
+E       AssertionError: assert ('Folder not found' in '                                                                        \n   R I P O S T E    /  Riposte Sorter      ...                                            \n                                                                        ')
+
+tests\test_terminal_polish.py:129: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/test_terminal_polish.py::test_picker_page_jump_matches_visible_rows_and_parent_restores_focus[24]
+FAILED tests/test_terminal_polish.py::test_picker_page_jump_matches_visible_rows_and_parent_restores_focus[34]
+FAILED tests/test_terminal_polish.py::test_picker_page_jump_matches_visible_rows_and_parent_restores_focus[46]
+FAILED tests/test_terminal_polish.py::test_parent_row_also_restores_child_focus
+FAILED tests/test_terminal_polish.py::test_sort_preview_does_not_refresh_publishing_history
+FAILED tests/test_terminal_polish.py::test_blocked_preview_offers_workshop_without_apply[1]
+FAILED tests/test_terminal_polish.py::test_blocked_preview_offers_workshop_without_apply[2]
+FAILED tests/test_terminal_polish.py::test_blocked_preview_enter_returns - As...
+FAILED tests/test_terminal_polish.py::test_stale_sort_retains_recovery_and_path_shortcut
+FAILED tests/test_terminal_polish.py::test_completed_undo_returns_without_filled_confirmation
+FAILED tests/test_terminal_polish.py::test_confirmation_displays_bound_folder_and_complete_warning[dimensions0]
+FAILED tests/test_terminal_polish.py::test_confirmation_displays_bound_folder_and_complete_warning[dimensions1]
+FAILED tests/test_terminal_polish.py::test_path_validation_explains_error_without_losing_input
+13 failed in 2.38s

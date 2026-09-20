@@ -1,0 +1,34 @@
+                                                                                                    
+   R I P O S T E    /  Riposte Sorter / Review Sort                         LOCAL   /   v0.5.0      
+                                                                                                    
+  ------------------------------------------------------------------------------------------------  
+   MAIN MENU / Riposte Sorter / Review Sort                                                         
+                                                                                                    
+   SORT PREVIEW                                                                                     
+   [NO CHANGES]                                                                                     
+                                                                                                    
+   No files have been changed.                                                                      
+                                                                                                    
+                                                                                                    
+   > Overview       Details       JSON                                                              
+   ----------                                                                                       
+    0 To sort   |   0 Already sorted   |   0 Blockers                                               
+                                                                                                    
+    WHAT THIS OPERATION DOES  ------------------------------------------------------------------    
+    Reconstruct date-only PNGs, classify by date and resolution, then name them consistently.       
+    Images go into img; videos into vid. Videos keep all bytes and metadata; protection is          
+    image-only.                                                                                     
+    Private undo history retains original files, names and metadata and uses extra disk space.      
+                                                                                                    
+    NEEDS ATTENTION  ---------------------------------------------------------------------------    
+    [CLEAR] No unresolved input blockers were reported.                                             
+                                                                                                    
+    EXACT CATEGORY DESTINATIONS  ---------------------------------------------------------------    
+    Unmatched files               0                                                                 
+    Ambiguous files               0                                                                 
+   OVERVIEW / lines 1-14 of 17                                                                      
+   Nothing to sort. No files changed. Enter returns to the sorter.                                  
+  ------------------------------------------------------------------------------------------------  
+   [Enter] Return   [w] Full Sort Workshop   [g] Enter Path   [t] Report view   [Esc] Back          
+   [F1] Help                                                                                        
+                                                                                                    

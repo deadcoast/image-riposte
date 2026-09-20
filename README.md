@@ -82,9 +82,26 @@ privately recoverable. Sidecar deletion requires explicit workshop consent.
 displays the preview; its result cannot apply. Direct `sort` defaults are unchanged;
 `riposte sort ROOT --categories` previews the same preset.
 
+**Keep personal storage out of sorting:** name a folder `_float_` or `__float__`.
+Both names are case-insensitive and apply at any depth. Sorting skips the whole
+folder, including nested images, videos, sidecars and other files, without
+inspecting or changing its contents. Selecting that folder or one of its
+descendants directly for sorting is refused. This applies to Riposte Sorter,
+Full Sort Workshop, direct sort commands, and the sorting stage of Sort + RIPOSTE.
+**Image RIPOSTE can still process these folders** while preserving their originals;
+its file/folder intake includes them. The combined workflow protects the eligible
+sorted images; use standalone RIPOSTE for float storage.
+
+Blocked previews offer `w` to open Full Sort Workshop with the current settings.
+Empty or already-sorted previews return without asking for unnecessary consent.
+Confirmation shows the folder bound to the preview; submitting it consumes that
+confirmation so completed operations cannot return to a filled confirmation.
+
 **RIPOSTE** and **Sort + RIPOSTE** remain independent main-menu choices.
 In the optional folder browser (`b`), Enter opens the highlighted folder and `s`
 uses it directly; Backspace goes up and `l` lists drives and home locations.
+Returning to a parent restores the child highlight. Page Up/Down moves by the
+number of rows actually visible. Invalid paths keep your input and explain the error.
 For protection inputs, Space selects files or folders and `s` selects the current
 folder. `g` accepts a pasted path at every folder level and in Full Sort Workshop.
 Esc cancels and returns to the previous screen.

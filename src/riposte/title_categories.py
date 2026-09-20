@@ -92,6 +92,9 @@ def category_drafts(specs: Sequence[str]) -> tuple[CategoryDraft, ...]:
 
 def _media_titles(root: Path, counts: Counter[str], progress: Progress | None) -> Iterator[Path]:
     """Inspect names/stat only, prune private state before descending, fail visibly."""
+    from .policy import FLOAT_DIRECTORIES, sort_excluded
+    if sort_excluded(root.resolve()):
+        return
     def unreadable(_error: OSError) -> None:
         counts["unreadable_directories"] += 1
 
@@ -114,7 +117,9 @@ def _media_titles(root: Path, counts: Counter[str], progress: Progress | None) -
             dirs.clear()
             continue
         for name in dirs.copy():
-            if name.casefold() in {".riposte", ".shroud"}:
+            if name.casefold() in FLOAT_DIRECTORIES:
+                dirs.remove(name)
+            elif name.casefold() in {".riposte", ".shroud"}:
                 dirs.remove(name)
                 counts["private_directories"] += 1
             elif inspect(current / name, True) is None:

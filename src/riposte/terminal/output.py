@@ -39,6 +39,10 @@ class Presentation:
 
 
 RECOVERY = {
+    "SORT_FLOAT_ROOT": "This folder is inside _float_ or __float__ and is excluded from sorting. Choose its outside parent to sort other files, or use RIPOSTE to protect these images.",
+    "CATEGORY_PREVIEW_REQUIRED": "Preview the sort first, then confirm that displayed plan with REPLACE.",
+    "CATEGORY_PREVIEW_CHANGED": "Files, rules or destinations changed. Preview again, review the updated plan, then confirm REPLACE.",
+    "CATEGORY_PREVIEW_BLOCKED": "Review the blockers in the sort preview. Full Sort Workshop lets you adjust categories and sidecar consent before previewing again.",
     "SORT_PREVIEW_REQUIRED": "Preview this sort first, then apply with its plan ID. In the terminal, inspect and confirm the displayed plan.",
     "SORT_PREVIEW_CHANGED": "Files, destinations or settings changed. Inspect again and confirm the refreshed plan before sorting.",
     "IMAGE_FOLDER_OVERLAPS_APPLICATION": "Choose an image/results folder separate from the RIPOSTE application folder, outside it and its parents.",

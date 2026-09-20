@@ -10,7 +10,7 @@
     "rich": "15.0.0"
   },
   "source_files": 66,
-  "source_signatures": 478,
+  "source_signatures": 479,
   "stubtest_leaf_modules": 56,
   "stubtest_allowlist_entries": 4,
   "dynamic_declarations": 127,

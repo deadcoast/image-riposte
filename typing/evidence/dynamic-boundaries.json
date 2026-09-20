@@ -586,7 +586,7 @@
   },
   {
     "file": "typing/stubs/riposte/terminal/state.pyi",
-    "line": 59,
+    "line": 60,
     "declaration": "models: dict[str, Any] = field(default_factory=dict)"
   },
   {

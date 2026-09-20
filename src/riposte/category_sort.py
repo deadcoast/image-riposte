@@ -14,7 +14,7 @@ from typing import Any, Callable, Sequence
 
 from .category_rules import load_rules, match_title
 from .errors import RiposteError
-from .policy import Policy, sort_folder_for
+from .policy import Policy, sort_folder_for, sort_excluded
 from .sanitize import decode_clean, encode_clean, png_audit
 from .sort_history import latest_sort
 from .sort_titles import title_records
@@ -45,6 +45,8 @@ def category_plan(root: Path, policy: Policy, *, assignments: Sequence[str] = ()
                   progress: Callable[[dict[str, Any]], None] | None = None) -> dict[str, Any]:
     from .organizer import walk_inputs, known_good, _next_relative, _validate_managed
     root = check_root(root)
+    if sort_excluded(root.resolve()):
+        raise RiposteError("SORT_FLOAT_ROOT")
     rules = load_rules(root)
     labels = {r.slug: r.label for r in rules.rules} | {"uncategorized": "Uncategorized"}
     overrides: dict[str, str] = {}

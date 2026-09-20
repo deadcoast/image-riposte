@@ -1,0 +1,17 @@
+{
+  "changed_files": [
+    "src/riposte/category_sort.py",
+    "src/riposte/organizer.py",
+    "src/riposte/policy.py",
+    "src/riposte/sort_plan.py",
+    "src/riposte/terminal/controller.py",
+    "src/riposte/terminal/interaction.py",
+    "src/riposte/terminal/output.py",
+    "src/riposte/terminal/render.py",
+    "src/riposte/terminal/state.py",
+    "src/riposte/title_categories.py"
+  ],
+  "signatures": 479,
+  "leaf_modules": 56,
+  "application_files": 66
+}

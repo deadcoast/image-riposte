@@ -1,0 +1,51 @@
+....................................FF.................................. [ 90%]
+........                                                                 [100%]
+================================== FAILURES ===================================
+_________ test_float_images_can_be_protected_without_sorting[_float_] _________
+
+root = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/pytest-of-ryanf/pytest-513/test_float_images_can_be_prote0/workspace')
+make_image = <function make_image.<locals>.create at 0x00000246FF955D20>
+recipe = PublishRecipe(edges=(64,), guard=ReleaseConfig(steps=2, restarts=1, seed=7, step_255=0.75, checkpoint_every=4, frequen...t=0.65), quality=QualityLimits(epsilon_255=4, preserve_white=True, rms_fraction=0.95, delta_e76_p95=6.0, tile_size=32))
+models = [(WindowsPath('MODEL'), 'auto')], name = '_float_'
+
+    @pytest.mark.parametrize('name', ['_float_', '__float__'])
+    def test_float_images_can_be_protected_without_sorting(root, make_image, recipe, models, name):
+        source = make_image(root / name / 'nested' / 'private painting.png', size=(96, 80))
+        original = source.read_bytes()
+        batch = p.start_publication(root, [], [Path('MODEL')], recipe, input_paths=[source.parent])
+        assert source.read_bytes() == original and not catalog(root)
+        assert batch['source_mode'] == 'snapshot' and batch['counts']['READY_FOR_REVIEW'] == 1
+        exact = p.publication_pixels(root, batch['id'], batch['items'][0]['id'])
+>       assert png_audit(exact)['date'] == '2025-03-12'
+E       AssertionError: assert '2026-09-20' == '2025-03-12'
+E         
+E         - 2025-03-12
+E         + 2026-09-20
+
+tests\test_workflows.py:218: AssertionError
+________ test_float_images_can_be_protected_without_sorting[__float__] ________
+
+root = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/pytest-of-ryanf/pytest-513/test_float_images_can_be_prote1/workspace')
+make_image = <function make_image.<locals>.create at 0x00000246FF957530>
+recipe = PublishRecipe(edges=(64,), guard=ReleaseConfig(steps=2, restarts=1, seed=7, step_255=0.75, checkpoint_every=4, frequen...t=0.65), quality=QualityLimits(epsilon_255=4, preserve_white=True, rms_fraction=0.95, delta_e76_p95=6.0, tile_size=32))
+models = [(WindowsPath('MODEL'), 'auto')], name = '__float__'
+
+    @pytest.mark.parametrize('name', ['_float_', '__float__'])
+    def test_float_images_can_be_protected_without_sorting(root, make_image, recipe, models, name):
+        source = make_image(root / name / 'nested' / 'private painting.png', size=(96, 80))
+        original = source.read_bytes()
+        batch = p.start_publication(root, [], [Path('MODEL')], recipe, input_paths=[source.parent])
+        assert source.read_bytes() == original and not catalog(root)
+        assert batch['source_mode'] == 'snapshot' and batch['counts']['READY_FOR_REVIEW'] == 1
+        exact = p.publication_pixels(root, batch['id'], batch['items'][0]['id'])
+>       assert png_audit(exact)['date'] == '2025-03-12'
+E       AssertionError: assert '2026-09-20' == '2025-03-12'
+E         
+E         - 2025-03-12
+E         + 2026-09-20
+
+tests\test_workflows.py:218: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/test_workflows.py::test_float_images_can_be_protected_without_sorting[_float_]
+FAILED tests/test_workflows.py::test_float_images_can_be_protected_without_sorting[__float__]
+2 failed, 78 passed in 20.99s

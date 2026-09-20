@@ -18,7 +18,7 @@ HERE = ROOT / "typing"
 STUBS = HERE / "stubs" / "riposte"
 EVIDENCE = HERE / "evidence"
 CONTRACT_CONFIG = "typing/mypy-contracts.ini"
-REVIEWED_SOURCE = EVIDENCE / "source-reviewed-terminal-direction.json"
+REVIEWED_SOURCE = EVIDENCE / "source-reviewed-terminal-polish.json"
 
 
 def is_application_source(path: Path) -> bool:

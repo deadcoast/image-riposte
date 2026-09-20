@@ -13,6 +13,7 @@ FORMAT_NAMES: frozenset[str]
 IMAGE_SUFFIXES: frozenset[str]
 SIDECAR_SUFFIXES: frozenset[str]
 CACHE_NAMES: frozenset[str]
+FLOAT_DIRECTORIES: frozenset[str]
 CANONICAL: re.Pattern[str]
 
 @dataclass(frozen=True)
@@ -23,6 +24,8 @@ class Policy:
     discard_sidecars: bool = ...
 
     def __post_init__(self) -> None: ...
+
+def sort_excluded(directory: Path) -> bool: ...
 
 def size_bin(width: int, height: int) -> SizeBin: ...
 

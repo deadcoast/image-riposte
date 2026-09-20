@@ -1,0 +1,24 @@
+                                                                        
+   R I P O S T E    /  Riposte Sorter / Stopped                         
+                                                                        
+  --------------------------------------------------------------------  
+   MAIN MENU / Riposte Sorter / Stopped                                 
+                                                                        
+   [STOPPED]  OPERATION NEEDS ATTENTION                                 
+                                                                        
+   Category preview changed                                             
+                                                                        
+                                                                        
+  -- NEXT ACTION -----------------------------------------------------  
+                                                                        
+   Files, rules or destinations changed. Preview again, review the      
+   updated plan, then confirm REPLACE.                                  
+                                                                        
+                                                                        
+                                                                        
+   CODE / CATEGORY_PREVIEW_CHANGED                                      
+   Overview explains the result; Details preserves every field; JS...   
+  --------------------------------------------------------------------  
+   [Enter] Return   [g] Enter Path   [Esc] Back   [F1] Help             
+                                                                        
+                                                                        

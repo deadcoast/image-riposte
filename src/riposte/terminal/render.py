@@ -42,7 +42,8 @@ def page_window(cursor, count, capacity):
 
 def header(c, state):
     c.text(3, 1, "R I P O S T E", "accent", bold=True)
-    c.text(20, 1, "/  " + state.page.title, "text", width=max(0, c.width - 47))
+    title = "CONFIRM " + state.page.confirm_word if state.page.name == "confirm" else state.page.title
+    c.text(20, 1, "/  " + title, "text", width=max(0, c.width - (47 if c.width >= 76 else 23)))
     if c.width >= 76: c.text(c.width - 24, 1, "LOCAL   /   v" + __version__, "muted")
     c.rule(3)
     caption = "Choose what you want to do. Each action works independently."
@@ -122,13 +123,14 @@ def home(c, state, time):
 def sorter(c: Surface, state: Session) -> None:
     c.text(3, 6, "FOLDER", "muted")
     c.wrap(3, 7, str(state.root) if state.root else "No folder selected. Choose Enter Path.", c.width-6, 3, "accent")
-    c.rule(10, label="READY TO SORT")
+    c.rule(10, label="SORT ACTIONS" if state.root else "CHOOSE A FOLDER TO START")
     for n, row in enumerate(view_rows(state)):
         focused = n == state.page.cursor
         c.text(4, 11+n*2, f"{'>' if focused else ' '} {n+1}. {row['title']}",
                "accent" if focused else "text", bold=focused, width=c.width-8)
         if c.width >= 100: c.text(24, 11+n*2, row["summary"], "muted", width=c.width-28)
     c.text(3, 17, "Year / Month / img-or-vid / Category / Size", "text", width=c.width-6)
+    c.text(3, 18, "_float_ / __float__: never sorted; RIPOSTE allowed.", "muted", width=c.width-6)
     if c.height >= 28:
         c.wrap(3, 19, "Download dates; saved category rules; unmatched titles go to Uncategorized. "
                "Images become date-only PNGs; videos keep their bytes. Originals stay in private undo history. "
@@ -302,6 +304,10 @@ def _report_data(state, actual_width=None):
     key=(id(p.result),command,width,p.report_view)
     if key not in p.display_cache:
         report=overview(p.result,command,width)
+        if p.values.get("sorter_mode"):
+            report.title = {"sort": "Sort preview", "dry-run": "Dry Run", "apply": "Sort result"}[p.values["sorter_mode"]]
+            if command == "organize":
+                report.outcome = "BLOCKED" if not p.result.get("ready") else "NO CHANGES" if p.values.get("sort_changes") is False else "READ ONLY"
         p.display_cache.clear()
         p.display_cache[key]=(report,report_lines(report,p.result,p.report_view,width))
     return p.display_cache[key]
@@ -417,11 +423,15 @@ def command_page(c,state):
 def confirm(c,state):
     p=state.page
     c.text(3,6,"EXPLICIT WRITE BOUNDARY", "warn",bold=True)
-    c.wrap(3,8,p.title,c.width-6,3,"text",bold=True)
+    location = "FOLDER / " + str(p.confirm_request.root) if p.confirm_request and p.confirm_request.root else ""
+    limit = 2*(c.width-6)-12
+    if len(location)>limit: location=location[:limit//2]+" ... "+location[-(limit//2-5):]
+    c.wrap(3,7,location,c.width-6,2,"accent")
+    c.wrap(3,10,p.title,c.width-6,3,"text",bold=True)
     if p.confirm_word=='REPLACE':
-        c.wrap(3,11,"Originals move into private undo history, including original metadata. Images become date-only PNGs; videos keep their bytes. Failed inputs remain.",c.width-6,max(2,c.height-21),"warn")
+        c.wrap(3,13,"Originals move into private undo history, including original metadata. Images become date-only PNGs; videos keep their bytes. Failed inputs remain.",c.width-6,max(3,c.height-21),"warn")
     elif p.confirm_word == 'UNDO':
-        c.wrap(3,11,"Restores original metadata and names. Changed files or occupied paths block undo. Protection results remain in place.",c.width-6,max(2,c.height-21),"warn")
+        c.wrap(3,13,"Restores original metadata and names. Changed files or occupied paths block undo. Protection results remain in place.",c.width-6,max(3,c.height-21),"warn")
     c.text(3,c.height-8,"TYPE "+p.confirm_word+" TO CONTINUE", "accent",bold=True)
     c.text(3,c.height-6,"> "+p.values.get('confirmation',''),"text",width=c.width-6)
     footer(c,state,"[Enter] confirm exact word   [Esc] cancel")
@@ -441,7 +451,9 @@ def editor_overlay(c,state):
         char=e.value[e.position] if e.position<len(e.value) else ' '
         c.put(x+4+cursor,y+6,char,"accent",bold=True)
         c.put(x+4+cursor,y+7,"^","accent",bold=True)
-    c.text(x+3,y+8,"Invalid value. Correct this field." if e.error else "[Enter] save   [Esc] discard   [Ctrl+U] clear", "danger" if e.error else "muted",width=w-6)
+    if e.error: c.wrap(x+3,y+8,e.error_message or "Invalid value. Correct this field.",w-6,2,"danger")
+    action = hints(state)[0].label.lower()
+    c.text(x+3,y+10,f"[Enter] {action}   [Esc] discard   [Ctrl+U] clear", "muted",width=w-6)
 
 
 def render(state:Session,width:int,height:int,time:float=0)->Surface:

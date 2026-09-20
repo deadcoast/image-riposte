@@ -1,0 +1,2344 @@
+[?9001h[?1004h[?2004h[?25l[2J[m[H]0;C:\WINDOWS\SYSTEM32\cmd.exe[?25h[?1049h[K
+   [1mR I P O S T E[22m    /  MAIN MENU                                            LOCAL   /   v0.5.0      
+[K
+  ------------------------------------------------------------------------------------------------  
+   Choose what you want to do. Each action works independently.[K
+                                                                             =---------- -[K
+    [1mRRRR   III  PPPP    OOO   SSSS  TTTTT  EEEEE[22m[19X[1m[19C/[22m----------+[1m/[22m -----.-----        
+    [1mR   R   I   P   P  O   O  S       T    E    [22m               ----..:=------------- ----[K
+    [1mRRRR    I   PPPP   O   O   SSS    T    EEEE [22m          /------/-----.:.+.:-------:--------       
+    [1mR  R    I   P      O   O      S   T    E    [22m  [1m>[22m      -------:- /---------.+:::[1m/[22m- ---[K
+    [1mR   R  III  P       OOO   SSSS    T    EEEEE[22m         ---------.-+.::=[1m=[22m --------[K
+                                                          -------- --------[K
+[K
+   Choose an action, then browse images or folders.[K
+  -- MAIN MENU -----------------------------------------------------------------------------------  
+    [1m> 1  Riposte Sorter[22m                                        FOCUS / RIPOSTE SORTER[K
+      2  RIPOSTE[K
+      3  Sort + RIPOSTE                                        Ready-to-use sorting: Sort, Dry      
+      4  Image library                                         Run, Enter Path[K
+      5  Publishing batches[K
+      6  Local models[K
+      7  Terminal & workspace                                  No files change when you open an     
+      8  Full Sort Workshop                                    action.[K
+      9  Undo last sort[K
+      w  Workshop[K
+[K
+[K
+[K
+[K
+   Ready-to-use sorting: Sort, Dry Run, Enter Path[K
+  ------------------------------------------------------------------------------------------------  
+   [1m[Enter][22m Open   [1m[Arrows][22m Move   [1m[1-9/w][22m Choose   [1m[/][22m Find   [1m[q][22m Quit   [1m[F1][22m Help[K
+[K
+                                                                                                    [?25l[34;201H[H[K
+   [1mR I P O S T E[22m    /  MAIN MENU                                            LOCAL   /   v0.5.0      
+[K
+  ------------------------------------------------------------------------------------------------  
+   Choose what you want to do. Each action works independently.[K
+                                                                             =-----------[K
+    [1mRRRR   III  PPPP    OOO   SSSS  TTTTT  EEEEE[22m[19X[1m[19C/[22m----------./ ---=-.-----        
+    [1mR   R   I   P   P  O   O  S       T    E    [22m               ----..:=------------------[K
+    [1mRRRR    I   PPPP   O   O   SSS    T    EEEE [22m          /-------.----.:.+..-------:--------       
+    [1mR  R    I   P      O   O      S   T    E    [22m  -[1m>[22m     --------= /---------.+.::[1m/[22m- ---[K
+    [1mR   R  III  P       OOO   SSSS    T    EEEEE[22m         ---------.-+.::=[1m=[22m --------[K
+                                                          --------- -------[K
+[K
+   Choose an action, then browse images or folders.[K
+  -- MAIN MENU -----------------------------------------------------------------------------------  
+      1  Riposte Sorter                                        FOCUS / RIPOSTE[K
+    [1m> 2  RIPOSTE[22m[K
+      3  Sort + RIPOSTE                                        Protect files or folders. Keep       
+      4  Image library                                         originals and their folder[K
+      5  Publishing batches                                    structure.[K
+      6  Local models[K
+      7  Terminal & workspace                                  No files change when you open an     
+      8  Full Sort Workshop                                    action.[K
+      9  Undo last sort[K
+      w  Workshop[K
+[K
+[K
+[K
+[K
+   Protect files or folders; preserve originals[K
+  ------------------------------------------------------------------------------------------------  
+   [1m[Enter][22m Open   [1m[Arrows][22m Move   [1m[1-9/w][22m Choose   [1m[/][22m Find   [1m[q][22m Quit   [1m[F1][22m Help[K
+[K
+                                                                                                    [34;201H[H[K
+   [1mR I P O S T E[22m    /  MAIN MENU                                            LOCAL   /   v0.5.0      
+[K
+  ------------------------------------------------------------------------------------------------  
+   Choose what you want to do. Each action works independently.[K
+                                                                             =------------[K
+    [1mRRRR   III  PPPP    OOO   SSSS  TTTTT  EEEEE[22m[19X[1m[19C/[22m----------.. -----.-----        
+    [1mR   R   I   P   P  O   O  S       T    E    [22m               ----..:=-------------------[K
+    [1mRRRR    I   PPPP   O   O   SSS    T    EEEE [22m          /--------:---.::+..-------:--------       
+    [1mR  R    I   P      O   O      S   T    E    [22m  --[1m>[22m    --------= /---------...::[1m/[22m- ---[K
+    [1mR   R  III  P       OOO   SSSS    T    EEEEE[22m         --- -----.-+.::.[1m=[22m --------[K
+                                                          --------- -------[K
+[K
+   Choose an action, then browse images or folders.[K
+  -- MAIN MENU -----------------------------------------------------------------------------------  
+    [1m> 1  Riposte Sorter[22m                                        FOCUS / RIPOSTE SORTER[K
+      2  RIPOSTE[K
+      3  Sort + RIPOSTE                                        Ready-to-use sorting: Sort, Dry      
+      4  Image library                                         Run, Enter Path[K
+      5  Publishing batches[K
+      6  Local models[K
+      7  Terminal & workspace                                  No files change when you open an     
+      8  Full Sort Workshop                                    action.[K
+      9  Undo last sort[K
+      w  Workshop[K
+[K
+[K
+[K
+[K
+   Ready-to-use sorting: Sort, Dry Run, Enter Path[K
+  ------------------------------------------------------------------------------------------------  
+   [1m[Enter][22m Open   [1m[Arrows][22m Move   [1m[1-9/w][22m Choose   [1m[/][22m Find   [1m[q][22m Quit   [1m[F1][22m Help[K
+[K
+                                                                                                    [34;201H[H[K
+   [1mR I P O S T E[22m    /  MAIN MENU                                            LOCAL   /   v0.5.0      
+[K
+  ------------------------------------------------------------------------------------------------  
+   Choose what you want to do. Each action works independently.[K
+                                                                              ------------[K
+    [1mRRRR   III  PPPP    OOO   SSSS  TTTTT  EEEEE[22m[19X[1m[19C/[22m----------.. -----.-----        
+    [1mR   R   I   P   P  O   O  S       T    E    [22m               ----..:==------------------[K
+    [1mRRRR    I   PPPP   O   O   SSS    T    EEEE [22m          /--------:----::+..-------:--------       
+    [1mR  R    I   P      O   O      S   T    E    [22m  ---[1m>[22m   --------==/---------...::[1m/[22m-- --[K
+    [1mR   R  III  P       OOO   SSSS    T    EEEEE[22m         --- -----.-+.::.[1m=[22m --------[K
+                                                          --------- -------[K
+[K
+   Choose an action, then browse images or folders.[K
+  -- MAIN MENU -----------------------------------------------------------------------------------  
+      1  Riposte Sorter                                        FOCUS / RIPOSTE[K
+    [1m> 2  RIPOSTE[22m[K
+      3  Sort + RIPOSTE                                        Protect files or folders. Keep       
+      4  Image library                                         originals and their folder[K
+      5  Publishing batches                                    structure.[K
+      6  Local models[K
+      7  Terminal & workspace                                  No files change when you open an     
+      8  Full Sort Workshop                                    action.[K
+      9  Undo last sort[K
+      w  Workshop[K
+[K
+[K
+[K
+[K
+   Protect files or folders; preserve originals[K
+  ------------------------------------------------------------------------------------------------  
+   [1m[Enter][22m Open   [1m[Arrows][22m Move   [1m[1-9/w][22m Choose   [1m[/][22m Find   [1m[q][22m Quit   [1m[F1][22m Help[K
+[K
+                                                                                                    [34;201H[H[K
+   [1mR I P O S T E[22m    /  MAIN MENU                                            LOCAL   /   v0.5.0      
+[K
+  ------------------------------------------------------------------------------------------------  
+   Choose what you want to do. Each action works independently.[K
+                                                                              ------------[K
+    [1mRRRR   III  PPPP    OOO   SSSS  TTTTT  EEEEE[22m[19X[1m[19C/[22m----------.. -----:-----        
+    [1mR   R   I   P   P  O   O  S       T    E    [22m               ----..:.=------------------[K
+    [1mRRRR    I   PPPP   O   O   SSS    T    EEEE [22m          /--------:----::+..-------:--------       
+    [1mR  R    I   P      O   O      S   T    E    [22m  ----[1m>[22m  --------==/---------...::[1m/[22m-- --[K
+    [1mR   R  III  P       OOO   SSSS    T    EEEEE[22m         ---- ----.-+.::.[1m=[22m --------[K
+                                                          ---------- ------[K
+[K
+   Choose an action, then browse images or folders.[K
+  -- MAIN MENU -----------------------------------------------------------------------------------  
+    [1m> 1  Riposte Sorter[22m                                        FOCUS / RIPOSTE SORTER[K
+      2  RIPOSTE[K
+      3  Sort + RIPOSTE                                        Ready-to-use sorting: Sort, Dry      
+      4  Image library                                         Run, Enter Path[K
+      5  Publishing batches[K
+      6  Local models[K
+      7  Terminal & workspace                                  No files change when you open an     
+      8  Full Sort Workshop                                    action.[K
+      9  Undo last sort[K
+      w  Workshop[K
+[K
+[K
+[K
+[K
+   Ready-to-use sorting: Sort, Dry Run, Enter Path[K
+  ------------------------------------------------------------------------------------------------  
+   [1m[Enter][22m Open   [1m[Arrows][22m Move   [1m[1-9/w][22m Choose   [1m[/][22m Find   [1m[q][22m Quit   [1m[F1][22m Help[K
+[K
+                                                                                                    [34;201H[H[K
+   [1mR I P O S T E[22m    /  MAIN MENU                                            LOCAL   /   v0.5.0      
+[K
+  ------------------------------------------------------------------------------------------------  
+   Choose what you want to do. Each action works independently.[K
+                                                                              ------------[K
+    [1mRRRR   III  PPPP    OOO   SSSS  TTTTT  EEEEE[22m                   -.---------.. -----:-----        
+    [1mR   R   I   P   P  O   O  S       T    E    [22m               ----..:.=------------------[K
+    [1mRRRR    I   PPPP   O   O   SSS    T    EEEE [22m          /---------:---::+..-------:--------       
+    [1mR  R    I   P      O   O      S   T    E    [22m  -----[1m>[22m --------==/---------...::[1m/[22m-- --[K
+    [1mR   R  III  P       OOO   SSSS    T    EEEEE[22m         ----- ----.+.::.[1m=[22m --------[K
+                                                           --------- ------[K
+[K
+   Choose an action, then browse images or folders.[K
+  -- MAIN MENU -----------------------------------------------------------------------------------  
+      1  Riposte Sorter                                        FOCUS / RIPOSTE[K
+    [1m> 2  RIPOSTE[22m[K
+      3  Sort + RIPOSTE                                        Protect files or folders. Keep       
+      4  Image library                                         originals and their folder[K
+      5  Publishing batches                                    structure.[K
+      6  Local models[K
+      7  Terminal & workspace                                  No files change when you open an     
+      8  Full Sort Workshop                                    action.[K
+      9  Undo last sort[K
+      w  Workshop[K
+[K
+[K
+[K
+[K
+   Protect files or folders; preserve originals[K
+  ------------------------------------------------------------------------------------------------  
+   [1m[Enter][22m Open   [1m[Arrows][22m Move   [1m[1-9/w][22m Choose   [1m[/][22m Find   [1m[q][22m Quit   [1m[F1][22m Help[K
+[K
+                                                                                                    [34;201H[H[K
+   [1mR I P O S T E[22m    /  MAIN MENU                                            LOCAL   /   v0.5.0      
+[K
+  ------------------------------------------------------------------------------------------------  
+   Choose what you want to do. Each action works independently.[K
+                                                                              ------------[K
+    [1mRRRR   III  PPPP    OOO   SSSS  TTTTT  EEEEE[22m                   -.---------.+/-----:-----        
+    [1mR   R   I   P   P  O   O  S       T    E    [22m               ----..:+=------------------[K
+    [1mRRRR    I   PPPP   O   O   SSS    T    EEEE [22m          /---------:---::...-------:--------       
+    [1mR  R    I   P      O   O      S   T    E    [22m  ------[1m>[22m--------.=/---------...::[1m/[22m-- ---[K
+    [1mR   R  III  P       OOO   SSSS    T    EEEEE[22m         ----- ----.+.::.=[1m=[22m--------[K
+                                                           ---------- -----[K
+[K
+   Choose an action, then browse images or folders.[K
+  -- MAIN MENU -----------------------------------------------------------------------------------  
+    [1m> 1  Riposte Sorter[22m                                        FOCUS / RIPOSTE SORTER[K
+      2  RIPOSTE[K
+      3  Sort + RIPOSTE                                        Ready-to-use sorting: Sort, Dry      
+      4  Image library                                         Run, Enter Path[K
+      5  Publishing batches[K
+      6  Local models[K
+      7  Terminal & workspace                                  No files change when you open an     
+      8  Full Sort Workshop                                    action.[K
+      9  Undo last sort[K
+      w  Workshop[K
+[K
+[K
+[K
+[K
+   Ready-to-use sorting: Sort, Dry Run, Enter Path[K
+  ------------------------------------------------------------------------------------------------  
+   [1m[Enter][22m Open   [1m[Arrows][22m Move   [1m[1-9/w][22m Choose   [1m[/][22m Find   [1m[q][22m Quit   [1m[F1][22m Help[K
+[K
+                                                                                                    [34;201H[H[K
+   [1mR I P O S T E[22m    /  MAIN MENU                                            LOCAL   /   v0.5.0      
+[K
+  ------------------------------------------------------------------------------------------------  
+   Choose what you want to do. Each action works independently.[K
+                                                                              ------------[K
+    [1mRRRR   III  PPPP    OOO   SSSS  TTTTT  EEEEE[22m                   -.---------:+/-----=-----        
+    [1mR   R   I   P   P  O   O  S       T    E    [22m               ----..:+=------------------[K
+    [1mRRRR    I   PPPP   O   O   SSS    T    EEEE [22m          /---------:---::...-------:--------       
+    [1mR  R    I   P      O   O      S   T    E    [22m  -------[1m>[22m--/----.=/---------...::[1m/[22m-- ---[K
+    [1mR   R  III  P       OOO   SSSS    T    EEEEE[22m         ----------.+.::.=[1m=[22m--------[K
+                                                           ---------- -----[K
+[K
+   Choose an action, then browse images or folders.[K
+  -- MAIN MENU -----------------------------------------------------------------------------------  
+      1  Riposte Sorter                                        FOCUS / RIPOSTE[K
+    [1m> 2  RIPOSTE[22m[K
+      3  Sort + RIPOSTE                                        Protect files or folders. Keep       
+      4  Image library                                         originals and their folder[K
+      5  Publishing batches                                    structure.[K
+      6  Local models[K
+      7  Terminal & workspace                                  No files change when you open an     
+      8  Full Sort Workshop                                    action.[K
+      9  Undo last sort[K
+      w  Workshop[K
+[K
+[K
+[K
+[K
+   Protect files or folders; preserve originals[K
+  ------------------------------------------------------------------------------------------------  
+   [1m[Enter][22m Open   [1m[Arrows][22m Move   [1m[1-9/w][22m Choose   [1m[/][22m Find   [1m[q][22m Quit   [1m[F1][22m Help[K
+[K
+                                                                                                    [34;201H[H[K
+   [1mR I P O S T E[22m    /  MAIN MENU                                            LOCAL   /   v0.5.0      
+[K
+  ------------------------------------------------------------------------------------------------  
+   Choose what you want to do. Each action works independently.[K
+                                                                              -------------[K
+    [1mRRRR   III  PPPP    OOO   SSSS  TTTTT  EEEEE[22m                   -.---------:+/-----=-----        
+    [1mR   R   I   P   P  O   O  S       T    E    [22m               ----...+=------------------[K
+    [1mRRRR    I   PPPP   O   O   SSS    T    EEEE [22m          /---------:---.:...-------:--------       
+    [1mR  R    I   P      O   O      S   T    E    [22m  --------[1m>[22m-/----.=/---------...::[1m/[22m-- ---[K
+    [1mR   R  III  P       OOO   SSSS    T    EEEEE[22m         ----------.+.::.=[1m=[22m--------[K
+                                                           ---------- -----[K
+[K
+   Choose an action, then browse images or folders.[K
+  -- MAIN MENU -----------------------------------------------------------------------------------  
+    [1m> 1  Riposte Sorter[22m                                        FOCUS / RIPOSTE SORTER[K
+      2  RIPOSTE[K
+      3  Sort + RIPOSTE                                        Ready-to-use sorting: Sort, Dry      
+      4  Image library                                         Run, Enter Path[K
+      5  Publishing batches[K
+      6  Local models[K
+      7  Terminal & workspace                                  No files change when you open an     
+      8  Full Sort Workshop                                    action.[K
+      9  Undo last sort[K
+      w  Workshop[K
+[K
+[K
+[K
+[K
+   Ready-to-use sorting: Sort, Dry Run, Enter Path[K
+  ------------------------------------------------------------------------------------------------  
+   [1m[Enter][22m Open   [1m[Arrows][22m Move   [1m[1-9/w][22m Choose   [1m[/][22m Find   [1m[q][22m Quit   [1m[F1][22m Help[K
+[K
+                                                                                                    [34;201H[H[K
+   [1mR I P O S T E[22m    /  MAIN MENU                                            LOCAL   /   v0.5.0      
+[K
+  ------------------------------------------------------------------------------------------------  
+   Choose what you want to do. Each action works independently.[K
+                                                                              -------------[K
+    [1mRRRR   III  PPPP    OOO   SSSS  TTTTT  EEEEE[22m                   -.---------:+/----==-----        
+    [1mR   R   I   P   P  O   O  S       T    E    [22m               ----...+[1m=[22m------------------[K
+    [1mRRRR    I   PPPP   O   O   SSS    T    EEEE [22m          /---------:---.::..-------:--------       
+    [1mR  R    I   P      O   O      S   T    E    [22m   --------[1m>[22m/----.=/---------...::[1m/[22m--- --[K
+    [1mR   R  III  P       OOO   SSSS    T    EEEEE[22m         ----------.+.:::=[1m=[22m -------[K
+                                                           ----------- -----[K
+[K
+   Choose an action, then browse images or folders.[K
+  -- MAIN MENU -----------------------------------------------------------------------------------  
+      1  Riposte Sorter                                        FOCUS / RIPOSTE[K
+    [1m> 2  RIPOSTE[22m[K
+      3  Sort + RIPOSTE                                        Protect files or folders. Keep       
+      4  Image library                                         originals and their folder[K
+      5  Publishing batches                                    structure.[K
+      6  Local models[K
+      7  Terminal & workspace                                  No files change when you open an     
+      8  Full Sort Workshop                                    action.[K
+      9  Undo last sort[K
+      w  Workshop[K
+[K
+[K
+[K
+[K
+   Protect files or folders; preserve originals[K
+  ------------------------------------------------------------------------------------------------  
+   [1m[Enter][22m Open   [1m[Arrows][22m Move   [1m[1-9/w][22m Choose   [1m[/][22m Find   [1m[q][22m Quit   [1m[F1][22m Help[K
+[K
+                                                                                                    [34;201H[H[K
+   [1mR I P O S T E[22m    /  MAIN MENU                                            LOCAL   /   v0.5.0      
+[K
+  ------------------------------------------------------------------------------------------------  
+   Choose what you want to do. Each action works independently.[K
+                                                                              =------------[K
+    [1mRRRR   III  PPPP    OOO   SSSS  TTTTT  EEEEE[22m[19X[1m[19C/[22m.----------+/-----=-----        
+    [1mR   R   I   P   P  O   O  S       T    E    [22m               -----..+[1m=[22m------------------[K
+    [1mRRRR    I   PPPP   O   O   SSS    T    EEEE [22m          /---------:---.::..-------:--------       
+    [1mR  R    I   P      O   O      S   T    E    [22m    --------[1m>[22m----+=/---------...::[1m/[22m--- --[K
+    [1mR   R  III  P       OOO   SSSS    T    EEEEE[22m         ----------.+.:::=[1m=[22m -------[K
+                                                           ----------- -----[K
+[K
+   Choose an action, then browse images or folders.[K
+  -- MAIN MENU -----------------------------------------------------------------------------------  
+    [1m> 1  Riposte Sorter[22m                                        FOCUS / RIPOSTE SORTER[K
+      2  RIPOSTE[K
+      3  Sort + RIPOSTE                                        Ready-to-use sorting: Sort, Dry      
+      4  Image library                                         Run, Enter Path[K
+      5  Publishing batches[K
+      6  Local models[K
+      7  Terminal & workspace                                  No files change when you open an     
+      8  Full Sort Workshop                                    action.[K
+      9  Undo last sort[K
+      w  Workshop[K
+[K
+[K
+[K
+[K
+   Ready-to-use sorting: Sort, Dry Run, Enter Path[K
+  ------------------------------------------------------------------------------------------------  
+   [1m[Enter][22m Open   [1m[Arrows][22m Move   [1m[1-9/w][22m Choose   [1m[/][22m Find   [1m[q][22m Quit   [1m[F1][22m Help[K
+[K
+                                                                                                    [34;201H[H[K
+   [1mR I P O S T E[22m    /  MAIN MENU                                            LOCAL   /   v0.5.0      
+[K
+  ------------------------------------------------------------------------------------------------  
+   Choose what you want to do. Each action works independently.[K
+                                                                              =------------[K
+    [1mRRRR   III  PPPP    OOO   SSSS  TTTTT  EEEEE[22m[19X[1m[19C/[22m.----------+/ ----=-----        
+    [1mR   R   I   P   P  O   O  S       T    E    [22m               -----..+[1m=[22m------------------[K
+    [1mRRRR    I   PPPP   O   O   SSS    T    EEEE [22m          /---------:---.::..-------:--------       
+    [1mR  R    I   P      O   O      S   T    E    [22m     --------[1m>[22m---+=/---------...::[1m/[22m--- --[K
+    [1mR   R  III  P       OOO   SSSS    T    EEEEE[22m         ----------.+.:::== -------[K
+                                                           ----------- -----[K
+[K
+   Choose an action, then browse images or folders.[K
+  -- MAIN MENU -----------------------------------------------------------------------------------  
+      1  Riposte Sorter                                        FOCUS / RIPOSTE[K
+    [1m> 2  RIPOSTE[22m[K
+      3  Sort + RIPOSTE                                        Protect files or folders. Keep       
+      4  Image library                                         originals and their folder[K
+      5  Publishing batches                                    structure.[K
+      6  Local models[K
+      7  Terminal & workspace                                  No files change when you open an     
+      8  Full Sort Workshop                                    action.[K
+      9  Undo last sort[K
+      w  Workshop[K
+[K
+[K
+[K
+[K
+   Protect files or folders; preserve originals[K
+  ------------------------------------------------------------------------------------------------  
+   [1m[Enter][22m Open   [1m[Arrows][22m Move   [1m[1-9/w][22m Choose   [1m[/][22m Find   [1m[q][22m Quit   [1m[F1][22m Help[K
+[K
+                                                                                                    [34;201H[H[K
+   [1mR I P O S T E[22m    /  MAIN MENU                                            LOCAL   /   v0.5.0      
+[K
+  ------------------------------------------------------------------------------------------------  
+   Choose what you want to do. Each action works independently.[K
+                                                                              =------------[K
+    [1mRRRR   III  PPPP    OOO   SSSS  TTTTT  EEEEE[22m                    .----------:/ ----=-----        
+    [1mR   R   I   P   P  O   O  S       T    E    [22m               -----..+[1m=[22m------------------[K
+    [1mRRRR    I   PPPP   O   O   SSS    T    EEEE [22m          /---------:---+::..-------:--------       
+    [1mR  R    I   P      O   O      S   T    E    [22m      --------[1m>[22m--+=/---------...::[1m/[22m--- --[K
+    [1mR   R  III  P       OOO   SSSS    T    EEEEE[22m         ----------.+.:::== -------[K
+                                                           ----------- -----[K
+[K
+   Choose an action, then browse images or folders.[K
+  -- MAIN MENU -----------------------------------------------------------------------------------  
+    [1m> 1  Riposte Sorter[22m                                        FOCUS / RIPOSTE SORTER[K
+      2  RIPOSTE[K
+      3  Sort + RIPOSTE                                        Ready-to-use sorting: Sort, Dry      
+      4  Image library                                         Run, Enter Path[K
+      5  Publishing batches[K
+      6  Local models[K
+      7  Terminal & workspace                                  No files change when you open an     
+      8  Full Sort Workshop                                    action.[K
+      9  Undo last sort[K
+      w  Workshop[K
+[K
+[K
+[K
+[K
+   Ready-to-use sorting: Sort, Dry Run, Enter Path[K
+  ------------------------------------------------------------------------------------------------  
+   [1m[Enter][22m Open   [1m[Arrows][22m Move   [1m[1-9/w][22m Choose   [1m[/][22m Find   [1m[q][22m Quit   [1m[F1][22m Help[K
+[K
+                                                                                                    [34;201H[H[K
+   [1mR I P O S T E[22m    /  MAIN MENU                                            LOCAL   /   v0.5.0      
+[K
+  ------------------------------------------------------------------------------------------------  
+   Choose what you want to do. Each action works independently.[K
+                                                                              =------------[K
+    [1mRRRR   III  PPPP    OOO   SSSS  TTTTT  EEEEE[22m                    .----------:/ ----=-----        
+    [1mR   R   I   P   P  O   O  S       T    E    [22m               -----+.:[1m=[22m------------------[K
+    [1mRRRR    I   PPPP   O   O   SSS    T    EEEE [22m          /---------:---+::..-------:--------       
+    [1mR  R    I   P      O   O      S   T    E    [22m       --------[1m>[22m-+=/---------...::[1m/[22m--- --[K
+    [1mR   R  III  P       OOO   SSSS    T    EEEEE[22m         ----------.+.:::== -------[K
+                                                           ------------ ----[K
+[K
+   Choose an action, then browse images or folders.[K
+  -- MAIN MENU -----------------------------------------------------------------------------------  
+      1  Riposte Sorter                                        FOCUS / RIPOSTE[K
+    [1m> 2  RIPOSTE[22m[K
+      3  Sort + RIPOSTE                                        Protect files or folders. Keep       
+      4  Image library                                         originals and their folder[K
+      5  Publishing batches                                    structure.[K
+      6  Local models[K
+      7  Terminal & workspace                                  No files change when you open an     
+      8  Full Sort Workshop                                    action.[K
+      9  Undo last sort[K
+      w  Workshop[K
+[K
+[K
+[K
+[K
+   Protect files or folders; preserve originals[K
+  ------------------------------------------------------------------------------------------------  
+   [1m[Enter][22m Open   [1m[Arrows][22m Move   [1m[1-9/w][22m Choose   [1m[/][22m Find   [1m[q][22m Quit   [1m[F1][22m Help[K
+[K
+                                                                                                    [34;201H[H[K
+   [1mR I P O S T E[22m    /  MAIN MENU                                            LOCAL   /   v0.5.0      
+[K
+  ------------------------------------------------------------------------------------------------  
+   Choose what you want to do. Each action works independently.[K
+                                                                               ------------[K
+    [1mRRRR   III  PPPP    OOO   SSSS  TTTTT  EEEEE[22m                    .----------:/ ----=-----        
+    [1mR   R   I   P   P  O   O  S       T    E    [22m               -----+.:[1m=[22m------------------[K
+    [1mRRRR    I   PPPP   O   O   SSS    T    EEEE [22m          /---------:---+::..-------:--------       
+    [1mR  R    I   P      O   O      S   T    E    [22m        --------[1m>[22m+=/---------...::[1m/[22m--- --[K
+    [1mR   R  III  P       OOO   SSSS    T    EEEEE[22m         ----------.+.:::== -------[K
+                                                           ------------ ----[K
+[K
+   Choose an action, then browse images or folders.[K
+  -- MAIN MENU -----------------------------------------------------------------------------------  
+    [1m> 1  Riposte Sorter[22m                                        FOCUS / RIPOSTE SORTER[K
+      2  RIPOSTE[K
+      3  Sort + RIPOSTE                                        Ready-to-use sorting: Sort, Dry      
+      4  Image library                                         Run, Enter Path[K
+      5  Publishing batches[K
+      6  Local models[K
+      7  Terminal & workspace                                  No files change when you open an     
+      8  Full Sort Workshop                                    action.[K
+      9  Undo last sort[K
+      w  Workshop[K
+[K
+[K
+[K
+[K
+   Ready-to-use sorting: Sort, Dry Run, Enter Path[K
+  ------------------------------------------------------------------------------------------------  
+   [1m[Enter][22m Open   [1m[Arrows][22m Move   [1m[1-9/w][22m Choose   [1m[/][22m Find   [1m[q][22m Quit   [1m[F1][22m Help[K
+[K
+                                                                                                    [34;201H[H[K
+   [1mR I P O S T E[22m    /  MAIN MENU                                            LOCAL   /   v0.5.0      
+[K
+  ------------------------------------------------------------------------------------------------  
+   Choose what you want to do. Each action works independently.[K
+                                                                               ------------[K
+    [1mRRRR   III  PPPP    OOO   SSSS  TTTTT  EEEEE[22m                    .----------:/ ----=-----        
+    [1mR   R   I   P   P  O   O  S       T    E    [22m               -----+..[1m=[22m-------------- ---[K
+    [1mRRRR    I   PPPP   O   O   SSS    T    EEEE [22m          /---------:---+::..-------:--------       
+    [1mR  R    I   P      O   O      S   T    E    [22m        ---------[1m>[22m=/---------...::[1m/[22m--- --[K
+    [1mR   R  III  P       OOO   SSSS    T    EEEEE[22m         ----------.+.:::== -------[K
+                                                           ------------ ----[K
+[K
+   Choose an action, then browse images or folders.[K
+  -- MAIN MENU -----------------------------------------------------------------------------------  
+      1  Riposte Sorter                                        FOCUS / RIPOSTE[K
+    [1m> 2  RIPOSTE[22m[K
+      3  Sort + RIPOSTE                                        Protect files or folders. Keep       
+      4  Image library                                         originals and their folder[K
+      5  Publishing batches                                    structure.[K
+      6  Local models[K
+      7  Terminal & workspace                                  No files change when you open an     
+      8  Full Sort Workshop                                    action.[K
+      9  Undo last sort[K
+      w  Workshop[K
+[K
+[K
+[K
+[K
+   Protect files or folders; preserve originals[K
+  ------------------------------------------------------------------------------------------------  
+   [1m[Enter][22m Open   [1m[Arrows][22m Move   [1m[1-9/w][22m Choose   [1m[/][22m Find   [1m[q][22m Quit   [1m[F1][22m Help[K
+[K
+                                                                                                    [34;201H[H[K
+   [1mR I P O S T E[22m    /  MAIN MENU                                            LOCAL   /   v0.5.0      
+[K
+  ------------------------------------------------------------------------------------------------  
+   Choose what you want to do. Each action works independently.[K
+                                                                               ------------[K
+    [1mRRRR   III  PPPP    OOO   SSSS  TTTTT  EEEEE[22m                    .----------:/ ----=-----        
+    [1mR   R   I   P   P  O   O  S       T    E    [22m               -----+..[1m=[22m-------------- ---[K
+    [1mRRRR    I   PPPP   O   O   SSS    T    EEEE [22m          ----------:---+::..-------:--------       
+    [1mR  R    I   P      O   O      S   T    E    [22m        ----------[1m>[22m/---------...::[1m/[22m--- --[K
+    [1mR   R  III  P       OOO   SSSS    T    EEEEE[22m         ----------.+.:::== -------[K
+                                                           ------------ ----[K
+[K
+   Choose an action, then browse images or folders.[K
+  -- MAIN MENU -----------------------------------------------------------------------------------  
+    [1m> 1  Riposte Sorter[22m                                        FOCUS / RIPOSTE SORTER[K
+      2  RIPOSTE[K
+      3  Sort + RIPOSTE                                        Ready-to-use sorting: Sort, Dry      
+      4  Image library                                         Run, Enter Path[K
+      5  Publishing batches[K
+      6  Local models[K
+      7  Terminal & workspace                                  No files change when you open an     
+      8  Full Sort Workshop                                    action.[K
+      9  Undo last sort[K
+      w  Workshop[K
+[K
+[K
+[K
+[K
+   Ready-to-use sorting: Sort, Dry Run, Enter Path[K
+  ------------------------------------------------------------------------------------------------  
+   [1m[Enter][22m Open   [1m[Arrows][22m Move   [1m[1-9/w][22m Choose   [1m[/][22m Find   [1m[q][22m Quit   [1m[F1][22m Help[K
+[K
+                                                                                                    [34;201H[H[K
+   [1mR I P O S T E[22m    /  MAIN MENU                                            LOCAL   /   v0.5.0      
+[K
+  ------------------------------------------------------------------------------------------------  
+   Choose what you want to do. Each action works independently.[K
+                                                                               ------------[K
+    [1mRRRR   III  PPPP    OOO   SSSS  TTTTT  EEEEE[22m                    .----------:/ ----=-----        
+    [1mR   R   I   P   P  O   O  S       T    E    [22m               -----+..[1m=[22m-------------- ---[K
+    [1mRRRR    I   PPPP   O   O   SSS    T    EEEE [22m          ----------:---+.:+.-------:--------       
+    [1mR  R    I   P      O   O      S   T    E    [22m        ----------/[1m>[22m---------...::[1m/[22m--- --[K
+    [1mR   R  III  P       OOO   SSSS    T    EEEEE[22m         ----------.+..::== -------[K
+                                                           ------------ ----[K
+[K
+   Choose an action, then browse images or folders.[K
+  -- MAIN MENU -----------------------------------------------------------------------------------  
+      1  Riposte Sorter                                        FOCUS / RIPOSTE[K
+    [1m> 2  RIPOSTE[22m[K
+      3  Sort + RIPOSTE                                        Protect files or folders. Keep       
+      4  Image library                                         originals and their folder[K
+      5  Publishing batches                                    structure.[K
+      6  Local models[K
+      7  Terminal & workspace                                  No files change when you open an     
+      8  Full Sort Workshop                                    action.[K
+      9  Undo last sort[K
+      w  Workshop[K
+[K
+[K
+[K
+[K
+   Protect files or folders; preserve originals[K
+  ------------------------------------------------------------------------------------------------  
+   [1m[Enter][22m Open   [1m[Arrows][22m Move   [1m[1-9/w][22m Choose   [1m[/][22m Find   [1m[q][22m Quit   [1m[F1][22m Help[K
+[K
+                                                                                                    [34;201H[H[K
+   [1mR I P O S T E[22m    /  MAIN MENU                                            LOCAL   /   v0.5.0      
+[K
+  ------------------------------------------------------------------------------------------------  
+   Choose what you want to do. Each action works independently.[K
+                                                                               ------------[K
+    [1mRRRR   III  PPPP    OOO   SSSS  TTTTT  EEEEE[22m                    .----------:+- ----=----        
+    [1mR   R   I   P   P  O   O  S       T    E    [22m               -----+..[1m=[22m-------------- ---[K
+    [1mRRRR    I   PPPP   O   O   SSS    T    EEEE [22m          ----------:---+.:+.-------:--------       
+    [1mR  R    I   P      O   O      S   T    E    [22m        ----------//[1m>[22m--------...::/--- --[K
+    [1mR   R  III  P       OOO   SSSS    T    EEEEE[22m         ----------.+..::== -------[K
+                                                           ------------- ---[K
+[K
+   Choose an action, then browse images or folders.[K
+  -- MAIN MENU -----------------------------------------------------------------------------------  
+    [1m> 1  Riposte Sorter[22m                                        FOCUS / RIPOSTE SORTER[K
+      2  RIPOSTE[K
+      3  Sort + RIPOSTE                                        Ready-to-use sorting: Sort, Dry      
+      4  Image library                                         Run, Enter Path[K
+      5  Publishing batches[K
+      6  Local models[K
+      7  Terminal & workspace                                  No files change when you open an     
+      8  Full Sort Workshop                                    action.[K
+      9  Undo last sort[K
+      w  Workshop[K
+[K
+[K
+[K
+[K
+   Ready-to-use sorting: Sort, Dry Run, Enter Path[K
+  ------------------------------------------------------------------------------------------------  
+   [1m[Enter][22m Open   [1m[Arrows][22m Move   [1m[1-9/w][22m Choose   [1m[/][22m Find   [1m[q][22m Quit   [1m[F1][22m Help[K
+[K
+                                                                                                    [34;201H[H[K
+   [1mR I P O S T E[22m    /  MAIN MENU                                            LOCAL   /   v0.5.0      
+[K
+  ------------------------------------------------------------------------------------------------  
+   Choose what you want to do. Each action works independently.[K
+                                                                               ------------[K
+    [1mRRRR   III  PPPP    OOO   SSSS  TTTTT  EEEEE[22m                    .----------.+--- --=----        
+    [1mR   R   I   P   P  O   O  S       T    E    [22m               -----+..[1m=[22m-------------- ---[K
+    [1mRRRR    I   PPPP   O   O   SSS    T    EEEE [22m          ----------:---+.:+.-------:--------       
+    [1mR  R    I   P      O   O      S   T    E    [22m        ----/-----///[1m>[22m-------...::/--- --[K
+    [1mR   R  III  P       OOO   SSSS    T    EEEEE[22m         ----------.+..::== -------[K
+                                                           ------------- ---[K
+[K
+   Choose an action, then browse images or folders.[K
+  -- MAIN MENU -----------------------------------------------------------------------------------  
+      1  Riposte Sorter                                        FOCUS / RIPOSTE[K
+    [1m> 2  RIPOSTE[22m[K
+      3  Sort + RIPOSTE                                        Protect files or folders. Keep       
+      4  Image library                                         originals and their folder[K
+      5  Publishing batches                                    structure.[K
+      6  Local models[K
+      7  Terminal & workspace                                  No files change when you open an     
+      8  Full Sort Workshop                                    action.[K
+      9  Undo last sort[K
+      w  Workshop[K
+[K
+[K
+[K
+[K
+   Protect files or folders; preserve originals[K
+  ------------------------------------------------------------------------------------------------  
+   [1m[Enter][22m Open   [1m[Arrows][22m Move   [1m[1-9/w][22m Choose   [1m[/][22m Find   [1m[q][22m Quit   [1m[F1][22m Help[K
+[K
+                                                                                                    [34;201H[H[K
+   [1mR I P O S T E[22m    /  MAIN MENU                                            LOCAL   /   v0.5.0      
+[K
+  ------------------------------------------------------------------------------------------------  
+   Choose what you want to do. Each action works independently.[K
+                                                                               ------------[K
+    [1mRRRR   III  PPPP    OOO   SSSS  TTTTT  EEEEE[22m                    .----------.+---- -=----        
+    [1mR   R   I   P   P  O   O  S       T    E    [22m               -----+..[1m=[22m-------------- ---[K
+    [1mRRRR    I   PPPP   O   O   SSS    T    EEEE [22m          ----- ----:-[1m>[22m-+.:+.-------:--------       
+    [1mR  R    I   P      O   O      S   T    E    [22m        ----/-----////-------...::/--- --[K
+    [1mR   R  III  P       OOO   SSSS    T    EEEEE[22m         ----------.+..::== -------[K
+                                                           ------------- ---[K
+[K
+   Choose an action, then browse images or folders.[K
+  -- MAIN MENU -----------------------------------------------------------------------------------  
+      1  Riposte Sorter                                        FOCUS / SORT + RIPOSTE[K
+      2  RIPOSTE[K
+    [1m> 3  Sort + RIPOSTE[22m                                        Preview sorting, confirm[K
+      4  Image library                                         replacement, then protect the        
+      5  Publishing batches                                    organized collection.[K
+      6  Local models[K
+      7  Terminal & workspace                                  No files change when you open an     
+      8  Full Sort Workshop                                    action.[K
+      9  Undo last sort[K
+      w  Workshop[K
+[K
+[K
+[K
+[K
+   Organize, then protect in one workflow[K
+  ------------------------------------------------------------------------------------------------  
+   [1m[Enter][22m Open   [1m[Arrows][22m Move   [1m[1-9/w][22m Choose   [1m[/][22m Find   [1m[q][22m Quit   [1m[F1][22m Help[K
+[K
+                                                                                                    [34;201H[H[K
+   [1mR I P O S T E[22m    /  MAIN MENU                                            LOCAL   /   v0.5.0      
+[K
+  ------------------------------------------------------------------------------------------------  
+   Choose what you want to do. Each action works independently.[K
+                                                                               =-----------[K
+    [1mRRRR   III  PPPP    OOO   SSSS  TTTTT  EEEEE[22m                    .-----------+ ---- =----        
+    [1mR   R   I   P   P  O   O  S       T    E    [22m               -----+..[1m=[22m------------------[K
+    [1mRRRR    I   PPPP   O   O   SSS    T    EEEE [22m          ----- ----:-/[1m>[22m+.:+.-------:--------       
+    [1mR  R    I   P      O   O      S   T    E    [22m        ----/-----////-------...::/--- --[K
+    [1mR   R  III  P       OOO   SSSS    T    EEEEE[22m         ----------.+..::== -------[K
+                                                           ------------- ---[K
+[K
+   Choose an action, then browse images or folders.[K
+  -- MAIN MENU -----------------------------------------------------------------------------------  
+      1  Riposte Sorter                                        FOCUS / RIPOSTE[K
+    [1m> 2  RIPOSTE[22m[K
+      3  Sort + RIPOSTE                                        Protect files or folders. Keep       
+      4  Image library                                         originals and their folder[K
+      5  Publishing batches                                    structure.[K
+      6  Local models[K
+      7  Terminal & workspace                                  No files change when you open an     
+      8  Full Sort Workshop                                    action.[K
+      9  Undo last sort[K
+      w  Workshop[K
+[K
+[K
+[K
+[K
+   Protect files or folders; preserve originals[K
+  ------------------------------------------------------------------------------------------------  
+   [1m[Enter][22m Open   [1m[Arrows][22m Move   [1m[1-9/w][22m Choose   [1m[/][22m Find   [1m[q][22m Quit   [1m[F1][22m Help[K
+[K
+                                                                                                    [34;201H[H[K
+   [1mR I P O S T E[22m    /  RIPOSTE / SELECT INPUTS                              LOCAL   /   v0.5.0      
+[K
+  ------------------------------------------------------------------------------------------------  
+   MAIN MENU / RIPOSTE / SELECT INPUTS[K
+[K
+   Select images or folders to protect, including subfolders. Originals stay in place; sorting is   
+   not required.[K
+[K
+[K
+   C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-6bv0cdhz\Pictures[K
+  -- FILES & FOLDERS -----------------------------------------------------------------------------  
+   [1m>  1     Continue with 0 selected[22m[K
+      2     ..  Parent folder[K
+      3 [ ] folder-00/[K
+      4 [ ] folder-01/[K
+      5 [ ] folder-02/[K
+      6 [ ] folder-03/[K
+      7 [ ] folder-04/[K
+      8 [ ] folder-05/[K
+      9 [ ] folder-06/[K
+     10 [ ] folder-07/[K
+     11 [ ] folder-08/[K
+     12 [ ] folder-09/[K
+     13 [ ] folder-10/[K
+     14 [ ] folder-11/[K
+     15 [ ] folder-12/[K
+     16 [ ] folder-13/[K
+   Rows 1-16/44   |   0 selected[K
+   Selection is read-only. Enter on the first row confirms your choice.[K
+  ------------------------------------------------------------------------------------------------  
+   [1m[Enter][22m Open / choose   [1m[Space][22m Select   [1m[Esc][22m Cancel   [1m[g][22m Go to path   [1m[s][22m This folder[K
+   [1m[Backspace][22m Parent   [1m[l][22m Locations   [1m[F1][22m Help[K
+                                                                                                    [34;201H[H[K
+   [1mR I P O S T E[22m    /  MAIN MENU                                            LOCAL   /   v0.5.0      
+[K
+  ------------------------------------------------------------------------------------------------  
+   Choose what you want to do. Each action works independently.[K
+                                                                               =-----------[K
+    [1mRRRR   III  PPPP    OOO   SSSS  TTTTT  EEEEE[22m                    .-----------:/---- =----        
+    [1mR   R   I   P   P  O   O  S       T    E    [22m               -----:..[1m=[22m-------------------[K
+    [1mRRRR    I   PPPP   O   O   SSS    T    EEEE [22m          ----------:-////[1m>[22m:.-------:--------       
+    [1mR  R    I   P      O   O      S   T    E    [22m        ----/----+////-------...::/--- --[K
+    [1mR   R  III  P       OOO   SSSS    T    EEEEE[22m         ----------.+.:::== -------[K
+                                                           ------------- ---[K
+[K
+   Choose an action, then browse images or folders.[K
+  -- MAIN MENU -----------------------------------------------------------------------------------  
+      1  Riposte Sorter                                        FOCUS / RIPOSTE[K
+    [1m> 2  RIPOSTE[22m[K
+      3  Sort + RIPOSTE                                        Protect files or folders. Keep       
+      4  Image library                                         originals and their folder[K
+      5  Publishing batches                                    structure.[K
+      6  Local models[K
+      7  Terminal & workspace                                  No files change when you open an     
+      8  Full Sort Workshop                                    action.[K
+      9  Undo last sort[K
+      w  Workshop[K
+[K
+[K
+[K
+[K
+   Protect files or folders; preserve originals[K
+  ------------------------------------------------------------------------------------------------  
+   [1m[Enter][22m Open   [1m[Arrows][22m Move   [1m[1-9/w][22m Choose   [1m[/][22m Find   [1m[q][22m Quit   [1m[F1][22m Help[K
+[K
+                                                                                                    [34;201H[H[K
+   [1mR I P O S T E[22m    /  MAIN MENU                                            LOCAL   /   v0.5.0      
+[K
+  ------------------------------------------------------------------------------------------------  
+   Choose what you want to do. Each action works independently.[K
+                                                                                -----------[K
+    [1mRRRR   III  PPPP    OOO   SSSS  TTTTT  EEEEE[22m                    .-----------./---- =----        
+    [1mR   R   I   P   P  O   O  S       T    E    [22m               -----:..[1m=[22m-------------------[K
+    [1mRRRR    I   PPPP   O   O   SSS    T    EEEE [22m          ----------:-/////[1m>[22m.-------:--------       
+    [1mR  R    I   P      O   O      S   T    E    [22m        ----/----+:///-------...::/--- --[K
+    [1mR   R  III  P       OOO   SSSS    T    EEEEE[22m         ----------.+.:::== -------[K
+                                                           ------------- ---[K
+[K
+   Choose an action, then browse images or folders.[K
+  -- MAIN MENU -----------------------------------------------------------------------------------  
+    [1m> 1  Riposte Sorter[22m                                        FOCUS / RIPOSTE SORTER[K
+      2  RIPOSTE[K
+      3  Sort + RIPOSTE                                        Ready-to-use sorting: Sort, Dry      
+      4  Image library                                         Run, Enter Path[K
+      5  Publishing batches[K
+      6  Local models[K
+      7  Terminal & workspace                                  No files change when you open an     
+      8  Full Sort Workshop                                    action.[K
+      9  Undo last sort[K
+      w  Workshop[K
+[K
+[K
+[K
+[K
+   Ready-to-use sorting: Sort, Dry Run, Enter Path[K
+  ------------------------------------------------------------------------------------------------  
+   [1m[Enter][22m Open   [1m[Arrows][22m Move   [1m[1-9/w][22m Choose   [1m[/][22m Find   [1m[q][22m Quit   [1m[F1][22m Help[K
+[K
+                                                                                                    [34;201H[H[K
+   [1mR I P O S T E[22m    /  Riposte Sorter                                       LOCAL   /   v0.5.0      
+[K
+  ------------------------------------------------------------------------------------------------  
+   MAIN MENU / Riposte Sorter[K
+[K
+   FOLDER[K
+   No folder selected. Choose Enter Path.[K
+[K
+[K
+  -- CHOOSE A FOLDER TO START --------------------------------------------------------------------  
+    [1m> 1. Sort[22m           Review the plan, then confirm REPLACE[K
+[K
+      2. Dry Run        Inspect destinations; change nothing[K
+[K
+      3. Enter Path     Paste the folder to sort[K
+[K
+   Year / Month / img-or-vid / Category / Size[K
+   _float_ / __float__: never sorted; RIPOSTE allowed.[K
+   Download dates; saved category rules; unmatched titles go to Uncategorized. Images become        
+   date-only PNGs; videos keep their bytes. Originals stay in private undo history. Sidecars        
+   require Full Sort Workshop consent.[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+   Subfolders included; float storage excluded. Sort previews first.[K
+  ------------------------------------------------------------------------------------------------  
+   [1m[Enter][22m Choose   [1m[1/2/3][22m Choose   [1m[g][22m Enter Path   [1m[b][22m Browse   [1m[u][22m Undo   [1m[Esc][22m Back[K
+   [1m[F1][22m Help[K
+                                                                                                    [34;201H[H[K
+   [1mR I P O S T E[22m    /  Riposte Sorter                                       LOCAL   /   v0.5.0      
+[K
+  ------------------------------------------------------------------------------------------------  
+   MAIN MENU / Riposte Sorter[K
+[K
+   FOLDER[K
+   No folder selected. Choose Enter Path.[K
+[K
+[K
+  -- CHOOSE A FOLDER TO START --------------------------------------------------------------------  
+      1. Sort           Review the plan, then confirm REPLACE[K
+[K
+    [1m> 2. Dry Run[22m        Inspect destinations; change nothing[K
+[K
+      3. Enter Path     Paste the folder to sort[K
+[K
+   Year / Month / img-or-vid / Category / Size[K
+   _float_ / __float__: never sorted; RIPOSTE allowed.[K
+   Download dates; saved category rules; unmatched titles go to Uncategorized. Images become        
+   date-only PNGs; videos keep their bytes. Originals stay in private undo history. Sidecars        
+   require Full Sort Workshop consent.[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+   Subfolders included; float storage excluded. Sort previews first.[K
+  ------------------------------------------------------------------------------------------------  
+   [1m[Enter][22m Choose   [1m[1/2/3][22m Choose   [1m[g][22m Enter Path   [1m[b][22m Browse   [1m[u][22m Undo   [1m[Esc][22m Back[K
+   [1m[F1][22m Help[K
+                                                                                                    [34;201H[H[K
+   [1mR I P O S T E[22m    /  Riposte Sorter                                       LOCAL   /   v0.5.0      
+[K
+  ------------------------------------------------------------------------------------------------  
+   MAIN MENU / Riposte Sorter[K
+[K
+   FOLDER[K
+   No folder selected. Choose Enter Path.[K
+[K
+[K
+  -- CHOOSE A FOLDER TO START --------------------------------------------------------------------  
+    [1m> 1. Sort[22m           Review the plan, then confirm REPLACE[K
+[K
+      2. Dry Run        Inspect destinations; change nothing[K
+[K
+      3. Enter Path     Paste the folder to sort[K
+[K
+   Year / Month / img-or-vid / Category / Size[K
+   _float_ / __float__: never sorted; RIPOSTE allowed.[K
+   Download dates; saved category rules; unmatched titles go to Uncategorized. Images become        
+   date-only PNGs; videos keep their bytes. Originals stay in private undo history. Sidecars        
+   require Full Sort Workshop consent.[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+   Subfolders included; float storage excluded. Sort previews first.[K
+  ------------------------------------------------------------------------------------------------  
+   [1m[Enter][22m Choose   [1m[1/2/3][22m Choose   [1m[g][22m Enter Path   [1m[b][22m Browse   [1m[u][22m Undo   [1m[Esc][22m Back[K
+   [1m[F1][22m Help[K
+                                                                                                    [34;201H[H[K
+   [1mR I P O S T E[22m    /  Riposte Sorter                                       LOCAL   /   v0.5.0      
+[K
+  ------------------------------------------------------------------------------------------------  
+   MAIN MENU / Riposte Sorter[K
+[K
+   FOLDER[K
+   No folder selected. Choose Enter Path.[K
+[K
+[K
+  -- CHOOSE A FOLDER TO START --------------------------------------------------------------------  
+      1. Sort           Review the plan, then confirm REPLACE[K
+[K
+    [1m> 2. Dry Run[22m        Inspect destinations; change nothing[K
+[K
+      3. Enter Path     Paste the folder to sort[K
+[K
+   Year / Month / img-or-vid / Category / Size[K
+   _float_ / __float__: never sorted; RIPOSTE allowed.[K
+   Download dates; saved category rules; unmatched titles go to Uncategorized. Images become        
+   date-only PNGs; videos keep their bytes. Originals stay in private undo history. Sidecars        
+   require Full Sort Workshop consent.[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+   Subfolders included; float storage excluded. Sort previews first.[K
+  ------------------------------------------------------------------------------------------------  
+   [1m[Enter][22m Choose   [1m[1/2/3][22m Choose   [1m[g][22m Enter Path   [1m[b][22m Browse   [1m[u][22m Undo   [1m[Esc][22m Back[K
+   [1m[F1][22m Help[K
+                                                                                                    [34;201H[H[K
+   [1mR I P O S T E[22m    /  Riposte Sorter                                       LOCAL   /   v0.5.0      
+[K
+  ------------------------------------------------------------------------------------------------  
+   MAIN MENU / Riposte Sorter[K
+[K
+   FOLDER[K
+   No folder selected. Choose Enter Path.[K
+[K
+[K
+  -- CHOOSE A FOLDER TO START --------------------------------------------------------------------  
+    [1m> 1. Sort[22m           Review the plan, then confirm REPLACE[K
+[K
+      2. Dry Run        Inspect destinations; change nothing[K
+[K
+      3. Enter Path     Paste the folder to sort[K
+[K
+   Year / Month / img-or-vid / Category / Size[K
+   _float_ / __float__: never sorted; RIPOSTE allowed.[K
+   Download dates; saved category rules; unmatched titles go to Uncategorized. Images become        
+   date-only PNGs; videos keep their bytes. Originals stay in private undo history. Sidecars        
+   require Full Sort Workshop consent.[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+   Subfolders included; float storage excluded. Sort previews first.[K
+  ------------------------------------------------------------------------------------------------  
+   [1m[Enter][22m Choose   [1m[1/2/3][22m Choose   [1m[g][22m Enter Path   [1m[b][22m Browse   [1m[u][22m Undo   [1m[Esc][22m Back[K
+   [1m[F1][22m Help[K
+                                                                                                    [34;201H[H[K
+   [1mR I P O S T E[22m    /  Riposte Sorter                                       LOCAL   /   v0.5.0      
+[K
+  ------------------------------------------------------------------------------------------------  
+   MAIN MENU / Riposte Sorter[K
+[K
+   FOLDER[K
+   No folder selected. Choose Enter Path.[K
+[K
+[K
+  -- CHOOSE A FOLDER TO START --------------------------------------------------------------------  
+      1. Sort           Review the plan, then confirm REPLACE[K
+[K
+    [1m> 2. Dry Run[22m        Inspect destinations; change nothing[K
+[K
+      3. Enter Path     Paste the folder to sort[K
+[K
+   Year / Month / img-or-vid / Category / Size[K
+   _float_ / __float__: never sorted; RIPOSTE allowed.[K
+   Download dates; saved category rules; unmatched titles go to Uncategorized. Images become        
+   date-only PNGs; videos keep their bytes. Originals stay in private undo history. Sidecars        
+   require Full Sort Workshop consent.[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+   Subfolders included; float storage excluded. Sort previews first.[K
+  ------------------------------------------------------------------------------------------------  
+   [1m[Enter][22m Choose   [1m[1/2/3][22m Choose   [1m[g][22m Enter Path   [1m[b][22m Browse   [1m[u][22m Undo   [1m[Esc][22m Back[K
+   [1m[F1][22m Help[K
+                                                                                                    [34;201H[H[K
+   [1mR I P O S T E[22m    /  Riposte Sorter                                       LOCAL   /   v0.5.0      
+[K
+  ------------------------------------------------------------------------------------------------  
+   MAIN MENU / Riposte Sorter[K
+[K
+   FOLDER[K
+   No folder selected. Choose Enter Path.[K
+[K
+[K
+  -- CHOOSE A FOLDER TO START --------------------------------------------------------------------  
+    [1m> 1. Sort[22m           Review the plan, then confirm REPLACE[K
+[K
+      2. Dry Run        Inspect destinations; change nothing[K
+[K
+      3. Enter Path     Paste the folder to sort[K
+[K
+   Year / Month / img-or-vid / Category / Size[K
+   _float_ / __float__: never sorted; RIPOSTE allowed.[K
+   Download dates; saved category rules; unmatched titles go to Uncategorized. Images become        
+   date-only PNGs; videos keep their bytes. Originals stay in private undo history. Sidecars        
+   require Full Sort Workshop consent.[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+   Subfolders included; float storage excluded. Sort previews first.[K
+  ------------------------------------------------------------------------------------------------  
+   [1m[Enter][22m Choose   [1m[1/2/3][22m Choose   [1m[g][22m Enter Path   [1m[b][22m Browse   [1m[u][22m Undo   [1m[Esc][22m Back[K
+   [1m[F1][22m Help[K
+                                                                                                    [34;201H[H[K
+   [1mR I P O S T E[22m    /  Riposte Sorter                                       LOCAL   /   v0.5.0      
+[K
+  ------------------------------------------------------------------------------------------------  
+   MAIN MENU / Riposte Sorter[K
+[K
+   FOLDER[K
+   No folder selected. Choose Enter Path.[K
+[K
+[K
+  -- CHOOSE A FOLDER TO START --------------------------------------------------------------------  
+      1. Sort           Review the plan, then confirm REPLACE[K
+[K
+    [1m> 2. Dry Run[22m        Inspect destinations; change nothing[K
+[K
+      3. Enter Path     Paste the folder to sort[K
+[K
+   Year / Month / img-or-vid / Category / Size[K
+   _float_ / __float__: never sorted; RIPOSTE allowed.[K
+   Download dates; saved category rules; unmatched titles go to Uncategorized. Images become        
+   date-only PNGs; videos keep their bytes. Originals stay in private undo history. Sidecars        
+   require Full Sort Workshop consent.[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+   Subfolders included; float storage excluded. Sort previews first.[K
+  ------------------------------------------------------------------------------------------------  
+   [1m[Enter][22m Choose   [1m[1/2/3][22m Choose   [1m[g][22m Enter Path   [1m[b][22m Browse   [1m[u][22m Undo   [1m[Esc][22m Back[K
+   [1m[F1][22m Help[K
+                                                                                                    [34;201H[H[K
+   [1mR I P O S T E[22m    /  Riposte Sorter                                       LOCAL   /   v0.5.0      
+[K
+  ------------------------------------------------------------------------------------------------  
+   MAIN MENU / Riposte Sorter[K
+[K
+   FOLDER[K
+   No folder selected. Choose Enter Path.[K
+[K
+[K
+  -- CHOOSE A FOLDER TO START --------------------------------------------------------------------  
+    [1m> 1. Sort[22m           Review the plan, then confirm REPLACE[K
+[K
+      2. Dry Run        Inspect destinations; change nothing[K
+[K
+      3. Enter Path     Paste the folder to sort[K
+[K
+   Year / Month / img-or-vid / Category / Size[K
+   _float_ / __float__: never sorted; RIPOSTE allowed.[K
+   Download dates; saved category rules; unmatched titles go to Uncategorized. Images become        
+   date-only PNGs; videos keep their bytes. Originals stay in private undo history. Sidecars        
+   require Full Sort Workshop consent.[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+   Subfolders included; float storage excluded. Sort previews first.[K
+  ------------------------------------------------------------------------------------------------  
+   [1m[Enter][22m Choose   [1m[1/2/3][22m Choose   [1m[g][22m Enter Path   [1m[b][22m Browse   [1m[u][22m Undo   [1m[Esc][22m Back[K
+   [1m[F1][22m Help[K
+                                                                                                    [34;201H[H[K
+   [1mR I P O S T E[22m    /  Riposte Sorter                                       LOCAL   /   v0.5.0      
+[K
+  ------------------------------------------------------------------------------------------------  
+   MAIN MENU / Riposte Sorter[K
+[K
+   FOLDER[K
+   No folder selected. Choose Enter Path.[K
+[K
+[K
+  +- EDIT / ENTER PATH --------------------------------------------------------------------------+  
+  |                                                                                              |  
+  |  Paste an existing image folder. Quotes are accepted. Esc keeps the current folder.          |  
+  |                                                                                              |  
+  |                                                                                              |  
+  |                                                                                              |  
+  |   [1m [22m                                                                                          |  
+  |   [1m^[22m                                                                                          |  
+  |                                                                                              |  
+  |                                                                                              |  
+  |  [Enter] save   [Esc] discard   [Ctrl+U] clear                                               |  
+  |                                                                                              |  
+  +----------------------------------------------------------------------------------------------+  
+[K
+[K
+[K
+[K
+[K
+[K
+   Paste an existing image folder. Quotes are accepted. Esc keeps the current folder.[K
+  ------------------------------------------------------------------------------------------------  
+   [1m[Enter][22m Save   [1m[Esc][22m Discard   [1m[Ctrl+U][22m Clear   [1m[F1][22m Help[K
+[K
+                                                                                                    [34;201H[H[K
+   [1mR I P O S T E[22m    /  Riposte Sorter                                       LOCAL   /   v0.5.0      
+[K
+  ------------------------------------------------------------------------------------------------  
+   MAIN MENU / Riposte Sorter[K
+[K
+   FOLDER[K
+   No folder selected. Choose Enter Path.[K
+[K
+[K
+  +- EDIT / ENTER PATH --------------------------------------------------------------------------+  
+  |                                                                                              |  
+  |  Paste an existing image folder. Quotes are accepted. Esc keeps the current folder.          |  
+  |                                                                                              |  
+  |                                                                                              |  
+  |                                                                                              |  
+  |   C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-6bv0cdhz\missing[1m [22m                 |  
+  |[76X[1m[76C^[22m                 |  
+  |  Folder not found. Choose an existing folder.                                                |  
+  |                                                                                              |  
+  |  [Enter] save   [Esc] discard   [Ctrl+U] clear                                               |  
+  |                                                                                              |  
+  +----------------------------------------------------------------------------------------------+  
+[K
+[K
+[K
+[K
+[K
+[K
+   Paste an existing image folder. Quotes are accepted. Esc keeps the current folder.[K
+  ------------------------------------------------------------------------------------------------  
+   [1m[Enter][22m Save   [1m[Esc][22m Discard   [1m[Ctrl+U][22m Clear   [1m[F1][22m Help[K
+[K
+                                                                                                    [34;201H[H[K
+   [1mR I P O S T E[22m    /  Riposte Sorter                                       LOCAL   /   v0.5.0      
+[K
+  ------------------------------------------------------------------------------------------------  
+   MAIN MENU / Riposte Sorter[K
+[K
+   FOLDER[K
+   C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-6bv0cdhz\Pictures[K
+[K
+[K
+  -- SORT ACTIONS --------------------------------------------------------------------------------  
+    [1m> 1. Sort[22m           Review the plan, then confirm REPLACE[K
+[K
+      2. Dry Run        Inspect destinations; change nothing[K
+[K
+      3. Enter Path     Paste the folder to sort[K
+[K
+   Year / Month / img-or-vid / Category / Size[K
+   _float_ / __float__: never sorted; RIPOSTE allowed.[K
+   Download dates; saved category rules; unmatched titles go to Uncategorized. Images become        
+   date-only PNGs; videos keep their bytes. Originals stay in private undo history. Sidecars        
+   require Full Sort Workshop consent.[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+   Subfolders included; float storage excluded. Sort previews first.[K
+  ------------------------------------------------------------------------------------------------  
+   [1m[Enter][22m Choose   [1m[1/2/3][22m Choose   [1m[g][22m Enter Path   [1m[b][22m Browse   [1m[u][22m Undo   [1m[Esc][22m Back[K
+   [1m[F1][22m Help[K
+                                                                                                    [34;201H[H[K
+   [1mR I P O S T E[22m    /  SORT / SELECT FOLDER                                 LOCAL   /   v0.5.0      
+[K
+  ------------------------------------------------------------------------------------------------  
+   MAIN MENU / SORT / SELECT FOLDER[K
+[K
+   Select the folder to sort, including its subfolders. Preview first; replacing originals[K
+   requires REPLACE.[K
+[K
+[K
+   C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-6bv0cdhz\Pictures[K
+  -- FOLDERS -------------------------------------------------------------------------------------  
+   [1m>  1     Use this folder[22m[K
+      2     ..  Parent folder[K
+      3     folder-00/[K
+      4     folder-01/[K
+      5     folder-02/[K
+      6     folder-03/[K
+      7     folder-04/[K
+      8     folder-05/[K
+      9     folder-06/[K
+     10     folder-07/[K
+     11     folder-08/[K
+     12     folder-09/[K
+     13     folder-10/[K
+     14     folder-11/[K
+     15     folder-12/[K
+     16     folder-13/[K
+   Rows 1-16/43   |   s uses the highlighted folder[K
+   Selection is read-only. Enter on the first row confirms your choice.[K
+  ------------------------------------------------------------------------------------------------  
+   [1m[Enter][22m Open / choose   [1m[s][22m Use folder   [1m[Esc][22m Cancel   [1m[g][22m Go to path   [1m[Backspace][22m Parent      
+   [1m[l][22m Locations   [1m[F1][22m Help[K
+                                                                                                    [34;201H[H[K
+   [1mR I P O S T E[22m    /  SORT / SELECT FOLDER                                 LOCAL   /   v0.5.0      
+[K
+  ------------------------------------------------------------------------------------------------  
+   MAIN MENU / SORT / SELECT FOLDER[K
+[K
+   Select the folder to sort, including its subfolders. Preview first; replacing originals[K
+   requires REPLACE.[K
+[K
+[K
+   C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-6bv0cdhz\Pictures[K
+  -- FOLDERS -------------------------------------------------------------------------------------  
+      1     Use this folder[K
+   [1m>  2     ..  Parent folder[22m[K
+      3     folder-00/[K
+      4     folder-01/[K
+      5     folder-02/[K
+      6     folder-03/[K
+      7     folder-04/[K
+      8     folder-05/[K
+      9     folder-06/[K
+     10     folder-07/[K
+     11     folder-08/[K
+     12     folder-09/[K
+     13     folder-10/[K
+     14     folder-11/[K
+     15     folder-12/[K
+     16     folder-13/[K
+   Rows 1-16/43   |   s uses the highlighted folder[K
+   Selection is read-only. Enter on the first row confirms your choice.[K
+  ------------------------------------------------------------------------------------------------  
+   [1m[Enter][22m Open / choose   [1m[s][22m Use folder   [1m[Esc][22m Cancel   [1m[g][22m Go to path   [1m[Backspace][22m Parent      
+   [1m[l][22m Locations   [1m[F1][22m Help[K
+                                                                                                    [34;201H[H[K
+   [1mR I P O S T E[22m    /  SORT / SELECT FOLDER                                 LOCAL   /   v0.5.0      
+[K
+  ------------------------------------------------------------------------------------------------  
+   MAIN MENU / SORT / SELECT FOLDER[K
+[K
+   Select the folder to sort, including its subfolders. Preview first; replacing originals[K
+   requires REPLACE.[K
+[K
+[K
+   C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-6bv0cdhz\Pictures[K
+  -- FOLDERS -------------------------------------------------------------------------------------  
+      1     Use this folder[K
+      2     ..  Parent folder[K
+   [1m>  3     folder-00/[22m[K
+      4     folder-01/[K
+      5     folder-02/[K
+      6     folder-03/[K
+      7     folder-04/[K
+      8     folder-05/[K
+      9     folder-06/[K
+     10     folder-07/[K
+     11     folder-08/[K
+     12     folder-09/[K
+     13     folder-10/[K
+     14     folder-11/[K
+     15     folder-12/[K
+     16     folder-13/[K
+   Rows 1-16/43   |   s uses the highlighted folder[K
+   Selection is read-only. Enter on the first row confirms your choice.[K
+  ------------------------------------------------------------------------------------------------  
+   [1m[Enter][22m Open / choose   [1m[s][22m Use folder   [1m[Esc][22m Cancel   [1m[g][22m Go to path   [1m[Backspace][22m Parent      
+   [1m[l][22m Locations   [1m[F1][22m Help[K
+                                                                                                    [34;201H[H[K
+   [1mR I P O S T E[22m    /  SORT / SELECT FOLDER                                 LOCAL   /   v0.5.0      
+[K
+  ------------------------------------------------------------------------------------------------  
+   MAIN MENU / SORT / SELECT FOLDER[K
+[K
+   Select the folder to sort, including its subfolders. Preview first; replacing originals[K
+   requires REPLACE.[K
+[K
+[K
+   C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-6bv0cdhz\Pictures[K
+  -- FOLDERS -------------------------------------------------------------------------------------  
+      1     Use this folder[K
+      2     ..  Parent folder[K
+      3     folder-00/[K
+   [1m>  4     folder-01/[22m[K
+      5     folder-02/[K
+      6     folder-03/[K
+      7     folder-04/[K
+      8     folder-05/[K
+      9     folder-06/[K
+     10     folder-07/[K
+     11     folder-08/[K
+     12     folder-09/[K
+     13     folder-10/[K
+     14     folder-11/[K
+     15     folder-12/[K
+     16     folder-13/[K
+   Rows 1-16/43   |   s uses the highlighted folder[K
+   Selection is read-only. Enter on the first row confirms your choice.[K
+  ------------------------------------------------------------------------------------------------  
+   [1m[Enter][22m Open / choose   [1m[s][22m Use folder   [1m[Esc][22m Cancel   [1m[g][22m Go to path   [1m[Backspace][22m Parent      
+   [1m[l][22m Locations   [1m[F1][22m Help[K
+                                                                                                    [34;201H[H[K
+   [1mR I P O S T E[22m    /  SORT / SELECT FOLDER                                 LOCAL   /   v0.5.0      
+[K
+  ------------------------------------------------------------------------------------------------  
+   MAIN MENU / SORT / SELECT FOLDER[K
+[K
+   Select the folder to sort, including its subfolders. Preview first; replacing originals[K
+   requires REPLACE.[K
+[K
+[K
+   C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-6bv0cdhz\Pictures[K
+  -- FOLDERS -------------------------------------------------------------------------------------  
+      1     Use this folder[K
+      2     ..  Parent folder[K
+   [1m>  3     folder-00/[22m[K
+      4     folder-01/[K
+      5     folder-02/[K
+      6     folder-03/[K
+      7     folder-04/[K
+      8     folder-05/[K
+      9     folder-06/[K
+     10     folder-07/[K
+     11     folder-08/[K
+     12     folder-09/[K
+     13     folder-10/[K
+     14     folder-11/[K
+     15     folder-12/[K
+     16     folder-13/[K
+   Rows 1-16/43   |   s uses the highlighted folder[K
+   Selection is read-only. Enter on the first row confirms your choice.[K
+  ------------------------------------------------------------------------------------------------  
+   [1m[Enter][22m Open / choose   [1m[s][22m Use folder   [1m[Esc][22m Cancel   [1m[g][22m Go to path   [1m[Backspace][22m Parent      
+   [1m[l][22m Locations   [1m[F1][22m Help[K
+                                                                                                    [34;201H[H[K
+   [1mR I P O S T E[22m    /  SORT / SELECT FOLDER                                 LOCAL   /   v0.5.0      
+[K
+  ------------------------------------------------------------------------------------------------  
+   MAIN MENU / SORT / SELECT FOLDER[K
+[K
+   Select the folder to sort, including its subfolders. Preview first; replacing originals[K
+   requires REPLACE.[K
+[K
+[K
+   C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-6bv0cdhz\Pictures\folder-00[K
+  -- FOLDERS -------------------------------------------------------------------------------------  
+   [1m>  1     Use this folder[22m[K
+      2     ..  Parent folder[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+   Rows 1-2/2   |   s uses the highlighted folder[K
+   Selection is read-only. Enter on the first row confirms your choice.[K
+  ------------------------------------------------------------------------------------------------  
+   [1m[Enter][22m Open / choose   [1m[s][22m Use folder   [1m[Esc][22m Cancel   [1m[g][22m Go to path   [1m[Backspace][22m Parent      
+   [1m[l][22m Locations   [1m[F1][22m Help[K
+                                                                                                    [34;201H[H[K
+   [1mR I P O S T E[22m    /  SORT / SELECT FOLDER                                 LOCAL   /   v0.5.0      
+[K
+  ------------------------------------------------------------------------------------------------  
+   MAIN MENU / SORT / SELECT FOLDER[K
+[K
+   Select the folder to sort, including its subfolders. Preview first; replacing originals[K
+   requires REPLACE.[K
+[K
+[K
+   C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-6bv0cdhz\Pictures[K
+  -- FOLDERS -------------------------------------------------------------------------------------  
+      1     Use this folder[K
+      2     ..  Parent folder[K
+   [1m>  3     folder-00/[22m[K
+      4     folder-01/[K
+      5     folder-02/[K
+      6     folder-03/[K
+      7     folder-04/[K
+      8     folder-05/[K
+      9     folder-06/[K
+     10     folder-07/[K
+     11     folder-08/[K
+     12     folder-09/[K
+     13     folder-10/[K
+     14     folder-11/[K
+     15     folder-12/[K
+     16     folder-13/[K
+   Rows 1-16/43   |   s uses the highlighted folder[K
+   Selection is read-only. Enter on the first row confirms your choice.[K
+  ------------------------------------------------------------------------------------------------  
+   [1m[Enter][22m Open / choose   [1m[s][22m Use folder   [1m[Esc][22m Cancel   [1m[g][22m Go to path   [1m[Backspace][22m Parent      
+   [1m[l][22m Locations   [1m[F1][22m Help[K
+                                                                                                    [34;201H[H[K
+   [1mR I P O S T E[22m    /  SORT / SELECT FOLDER                                 LOCAL   /   v0.5.0      
+[K
+  ------------------------------------------------------------------------------------------------  
+   MAIN MENU / SORT / SELECT FOLDER[K
+[K
+   Select the folder to sort, including its subfolders. Preview first; replacing originals[K
+   requires REPLACE.[K
+[K
+[K
+   C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-6bv0cdhz\Pictures[K
+  -- FOLDERS -------------------------------------------------------------------------------------  
+     17     folder-14/[K
+     18     folder-15/[K
+   [1m> 19     folder-16/[22m[K
+     20     folder-17/[K
+     21     folder-18/[K
+     22     folder-19/[K
+     23     folder-20/[K
+     24     folder-21/[K
+     25     folder-22/[K
+     26     folder-23/[K
+     27     folder-24/[K
+     28     folder-25/[K
+     29     folder-26/[K
+     30     folder-27/[K
+     31     folder-28/[K
+     32     folder-29/[K
+   Rows 17-32/43   |   s uses the highlighted folder[K
+   Selection is read-only. Enter on the first row confirms your choice.[K
+  ------------------------------------------------------------------------------------------------  
+   [1m[Enter][22m Open / choose   [1m[s][22m Use folder   [1m[Esc][22m Cancel   [1m[g][22m Go to path   [1m[Backspace][22m Parent      
+   [1m[l][22m Locations   [1m[F1][22m Help[K
+                                                                                                    [34;201H[H[K
+   [1mR I P O S T E[22m    /  SORT / SELECT FOLDER                                 LOCAL   /   v0.5.0      
+[K
+  ------------------------------------------------------------------------------------------------  
+   MAIN MENU / SORT / SELECT FOLDER[K
+[K
+   Select the folder to sort, including its subfolders. Preview first; replacing originals[K
+   requires REPLACE.[K
+[K
+[K
+   C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-6bv0cdhz\Pictures[K
+  -- FOLDERS -------------------------------------------------------------------------------------  
+      1     Use this folder[K
+      2     ..  Parent folder[K
+   [1m>  3     folder-00/[22m[K
+      4     folder-01/[K
+      5     folder-02/[K
+      6     folder-03/[K
+      7     folder-04/[K
+      8     folder-05/[K
+      9     folder-06/[K
+     10     folder-07/[K
+     11     folder-08/[K
+     12     folder-09/[K
+     13     folder-10/[K
+     14     folder-11/[K
+     15     folder-12/[K
+     16     folder-13/[K
+   Rows 1-16/43   |   s uses the highlighted folder[K
+   Selection is read-only. Enter on the first row confirms your choice.[K
+  ------------------------------------------------------------------------------------------------  
+   [1m[Enter][22m Open / choose   [1m[s][22m Use folder   [1m[Esc][22m Cancel   [1m[g][22m Go to path   [1m[Backspace][22m Parent      
+   [1m[l][22m Locations   [1m[F1][22m Help[K
+                                                                                                    [34;201H[H[K
+   [1mR I P O S T E[22m    /  SORT / SELECT FOLDER                                 LOCAL   /   v0.5.0      
+[K
+  ------------------------------------------------------------------------------------------------  
+   MAIN MENU / SORT / SELECT FOLDER[K
+[K
+   Select the folder to sort, including its subfolders. Preview first; replacing originals[K
+   requires REPLACE.[K
+[K
+[K
+   C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-6bv0cdhz\Pictures[K
+  -- FOLDERS -------------------------------------------------------------------------------------  
+   [1m>  1     Use this folder[22m[K
+      2     ..  Parent folder[K
+      3     folder-00/[K
+      4     folder-01/[K
+      5     folder-02/[K
+      6     folder-03/[K
+      7     folder-04/[K
+      8     folder-05/[K
+      9     folder-06/[K
+     10     folder-07/[K
+     11     folder-08/[K
+     12     folder-09/[K
+     13     folder-10/[K
+     14     folder-11/[K
+     15     folder-12/[K
+     16     folder-13/[K
+   Rows 1-16/43   |   s uses the highlighted folder[K
+   Selection is read-only. Enter on the first row confirms your choice.[K
+  ------------------------------------------------------------------------------------------------  
+   [1m[Enter][22m Open / choose   [1m[s][22m Use folder   [1m[Esc][22m Cancel   [1m[g][22m Go to path   [1m[Backspace][22m Parent      
+   [1m[l][22m Locations   [1m[F1][22m Help[K
+                                                                                                    [34;201H[H[K
+   [1mR I P O S T E[22m    /  SORT / SELECT FOLDER                                 LOCAL   /   v0.5.0      
+[K
+  ------------------------------------------------------------------------------------------------  
+   MAIN MENU / SORT / SELECT FOLDER[K
+[K
+   Select the folder to sort, including its subfolders. Preview first; replacing originals[K
+   requires REPLACE.[K
+[K
+[K
+   C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-6bv0cdhz\Pictures\folder-23[K
+  -- FOLDERS -------------------------------------------------------------------------------------  
+   [1m>  1     Use this folder[22m[K
+      2     ..  Parent folder[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+   Rows 1-2/2   |   s uses the highlighted folder[K
+   Selection is read-only. Enter on the first row confirms your choice.[K
+  ------------------------------------------------------------------------------------------------  
+   [1m[Enter][22m Open / choose   [1m[s][22m Use folder   [1m[Esc][22m Cancel   [1m[g][22m Go to path   [1m[Backspace][22m Parent      
+   [1m[l][22m Locations   [1m[F1][22m Help[K
+                                                                                                    [34;201H[H[K
+   [1mR I P O S T E[22m    /  SORT / SELECT FOLDER                                 LOCAL   /   v0.5.0      
+[K
+  ------------------------------------------------------------------------------------------------  
+   MAIN MENU / SORT / SELECT FOLDER[K
+[K
+   Select the folder to sort, including its subfolders. Preview first; replacing originals[K
+   requires REPLACE.[K
+[K
+[K
+  +- EDIT / GO TO FOLDER ------------------------------------------------------------------------+  
+  |                                                                                              |  
+  |  Paste an existing folder path. Esc keeps the current folder.                                |  
+  |                                                                                              |  
+  |                                                                                              |  
+  |                                                                                              |  
+  |   [1m [22m                                                                                          |  
+  |   [1m^[22m                                                                                          |  
+  |                                                                                              |  
+  |                                                                                              |  
+  |  [Enter] save   [Esc] discard   [Ctrl+U] clear                                               |  
+  |                                                                                              |  
+  +----------------------------------------------------------------------------------------------+  
+[K
+[K
+[K
+[K
+[K
+   Rows 1-2/2   |   s uses the highlighted folder[K
+   Paste an existing folder path. Esc keeps the current folder.[K
+  ------------------------------------------------------------------------------------------------  
+   [1m[Enter][22m Save   [1m[Esc][22m Discard   [1m[Ctrl+U][22m Clear   [1m[F1][22m Help[K
+[K
+                                                                                                    [34;201H[H[K
+   [1mR I P O S T E[22m    /  SORT / SELECT FOLDER                                 LOCAL   /   v0.5.0      
+[K
+  ------------------------------------------------------------------------------------------------  
+   MAIN MENU / SORT / SELECT FOLDER[K
+[K
+   Select the folder to sort, including its subfolders. Preview first; replacing originals[K
+   requires REPLACE.[K
+[K
+[K
+   C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-6bv0cdhz\Pictures\folder-39[K
+  -- FOLDERS -------------------------------------------------------------------------------------  
+   [1m>  1     Use this folder[22m[K
+      2     ..  Parent folder[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+   Rows 1-2/2   |   s uses the highlighted folder[K
+   Selection is read-only. Enter on the first row confirms your choice.[K
+  ------------------------------------------------------------------------------------------------  
+   [1m[Enter][22m Open / choose   [1m[s][22m Use folder   [1m[Esc][22m Cancel   [1m[g][22m Go to path   [1m[Backspace][22m Parent      
+   [1m[l][22m Locations   [1m[F1][22m Help[K
+                                                                                                    [34;201H[H[K
+   [1mR I P O S T E[22m    /  Riposte Sorter                                       LOCAL   /   v0.5.0      
+[K
+  ------------------------------------------------------------------------------------------------  
+   MAIN MENU / Riposte Sorter[K
+[K
+   FOLDER[K
+   C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-6bv0cdhz\Pictures\folder-39[K
+[K
+[K
+  -- SORT ACTIONS --------------------------------------------------------------------------------  
+    [1m> 1. Sort[22m           Review the plan, then confirm REPLACE[K
+[K
+      2. Dry Run        Inspect destinations; change nothing[K
+[K
+      3. Enter Path     Paste the folder to sort[K
+[K
+   Year / Month / img-or-vid / Category / Size[K
+   _float_ / __float__: never sorted; RIPOSTE allowed.[K
+   Download dates; saved category rules; unmatched titles go to Uncategorized. Images become        
+   date-only PNGs; videos keep their bytes. Originals stay in private undo history. Sidecars        
+   require Full Sort Workshop consent.[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+   Subfolders included; float storage excluded. Sort previews first.[K
+  ------------------------------------------------------------------------------------------------  
+   [1m[Enter][22m Choose   [1m[1/2/3][22m Choose   [1m[g][22m Enter Path   [1m[b][22m Browse   [1m[u][22m Undo   [1m[Esc][22m Back[K
+   [1m[F1][22m Help[K
+                                                                                                    [34;201H[H[K
+   [1mR I P O S T E[22m    /  ACTIVE OPERATION                                     LOCAL   /   v0.5.0      
+[K
+  ------------------------------------------------------------------------------------------------  
+   MAIN MENU / ACTIVE OPERATION[K
+[K
+   [1mRUNNING / ORGANIZE[22m[K
+[K
+[K
+   [1mStarting operation[22m[K
+[K
+[K
+[K
+   ENGINE COUNT      not reported yet[K
+[K
+   ELAPSED           0.0s[K
+[K
+[K
+[K
+   ...................................---=>......................................................   
+   ACTIVITY TRACE / engine counts are reported separately above[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+  ------------------------------------------------------------------------------------------------  
+   [1m[Esc][22m Request stop   [1m[F1][22m Help[K
+[K
+                                                                                                    [34;201H[H[K
+   [1mR I P O S T E[22m    /  Riposte Sorter / Dry Run                             LOCAL   /   v0.5.0      
+[K
+  ------------------------------------------------------------------------------------------------  
+   MAIN MENU / Riposte Sorter / Dry Run[K
+[K
+   [1mDRY RUN[22m[K
+   [1m[BLOCKED][22m[K
+[K
+   No files have been changed.[K
+[K
+[K
+   [1m> Overview[22m       Details       JSON[K
+   ----------[K
+    [1m0[22m To sort   |   [1m0[22m Already sorted   |   [1m1[22m Blockers[K
+[K
+    [1mWHAT THIS OPERATION DOES  [22m------------------------------------------------------------------    
+    Reconstruct date-only PNGs, classify by date and resolution, then name them consistently.       
+    Images go into img; videos into vid. Videos keep all bytes and metadata; protection is[K
+    image-only.[K
+    Private undo history retains original files, names and metadata and uses extra disk space.      
+[K
+    [1mNEEDS ATTENTION  [22m---------------------------------------------------------------------------    
+    [1m[! 1] Sidecar requires discard[22m[K
+    Enable Discard metadata sidecars before applying their removal.[K
+    Code: SIDECAR_REQUIRES_DISCARD[K
+[K
+    [1mEXACT CATEGORY DESTINATIONS  [22m---------------------------------------------------------------    
+   OVERVIEW / lines 1-14 of 24[K
+   Blocked. Nothing changed. Review blockers; w opens the workshop.[K
+  ------------------------------------------------------------------------------------------------  
+   [1m[Enter][22m Return   [1m[w][22m Full Sort Workshop   [1m[g][22m Enter Path   [1m[t][22m Report view   [1m[Esc][22m Back[K
+   [1m[F1][22m Help[K
+                                                                                                    [34;201H[H[K
+   [1mR I P O S T E[22m    /  FULL SORT WORKSHOP                                   LOCAL   /   v0.5.0      
+[K
+  ------------------------------------------------------------------------------------------------  
+   MAIN MENU / FULL SORT WORKSHOP[K
+[K
+   [1mFULL SORT WORKSHOP[22m[K
+   INSPECT[K
+   Folder: C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-6bv0cdhz\Pictures\folder-39     
+  ------------------------------------------------------------------------------------------------  
+    [1m> Date basis[22m              download                              FIELD / CONTEXT[K
+      Discard metadata sideca [ ] OFF[K
+      Sort by filename catego [x] ON[32X[1m[32CDATE BASIS[22m[K
+      Manual categories[K
+    [1m>> PREVIEW SORT[22m                                                 Creation/birth time with        
+                                                                    modified-time fallback, or      
+                                                                    an explicit alternative.        
+[K
+                                                                    download / modified /[K
+                                                                    embedded[K
+[K
+[K
+                                                                    Changing a setting does not     
+                                                                    start processing. Preview       
+                                                                    uses the current values.        
+[K
+[K
+[K
+   SETTING 1/5   |   ACTION SETTINGS[K
+   Creation/birth time with modified-time fallback, or an explicit alternative.[K
+  ------------------------------------------------------------------------------------------------  
+   [1m[Enter][22m Change   [1m[p][22m Preview   [1m[g][22m Enter Path   [1m[s][22m Saved rules   [1m[c][22m Categories[K
+   [1m[u][22m Undo last sort   [1m[v][22m Audit   [1m[Esc][22m Back   [1m[F1][22m Help[K
+                                                                                                    [34;201H[H[K
+   [1mR I P O S T E[22m    /  Riposte Sorter                                       LOCAL   /   v0.5.0      
+[K
+  ------------------------------------------------------------------------------------------------  
+   MAIN MENU / Riposte Sorter[K
+[K
+   FOLDER[K
+   C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-6bv0cdhz\Pictures\folder-39[K
+[K
+[K
+  -- SORT ACTIONS --------------------------------------------------------------------------------  
+      1. Sort           Review the plan, then confirm REPLACE[K
+[K
+    [1m> 2. Dry Run[22m        Inspect destinations; change nothing[K
+[K
+      3. Enter Path     Paste the folder to sort[K
+[K
+   Year / Month / img-or-vid / Category / Size[K
+   _float_ / __float__: never sorted; RIPOSTE allowed.[K
+   Download dates; saved category rules; unmatched titles go to Uncategorized. Images become        
+   date-only PNGs; videos keep their bytes. Originals stay in private undo history. Sidecars        
+   require Full Sort Workshop consent.[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+   Subfolders included; float storage excluded. Sort previews first.[K
+  ------------------------------------------------------------------------------------------------  
+   [1m[Enter][22m Choose   [1m[1/2/3][22m Choose   [1m[g][22m Enter Path   [1m[b][22m Browse   [1m[u][22m Undo   [1m[Esc][22m Back[K
+   [1m[F1][22m Help[K
+                                                                                                    [34;201H[H[K
+   [1mR I P O S T E[22m    /  ACTIVE OPERATION                                     LOCAL   /   v0.5.0      
+[K
+  ------------------------------------------------------------------------------------------------  
+   MAIN MENU / ACTIVE OPERATION[K
+[K
+   [1mRUNNING / ORGANIZE[22m[K
+[K
+[K
+   [1mStarting operation[22m[K
+[K
+[K
+[K
+   ENGINE COUNT      not reported yet[K
+[K
+   ELAPSED           0.0s[K
+[K
+[K
+[K
+   .......................................---=>..................................................   
+   ACTIVITY TRACE / engine counts are reported separately above[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+  ------------------------------------------------------------------------------------------------  
+   [1m[Esc][22m Request stop   [1m[F1][22m Help[K
+[K
+                                                                                                    [34;201H[H[K
+   [1mR I P O S T E[22m    /  Riposte Sorter / Dry Run                             LOCAL   /   v0.5.0      
+[K
+  ------------------------------------------------------------------------------------------------  
+   MAIN MENU / Riposte Sorter / Dry Run[K
+[K
+   [1mDRY RUN[22m[K
+   [1m[BLOCKED][22m[K
+[K
+   No files have been changed.[K
+[K
+[K
+   [1m> Overview[22m       Details       JSON[K
+   ----------[K
+    [1m0[22m To sort   |   [1m0[22m Already sorted   |   [1m1[22m Blockers[K
+[K
+    [1mWHAT THIS OPERATION DOES  [22m------------------------------------------------------------------    
+    Reconstruct date-only PNGs, classify by date and resolution, then name them consistently.       
+    Images go into img; videos into vid. Videos keep all bytes and metadata; protection is[K
+    image-only.[K
+    Private undo history retains original files, names and metadata and uses extra disk space.      
+[K
+    [1mNEEDS ATTENTION  [22m---------------------------------------------------------------------------    
+    [1m[! 1] Sidecar requires discard[22m[K
+    Enable Discard metadata sidecars before applying their removal.[K
+    Code: SIDECAR_REQUIRES_DISCARD[K
+[K
+    [1mEXACT CATEGORY DESTINATIONS  [22m---------------------------------------------------------------    
+   OVERVIEW / lines 1-14 of 24[K
+   Blocked. Nothing changed. Review blockers; w opens the workshop.[K
+  ------------------------------------------------------------------------------------------------  
+   [1m[Enter][22m Return   [1m[w][22m Full Sort Workshop   [1m[g][22m Enter Path   [1m[t][22m Report view   [1m[Esc][22m Back[K
+   [1m[F1][22m Help[K
+                                                                                                    [34;201H[H[K
+   [1mR I P O S T E[22m    /  Riposte Sorter                                       LOCAL   /   v0.5.0      
+[K
+  ------------------------------------------------------------------------------------------------  
+   MAIN MENU / Riposte Sorter[K
+[K
+   FOLDER[K
+   C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-6bv0cdhz\Pictures\folder-39[K
+[K
+[K
+  -- SORT ACTIONS --------------------------------------------------------------------------------  
+      1. Sort           Review the plan, then confirm REPLACE[K
+[K
+    [1m> 2. Dry Run[22m        Inspect destinations; change nothing[K
+[K
+      3. Enter Path     Paste the folder to sort[K
+[K
+   Year / Month / img-or-vid / Category / Size[K
+   _float_ / __float__: never sorted; RIPOSTE allowed.[K
+   Download dates; saved category rules; unmatched titles go to Uncategorized. Images become        
+   date-only PNGs; videos keep their bytes. Originals stay in private undo history. Sidecars        
+   require Full Sort Workshop consent.[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+   Subfolders included; float storage excluded. Sort previews first.[K
+  ------------------------------------------------------------------------------------------------  
+   [1m[Enter][22m Choose   [1m[1/2/3][22m Choose   [1m[g][22m Enter Path   [1m[b][22m Browse   [1m[u][22m Undo   [1m[Esc][22m Back[K
+   [1m[F1][22m Help[K
+                                                                                                    [34;201H[H[K
+   [1mR I P O S T E[22m    /  MAIN MENU                                            LOCAL   /   v0.5.0      
+[K
+  ------------------------------------------------------------------------------------------------  
+   Choose what you want to do. Each action works independently.[K
+[82X[1m[82C=[22m--------[K
+    [1mRRRR   III  PPPP    OOO   SSSS  TTTTT  EEEEE[22m                    .-----------------[1m=[22m-----        
+    [1mR   R   I   P   P  O   O  S       T    E    [22m              /-----.+:=---------------=-----       
+    [1mRRRR    I   PPPP   O   O   SSS    T    EEEE [22m          /----[1m=[22m----:-////[1m>[22m---------.--- --[K
+    [1mR  R    I   P      O   O      S   T    E    [22m        ----/----+////-----:+..: -----[K
+    [1mR   R  III  P       OOO   SSSS    T    EEEEE[22m         ----------+= ------ ----[K
+                                                           -----------[K
+[K
+   Choose an action, then browse images or folders.[K
+  -- MAIN MENU -----------------------------------------------------------------------------------  
+    [1m> 1  Riposte Sorter[22m                                        FOCUS / RIPOSTE SORTER[K
+      2  RIPOSTE[K
+      3  Sort + RIPOSTE                                        Ready-to-use sorting: Sort, Dry      
+      4  Image library                                         Run, Enter Path[K
+      5  Publishing batches[K
+      6  Local models[K
+      7  Terminal & workspace                                  No files change when you open an     
+      8  Full Sort Workshop                                    action.[K
+      9  Undo last sort[K
+      w  Workshop[K
+[K
+[K
+[K
+[K
+   Ready-to-use sorting: Sort, Dry Run, Enter Path[K
+  ------------------------------------------------------------------------------------------------  
+   [1m[Enter][22m Open   [1m[Arrows][22m Move   [1m[1-9/w][22m Choose   [1m[/][22m Find   [1m[q][22m Quit   [1m[F1][22m Help[K
+[K
+                                                                                                    [34;201H[H[K
+   [1mR I P O S T E[22m    /  FULL SORT WORKSHOP                                   LOCAL   /   v0.5.0      
+[K
+  ------------------------------------------------------------------------------------------------  
+   MAIN MENU / FULL SORT WORKSHOP[K
+[K
+   [1mFULL SORT WORKSHOP[22m[K
+   INSPECT[K
+   Folder: C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-6bv0cdhz\Pictures\folder-39     
+  ------------------------------------------------------------------------------------------------  
+    [1m> Date basis[22m              download                              FIELD / CONTEXT[K
+      Discard metadata sideca [ ] OFF[K
+      Sort by filename catego [ ] OFF[31X[1m[31CDATE BASIS[22m[K
+      Manual categories       not selected[K
+    [1m>> PREVIEW SORT[22m                                                 Creation/birth time with        
+                                                                    modified-time fallback, or      
+                                                                    an explicit alternative.        
+[K
+                                                                    download / modified /[K
+                                                                    embedded[K
+[K
+[K
+                                                                    Changing a setting does not     
+                                                                    start processing. Preview       
+                                                                    uses the current values.        
+[K
+[K
+[K
+   SETTING 1/5   |   ACTION SETTINGS[K
+   Creation/birth time with modified-time fallback, or an explicit alternative.[K
+  ------------------------------------------------------------------------------------------------  
+   [1m[Enter][22m Change   [1m[p][22m Preview   [1m[g][22m Enter Path   [1m[s][22m Saved rules   [1m[c][22m Categories[K
+   [1m[u][22m Undo last sort   [1m[v][22m Audit   [1m[Esc][22m Back   [1m[F1][22m Help[K
+                                                                                                    [34;201H[H[K
+   [1mR I P O S T E[22m    /  FULL SORT WORKSHOP                                   LOCAL   /   v0.5.0      
+[K
+  ------------------------------------------------------------------------------------------------  
+   MAIN MENU / FULL SORT WORKSHOP[K
+[K
+   [1mFULL SORT WORKSHOP[22m[K
+   INSPECT[K
+   Folder: C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-6bv0cdhz\Pictures\folder-39     
+  ------------------------------------------------------------------------------------------------  
+  +- EDIT / ENTER PATH --------------------------------------------------------------------------+  
+  |                                                                                              |  
+  |  Paste an existing image folder. Quotes are accepted. Esc keeps the current folder.          |  
+  |                                                                                              |  
+  |                                                                                              |  
+  |                                                                                              |  
+  |   [1m [22m                                                                                          |  
+  |   [1m^[22m                                                                                          |  
+  |                                                                                              |  
+  |                                                                                              |  
+  |  [Enter] save   [Esc] discard   [Ctrl+U] clear                                               |  
+  |                                                                                              |  
+  +----------------------------------------------------------------------------------------------+  
+                                                                    start processing. Preview       
+                                                                    uses the current values.        
+[K
+[K
+[K
+   SETTING 1/5   |   ACTION SETTINGS[K
+   Paste an existing image folder. Quotes are accepted. Esc keeps the current folder.[K
+  ------------------------------------------------------------------------------------------------  
+   [1m[Enter][22m Save   [1m[Esc][22m Discard   [1m[Ctrl+U][22m Clear   [1m[F1][22m Help[K
+[K
+                                                                                                    [34;201H[H[K
+   [1mR I P O S T E[22m    /  FULL SORT WORKSHOP                                   LOCAL   /   v0.5.0      
+[K
+  ------------------------------------------------------------------------------------------------  
+   MAIN MENU / FULL SORT WORKSHOP[K
+[K
+   [1mFULL SORT WORKSHOP[22m[K
+   INSPECT[K
+   Folder: C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-6bv0cdhz\Pictures[K
+  ------------------------------------------------------------------------------------------------  
+    [1m> Date basis[22m              download                              FIELD / CONTEXT[K
+      Discard metadata sideca [ ] OFF[K
+      Sort by filename catego [ ] OFF[31X[1m[31CDATE BASIS[22m[K
+      Manual categories       not selected[K
+    [1m>> PREVIEW SORT[22m                                                 Creation/birth time with        
+                                                                    modified-time fallback, or      
+                                                                    an explicit alternative.        
+[K
+                                                                    download / modified /[K
+                                                                    embedded[K
+[K
+[K
+                                                                    Changing a setting does not     
+                                                                    start processing. Preview       
+                                                                    uses the current values.        
+[K
+[K
+[K
+   SETTING 1/5   |   ACTION SETTINGS[K
+   Creation/birth time with modified-time fallback, or an explicit alternative.[K
+  ------------------------------------------------------------------------------------------------  
+   [1m[Enter][22m Change   [1m[p][22m Preview   [1m[g][22m Enter Path   [1m[s][22m Saved rules   [1m[c][22m Categories[K
+   [1m[u][22m Undo last sort   [1m[v][22m Audit   [1m[Esc][22m Back   [1m[F1][22m Help[K
+                                                                                                    [34;201H[H[K
+   [1mR I P O S T E[22m    /  MAIN MENU                                            LOCAL   /   v0.5.0      
+[K
+  ------------------------------------------------------------------------------------------------  
+   Choose what you want to do. Each action works independently.[K
+                                                                                -----------[K
+    [1mRRRR   III  PPPP    OOO   SSSS  TTTTT  EEEEE[22m                    .-----------:-----[1m/[22m------       
+    [1mR   R   I   P   P  O   O  S       T    E    [22m               -----+..----------.--.-------        
+    [1mRRRR    I   PPPP   O   O   SSS    T    EEEE [22m          /------/-----.+.-------------[K
+    [1mR  R    I   P      O   O      S   T    E    [22m         ---------/[1m>[22m------[1m=[22m -------[K
+    [1mR   R  III  P       OOO   SSSS    T    EEEEE[22m          --- ---=---- -----[K
+                                                            ------[K
+[K
+   Choose an action, then browse images or folders.[K
+  -- MAIN MENU -----------------------------------------------------------------------------------  
+      1  Riposte Sorter                                        FOCUS / FULL SORT WORKSHOP[K
+      2  RIPOSTE[K
+      3  Sort + RIPOSTE                                        Configure image/video sorting,       
+      4  Image library                                         category rules and sidecar[K
+      5  Publishing batches                                    consent; originals saved for[K
+      6  Local models                                          undo.[K
+      7  Terminal & workspace                                  No files change when you open an     
+    [1m> 8  Full Sort Workshop[22m                                    action.[K
+      9  Undo last sort[K
+      w  Workshop[K
+[K
+[K
+[K
+[K
+   Configure dates, categories, assignments and sidecars[K
+  ------------------------------------------------------------------------------------------------  
+   [1m[Enter][22m Open   [1m[Arrows][22m Move   [1m[1-9/w][22m Choose   [1m[/][22m Find   [1m[q][22m Quit   [1m[F1][22m Help[K
+[K
+                                                                                                    [34;201H[H[K
+   [1mR I P O S T E[22m    /  RIPOSTE / SELECT INPUTS                              LOCAL   /   v0.5.0      
+[K
+  ------------------------------------------------------------------------------------------------  
+   MAIN MENU / RIPOSTE / SELECT INPUTS[K
+[K
+   Select images or folders to protect, including subfolders. Originals stay in place; sorting is   
+   not required.[K
+[K
+[K
+   C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-6bv0cdhz\Pictures[K
+  -- FILES & FOLDERS -----------------------------------------------------------------------------  
+   [1m>  1     Continue with 0 selected[22m[K
+      2     ..  Parent folder[K
+      3 [ ] folder-00/[K
+      4 [ ] folder-01/[K
+      5 [ ] folder-02/[K
+      6 [ ] folder-03/[K
+      7 [ ] folder-04/[K
+      8 [ ] folder-05/[K
+      9 [ ] folder-06/[K
+     10 [ ] folder-07/[K
+     11 [ ] folder-08/[K
+     12 [ ] folder-09/[K
+     13 [ ] folder-10/[K
+     14 [ ] folder-11/[K
+     15 [ ] folder-12/[K
+     16 [ ] folder-13/[K
+   Rows 1-16/44   |   0 selected[K
+   Selection is read-only. Enter on the first row confirms your choice.[K
+  ------------------------------------------------------------------------------------------------  
+   [1m[Enter][22m Open / choose   [1m[Space][22m Select   [1m[Esc][22m Cancel   [1m[g][22m Go to path   [1m[s][22m This folder[K
+   [1m[Backspace][22m Parent   [1m[l][22m Locations   [1m[F1][22m Help[K
+                                                                                                    [34;201H[H[K
+   [1mR I P O S T E[22m    /  RIPOSTE / SELECT INPUTS                              LOCAL   /   v0.5.0      
+[K
+  ------------------------------------------------------------------------------------------------  
+   MAIN MENU / RIPOSTE / SELECT INPUTS[K
+[K
+   Select images or folders to protect, including subfolders. Originals stay in place; sorting is   
+   not required.[K
+[K
+[K
+   C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-6bv0cdhz\Pictures[K
+  -- FILES & FOLDERS -----------------------------------------------------------------------------  
+   [1m>  1     Continue with 1 selected[22m[K
+      2     ..  Parent folder[K
+      3 [ ] folder-00/[K
+      4 [ ] folder-01/[K
+      5 [ ] folder-02/[K
+      6 [ ] folder-03/[K
+      7 [ ] folder-04/[K
+      8 [ ] folder-05/[K
+      9 [ ] folder-06/[K
+     10 [ ] folder-07/[K
+     11 [ ] folder-08/[K
+     12 [ ] folder-09/[K
+     13 [ ] folder-10/[K
+     14 [ ] folder-11/[K
+     15 [ ] folder-12/[K
+     16 [ ] folder-13/[K
+   Rows 1-16/44   |   1 selected[K
+   Selection is read-only. Enter on the first row confirms your choice.[K
+  ------------------------------------------------------------------------------------------------  
+   [1m[Enter][22m Open / choose   [1m[Space][22m Select   [1m[Esc][22m Cancel   [1m[g][22m Go to path   [1m[s][22m This folder[K
+   [1m[Backspace][22m Parent   [1m[l][22m Locations   [1m[F1][22m Help[K
+                                                                                                    [34;201H[H[K
+   [1mR I P O S T E[22m    /  SELECT RESULTS FOLDER                                LOCAL   /   v0.5.0      
+[K
+  ------------------------------------------------------------------------------------------------  
+   MAIN MENU / SELECT RESULTS FOLDER[K
+[K
+   Select a results folder. RIPOSTE saves clean snapshots, candidates and review records here;      
+   selected originals stay unchanged.[K
+[K
+[K
+   C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-6bv0cdhz\Pictures[K
+  -- FOLDERS -------------------------------------------------------------------------------------  
+   [1m>  1     Use this folder[22m[K
+      2     ..  Parent folder[K
+      3     folder-00/[K
+      4     folder-01/[K
+      5     folder-02/[K
+      6     folder-03/[K
+      7     folder-04/[K
+      8     folder-05/[K
+      9     folder-06/[K
+     10     folder-07/[K
+     11     folder-08/[K
+     12     folder-09/[K
+     13     folder-10/[K
+     14     folder-11/[K
+     15     folder-12/[K
+     16     folder-13/[K
+   Rows 1-16/43   |   s uses the highlighted folder[K
+   Selection is read-only. Enter on the first row confirms your choice.[K
+  ------------------------------------------------------------------------------------------------  
+   [1m[Enter][22m Open / choose   [1m[s][22m Use folder   [1m[Esc][22m Cancel   [1m[g][22m Go to path   [1m[Backspace][22m Parent      
+   [1m[l][22m Locations   [1m[F1][22m Help[K
+                                                                                                    [34;201H[H[K
+   [1mR I P O S T E[22m    /  RIPOSTE / SELECT INPUTS                              LOCAL   /   v0.5.0      
+[K
+  ------------------------------------------------------------------------------------------------  
+   MAIN MENU / RIPOSTE / SELECT INPUTS[K
+[K
+   Select images or folders to protect, including subfolders. Originals stay in place; sorting is   
+   not required.[K
+[K
+[K
+   C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-6bv0cdhz\Pictures[K
+  -- FILES & FOLDERS -----------------------------------------------------------------------------  
+   [1m>  1     Continue with 1 selected[22m[K
+      2     ..  Parent folder[K
+      3 [ ] folder-00/[K
+      4 [ ] folder-01/[K
+      5 [ ] folder-02/[K
+      6 [ ] folder-03/[K
+      7 [ ] folder-04/[K
+      8 [ ] folder-05/[K
+      9 [ ] folder-06/[K
+     10 [ ] folder-07/[K
+     11 [ ] folder-08/[K
+     12 [ ] folder-09/[K
+     13 [ ] folder-10/[K
+     14 [ ] folder-11/[K
+     15 [ ] folder-12/[K
+     16 [ ] folder-13/[K
+   Rows 1-16/44   |   1 selected[K
+   Selection is read-only. Enter on the first row confirms your choice.[K
+  ------------------------------------------------------------------------------------------------  
+   [1m[Enter][22m Open / choose   [1m[Space][22m Select   [1m[Esc][22m Cancel   [1m[g][22m Go to path   [1m[s][22m This folder[K
+   [1m[Backspace][22m Parent   [1m[l][22m Locations   [1m[F1][22m Help[K
+                                                                                                    [34;201H[H[K
+   [1mR I P O S T E[22m    /  MAIN MENU                                            LOCAL   /   v0.5.0      
+[K
+  ------------------------------------------------------------------------------------------------  
+   Choose what you want to do. Each action works independently.[K
+                                                                              =--------- ---        
+    [1mRRRR   III  PPPP    OOO   SSSS  TTTTT  EEEEE[22m                   /-----------.-------------       
+    [1mR   R   I   P   P  O   O  S       T    E    [22m               ----...=-------/[1m>[22m.[1m/[22m--:-------        
+    [1mRRRR    I   PPPP   O   O   SSS    T    EEEE [22m          /-------:----///////-------- -[K
+    [1mR  R    I   P      O   O      S   T    E    [22m         --- ------/------ -------[K
+    [1mR   R  III  P       OOO   SSSS    T    EEEEE[22m           ----/-----------[K
+                                                            -----[K
+[K
+   Choose an action, then browse images or folders.[K
+  -- MAIN MENU -----------------------------------------------------------------------------------  
+      1  Riposte Sorter                                        FOCUS / RIPOSTE[K
+    [1m> 2  RIPOSTE[22m[K
+      3  Sort + RIPOSTE                                        Protect files or folders. Keep       
+      4  Image library                                         originals and their folder[K
+      5  Publishing batches                                    structure.[K
+      6  Local models[K
+      7  Terminal & workspace                                  No files change when you open an     
+      8  Full Sort Workshop                                    action.[K
+      9  Undo last sort[K
+      w  Workshop[K
+[K
+[K
+[K
+[K
+   Protect files or folders; preserve originals[K
+  ------------------------------------------------------------------------------------------------  
+   [1m[Enter][22m Open   [1m[Arrows][22m Move   [1m[1-9/w][22m Choose   [1m[/][22m Find   [1m[q][22m Quit   [1m[F1][22m Help[K
+[K
+                                                                                                    [34;201H[H[K
+   [1mR I P O S T E[22m    /  SORT + RIPOSTE / SELECT FOLDER                       LOCAL   /   v0.5.0      
+[K
+  ------------------------------------------------------------------------------------------------  
+   MAIN MENU / SORT + RIPOSTE / SELECT FOLDER[K
+[K
+   Sort this folder and its subfolders, then protect the images. Preview first; replacing[K
+   originals requires REPLACE.[K
+[K
+[K
+   C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-6bv0cdhz\Pictures[K
+  -- FOLDERS -------------------------------------------------------------------------------------  
+   [1m>  1     Use this folder[22m[K
+      2     ..  Parent folder[K
+      3     folder-00/[K
+      4     folder-01/[K
+      5     folder-02/[K
+      6     folder-03/[K
+      7     folder-04/[K
+      8     folder-05/[K
+      9     folder-06/[K
+     10     folder-07/[K
+     11     folder-08/[K
+     12     folder-09/[K
+     13     folder-10/[K
+     14     folder-11/[K
+     15     folder-12/[K
+     16     folder-13/[K
+   Rows 1-16/43   |   s uses the highlighted folder[K
+   Selection is read-only. Enter on the first row confirms your choice.[K
+  ------------------------------------------------------------------------------------------------  
+   [1m[Enter][22m Open / choose   [1m[s][22m Use folder   [1m[Esc][22m Cancel   [1m[g][22m Go to path   [1m[Backspace][22m Parent      
+   [1m[l][22m Locations   [1m[F1][22m Help[K
+                                                                                                    [34;201H[H[K
+   [1mR I P O S T E[22m    /  MAIN MENU                                            LOCAL   /   v0.5.0      
+[K
+  ------------------------------------------------------------------------------------------------  
+   Choose what you want to do. Each action works independently.[K
+                                                                              =--------- ---        
+    [1mRRRR   III  PPPP    OOO   SSSS  TTTTT  EEEEE[22m                   /-----------+----------/--       
+    [1mR   R   I   P   P  O   O  S       T    E    [22m               ----..:=-------///[1m>[22m--.-------        
+    [1mRRRR    I   PPPP   O   O   SSS    T    EEEE [22m          /-------.----:[1m=[22m/////-------- -[K
+    [1mR  R    I   P      O   O      S   T    E    [22m         --- ------/--------------[K
+    [1mR   R  III  P       OOO   SSSS    T    EEEEE[22m           ----/----------[K
+                                                            ---- -[K
+[K
+   Choose an action, then browse images or folders.[K
+  -- MAIN MENU -----------------------------------------------------------------------------------  
+      1  Riposte Sorter                                        FOCUS / SORT + RIPOSTE[K
+      2  RIPOSTE[K
+    [1m> 3  Sort + RIPOSTE[22m                                        Preview sorting, confirm[K
+      4  Image library                                         replacement, then protect the        
+      5  Publishing batches                                    organized collection.[K
+      6  Local models[K
+      7  Terminal & workspace                                  No files change when you open an     
+      8  Full Sort Workshop                                    action.[K
+      9  Undo last sort[K
+      w  Workshop[K
+[K
+[K
+[K
+[K
+   Organize, then protect in one workflow[K
+  ------------------------------------------------------------------------------------------------  
+   [1m[Enter][22m Open   [1m[Arrows][22m Move   [1m[1-9/w][22m Choose   [1m[/][22m Find   [1m[q][22m Quit   [1m[F1][22m Help[K
+[K
+                                                                                                    [34;201H[34;100H[?25h[?1049l[?2004l[?25l[H  RIPOSTE / terminal released. No unfinished worker was abandoned.[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K[2;1H[?25h

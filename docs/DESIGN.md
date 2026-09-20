@@ -39,6 +39,14 @@ or palette token is needed. Runtime palette values live in `terminal/palette.py`
 `surface.py` applies them to cells. Native Windows evidence and production-cell
 captures are retained under `evidence/sorter-menu/`.
 
+The polish pass keeps actions in fixed positions and uses explicit state text:
+READ ONLY, BLOCKED, or NO CHANGES. Failed paths retain editable input and show
+correction text with stable Enter/Esc controls. Confirmation shows its bound
+folder and complete operation warning at 72x24. Long paths retain their start
+and end when space requires abbreviation. The sorter also discloses that
+`_float_` / `__float__` storage is excluded while image RIPOSTE remains available.
+See `evidence/terminal-polish/` for actual tested scope and cell-render captures.
+
 
 ## Browser sorting extension
 

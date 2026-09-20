@@ -1,0 +1,22 @@
+{
+  "result": "PASS",
+  "checks": [
+    "cmd launcher without a path opens the raw interactive main menu",
+    "Isolated Down and first reversed Up each move the visible focus once",
+    "Repeated isolated reversals update visible focus; Enter opens that exact action",
+    "Default Enter opens Riposte Sorter with exactly the three requested actions",
+    "Single arrows and first reversals move sorter focus without a following key",
+    "Invalid path explains the error; Ctrl+U corrects it without losing the active screen",
+    "Pasted path replaces empty input without Ctrl+U and returns directly to the sorter",
+    "Picker reversals move visible focus and Enter opens the highlighted folder",
+    "Parent restores the child highlight; Page Down/Up move exactly 16 visible rows",
+    "A burst of 25 arrows plus Enter opens the exact expected folder",
+    "Nested g and s select the folder; blocked Dry Run opens Workshop directly or returns without a write",
+    "Static sorter stays idle without continuous full-screen redraws",
+    "Full Sort Workshop opens existing configuration and supports g directly",
+    "Enter opens purpose-labelled multi-input browser",
+    "Selection carries to an explained results-folder browser",
+    "Visible numeric shortcut opens combined workflow",
+    "Quit restores the cursor, exits zero, and leaves synthetic inputs unchanged"
+  ]
+}

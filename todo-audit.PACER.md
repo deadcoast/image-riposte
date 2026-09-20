@@ -14,6 +14,50 @@ INFERRED: keep all four connected CSVs byte-identical during catch-up, so recipr
 links cannot advance TODO indirectly. Reconcile them together through guarded
 PACER commands only at the completion milestone.
 
+### Terminal polish pass / 2026-09-20 / in progress
+
+USER (original wording): "PROVIDE ANOTHER POLISH PASS ON THE UI AND OPERATION."
+
+INFERRED scope: improve the existing terminal sorter and shared navigation,
+validation and confirmation behavior following the native Windows key repair.
+Keep the three-action default, explicit operation consent and existing engine
+policy. No artwork processing outside synthetic test fixtures is authorized.
+
+OBSERVED: picker Page Down uses height minus 16 while its rendered page uses
+height minus 18; parent navigation resets focus; path errors are generic;
+blocked category previews advertise Apply; completed Undo retains filled
+confirmation in its back stack; failed sorter results lose their path shortcut.
+Sort previews also reload unrelated publishing history before showing results.
+
+Read-only PACER onboarding is valid with the same 11 historical stale-evidence
+warnings. OVR file queries: controller OVR-040, render OVR-047, interaction
+OVR-160, state OVR-050, output OVR-045. Four registers remain frozen; their
+baseline hashes and earlier typing evidence are in `evidence/terminal-polish/`.
+Polish regressions: the initial 13 cases failed before repair; the expanded
+affected suite now passes 209 tests with four POSIX skips. Actual Windows ConPTY
+START.ps1 and START.cmd exercise corrected focus/paging, error correction and
+blocked-preview navigation. Contract/package review remains pending.
+
+USER (subsequent original wording):
+
+> IN ADDITION TO WHAT YOU ARE DOING; ADD LOGIC FOR A _float_ folder. THIS FOLDER IS TO BE THE USERS FOLDER ID TO THE SORTER THAT IT IS NOT TO BE SORTED. IT IS THEIR OWN FOLDER TO STORE FILES. IF A FLOAT FOLDER IS FOUND BEFORE SORT; IGNORE IT.
+>
+> _float_ directory can still be processed with the image Riposte; just no sorting logic
+>
+> include variation for `__float__` (two underscores)
+
+INFERRED: reserve both exact directory names, case-insensitively, at every
+depth; exclude their complete subtrees from ordinary/category sorting and
+sorting discovery/audit, and reject directly sorting either folder or a
+descendant. Keep standalone image protection intake unchanged. The combined
+workflow sorts/protects its eligible sorted inputs; standalone RIPOSTE can
+process excluded images without sorting them. Do not treat similarly named
+files or directories as excluded. Preserve explicit undo for existing journals.
+OBSERVED source ownership: organizer OVR-021, policy OVR-022, category_sort
+OVR-1249, title_categories OVR-1080; sort_plan is still unregistered during the
+freeze. Next: verify exclusion before reads/mutations and complete both scopes'
+source, tests, documentation, contracts and package evidence.
+
 ### Repository review checkpoint / before PAC-029 implementation
 
 OBSERVED: source, project metadata, root lockfile and installed editable package

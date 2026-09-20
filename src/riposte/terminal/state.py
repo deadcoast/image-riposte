@@ -54,6 +54,7 @@ class Editor:
     position: int = 0
     error: bool = False
     target: str = "field"
+    error_message: str = ""
 
 @dataclass
 class Session:
