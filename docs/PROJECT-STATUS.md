@@ -1,6 +1,6 @@
 # RIPOSTE / current project status
 
-Reviewed 2026-09-19. **Version 0.5.0; development audit open; release milestone pending.**
+Reviewed 2026-09-20. **Version 0.5.0; development audit open; release milestone pending.**
 The working list, correction and resumption checkpoint are in
 [todo-audit.PACER.md](../todo-audit.PACER.md). The four PACER CSVs remain frozen
 until that work is complete and the specification can be reconciled together.
@@ -14,6 +14,25 @@ drains queued input and avoids continuous static-screen redraws. Folder selectio
 uses stable displayed rows, and pasted paths work in both sorter modes and at
 every browsing depth. See [sorter interaction evidence](../evidence/sorter-menu/README.md)
 for exact native/test scope; this does not complete the wider release milestone.
+
+The research-led sorter adds bounded local filename proposals to the existing
+preview, behind manual choices and saved rules. Categories remain optional;
+uncertainty and analysis limits leave the ordinary route available. Actual years
+replace the former three-year bucket limit, with legacy catalog compatibility
+and undoable relocation. The [critical review](research/sorting/RIPOSTE-REVIEW.md)
+and [current evidence](../evidence/sorting-research/README.md) distinguish synthetic
+mechanics from unmeasured classification accuracy and human usability.
+
+**Duplicate Finder** is now an independent terminal (`d`), CLI (`duplicates`) and
+authenticated local browser/API workflow. Verified byte/pixel groups and direct
+visual relationships carry the requested DUPLICATE / MAYBE DUPLICATE / CLOSELY
+RELATED labels, confidence basis, member paths, filters, evidence and exports.
+No file removal or sorting is performed. Standalone scans do not require sorting
+state; float inclusion is separately selectable. Actual decoder, FFmpeg, API,
+PowerShell ConPTY and browser evidence is retained in
+[evidence/duplicates](../evidence/duplicates/README.md). The 5,101-file synthetic
+scan preserved content and mtimes. Scores remain heuristics: independent artwork
+classification accuracy and semantic matching are not qualified.
 
 The user has shelved PAC-034 and directed research-led development under
 [Provable Claims and Use Cases](PCUC.md). PCUC-001 now integrates shared-view

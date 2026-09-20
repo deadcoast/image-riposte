@@ -1,0 +1,17 @@
+F                                                                        [100%]
+================================== FAILURES ===================================
+______ test_phrase_and_equivalent_words_do_not_propose_competing_folders ______
+
+    def test_phrase_and_equivalent_words_do_not_propose_competing_folders():
+        names = [f'{group}_{word}.png' for group in ('forest_tree', 'factory_pipe')
+                 for word in ('oak', 'wall', 'moss', 'stone')]
+        model = cc.build_corpus(names)
+>       assert len(model.categories) == 2
+E       AssertionError: assert 4 == 2
+E        +  where 4 = len((CorpusCategory(identifier='e03c7fe11f996d70', label='factory', slug='factory', terms=('factory', 'pipe'), support=4),...pusCategory(identifier='a61a3d2128652dfe', label='forest tree', slug='forest-tree', terms=('forest tree',), support=4)))
+E        +    where (CorpusCategory(identifier='e03c7fe11f996d70', label='factory', slug='factory', terms=('factory', 'pipe'), support=4),...pusCategory(identifier='a61a3d2128652dfe', label='forest tree', slug='forest-tree', terms=('forest tree',), support=4)) = CorpusModel(status='READY', categories=(CorpusCategory(identifier='e03c7fe11f996d70', label='factory', slug='factory',...664902119}, families=8, titles=8, pairs=2, revision='51930ed960e5791c00719ee218e51b3aa53ba7edaedfb3fe60b6c49001dd6333').categories
+
+tests\test_sorting_research.py:84: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/test_sorting_research.py::test_phrase_and_equivalent_words_do_not_propose_competing_folders
+1 failed, 21 deselected in 0.25s

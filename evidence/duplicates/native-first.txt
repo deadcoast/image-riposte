@@ -1,0 +1,10 @@
+{
+  "result": "PASS",
+  "checks": [
+    "START opens the raw terminal; d selects Duplicate Finder and pasted path works",
+    "Read-only scan finishes with an exact duplicate group",
+    "Classification filters, path search, evidence and coverage return to the same findings",
+    "g reopens folder entry while retaining the prior report in navigation history",
+    "Quit restores the cursor, exits zero, and leaves synthetic inputs unchanged"
+  ]
+}

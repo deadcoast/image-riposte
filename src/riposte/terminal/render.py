@@ -15,6 +15,12 @@ from .. import __version__
 
 def view_rows(state):
     page = state.page
+    if page.name == "duplicates":
+        cache_key = (page.query, page.values.get("label", "ALL"))
+        if page.display_cache.get("filter") != cache_key:
+            page.display_cache["filtered"] = page.display_cache["review"].select(search=page.query, label=cache_key[1])
+            page.display_cache["filter"] = cache_key
+        return page.display_cache["filtered"]
     if page.name == "home":
         rows = [{"key": k, "title": title, "summary": summary} for k, title, summary in HOME]
     elif page.name == "workshop":
@@ -93,9 +99,11 @@ def home(c, state, time):
         c.text(3, top, "IMAGE PROTECTION & ORGANIZATION", "text", bold=True)
         top += 1
     counts = "Choose an action, then browse images or folders."
-    c.text(3, top, counts, "accent", width=c.width - 6)
-    c.rule(top + 1, label="MAIN MENU" if not state.page.query_edit else "FIND AN ACTION")
-    top += 2
+    if roomy:
+        c.text(3, top, counts, "accent", width=c.width - 6)
+        top += 1
+    c.rule(top, label="MAIN MENU" if not state.page.query_edit else "FIND AN ACTION")
+    top += 1
     stride = 2 if c.height - top - 5 >= len(rows)*2 else 1
     deck_width = (c.width//2 + 5) if c.width >= 100 else c.width - 6
     capacity = max(1, (c.height - top - 5)//stride)
@@ -106,7 +114,7 @@ def home(c, state, time):
         if selected: c.fill(3, y, deck_width, stride, "raised")
         row = rows[n]
         marker = ">" if selected else " "
-        shortcut = str(n+1) if n < 9 else "w"
+        shortcut = "d" if row["key"] == "duplicates" else "w" if row["key"] == "workshop" else str(n+1)
         c.text(4, y, f"{marker} {shortcut}  {row['title']}", "accent" if selected else "text", bold=selected, width=deck_width - 2)
         if stride > 1: c.text(10, y+1, row["summary"], "muted", width=deck_width-8)
     if not rows: c.text(4, top, "No matching actions. Clear the search.", "warn")
@@ -118,6 +126,25 @@ def home(c, state, time):
         c.wrap(x, top+2, action.summary if action else row["summary"], width, 4, "text")
         c.wrap(x, top+6, "No files change when you open an action.", width, 2)
     footer(c, state, "[1-7] choose   [Up/Down] focus   [Enter] open   [/] find   [q] quit")
+
+
+def duplicates(c: Surface, state: Session) -> None:
+    p = state.page
+    rows = view_rows(state)
+    c.text(3, 6, p.result['checkpoint'] + " / READ ONLY / " + str(len(rows)) + " findings", "accent", width=c.width-6)
+    c.text(3, 7, "Filter: " + p.values.get('label', 'ALL') + (" / " + p.query if p.query else ""), "text", width=c.width-6)
+    c.text(3, 8, "100 = verified equality. Other scores are visual evidence, not odds.", "muted", width=c.width-6)
+    c.rule(9, label="CONFIDENCE / FILE RELATIONSHIPS")
+    capacity = max(1, (c.height-15)//3)
+    start, end = page_window(p.cursor, len(rows), capacity)
+    for n in range(start, end):
+        row = rows[n]; y = 10+(n-start)*3; selected = n == p.cursor
+        c.text(3, y, f"{'>' if selected else ' '} {row['confidence']:g} / {row['label']} / {row['member_count']} files",
+               "accent" if selected else "text", bold=selected, width=c.width-6)
+        c.text(6, y+1, str(row['left_path']), "muted", width=c.width-9)
+        c.text(6, y+2, str(row['right_path']), "muted", width=c.width-9)
+    if not rows: c.wrap(3, 11, "No findings match this filter. Check scan coverage [t] for skipped files or limits.", c.width-6, 3)
+    footer(c, state)
 
 
 def sorter(c: Surface, state: Session) -> None:
@@ -132,7 +159,7 @@ def sorter(c: Surface, state: Session) -> None:
     c.text(3, 17, "Year / Month / img-or-vid / [Category if found] / Size", "text", width=c.width-6)
     c.text(3, 18, "_float_ / __float__: never sorted; RIPOSTE allowed.", "muted", width=c.width-6)
     if c.height >= 28:
-        c.wrap(3, 19, "Download dates; categories only when matched. No category setup required. "
+        c.wrap(3, 19, "Actual year/month; saved rules and local filename patterns. No category setup required. "
                "Unmatched or unknown titles sort by date, media and size; existing categories stay. "
                "Images become date-only PNGs; videos keep their bytes. Originals stay in private undo history. "
                "Sidecars require Full Sort Workshop consent.", c.width-6, c.height-25, "muted")
@@ -470,7 +497,7 @@ def render(state:Session,width:int,height:int,time:float=0)->Surface:
                'item':lambda:item(c,state),'workshop':lambda:workshop(c,state),'result':lambda:result(c,state),
                'job':lambda:job(c,state,time),'preferences':lambda:preferences(c,state),'help':lambda:help_page(c,state),
                'command':lambda:command_page(c,state),'confirm':lambda:confirm(c,state),'picker':lambda:picker(c,state),
-               'sorter':lambda:sorter(c,state)}
+               'sorter':lambda:sorter(c,state),'duplicates':lambda:duplicates(c,state)}
     renderers.get(page,lambda:home(c,state,time))()
     if state.page.query_edit:
         c.fill(3,c.height-5,c.width-6,1,"raised")

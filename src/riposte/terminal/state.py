@@ -16,6 +16,7 @@ HOME = (
     ("preferences", "Terminal & workspace", "Palette, motion, workspace"),
     ("organize", "Full Sort Workshop", "Configure dates, categories, assignments and sidecars"),
     ("undo-sort", "Undo last sort", "Preview restoring original files and names"),
+    ("duplicates", "Duplicate Finder", "Compare files and images; review confidence and evidence"),
     ("workshop", "Workshop", "Optional expert protection helpers"),
 )
 

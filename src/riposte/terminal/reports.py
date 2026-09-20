@@ -178,12 +178,18 @@ def category_destinations(w: Writer, data: dict) -> None:
     w.pair("Unmatched files", counts.get("unmatched_files", 0))
     w.pair("Ambiguous files", counts.get("ambiguous_files", 0))
     w.pair("Without a category", counts.get("without_category_files", 0))
-    w.text("Categories are optional. No match or unknown title uses date/media/size; existing categories are kept.", "muted")
+    w.text("Categories are optional: saved rules, then supported filename patterns. Uncertain titles use date/media/size; existing categories stay.", "muted")
+    corpus = data.get("corpus", {})
+    if corpus:
+        w.pair("Filename patterns", corpus.get("status"))
+        w.pair("Distinct title families", corpus.get("normalized_families", 0))
+        w.text("Pattern scores measure lexical support, not accuracy. Limited or insufficient analysis never blocks sorting.", "muted")
     for item in data.get("files", []):
         w.text(item["source"], bold=True)
         w.pair("Original title", item.get("original_filename") or "Unknown; sorting still available", 2)
         w.pair("Category", (item.get("category") or {}).get("label", "None; standard date/media/size"), 2)
         if item.get("category_source") == "PRESERVED": w.pair("Category choice", "Existing category retained", 2)
+        if item.get("category_source") == "CORPUS": w.pair("Category choice", "Local filename pattern", 2)
         w.pair("Matched terms", ", ".join(item.get("matched_terms", [])) or item.get("match_status", "None"), 2)
         w.pair("Destination", item.get("destination") or item.get("action", "Blocked"), 2)
     w.pair("Preview ID", data.get("plan_id"))
@@ -215,7 +221,40 @@ def overview(data, command="", width=94) -> Report:
         else:tree(w,data)
     elif isinstance(data,dict):
         mode=data.get("mode","")
-        if mode == "TITLE_CATEGORY_DISCOVERY":
+        if mode == "DUPLICATE_SCAN":
+            from ..duplicate_review import DuplicateReview
+            r = Report("Duplicate Finder", data.get("checkpoint", "INCOMPLETE"), "accent", "Read-only comparison. Files were not sorted, removed or selected for deletion.")
+            w.text(data['confidence_policy'], "warn")
+            w.section("Scan coverage")
+            tree(w, data['counts'])
+            if data['issues']['counts']:
+                w.section("Incomplete coverage / rescan after resolving")
+                tree(w, data['issues'])
+            w.section("Findings")
+            review = DuplicateReview(data)
+            for row in review.rows[:100]:
+                w.pair(row['label'], f"{row['confidence']:g} / {row['member_count']} files / {row['basis']}")
+                w.text(str(row['left_path']), "text"); w.text(str(row['right_path']), "muted")
+            if not review.rows: w.text("No matching files found within the recorded scan coverage.")
+            if len(review.rows) > 100: w.text("First 100 findings shown. Use the interactive finder, --json, or --report for all findings.")
+            w.section("Comparison boundaries")
+            tree(w, data['coverage'])
+            if data.get('export'): tree(w, data['export'])
+        elif mode == "DUPLICATE_FINDING":
+            match = data['finding']
+            r = Report(match['label'], str(match['confidence']), "accent", data['confidence_policy'])
+            w.section("Comparison evidence")
+            tree(w, match)
+            for name in ('left', 'right'):
+                group = data.get(name)
+                if not group: continue
+                w.section(f"{name.title()} / {group['count']} files")
+                for member in group['members']:
+                    w.pair(member['relative'], f"{member['bytes']} bytes / {member['media']}")
+                    w.pair("SHA-256", member['sha256'])
+                if group['count'] > len(group['members']):
+                    w.text("First 50 members shown. Search the finder for any path; JSON export contains every member and fingerprint.")
+        elif mode == "TITLE_CATEGORY_DISCOVERY":
             counts = data.get("counts", {})
             r = Report("Filename categories", "READ ONLY" if data.get("checkpoint") == "COMPLETE" else "INCOMPLETE", "accent",
                        "Filename suggestions and session groups only. No files or reusable rules are written.")
@@ -226,6 +265,13 @@ def overview(data, command="", width=94) -> Report:
                     for row in data.get("candidates", [])], [3, 1, 5])
             if data.get("omitted_candidates"): w.pair("More suggestions", data["omitted_candidates"])
             if not data.get("candidates"): w.text("No suggestions meet this count. Lower the minimum or enter a category group manually.")
+            corpus = data.get("corpus", {})
+            w.section("Local filename groups / optional")
+            w.pair("Analysis", corpus.get("status", "Not available"))
+            for group in corpus.get("categories", []):
+                w.pair(group["label"], f"{group['support']} distinct title families")
+                w.text(group["label"] + "=" + ";".join(group["terms"]))
+            w.text("These literal filename patterns also appear in category-enabled sort previews. Editing and saving a rule is optional.", "muted")
             review = data.get("review", {})
             w.section("Category groups / session draft")
             for group in review.get("categories", []):

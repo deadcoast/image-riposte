@@ -15,7 +15,7 @@ IMAGE_SUFFIXES = frozenset({".png", ".jpg", ".jpeg", ".webp", ".bmp", ".tif", ".
 SIDECAR_SUFFIXES = frozenset({".xmp", ".exif", ".iptc", ".aae"})
 CACHE_NAMES = frozenset({".ds_store", "thumbs.db", "desktop.ini"})
 FLOAT_DIRECTORIES = frozenset({"_float_", "__float__"})
-CANONICAL = re.compile(r"^(202[456]|EVERYTHING_ELSE)/(" + "|".join(MONTHS) + r")/(?:img/(?:(?P<category>[^/]+)/)?)?(SML|MED|LRG|XTL)/(SML|MED|LRG|XTL)([0-9]{2,})\.png$")
+CANONICAL = re.compile(r"^([0-9]{4}|EVERYTHING_ELSE)/(" + "|".join(MONTHS) + r")/(?:img/(?:(?P<category>[^/]+)/)?)?(SML|MED|LRG|XTL)/(SML|MED|LRG|XTL)([0-9]{2,})\.png$")
 
 @dataclass(frozen=True)
 class Policy:
@@ -89,7 +89,7 @@ def extract_day(image, stat, mode: str) -> tuple[str, str]:
 
 def folder_for(day: str, width: int, height: int) -> Path:
     date = dt.date.fromisoformat(valid_day(day))
-    year = str(date.year) if str(date.year) in YEARS else "EVERYTHING_ELSE"
+    year = day[:4]
     return Path(year) / MONTHS[date.month - 1] / size_bin(width, height)
 
 
@@ -128,7 +128,7 @@ def same_file_state(a, b) -> bool:
 
 def canonical_path(value: str) -> str:
     match = CANONICAL.fullmatch(value)
-    if not match or match.group(4) != match.group(5):
+    if not match or match.group(1) == "0000" or match.group(4) != match.group(5):
         raise RiposteError("CATALOG_PATH_INVALID")
     if match.group("category") is not None:
         category_slug(match.group("category"))

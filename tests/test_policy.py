@@ -11,11 +11,11 @@ def test_bins(w,h,expected):assert size_bin(w,h)==expected
 @pytest.mark.parametrize("year",[2023,2024,2025,2026,2027])
 def test_folders(month,year):
     folder=folder_for(f"{year}-{month:02d}-02",100,100)
-    assert folder.parts==(str(year) if year in [2024,2025,2026] else "EVERYTHING_ELSE",MONTHS[month-1],"SML")
+    assert folder.parts==(str(year),MONTHS[month-1],"SML")
 @pytest.mark.parametrize("value",["2025-02-29","2026-13-01","2026-1-01","2026-01-01T00:00","private",123,None,"2026-01-01;payload"])
 def test_bad_date(value):
     with pytest.raises(RiposteError):valid_day(value)
-@pytest.mark.parametrize("value",["../x","2025/March/SML/MED01.png","2025/March/SML/SML01.jpg","2022/March/SML/SML01.png","2025/March/SML/SML1.png"])
+@pytest.mark.parametrize("value",["../x","2025/March/SML/MED01.png","2025/March/SML/SML01.jpg","0000/March/SML/SML01.png","2025/March/SML/SML1.png"])
 def test_bad_canonical(value):
     with pytest.raises(RiposteError):canonical_path(value)
 def test_modified_fallback():

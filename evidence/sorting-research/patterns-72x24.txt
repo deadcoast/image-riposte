@@ -1,0 +1,24 @@
+                                                                        
+   R I P O S T E    /  Riposte Sorter / Review Sort                     
+                                                                        
+  --------------------------------------------------------------------  
+   MAIN MENU / Riposte Sorter / Review Sort                             
+                                                                        
+   SORT PREVIEW                                           [READ ONLY]   
+                                                                        
+   > Overview       Details       JSON                                  
+   ----------                                                           
+    Categories are optional: saved rules, then supported filename       
+    patterns. Uncertain titles use date/media/size; existing            
+    categories stay.                                                    
+    Filename patterns             READY                                 
+    Distinct title families       7                                     
+    Pattern scores measure lexical support, not accuracy. Limited or    
+     insufficient analysis never blocks sorting.                        
+    SML01.png                                                           
+   OVERVIEW / lines 31-38 of 92                                         
+   Overview explains the result; Details preserves every field; JS...   
+  --------------------------------------------------------------------  
+   [Enter] Confirm sort   [w] Full Sort Workshop   [g] Enter Path       
+   [t] Report view   [Esc] Back   [F1] Help                             
+                                                                        

@@ -1,0 +1,24 @@
+                                                                        
+   R I P O S T E    /  CONFIRM REPLACE                                  
+                                                                        
+  --------------------------------------------------------------------  
+   MAIN MENU / Apply the displayed sorting plan.                        
+                                                                        
+   EXPLICIT WRITE BOUNDARY                                              
+   FOLDER / C:\Users\ryanf\AppData\Local\Temp\riposte-sorting-researc   
+   h-pmhhwqow                                                           
+                                                                        
+   Apply the displayed sorting plan.                                    
+                                                                        
+                                                                        
+   Originals move into private undo history, including original         
+   metadata. Images become date-only PNGs; videos keep their bytes.     
+   Failed inputs remain.                                                
+   TYPE REPLACE TO CONTINUE                                             
+                                                                        
+   >                                                                    
+                                                                        
+  --------------------------------------------------------------------  
+   [Enter] Confirm word   [Esc] Cancel   [F1] Help                      
+                                                                        
+                                                                        

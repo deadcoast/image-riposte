@@ -39,6 +39,12 @@ class Presentation:
 
 
 RECOVERY = {
+    "DUPLICATE_SOURCE_CHANGED": "A compared file changed. Run a new duplicate scan before reviewing it.",
+    "DUPLICATE_REPORT_EXISTS": "That report already exists. Choose a new .json or .csv filename.",
+    "DUPLICATE_REPORT_PATH_INVALID": "Choose a new report file in an existing local folder without linked directories.",
+    "DUPLICATE_REPORT_WRITE_FAILED": "The report could not be written. Check access and choose another path.",
+    "DUPLICATE_EXPORT_FORMAT_INVALID": "Use .json for complete evidence or .csv for the finding summary.",
+    "DUPLICATE_OPTIONS_INVALID": "Use positive scan limits within the supported ranges.",
     "SORT_FLOAT_ROOT": "This folder is inside _float_ or __float__ and is excluded from sorting. Choose its outside parent to sort other files, or use RIPOSTE to protect these images.",
     "CATEGORY_PREVIEW_REQUIRED": "Preview the sort first, then confirm that displayed plan with REPLACE.",
     "CATEGORY_PREVIEW_CHANGED": "Files, rules or destinations changed. Preview again, review the updated plan, then confirm REPLACE.",

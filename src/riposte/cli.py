@@ -103,6 +103,23 @@ def undo_sort(ctx: typer.Context, root: Root,
     dispatch(ctx, "undo-sort-apply" if apply else "undo-sort", root, sort_id=sort_id)
 
 
+@command("duplicates", "WORKFLOWS")
+def duplicates(ctx: typer.Context, root: Root,
+               visual: Annotated[bool, typer.Option("--visual/--no-visual", help="Add normalized-pixel and visual evidence to exact byte comparisons.")] = True,
+               videos: Annotated[bool, typer.Option("--videos/--no-videos", help="Sample video frames with local FFmpeg; byte comparison is always available.")] = True,
+               include_float: Annotated[bool, typer.Option("--include-float/--no-include-float", help="Inspect float storage independently of sorting.")] = True,
+               max_files: Annotated[int, typer.Option(min=1, max=200_000, help="Maximum inventoried files; hitting a limit reports incomplete coverage.")] = 100_000,
+               max_visual: Annotated[int, typer.Option(min=1, max=20_000, help="Maximum distinct media decoded after byte-copy collapse.")] = 10_000,
+               max_pairs: Annotated[int, typer.Option(min=1, max=500_000, help="Maximum visual candidate pairs.")] = 100_000,
+               max_findings: Annotated[int, typer.Option(min=1, max=50_000, help="Maximum reported findings; truncation is explicit.")] = 20_000,
+               max_file_bytes: Annotated[int, typer.Option(min=1, max=64 * 1024**3, help="Largest individual file to hash.")] = 4 * 1024**3,
+               report: Annotated[Optional[Path], typer.Option(help="Explicitly export a new JSON (full evidence) or CSV (finding summary) file. Never overwrite.")] = None) -> None:
+    """Find DUPLICATE, MAYBE DUPLICATE and CLOSELY RELATED files. Never sorts or removes sources."""
+    dispatch(ctx, "duplicates", root, visual=visual, videos=videos, include_float=include_float,
+             max_files=max_files, max_visual=max_visual, max_pairs=max_pairs, max_findings=max_findings,
+             max_file_bytes=max_file_bytes, duplicate_report=report)
+
+
 @command("categories", "CLEAN COLLECTION")
 def categories(ctx: typer.Context, root: Root,
                min_count: Annotated[int, typer.Option(min=1, max=1_000_000_000, help="Minimum distinct filenames per suggestion.")] = 2,
@@ -140,7 +157,7 @@ def audit(ctx: typer.Context, root: Root):
 
 @command("list", "CLEAN COLLECTION")
 def list_images(ctx: typer.Context, root: Root,
-                year: Annotated[Optional[str], typer.Option(help="2026, 2025, 2024, or EVERYTHING_ELSE.")] = None,
+                year: Annotated[Optional[str], typer.Option(help="Four-digit calendar year, or legacy EVERYTHING_ELSE.")] = None,
                 month: Annotated[Optional[str], typer.Option(help="English name, abbreviation, or 1-12.")] = None,
                 size: Annotated[Optional[str], typer.Option(help="SML, MED, LRG, or XTL.")] = None,
                 search: Annotated[str, typer.Option(help="Literal search of clean canonical names, dates and IDs.")] = "",

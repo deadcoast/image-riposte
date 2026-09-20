@@ -1,0 +1,4 @@
+Error: Browser command timed out: Page.navigate
+    at Timeout._onTimeout (C:\Users\ryanf\github\_new\image-riposte\tests\duplicate_browser.cjs:47:66)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7)

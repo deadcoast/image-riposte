@@ -14,7 +14,7 @@
     let value;
     if(url==='/api/state')value={images:[],trials:[],publications:[],jobs};
     else if(url==='/api/category-rules')value={mode:'CATEGORY_RULES',status:body?.save?'SAVED':body?'DRAFT':'STORED',revision:'b'.repeat(64),rules:body?.clear?{version:1,categories:[]}:rules};
-    else if(url==='/api/categories')value={checkpoint:'COMPLETE',candidates:[{term:'hockey',count:5,examples:['winter-hockey-goalie-practice.png']}]};
+    else if(url==='/api/categories')value={checkpoint:'COMPLETE',candidates:[{term:'hockey',count:5,examples:['winter-hockey-goalie-practice.png']}],corpus:{categories:[{label:'forest',terms:['forest','tree'],support:4}]}};
     else if(url==='/api/organize'||url==='/api/undo-sort'){
       if(hold)await new Promise(resolve=>held.push(resolve));
       const id=String(++serial),result=url.endsWith('undo-sort')?(body.apply?{mode:'UNDO_SORT',checkpoint:'COMPLETE'}:{mode:'UNDO_SORT_PREVIEW',sort_id:'sort-one',ready:true,files_to_restore:1,outputs_to_remove:1}):body.apply?{mode:'APPLY',checkpoint:'COMPLETE',counts:{migrated:1}}:plan;
@@ -26,7 +26,8 @@
   $('sort-categories').click();assert(!$('category-options').hidden,'category disclosure');
   $('category-editor').open=true;
   $('category-discover').click();await wait(()=>document.querySelector('.sort-suggestion button'));
-  document.querySelector('.sort-suggestion button').click();assert($('category-groups').value==='hockey=hockey','select discovered term');
+  document.querySelector('.sort-suggestion button').click();assert($('category-groups').value==='forest=forest;tree','select complete supported group');
+  [...document.querySelectorAll('.sort-suggestion button')].find(b=>b.textContent==='Use hockey').click();assert($('category-groups').value.endsWith('hockey=hockey'),'select discovered term');
   $('category-review').click();await wait(()=>!$('category-save').disabled);
   change('category-groups','Hockey=hockey;goalie');assert($('category-save').disabled,'draft change revokes saved-rule consent');
   $('category-review').click();await wait(()=>!$('category-save').disabled);
@@ -64,6 +65,15 @@
   $('ack-undo').click();$('undo-apply').click();await wait(()=>$('undo-summary').textContent==='Undo: COMPLETE');
   assert(posts.find(p=>p.url==='/api/undo-sort'&&p.body.apply).body.sort_id==='sort-one','undo bound to preview');
   $('sort-recovery').open=false;
+  plan={mode:'READ_ONLY',category_sorting:true,plan_id:'e'.repeat(64),ready:true,counts:{files_to_sort:1},blockers:{},
+    corpus:{status:'READY',normalized_families:9},files:[{source:'forestOak.png',original_filename:'forestOak.png',category:{slug:'forest',label:'forest'},category_source:'CORPUS',matched_terms:['forest'],corpus_match:{score:1,margin:1},destination:'2023/March/img/forest/SML/SML01.png'}]};
+  $('run-plan').click();await wait(()=>$('sort-status').textContent.includes('Review the destinations'));
+  assert($('category-destinations').textContent.includes('Local filename pattern'),'corpus origin visible');
+  assert($('category-destinations').textContent.includes('not accuracy estimates'),'heuristic score boundary visible');
+  $('ack-remove').click();$('apply').click();await wait(()=>$('sort-status').textContent.includes('Sort: COMPLETE'));
+  state.images=[{id:'year-old',relative:'1999/March/img/SML/SML01.png',width:40,height:40}, {id:'year-new',relative:'2027/April/img/SML/SML01.png',width:40,height:40}];
+  renderTree();assert($('tree').textContent.includes('1999')&&$('tree').textContent.includes('2027'),'all calendar years remain browsable');
+  state.images=[];
   plan={mode:'READ_ONLY',category_sorting:true,plan_id:'d'.repeat(64),ready:true,counts:{files_to_sort:1,without_category_files:1},blockers:{},files:[
     {source:'SML01.png',original_filename:null,category:null,match_status:'ORIGINAL_TITLE_UNAVAILABLE',action:'SORT',destination:'2025/March/img/SML/SML01.png'}]};
   $('run-plan').click();await wait(()=>$('sort-status').textContent.includes('Review the destinations'));

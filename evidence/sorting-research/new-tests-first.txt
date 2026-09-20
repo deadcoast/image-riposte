@@ -1,0 +1,29 @@
+.........F.........                                                      [100%]
+================================== FAILURES ===================================
+___ test_default_category_plan_apply_stable_repeat_additions_and_exact_undo ___
+
+root = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/pytest-of-ryanf/pytest-524/test_default_category_plan_app0/workspace')
+make_image = <function make_image.<locals>.create at 0x000001F4F138C5C0>
+
+    def test_default_category_plan_apply_stable_repeat_additions_and_exact_undo(root, make_image):
+        collection(root, make_image)
+        make_image(root / "soldierFactory.png")
+        make_image(root / "SML01.png")
+        held = make_image(root / "__float__" / "forestHidden.png")
+        originals = {p.name: p.read_bytes() for p in root.glob("*.png")}
+        preview = plan(root, POLICY, categories=True)
+        assert preview["ready"] and preview["corpus"]["titles"] == 11
+        assert preview["counts"]["corpus_category_files"] == 9
+        assert all(f["destination"].startswith("2025/March/img/") for f in preview["files"])
+        assert not (root / ".riposte").exists()
+        assert organize(root, POLICY, categories=True, plan_id=preview["plan_id"])["checkpoint"] == "COMPLETE"
+        first = catalog(root)
+        repeated = plan(root, POLICY, categories=True)
+        assert all(f["action"] == "KEEP" for f in repeated["files"])
+>       assert organize(root, POLICY, categories=True, plan_id=repeated["plan_id"])["sort_id"] is None
+E       AssertionError: assert '01789895038482260300-6e6a197e47aa4a969f506baeb463b75d' is None
+
+tests\test_sorting_research.py:117: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/test_sorting_research.py::test_default_category_plan_apply_stable_repeat_additions_and_exact_undo
+1 failed, 18 passed in 5.92s

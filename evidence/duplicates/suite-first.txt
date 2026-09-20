@@ -1,0 +1,43 @@
+...............................s........................................ [  4%]
+..................................................................s..... [  9%]
+........................................................................ [ 14%]
+........................................................................ [ 19%]
+........................................................................ [ 24%]
+........................................................................ [ 28%]
+.....................................................................s.. [ 33%]
+........................................................................ [ 38%]
+........................................................................ [ 43%]
+........................................................................ [ 48%]
+........................................................................ [ 53%]
+........................................................................ [ 57%]
+........................................................................ [ 62%]
+..............s......................................................... [ 67%]
+........................................................................ [ 72%]
+...................................................s.................... [ 77%]
+........................................................................ [ 82%]
+...................................ssss................................. [ 86%]
+........................................................................ [ 91%]
+........................................................................ [ 96%]
+...................................................                      [100%]
+============================== warnings summary ===============================
+.venv\Lib\site-packages\fastapi\testclient.py:1
+  C:\Users\ryanf\github\_new\image-riposte\.venv\Lib\site-packages\fastapi\testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    from starlette.testclient import TestClient as TestClient  # noqa
+
+.venv\Lib\site-packages\starlette\testclient.py:53
+  C:\Users\ryanf\github\_new\image-riposte\.venv\Lib\site-packages\starlette\testclient.py:53: DeprecationWarning: The anyio.abc.BlockingPortal alias is deprecated, use anyio.from_thread.BlockingPortal instead.
+    _PortalFactoryType = Callable[[], AbstractContextManager[anyio.abc.BlockingPortal]]
+
+tests/test_kontext.py::test_real_tiny_random_pipeline_cpu_numeric_path
+  C:\Users\ryanf\github\_new\image-riposte\.venv\Lib\site-packages\diffusers\utils\deprecation_utils.py:23: FutureWarning: `torch_dtype` is deprecated and will be removed in version 1.0.0. Please use `dtype` instead.
+    deprecate("torch_dtype", "1.0.0", _TORCH_DTYPE_DEPRECATION_MESSAGE)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ===========================
+SKIPPED [1] tests\test_application_roots.py:139: Windows symlink privilege unavailable; junction exercised separately
+SKIPPED [1] tests\test_category_rules.py:185: symlinks unavailable
+SKIPPED [1] tests\test_organizer.py:80: Symlinks unavailable
+SKIPPED [1] tests\test_v02_models.py:38: Windows symlink creation privilege unavailable
+SKIPPED [1] tests\test_v03_temporal.py:134: Windows account lacks symlink privilege
+SKIPPED [4] tests\test_v04_terminal_host.py:8: POSIX pseudo-terminal contract
+1482 passed, 9 skipped, 2 deselected, 3 warnings in 253.85s (0:04:13)

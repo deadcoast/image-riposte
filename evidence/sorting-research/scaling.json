@@ -1,0 +1,32 @@
+{
+  "scope": "Synthetic in-memory titles; traced Python allocations; excludes image/video I/O and source verification.",
+  "runs": [
+    {
+      "titles": 1000,
+      "seconds": 0.0412,
+      "peak_traced_bytes": 940406,
+      "status": "READY",
+      "families": 1000,
+      "pairs": 4,
+      "categories": 4
+    },
+    {
+      "titles": 10000,
+      "seconds": 0.3649,
+      "peak_traced_bytes": 9323402,
+      "status": "READY",
+      "families": 10000,
+      "pairs": 4,
+      "categories": 4
+    },
+    {
+      "titles": 50001,
+      "seconds": 1.0605,
+      "peak_traced_bytes": 32078886,
+      "status": "LIMIT_REACHED",
+      "families": 33330,
+      "pairs": 0,
+      "categories": 0
+    }
+  ]
+}

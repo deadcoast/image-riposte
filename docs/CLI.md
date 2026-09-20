@@ -14,7 +14,8 @@ and compatibility details.
 Open **Riposte Sorter** (the default main-menu action): **1. Sort**, **2. Dry Run**,
 **3. Enter Path**. Enter a folder once per session using `3` or `g`; both Sort and
 Dry Run ask for it directly if none is selected. No configuration screens precede
-the preview. The preset uses download dates, saved categories, separate img/vid
+the preview. The preset uses download dates, saved rules and supported local
+filename patterns, separate img/vid
 folders and existing size bins. Missing, tied or unavailable title matches use
 the ordinary date/media/size route; no category setup is required. Sidecars are preserved
 unless separately authorized there. Sort reviews a fresh exact plan and requires
@@ -27,6 +28,43 @@ Folder browsers keep `g` available at every depth, Enter opens the highlighted
 directory and `s` uses it directly. Protection's multi-input browser retains Space
 to select files/folders and `s` to select the current folder.
 
+## Duplicate Finder
+
+Main menu **d** opens one scan-settings screen. Paste a folder with **g**, then
+press **r** to scan. In the finding list, **1–4** selects All / DUPLICATE / MAYBE
+DUPLICATE / CLOSELY RELATED; **/** searches every member path, **x** clears the
+search, **Enter** opens evidence, **t** shows coverage, **e** exports a new report,
+and **r** rescans. **g** changes the folder while preserving the prior report.
+Arrows, Page Up/Down and Home/End navigate findings; Esc returns. There is no
+source-removal action. Float folders are included independently of sorting.
+
+```powershell
+riposte duplicates "D:\Artwork"
+riposte duplicates "D:\Artwork" --report "D:\Reports\duplicates.json"
+riposte --json duplicates "D:\Artwork" --no-videos --no-include-float
+riposte duplicates "D:\Artwork" --no-visual --report "D:\Reports\exact.csv"
+```
+
+JSON contains all recorded sources, groups, relationships, options, issues and
+hashes. CSV contains all finding summaries and representative paths; use JSON
+for every group member. Exports require an existing parent and a new `.json` or
+`.csv` filename. Existing reports are not overwritten. Without `--report`, the
+scan writes no application state. Human CLI output shows the first 100 findings;
+`--json`, export, terminal navigation and browser paging retain the recorded set.
+
+Limits default to 100,000 files, 10,000 distinct media fingerprints after byte
+collapse, 100,000 visual pairs, 20,000 findings and 4 GiB per file. Override with
+`--max-files`, `--max-visual`, `--max-pairs`, `--max-findings`, `--max-file-bytes`.
+Hitting a limit reports incomplete coverage and retains available findings;
+the direct command returns the shared incomplete-result exit code (2).
+
+In `riposte serve ROOT`, open **Duplicate Finder** for filters, paired previews,
+paged members, measured evidence and downloads. The browser uses the server's
+folder and authenticated session, retaining the latest two scan reports in
+memory. Standalone CLI/terminal scans skip private state without requiring a
+valid sorted catalog; the browser server retains its normal workspace checks.
+See [DUPLICATES.md](DUPLICATES.md) for the confidence policy and media boundaries.
+
 ## Command inventory
 
 Every listed command is a real Typer command; use `riposte COMMAND --help` for parameter types, defaults, bounds and repeatable options.
@@ -36,6 +74,7 @@ Every listed command is a real Typer command; use `riposte COMMAND --help` for p
 | `ui [ROOT]` | Optional workspace | Native Rich menu; `--linear` explicitly permits scripted stdin |
 | `organize ROOT` | Whole maintained workspace | Read-only plan; `--apply --plan-id PLAN_ID` replaces sources from the unchanged reviewed plan |
 | `sort ROOT` | Whole maintained workspace | Alias of `organize`; incremental sorting without protection |
+| `duplicates ROOT` | Recursive files, independently of sorting | Read-only exact/visual comparison; optional explicit JSON/CSV export |
 | `categories ROOT` | Filename stems under ROOT | Read-only term discovery and session category review; no media, catalog or rules writes |
 | `category-rules ROOT` | Private rules and optional filename review | Read-only preview; `--save --expected-revision REVISION` explicitly saves rules; never moves media |
 | `undo-sort ROOT` | Last recorded sort in this workspace | Read-only recovery preview; `--apply` restores originals if conflict checks pass; optional `--sort-id` binds confirmation to an exact preview |
@@ -151,10 +190,28 @@ The layout is `Year/Month/img-or-vid/[Category if found]/Size`, for example
 `2025/March/img/hockey/SML/SML01.png`. A category plan shows source path, original
 filename (unknown for old untracked files), matched terms, category and exact
 numbered destination. Minimum discovery counts do not limit saved-rule matches.
-Rules apply to words anywhere in the original title. Equal-priority, absent and
-unknown-title matches do not block sorting: they use the ordinary route without
-a category. An existing category is preserved when no new match is available.
+Rules apply to words anywhere in the original title, including CamelCase boundaries.
+Manual choices and saved rules take precedence. Otherwise supported local filename
+patterns can propose categories in this same preview. Equal-priority rule ties,
+weak patterns and unknown titles use the ordinary route without a category.
+An existing category is preserved when no new saved-rule match is available;
+confirmed folder labels guide later proposals without automatic renaming.
 No rules or manual assignments are required, even with `--categories` enabled.
+
+The actual calendar year and English month remain the outer folders. Existing
+`EVERYTHING_ELSE` catalogs stay readable; sorting previews relocation using their
+stored dates, with the usual consent and Undo. `--year` accepts any valid
+four-digit calendar year, or `EVERYTHING_ELSE` for legacy entries.
+
+Local analysis uses normalized filename families, supported phrases and observed
+term associations. It needs at least six distinct families and three supporting
+families per proposed anchor. Coverage/margin are heuristic scores, not probabilities.
+Analysis is bounded at 50,000 families, 100,000 terms, 200,000 observed pairs,
+48 terms per title and 32 groups; reaching a bound discards automatic proposals
+and retains ordinary sorting and saved-rule matching. There is no automatic
+rules save. `categories ROOT` additionally exposes these groups for optional
+rule editing, using current filenames only; sorting also uses available private
+original titles. See [the research review](research/sorting/RIPOSTE-REVIEW.md).
 
 `--assign` repeats for multiple files. It uses a source-relative path and a saved
 slug, or `uncategorized`. A manual choice persists across later sorts; `=auto`
@@ -163,7 +220,7 @@ the reviewed plan. The terminal accepts a JSON list for this field, preserving
 commas inside filenames; the browser accepts one assignment per line.
 
 `--plan-id` binds policy, rules, source identities/content, media catalog, private
-assignments and exact destination allocation. Changed inputs require inspection
+assignments, versioned corpus evidence and exact destination allocation. Changed inputs require inspection
 again. Late changes during an operation stop it with an incomplete checkpoint;
 private undo history retains recorded work for recovery. Existing files are never
 overwritten or assigned a different destination after approval.

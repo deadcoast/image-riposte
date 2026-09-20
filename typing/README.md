@@ -3,12 +3,39 @@
 Current project/milestone status is in [PROJECT-STATUS.md](../docs/PROJECT-STATUS.md).
 The Markdown audit is active and the PACER CSV TODO is frozen. This guide's
 current counts come from `evidence/verification.json`; earlier task records below
-remain historical. On 2026-09-20 all 66 application hashes and 479 source/stub
+remain historical. On 2026-09-20 all 73 application hashes and 531 source/stub
 signatures were checked by the full external contract suite, which passed.
-The separate fresh implementation audit reports 788 diagnostics in 36 of 59
+The separate implementation audit reports 823 diagnostics in 36 of 65
 Python files. Strict settings are unchanged; the source tree remains unclean.
 
-The optional-category correction admits eight changed application owners against
+The independent Duplicate Finder admits twenty changed/new owners in
+`source-reviewed-duplicates.json`, against the retained sorting-research snapshot.
+Five new engine/review modules have source-derived declarations; request fields,
+the CLI command, API model and terminal entry/render methods are updated. All
+external stages pass across 531 signatures, 62 leaf modules and 73 application
+files, with 13 expected negative-consumer diagnostics preserved. No new dynamic
+annotation, allowlist exemption or configuration relaxation was introduced.
+The five detector modules have no raw-source diagnostics. The 26 added raw
+diagnostics are calls into existing untyped report/render/controller helpers;
+initial endpoint annotations and a service-local name collision were repaired.
+See `../evidence/duplicates/` for the retained initial failures, exact validation
+boundaries, final diagnostic delta and package byte comparison.
+
+The sorting research review admits fourteen changed/new application owners in
+`source-reviewed-sorting-research.json`, against the optional-category snapshot.
+The new `category_corpus.pyi` mirrors the source dataclasses and seven public
+callables. Reports retain their existing dynamic boundaries; JSON evidence now
+includes versioned corpus proposals in receipt version 3. The other reviewed
+changes cover CamelCase rule matching, discovery, actual-year canonical paths,
+legacy video catalogs, browser navigation and shared reports. All external
+contract stages pass: 486 signatures, 57 leaf modules and 67 application files;
+the 13 expected negative-consumer diagnostics remain intact. Nine added raw
+diagnostics are calls to existing untyped report helpers; no ignore, Any
+declaration or configuration relaxation was introduced. The new corpus module
+has no raw-source diagnostics. See `../evidence/sorting-research/` for exact
+reviewed owners, retained failures, native checks and package byte comparisons.
+
+The historical optional-category correction admits eight changed application owners against
 the terminal-polish snapshot in `source-reviewed-optional-categories.json`.
 No callable signatures change. Existing dynamic report contracts already permit
 an absent category; the planner now uses ordinary date/media/size destinations

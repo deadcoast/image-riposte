@@ -9,9 +9,9 @@
     "fastapi": "0.141.1",
     "rich": "15.0.0"
   },
-  "source_files": 66,
-  "source_signatures": 479,
-  "stubtest_leaf_modules": 56,
+  "source_files": 73,
+  "source_signatures": 531,
+  "stubtest_leaf_modules": 62,
   "stubtest_allowlist_entries": 4,
   "dynamic_declarations": 127,
   "results": {

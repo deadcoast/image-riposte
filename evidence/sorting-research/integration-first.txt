@@ -1,0 +1,42 @@
+...............................F........................................ [ 96%]
+...                                                                      [100%]
+================================== FAILURES ===================================
+________ test_api_corpus_categories_apply_and_undo_without_rule_setup _________
+
+root = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/pytest-of-ryanf/pytest-527/test_api_corpus_categories_app0/workspace')
+make_image = <function make_image.<locals>.create at 0x000001C3AE5DA6C0>
+
+    def test_api_corpus_categories_apply_and_undo_without_rule_setup(root, make_image):
+        names = ['forestOak.png', 'forestPine.png', 'forestMoss.png', 'factoryWall.png', 'factoryPipe.png', 'factoryFloor.png']
+        originals = {name: make_image(root / name).read_bytes() for name in names}
+        with TestClient(create_app(root)) as client:
+>           preview = job(client, 'organize', {'categories': True, 'date_mode': 'modified'})['result']
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_category_sort_interfaces.py:35: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+client = <starlette.testclient.TestClient object at 0x000001C3AE405BE0>
+endpoint = 'organize', body = {'categories': True, 'date_mode': 'modified'}
+
+    def job(client, endpoint, body):
+        response = client.post('/api/' + endpoint, json=body)
+>       assert response.status_code == 200, response.text
+E       AssertionError: {"code":"SESSION_REQUIRED"}
+E       assert 401 == 200
+E        +  where 401 = <Response [401 Unauthorized]>.status_code
+
+tests\test_category_sort_interfaces.py:22: AssertionError
+============================== warnings summary ===============================
+.venv\Lib\site-packages\fastapi\testclient.py:1
+  C:\Users\ryanf\github\_new\image-riposte\.venv\Lib\site-packages\fastapi\testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    from starlette.testclient import TestClient as TestClient  # noqa
+
+.venv\Lib\site-packages\starlette\testclient.py:53
+  C:\Users\ryanf\github\_new\image-riposte\.venv\Lib\site-packages\starlette\testclient.py:53: DeprecationWarning: The anyio.abc.BlockingPortal alias is deprecated, use anyio.from_thread.BlockingPortal instead.
+    _PortalFactoryType = Callable[[], AbstractContextManager[anyio.abc.BlockingPortal]]
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ===========================
+FAILED tests/test_category_sort_interfaces.py::test_api_corpus_categories_apply_and_undo_without_rule_setup
+1 failed, 74 passed, 1 deselected, 2 warnings in 24.15s

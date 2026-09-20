@@ -1,0 +1,108 @@
+.........F.FFF.                                                          [100%]
+================================== FAILURES ===================================
+_ test_exports_complete_evidence_without_overwrite_and_csv_formula_execution __
+
+root = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/pytest-of-ryanf/pytest-534/test_exports_complete_evidence0/workspace')
+tmp_path = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/pytest-of-ryanf/pytest-534/test_exports_complete_evidence0')
+
+    def test_exports_complete_evidence_without_overwrite_and_csv_formula_execution(root, tmp_path):
+        (root / '=formula.txt').write_bytes(b'content')
+        (root / 'copy.txt').write_bytes(b'content')
+        review = DuplicateReview(scan_duplicates(root))
+        destination = tmp_path / 'report.json'
+>       review.export(destination)
+
+tests\test_duplicate_interfaces.py:68: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <riposte.duplicate_review.DuplicateReview object at 0x0000022729AF6350>
+target = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/pytest-of-ryanf/pytest-534/test_exports_complete_evidence0/report.json')
+
+    def export(self, target: Path) -> dict[str, object]:
+        target = target.expanduser().absolute()
+        if not target.parent.is_dir() or any(is_link(parent) for parent in [target, *target.parents]):
+>           raise RiposteError('DUPLICATE_REPORT_PATH_INVALID')
+E           riposte.errors.RiposteError: DUPLICATE_REPORT_PATH_INVALID
+
+src\riposte\duplicate_review.py:128: RiposteError
+____________ test_cli_flags_export_and_terminal_command_roundtrip _____________
+
+root = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/pytest-of-ryanf/pytest-534/test_cli_flags_export_and_term0/workspace')
+tmp_path = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/pytest-of-ryanf/pytest-534/test_cli_flags_export_and_term0')
+
+    def test_cli_flags_export_and_terminal_command_roundtrip(root, tmp_path):
+        copies(root)
+        request = make_request('duplicates', root, {'visual': False, 'videos': False, 'include_float': False,
+                                'max_files': 100, 'max_visual': 20, 'max_pairs': 50, 'duplicate_report': tmp_path / 'scan.json'})
+        argv = request_argv(request)
+        result = CliRunner().invoke(app, ['--json', *argv[1:]])
+        assert result.exit_code == 0, result.output
+        report = json.loads(result.stdout)
+        assert report['counts']['DUPLICATE'] == 1
+        assert report['options']['visual'] is False and report['options']['include_float'] is False
+>       assert (tmp_path / 'scan.json').is_file()
+E       AssertionError: assert False
+E        +  where False = is_file()
+E        +    where is_file = (WindowsPath('C:/Users/ryanf/AppData/Local/Temp/pytest-of-ryanf/pytest-534/test_cli_flags_export_and_term0') / 'scan.json').is_file
+
+tests\test_duplicate_interfaces.py:99: AssertionError
+___ test_terminal_entry_filter_evidence_export_and_single_press_navigation ____
+
+root = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/pytest-of-ryanf/pytest-534/test_terminal_entry_filter_evi0/workspace')
+tmp_path = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/pytest-of-ryanf/pytest-534/test_terminal_entry_filter_evi0')
+
+    def test_terminal_entry_filter_evidence_export_and_single_press_navigation(root, tmp_path):
+        copies(root)
+        controller = Controller(None, Presentation(no_animation=True))
+        controller.key(Key('char', 'd'))
+        assert controller.state.page.action == 'duplicates' and controller.state.editor.target == 'duplicate-path'
+        controller.key(Key('paste', '"'+str(root)+'"')); controller.key(Key('enter'))
+        assert controller.state.root == root
+        controller.key(Key('char', 'r'));controller.state.operation.join();controller.pump()
+        assert controller.state.page.name == 'duplicates'
+        for width, height in [(72,24),(100,34),(132,46)]:
+            screen = render(controller.state,width,height,0).plain()
+            assert 'DUPLICATE' in screen and all(len(line)<=width for line in screen.splitlines())
+        controller.key(Key('char','3'));assert not view_rows(controller.state)
+        controller.key(Key('char','2'));assert len(view_rows(controller.state))==1
+        controller.key(Key('char','/'));controller.key(Key('paste','copy-001'));controller.key(Key('enter'))
+        assert len(view_rows(controller.state))==1
+        controller.key(Key('enter'));assert controller.state.page.result['mode']=='DUPLICATE_FINDING'
+        controller.key(Key('escape'));controller.key(Key('char','e'))
+        controller.key(Key('paste',str(tmp_path/'terminal.json')));controller.key(Key('enter'))
+>       assert (tmp_path/'terminal.json').exists() and controller.state.editor is None
+E       AssertionError: assert (False)
+E        +  where False = exists()
+E        +    where exists = (WindowsPath('C:/Users/ryanf/AppData/Local/Temp/pytest-of-ryanf/pytest-534/test_terminal_entry_filter_evi0') / 'terminal.json').exists
+
+tests\test_duplicate_interfaces.py:122: AssertionError
+___ test_api_authenticated_paginated_review_preview_export_and_stale_source ___
+
+root = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/pytest-of-ryanf/pytest-534/test_api_authenticated_paginat0/workspace')
+
+    def test_api_authenticated_paginated_review_preview_export_and_stale_source(root):
+        copies(root)
+        with TestClient(create_app(root, 'dup-test')) as client:
+>           assert client.post('/api/duplicates',json={}).status_code == 403
+E           AssertionError: assert 401 == 403
+E            +  where 401 = <Response [401 Unauthorized]>.status_code
+E            +    where <Response [401 Unauthorized]> = post('/api/duplicates', json={})
+E            +      where post = <starlette.testclient.TestClient object at 0x0000022729CDEBA0>.post
+
+tests\test_duplicate_interfaces.py:130: AssertionError
+============================== warnings summary ===============================
+.venv\Lib\site-packages\fastapi\testclient.py:1
+  C:\Users\ryanf\github\_new\image-riposte\.venv\Lib\site-packages\fastapi\testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    from starlette.testclient import TestClient as TestClient  # noqa
+
+.venv\Lib\site-packages\starlette\testclient.py:53
+  C:\Users\ryanf\github\_new\image-riposte\.venv\Lib\site-packages\starlette\testclient.py:53: DeprecationWarning: The anyio.abc.BlockingPortal alias is deprecated, use anyio.from_thread.BlockingPortal instead.
+    _PortalFactoryType = Callable[[], AbstractContextManager[anyio.abc.BlockingPortal]]
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ===========================
+FAILED tests/test_duplicate_interfaces.py::test_exports_complete_evidence_without_overwrite_and_csv_formula_execution
+FAILED tests/test_duplicate_interfaces.py::test_cli_flags_export_and_terminal_command_roundtrip
+FAILED tests/test_duplicate_interfaces.py::test_terminal_entry_filter_evidence_export_and_single_press_navigation
+FAILED tests/test_duplicate_interfaces.py::test_api_authenticated_paginated_review_preview_export_and_stale_source
+4 failed, 11 passed, 2 warnings in 1.86s

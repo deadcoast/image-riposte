@@ -55,11 +55,13 @@ window.RiposteSort = (() => {
     const area=$('category-destinations');area.replaceChildren();
     const counts=result.counts||{};
     if(result.category_sorting)area.append(el('p','',`${counts.without_category_files||0} without category · ${counts.ambiguous_files||0} ambiguous. Categories are optional; unmatched files use date/media/size, and existing categories stay.`));
+    if(result.corpus)area.append(el('p','',`Local filename patterns: ${result.corpus.status.replaceAll('_',' ').toLowerCase()} · ${result.corpus.normalized_families} distinct title families. Pattern scores are lexical evidence, not accuracy estimates.`));
     for(const item of result.files||[]) {
       const row=el('article','sort-file');row.append(el('strong','',item.source));
       if(result.category_sorting) {
         row.append(el('p','', 'Original title: '+(item.original_filename||'unknown')));
         row.append(el('p','',(item.category?.label||'No category; standard date/media/size')+' · '+(item.category_source==='PRESERVED'?'Existing category retained':item.matched_terms?.join(', ')||item.match_status||item.action||'')));
+        if(item.category_source==='CORPUS')row.append(el('p','',`Local filename pattern · support ${item.corpus_match.score.toFixed(2)} · margin ${item.corpus_match.margin.toFixed(2)}`));
       } else row.append(el('p','',item.action||'Blocked'));
       row.append(el('p','sort-destination',item.destination||item.error||item.action||'Blocked'));area.append(row);
     }
@@ -123,12 +125,17 @@ window.RiposteSort = (() => {
     $('category-suggestions').textContent='Discovering recurring filename terms…';
     try {
       const result=await api('categories',{min_count:count});const area=$('category-suggestions');area.replaceChildren();
+      for(const group of result.corpus?.categories||[]) {
+        const row=el('div','sort-suggestion');const button=el('button','secondary compact','Use group '+group.label);
+        button.onclick=()=>{if(pending||busyJob)return;$('category-groups').value+=($('category-groups').value?'\n':'')+group.label+'='+group.terms.join(';');ruleChanged();};
+        row.append(button,el('span','',`${group.support} distinct title families · ${group.terms.join(' · ')}`));area.append(row);
+      }
       for(const item of result.candidates) {
         const row=el('div','sort-suggestion');const button=el('button','secondary compact','Use '+item.term);
         button.onclick=()=>{if(pending||busyJob)return;$('category-groups').value+=($('category-groups').value?'\n':'')+item.term+'='+item.term;ruleChanged();};
         row.append(button,el('span','',`${item.count} files · ${item.examples.join(' · ')}`));area.append(row);
       }
-      if(!result.candidates.length)area.textContent='No terms meet this count. Lower the count or enter a category manually.';
+      if(!result.candidates.length&&!result.corpus?.categories?.length)area.textContent='No supported groups or terms meet this count. Sorting remains available without categories.';
       if(result.checkpoint!=='COMPLETE')area.append(el('p','sort-error','Some paths could not be read. These counts are incomplete.'));
     } catch(e){fail(e);}finally{pending=false;updateDisabled();}
   };

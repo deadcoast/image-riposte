@@ -1,0 +1,5 @@
+{
+  "result": "PASS",
+  "application_files": 67,
+  "scope": "Source and fresh wheel/sdist bytes only; native runs use the existing editable installation."
+}

@@ -28,6 +28,22 @@ def job(client, endpoint, body):
     pytest.fail('job did not finish')
 
 
+def test_api_corpus_categories_apply_and_undo_without_rule_setup(root, make_image):
+    names = ['forestOak.png', 'forestPine.png', 'forestMoss.png', 'factoryWall.png', 'factoryPipe.png', 'factoryFloor.png']
+    originals = {name: make_image(root / name).read_bytes() for name in names}
+    with TestClient(create_app(root, 'corpus-test')) as client:
+        client.headers['X-Riposte-Token'] = 'corpus-test'
+        preview = job(client, 'organize', {'categories': True, 'date_mode': 'modified'})['result']
+        assert preview['ready'] and preview['counts']['corpus_category_files'] == 6
+        result = job(client, 'organize', {'categories': True, 'date_mode': 'modified', 'apply': True,
+                     'acknowledge_source_removal': True, 'plan_id': preview['plan_id']})
+        assert result['state'] == 'done' and len(catalog(root)) == 6
+        undo = job(client, 'undo-sort', {})['result']
+        assert job(client, 'undo-sort', {'apply': True, 'acknowledge_restore': True, 'sort_id': undo['sort_id']})['state'] == 'done'
+    assert all((root / name).read_bytes() == data for name, data in originals.items())
+    assert load_rules(root).revision == 'missing'
+
+
 def test_cli_exact_plan_requires_token_and_applies(root, make_image):
     make_image(root / 'hockey-player.png')
     runner = CliRunner()

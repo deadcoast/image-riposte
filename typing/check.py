@@ -18,7 +18,7 @@ HERE = ROOT / "typing"
 STUBS = HERE / "stubs" / "riposte"
 EVIDENCE = HERE / "evidence"
 CONTRACT_CONFIG = "typing/mypy-contracts.ini"
-REVIEWED_SOURCE = EVIDENCE / "source-reviewed-optional-categories.json"
+REVIEWED_SOURCE = EVIDENCE / "source-reviewed-duplicates.json"
 
 
 def is_application_source(path: Path) -> bool:
@@ -197,7 +197,7 @@ def main() -> int:
 
     before = source_hashes()
     reviewed = json.loads(REVIEWED_SOURCE.read_text(encoding="utf-8"))
-    # Optional category review covers shared matching, planning and UI reports.
+    # Duplicate review admits the independent engine, adapters and local review UI.
     # Earlier reviewed snapshots remain historical; no source-body typing claim.
     reviewed = {path: value for path, value in reviewed.items() if is_application_source(Path(path))}
     drift = sorted(k for k in before.keys() | reviewed.keys() if before.get(k) != reviewed.get(k))

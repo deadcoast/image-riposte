@@ -1,0 +1,60 @@
+{
+  "mode": "DUPLICATE_SCAN",
+  "version": "duplicates-1",
+  "scan_id": "1877ee77127a06761374744a9f5f2685b3d13809fcc7f885f2d535348b321799",
+  "root": "C:\\Users\\ryanf\\github\\_new\\riposte-sorter-test-5000\\INPUT",
+  "checkpoint": "COMPLETE",
+  "writes": false,
+  "options": {
+    "visual": true,
+    "videos": true,
+    "include_float": true,
+    "max_files": 100000,
+    "max_visual": 10000,
+    "max_pairs": 100000,
+    "max_findings": 20000,
+    "max_file_bytes": 4294967296,
+    "max_pixels": 60000000
+  },
+  "counts": {
+    "private_directories_excluded": 1,
+    "private_files_excluded": 1,
+    "files_discovered": 5101,
+    "files_hashed": 5101,
+    "bytes_hashed": 30300128,
+    "byte_groups": 78,
+    "media_fingerprinted": 322,
+    "index_nodes_visited": 82861,
+    "candidate_pairs": 856,
+    "view_comparisons": 6300,
+    "index_nodes": 343,
+    "DUPLICATE": 39,
+    "MAYBE DUPLICATE": 16,
+    "CLOSELY RELATED": 279,
+    "distinct_content_groups": 47,
+    "findings": 334
+  },
+  "issues": {
+    "counts": {},
+    "examples": [],
+    "omitted_examples": 0
+  },
+  "confidence_policy": "100 means verified equality for the stated basis. Other scores are heuristic evidence, not probabilities.",
+  "coverage": {
+    "exact": "All successfully hashed files, with byte verification; image equality uses complete normalized still-image pixels.",
+    "visual": "DCT radius 12; eight whole-image orientations; center/corner crops at 75% and 50% edges; at most eight candidate views per pair.",
+    "video": "Five timestamps per video; sampled visual sequence only. Audio and unsampled frames are not compared.",
+    "relations": "Similarities are direct pair relationships, never transitive duplicate groups.",
+    "snapshot": "Sources rechecked at scan completion; review revalidates selected content. Concurrent filesystem activity is not an atomic snapshot."
+  },
+  "elapsed_seconds": 62.674,
+  "before": {
+    "files": 5102,
+    "tree_content_and_mtime_sha256": "075c53966a89b97c411626e2c2d59669eb7febfe367646ba32afcc8c38b9256b"
+  },
+  "after": {
+    "files": 5102,
+    "tree_content_and_mtime_sha256": "075c53966a89b97c411626e2c2d59669eb7febfe367646ba32afcc8c38b9256b"
+  },
+  "unchanged": true
+}

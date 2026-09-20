@@ -56,6 +56,15 @@ class ImageInfo(PngAudit):
     relative: NotRequired[str]
 
 class RequestValues(TypedDict, total=False):
+    visual: bool
+    videos: bool
+    include_float: bool
+    max_files: int
+    max_visual: int
+    max_pairs: int
+    max_findings: int
+    max_file_bytes: int
+    duplicate_report: Path | str | None
     plan_id: str | None
     input_paths: Sequence[Path | str]
     image_id: str

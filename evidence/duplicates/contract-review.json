@@ -1,0 +1,27 @@
+{
+  "reviewed_owners": [
+    "src/riposte/cli.py",
+    "src/riposte/duplicate_features.py",
+    "src/riposte/duplicate_index.py",
+    "src/riposte/duplicate_media.py",
+    "src/riposte/duplicate_review.py",
+    "src/riposte/duplicates.py",
+    "src/riposte/records.py",
+    "src/riposte/server.py",
+    "src/riposte/static/app.js",
+    "src/riposte/static/duplicates.js",
+    "src/riposte/static/index.html",
+    "src/riposte/static/style.css",
+    "src/riposte/terminal/actions.py",
+    "src/riposte/terminal/controller.py",
+    "src/riposte/terminal/interaction.py",
+    "src/riposte/terminal/output.py",
+    "src/riposte/terminal/render.py",
+    "src/riposte/terminal/reports.py",
+    "src/riposte/terminal/service.py",
+    "src/riposte/terminal/state.py"
+  ],
+  "signatures": 531,
+  "leaf_modules": 62,
+  "application_files": 73
+}

@@ -31,6 +31,10 @@ The default first action opens one stable screen: selected folder, **1. Sort**,
 **2. Dry Run**, **3. Enter Path**, followed by the date/media/category/size route.
 The category segment is explicitly "if found". Missing, ambiguous or unknown
 categories must never look like required setup; the ordinary route stays usable.
+Local filename proposals belong in the same preview as saved-rule matches.
+Show their evidence as heuristic, preserve established category names, and let
+uncertain files take the ordinary route. Optional discovery groups reuse existing
+rule-draft controls. Calendar navigation uses actual years and English months.
 The existing configurable flow is **Full Sort Workshop**. Keep the same terminal
 monospace, foreground palette and explicit `>` focus marker. Numbering identifies
 actions, not required stages. Path input starts empty so a pasted path cannot be
@@ -62,3 +66,32 @@ editing and undo secondary to reviewing exact destinations. Full paths wrap;
 the dialog scrolls within the viewport. See the maintained canonical map in
 `docs/UX-CONTRACT.md`. These documents intentionally live under `docs/`, following
 the user's repository move; a root duplicate must not be recreated for tooling.
+
+## Duplicate Finder / 2026-09-20
+
+The independent finder enters from terminal **d** or browser **Duplicate Finder**.
+Its one settings screen leads to the finding list. Source selection never starts
+sorting or protection. Terminal main-menu numbering remains 1–9, with d and w
+for the two additional actions, all visible at 72×24. Terminal reports reuse the
+existing foreground palette, explicit focus marker, paged row window and help.
+
+The browser keeps the current green workbench tokens and native form controls.
+`static/duplicates.js` owns scan submission, filters, detail/member paging,
+stale-response rejection and explicit report downloads. Shared authenticated
+transport, image lifecycle and job cancellation remain in `app.js`. On this view,
+the unrelated sorting CTA and protection workflow strip are hidden; / focuses
+the duplicate path search. No new font, dependency, modal or theme is introduced.
+
+Counts distinguish exact groups from pair relationships. Paths wrap as literal
+text; matching evidence and provenance remain available without JSON-only review.
+The paired media layout stacks below 600px and list/detail columns stack below
+1050px. Preview dimensions reserve space and replaced/failed images release their
+object URLs. Scan settings retain values after failure. Inline validation focuses
+the first invalid number; findings remain useful when a scan has coverage gaps.
+Native selects belong to the platform. The application owns form validation
+(`novalidate`); minimum-score filtering and errors remain in the finder view.
+
+The English local desktop audience and existing type scale remain the target.
+Actual Chromium screenshots at 1100×900 and 390×844, keyboard/state fixtures and
+the live six-image server run are in `evidence/duplicates/`. These do not establish
+screen-reader acceptance, Japanese IME behavior or independent human usability.

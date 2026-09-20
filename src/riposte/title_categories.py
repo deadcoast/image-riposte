@@ -177,6 +177,8 @@ def discover_categories(root: Path, *, min_count: int = 2, max_words: int = 3,
     drafts = category_drafts(categories)
     root = check_root(root)
     counts: Counter[str] = Counter()
+    from .category_corpus import build_corpus, rule_terms, MAX_FAMILIES
+    corpus_titles: list[str] = []
     frequencies: Counter[str] = Counter()
     examples: dict[str, list[str]] = {}
     reviewed: list[dict[str, Any]] = [{"label": draft.label, "terms": list(draft.terms), "count": 0, "examples": []} for draft in drafts]
@@ -184,6 +186,8 @@ def discover_categories(root: Path, *, min_count: int = 2, max_words: int = 3,
     ambiguous_examples: list[dict[str, Any]] = []
     unmatched_examples: list[str] = []
     for path in _media_titles(root, counts, progress):
+        if len(corpus_titles) <= MAX_FAMILIES:
+            corpus_titles.append(path.name)
         relative = path.relative_to(root).as_posix()
         tokens = title_tokens(path.stem)
         terms = title_terms(tokens, max_words, frozenset(filler_tokens)) - ignored
@@ -197,9 +201,7 @@ def discover_categories(root: Path, *, min_count: int = 2, max_words: int = 3,
                 samples.append(relative)
         # Explicit matchers are independent of discovery thresholds and filler choices.
         matches: list[int] = []
-        all_terms = {" ".join(tokens[start:start + length])
-                     for start in range(len(tokens)) for length in range(1, 4)
-                     if start + length <= len(tokens)} if drafts else set()
+        all_terms = rule_terms(path.stem) if drafts else set()
         for index, draft in enumerate(drafts):
             matched = sorted(all_terms.intersection(draft.terms))
             if not matched:
@@ -225,9 +227,14 @@ def discover_categories(root: Path, *, min_count: int = 2, max_words: int = 3,
                     key=lambda term: (-frequencies[term], term))
     total = counts["analyzed_files"]
     incomplete = bool(counts["unreadable_directories"] or counts["unreadable_files"])
+    corpus = build_corpus(corpus_titles, excluded=ignored | filler_tokens, progress=progress)
+    corpus_report = corpus.report()
+    if counts["analyzed_files"] > len(corpus_titles):
+        corpus_report.update(status="LIMIT_REACHED", categories=[], revision=None)
     return {"mode": "TITLE_CATEGORY_DISCOVERY", "writes": False, "rules_saved": False,
             "checkpoint": "INCOMPLETE" if incomplete else "COMPLETE", "counts": dict(counts),
             "basis": "FILENAME_STEMS_BY_MEDIA_EXTENSION", "media_validated": False,
+            "corpus": corpus_report,
             "settings": {"min_count": min_count, "max_words": max_words, "limit": limit,
                          "sample_limit": sample_limit, "fillers": sorted(filler_tokens), "ignore": sorted(ignored)},
             "candidate_count": len(ranked), "omitted_candidates": max(0, len(ranked) - limit),

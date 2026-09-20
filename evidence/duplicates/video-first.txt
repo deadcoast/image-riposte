@@ -1,0 +1,41 @@
+FF.                                                                      [100%]
+================================== FAILURES ===================================
+__ test_actual_video_reencode_exact_copy_still_frame_and_unrelated_sequence ___
+
+root = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/pytest-of-ryanf/pytest-536/test_actual_video_reencode_exa0/workspace')
+tmp_path = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/pytest-of-ryanf/pytest-536/test_actual_video_reencode_exa0')
+
+    def test_actual_video_reencode_exact_copy_still_frame_and_unrelated_sequence(root,tmp_path):
+        clip(tmp_path/'frames',root/'original.mp4')
+        shutil.copyfile(root/'original.mp4',root/'copy.mp4')
+        ffmpeg('-i',root/'original.mp4','-c:v','libx264','-crf','22',root/'reencoded.mkv')
+        clip(tmp_path/'different-frames',root/'unrelated.mp4',seed=70)
+        shutil.copyfile(tmp_path/'frames'/'frame-2.png',root/'poster.png')
+        report=scan_duplicates(root)
+>       assert report['checkpoint']=='COMPLETE',report['issues']
+E       AssertionError: {'counts': {'DUPLICATE_VIDEO_FRAME_UNAVAILABLE': 3}, 'examples': [{'code': 'DUPLICATE_VIDEO_FRAME_UNAVAILABLE', 'path'...ath': 'reencoded.mkv'}, {'code': 'DUPLICATE_VIDEO_FRAME_UNAVAILABLE', 'path': 'unrelated.mp4'}], 'omitted_examples': 0}
+E       assert 'INCOMPLETE' == 'COMPLETE'
+E         
+E         - COMPLETE
+E         + INCOMPLETE
+E         ? ++
+
+tests\test_duplicate_video.py:35: AssertionError
+_____________ test_static_videos_are_related_not_maybe_duplicates _____________
+
+root = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/pytest-of-ryanf/pytest-536/test_static_videos_are_related0/workspace')
+tmp_path = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/pytest-of-ryanf/pytest-536/test_static_videos_are_related0')
+
+    def test_static_videos_are_related_not_maybe_duplicates(root,tmp_path):
+        clip(tmp_path/'static',root/'one.mp4',static=True)
+        ffmpeg('-i',root/'one.mp4','-c:v','libx264','-crf','25',root/'two.mkv')
+        report=scan_duplicates(root)
+>       assert pair(report,'one.mp4','two.mkv')['label']=='CLOSELY RELATED'
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       TypeError: list indices must be integers or slices, not str
+
+tests\test_duplicate_video.py:52: TypeError
+=========================== short test summary info ===========================
+FAILED tests/test_duplicate_video.py::test_actual_video_reencode_exact_copy_still_frame_and_unrelated_sequence
+FAILED tests/test_duplicate_video.py::test_static_videos_are_related_not_maybe_duplicates
+2 failed, 1 passed in 2.64s

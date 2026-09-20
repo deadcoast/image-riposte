@@ -1,0 +1,426 @@
+........................................................................ [ 30%]
+.........s............................................FFFFFFFFFFFF...... [ 61%]
+..............................FFFFFFFFFFFF...........F......F........... [ 91%]
+.......s...........                                                      [100%]
+================================== FAILURES ===================================
+____________________________ test_folders[2023-1] _____________________________
+
+month = 1, year = 2023
+
+    @pytest.mark.parametrize("month",range(1,13))
+    @pytest.mark.parametrize("year",[2023,2024,2025,2026,2027])
+    def test_folders(month,year):
+        folder=folder_for(f"{year}-{month:02d}-02",100,100)
+>       assert folder.parts==(str(year) if year in [2024,2025,2026] else "EVERYTHING_ELSE",MONTHS[month-1],"SML")
+E       AssertionError: assert ('2023', 'January', 'SML') == ('EVERYTHING_...nuary', 'SML')
+E         
+E         At index 0 diff: '2023' != 'EVERYTHING_ELSE'
+E         Use -v to get more diff
+
+tests\test_policy.py:14: AssertionError
+____________________________ test_folders[2023-2] _____________________________
+
+month = 2, year = 2023
+
+    @pytest.mark.parametrize("month",range(1,13))
+    @pytest.mark.parametrize("year",[2023,2024,2025,2026,2027])
+    def test_folders(month,year):
+        folder=folder_for(f"{year}-{month:02d}-02",100,100)
+>       assert folder.parts==(str(year) if year in [2024,2025,2026] else "EVERYTHING_ELSE",MONTHS[month-1],"SML")
+E       AssertionError: assert ('2023', 'February', 'SML') == ('EVERYTHING_...ruary', 'SML')
+E         
+E         At index 0 diff: '2023' != 'EVERYTHING_ELSE'
+E         Use -v to get more diff
+
+tests\test_policy.py:14: AssertionError
+____________________________ test_folders[2023-3] _____________________________
+
+month = 3, year = 2023
+
+    @pytest.mark.parametrize("month",range(1,13))
+    @pytest.mark.parametrize("year",[2023,2024,2025,2026,2027])
+    def test_folders(month,year):
+        folder=folder_for(f"{year}-{month:02d}-02",100,100)
+>       assert folder.parts==(str(year) if year in [2024,2025,2026] else "EVERYTHING_ELSE",MONTHS[month-1],"SML")
+E       AssertionError: assert ('2023', 'March', 'SML') == ('EVERYTHING_...March', 'SML')
+E         
+E         At index 0 diff: '2023' != 'EVERYTHING_ELSE'
+E         Use -v to get more diff
+
+tests\test_policy.py:14: AssertionError
+____________________________ test_folders[2023-4] _____________________________
+
+month = 4, year = 2023
+
+    @pytest.mark.parametrize("month",range(1,13))
+    @pytest.mark.parametrize("year",[2023,2024,2025,2026,2027])
+    def test_folders(month,year):
+        folder=folder_for(f"{year}-{month:02d}-02",100,100)
+>       assert folder.parts==(str(year) if year in [2024,2025,2026] else "EVERYTHING_ELSE",MONTHS[month-1],"SML")
+E       AssertionError: assert ('2023', 'April', 'SML') == ('EVERYTHING_...April', 'SML')
+E         
+E         At index 0 diff: '2023' != 'EVERYTHING_ELSE'
+E         Use -v to get more diff
+
+tests\test_policy.py:14: AssertionError
+____________________________ test_folders[2023-5] _____________________________
+
+month = 5, year = 2023
+
+    @pytest.mark.parametrize("month",range(1,13))
+    @pytest.mark.parametrize("year",[2023,2024,2025,2026,2027])
+    def test_folders(month,year):
+        folder=folder_for(f"{year}-{month:02d}-02",100,100)
+>       assert folder.parts==(str(year) if year in [2024,2025,2026] else "EVERYTHING_ELSE",MONTHS[month-1],"SML")
+E       AssertionError: assert ('2023', 'May', 'SML') == ('EVERYTHING_... 'May', 'SML')
+E         
+E         At index 0 diff: '2023' != 'EVERYTHING_ELSE'
+E         Use -v to get more diff
+
+tests\test_policy.py:14: AssertionError
+____________________________ test_folders[2023-6] _____________________________
+
+month = 6, year = 2023
+
+    @pytest.mark.parametrize("month",range(1,13))
+    @pytest.mark.parametrize("year",[2023,2024,2025,2026,2027])
+    def test_folders(month,year):
+        folder=folder_for(f"{year}-{month:02d}-02",100,100)
+>       assert folder.parts==(str(year) if year in [2024,2025,2026] else "EVERYTHING_ELSE",MONTHS[month-1],"SML")
+E       AssertionError: assert ('2023', 'June', 'SML') == ('EVERYTHING_...'June', 'SML')
+E         
+E         At index 0 diff: '2023' != 'EVERYTHING_ELSE'
+E         Use -v to get more diff
+
+tests\test_policy.py:14: AssertionError
+____________________________ test_folders[2023-7] _____________________________
+
+month = 7, year = 2023
+
+    @pytest.mark.parametrize("month",range(1,13))
+    @pytest.mark.parametrize("year",[2023,2024,2025,2026,2027])
+    def test_folders(month,year):
+        folder=folder_for(f"{year}-{month:02d}-02",100,100)
+>       assert folder.parts==(str(year) if year in [2024,2025,2026] else "EVERYTHING_ELSE",MONTHS[month-1],"SML")
+E       AssertionError: assert ('2023', 'July', 'SML') == ('EVERYTHING_...'July', 'SML')
+E         
+E         At index 0 diff: '2023' != 'EVERYTHING_ELSE'
+E         Use -v to get more diff
+
+tests\test_policy.py:14: AssertionError
+____________________________ test_folders[2023-8] _____________________________
+
+month = 8, year = 2023
+
+    @pytest.mark.parametrize("month",range(1,13))
+    @pytest.mark.parametrize("year",[2023,2024,2025,2026,2027])
+    def test_folders(month,year):
+        folder=folder_for(f"{year}-{month:02d}-02",100,100)
+>       assert folder.parts==(str(year) if year in [2024,2025,2026] else "EVERYTHING_ELSE",MONTHS[month-1],"SML")
+E       AssertionError: assert ('2023', 'August', 'SML') == ('EVERYTHING_...ugust', 'SML')
+E         
+E         At index 0 diff: '2023' != 'EVERYTHING_ELSE'
+E         Use -v to get more diff
+
+tests\test_policy.py:14: AssertionError
+____________________________ test_folders[2023-9] _____________________________
+
+month = 9, year = 2023
+
+    @pytest.mark.parametrize("month",range(1,13))
+    @pytest.mark.parametrize("year",[2023,2024,2025,2026,2027])
+    def test_folders(month,year):
+        folder=folder_for(f"{year}-{month:02d}-02",100,100)
+>       assert folder.parts==(str(year) if year in [2024,2025,2026] else "EVERYTHING_ELSE",MONTHS[month-1],"SML")
+E       AssertionError: assert ('2023', 'September', 'SML') == ('EVERYTHING_...ember', 'SML')
+E         
+E         At index 0 diff: '2023' != 'EVERYTHING_ELSE'
+E         Use -v to get more diff
+
+tests\test_policy.py:14: AssertionError
+____________________________ test_folders[2023-10] ____________________________
+
+month = 10, year = 2023
+
+    @pytest.mark.parametrize("month",range(1,13))
+    @pytest.mark.parametrize("year",[2023,2024,2025,2026,2027])
+    def test_folders(month,year):
+        folder=folder_for(f"{year}-{month:02d}-02",100,100)
+>       assert folder.parts==(str(year) if year in [2024,2025,2026] else "EVERYTHING_ELSE",MONTHS[month-1],"SML")
+E       AssertionError: assert ('2023', 'October', 'SML') == ('EVERYTHING_...tober', 'SML')
+E         
+E         At index 0 diff: '2023' != 'EVERYTHING_ELSE'
+E         Use -v to get more diff
+
+tests\test_policy.py:14: AssertionError
+____________________________ test_folders[2023-11] ____________________________
+
+month = 11, year = 2023
+
+    @pytest.mark.parametrize("month",range(1,13))
+    @pytest.mark.parametrize("year",[2023,2024,2025,2026,2027])
+    def test_folders(month,year):
+        folder=folder_for(f"{year}-{month:02d}-02",100,100)
+>       assert folder.parts==(str(year) if year in [2024,2025,2026] else "EVERYTHING_ELSE",MONTHS[month-1],"SML")
+E       AssertionError: assert ('2023', 'November', 'SML') == ('EVERYTHING_...ember', 'SML')
+E         
+E         At index 0 diff: '2023' != 'EVERYTHING_ELSE'
+E         Use -v to get more diff
+
+tests\test_policy.py:14: AssertionError
+____________________________ test_folders[2023-12] ____________________________
+
+month = 12, year = 2023
+
+    @pytest.mark.parametrize("month",range(1,13))
+    @pytest.mark.parametrize("year",[2023,2024,2025,2026,2027])
+    def test_folders(month,year):
+        folder=folder_for(f"{year}-{month:02d}-02",100,100)
+>       assert folder.parts==(str(year) if year in [2024,2025,2026] else "EVERYTHING_ELSE",MONTHS[month-1],"SML")
+E       AssertionError: assert ('2023', 'December', 'SML') == ('EVERYTHING_...ember', 'SML')
+E         
+E         At index 0 diff: '2023' != 'EVERYTHING_ELSE'
+E         Use -v to get more diff
+
+tests\test_policy.py:14: AssertionError
+____________________________ test_folders[2027-1] _____________________________
+
+month = 1, year = 2027
+
+    @pytest.mark.parametrize("month",range(1,13))
+    @pytest.mark.parametrize("year",[2023,2024,2025,2026,2027])
+    def test_folders(month,year):
+        folder=folder_for(f"{year}-{month:02d}-02",100,100)
+>       assert folder.parts==(str(year) if year in [2024,2025,2026] else "EVERYTHING_ELSE",MONTHS[month-1],"SML")
+E       AssertionError: assert ('2027', 'January', 'SML') == ('EVERYTHING_...nuary', 'SML')
+E         
+E         At index 0 diff: '2027' != 'EVERYTHING_ELSE'
+E         Use -v to get more diff
+
+tests\test_policy.py:14: AssertionError
+____________________________ test_folders[2027-2] _____________________________
+
+month = 2, year = 2027
+
+    @pytest.mark.parametrize("month",range(1,13))
+    @pytest.mark.parametrize("year",[2023,2024,2025,2026,2027])
+    def test_folders(month,year):
+        folder=folder_for(f"{year}-{month:02d}-02",100,100)
+>       assert folder.parts==(str(year) if year in [2024,2025,2026] else "EVERYTHING_ELSE",MONTHS[month-1],"SML")
+E       AssertionError: assert ('2027', 'February', 'SML') == ('EVERYTHING_...ruary', 'SML')
+E         
+E         At index 0 diff: '2027' != 'EVERYTHING_ELSE'
+E         Use -v to get more diff
+
+tests\test_policy.py:14: AssertionError
+____________________________ test_folders[2027-3] _____________________________
+
+month = 3, year = 2027
+
+    @pytest.mark.parametrize("month",range(1,13))
+    @pytest.mark.parametrize("year",[2023,2024,2025,2026,2027])
+    def test_folders(month,year):
+        folder=folder_for(f"{year}-{month:02d}-02",100,100)
+>       assert folder.parts==(str(year) if year in [2024,2025,2026] else "EVERYTHING_ELSE",MONTHS[month-1],"SML")
+E       AssertionError: assert ('2027', 'March', 'SML') == ('EVERYTHING_...March', 'SML')
+E         
+E         At index 0 diff: '2027' != 'EVERYTHING_ELSE'
+E         Use -v to get more diff
+
+tests\test_policy.py:14: AssertionError
+____________________________ test_folders[2027-4] _____________________________
+
+month = 4, year = 2027
+
+    @pytest.mark.parametrize("month",range(1,13))
+    @pytest.mark.parametrize("year",[2023,2024,2025,2026,2027])
+    def test_folders(month,year):
+        folder=folder_for(f"{year}-{month:02d}-02",100,100)
+>       assert folder.parts==(str(year) if year in [2024,2025,2026] else "EVERYTHING_ELSE",MONTHS[month-1],"SML")
+E       AssertionError: assert ('2027', 'April', 'SML') == ('EVERYTHING_...April', 'SML')
+E         
+E         At index 0 diff: '2027' != 'EVERYTHING_ELSE'
+E         Use -v to get more diff
+
+tests\test_policy.py:14: AssertionError
+____________________________ test_folders[2027-5] _____________________________
+
+month = 5, year = 2027
+
+    @pytest.mark.parametrize("month",range(1,13))
+    @pytest.mark.parametrize("year",[2023,2024,2025,2026,2027])
+    def test_folders(month,year):
+        folder=folder_for(f"{year}-{month:02d}-02",100,100)
+>       assert folder.parts==(str(year) if year in [2024,2025,2026] else "EVERYTHING_ELSE",MONTHS[month-1],"SML")
+E       AssertionError: assert ('2027', 'May', 'SML') == ('EVERYTHING_... 'May', 'SML')
+E         
+E         At index 0 diff: '2027' != 'EVERYTHING_ELSE'
+E         Use -v to get more diff
+
+tests\test_policy.py:14: AssertionError
+____________________________ test_folders[2027-6] _____________________________
+
+month = 6, year = 2027
+
+    @pytest.mark.parametrize("month",range(1,13))
+    @pytest.mark.parametrize("year",[2023,2024,2025,2026,2027])
+    def test_folders(month,year):
+        folder=folder_for(f"{year}-{month:02d}-02",100,100)
+>       assert folder.parts==(str(year) if year in [2024,2025,2026] else "EVERYTHING_ELSE",MONTHS[month-1],"SML")
+E       AssertionError: assert ('2027', 'June', 'SML') == ('EVERYTHING_...'June', 'SML')
+E         
+E         At index 0 diff: '2027' != 'EVERYTHING_ELSE'
+E         Use -v to get more diff
+
+tests\test_policy.py:14: AssertionError
+____________________________ test_folders[2027-7] _____________________________
+
+month = 7, year = 2027
+
+    @pytest.mark.parametrize("month",range(1,13))
+    @pytest.mark.parametrize("year",[2023,2024,2025,2026,2027])
+    def test_folders(month,year):
+        folder=folder_for(f"{year}-{month:02d}-02",100,100)
+>       assert folder.parts==(str(year) if year in [2024,2025,2026] else "EVERYTHING_ELSE",MONTHS[month-1],"SML")
+E       AssertionError: assert ('2027', 'July', 'SML') == ('EVERYTHING_...'July', 'SML')
+E         
+E         At index 0 diff: '2027' != 'EVERYTHING_ELSE'
+E         Use -v to get more diff
+
+tests\test_policy.py:14: AssertionError
+____________________________ test_folders[2027-8] _____________________________
+
+month = 8, year = 2027
+
+    @pytest.mark.parametrize("month",range(1,13))
+    @pytest.mark.parametrize("year",[2023,2024,2025,2026,2027])
+    def test_folders(month,year):
+        folder=folder_for(f"{year}-{month:02d}-02",100,100)
+>       assert folder.parts==(str(year) if year in [2024,2025,2026] else "EVERYTHING_ELSE",MONTHS[month-1],"SML")
+E       AssertionError: assert ('2027', 'August', 'SML') == ('EVERYTHING_...ugust', 'SML')
+E         
+E         At index 0 diff: '2027' != 'EVERYTHING_ELSE'
+E         Use -v to get more diff
+
+tests\test_policy.py:14: AssertionError
+____________________________ test_folders[2027-9] _____________________________
+
+month = 9, year = 2027
+
+    @pytest.mark.parametrize("month",range(1,13))
+    @pytest.mark.parametrize("year",[2023,2024,2025,2026,2027])
+    def test_folders(month,year):
+        folder=folder_for(f"{year}-{month:02d}-02",100,100)
+>       assert folder.parts==(str(year) if year in [2024,2025,2026] else "EVERYTHING_ELSE",MONTHS[month-1],"SML")
+E       AssertionError: assert ('2027', 'September', 'SML') == ('EVERYTHING_...ember', 'SML')
+E         
+E         At index 0 diff: '2027' != 'EVERYTHING_ELSE'
+E         Use -v to get more diff
+
+tests\test_policy.py:14: AssertionError
+____________________________ test_folders[2027-10] ____________________________
+
+month = 10, year = 2027
+
+    @pytest.mark.parametrize("month",range(1,13))
+    @pytest.mark.parametrize("year",[2023,2024,2025,2026,2027])
+    def test_folders(month,year):
+        folder=folder_for(f"{year}-{month:02d}-02",100,100)
+>       assert folder.parts==(str(year) if year in [2024,2025,2026] else "EVERYTHING_ELSE",MONTHS[month-1],"SML")
+E       AssertionError: assert ('2027', 'October', 'SML') == ('EVERYTHING_...tober', 'SML')
+E         
+E         At index 0 diff: '2027' != 'EVERYTHING_ELSE'
+E         Use -v to get more diff
+
+tests\test_policy.py:14: AssertionError
+____________________________ test_folders[2027-11] ____________________________
+
+month = 11, year = 2027
+
+    @pytest.mark.parametrize("month",range(1,13))
+    @pytest.mark.parametrize("year",[2023,2024,2025,2026,2027])
+    def test_folders(month,year):
+        folder=folder_for(f"{year}-{month:02d}-02",100,100)
+>       assert folder.parts==(str(year) if year in [2024,2025,2026] else "EVERYTHING_ELSE",MONTHS[month-1],"SML")
+E       AssertionError: assert ('2027', 'November', 'SML') == ('EVERYTHING_...ember', 'SML')
+E         
+E         At index 0 diff: '2027' != 'EVERYTHING_ELSE'
+E         Use -v to get more diff
+
+tests\test_policy.py:14: AssertionError
+____________________________ test_folders[2027-12] ____________________________
+
+month = 12, year = 2027
+
+    @pytest.mark.parametrize("month",range(1,13))
+    @pytest.mark.parametrize("year",[2023,2024,2025,2026,2027])
+    def test_folders(month,year):
+        folder=folder_for(f"{year}-{month:02d}-02",100,100)
+>       assert folder.parts==(str(year) if year in [2024,2025,2026] else "EVERYTHING_ELSE",MONTHS[month-1],"SML")
+E       AssertionError: assert ('2027', 'December', 'SML') == ('EVERYTHING_...ember', 'SML')
+E         
+E         At index 0 diff: '2027' != 'EVERYTHING_ELSE'
+E         Use -v to get more diff
+
+tests\test_policy.py:14: AssertionError
+________________ test_bad_canonical[2022/March/SML/SML01.png] _________________
+
+value = '2022/March/SML/SML01.png'
+
+    @pytest.mark.parametrize("value",["../x","2025/March/SML/MED01.png","2025/March/SML/SML01.jpg","2022/March/SML/SML01.png","2025/March/SML/SML1.png"])
+    def test_bad_canonical(value):
+>       with pytest.raises(RiposteError):canonical_path(value)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE RiposteError
+
+tests\test_policy.py:20: Failed
+_______________________ test_full_migration_idempotence _______________________
+
+root = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/pytest-of-ryanf/pytest-523/test_full_migration_idempotenc0/workspace')
+make_image = <function make_image.<locals>.create at 0x00000203A7049E80>
+
+    def test_full_migration_idempotence(root,make_image):
+        make_image(root/'old'/'private_filename.png');make_image(root/'random.jpg',day='2024-01-01');make_image(root/'other'/'extless',fmt='PNG',day='2023-12-01')
+        r=organize(root,POLICY, plan_id=_sort_preview(root, POLICY)["plan_id"]);assert r['checkpoint']=='COMPLETE';assert r['counts']['migrated']==3
+        expected={'2025/March/img/SML/SML01.png','2024/January/img/SML/SML01.png','EVERYTHING_ELSE/December/img/SML/SML01.png'}
+>       assert {x['relative'] for x in catalog(root)}==expected;assert not (root/'old').exists();assert not (root/'2024'/'July').exists();assert not (root/'2025'/'March'/'MED').exists()
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AssertionError: assert {'2023/Decemb...ML/SML01.png'} == {'2024/Januar...ML/SML01.png'}
+E         
+E         Extra items in the left set:
+E         '2023/December/img/SML/SML01.png'
+E         Extra items in the right set:
+E         'EVERYTHING_ELSE/December/img/SML/SML01.png'
+E         Use -v to get more diff
+
+tests\test_organizer.py:19: AssertionError
+=========================== short test summary info ===========================
+SKIPPED [1] tests\test_category_rules.py:185: symlinks unavailable
+SKIPPED [1] tests\test_organizer.py:80: Symlinks unavailable
+FAILED tests/test_policy.py::test_folders[2023-1] - AssertionError: assert ('...
+FAILED tests/test_policy.py::test_folders[2023-2] - AssertionError: assert ('...
+FAILED tests/test_policy.py::test_folders[2023-3] - AssertionError: assert ('...
+FAILED tests/test_policy.py::test_folders[2023-4] - AssertionError: assert ('...
+FAILED tests/test_policy.py::test_folders[2023-5] - AssertionError: assert ('...
+FAILED tests/test_policy.py::test_folders[2023-6] - AssertionError: assert ('...
+FAILED tests/test_policy.py::test_folders[2023-7] - AssertionError: assert ('...
+FAILED tests/test_policy.py::test_folders[2023-8] - AssertionError: assert ('...
+FAILED tests/test_policy.py::test_folders[2023-9] - AssertionError: assert ('...
+FAILED tests/test_policy.py::test_folders[2023-10] - AssertionError: assert (...
+FAILED tests/test_policy.py::test_folders[2023-11] - AssertionError: assert (...
+FAILED tests/test_policy.py::test_folders[2023-12] - AssertionError: assert (...
+FAILED tests/test_policy.py::test_folders[2027-1] - AssertionError: assert ('...
+FAILED tests/test_policy.py::test_folders[2027-2] - AssertionError: assert ('...
+FAILED tests/test_policy.py::test_folders[2027-3] - AssertionError: assert ('...
+FAILED tests/test_policy.py::test_folders[2027-4] - AssertionError: assert ('...
+FAILED tests/test_policy.py::test_folders[2027-5] - AssertionError: assert ('...
+FAILED tests/test_policy.py::test_folders[2027-6] - AssertionError: assert ('...
+FAILED tests/test_policy.py::test_folders[2027-7] - AssertionError: assert ('...
+FAILED tests/test_policy.py::test_folders[2027-8] - AssertionError: assert ('...
+FAILED tests/test_policy.py::test_folders[2027-9] - AssertionError: assert ('...
+FAILED tests/test_policy.py::test_folders[2027-10] - AssertionError: assert (...
+FAILED tests/test_policy.py::test_folders[2027-11] - AssertionError: assert (...
+FAILED tests/test_policy.py::test_folders[2027-12] - AssertionError: assert (...
+FAILED tests/test_policy.py::test_bad_canonical[2022/March/SML/SML01.png] - F...
+FAILED tests/test_organizer.py::test_full_migration_idempotence - AssertionEr...
+26 failed, 207 passed, 2 skipped in 27.23s

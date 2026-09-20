@@ -1,0 +1,20 @@
+AssertionError [ERR_ASSERTION]: native browser result: FAIL Error: comparison signals available
+    at assert (http://127.0.0.1:8085/probe.js:3:44)
+    at http://127.0.0.1:8085/probe.js:49:3
++ actual - expected
+
++ 'FAIL Error: comparison signals available\n' +
++   '    at assert (http://127.0.0.1:8085/probe.js:3:44)\n' +
++   '    at http://127.0.0.1:8085/probe.js:49:3'
+- 'PASS'
+
+    at main (C:\Users\ryanf\github\_new\image-riposte\tests\duplicate_browser.cjs:58:12) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: 'FAIL Error: comparison signals available\n' +
+    '    at assert (http://127.0.0.1:8085/probe.js:3:44)\n' +
+    '    at http://127.0.0.1:8085/probe.js:49:3',
+  expected: 'PASS',
+  operator: 'strictEqual',
+  diff: 'simple'
+}

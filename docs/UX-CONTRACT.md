@@ -4,6 +4,28 @@ Owner: `terminal/controller.py` for navigation and operation consent;
 `terminal/paths.py` for read-only browsing; `terminal/interaction.py` for shared
 controls/help; `terminal/service.py` for the operation boundary shared with CLI.
 
+Duplicate Finder business source: the user's 2026-09-20 request preserved in
+`todo-audit.PACER.md`; its implemented comparison/coverage contract is
+`docs/DUPLICATES.md`. It is an independent read-only operation. Scan consent is
+the Scan/Run action, with separate explicit report export. There is no automatic
+keeper choice, removal, sorting or upload. Float exclusions remain sorting-only.
+
+Duplicate flow: folder/settings → cancellable scan → filterable findings →
+evidence/members/paired browser thumbnails → optional JSON/CSV export. Failed or
+cancelled rescans retain a clearly labelled previous report; incomplete coverage
+does not hide successful findings. Source changes require rescanning. Browser
+reports are session-memory records (latest two); expiration offers rescan, not
+an empty-success claim. DuplicateReview owns filters, pagination and export;
+the terminal and browser share those meanings. Exact groups and similarity pairs
+are never conflated through transitive grouping.
+
+The duplicate screen uses native labelled selects, checkboxes and number inputs.
+`duplicates.js` owns inline form validation, result/detail request revisions,
+per-container member request ownership and explicit downloads. No floating layer
+or new focus trap is introduced. Global / stays in duplicate search. Existing
+scrollbars, buttons, feedback and token owners remain canonical; the main view
+and selected relationship are labelled regions with keyboard-operable actions.
+
 - `START.ps1`, `START.cmd`, `START.sh`, and a no-command `riposte` launch open the
   main menu. A folder argument is optional. START never installs packages or
   requests a path before the menu. INSTALL handles explicit setup and returns.
@@ -14,7 +36,7 @@ controls/help; `terminal/service.py` for the operation boundary shared with CLI.
   scan code immediately; a second keyboard-availability poll is not appropriate.
 - Riposte Sorter is the default first action, exposing exactly Sort, Dry Run and
   Enter Path. The session retains the selected root. Its preset uses download
-  dates, saved category rules and Year/Month/img-or-vid/[Category if found]/Size.
+  dates, saved rules and supported filename patterns with Year/Month/img-or-vid/[Category if found]/Size.
   Missing or tied matches use the ordinary route. It never infers rules or sidecar
   deletion. Full Sort Workshop owns the existing configurable flow.
 - Sort explains its recursive folder scope before selection. It previews
@@ -78,17 +100,25 @@ assignments live in its separate private `sort_titles` table and private undo
 journals; they are never PNG metadata or publishing pack contents.
 
 - Direct commands and Full Sort Workshop default to the existing layout;
-  Riposte Sorter explicitly enables saved categories. Enabling categories requires a fresh
+  Riposte Sorter enables saved rules and local corpus proposals. Enabling categories requires a fresh
   exact plan. Every file shows its source, original title (or unknown), matched
   terms, category and destination. A changed setting, rule revision, catalog,
   source or occupied destination invalidates apply consent.
 - Category matching enriches the route and is never a prerequisite for sorting.
-  Missing/empty rules, unmatched names, ties and unavailable original titles use
+  Missing rules never block sorting. Weak patterns, ties and unavailable original titles use
   the ordinary date/media/size route. Keep existing category folders when there
   is no new match; stored manual choices survive rule removal. Explicit `=auto`
   clears a manual choice and uses current matches or the ordinary route. Preserve
   truthful unknown titles. This user correction supersedes earlier mandatory-
   assignment interpretations; see `evidence/optional-categories/`.
+- Corpus proposals appear inside the existing preview, with matched evidence,
+  IDF coverage and margin explicitly identified as heuristic. Manual choices and
+  saved rules win; automatic rediscovery never renames existing categories.
+  Uncertainty and analysis limits use ordinary sorting. Discovery can fill an
+  optional rule draft from a group; review and explicit SAVE remain separate.
+  Actual calendar years appear in the browser tree and year filter, including
+  readable legacy EVERYTHING_ELSE entries. No added setup screen or UI token.
+  See `evidence/sorting-research/` for bounded runtime and native evidence.
 - Full Sort Workshop exposes `s` for saved rules, `c` for discovery, `u` for
   undo, a category toggle and manual assignments. Rule replacement requires
   `SAVE`; file replacement requires `REPLACE` with the plan ID from the result.

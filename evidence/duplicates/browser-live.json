@@ -1,0 +1,7 @@
+{
+  "result": "PASS",
+  "scope": "Actual authenticated server, shared engine, native browser, six synthetic artwork files",
+  "unchanged": true,
+  "fixture": "C:\\Users\\ryanf\\AppData\\Local\\Temp\\riposte-duplicate-live-z60m7zsr",
+  "no_fetch_mocks": true
+}

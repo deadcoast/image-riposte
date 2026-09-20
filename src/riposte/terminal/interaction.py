@@ -28,6 +28,13 @@ def fields_for(page):
 
 def hints(state):
     p=state.page
+    if p.name == "duplicates":
+        return [Hint("Enter", "Evidence", "Inspect the matching basis, signals and member paths."),
+                Hint("1-4", "Filter", "All / DUPLICATE / MAYBE DUPLICATE / CLOSELY RELATED."),
+                Hint("/", "Find", "Search every member path, including collapsed exact copies."),
+                Hint("x", "Clear", "Clear the path search."), Hint("e", "Export", "Write a new JSON or CSV report at an explicit path."),
+                Hint("t", "Coverage", "Read scan counts, skipped files and limits."), Hint("r", "Rescan", "Repeat this read-only scan."),
+                Hint("g", "Enter Path", "Choose another folder and review scan settings."), Hint("Esc", "Back", "Return to settings.")]
     if state.editor:
         primary = Hint("Enter", "Preview", "Use this folder and run the requested read-only sort preview.") if state.editor.target == "sort-path" and p.values.get("pending_sort") else Hint("Enter","Save","Validate and save this field; it does not run an operation.")
         return [primary,Hint("Esc","Discard","Leave the field unchanged."),Hint("Ctrl+U","Clear","Clear this field's input.")]
@@ -41,7 +48,7 @@ def hints(state):
                 Hint("Esc", "Back", "Return to the main menu.")]
     rows={
         "picker":[Hint("Enter","Open / choose","Open a folder, toggle a file, or confirm the highlighted selection row."),Hint("Up/Down","Move","Move the highlight."),Hint("Space","Select","Select or unselect a file or folder for protection."),Hint("s","This folder","Select or unselect the current folder for protection."),Hint("Backspace","Parent","Browse the parent folder."),Hint("l","Locations","Browse home, Pictures, and drives."),Hint("g","Go to path","Optionally type or paste a folder location."),Hint("Esc","Cancel","Return without starting an operation.")],
-        "home":[Hint("Enter","Open","Choose Riposte Sorter, RIPOSTE, or Sort + RIPOSTE. Arrows or visible numbers open an action."),Hint("Arrows","Move","Move the highlight; Enter opens the selected action."),Hint("1-9/w","Choose","Open the numbered action, or w for expert protection helpers."),Hint("/","Find","Filter the action list."),Hint("q","Quit","Leave RIPOSTE.")],
+        "home":[Hint("Enter","Open","Choose an independent action. Arrows or visible shortcuts open an action."),Hint("Arrows","Move","Move the highlight; Enter opens the selected action."),Hint("1-9/d/w","Choose","Open a numbered action, d for Duplicate Finder, or w for expert protection helpers."),Hint("/","Find","Filter the action list."),Hint("q","Quit","Leave RIPOSTE.")],
         "library":[Hint("Enter","Select","Add or remove the focused image from your publishing selection."),Hint("i","Inspect","Open the focused image without changing your selection."),Hint("p","Protect","Configure protection for selected images."),Hint("/","Find","Filter dates, canonical names or image IDs."),Hint("a","Select visible","Add every visible image, up to the selection limit."),Hint("n","Clear selection","Remove selected images from the current selection; files are unchanged.")],
         "asset":[Hint("Enter","Select","Toggle this image in your publishing selection."),Hint("p","Protect","Carry this image and the current selection into protection."),Hint("v","Open PNG","Open audited full-resolution pixels in your local viewer.")],
         "batches":[Hint("Enter","Open batch","See its output queue, approvals and blocked items."),Hint("/","Find","Filter the batch list.")],
@@ -62,6 +69,7 @@ def hints(state):
             primary=Hint("Enter","Toggle" if f.kind=="bool" else "Change" if f.kind=="choice" else "Edit",f.help)
         else:primary=Hint("Enter","Preview" if p.action in {"publish","riposte","sort-riposte","organize"} else "Run",BY_KEY[p.action].summary)
         controls=[primary]
+        if p.action == "duplicates": controls.append(Hint("g", "Enter Path", "Change the scan folder while keeping these settings."))
         if p.cursor<len(fields) and fields[p.cursor].kind=="path":controls.append(Hint("b","Browse","Choose this location in the file/folder browser."))
         if p.action in {"publish","riposte","sort-riposte","organize"}:controls.append(Hint("p","Preview","Read-only plan; no images are written."))
         if p.action=="organize":

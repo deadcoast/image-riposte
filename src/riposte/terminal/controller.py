@@ -52,12 +52,19 @@ class Controller:
         self.browse("workspace", "preferences")
 
     def begin_action(self, key: str) -> None:
+        if key == "duplicates" and self.state.root is None:
+            self.action(key)
+            return self.duplicate_path()
         if key == "sorter": return self.sorter()
         if key == "riposte": return self.browse("inputs", key)
         if key == "organize" and self.state.root: return self.action(key)
         if key in {"organize", "sort-riposte"}: return self.browse("sort", key)
         if key == "undo-sort": return self.browse("undo", key)
         return self.action(key)
+
+    def duplicate_path(self) -> None:
+        self.state.editor = Editor(Field("location", "Scan folder", "path", "",
+            "Paste an existing folder. A scan reads files; it does not sort or remove them."), "", target="duplicate-path")
 
     def sorter(self) -> None:
         self.show(Page("sorter", "Riposte Sorter", rows=[
@@ -221,7 +228,7 @@ class Controller:
         if key == "batches": return self.batches()
         if key == "preferences": return self.preferences()
         if key == "workshop": return self.show(Page("workshop", "OPTIONAL WORKSHOP"))
-        if key != "doctor" and not self.require_workspace(key): return
+        if key not in {"doctor", "duplicates"} and not self.require_workspace(key): return
         if key == "publish" and not self.state.selected:
             self.library(); self.state.notice = "Press Enter to select images, then p to protect. Press i to inspect."
             return
@@ -245,6 +252,7 @@ class Controller:
 
     def run_form(self, preview: bool = False) -> None:
         p = self.state.page
+        if p.action == "duplicates" and self.state.root is None: return self.duplicate_path()
         request = self.request_from_form()
         self.save_model_session(p.values)
         if request.name in {"publish", "riposte"}:
@@ -291,7 +299,7 @@ class Controller:
                     break
         self.state.operation = None
         try:
-            if request.name not in {"organize", "undo-sort"}: self.refresh()
+            if request.name not in {"organize", "undo-sort", "duplicates"}: self.refresh()
         except RiposteError as exc: self.state.notice = safe_code(exc.code)
         if self.state.exit_after_job:
             self.state.running = False
@@ -300,6 +308,10 @@ class Controller:
             self.show(Page("result", "Riposte Sorter / Stopped" if sorter_mode else "OPERATION STOPPED",
                            code=snapshot.code, request=request,
                            values={"sorter_mode": sorter_mode} if sorter_mode else {}), remember=False)
+        elif request.name == "duplicates":
+            from ..duplicate_review import DuplicateReview
+            self.show(Page("duplicates", "DUPLICATE FINDER", result=result, request=request,
+                           values={"label": "ALL"}, display_cache={"review": DuplicateReview(result)}), remember=False)
         elif request.name in {"publish", "riposte", "sort-riposte", "resume", "review"} and isinstance(result, dict) and result.get("id"):
             self.batch(result["id"], remember=False, result=result)
         elif request.name == "open-image":
@@ -372,6 +384,16 @@ class Controller:
         e = cast(Editor, self.state.editor)
         try:
             value = parse_value(e.field, e.value)
+            if e.target == "duplicate-export":
+                receipt = self.state.page.display_cache["review"].export(Path(value))
+                self.state.editor = None
+                self.state.notice = "Report saved: " + receipt["path"]
+                return
+            if e.target == "duplicate-path":
+                self.state.root = root_of(Request("duplicates", Path(value)))
+                self.state.selected.clear(); self.state.catalog.clear(); self.state.batches.clear()
+                self.state.editor = None
+                return
             if e.target == "sort-path":
                 root = validate_workspace(Path(value))
                 self.state.root = root
@@ -518,8 +540,9 @@ class Controller:
         if key.name == "pagedown": return self.move(page_size)
         if key.name == "home": p.cursor = 0; p.scroll = 0; return
         if key.name == "end": return self.move(1000000)
-        if ch == "/" and p.name in {"home", "library", "batches", "batch", "workshop"}: p.query_edit = True; return
+        if ch == "/" and p.name in {"home", "library", "batches", "batch", "workshop", "duplicates"}: p.query_edit = True; return
         if p.name in {"home", "workshop"}:
+            if p.name == "home" and ch == "d": return self.begin_action("duplicates")
             if p.name == "home" and ch == "w": return self.begin_action("workshop")
             if ch.isdigit() and ch != "0":
                 n = int(ch)-1
@@ -531,6 +554,23 @@ class Controller:
                 row = self.selected_row()
                 if row: return self.begin_action(row["key"])
         elif p.name == "picker": return self.picker_key(key)
+        elif p.name == "duplicates":
+            from ..duplicates import LABELS
+            if ch in {"1", "2", "3", "4"}: p.values["label"] = ("ALL", *LABELS)[int(ch)-1]; p.cursor = 0; return
+            if ch == "x": p.query = ""; p.cursor = 0; return
+            if ch == "r": return self.run(p.request)
+            if ch == "g":
+                self.action("duplicates", p.request.values)
+                return self.duplicate_path()
+            if ch == "e":
+                self.state.editor = Editor(Field("report", "Export report", "path", "",
+                    "Enter a NEW .json (complete evidence) or .csv (finding summary) path. Existing files are never overwritten."),
+                    "", target="duplicate-export")
+                return
+            if ch == "t": return self.show(Page("result", "SCAN COVERAGE", result=p.result, request=p.request))
+            row = self.selected_row()
+            if key.name == "enter" and row:
+                return self.show(Page("result", "MATCH EVIDENCE", result=p.display_cache["review"].detail(row["id"])))
         elif p.name == "sorter":
             if ch == "g": return self.sort_path()
             if ch == "b": return self.browse("sort", "sorter")
@@ -560,6 +600,7 @@ class Controller:
                 if p.image_id not in self.state.selected: self.toggle_selection(cast(CatalogRow, p.report))
                 return self.action("publish")
         elif p.name == "form":
+            if ch == "g" and p.action == "duplicates": return self.duplicate_path()
             if ch == "g" and p.action == "organize": return self.sort_path()
             if ch == "b":
                 fields = fields_for(p)

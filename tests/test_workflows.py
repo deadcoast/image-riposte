@@ -350,6 +350,15 @@ def test_cancelled_snapshot_intake_discards_only_uncommitted_state(root, make_im
     assert not p.publications(root) and not list((root / '.riposte/publishing').iterdir())
 
 
+def test_combined_corpus_categories_reach_real_protection(root, make_image, models):
+    for name in ('forestOak.png', 'forestPine.png', 'forestMoss.png', 'factoryWall.png', 'factoryPipe.png', 'factoryFloor.png'):
+        make_image(root / name, size=(96, 80))
+    result = execute(reviewed_combined(root, values(all_images=True, categories=True)))
+    assert result['sorting']['checkpoint'] == 'COMPLETE'
+    assert {row['relative'].split('/')[3] for row in catalog(root)} == {'forest', 'factory'}
+    assert result['counts']['READY_FOR_REVIEW'] == 6
+
+
 def test_cli_standalone_and_combined_use_real_publication_service(root, make_image, models, capsys):
     source = make_image(root / 'raw.png', size=(96, 80))
     args = ['--vae', 'MODEL', '--steps', '2', '--restarts', '1', '--edge', '64']

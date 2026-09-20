@@ -371,17 +371,17 @@
   },
   {
     "file": "typing/stubs/riposte/server.pyi",
-    "line": 106,
+    "line": 116,
     "declaration": "data: dict[str, Report]"
   },
   {
     "file": "typing/stubs/riposte/server.pyi",
-    "line": 111,
+    "line": 121,
     "declaration": "def start(self, fn: Callable[..., object], cancellable: bool=True, **kwargs: Any) -> JobStarted:"
   },
   {
     "file": "typing/stubs/riposte/server.pyi",
-    "line": 115,
+    "line": 125,
     "declaration": "def snapshot(self) -> list[Report]:"
   },
   {
@@ -541,17 +541,17 @@
   },
   {
     "file": "typing/stubs/riposte/terminal/controller.pyi",
-    "line": 59,
+    "line": 61,
     "declaration": "def action(self, key: str, overrides: Mapping[str, Any] | None=None) -> None:"
   },
   {
     "file": "typing/stubs/riposte/terminal/controller.pyi",
-    "line": 63,
+    "line": 65,
     "declaration": "def save_model_session(self, values: Mapping[str, Any]) -> None:"
   },
   {
     "file": "typing/stubs/riposte/terminal/controller.pyi",
-    "line": 73,
+    "line": 75,
     "declaration": "def selected_row(self) -> Report | None:"
   },
   {

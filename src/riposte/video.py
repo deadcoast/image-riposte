@@ -85,7 +85,8 @@ def video_catalog(root: Path) -> list[CatalogRow]:
         from .policy import path_category
         folder = sort_folder_for(row["day"], row["width"], row["height"], "vid", path_category(row["relative"]))
         stem = relative.stem
-        if (relative.parent != folder or relative.suffix not in VIDEO_SUFFIXES
+        legacy_folder = Path("EVERYTHING_ELSE", *folder.parts[1:]) if row["day"][:4] not in {"2024", "2025", "2026"} else folder
+        if (relative.parent not in {folder, legacy_folder} or relative.suffix not in VIDEO_SUFFIXES
                 or not stem.startswith(folder.name) or not stem[len(folder.name):].isascii()
                 or not stem[len(folder.name):].isdigit() or len(stem[len(folder.name):]) < 2):
             raise RiposteError("VIDEO_CATALOG_PATH_INVALID")

@@ -1,0 +1,562 @@
+]0;C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe
+   R I P O S T E    /  MAIN MENU                                            LOCAL   /   v0.5.0      
+
+  ------------------------------------------------------------------------------------------------  
+   Choose what you want to do. Each action works independently.
+                                                                             =---------- -
+    RRRR   III  PPPP    OOO   SSSS  TTTTT  EEEEE/----------+/ -----.-----        
+    R   R   I   P   P  O   O  S       T    E                   ----..:=------------- ----
+    RRRR    I   PPPP   O   O   SSS    T    EEEE           /------/-----.:.+.:-------:--------       
+    R  R    I   P      O   O      S   T    E      >      -------:- /---------.+:::/- ---
+    R   R  III  P       OOO   SSSS    T    EEEEE         ---------.-+.::== --------
+                                                          -------- --------
+
+   Choose an action, then browse images or folders.
+  -- MAIN MENU -----------------------------------------------------------------------------------  
+    > 1  Riposte Sorter                                        FOCUS / RIPOSTE SORTER
+      2  RIPOSTE
+      3  Sort + RIPOSTE                                        Ready-to-use sorting: Sort, Dry      
+      4  Image library                                         Run, Enter Path
+      5  Publishing batches
+      6  Local models
+      7  Terminal & workspace                                  No files change when you open an     
+      8  Full Sort Workshop                                    action.
+      9  Undo last sort
+      d  Duplicate Finder
+      w  Workshop
+
+
+
+   Ready-to-use sorting: Sort, Dry Run, Enter Path
+  ------------------------------------------------------------------------------------------------  
+   [Enter] Open   [Arrows] Move   [1-9/d/w] Choose   [/] Find   [q] Quit   [F1] Help
+
+                                                                                                    
+   R I P O S T E    /  DUPLICATE FINDER                                     LOCAL   /   v0.5.0      
+
+  ------------------------------------------------------------------------------------------------  
+   MAIN MENU / DUPLICATE FINDER
+
+   DUPLICATE FINDER
+   INSPECT
+
+  ------------------------------------------------------------------------------------------------  
+  +- EDIT / SCAN FOLDER -------------------------------------------------------------------------+  
+  |                                                                                              |  
+  |  Paste an existing folder. A scan reads files; it does not sort or remove them.              |  
+  |                                                                                              |  
+  |                                                                                              |  
+  |                                                                                              |  
+  |                                                                                              |  
+  |   ^                                                                                          |  
+  |                                                                                              |  
+  |                                                                                              |  
+  |  [Enter] save   [Esc] discard   [Ctrl+U] clear                                               |  
+  |                                                                                              |  
+  +----------------------------------------------------------------------------------------------+  
+                                                                    start processing. Preview       
+                                                                    uses the current values.        
+
+
+
+   SETTING 1/7   |   ACTION SETTINGS
+   Paste an existing folder. A scan reads files; it does not sort or remove them.
+  ------------------------------------------------------------------------------------------------  
+   [Enter] Save   [Esc] Discard   [Ctrl+U] Clear   [F1] Help
+
+                                                                                                    
+   R I P O S T E    /  DUPLICATE FINDER                                     LOCAL   /   v0.5.0      
+
+  ------------------------------------------------------------------------------------------------  
+   MAIN MENU / DUPLICATE FINDER
+
+   DUPLICATE FINDER
+   INSPECT
+   Folder: C:\Users\ryanf\AppData\Local\Temp\riposte-duplicates-console-d_9yojoc\Pictures
+  ------------------------------------------------------------------------------------------------  
+    > Visual matching         [x] ON                                FIELD / CONTEXT
+      Sample videos           [x] ON
+      Include float folders   [x] ONVISUAL MATCHING
+      File limit              100000
+      Distinct visual files   10000                                 Compare normalized pixels,      
+      Comparison limit        100000                                image transforms/crops and      
+    >> RUN ACTION                                                   structural evidence as well     
+                                                                    as exact bytes.
+
+
+
+
+                                                                    Changing a setting does not     
+                                                                    start processing. Preview       
+                                                                    uses the current values.        
+
+
+
+   SETTING 1/7   |   ACTION SETTINGS
+   Compare normalized pixels, image transforms/crops and structural evidence as well as exact...    
+  ------------------------------------------------------------------------------------------------  
+   [Enter] Toggle   [g] Enter Path   [r] Run   [Esc] Back   [F1] Help
+
+                                                                                                    
+   R I P O S T E    /  ACTIVE OPERATION                                     LOCAL   /   v0.5.0      
+
+  ------------------------------------------------------------------------------------------------  
+   MAIN MENU / ACTIVE OPERATION
+
+   RUNNING / DUPLICATES
+
+
+   Starting operation
+
+
+
+   ENGINE COUNT      not reported yet
+
+   ELAPSED           0.0s
+
+
+
+   >.............................................................................................   
+   ACTIVITY TRACE / engine counts are reported separately above
+
+
+
+
+
+
+
+
+
+  ------------------------------------------------------------------------------------------------  
+   [Esc] Request stop   [F1] Help
+
+                                                                                                    
+   R I P O S T E    /  DUPLICATE FINDER                                     LOCAL   /   v0.5.0      
+
+  ------------------------------------------------------------------------------------------------  
+   MAIN MENU / DUPLICATE FINDER
+
+   COMPLETE / READ ONLY / 1 findings
+   Filter: ALL
+   100 = verified equality. Other scores are visual evidence, not odds.
+  -- CONFIDENCE / FILE RELATIONSHIPS -------------------------------------------------------------  
+   > 100 / DUPLICATE / 2 files
+      copy.txt
+      original.txt
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  ------------------------------------------------------------------------------------------------  
+   [Enter] Evidence   [1-4] Filter   [/] Find   [x] Clear   [e] Export   [t] Coverage
+   [r] Rescan   [g] Enter Path   [Esc] Back   [F1] Help
+                                                                                                    
+   R I P O S T E    /  DUPLICATE FINDER                                     LOCAL   /   v0.5.0      
+
+  ------------------------------------------------------------------------------------------------  
+   MAIN MENU / DUPLICATE FINDER
+
+   COMPLETE / READ ONLY / 0 findings
+   Filter: MAYBE DUPLICATE
+   100 = verified equality. Other scores are visual evidence, not odds.
+  -- CONFIDENCE / FILE RELATIONSHIPS -------------------------------------------------------------  
+
+   No findings match this filter. Check scan coverage [t] for skipped files or limits.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  ------------------------------------------------------------------------------------------------  
+   [Enter] Evidence   [1-4] Filter   [/] Find   [x] Clear   [e] Export   [t] Coverage
+   [r] Rescan   [g] Enter Path   [Esc] Back   [F1] Help
+                                                                                                    
+   R I P O S T E    /  DUPLICATE FINDER                                     LOCAL   /   v0.5.0      
+
+  ------------------------------------------------------------------------------------------------  
+   MAIN MENU / DUPLICATE FINDER
+
+   COMPLETE / READ ONLY / 1 findings
+   Filter: DUPLICATE
+   100 = verified equality. Other scores are visual evidence, not odds.
+  -- CONFIDENCE / FILE RELATIONSHIPS -------------------------------------------------------------  
+   > 100 / DUPLICATE / 2 files
+      copy.txt
+      original.txt
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  ------------------------------------------------------------------------------------------------  
+   [Enter] Evidence   [1-4] Filter   [/] Find   [x] Clear   [e] Export   [t] Coverage
+   [r] Rescan   [g] Enter Path   [Esc] Back   [F1] Help
+                                                                                                    
+   R I P O S T E    /  DUPLICATE FINDER                                     LOCAL   /   v0.5.0      
+
+  ------------------------------------------------------------------------------------------------  
+   MAIN MENU / DUPLICATE FINDER
+
+   COMPLETE / READ ONLY / 1 findings
+   Filter: DUPLICATE
+   100 = verified equality. Other scores are visual evidence, not odds.
+  -- CONFIDENCE / FILE RELATIONSHIPS -------------------------------------------------------------  
+   > 100 / DUPLICATE / 2 files
+      copy.txt
+      original.txt
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   FIND / _
+  ------------------------------------------------------------------------------------------------  
+   [Enter] Evidence   [1-4] Filter   [/] Find   [x] Clear   [e] Export   [t] Coverage
+   [r] Rescan   [g] Enter Path   [Esc] Back   [F1] Help
+                                                                                                    
+   R I P O S T E    /  DUPLICATE FINDER                                     LOCAL   /   v0.5.0      
+
+  ------------------------------------------------------------------------------------------------  
+   MAIN MENU / DUPLICATE FINDER
+
+   COMPLETE / READ ONLY / 1 findings
+   Filter: DUPLICATE / original.txt
+   100 = verified equality. Other scores are visual evidence, not odds.
+  -- CONFIDENCE / FILE RELATIONSHIPS -------------------------------------------------------------  
+   > 100 / DUPLICATE / 2 files
+      copy.txt
+      original.txt
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  ------------------------------------------------------------------------------------------------  
+   [Enter] Evidence   [1-4] Filter   [/] Find   [x] Clear   [e] Export   [t] Coverage
+   [r] Rescan   [g] Enter Path   [Esc] Back   [F1] Help
+                                                                                                    
+   R I P O S T E    /  MATCH EVIDENCE                                       LOCAL   /   v0.5.0      
+
+  ------------------------------------------------------------------------------------------------  
+   MAIN MENU / MATCH EVIDENCE
+
+   DUPLICATE
+   [100.0]
+
+   100 means verified equality for the stated basis. Other scores are heuristic evidence, not       
+   probabilities.
+
+   > Overview       Details       JSON
+   ----------
+
+    COMPARISON EVIDENCE  -----------------------------------------------------------------------    
+    Idexact-ea22a7c36a9de87d8a26058c
+    Leftea22a7c36a9de87d8a26058c
+    RightNot reported
+    LabelDUPLICATE
+    Confidence100
+    Confidence kindVERIFIED_EQUALITY
+    BasisBYTE_EQUAL
+    Member count2
+
+    LEFT / 2 FILES  ----------------------------------------------------------------------------    
+    Copy.txt25 bytes / file
+    Sha-256
+   OVERVIEW / lines 1-14 of 18
+   Overview explains the result; Details preserves every field; JSON is optional.
+  ------------------------------------------------------------------------------------------------  
+   [Enter] Return   [t] Report view   [b] Batches   [Esc] Back   [F1] Help
+
+                                                                                                    
+   R I P O S T E    /  DUPLICATE FINDER                                     LOCAL   /   v0.5.0      
+
+  ------------------------------------------------------------------------------------------------  
+   MAIN MENU / DUPLICATE FINDER
+
+   COMPLETE / READ ONLY / 1 findings
+   Filter: DUPLICATE / original.txt
+   100 = verified equality. Other scores are visual evidence, not odds.
+  -- CONFIDENCE / FILE RELATIONSHIPS -------------------------------------------------------------  
+   > 100 / DUPLICATE / 2 files
+      copy.txt
+      original.txt
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  ------------------------------------------------------------------------------------------------  
+   [Enter] Evidence   [1-4] Filter   [/] Find   [x] Clear   [e] Export   [t] Coverage
+   [r] Rescan   [g] Enter Path   [Esc] Back   [F1] Help
+                                                                                                    
+   R I P O S T E    /  SCAN COVERAGE                                        LOCAL   /   v0.5.0      
+
+  ------------------------------------------------------------------------------------------------  
+   MAIN MENU / SCAN COVERAGE
+
+   DUPLICATE FINDER
+   [COMPLETE]
+
+   Read-only comparison. Files were not sorted, removed or selected for deletion.
+
+
+   > Overview       Details       JSON
+   ----------
+    100 means verified equality for the stated basis. Other scores are heuristic evidence, not      
+    probabilities.
+
+    SCAN COVERAGE  -----------------------------------------------------------------------------    
+    Files discovered2
+    Files hashed2
+    Bytes hashed50
+    Byte groups1
+    Index nodes0
+    Duplicate1
+    Maybe duplicate0
+    Closely related0
+    Distinct content groups       1
+    Findings1
+   OVERVIEW / lines 1-14 of 31
+   Overview explains the result; Details preserves every field; JSON is optional.
+  ------------------------------------------------------------------------------------------------  
+   [Enter] Return   [t] Report view   [b] Batches   [Esc] Back   [F1] Help
+
+                                                                                                    
+   R I P O S T E    /  DUPLICATE FINDER                                     LOCAL   /   v0.5.0      
+
+  ------------------------------------------------------------------------------------------------  
+   MAIN MENU / DUPLICATE FINDER
+
+   COMPLETE / READ ONLY / 1 findings
+   Filter: DUPLICATE / original.txt
+   100 = verified equality. Other scores are visual evidence, not odds.
+  -- CONFIDENCE / FILE RELATIONSHIPS -------------------------------------------------------------  
+   > 100 / DUPLICATE / 2 files
+      copy.txt
+      original.txt
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  ------------------------------------------------------------------------------------------------  
+   [Enter] Evidence   [1-4] Filter   [/] Find   [x] Clear   [e] Export   [t] Coverage
+   [r] Rescan   [g] Enter Path   [Esc] Back   [F1] Help
+                                                                                                    
+   R I P O S T E    /  DUPLICATE FINDER                                     LOCAL   /   v0.5.0      
+
+  ------------------------------------------------------------------------------------------------  
+   MAIN MENU / DUPLICATE FINDER
+
+   DUPLICATE FINDER
+   INSPECT
+   Folder: C:\Users\ryanf\AppData\Local\Temp\riposte-duplicates-console-d_9yojoc\Pictures
+  ------------------------------------------------------------------------------------------------  
+  +- EDIT / SCAN FOLDER -------------------------------------------------------------------------+  
+  |                                                                                              |  
+  |  Paste an existing folder. A scan reads files; it does not sort or remove them.              |  
+  |                                                                                              |  
+  |                                                                                              |  
+  |                                                                                              |  
+  |                                                                                              |  
+  |   ^                                                                                          |  
+  |                                                                                              |  
+  |                                                                                              |  
+  |  [Enter] save   [Esc] discard   [Ctrl+U] clear                                               |  
+  |                                                                                              |  
+  +----------------------------------------------------------------------------------------------+  
+                                                                    start processing. Preview       
+                                                                    uses the current values.        
+
+
+
+   SETTING 1/7   |   ACTION SETTINGS
+   Paste an existing folder. A scan reads files; it does not sort or remove them.
+  ------------------------------------------------------------------------------------------------  
+   [Enter] Save   [Esc] Discard   [Ctrl+U] Clear   [F1] Help
+
+                                                                                                    
+   R I P O S T E    /  DUPLICATE FINDER                                     LOCAL   /   v0.5.0      
+
+  ------------------------------------------------------------------------------------------------  
+   MAIN MENU / DUPLICATE FINDER
+
+   DUPLICATE FINDER
+   INSPECT
+   Folder: C:\Users\ryanf\AppData\Local\Temp\riposte-duplicates-console-d_9yojoc\Pictures
+  ------------------------------------------------------------------------------------------------  
+    > Visual matching         [x] ON                                FIELD / CONTEXT
+      Sample videos           [x] ON
+      Include float folders   [x] ONVISUAL MATCHING
+      File limit              100000
+      Distinct visual files   10000                                 Compare normalized pixels,      
+      Comparison limit        100000                                image transforms/crops and      
+    >> RUN ACTION                                                   structural evidence as well     
+                                                                    as exact bytes.
+
+
+
+
+                                                                    Changing a setting does not     
+                                                                    start processing. Preview       
+                                                                    uses the current values.        
+
+
+
+   SETTING 1/7   |   ACTION SETTINGS
+   Compare normalized pixels, image transforms/crops and structural evidence as well as exact...    
+  ------------------------------------------------------------------------------------------------  
+   [Enter] Toggle   [g] Enter Path   [r] Run   [Esc] Back   [F1] Help
+
+                                                                                                    
+   R I P O S T E    /  DUPLICATE FINDER                                     LOCAL   /   v0.5.0      
+
+  ------------------------------------------------------------------------------------------------  
+   MAIN MENU / DUPLICATE FINDER
+
+   COMPLETE / READ ONLY / 1 findings
+   Filter: DUPLICATE / original.txt
+   100 = verified equality. Other scores are visual evidence, not odds.
+  -- CONFIDENCE / FILE RELATIONSHIPS -------------------------------------------------------------  
+   > 100 / DUPLICATE / 2 files
+      copy.txt
+      original.txt
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  ------------------------------------------------------------------------------------------------  
+   [Enter] Evidence   [1-4] Filter   [/] Find   [x] Clear   [e] Export   [t] Coverage
+   [r] Rescan   [g] Enter Path   [Esc] Back   [F1] Help
+                                                                                                    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  RIPOSTE / terminal released. No unfinished worker was abandoned.

@@ -15,6 +15,7 @@ import unicodedata
 import uuid
 
 from .errors import RiposteError
+from .category_corpus import rule_terms
 from .store import check_root, safe_child, state_relative, workspace_lock
 from .title_categories import (GENERATED_TITLE, MAX_CATEGORIES, Progress,
                                _media_titles, category_drafts, title_tokens)
@@ -203,9 +204,7 @@ def match_title(stem: str, rules: Sequence[CategoryRule]) -> dict[str, Any]:
     """Match whole words/phrases; absent or tied matches have no category."""
     if GENERATED_TITLE.fullmatch(unicodedata.normalize("NFKC", stem)):
         return {"status": "ORIGINAL_TITLE_UNAVAILABLE", "category": None, "matches": []}
-    tokens = title_tokens(stem)
-    terms = {" ".join(tokens[start:start + length]) for start in range(len(tokens))
-             for length in range(1, 4) if start + length <= len(tokens)}
+    terms = rule_terms(stem)
     matches: list[dict[str, Any]] = [{"label": rule.label, "slug": rule.slug, "priority": rule.priority,
                 "matched_terms": sorted(terms.intersection(rule.terms))}
                for rule in rules if terms.intersection(rule.terms) and not terms.intersection(rule.exclusions)]

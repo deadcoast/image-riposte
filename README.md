@@ -41,6 +41,14 @@ RIPOSTE lets you protect selected images, sort a folder, or explicitly do both. 
 
 ## Terminal revision 0.5
 
+**Duplicate Finder** is an independent tool: main-menu **d**, or
+`riposte duplicates "D:\Artwork"`. It lists **DUPLICATE**, **MAYBE DUPLICATE** and
+**CLOSELY RELATED** findings with confidence and matching evidence. It compares
+file contents, normalized image pixels, visual variants/crops and sampled video
+frames without sorting or removing anything. Terminal search/detail/export and
+the local browser's paired review share the same report. See the
+[Duplicate Finder guide](docs/DUPLICATES.md) for controls and comparison limits.
+
 Foreground-only `goks` is now the default. The host owns the background in every scene. Interactive results offer Overview / Details / JSON with `t`. Enter selects images, `i` inspects, `p` configures protection, and F1 explains the current screen. `f` expands advanced protection settings without resetting them.
 
 The shelved revision was selectively integrated against the 0.4.0 archive while retaining this checkout's dependency and typing work. See the [merge record](docs/PATCH-v05-MERGE.md), [supplied design record](docs/REVISION-v05.md), and [build guide](docs/REBUILD.md). No workspace migration is needed.
@@ -73,10 +81,11 @@ are accepted and a paste replaces the empty field. The folder stays selected
 for the session. **Full Sort Workshop** retains the configurable workflow.
 
 Riposte Sorter uses download dates (creation/birth time with modified-time
-fallback), saved filename-category rules, and
+fallback), saved filename-category rules and supported local filename patterns, and
 `Year/Month/img-or-vid/[Category if found]/Size`. Categories are optional per file:
-no saved rules, no match, tied matches or unknown original titles all use the
-ordinary date/media/size route. Existing categories are retained when no new
+weak patterns, tied matches or unknown original titles use the
+ordinary date/media/size route. Manual choices and saved rules take precedence;
+existing categories are retained when no new
 match is available. No category setup or manual assignment is required to sort.
 Images become date-only PNGs, videos keep their bytes, and originals remain
 privately recoverable. Sidecar deletion requires explicit workshop consent.
@@ -215,7 +224,8 @@ later saves require the revision shown by the current preview. `--exclude`,
 `--priority`, and `--slug` customize exclusions, match priority and folder names.
 `riposte category-rules ROOT --review` reloads saved rules and shows filename
 matches. Rules are private workspace state; saving them does not enable category
-sorting in the workshop or direct CLI. Riposte Sorter's preset uses saved rules.
+sorting in the workshop or direct CLI. Riposte Sorter's preset uses saved rules
+and supported local filename patterns.
 In Full Sort Workshop, press `s` for saved rules. In the browser,
 enable Sort by filename category and open Discover and save category rules.
 See [the command reference](docs/CLI.md#saved-category-rules).
@@ -224,7 +234,7 @@ See [the command reference](docs/CLI.md#saved-category-rules).
 read-only plan containing every source, trusted original title, matching term,
 category and exact destination. Apply with `--categories --apply --plan-id ID`
 using the ID from that preview. Changed files, rules, assignments, catalogs or
-destinations require a refreshed preview. Unmatched, tied and unknown titles
+destinations require a refreshed preview. Weak, conflicting and unknown titles
 sort normally without a category; an existing category is retained. Optional
 `--assign "relative/path=slug"` lets you choose a category explicitly.
 Sorts from this version retain original titles and assignments in the private
@@ -330,7 +340,18 @@ Exit statuses: **0** completed command, **2** invalid input/operation failure/in
 
 ## Existing privacy and image contracts
 
-The calendar roots remain `2026`, `2025`, `2024`, `EVERYTHING_ELSE`; English month directories and SML/MED/LRG/XTL appear only when needed. Bins are pixel area below 1M, 4M, 16M and 16M or more. Images are not sorted by file extension.
+Calendar roots use the file's actual year, followed by its English month;
+SML/MED/LRG/XTL directories appear only when needed. Legacy `EVERYTHING_ELSE`
+catalogs remain readable; sorting previews their relocation into actual years,
+and Undo restores their prior paths. Bins are pixel area below 1M, 4M, 16M and
+16M or more. Images are not sorted by file extension.
+
+Local category proposals recognize CamelCase, repeated words and phrases while
+discounting export/version noise and duplicate filename variants. Their scores
+describe filename evidence, not image content or measured accuracy. Small,
+ambiguous or resource-limited collections still sort normally. No extra setup
+screen or model download is required. See the [critical research review](docs/research/sorting/RIPOSTE-REVIEW.md)
+and [executed evidence](evidence/sorting-research/README.md).
 
 Sanitation still decodes supported input, applies orientation, converts supported colour profiles, rebuilds pixels, clears fully transparent hidden RGB, and writes fresh PNG with only its date. Applying organization saves private original copies for undo before removing source paths. Video bytes and private recovery copies retain original metadata; date-only sanitation applies to generated images. Unsupported and failed inputs remain blockers. This is not forensic erasure of operating-system caches or data encoded into visible images.
 

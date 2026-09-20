@@ -15,6 +15,28 @@ from riposte.video import video_catalog
 POLICY = Policy(date_mode="modified")
 
 
+def test_legacy_video_year_relocates_and_undo_preserves_bytes(root, make_video):
+    import contextlib
+    from riposte.store import connect
+    video = make_video(root / "old.mp4")
+    original = video.read_bytes()
+    stamp = dt.datetime(2023, 3, 4, 12).timestamp(); os.utime(video, (stamp, stamp))
+    organize(root, POLICY, plan_id=plan(root, POLICY)["plan_id"])
+    row = video_catalog(root)[0]
+    assert row["relative"].startswith("2023/March/")
+    legacy = "EVERYTHING_ELSE/" + row["relative"].split("/", 1)[1]
+    target = root / legacy; target.parent.mkdir(parents=True)
+    (root / row["relative"]).rename(target)
+    with contextlib.closing(connect(root)) as db:
+        db.execute("UPDATE videos SET relative=? WHERE id=?", (legacy, row["id"])); db.commit()
+    preview = plan(root, POLICY, categories=True)
+    assert preview["ready"] and preview["files"][0]["destination"].startswith("2023/March/")
+    organize(root, POLICY, categories=True, plan_id=preview["plan_id"])
+    assert video_catalog(root)[0]["id"] == row["id"]
+    assert undo_sort(root, apply=True)["checkpoint"] == "COMPLETE"
+    assert video_catalog(root)[0]["relative"] == legacy and target.read_bytes() == original
+
+
 @pytest.fixture
 def make_video():
     if not shutil.which("ffmpeg") or not shutil.which("ffprobe"):

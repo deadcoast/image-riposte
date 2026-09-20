@@ -59,10 +59,17 @@ INPUT_FIELDS = tuple(Field(f"input{i}", "File or folder" if i == 1 else f"Additi
 SORT_FIELDS = (
     Field("date_mode", "Date basis", "choice", "download", "Creation/birth time with modified-time fallback, or an explicit alternative.", ("download", "modified", "embedded")),
     Field("discard_sidecars", "Discard metadata sidecars", "bool", False, "Authorize known metadata sidecar deletion during Apply, not during preview."),
-    Field("categories", "Use categories if found", "bool", False, "Use matching saved rules when available. Otherwise sort by date/media/size; existing categories stay."),
+    Field("categories", "Use categories if found", "bool", False, "Use saved rules, then supported local filename patterns. Uncertain files use date/media/size; existing categories stay."),
     Field("assignments", "Manual categories", "text", "", 'JSON list of source-relative-path=slug strings, for example ["2025/March/img/SML/SML01.png=hockey"]. Use =auto to clear a saved manual choice.', optional=True))
 
 ACTIONS = (
+    Action("duplicates", "Duplicate Finder", "PRIMARY", "Find duplicate and related files with confidence and evidence. Originals stay unchanged.", (
+        Field("visual", "Visual matching", "bool", True, "Compare normalized pixels, image transforms/crops and structural evidence as well as exact bytes."),
+        Field("videos", "Sample videos", "bool", True, "Compare five video timestamps using local FFmpeg. Exact byte comparisons always include videos."),
+        Field("include_float", "Include float folders", "bool", True, "Float storage is excluded from sorting; this independent read-only scan can inspect it."),
+        Field("max_files", "File limit", "int", 100_000, "Limits are reported as incomplete coverage, never as no duplicates.", minimum=1, maximum=200_000),
+        Field("max_visual", "Distinct visual files", "int", 10_000, "Collapse exact byte copies before decoding; cap distinct media inspected visually.", minimum=1, maximum=20_000),
+        Field("max_pairs", "Comparison limit", "int", 100_000, "Bound candidate-pair comparisons; exact byte detection remains available.", minimum=1, maximum=500_000))),
     Action("riposte", "RIPOSTE", "PRIMARY", "Protect files or folders. Keep originals and their folder structure.", (*INPUT_FIELDS, SORT_FIELDS[0], *PUB_FIELDS)),
     Action("sort-riposte", "Sort + RIPOSTE", "PRIMARY", "Preview sorting, confirm replacement, then protect the organized collection.", (*SORT_FIELDS, *PUB_FIELDS)),
     Action("publish", "Protect & publish", "PRIMARY", "Selected clean images -> independently optimized publishing files.", PUB_FIELDS),
@@ -176,6 +183,10 @@ def parse_value(field: Field, raw: Any) -> Any:
 def make_request(key: str, root: Path | None, values: dict, selected=()) -> Request:
     action = BY_KEY[key]
     parsed = {f.key: parse_value(f, values.get(f.key, f.default)) for f in action.fields}
+    if key == "duplicates":
+        for option in ("max_findings", "max_file_bytes"):
+            if option in values: parsed[option] = values[option]
+        if values.get("duplicate_report"): parsed["duplicate_report"] = Path(values["duplicate_report"])
     for f in action.fields:
         if f.kind=="path" and parsed.get(f.key): parsed[f.key]=Path(parsed[f.key])
     vaes = [parsed.pop(f"vae{i}", "") for i in range(1, 5)]
@@ -208,7 +219,7 @@ def request_argv(request: Request) -> list[str]:
            "trials": ("trial_id",), "evaluations": ("trial_id",), "generations": ("trial_id",), "generation": ("run_id",), "frame": ("run_id", "relative"), "workshop": ("batch_id", "item_id")}.get(name, ())
     for key in pos:
         if values.get(key): args.append(str(values[key]))
-    aliases = {"assignments": "assign", "exclusions": "exclude", "priorities": "priority", "slugs": "slug", "category_specs": "category", "input_paths": "input", "open_viewer": "open", "vae_dirs": "vae", "image_ids": "image", "all_images": "all", "edges": "edge", "item_ids": "item", "seeds": "seed", "views": "view"}
+    aliases = {"duplicate_report": "report", "assignments": "assign", "exclusions": "exclude", "priorities": "priority", "slugs": "slug", "category_specs": "category", "input_paths": "input", "open_viewer": "open", "vae_dirs": "vae", "image_ids": "image", "all_images": "all", "edges": "edge", "item_ids": "item", "seeds": "seed", "views": "view"}
     for key, value in values.items():
         if name == "categories" and key == "fillers" and value == "":
             args.extend(["--fillers", ""])
@@ -217,7 +228,9 @@ def request_argv(request: Request) -> list[str]:
         if name == "guard" and key == "inpaint": option = "pipeline"
         else: option = aliases.get(key, key).replace("_", "-")
         if isinstance(value, bool):
-            if key == "preserve_white":
+            if key in {"visual", "videos", "include_float"}:
+                args.append("--" + ("" if value else "no-") + option)
+            elif key == "preserve_white":
                 if not value: args.append("--no-preserve-white")
             elif value: args.append("--" + option)
         elif isinstance(value, (list, tuple)):

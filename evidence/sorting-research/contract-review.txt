@@ -1,0 +1,21 @@
+{
+  "changed_files": [
+    "src/riposte/category_corpus.py",
+    "src/riposte/category_rules.py",
+    "src/riposte/category_sort.py",
+    "src/riposte/cli.py",
+    "src/riposte/policy.py",
+    "src/riposte/static/app.js",
+    "src/riposte/static/category-sort.js",
+    "src/riposte/static/index.html",
+    "src/riposte/terminal/actions.py",
+    "src/riposte/terminal/render.py",
+    "src/riposte/terminal/reports.py",
+    "src/riposte/terminal/service.py",
+    "src/riposte/title_categories.py",
+    "src/riposte/video.py"
+  ],
+  "signatures": 486,
+  "leaf_modules": 57,
+  "application_files": 67
+}

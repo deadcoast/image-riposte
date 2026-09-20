@@ -13,6 +13,7 @@ from .records import MediaInfo
 from typing import Any, Callable, Sequence
 
 from .category_rules import load_rules, match_title
+from .category_corpus import build_corpus
 from .errors import RiposteError
 from .policy import Policy, sort_folder_for, sort_excluded, path_category
 from .sanitize import decode_clean, encode_clean, png_audit
@@ -71,7 +72,23 @@ def category_plan(root: Path, policy: Policy, *, assignments: Sequence[str] = ()
     history = latest_sort(root)
     if history and history["status"] in {"APPLYING", "UNDOING"}:
         blockers["SORT_RECOVERY_REQUIRED"] += 1
-    for index, (path, kind) in enumerate(walk_inputs(root), 1):
+    inputs = []
+    original_names: dict[str, str | None] = {}
+    for path, kind in walk_inputs(root):
+        inputs.append((path, kind))
+        if progress:
+            progress({"phase": "Inspecting sort inputs", "processed": len(inputs)})
+        if kind not in {"IMAGE", "VIDEO"}:
+            continue
+        relative = path.relative_to(root).as_posix()
+        previous = managed.get(relative)
+        old = provenance.get(previous["id"]) if previous else None
+        original_names[relative] = old["original_filename"] if old else None if previous else path.name
+    corpus = build_corpus((name for name in original_names.values() if name),
+                          excluded={t for r in rules.rules for t in (*r.terms, r.slug)},
+                          preferred={stored_category for relative in managed if (stored_category := path_category(relative))},
+                          progress=progress)
+    for index, (path, kind) in enumerate(inputs, 1):
         if progress:
             progress({"phase": "Planning categories", "processed": index})
         relative = path.relative_to(root).as_posix()
@@ -120,8 +137,21 @@ def category_plan(root: Path, policy: Policy, *, assignments: Sequence[str] = ()
                 if retained:
                     category = {"slug": retained, "label": labels.get(retained, retained)}
                     category_source = "PRESERVED"
+            corpus_terms: list[str] = []
+            if category is None and original and match["status"] == "UNMATCHED":
+                suggestion = corpus.match(Path(original).stem)
+                item["corpus_match"] = {"status": suggestion.status, "score": suggestion.score,
+                                        "margin": suggestion.margin, "alternatives": [list(row) for row in suggestion.alternatives],
+                                        "matched_terms": list(suggestion.matched_terms)}
+                if suggestion.category:
+                    category = {"slug": suggestion.category.slug, "label": suggestion.category.label}
+                    category_source = "CORPUS"
+                    corpus_terms = list(suggestion.matched_terms)
+                    counts["corpus_category_files"] += 1
             category_slug = category["slug"] if category else None
-            terms: list[str] = next((r["matched_terms"] for r in match["matches"] if r["slug"] == category_slug), [])
+            terms: list[str] = corpus_terms or next((r["matched_terms"] for r in match["matches"] if r["slug"] == category_slug), [])
+            if category_source == "PRESERVED" and old and old["category"] == category_slug:
+                terms = old["matched_terms"]
             item.update(category=category, category_source=category_source, matched_terms=terms)
             counts["category_files" if category else "without_category_files"] += 1
             if previous:
@@ -158,13 +188,13 @@ def category_plan(root: Path, policy: Policy, *, assignments: Sequence[str] = ()
     if set(overrides) - seen or any(r["source"] in overrides and r["kind"] not in {"IMAGE", "VIDEO"} for r in files):
         blockers["CATEGORY_ASSIGNMENT_INVALID"] += 1
     root_stat = root.stat()
-    basis = {"version": 2, "root": str(root), "identity": [root_stat.st_dev, root_stat.st_ino],
+    basis = {"version": 3, "root": str(root), "identity": [root_stat.st_dev, root_stat.st_ino],
              "policy": asdict(policy), "rules": rules.revision, "titles": titles, "catalog": managed,
              "history": {k: history[k] for k in ("id", "status")} if history else None,
-             "assignments": overrides, "files": files, "blockers": dict(blockers)}
+             "assignments": overrides, "files": files, "blockers": dict(blockers), "corpus": corpus.report()}
     token = hashlib.sha256(json.dumps(basis, sort_keys=True, ensure_ascii=True).encode()).hexdigest()
     return {"mode": "READ_ONLY", "category_sorting": True, "plan_id": token, "rules_revision": rules.revision,
             "ready": not blockers, "counts": dict(counts), "destinations": dict(sorted(folders.items())),
-            "blockers": dict(blockers), "files": files,
+            "blockers": dict(blockers), "files": files, "corpus": corpus.report(),
             "source_policy": "Original names, bytes and category assignments are kept privately for Undo last sort.",
             "video_policy": "SORT_ONLY_BYTES_UNCHANGED"}

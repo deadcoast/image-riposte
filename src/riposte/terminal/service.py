@@ -31,6 +31,7 @@ class Request:
 
 # These are application effects, not a permission system for hostile local code.
 EFFECTS = {
+    "duplicates": "INSPECT",
     "categories": "INSPECT",
     "category-rules": "INSPECT", "category-rules-save": "SAVE_CATEGORY_RULES",
     "riposte": "CREATE_CANDIDATES", "riposte-plan": "INSPECT",
@@ -50,13 +51,16 @@ EFFECTS = {
     "trials": "INSPECT", "evaluations": "INSPECT", "generations": "INSPECT",
     "generation": "INSPECT", "frame": "INSPECT", "handoff": "CREATE_EXACT_TRIAL", "image": "INSPECT", "open-image": "OPEN_LOCAL_VIEWER",
 }
-CANCELLABLE = frozenset({"cohort-challenge", "categories", "category-rules", "organize", "audit", "list", "inspect", "plan", "publish", "resume",
+CANCELLABLE = frozenset({"duplicates", "cohort-challenge", "categories", "category-rules", "organize", "audit", "list", "inspect", "plan", "publish", "resume",
                          "guard", "qualify", "challenge", "doctor", "sort-riposte-plan", "riposte", "riposte-plan"})
 
 
 def root_of(request: Request) -> Path:
     if request.root is None:
         raise RiposteError("WORKSPACE_REQUIRED")
+    if request.name == "duplicates":
+        from ..duplicates import scan_root
+        return scan_root(Path(request.root))
     from ..store import check_root
     return check_root(Path(request.root).expanduser().absolute())
 
@@ -77,7 +81,7 @@ def select_rows(root: Path, *, year: str | None = None, month: str | int | None 
                 size: str | None = None, search: str = "", limit: int | None = None,
                 offset: int = 0) -> list[CatalogRow]:
     from ..store import catalog
-    if year not in (None, "", "all", *YEARS, "EVERYTHING_ELSE"):
+    if year not in (None, "", "all", "EVERYTHING_ELSE") and (not isinstance(year, str) or not re.fullmatch(r"[0-9]{4}", year) or year == "0000"):
         raise RiposteError("YEAR_FILTER_INVALID")
     if size not in (None, "", "all", *BINS):
         raise RiposteError("SIZE_FILTER_INVALID")
@@ -148,6 +152,17 @@ def execute(request: Request, progress: Progress | None = None) -> Any:
             result["model" if len(entries) == 1 else "models"] = entries[0] if len(entries) == 1 else entries
         return result
     root = root_of(request)
+    if name == "duplicates":
+        from ..duplicates import ScanOptions, scan_duplicates
+        from ..duplicate_review import DuplicateReview
+        duplicate_options = ScanOptions(visual=v.get("visual", True), videos=v.get("videos", True),
+                              include_float=v.get("include_float", True), max_files=v.get("max_files", 100_000),
+                              max_visual=v.get("max_visual", 10_000), max_pairs=v.get("max_pairs", 100_000),
+                              max_findings=v.get("max_findings", 20_000), max_file_bytes=v.get("max_file_bytes", 4 * 1024**3))
+        report = scan_duplicates(root, duplicate_options, progress=progress)
+        if v.get("duplicate_report"):
+            report["export"] = DuplicateReview(report).export(Path(cast(str | Path, v["duplicate_report"])))
+        return report
     if name in {"category-rules", "category-rules-save"}:
         from ..category_rules import category_rules
         return category_rules(root, categories=v.get("category_specs") or (),

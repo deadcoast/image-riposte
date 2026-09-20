@@ -1,0 +1,16 @@
+{
+  "before": 788,
+  "after": 797,
+  "added": [
+    "src\\riposte\\terminal\\reports.py: error: Call to untyped function \"text\" in typed context  [no-untyped-call]",
+    "src\\riposte\\terminal\\reports.py: error: Call to untyped function \"text\" in typed context  [no-untyped-call]",
+    "src\\riposte\\terminal\\reports.py: error: Call to untyped function \"text\" in typed context  [no-untyped-call]",
+    "src\\riposte\\terminal\\reports.py: error: Call to untyped function \"pair\" in typed context  [no-untyped-call]",
+    "src\\riposte\\terminal\\reports.py: error: Call to untyped function \"pair\" in typed context  [no-untyped-call]",
+    "src\\riposte\\terminal\\reports.py: error: Call to untyped function \"pair\" in typed context  [no-untyped-call]",
+    "src\\riposte\\terminal\\reports.py: error: Call to untyped function \"pair\" in typed context  [no-untyped-call]",
+    "src\\riposte\\terminal\\reports.py: error: Call to untyped function \"pair\" in typed context  [no-untyped-call]",
+    "src\\riposte\\terminal\\reports.py: error: Call to untyped function \"section\" in typed context  [no-untyped-call]"
+  ],
+  "removed": []
+}

@@ -1,0 +1,22 @@
+warning: `VIRTUAL_ENV=.venv` does not match the project environment path `typing\.venv` and will be ignored; use `--active` to target the active environment instead
+Source/stub parity: 531 signatures, 62 importable leaf modules
+mypy-contracts: PASS
+mypy-tooling: PASS
+stubtest: FAIL
+error: riposte.duplicate_features.Label is not a Union
+Stub: in file C:\Users\ryanf\github\_new\image-riposte\typing\stubs\riposte\duplicate_features.pyi:10
+Literal['DUPLICATE'] | Literal['MAYBE DUPLICATE'] | Literal['CLOSELY RELATED']
+Runtime:
+def (*args, **kwargs)
+
+error: riposte.duplicate_features.Pixels is inconsistent, runtime is not a type
+Stub: in file C:\Users\ryanf\github\_new\image-riposte\typing\stubs\riposte\duplicate_features.pyi:9
+Type alias for numpy.ndarray[tuple[Any, ...], numpy.dtype[numpy.unsignedinteger[numpy._typing._nbit_base._8Bit]]]
+Runtime:
+def (*args, **kwargs)
+
+Found 2 errors (checked 62 modules)
+
+runtime-contracts: PASS
+tooling-regressions: PASS
+negative-consumers: 13/13 expected diagnostics; exact line/code match=True

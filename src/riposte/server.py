@@ -12,7 +12,8 @@ from fastapi.exceptions import RequestValidationError
 from fastapi.responses import HTMLResponse, Response, JSONResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field, ConfigDict
-from typing import Literal
+from typing import Literal, cast
+from .records import Progress
 from PIL import Image
 from .errors import RiposteError
 from .policy import Policy
@@ -54,6 +55,17 @@ class UndoSortRequest(StrictModel):
     apply: bool = False
     sort_id: str | None = None
     acknowledge_restore: bool = False
+
+
+class DuplicateScanRequest(StrictModel):
+    visual: bool = True
+    videos: bool = True
+    include_float: bool = True
+    max_files: int = Field(default=100_000, ge=1, le=200_000)
+    max_visual: int = Field(default=10_000, ge=1, le=20_000)
+    max_pairs: int = Field(default=100_000, ge=1, le=500_000)
+    max_findings: int = Field(default=20_000, ge=1, le=50_000)
+    max_file_bytes: int = Field(default=4 * 1024**3, ge=1, le=64 * 1024**3)
 
 class GuardRequest(StrictModel):
     image_id: str
@@ -237,6 +249,16 @@ def create_app(root: Path, token: str | None = None) -> FastAPI:
     app.add_middleware(_BodyLimitMiddleware)
     app.state.token=token or secrets.token_urlsafe(32)
     app.state.jobs=jobs
+    from .duplicate_review import DuplicateReview
+    duplicate_reports: dict[str, DuplicateReview] = {}
+    duplicate_lock = threading.Lock()
+
+    def duplicate_report(scan_id: str) -> DuplicateReview:
+        with duplicate_lock:
+            value = duplicate_reports.get(scan_id)
+        if value is None:
+            raise RiposteError('DUPLICATE_SCAN_EXPIRED')
+        return value
 
     @app.middleware("http")
     async def security(request: Request, call_next):
@@ -284,6 +306,42 @@ def create_app(root: Path, token: str | None = None) -> FastAPI:
     @app.get("/api/methods")
     def methods():
         return json.loads((Path(__file__).parent/"methods.json").read_text(encoding="utf-8"))
+    @app.post('/api/duplicates')
+    def duplicates_endpoint(body: DuplicateScanRequest) -> dict[str, str]:
+        from .duplicates import ScanOptions, scan_duplicates
+        def work(progress: Progress) -> dict[str, object]:
+            report = scan_duplicates(root, ScanOptions(**body.model_dump()), progress=progress)
+            review = DuplicateReview(report)
+            with duplicate_lock:
+                duplicate_reports.pop(str(report['scan_id']), None)
+                duplicate_reports[str(report['scan_id'])] = review
+                while len(duplicate_reports) > 2:
+                    del duplicate_reports[next(iter(duplicate_reports))]
+            # Jobs/state polling never retransmits the full inventory.
+            return review.summary()
+        return cast(dict[str, str], jobs.start(work))
+    @app.get('/api/duplicates/{scan_id}')
+    def duplicate_summary(scan_id: str) -> dict[str, object]:
+        return duplicate_report(scan_id).summary()
+    @app.get('/api/duplicates/{scan_id}/findings')
+    def duplicate_findings(scan_id: str, label: str = 'ALL', search: str = '', media: str = 'ALL',
+                           min_confidence: float = 0, order: str = 'confidence', offset: int = 0, limit: int = 50) -> dict[str, object]:
+        return duplicate_report(scan_id).page(label=label, search=search, media=media,
+                                               min_confidence=min_confidence, order=order, offset=offset, limit=limit)
+    @app.get('/api/duplicates/{scan_id}/findings/{identifier}')
+    def duplicate_detail(scan_id: str, identifier: str) -> dict[str, object]:
+        return duplicate_report(scan_id).detail(identifier)
+    @app.get('/api/duplicates/{scan_id}/groups/{identifier}')
+    def duplicate_members(scan_id: str, identifier: str, offset: int = 0, limit: int = 50) -> dict[str, object]:
+        return duplicate_report(scan_id).group(identifier, offset=offset, limit=limit)
+    @app.get('/api/duplicates/{scan_id}/preview/{identifier}')
+    def duplicate_preview(scan_id: str, identifier: str, timestamp: float | None = None) -> Response:
+        return Response(duplicate_report(scan_id).preview(identifier, timestamp=timestamp), media_type='image/png')
+    @app.get('/api/duplicates/{scan_id}/export')
+    def duplicate_export(scan_id: str, format: str = 'json') -> Response:
+        data = duplicate_report(scan_id).export_bytes(format)
+        return Response(data, media_type='application/json' if format == 'json' else 'text/csv',
+                        headers={'Content-Disposition': f'attachment; filename="riposte-duplicates-{scan_id[:12]}.{format}"'})
     @app.post("/api/organize")
     def organize_endpoint(body:OrganizeRequest):
         if body.apply and not body.acknowledge_source_removal:

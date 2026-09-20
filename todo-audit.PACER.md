@@ -14,6 +14,91 @@ INFERRED: keep all four connected CSVs byte-identical during catch-up, so recipr
 links cannot advance TODO indirectly. Reconcile them together through guarded
 PACER commands only at the completion milestone.
 
+### Independent duplicate finder / 2026-09-20 / in progress
+
+USER (original wording):
+
+> OK, the next thing we have to do is create a seperate tool to find duplicates. List the duplicates and the confidence in the duplcate files. Provide duplicates by "DUPLICATE", "MAYBE DUPLICATE", AND "CLOSELY RELATED". PROVIDE FAR PAST BASE LEVEL INTEGRATIONS TO MATCH THE REST OF THE APPLICATION. THIS IS A COMPREHENSIVE TASK.
+
+INFERRED implementation scope: separate read-only Duplicate Finder in terminal,
+CLI and local browser/API. Byte equality for arbitrary files; normalized decoded
+image equality; explainable multi-signal visual comparisons including common
+image transforms/crops and sampled video comparisons. Exact groups are distinct
+from non-transitive similarity relationships. Expose confidence basis, per-file
+exceptions, bounded candidate coverage, cancellation and stale-source checks.
+Provide list filters, paging, evidence/details, paired visual review and explicit
+report export. No removal, sorting, automatic keeper choice or cloud/model fetch.
+Float storage may be inspected here because the user's exclusion is sorting-only;
+offer an explicit include/exclude scan option. Keep internal recovery state out.
+
+OBSERVED: current application has no independent duplicate workflow. Existing
+cohort equality checks are experiment-specific and not a general file scanner.
+Read-only onboarding is structurally valid with twelve stale evidence records.
+Source owners queried for CLI/server, terminal actions/service/controller/render/
+reports/state/output, static index/app/style and proposed new detector modules.
+New assets and records.py registration remain deferred under the four-register
+freeze. Preserve the current uncommitted sorter work and unrelated research move.
+Evidence checkpoint: `evidence/duplicates/`. Next: implement engine and adversarial
+fixtures, then integrate full review flows and execute native/interface checks.
+
+### Research-led sorter enhancement / 2026-09-20 / implementation and bounded verification
+
+USER (original wording):
+
+> see docs\research\sorting ; i have provided targeted research, the first docs\research\sorting\sorting-method01.md are technical and general, the secondd docs\research\sorting\sorting-method02.md is targeted towards directory sorting. Critically review the data and incorperate what can enhance the current Riposte-Sorter format. The format is flexible, but i would still like it to be dated by year and month.
+
+INFERRED scope: preserve the three-action workflow, explicit preview/REPLACE/UNDO,
+optional categories and float exclusions. Add versioned filename parsing and
+bounded local corpus proposals to the shared category planner and discovery.
+Preserve manual/saved choices, abstain without blocking sorting, and keep actual
+calendar year/month as the outer layout. The supplied prototype is research, not
+production code or evidence of accuracy. Critical decisions are in
+`docs/research/sorting/RIPOSTE-REVIEW.md`.
+
+OBSERVED: current suggestions are frequency-only; CamelCase is unsplit; automatic
+corpus grouping is absent. Years outside 2024-2026 collapse into EVERYTHING_ELSE;
+terminal year filtering and the browser tree assume those three years. Read-only
+PACER onboarding is valid with the same eleven historical stale records. Source
+owners queried: OVR-1249/1169/1080/022/951/162/047/038/1251/031/048/012/030.
+New category_corpus owner and related symbols/tests/evidence are deferred for
+registration during the four-register freeze. Baseline hashes are retained in
+`evidence/sorting-research/`.
+
+Implemented: versioned, bounded filename-corpus analysis with Unicode/CamelCase
+views, noise boundaries, normalized-family document frequencies, sparse NPMI
+anchor associations, duplicate proposal suppression and IDF coverage/margin.
+Manual/saved choices take precedence; weak/tied/unknown/limited evidence never
+blocks ordinary sorting. Existing categories stay and guide later imports.
+Receipt version 3 includes the proposal evidence. Discovery supports optional
+rule drafts without autosave. Actual calendar years replace three-year bucketing;
+legacy image/video catalogs remain readable with previewed, undoable relocation.
+Shared interfaces preserve the three actions, consent and float exclusions.
+
+Executed: final suite 1,438 passed / 9 platform skips / 2 native-browser
+deselections; both real Chromium cases passed separately. All 22 research
+regressions pass. Retained failures identify obsolete year expectations,
+repeat-sort provenance loss, duplicate phrase proposals, and an API test missing
+its auth token. Actual Windows ConPTY START.ps1 and START.cmd categorize nine
+synthetic images and ordinarily sort two, recognize repeat NO CHANGES, undo exact
+bytes/names and leave float storage untouched. User-owned terminal windows and
+artwork were not operated. Production-cell captures are simulated host renders.
+
+External contracts pass 486 signatures / 57 leaf modules / 67 application files;
+fresh wheel/sdist match those source hashes. Raw source remains FAIL at 797
+diagnostics / 36 of 60 files, nine added calls to existing untyped report helpers;
+no diagnostic suppressions or relaxed settings. Static UI audit retains the same
+66 findings. Classifier-only synthetic scaling reaches 10,000 titles in .365 s;
+a larger workload hits the explicit vocabulary bound and drops automatic
+proposals. This is not whole-folder scale or measured category accuracy.
+
+Four frozen CSV hashes remain unchanged. Final read-only PACER validation is
+valid with no errors/warnings and twelve stale records (now including OGM-008).
+The evidence README names exact commands, retained failures and qualification
+limits. Next project action: preserve this bounded checkpoint for milestone
+source/evidence registration; real-data category precision and human usability
+require separately identified evidence. PAC-034 stays shelved and the overall
+audit/release milestone remains open.
+
 ### Optional-category correction / 2026-09-20 / implementation and bounded verification
 
 USER (original wording):
