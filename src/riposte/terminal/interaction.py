@@ -130,6 +130,7 @@ def context(state):
     if p.name=="library":return f"{len(state.selected)} selected. Enter selects; i inspects. Selection never changes files."
     if p.name=="item":return "Review actual pixels before approval. An ASCII preview is not a quality decision."
     if p.name=="result":
+        if p.code: return "Read the next action above. Enter returns without retrying."
         if p.values.get("sorter_mode") and not p.code:
             if p.request.name == "organize" and not p.result.get("ready"): return "Blocked. Nothing changed. Review blockers; w opens the workshop."
             if p.values.get("sort_changes") is False: return "Nothing to sort. No files changed. Enter returns to the sorter."

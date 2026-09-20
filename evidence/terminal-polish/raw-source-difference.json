@@ -1,0 +1,10 @@
+{
+  "before": 782,
+  "after": 785,
+  "added": [
+    "src\\riposte\\terminal\\render.py:LINE: error: Call to untyped function \"hints\" in typed context  [no-untyped-call]",
+    "src\\riposte\\terminal\\render.py:LINE: error: Call to untyped function \"text\" in typed context  [no-untyped-call]",
+    "src\\riposte\\terminal\\controller.py:LINE: error: Call to untyped function \"contextual_help\" in typed context  [no-untyped-call]"
+  ],
+  "removed": []
+}

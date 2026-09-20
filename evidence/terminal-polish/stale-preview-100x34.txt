@@ -27,7 +27,7 @@
                                                                                                     
                                                                                                     
    CODE / CATEGORY_PREVIEW_CHANGED                                                                  
-   Overview explains the result; Details preserves every field; JSON is optional.                   
+   Read the next action above. Enter returns without retrying.                                      
   ------------------------------------------------------------------------------------------------  
    [Enter] Return   [g] Enter Path   [Esc] Back   [F1] Help                                         
                                                                                                     

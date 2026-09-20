@@ -12,6 +12,7 @@
     "Parent restores the child highlight; Page Down/Up move exactly 16 visible rows",
     "A burst of 25 arrows plus Enter opens the exact expected folder",
     "Nested g and s select the folder; blocked Dry Run opens Workshop directly or returns without a write",
+    "Direct float-folder sorting is refused before writes and g recovers to a sortable folder",
     "Static sorter stays idle without continuous full-screen redraws",
     "Full Sort Workshop opens existing configuration and supports g directly",
     "Enter opens purpose-labelled multi-input browser",

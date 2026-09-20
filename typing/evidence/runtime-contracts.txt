@@ -9,6 +9,6 @@ test_upgrade_optional_fields (__main__.ContractFixtures.test_upgrade_optional_fi
 test_validator_rejects_drift (__main__.ContractFixtures.test_validator_rejects_drift) ... ok
 
 ----------------------------------------------------------------------
-Ran 9 tests in 0.724s
+Ran 9 tests in 0.576s
 
 OK

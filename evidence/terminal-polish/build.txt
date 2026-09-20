@@ -325,7 +325,7 @@ running install_egg_info
 Copying src\riposte_studio.egg-info to build\bdist.win-amd64\wheel\.\riposte_studio-0.5.0-py3.14.egg-info
 running install_scripts
 creating build\bdist.win-amd64\wheel\riposte_studio-0.5.0.dist-info\WHEEL
-creating 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\.tmp\\terminal-polish\\dist\\.tmp-p4kdpzzs\\riposte_studio-0.5.0-py3-none-any.whl' and adding 'build\\bdist.win-amd64\\wheel' to it
+creating 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\.tmp\\terminal-polish\\dist\\.tmp-k8uphii5\\riposte_studio-0.5.0-py3-none-any.whl' and adding 'build\\bdist.win-amd64\\wheel' to it
 adding 'riposte/__init__.py'
 adding 'riposte/__main__.py'
 adding 'riposte/agreement.py'

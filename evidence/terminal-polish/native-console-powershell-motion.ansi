@@ -39,8 +39,8 @@
                                                                              =-----------[K
     [1mRRRR   III  PPPP    OOO   SSSS  TTTTT  EEEEE[22m[19X[1m[19C/[22m----------./ -----.-----        
     [1mR   R   I   P   P  O   O  S       T    E    [22m               ----..:=------------- ----[K
-    [1mRRRR    I   PPPP   O   O   SSS    T    EEEE [22m          /-------.----.:.+..-------:--------       
-    [1mR  R    I   P      O   O      S   T    E    [22m  [1m>[22m      --------= /---------.+.::[1m/[22m- ---[K
+    [1mRRRR    I   PPPP   O   O   SSS    T    EEEE [22m          /------/-----.:.+..-------:--------       
+    [1mR  R    I   P      O   O      S   T    E    [22m  [1m>[22m      --------= /---------.+:::[1m/[22m- ---[K
     [1mR   R  III  P       OOO   SSSS    T    EEEEE[22m         ---------.-+.::=[1m=[22m --------[K
                                                           -------- --------[K
 [K
@@ -72,7 +72,7 @@
                                                                              =-----------[K
     [1mRRRR   III  PPPP    OOO   SSSS  TTTTT  EEEEE[22m[19X[1m[19C/[22m----------./ -----.-----        
     [1mR   R   I   P   P  O   O  S       T    E    [22m               ----..:=------------------[K
-    [1mRRRR    I   PPPP   O   O   SSS    T    EEEE [22m          /--------:---.::+..-------:--------       
+    [1mRRRR    I   PPPP   O   O   SSS    T    EEEE [22m          /-------.----.:.+..-------:--------       
     [1mR  R    I   P      O   O      S   T    E    [22m  -[1m>[22m     --------= /---------.+.::[1m/[22m- ---[K
     [1mR   R  III  P       OOO   SSSS    T    EEEEE[22m         ---------.-+.::=[1m=[22m --------[K
                                                           --------- -------[K
@@ -104,8 +104,8 @@
    Choose what you want to do. Each action works independently.[K
                                                                              =------------[K
     [1mRRRR   III  PPPP    OOO   SSSS  TTTTT  EEEEE[22m[19X[1m[19C/[22m----------.. -----.-----        
-    [1mR   R   I   P   P  O   O  S       T    E    [22m               ----..:==------------------[K
-    [1mRRRR    I   PPPP   O   O   SSS    T    EEEE [22m          /--------:----::+..-------:--------       
+    [1mR   R   I   P   P  O   O  S       T    E    [22m               ----..:=-------------------[K
+    [1mRRRR    I   PPPP   O   O   SSS    T    EEEE [22m          /--------:---.::+..-------:--------       
     [1mR  R    I   P      O   O      S   T    E    [22m  --[1m>[22m    --------= /---------...::[1m/[22m- ---[K
     [1mR   R  III  P       OOO   SSSS    T    EEEEE[22m         --- -----.-+.::.[1m=[22m --------[K
                                                           --------- -------[K
@@ -140,8 +140,8 @@
     [1mR   R   I   P   P  O   O  S       T    E    [22m               ----..:==------------------[K
     [1mRRRR    I   PPPP   O   O   SSS    T    EEEE [22m          /--------:----::+..-------:--------       
     [1mR  R    I   P      O   O      S   T    E    [22m  ---[1m>[22m   --------==/---------...::[1m/[22m-- --[K
-    [1mR   R  III  P       OOO   SSSS    T    EEEEE[22m         ---- ----.-+.::.[1m=[22m --------[K
-                                                          ---------- ------[K
+    [1mR   R  III  P       OOO   SSSS    T    EEEEE[22m         --- -----.-+.::.[1m=[22m --------[K
+                                                          --------- -------[K
 [K
    Choose an action, then browse images or folders.[K
   -- MAIN MENU -----------------------------------------------------------------------------------  
@@ -171,7 +171,7 @@
                                                                               ------------[K
     [1mRRRR   III  PPPP    OOO   SSSS  TTTTT  EEEEE[22m                   -.---------.. -----:-----        
     [1mR   R   I   P   P  O   O  S       T    E    [22m               ----..:.=------------------[K
-    [1mRRRR    I   PPPP   O   O   SSS    T    EEEE [22m          /---------:---::+..-------:--------       
+    [1mRRRR    I   PPPP   O   O   SSS    T    EEEE [22m          /--------:----::+..-------:--------       
     [1mR  R    I   P      O   O      S   T    E    [22m  ----[1m>[22m  --------==/---------...::[1m/[22m-- --[K
     [1mR   R  III  P       OOO   SSSS    T    EEEEE[22m         ---- ----.-+.::.[1m=[22m --------[K
                                                            --------- ------[K
@@ -202,10 +202,10 @@
   ------------------------------------------------------------------------------------------------  
    Choose what you want to do. Each action works independently.[K
                                                                               ------------[K
-    [1mRRRR   III  PPPP    OOO   SSSS  TTTTT  EEEEE[22m                   -.---------.+ -----:-----        
-    [1mR   R   I   P   P  O   O  S       T    E    [22m               ----..:+=------------------[K
+    [1mRRRR   III  PPPP    OOO   SSSS  TTTTT  EEEEE[22m                   -.---------.. -----:-----        
+    [1mR   R   I   P   P  O   O  S       T    E    [22m               ----..:.=------------------[K
     [1mRRRR    I   PPPP   O   O   SSS    T    EEEE [22m          /---------:---::...-------:--------       
-    [1mR  R    I   P      O   O      S   T    E    [22m  -----[1m>[22m --------==/---------...::[1m/[22m-- ---[K
+    [1mR  R    I   P      O   O      S   T    E    [22m  -----[1m>[22m --------==/---------...::[1m/[22m-- --[K
     [1mR   R  III  P       OOO   SSSS    T    EEEEE[22m         ----- ----.+.::.= --------[K
                                                            --------- ------[K
 [K
@@ -235,11 +235,11 @@
   ------------------------------------------------------------------------------------------------  
    Choose what you want to do. Each action works independently.[K
                                                                               ------------[K
-    [1mRRRR   III  PPPP    OOO   SSSS  TTTTT  EEEEE[22m                   -.---------.+/-----=-----        
+    [1mRRRR   III  PPPP    OOO   SSSS  TTTTT  EEEEE[22m                   -.---------.+/-----:-----        
     [1mR   R   I   P   P  O   O  S       T    E    [22m               ----..:+=------------------[K
     [1mRRRR    I   PPPP   O   O   SSS    T    EEEE [22m          /---------:---::...-------:--------       
     [1mR  R    I   P      O   O      S   T    E    [22m  ------[1m>[22m--------.=/---------...::[1m/[22m-- ---[K
-    [1mR   R  III  P       OOO   SSSS    T    EEEEE[22m         ----------.+.::.=[1m=[22m--------[K
+    [1mR   R  III  P       OOO   SSSS    T    EEEEE[22m         ----- ----.+.::.=[1m=[22m--------[K
                                                            ---------- -----[K
 [K
    Choose an action, then browse images or folders.[K
@@ -304,7 +304,7 @@
     [1mRRRR   III  PPPP    OOO   SSSS  TTTTT  EEEEE[22m                   -.---------:+/-----=-----        
     [1mR   R   I   P   P  O   O  S       T    E    [22m               ----...+[1m=[22m------------------[K
     [1mRRRR    I   PPPP   O   O   SSS    T    EEEE [22m          /---------:---.:...-------:--------       
-    [1mR  R    I   P      O   O      S   T    E    [22m  --------[1m>[22m-/----.=/---------...::[1m/[22m--- --[K
+    [1mR  R    I   P      O   O      S   T    E    [22m  --------[1m>[22m-/----.=/---------...::[1m/[22m-- ---[K
     [1mR   R  III  P       OOO   SSSS    T    EEEEE[22m         ----------.+.::.=[1m=[22m--------[K
                                                            ---------- -----[K
 [K
@@ -334,8 +334,8 @@
   ------------------------------------------------------------------------------------------------  
    Choose what you want to do. Each action works independently.[K
                                                                               =------------[K
-    [1mRRRR   III  PPPP    OOO   SSSS  TTTTT  EEEEE[22m[19X[1m[19C/[22m.----------+/-----=-----        
-    [1mR   R   I   P   P  O   O  S       T    E    [22m               -----..+[1m=[22m------------------[K
+    [1mRRRR   III  PPPP    OOO   SSSS  TTTTT  EEEEE[22m                   -.----------+/----==-----        
+    [1mR   R   I   P   P  O   O  S       T    E    [22m               ----...+[1m=[22m------------------[K
     [1mRRRR    I   PPPP   O   O   SSS    T    EEEE [22m          /---------:---.::..-------:--------       
     [1mR  R    I   P      O   O      S   T    E    [22m   --------[1m>[22m/----.=/---------...::[1m/[22m--- --[K
     [1mR   R  III  P       OOO   SSSS    T    EEEEE[22m         ----------.+.:::=[1m=[22m -------[K
@@ -534,7 +534,7 @@
                                                                                ------------[K
     [1mRRRR   III  PPPP    OOO   SSSS  TTTTT  EEEEE[22m                    .----------:/ ----=-----        
     [1mR   R   I   P   P  O   O  S       T    E    [22m               -----+..[1m=[22m-------------- ---[K
-    [1mRRRR    I   PPPP   O   O   SSS    T    EEEE [22m          ----------:---+::..-------:--------       
+    [1mRRRR    I   PPPP   O   O   SSS    T    EEEE [22m          /---------:---+::..-------:--------       
     [1mR  R    I   P      O   O      S   T    E    [22m        ---------[1m>[22m=/---------...::[1m/[22m--- --[K
     [1mR   R  III  P       OOO   SSSS    T    EEEEE[22m         ----------.+.:::== -------[K
                                                            ------------ ----[K
@@ -603,7 +603,7 @@
     [1mRRRR    I   PPPP   O   O   SSS    T    EEEE [22m          ----------:---+.:+.-------:--------       
     [1mR  R    I   P      O   O      S   T    E    [22m        ----------/[1m>[22m---------...::[1m/[22m--- --[K
     [1mR   R  III  P       OOO   SSSS    T    EEEEE[22m         ----------.+..::== -------[K
-                                                           ------------- ---[K
+                                                           ------------ ----[K
 [K
    Choose an action, then browse images or folders.[K
   -- MAIN MENU -----------------------------------------------------------------------------------  
@@ -631,7 +631,7 @@
   ------------------------------------------------------------------------------------------------  
    Choose what you want to do. Each action works independently.[K
                                                                                ------------[K
-    [1mRRRR   III  PPPP    OOO   SSSS  TTTTT  EEEEE[22m                    .----------:+-- ---=----        
+    [1mRRRR   III  PPPP    OOO   SSSS  TTTTT  EEEEE[22m                    .----------:/- ---------        
     [1mR   R   I   P   P  O   O  S       T    E    [22m               -----+..[1m=[22m-------------- ---[K
     [1mRRRR    I   PPPP   O   O   SSS    T    EEEE [22m          ----------:---+.:+.-------:--------       
     [1mR  R    I   P      O   O      S   T    E    [22m        ----------//[1m>[22m--------...::/--- --[K
@@ -664,7 +664,7 @@
   ------------------------------------------------------------------------------------------------  
    Choose what you want to do. Each action works independently.[K
                                                                                ------------[K
-    [1mRRRR   III  PPPP    OOO   SSSS  TTTTT  EEEEE[22m                    .----------.+--- --=----        
+    [1mRRRR   III  PPPP    OOO   SSSS  TTTTT  EEEEE[22m                    .----------:+--- --=----        
     [1mR   R   I   P   P  O   O  S       T    E    [22m               -----+..[1m=[22m-------------- ---[K
     [1mRRRR    I   PPPP   O   O   SSS    T    EEEE [22m          ----------:---+.:+.-------:--------       
     [1mR  R    I   P      O   O      S   T    E    [22m        ----/-----///[1m>[22m-------...::/--- --[K
@@ -696,8 +696,8 @@
 [K
   ------------------------------------------------------------------------------------------------  
    Choose what you want to do. Each action works independently.[K
-                                                                               =-----------[K
-    [1mRRRR   III  PPPP    OOO   SSSS  TTTTT  EEEEE[22m                    .-----------+---- -=----        
+                                                                               ------------[K
+    [1mRRRR   III  PPPP    OOO   SSSS  TTTTT  EEEEE[22m                    .----------.+---- -=----        
     [1mR   R   I   P   P  O   O  S       T    E    [22m               -----+..[1m=[22m-------------- ---[K
     [1mRRRR    I   PPPP   O   O   SSS    T    EEEE [22m          ----- ----:-[1m>[22m-+.:+.-------:--------       
     [1mR  R    I   P      O   O      S   T    E    [22m        ----/-----////-------...::/--- --[K
@@ -734,7 +734,7 @@
    not required.[K
 [K
 [K
-   C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-vb9v2a4m\Pictures[K
+   C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-dthpmd3r\Pictures[K
   -- FILES & FOLDERS -----------------------------------------------------------------------------  
    [1m>  1     Continue with 0 selected[22m[K
       2     ..  Parent folder[K
@@ -765,7 +765,7 @@
                                                                                =-----------[K
     [1mRRRR   III  PPPP    OOO   SSSS  TTTTT  EEEEE[22m                    .-----------:/---- =----        
     [1mR   R   I   P   P  O   O  S       T    E    [22m               -----:..[1m=[22m------------------[K
-    [1mRRRR    I   PPPP   O   O   SSS    T    EEEE [22m          ----------:-///[1m>[22m::.-------:--------       
+    [1mRRRR    I   PPPP   O   O   SSS    T    EEEE [22m          ------ ---:-//[1m>[22m.::.-------:--------       
     [1mR  R    I   P      O   O      S   T    E    [22m        ----/-----////-------...::/--- --[K
     [1mR   R  III  P       OOO   SSSS    T    EEEEE[22m         ----------.+.:::== -------[K
                                                            ------------- ---[K
@@ -797,7 +797,7 @@
    Choose what you want to do. Each action works independently.[K
                                                                                =-----------[K
     [1mRRRR   III  PPPP    OOO   SSSS  TTTTT  EEEEE[22m                    .-----------:/---- =----        
-    [1mR   R   I   P   P  O   O  S       T    E    [22m               -----:..[1m=[22m-------------------[K
+    [1mR   R   I   P   P  O   O  S       T    E    [22m               -----:..[1m=[22m------------------[K
     [1mRRRR    I   PPPP   O   O   SSS    T    EEEE [22m          ----------:-///[1m>[22m::.-------:--------       
     [1mR  R    I   P      O   O      S   T    E    [22m        ----/-----////-------...::/--- --[K
     [1mR   R  III  P       OOO   SSSS    T    EEEEE[22m         ----------.+.:::== -------[K
@@ -1169,7 +1169,7 @@
   |                                                                                              |  
   |                                                                                              |  
   |                                                                                              |  
-  |   C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-vb9v2a4m\missing[1m [22m                 |  
+  |   C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-dthpmd3r\missing[1m [22m                 |  
   |[76X[1m[76C^[22m                 |  
   |  Folder not found. Choose an existing folder.                                                |  
   |                                                                                              |  
@@ -1193,7 +1193,7 @@
    MAIN MENU / Riposte Sorter[K
 [K
    FOLDER[K
-   C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-vb9v2a4m\Pictures[K
+   C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-dthpmd3r\Pictures[K
 [K
 [K
   -- SORT ACTIONS --------------------------------------------------------------------------------  
@@ -1229,7 +1229,7 @@
    requires REPLACE.[K
 [K
 [K
-   C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-vb9v2a4m\Pictures[K
+   C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-dthpmd3r\Pictures[K
   -- FOLDERS -------------------------------------------------------------------------------------  
    [1m>  1     Use this folder[22m[K
       2     ..  Parent folder[K
@@ -1262,7 +1262,7 @@
    requires REPLACE.[K
 [K
 [K
-   C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-vb9v2a4m\Pictures[K
+   C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-dthpmd3r\Pictures[K
   -- FOLDERS -------------------------------------------------------------------------------------  
       1     Use this folder[K
    [1m>  2     ..  Parent folder[22m[K
@@ -1295,7 +1295,7 @@
    requires REPLACE.[K
 [K
 [K
-   C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-vb9v2a4m\Pictures[K
+   C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-dthpmd3r\Pictures[K
   -- FOLDERS -------------------------------------------------------------------------------------  
       1     Use this folder[K
       2     ..  Parent folder[K
@@ -1328,7 +1328,7 @@
    requires REPLACE.[K
 [K
 [K
-   C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-vb9v2a4m\Pictures[K
+   C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-dthpmd3r\Pictures[K
   -- FOLDERS -------------------------------------------------------------------------------------  
       1     Use this folder[K
       2     ..  Parent folder[K
@@ -1361,7 +1361,7 @@
    requires REPLACE.[K
 [K
 [K
-   C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-vb9v2a4m\Pictures[K
+   C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-dthpmd3r\Pictures[K
   -- FOLDERS -------------------------------------------------------------------------------------  
       1     Use this folder[K
       2     ..  Parent folder[K
@@ -1394,7 +1394,7 @@
    requires REPLACE.[K
 [K
 [K
-   C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-vb9v2a4m\Pictures\folder-00[K
+   C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-dthpmd3r\Pictures\folder-00[K
   -- FOLDERS -------------------------------------------------------------------------------------  
    [1m>  1     Use this folder[22m[K
       2     ..  Parent folder[K
@@ -1427,7 +1427,7 @@
    requires REPLACE.[K
 [K
 [K
-   C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-vb9v2a4m\Pictures[K
+   C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-dthpmd3r\Pictures[K
   -- FOLDERS -------------------------------------------------------------------------------------  
       1     Use this folder[K
       2     ..  Parent folder[K
@@ -1460,7 +1460,7 @@
    requires REPLACE.[K
 [K
 [K
-   C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-vb9v2a4m\Pictures[K
+   C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-dthpmd3r\Pictures[K
   -- FOLDERS -------------------------------------------------------------------------------------  
      17     folder-14/[K
      18     folder-15/[K
@@ -1493,7 +1493,7 @@
    requires REPLACE.[K
 [K
 [K
-   C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-vb9v2a4m\Pictures[K
+   C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-dthpmd3r\Pictures[K
   -- FOLDERS -------------------------------------------------------------------------------------  
       1     Use this folder[K
       2     ..  Parent folder[K
@@ -1526,7 +1526,7 @@
    requires REPLACE.[K
 [K
 [K
-   C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-vb9v2a4m\Pictures[K
+   C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-dthpmd3r\Pictures[K
   -- FOLDERS -------------------------------------------------------------------------------------  
    [1m>  1     Use this folder[22m[K
       2     ..  Parent folder[K
@@ -1559,7 +1559,7 @@
    requires REPLACE.[K
 [K
 [K
-   C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-vb9v2a4m\Pictures\folder-23[K
+   C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-dthpmd3r\Pictures\folder-23[K
   -- FOLDERS -------------------------------------------------------------------------------------  
    [1m>  1     Use this folder[22m[K
       2     ..  Parent folder[K
@@ -1625,10 +1625,11 @@
    requires REPLACE.[K
 [K
 [K
-   C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-vb9v2a4m\Pictures\folder-39[K
+   C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-dthpmd3r\Pictures\folder-39[K
   -- FOLDERS -------------------------------------------------------------------------------------  
    [1m>  1     Use this folder[22m[K
       2     ..  Parent folder[K
+      3     __float__/[K
 [K
 [K
 [K
@@ -1642,8 +1643,7 @@
 [K
 [K
 [K
-[K
-   Rows 1-2/2   |   s uses the highlighted folder[K
+   Rows 1-3/3   |   s uses the highlighted folder[K
    Selection is read-only. Enter on the first row confirms your choice.[K
   ------------------------------------------------------------------------------------------------  
    [1m[Enter][22m Open / choose   [1m[s][22m Use folder   [1m[Esc][22m Cancel   [1m[g][22m Go to path   [1m[Backspace][22m Parent      
@@ -1655,7 +1655,7 @@
    MAIN MENU / Riposte Sorter[K
 [K
    FOLDER[K
-   C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-vb9v2a4m\Pictures\folder-39[K
+   C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-dthpmd3r\Pictures\folder-39[K
 [K
 [K
   -- SORT ACTIONS --------------------------------------------------------------------------------  
@@ -1755,7 +1755,7 @@
 [K
    [1mFULL SORT WORKSHOP[22m[K
    INSPECT[K
-   Folder: C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-vb9v2a4m\Pictures\folder-39     
+   Folder: C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-dthpmd3r\Pictures\folder-39     
   ------------------------------------------------------------------------------------------------  
     [1m> Date basis[22m              download                              FIELD / CONTEXT[K
       Discard metadata sideca [ ] OFF[K
@@ -1787,7 +1787,7 @@
    MAIN MENU / Riposte Sorter[K
 [K
    FOLDER[K
-   C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-vb9v2a4m\Pictures\folder-39[K
+   C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-dthpmd3r\Pictures\folder-39[K
 [K
 [K
   -- SORT ACTIONS --------------------------------------------------------------------------------  
@@ -1886,7 +1886,7 @@
    MAIN MENU / Riposte Sorter[K
 [K
    FOLDER[K
-   C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-vb9v2a4m\Pictures\folder-39[K
+   C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-dthpmd3r\Pictures\folder-39[K
 [K
 [K
   -- SORT ACTIONS --------------------------------------------------------------------------------  
@@ -1913,17 +1913,215 @@
    [1m[Enter][22m Choose   [1m[1/2/3][22m Choose   [1m[g][22m Enter Path   [1m[b][22m Browse   [1m[u][22m Undo   [1m[Esc][22m Back[K
    [1m[F1][22m Help[K
                                                                                                     [34;201H[H[K
+   [1mR I P O S T E[22m    /  Riposte Sorter                                       LOCAL   /   v0.5.0      
+[K
+  ------------------------------------------------------------------------------------------------  
+   MAIN MENU / Riposte Sorter[K
+[K
+   FOLDER[K
+   C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-dthpmd3r\Pictures\folder-39[K
+[K
+[K
+  +- EDIT / ENTER PATH --------------------------------------------------------------------------+  
+  |                                                                                              |  
+  |  Paste an existing image folder. Quotes are accepted. Esc keeps the current folder.          |  
+  |                                                                                              |  
+  |                                                                                              |  
+  |                                                                                              |  
+  |   [1m [22m                                                                                          |  
+  |   [1m^[22m                                                                                          |  
+  |                                                                                              |  
+  |                                                                                              |  
+  |  [Enter] save   [Esc] discard   [Ctrl+U] clear                                               |  
+  |                                                                                              |  
+  +----------------------------------------------------------------------------------------------+  
+[K
+[K
+[K
+[K
+[K
+[K
+   Paste an existing image folder. Quotes are accepted. Esc keeps the current folder.[K
+  ------------------------------------------------------------------------------------------------  
+   [1m[Enter][22m Save   [1m[Esc][22m Discard   [1m[Ctrl+U][22m Clear   [1m[F1][22m Help[K
+[K
+                                                                                                    [34;201H[H[K
+   [1mR I P O S T E[22m    /  Riposte Sorter                                       LOCAL   /   v0.5.0      
+[K
+  ------------------------------------------------------------------------------------------------  
+   MAIN MENU / Riposte Sorter[K
+[K
+   FOLDER[K
+   C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-dthpmd3r\Pictures\folder-39\__float__   
+[K
+[K
+  -- SORT ACTIONS --------------------------------------------------------------------------------  
+      1. Sort           Review the plan, then confirm REPLACE[K
+[K
+    [1m> 2. Dry Run[22m        Inspect destinations; change nothing[K
+[K
+      3. Enter Path     Paste the folder to sort[K
+[K
+   Year / Month / img-or-vid / Category / Size[K
+   _float_ / __float__: never sorted; RIPOSTE allowed.[K
+   Download dates; saved category rules; unmatched titles go to Uncategorized. Images become        
+   date-only PNGs; videos keep their bytes. Originals stay in private undo history. Sidecars        
+   require Full Sort Workshop consent.[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+   Subfolders included; float storage excluded. Sort previews first.[K
+  ------------------------------------------------------------------------------------------------  
+   [1m[Enter][22m Choose   [1m[1/2/3][22m Choose   [1m[g][22m Enter Path   [1m[b][22m Browse   [1m[u][22m Undo   [1m[Esc][22m Back[K
+   [1m[F1][22m Help[K
+                                                                                                    [34;201H[H[K
+   [1mR I P O S T E[22m    /  ACTIVE OPERATION                                     LOCAL   /   v0.5.0      
+[K
+  ------------------------------------------------------------------------------------------------  
+   MAIN MENU / ACTIVE OPERATION[K
+[K
+   [1mRUNNING / ORGANIZE[22m[K
+[K
+[K
+   [1mStarting operation[22m[K
+[K
+[K
+[K
+   ENGINE COUNT      not reported yet[K
+[K
+   ELAPSED           0.0s[K
+[K
+[K
+[K
+   .........................................---=>................................................   
+   ACTIVITY TRACE / engine counts are reported separately above[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+  ------------------------------------------------------------------------------------------------  
+   [1m[Esc][22m Request stop   [1m[F1][22m Help[K
+[K
+                                                                                                    [34;201H[H[K
+   [1mR I P O S T E[22m    /  Riposte Sorter / Stopped                             LOCAL   /   v0.5.0      
+[K
+  ------------------------------------------------------------------------------------------------  
+   MAIN MENU / Riposte Sorter / Stopped[K
+[K
+   [1m[STOPPED]  OPERATION NEEDS ATTENTION[22m[K
+[K
+   [1mSort float root[22m[K
+[K
+[K
+  -- NEXT ACTION ---------------------------------------------------------------------------------  
+[K
+   This folder is inside _float_ or __float__ and is excluded from sorting. Choose its outside      
+   parent to sort other files, or use RIPOSTE to protect these images.[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+   CODE / SORT_FLOAT_ROOT[K
+   Read the next action above. Enter returns without retrying.[K
+  ------------------------------------------------------------------------------------------------  
+   [1m[Enter][22m Return   [1m[g][22m Enter Path   [1m[Esc][22m Back   [1m[F1][22m Help[K
+[K
+                                                                                                    [34;201H[H[K
+   [1mR I P O S T E[22m    /  Riposte Sorter                                       LOCAL   /   v0.5.0      
+[K
+  ------------------------------------------------------------------------------------------------  
+   MAIN MENU / Riposte Sorter[K
+[K
+   FOLDER[K
+   C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-dthpmd3r\Pictures\folder-39\__float__   
+[K
+[K
+  +- EDIT / ENTER PATH --------------------------------------------------------------------------+  
+  |                                                                                              |  
+  |  Paste an existing image folder. Quotes are accepted. Esc keeps the current folder.          |  
+  |                                                                                              |  
+  |                                                                                              |  
+  |                                                                                              |  
+  |   [1m [22m                                                                                          |  
+  |   [1m^[22m                                                                                          |  
+  |                                                                                              |  
+  |                                                                                              |  
+  |  [Enter] save   [Esc] discard   [Ctrl+U] clear                                               |  
+  |                                                                                              |  
+  +----------------------------------------------------------------------------------------------+  
+[K
+[K
+[K
+[K
+[K
+[K
+   Paste an existing image folder. Quotes are accepted. Esc keeps the current folder.[K
+  ------------------------------------------------------------------------------------------------  
+   [1m[Enter][22m Save   [1m[Esc][22m Discard   [1m[Ctrl+U][22m Clear   [1m[F1][22m Help[K
+[K
+                                                                                                    [34;201H[H[K
+   [1mR I P O S T E[22m    /  Riposte Sorter                                       LOCAL   /   v0.5.0      
+[K
+  ------------------------------------------------------------------------------------------------  
+   MAIN MENU / Riposte Sorter[K
+[K
+   FOLDER[K
+   C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-dthpmd3r\Pictures\folder-39[K
+[K
+[K
+  -- SORT ACTIONS --------------------------------------------------------------------------------  
+    [1m> 1. Sort[22m           Review the plan, then confirm REPLACE[K
+[K
+      2. Dry Run        Inspect destinations; change nothing[K
+[K
+      3. Enter Path     Paste the folder to sort[K
+[K
+   Year / Month / img-or-vid / Category / Size[K
+   _float_ / __float__: never sorted; RIPOSTE allowed.[K
+   Download dates; saved category rules; unmatched titles go to Uncategorized. Images become        
+   date-only PNGs; videos keep their bytes. Originals stay in private undo history. Sidecars        
+   require Full Sort Workshop consent.[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+   Subfolders included; float storage excluded. Sort previews first.[K
+  ------------------------------------------------------------------------------------------------  
+   [1m[Enter][22m Choose   [1m[1/2/3][22m Choose   [1m[g][22m Enter Path   [1m[b][22m Browse   [1m[u][22m Undo   [1m[Esc][22m Back[K
+   [1m[F1][22m Help[K
+                                                                                                    [34;201H[H[K
    [1mR I P O S T E[22m    /  MAIN MENU                                            LOCAL   /   v0.5.0      
 [K
   ------------------------------------------------------------------------------------------------  
    Choose what you want to do. Each action works independently.[K
 [82X[1m[82C=[22m--------[K
     [1mRRRR   III  PPPP    OOO   SSSS  TTTTT  EEEEE[22m                    .-----------------[1m=[22m-----        
-    [1mR   R   I   P   P  O   O  S       T    E    [22m              /-----.+:=-------------- =-----       
-    [1mRRRR    I   PPPP   O   O   SSS    T    EEEE [22m          /----[1m=[22m ---:-/[1m>[22m+::---------:------[K
-    [1mR  R    I   P      O   O      S   T    E    [22m        ----/-----////-----::..:/ ----[K
-    [1mR   R  III  P       OOO   SSSS    T    EEEEE[22m         ------:----.=-------- ---[K
-                                                           -----------[K
+    [1mR   R   I   P   P  O   O  S       T    E    [22m              /-----.+:=---------------------       
+    [1mRRRR    I   PPPP   O   O   SSS    T    EEEE [22m          /----[1m=[22m----:-///////[1m>[22m------.--- --[K
+    [1mR  R    I   P      O   O      S   T    E    [22m        ----/----+[1m=[22m/-/-----:..+: -----[K
+    [1mR   R  III  P       OOO   SSSS    T    EEEEE[22m         ----------+=----- ------[K
+                                                           ----------[K
 [K
    Choose an action, then browse images or folders.[K
   -- MAIN MENU -----------------------------------------------------------------------------------  
@@ -1953,7 +2151,7 @@
 [K
    [1mFULL SORT WORKSHOP[22m[K
    INSPECT[K
-   Folder: C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-vb9v2a4m\Pictures\folder-39     
+   Folder: C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-dthpmd3r\Pictures\folder-39     
   ------------------------------------------------------------------------------------------------  
     [1m> Date basis[22m              download                              FIELD / CONTEXT[K
       Discard metadata sideca [ ] OFF[K
@@ -1986,7 +2184,7 @@
 [K
    [1mFULL SORT WORKSHOP[22m[K
    INSPECT[K
-   Folder: C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-vb9v2a4m\Pictures\folder-39     
+   Folder: C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-dthpmd3r\Pictures\folder-39     
   ------------------------------------------------------------------------------------------------  
   +- EDIT / ENTER PATH --------------------------------------------------------------------------+  
   |                                                                                              |  
@@ -2019,7 +2217,7 @@
 [K
    [1mFULL SORT WORKSHOP[22m[K
    INSPECT[K
-   Folder: C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-vb9v2a4m\Pictures[K
+   Folder: C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-dthpmd3r\Pictures[K
   ------------------------------------------------------------------------------------------------  
     [1m> Date basis[22m              download                              FIELD / CONTEXT[K
       Discard metadata sideca [ ] OFF[K
@@ -2049,13 +2247,13 @@
 [K
   ------------------------------------------------------------------------------------------------  
    Choose what you want to do. Each action works independently.[K
-[82X[1m[82C=[22m--------[K
-    [1mRRRR   III  PPPP    OOO   SSSS  TTTTT  EEEEE[22m                    .-----------------[1m=[22m-----        
-    [1mR   R   I   P   P  O   O  S       T    E    [22m              /-----.+:=---------------=-----       
-    [1mRRRR    I   PPPP   O   O   SSS    T    EEEE [22m          /----[1m=[22m----:-/////[1m>[22m--------.--- --[K
-    [1mR  R    I   P      O   O      S   T    E    [22m        ----/----+[1m=[22m///-----:+..: -----[K
-    [1mR   R  III  P       OOO   SSSS    T    EEEEE[22m         ----------+= ----- -----[K
-                                                           -----------[K
+                                                                                  ------ --[K
+    [1mRRRR   III  PPPP    OOO   SSSS  TTTTT  EEEEE[22m                    .-------------/---:-----        
+    [1mR   R   I   P   P  O   O  S       T    E    [22m              /-----.+:=------///[1m>[22m----[1m=[22m------       
+    [1mRRRR    I   PPPP   O   O   SSS    T    EEEE [22m          /----[1m=[22m----:---://///------/-- --[K
+    [1mR  R    I   P      O   O      S   T    E    [22m        ---------[1m==[22m/-------..:+ -----[K
+    [1mR   R  III  P       OOO   SSSS    T    EEEEE[22m         ----- ---:- -- --------[K
+                                                           ----------[K
 [K
    Choose an action, then browse images or folders.[K
   -- MAIN MENU -----------------------------------------------------------------------------------  
@@ -2087,7 +2285,7 @@
    not required.[K
 [K
 [K
-   C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-vb9v2a4m\Pictures[K
+   C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-dthpmd3r\Pictures[K
   -- FILES & FOLDERS -----------------------------------------------------------------------------  
    [1m>  1     Continue with 0 selected[22m[K
       2     ..  Parent folder[K
@@ -2120,7 +2318,7 @@
    not required.[K
 [K
 [K
-   C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-vb9v2a4m\Pictures[K
+   C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-dthpmd3r\Pictures[K
   -- FILES & FOLDERS -----------------------------------------------------------------------------  
    [1m>  1     Continue with 1 selected[22m[K
       2     ..  Parent folder[K
@@ -2153,7 +2351,7 @@
    selected originals stay unchanged.[K
 [K
 [K
-   C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-vb9v2a4m\Pictures[K
+   C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-dthpmd3r\Pictures[K
   -- FOLDERS -------------------------------------------------------------------------------------  
    [1m>  1     Use this folder[22m[K
       2     ..  Parent folder[K
@@ -2186,7 +2384,7 @@
    not required.[K
 [K
 [K
-   C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-vb9v2a4m\Pictures[K
+   C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-dthpmd3r\Pictures[K
   -- FILES & FOLDERS -----------------------------------------------------------------------------  
    [1m>  1     Continue with 1 selected[22m[K
       2     ..  Parent folder[K
@@ -2215,12 +2413,12 @@
   ------------------------------------------------------------------------------------------------  
    Choose what you want to do. Each action works independently.[K
                                                                                   ------ --[K
-    [1mRRRR   III  PPPP    OOO   SSSS  TTTTT  EEEEE[22m                    .-------------/---:-----        
-    [1mR   R   I   P   P  O   O  S       T    E    [22m              /-----.+:=------///[1m>[22m----[1m=[22m------       
-    [1mRRRR    I   PPPP   O   O   SSS    T    EEEE [22m          /----[1m=[22m----:---://///------/-- --[K
-    [1mR  R    I   P      O   O      S   T    E    [22m        ---------[1m==[22m/-------..:+=-----[K
-    [1mR   R  III  P       OOO   SSSS    T    EEEEE[22m         ----- ---:-=-- --------[K
-                                                           ----------[K
+    [1mRRRR   III  PPPP    OOO   SSSS  TTTTT  EEEEE[22m                    .-------------/---//[1m>[22m---        
+    [1mR   R   I   P   P  O   O  S       T    E    [22m              /-----.+:---------//////-------       
+    [1mRRRR    I   PPPP   O   O   SSS    T    EEEE [22m          /---- -/-----.:.=---------/-----[K
+    [1mR  R    I   P      O   O      S   T    E    [22m        ----/----- /-------+:+=------[K
+    [1mR   R  III  P       OOO   SSSS    T    EEEEE[22m         -------.--- ----------[K
+                                                           ------- --[K
 [K
    Choose an action, then browse images or folders.[K
   -- MAIN MENU -----------------------------------------------------------------------------------  
@@ -2252,7 +2450,7 @@
    originals requires REPLACE.[K
 [K
 [K
-   C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-vb9v2a4m\Pictures[K
+   C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-dthpmd3r\Pictures[K
   -- FOLDERS -------------------------------------------------------------------------------------  
    [1m>  1     Use this folder[22m[K
       2     ..  Parent folder[K
@@ -2281,12 +2479,12 @@
   ------------------------------------------------------------------------------------------------  
    Choose what you want to do. Each action works independently.[K
                                                                                   ------ --[K
-    [1mRRRR   III  PPPP    OOO   SSSS  TTTTT  EEEEE[22m                    .-------------/---.-----        
-    [1mR   R   I   P   P  O   O  S       T    E    [22m              /-----.+:=------/////[1m>[22m--+------       
-    [1mRRRR    I   PPPP   O   O   SSS    T    EEEE [22m          /----[1m=[22m---:----::=///------/-----[K
-    [1mR  R    I   P      O   O      S   T    E    [22m        ---------[1m==[22m/-------..:. -----[K
-    [1mR   R  III  P       OOO   SSSS    T    EEEEE[22m         ---- ----:-- ----------[K
-                                                           ---------[K
+    [1mRRRR   III  PPPP    OOO   SSSS  TTTTT  EEEEE[22m                    .-------------/---////[1m>[22m-        
+    [1mR   R   I   P   P  O   O  S       T    E    [22m               -----.+:-----------////-------       
+    [1mRRRR    I   PPPP   O   O   SSS    T    EEEE [22m          ---------:---+:.=--------- -----[K
+    [1mR  R    I   P      O   O      S   T    E    [22m        ----/----[1m=[22m-/-------.:=------[K
+    [1mR   R  III  P       OOO   SSSS    T    EEEEE[22m          ------+-------------[K
+                                                           ----- ---[K
 [K
    Choose an action, then browse images or folders.[K
   -- MAIN MENU -----------------------------------------------------------------------------------  

@@ -73,7 +73,7 @@
     "src/riposte/terminal/app.py": "4c88c6cf13391bb6ec0e50987109909fa5a517cef2f47fc817003fe44be84bd0",
     "src/riposte/terminal/controller.py": "4621383508b3dab5ad6309d9a937691d1c63207ff0e11f5e81b66b644ee0c16d",
     "src/riposte/terminal/help.py": "a8602fc471cc001809b87d9e3145096914229e4ddaef7271cacfbba739c6dd8f",
-    "src/riposte/terminal/interaction.py": "248b19ec6734f41a90e851536faeb3ccaa6b19c9d4e60fa0b5595e71c6d01406",
+    "src/riposte/terminal/interaction.py": "798a14bba0e1358c025076cde012338d80b608d85ab96aa6b87d255060105fef",
     "src/riposte/terminal/jobs.py": "7379a480bac85385b9df4194534e54e8cd2d101df54f24f0877f78195ed9a468",
     "src/riposte/terminal/keyboard.py": "dd71262467037c66addd4aed0a73175e90fee133d2d05bbd6d3494bf9483ee01",
     "src/riposte/terminal/material.py": "522d5080177faae021905b94851bf3836bb2c18805a38d0a1d56b8402f5cebeb",

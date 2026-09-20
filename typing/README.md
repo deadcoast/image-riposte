@@ -3,10 +3,24 @@
 Current project/milestone status is in [PROJECT-STATUS.md](../docs/PROJECT-STATUS.md).
 The Markdown audit is active and the PACER CSV TODO is frozen. This guide's
 current counts come from `evidence/verification.json`; earlier task records below
-remain historical. On 2026-09-19 all 66 application hashes and 478 source/stub
+remain historical. On 2026-09-20 all 66 application hashes and 479 source/stub
 signatures were checked by the full external contract suite, which passed.
-The separate fresh implementation audit reports 782 diagnostics in 36 of 59
+The separate fresh implementation audit reports 785 diagnostics in 36 of 59
 Python files. Strict settings are unchanged; the source tree remains unclean.
+
+The terminal polish and float-storage review admits ten changed source owners
+against the direction-reversal snapshot in `source-reviewed-terminal-polish.json`.
+The sole new function is `policy.sort_excluded(directory: Path) -> bool`, shared
+by sort discovery/planning and intentionally absent from protection intake.
+`FLOAT_DIRECTORIES` exposes the two exact case-insensitive names. `Editor` adds
+the optional `error_message` field after its existing constructor parameters.
+Existing operation/report signatures remain unchanged. The other changes cover
+focus/paging, read-only preview responsiveness, consumed confirmations, accurate
+result actions and bounded rendering. Contracts preserve all 13 negative-consumer
+diagnostics. Three additional raw-source diagnostics are calls into existing
+untyped `hints`, `Surface.text` and `contextual_help`; no ignore, dynamic declaration
+or configuration relaxation was added. Earlier raw evidence and the normalized
+difference are retained under `../evidence/terminal-polish/`.
 
 The subsequent direction-reversal repair changes only `terminal/keyboard.py`:
 Windows extended keys consume their cached second code immediately. The obsolete

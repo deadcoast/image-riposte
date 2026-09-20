@@ -53,5 +53,11 @@ with tempfile.TemporaryDirectory(prefix="riposte-polish-capture-") as folder:
         controller.key(Key("char", "REPLACE")); controller.key(Key("enter")); finish(controller)
         capture(controller, "stale-preview")
         assert source.read_bytes() == b"changed after preview"
+        controller.key(Key("char", "g"))
+        held = root / "__float__"; held.mkdir()
+        controller.key(Key("paste", str(held))); controller.key(Key("enter"))
+        controller.key(Key("char", "1")); finish(controller)
+        capture(controller, "float-root")
+        assert list(held.iterdir()) == []
     finally:
         controller.shutdown()

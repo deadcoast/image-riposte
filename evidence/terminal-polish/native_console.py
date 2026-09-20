@@ -47,6 +47,7 @@ def main(entry='powershell', trace=False, motion=False):
     (fixture / 'Pictures' / 'sample.png').write_bytes(b'synthetic unchanged input')
     for n in range(40): (fixture / 'Pictures' / f'folder-{n:02d}').mkdir()
     (fixture / 'Pictures' / 'folder-39' / 'painting.xmp').write_text('synthetic retained metadata')
+    (fixture / 'Pictures' / 'folder-39' / '__float__').mkdir()
     before = {str(p.relative_to(fixture)): p.read_bytes() for p in fixture.rglob('*') if p.is_file()}
     kernel = c.WinDLL('kernel32', use_last_error=True)
     signatures = {
@@ -197,6 +198,12 @@ raise SystemExit(main(['--no-animation', 'ui']))
         offset = send('2'); expect('[Enter] Return', offset)
         offset = send('\r'); expect('SORT ACTIONS', offset)
         passed.append('Nested g and s select the folder; blocked Dry Run opens Workshop directly or returns without a write')
+        offset = send('g'); expect('EDIT / ENTER PATH', offset)
+        offset = send(str(fixture / 'Pictures' / 'folder-39' / '__float__') + '\r'); expect('SORT ACTIONS', offset)
+        offset = send('1'); expect('SORT_FLOAT_ROOT', offset); expect('[g] Enter Path', offset)
+        offset = send('g'); expect('EDIT / ENTER PATH', offset)
+        offset = send(str(fixture / 'Pictures' / 'folder-39') + '\r'); expect('SORT ACTIONS', offset)
+        passed.append('Direct float-folder sorting is refused before writes and g recovers to a sortable folder')
         # A static page must not repeatedly repaint while idle.
         time.sleep(.2)
         idle_start = len(b''.join(chunks))

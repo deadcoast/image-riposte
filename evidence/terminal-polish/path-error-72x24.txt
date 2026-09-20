@@ -9,7 +9,7 @@
   |  the current folder.                                             |  
   |                                                                  |  
   |                                                                  |  
-  |   a\Local\Temp\riposte-polish-capture-v206lg1s\missing-folder    |  
+  |   a\Local\Temp\riposte-polish-capture-uiarey6v\missing-folder    |  
   |                                                              ^   |  
   |  Folder not found. Choose an existing folder.                    |  
   |                                                                  |  

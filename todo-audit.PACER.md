@@ -14,7 +14,7 @@ INFERRED: keep all four connected CSVs byte-identical during catch-up, so recipr
 links cannot advance TODO indirectly. Reconcile them together through guarded
 PACER commands only at the completion milestone.
 
-### Terminal polish pass / 2026-09-20 / in progress
+### Terminal polish and float-storage exclusion / 2026-09-20 / bounded work complete
 
 USER (original wording): "PROVIDE ANOTHER POLISH PASS ON THE UI AND OPERATION."
 
@@ -55,8 +55,49 @@ process excluded images without sorting them. Do not treat similarly named
 files or directories as excluded. Preserve explicit undo for existing journals.
 OBSERVED source ownership: organizer OVR-021, policy OVR-022, category_sort
 OVR-1249, title_categories OVR-1080; sort_plan is still unregistered during the
-freeze. Next: verify exclusion before reads/mutations and complete both scopes'
-source, tests, documentation, contracts and package evidence.
+freeze.
+
+Implemented: visible-row paging and parent focus restoration, actionable path
+errors, blocked/no-change result actions, direct workshop recovery, consumed
+confirmation/preview navigation (including undo), bound-folder confirmation and
+working help/command views. Read-only sort previews omit publishing-history reads.
+Error/result copy and the 72x24 layout were reviewed using production cell renders.
+
+Implemented float scope in the shared policy and sorter: both names are pruned
+before media inspection, excluded from discovery/audit, and protected from a
+direct sort rooted inside them. Near-matching names and files are not excluded.
+Standalone intake remains unchanged; synthetic real-codec CPU runs protect images
+from both names with results either outside or inside float storage. Combined
+sorting protects its eligible sorted inputs and leaves float contents intact.
+No real user artwork was processed. Existing explicit undo journals are preserved.
+
+Evidence: `evidence/terminal-polish/README.md` links retained failures, exact
+commands and limits. Initial polish: 13 regressions reproduced. Initial float:
+19 failures / 4 passes. First corrected float/workflow run: 78 passes and two
+date-fixture assertion failures; the fixture now explicitly selects modified
+dates. Final affected suite: **295 passed, 4 POSIX skips**. Broader run:
+**1,400 passed, 9 skips, 2 deselected**; both native browser scenarios passed
+separately outside the sandbox. The broader run precedes only the last stopped-
+result context-copy correction, covered by final affected checks/captures.
+Actual Windows ConPTY START.ps1 / START.cmd pass isolated keys, reversals,
+selection, paging, path correction, workshop and float-root recovery, and exit.
+The user's actual VS Code window was not controlled. No POSIX, real large-library,
+GPU/pretrained-model, protection-efficacy or clean-install qualification is implied.
+
+Contract review admits exactly ten changed source owners against the prior
+keyboard snapshot. All seven external stages pass: **479 signatures, 56 leaf
+modules, 66 source files**, with all 13 negative diagnostics. Raw-source mypy
+remains FAIL at **785 errors / 36 of 59 files**, up three calls into existing
+untyped UI helpers; no suppression/configuration relaxation. Earlier evidence and
+the diagnostic difference are retained. Fresh wheel/sdist bytes match all 66
+reviewed files. The static web scanner retains 66 findings on unchanged browser
+source and does not scan terminal controls; no clean static-audit claim.
+
+All four CSV hashes match; read-only PACER validation remains valid with the same
+eleven stale historical evidence records. **Next milestone work:** reconcile
+new/changed symbols, tests, requirements and evidence through guarded commands
+when the Markdown audit is complete. This bounded pass does not close the wider
+audit or lift the register freeze; PAC-034 stays shelved.
 
 ### Repository review checkpoint / before PAC-029 implementation
 

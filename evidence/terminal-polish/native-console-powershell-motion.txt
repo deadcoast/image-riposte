@@ -39,8 +39,8 @@
                                                                              =-----------
     RRRR   III  PPPP    OOO   SSSS  TTTTT  EEEEE/----------./ -----.-----        
     R   R   I   P   P  O   O  S       T    E                   ----..:=------------- ----
-    RRRR    I   PPPP   O   O   SSS    T    EEEE           /-------.----.:.+..-------:--------       
-    R  R    I   P      O   O      S   T    E      >      --------= /---------.+.::/- ---
+    RRRR    I   PPPP   O   O   SSS    T    EEEE           /------/-----.:.+..-------:--------       
+    R  R    I   P      O   O      S   T    E      >      --------= /---------.+:::/- ---
     R   R  III  P       OOO   SSSS    T    EEEEE         ---------.-+.::== --------
                                                           -------- --------
 
@@ -72,7 +72,7 @@
                                                                              =-----------
     RRRR   III  PPPP    OOO   SSSS  TTTTT  EEEEE/----------./ -----.-----        
     R   R   I   P   P  O   O  S       T    E                   ----..:=------------------
-    RRRR    I   PPPP   O   O   SSS    T    EEEE           /--------:---.::+..-------:--------       
+    RRRR    I   PPPP   O   O   SSS    T    EEEE           /-------.----.:.+..-------:--------       
     R  R    I   P      O   O      S   T    E      ->     --------= /---------.+.::/- ---
     R   R  III  P       OOO   SSSS    T    EEEEE         ---------.-+.::== --------
                                                           --------- -------
@@ -104,8 +104,8 @@
    Choose what you want to do. Each action works independently.
                                                                              =------------
     RRRR   III  PPPP    OOO   SSSS  TTTTT  EEEEE/----------.. -----.-----        
-    R   R   I   P   P  O   O  S       T    E                   ----..:==------------------
-    RRRR    I   PPPP   O   O   SSS    T    EEEE           /--------:----::+..-------:--------       
+    R   R   I   P   P  O   O  S       T    E                   ----..:=-------------------
+    RRRR    I   PPPP   O   O   SSS    T    EEEE           /--------:---.::+..-------:--------       
     R  R    I   P      O   O      S   T    E      -->    --------= /---------...::/- ---
     R   R  III  P       OOO   SSSS    T    EEEEE         --- -----.-+.::.= --------
                                                           --------- -------
@@ -140,8 +140,8 @@
     R   R   I   P   P  O   O  S       T    E                   ----..:==------------------
     RRRR    I   PPPP   O   O   SSS    T    EEEE           /--------:----::+..-------:--------       
     R  R    I   P      O   O      S   T    E      --->   --------==/---------...::/-- --
-    R   R  III  P       OOO   SSSS    T    EEEEE         ---- ----.-+.::.= --------
-                                                          ---------- ------
+    R   R  III  P       OOO   SSSS    T    EEEEE         --- -----.-+.::.= --------
+                                                          --------- -------
 
    Choose an action, then browse images or folders.
   -- MAIN MENU -----------------------------------------------------------------------------------  
@@ -171,7 +171,7 @@
                                                                               ------------
     RRRR   III  PPPP    OOO   SSSS  TTTTT  EEEEE                   -.---------.. -----:-----        
     R   R   I   P   P  O   O  S       T    E                   ----..:.=------------------
-    RRRR    I   PPPP   O   O   SSS    T    EEEE           /---------:---::+..-------:--------       
+    RRRR    I   PPPP   O   O   SSS    T    EEEE           /--------:----::+..-------:--------       
     R  R    I   P      O   O      S   T    E      ---->  --------==/---------...::/-- --
     R   R  III  P       OOO   SSSS    T    EEEEE         ---- ----.-+.::.= --------
                                                            --------- ------
@@ -202,10 +202,10 @@
   ------------------------------------------------------------------------------------------------  
    Choose what you want to do. Each action works independently.
                                                                               ------------
-    RRRR   III  PPPP    OOO   SSSS  TTTTT  EEEEE                   -.---------.+ -----:-----        
-    R   R   I   P   P  O   O  S       T    E                   ----..:+=------------------
+    RRRR   III  PPPP    OOO   SSSS  TTTTT  EEEEE                   -.---------.. -----:-----        
+    R   R   I   P   P  O   O  S       T    E                   ----..:.=------------------
     RRRR    I   PPPP   O   O   SSS    T    EEEE           /---------:---::...-------:--------       
-    R  R    I   P      O   O      S   T    E      -----> --------==/---------...::/-- ---
+    R  R    I   P      O   O      S   T    E      -----> --------==/---------...::/-- --
     R   R  III  P       OOO   SSSS    T    EEEEE         ----- ----.+.::.= --------
                                                            --------- ------
 
@@ -235,11 +235,11 @@
   ------------------------------------------------------------------------------------------------  
    Choose what you want to do. Each action works independently.
                                                                               ------------
-    RRRR   III  PPPP    OOO   SSSS  TTTTT  EEEEE                   -.---------.+/-----=-----        
+    RRRR   III  PPPP    OOO   SSSS  TTTTT  EEEEE                   -.---------.+/-----:-----        
     R   R   I   P   P  O   O  S       T    E                   ----..:+=------------------
     RRRR    I   PPPP   O   O   SSS    T    EEEE           /---------:---::...-------:--------       
     R  R    I   P      O   O      S   T    E      ------>--------.=/---------...::/-- ---
-    R   R  III  P       OOO   SSSS    T    EEEEE         ----------.+.::.==--------
+    R   R  III  P       OOO   SSSS    T    EEEEE         ----- ----.+.::.==--------
                                                            ---------- -----
 
    Choose an action, then browse images or folders.
@@ -304,7 +304,7 @@
     RRRR   III  PPPP    OOO   SSSS  TTTTT  EEEEE                   -.---------:+/-----=-----        
     R   R   I   P   P  O   O  S       T    E                   ----...+=------------------
     RRRR    I   PPPP   O   O   SSS    T    EEEE           /---------:---.:...-------:--------       
-    R  R    I   P      O   O      S   T    E      -------->-/----.=/---------...::/--- --
+    R  R    I   P      O   O      S   T    E      -------->-/----.=/---------...::/-- ---
     R   R  III  P       OOO   SSSS    T    EEEEE         ----------.+.::.==--------
                                                            ---------- -----
 
@@ -334,8 +334,8 @@
   ------------------------------------------------------------------------------------------------  
    Choose what you want to do. Each action works independently.
                                                                               =------------
-    RRRR   III  PPPP    OOO   SSSS  TTTTT  EEEEE/.----------+/-----=-----        
-    R   R   I   P   P  O   O  S       T    E                   -----..+=------------------
+    RRRR   III  PPPP    OOO   SSSS  TTTTT  EEEEE                   -.----------+/----==-----        
+    R   R   I   P   P  O   O  S       T    E                   ----...+=------------------
     RRRR    I   PPPP   O   O   SSS    T    EEEE           /---------:---.::..-------:--------       
     R  R    I   P      O   O      S   T    E       -------->/----.=/---------...::/--- --
     R   R  III  P       OOO   SSSS    T    EEEEE         ----------.+.:::== -------
@@ -534,7 +534,7 @@
                                                                                ------------
     RRRR   III  PPPP    OOO   SSSS  TTTTT  EEEEE                    .----------:/ ----=-----        
     R   R   I   P   P  O   O  S       T    E                   -----+..=-------------- ---
-    RRRR    I   PPPP   O   O   SSS    T    EEEE           ----------:---+::..-------:--------       
+    RRRR    I   PPPP   O   O   SSS    T    EEEE           /---------:---+::..-------:--------       
     R  R    I   P      O   O      S   T    E            --------->=/---------...::/--- --
     R   R  III  P       OOO   SSSS    T    EEEEE         ----------.+.:::== -------
                                                            ------------ ----
@@ -603,7 +603,7 @@
     RRRR    I   PPPP   O   O   SSS    T    EEEE           ----------:---+.:+.-------:--------       
     R  R    I   P      O   O      S   T    E            ----------/>---------...::/--- --
     R   R  III  P       OOO   SSSS    T    EEEEE         ----------.+..::== -------
-                                                           ------------- ---
+                                                           ------------ ----
 
    Choose an action, then browse images or folders.
   -- MAIN MENU -----------------------------------------------------------------------------------  
@@ -631,7 +631,7 @@
   ------------------------------------------------------------------------------------------------  
    Choose what you want to do. Each action works independently.
                                                                                ------------
-    RRRR   III  PPPP    OOO   SSSS  TTTTT  EEEEE                    .----------:+-- ---=----        
+    RRRR   III  PPPP    OOO   SSSS  TTTTT  EEEEE                    .----------:/- ---------        
     R   R   I   P   P  O   O  S       T    E                   -----+..=-------------- ---
     RRRR    I   PPPP   O   O   SSS    T    EEEE           ----------:---+.:+.-------:--------       
     R  R    I   P      O   O      S   T    E            ----------//>--------...::/--- --
@@ -664,7 +664,7 @@
   ------------------------------------------------------------------------------------------------  
    Choose what you want to do. Each action works independently.
                                                                                ------------
-    RRRR   III  PPPP    OOO   SSSS  TTTTT  EEEEE                    .----------.+--- --=----        
+    RRRR   III  PPPP    OOO   SSSS  TTTTT  EEEEE                    .----------:+--- --=----        
     R   R   I   P   P  O   O  S       T    E                   -----+..=-------------- ---
     RRRR    I   PPPP   O   O   SSS    T    EEEE           ----------:---+.:+.-------:--------       
     R  R    I   P      O   O      S   T    E            ----/-----///>-------...::/--- --
@@ -696,8 +696,8 @@
 
   ------------------------------------------------------------------------------------------------  
    Choose what you want to do. Each action works independently.
-                                                                               =-----------
-    RRRR   III  PPPP    OOO   SSSS  TTTTT  EEEEE                    .-----------+---- -=----        
+                                                                               ------------
+    RRRR   III  PPPP    OOO   SSSS  TTTTT  EEEEE                    .----------.+---- -=----        
     R   R   I   P   P  O   O  S       T    E                   -----+..=-------------- ---
     RRRR    I   PPPP   O   O   SSS    T    EEEE           ----- ----:->-+.:+.-------:--------       
     R  R    I   P      O   O      S   T    E            ----/-----////-------...::/--- --
@@ -734,7 +734,7 @@
    not required.
 
 
-   C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-vb9v2a4m\Pictures
+   C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-dthpmd3r\Pictures
   -- FILES & FOLDERS -----------------------------------------------------------------------------  
    >  1     Continue with 0 selected
       2     ..  Parent folder
@@ -765,7 +765,7 @@
                                                                                =-----------
     RRRR   III  PPPP    OOO   SSSS  TTTTT  EEEEE                    .-----------:/---- =----        
     R   R   I   P   P  O   O  S       T    E                   -----:..=------------------
-    RRRR    I   PPPP   O   O   SSS    T    EEEE           ----------:-///>::.-------:--------       
+    RRRR    I   PPPP   O   O   SSS    T    EEEE           ------ ---:-//>.::.-------:--------       
     R  R    I   P      O   O      S   T    E            ----/-----////-------...::/--- --
     R   R  III  P       OOO   SSSS    T    EEEEE         ----------.+.:::== -------
                                                            ------------- ---
@@ -797,7 +797,7 @@
    Choose what you want to do. Each action works independently.
                                                                                =-----------
     RRRR   III  PPPP    OOO   SSSS  TTTTT  EEEEE                    .-----------:/---- =----        
-    R   R   I   P   P  O   O  S       T    E                   -----:..=-------------------
+    R   R   I   P   P  O   O  S       T    E                   -----:..=------------------
     RRRR    I   PPPP   O   O   SSS    T    EEEE           ----------:-///>::.-------:--------       
     R  R    I   P      O   O      S   T    E            ----/-----////-------...::/--- --
     R   R  III  P       OOO   SSSS    T    EEEEE         ----------.+.:::== -------
@@ -1169,7 +1169,7 @@
   |                                                                                              |  
   |                                                                                              |  
   |                                                                                              |  
-  |   C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-vb9v2a4m\missing                  |  
+  |   C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-dthpmd3r\missing                  |  
   |^                 |  
   |  Folder not found. Choose an existing folder.                                                |  
   |                                                                                              |  
@@ -1193,7 +1193,7 @@
    MAIN MENU / Riposte Sorter
 
    FOLDER
-   C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-vb9v2a4m\Pictures
+   C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-dthpmd3r\Pictures
 
 
   -- SORT ACTIONS --------------------------------------------------------------------------------  
@@ -1229,7 +1229,7 @@
    requires REPLACE.
 
 
-   C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-vb9v2a4m\Pictures
+   C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-dthpmd3r\Pictures
   -- FOLDERS -------------------------------------------------------------------------------------  
    >  1     Use this folder
       2     ..  Parent folder
@@ -1262,7 +1262,7 @@
    requires REPLACE.
 
 
-   C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-vb9v2a4m\Pictures
+   C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-dthpmd3r\Pictures
   -- FOLDERS -------------------------------------------------------------------------------------  
       1     Use this folder
    >  2     ..  Parent folder
@@ -1295,7 +1295,7 @@
    requires REPLACE.
 
 
-   C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-vb9v2a4m\Pictures
+   C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-dthpmd3r\Pictures
   -- FOLDERS -------------------------------------------------------------------------------------  
       1     Use this folder
       2     ..  Parent folder
@@ -1328,7 +1328,7 @@
    requires REPLACE.
 
 
-   C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-vb9v2a4m\Pictures
+   C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-dthpmd3r\Pictures
   -- FOLDERS -------------------------------------------------------------------------------------  
       1     Use this folder
       2     ..  Parent folder
@@ -1361,7 +1361,7 @@
    requires REPLACE.
 
 
-   C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-vb9v2a4m\Pictures
+   C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-dthpmd3r\Pictures
   -- FOLDERS -------------------------------------------------------------------------------------  
       1     Use this folder
       2     ..  Parent folder
@@ -1394,7 +1394,7 @@
    requires REPLACE.
 
 
-   C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-vb9v2a4m\Pictures\folder-00
+   C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-dthpmd3r\Pictures\folder-00
   -- FOLDERS -------------------------------------------------------------------------------------  
    >  1     Use this folder
       2     ..  Parent folder
@@ -1427,7 +1427,7 @@
    requires REPLACE.
 
 
-   C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-vb9v2a4m\Pictures
+   C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-dthpmd3r\Pictures
   -- FOLDERS -------------------------------------------------------------------------------------  
       1     Use this folder
       2     ..  Parent folder
@@ -1460,7 +1460,7 @@
    requires REPLACE.
 
 
-   C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-vb9v2a4m\Pictures
+   C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-dthpmd3r\Pictures
   -- FOLDERS -------------------------------------------------------------------------------------  
      17     folder-14/
      18     folder-15/
@@ -1493,7 +1493,7 @@
    requires REPLACE.
 
 
-   C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-vb9v2a4m\Pictures
+   C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-dthpmd3r\Pictures
   -- FOLDERS -------------------------------------------------------------------------------------  
       1     Use this folder
       2     ..  Parent folder
@@ -1526,7 +1526,7 @@
    requires REPLACE.
 
 
-   C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-vb9v2a4m\Pictures
+   C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-dthpmd3r\Pictures
   -- FOLDERS -------------------------------------------------------------------------------------  
    >  1     Use this folder
       2     ..  Parent folder
@@ -1559,7 +1559,7 @@
    requires REPLACE.
 
 
-   C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-vb9v2a4m\Pictures\folder-23
+   C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-dthpmd3r\Pictures\folder-23
   -- FOLDERS -------------------------------------------------------------------------------------  
    >  1     Use this folder
       2     ..  Parent folder
@@ -1625,10 +1625,11 @@
    requires REPLACE.
 
 
-   C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-vb9v2a4m\Pictures\folder-39
+   C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-dthpmd3r\Pictures\folder-39
   -- FOLDERS -------------------------------------------------------------------------------------  
    >  1     Use this folder
       2     ..  Parent folder
+      3     __float__/
 
 
 
@@ -1642,8 +1643,7 @@
 
 
 
-
-   Rows 1-2/2   |   s uses the highlighted folder
+   Rows 1-3/3   |   s uses the highlighted folder
    Selection is read-only. Enter on the first row confirms your choice.
   ------------------------------------------------------------------------------------------------  
    [Enter] Open / choose   [s] Use folder   [Esc] Cancel   [g] Go to path   [Backspace] Parent      
@@ -1655,7 +1655,7 @@
    MAIN MENU / Riposte Sorter
 
    FOLDER
-   C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-vb9v2a4m\Pictures\folder-39
+   C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-dthpmd3r\Pictures\folder-39
 
 
   -- SORT ACTIONS --------------------------------------------------------------------------------  
@@ -1755,7 +1755,7 @@
 
    FULL SORT WORKSHOP
    INSPECT
-   Folder: C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-vb9v2a4m\Pictures\folder-39     
+   Folder: C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-dthpmd3r\Pictures\folder-39     
   ------------------------------------------------------------------------------------------------  
     > Date basis              download                              FIELD / CONTEXT
       Discard metadata sideca [ ] OFF
@@ -1787,7 +1787,7 @@
    MAIN MENU / Riposte Sorter
 
    FOLDER
-   C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-vb9v2a4m\Pictures\folder-39
+   C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-dthpmd3r\Pictures\folder-39
 
 
   -- SORT ACTIONS --------------------------------------------------------------------------------  
@@ -1886,7 +1886,7 @@
    MAIN MENU / Riposte Sorter
 
    FOLDER
-   C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-vb9v2a4m\Pictures\folder-39
+   C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-dthpmd3r\Pictures\folder-39
 
 
   -- SORT ACTIONS --------------------------------------------------------------------------------  
@@ -1913,17 +1913,215 @@
    [Enter] Choose   [1/2/3] Choose   [g] Enter Path   [b] Browse   [u] Undo   [Esc] Back
    [F1] Help
                                                                                                     
+   R I P O S T E    /  Riposte Sorter                                       LOCAL   /   v0.5.0      
+
+  ------------------------------------------------------------------------------------------------  
+   MAIN MENU / Riposte Sorter
+
+   FOLDER
+   C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-dthpmd3r\Pictures\folder-39
+
+
+  +- EDIT / ENTER PATH --------------------------------------------------------------------------+  
+  |                                                                                              |  
+  |  Paste an existing image folder. Quotes are accepted. Esc keeps the current folder.          |  
+  |                                                                                              |  
+  |                                                                                              |  
+  |                                                                                              |  
+  |                                                                                              |  
+  |   ^                                                                                          |  
+  |                                                                                              |  
+  |                                                                                              |  
+  |  [Enter] save   [Esc] discard   [Ctrl+U] clear                                               |  
+  |                                                                                              |  
+  +----------------------------------------------------------------------------------------------+  
+
+
+
+
+
+
+   Paste an existing image folder. Quotes are accepted. Esc keeps the current folder.
+  ------------------------------------------------------------------------------------------------  
+   [Enter] Save   [Esc] Discard   [Ctrl+U] Clear   [F1] Help
+
+                                                                                                    
+   R I P O S T E    /  Riposte Sorter                                       LOCAL   /   v0.5.0      
+
+  ------------------------------------------------------------------------------------------------  
+   MAIN MENU / Riposte Sorter
+
+   FOLDER
+   C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-dthpmd3r\Pictures\folder-39\__float__   
+
+
+  -- SORT ACTIONS --------------------------------------------------------------------------------  
+      1. Sort           Review the plan, then confirm REPLACE
+
+    > 2. Dry Run        Inspect destinations; change nothing
+
+      3. Enter Path     Paste the folder to sort
+
+   Year / Month / img-or-vid / Category / Size
+   _float_ / __float__: never sorted; RIPOSTE allowed.
+   Download dates; saved category rules; unmatched titles go to Uncategorized. Images become        
+   date-only PNGs; videos keep their bytes. Originals stay in private undo history. Sidecars        
+   require Full Sort Workshop consent.
+
+
+
+
+
+
+
+   Subfolders included; float storage excluded. Sort previews first.
+  ------------------------------------------------------------------------------------------------  
+   [Enter] Choose   [1/2/3] Choose   [g] Enter Path   [b] Browse   [u] Undo   [Esc] Back
+   [F1] Help
+                                                                                                    
+   R I P O S T E    /  ACTIVE OPERATION                                     LOCAL   /   v0.5.0      
+
+  ------------------------------------------------------------------------------------------------  
+   MAIN MENU / ACTIVE OPERATION
+
+   RUNNING / ORGANIZE
+
+
+   Starting operation
+
+
+
+   ENGINE COUNT      not reported yet
+
+   ELAPSED           0.0s
+
+
+
+   .........................................---=>................................................   
+   ACTIVITY TRACE / engine counts are reported separately above
+
+
+
+
+
+
+
+
+
+  ------------------------------------------------------------------------------------------------  
+   [Esc] Request stop   [F1] Help
+
+                                                                                                    
+   R I P O S T E    /  Riposte Sorter / Stopped                             LOCAL   /   v0.5.0      
+
+  ------------------------------------------------------------------------------------------------  
+   MAIN MENU / Riposte Sorter / Stopped
+
+   [STOPPED]  OPERATION NEEDS ATTENTION
+
+   Sort float root
+
+
+  -- NEXT ACTION ---------------------------------------------------------------------------------  
+
+   This folder is inside _float_ or __float__ and is excluded from sorting. Choose its outside      
+   parent to sort other files, or use RIPOSTE to protect these images.
+
+
+
+
+
+
+
+
+
+
+
+
+
+   CODE / SORT_FLOAT_ROOT
+   Read the next action above. Enter returns without retrying.
+  ------------------------------------------------------------------------------------------------  
+   [Enter] Return   [g] Enter Path   [Esc] Back   [F1] Help
+
+                                                                                                    
+   R I P O S T E    /  Riposte Sorter                                       LOCAL   /   v0.5.0      
+
+  ------------------------------------------------------------------------------------------------  
+   MAIN MENU / Riposte Sorter
+
+   FOLDER
+   C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-dthpmd3r\Pictures\folder-39\__float__   
+
+
+  +- EDIT / ENTER PATH --------------------------------------------------------------------------+  
+  |                                                                                              |  
+  |  Paste an existing image folder. Quotes are accepted. Esc keeps the current folder.          |  
+  |                                                                                              |  
+  |                                                                                              |  
+  |                                                                                              |  
+  |                                                                                              |  
+  |   ^                                                                                          |  
+  |                                                                                              |  
+  |                                                                                              |  
+  |  [Enter] save   [Esc] discard   [Ctrl+U] clear                                               |  
+  |                                                                                              |  
+  +----------------------------------------------------------------------------------------------+  
+
+
+
+
+
+
+   Paste an existing image folder. Quotes are accepted. Esc keeps the current folder.
+  ------------------------------------------------------------------------------------------------  
+   [Enter] Save   [Esc] Discard   [Ctrl+U] Clear   [F1] Help
+
+                                                                                                    
+   R I P O S T E    /  Riposte Sorter                                       LOCAL   /   v0.5.0      
+
+  ------------------------------------------------------------------------------------------------  
+   MAIN MENU / Riposte Sorter
+
+   FOLDER
+   C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-dthpmd3r\Pictures\folder-39
+
+
+  -- SORT ACTIONS --------------------------------------------------------------------------------  
+    > 1. Sort           Review the plan, then confirm REPLACE
+
+      2. Dry Run        Inspect destinations; change nothing
+
+      3. Enter Path     Paste the folder to sort
+
+   Year / Month / img-or-vid / Category / Size
+   _float_ / __float__: never sorted; RIPOSTE allowed.
+   Download dates; saved category rules; unmatched titles go to Uncategorized. Images become        
+   date-only PNGs; videos keep their bytes. Originals stay in private undo history. Sidecars        
+   require Full Sort Workshop consent.
+
+
+
+
+
+
+
+   Subfolders included; float storage excluded. Sort previews first.
+  ------------------------------------------------------------------------------------------------  
+   [Enter] Choose   [1/2/3] Choose   [g] Enter Path   [b] Browse   [u] Undo   [Esc] Back
+   [F1] Help
+                                                                                                    
    R I P O S T E    /  MAIN MENU                                            LOCAL   /   v0.5.0      
 
   ------------------------------------------------------------------------------------------------  
    Choose what you want to do. Each action works independently.
 =--------
     RRRR   III  PPPP    OOO   SSSS  TTTTT  EEEEE                    .-----------------=-----        
-    R   R   I   P   P  O   O  S       T    E                  /-----.+:=-------------- =-----       
-    RRRR    I   PPPP   O   O   SSS    T    EEEE           /----= ---:-/>+::---------:------
-    R  R    I   P      O   O      S   T    E            ----/-----////-----::..:/ ----
-    R   R  III  P       OOO   SSSS    T    EEEEE         ------:----.=-------- ---
-                                                           -----------
+    R   R   I   P   P  O   O  S       T    E                  /-----.+:=---------------------       
+    RRRR    I   PPPP   O   O   SSS    T    EEEE           /----=----:-///////>------.--- --
+    R  R    I   P      O   O      S   T    E            ----/----+=/-/-----:..+: -----
+    R   R  III  P       OOO   SSSS    T    EEEEE         ----------+=----- ------
+                                                           ----------
 
    Choose an action, then browse images or folders.
   -- MAIN MENU -----------------------------------------------------------------------------------  
@@ -1953,7 +2151,7 @@
 
    FULL SORT WORKSHOP
    INSPECT
-   Folder: C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-vb9v2a4m\Pictures\folder-39     
+   Folder: C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-dthpmd3r\Pictures\folder-39     
   ------------------------------------------------------------------------------------------------  
     > Date basis              download                              FIELD / CONTEXT
       Discard metadata sideca [ ] OFF
@@ -1986,7 +2184,7 @@
 
    FULL SORT WORKSHOP
    INSPECT
-   Folder: C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-vb9v2a4m\Pictures\folder-39     
+   Folder: C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-dthpmd3r\Pictures\folder-39     
   ------------------------------------------------------------------------------------------------  
   +- EDIT / ENTER PATH --------------------------------------------------------------------------+  
   |                                                                                              |  
@@ -2019,7 +2217,7 @@
 
    FULL SORT WORKSHOP
    INSPECT
-   Folder: C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-vb9v2a4m\Pictures
+   Folder: C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-dthpmd3r\Pictures
   ------------------------------------------------------------------------------------------------  
     > Date basis              download                              FIELD / CONTEXT
       Discard metadata sideca [ ] OFF
@@ -2049,13 +2247,13 @@
 
   ------------------------------------------------------------------------------------------------  
    Choose what you want to do. Each action works independently.
-=--------
-    RRRR   III  PPPP    OOO   SSSS  TTTTT  EEEEE                    .-----------------=-----        
-    R   R   I   P   P  O   O  S       T    E                  /-----.+:=---------------=-----       
-    RRRR    I   PPPP   O   O   SSS    T    EEEE           /----=----:-/////>--------.--- --
-    R  R    I   P      O   O      S   T    E            ----/----+=///-----:+..: -----
-    R   R  III  P       OOO   SSSS    T    EEEEE         ----------+= ----- -----
-                                                           -----------
+                                                                                  ------ --
+    RRRR   III  PPPP    OOO   SSSS  TTTTT  EEEEE                    .-------------/---:-----        
+    R   R   I   P   P  O   O  S       T    E                  /-----.+:=------///>----=------       
+    RRRR    I   PPPP   O   O   SSS    T    EEEE           /----=----:---://///------/-- --
+    R  R    I   P      O   O      S   T    E            ---------==/-------..:+ -----
+    R   R  III  P       OOO   SSSS    T    EEEEE         ----- ---:- -- --------
+                                                           ----------
 
    Choose an action, then browse images or folders.
   -- MAIN MENU -----------------------------------------------------------------------------------  
@@ -2087,7 +2285,7 @@
    not required.
 
 
-   C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-vb9v2a4m\Pictures
+   C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-dthpmd3r\Pictures
   -- FILES & FOLDERS -----------------------------------------------------------------------------  
    >  1     Continue with 0 selected
       2     ..  Parent folder
@@ -2120,7 +2318,7 @@
    not required.
 
 
-   C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-vb9v2a4m\Pictures
+   C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-dthpmd3r\Pictures
   -- FILES & FOLDERS -----------------------------------------------------------------------------  
    >  1     Continue with 1 selected
       2     ..  Parent folder
@@ -2153,7 +2351,7 @@
    selected originals stay unchanged.
 
 
-   C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-vb9v2a4m\Pictures
+   C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-dthpmd3r\Pictures
   -- FOLDERS -------------------------------------------------------------------------------------  
    >  1     Use this folder
       2     ..  Parent folder
@@ -2186,7 +2384,7 @@
    not required.
 
 
-   C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-vb9v2a4m\Pictures
+   C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-dthpmd3r\Pictures
   -- FILES & FOLDERS -----------------------------------------------------------------------------  
    >  1     Continue with 1 selected
       2     ..  Parent folder
@@ -2215,12 +2413,12 @@
   ------------------------------------------------------------------------------------------------  
    Choose what you want to do. Each action works independently.
                                                                                   ------ --
-    RRRR   III  PPPP    OOO   SSSS  TTTTT  EEEEE                    .-------------/---:-----        
-    R   R   I   P   P  O   O  S       T    E                  /-----.+:=------///>----=------       
-    RRRR    I   PPPP   O   O   SSS    T    EEEE           /----=----:---://///------/-- --
-    R  R    I   P      O   O      S   T    E            ---------==/-------..:+=-----
-    R   R  III  P       OOO   SSSS    T    EEEEE         ----- ---:-=-- --------
-                                                           ----------
+    RRRR   III  PPPP    OOO   SSSS  TTTTT  EEEEE                    .-------------/---//>---        
+    R   R   I   P   P  O   O  S       T    E                  /-----.+:---------//////-------       
+    RRRR    I   PPPP   O   O   SSS    T    EEEE           /---- -/-----.:.=---------/-----
+    R  R    I   P      O   O      S   T    E            ----/----- /-------+:+=------
+    R   R  III  P       OOO   SSSS    T    EEEEE         -------.--- ----------
+                                                           ------- --
 
    Choose an action, then browse images or folders.
   -- MAIN MENU -----------------------------------------------------------------------------------  
@@ -2252,7 +2450,7 @@
    originals requires REPLACE.
 
 
-   C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-vb9v2a4m\Pictures
+   C:\Users\ryanf\AppData\Local\Temp\riposte-sorter-console-dthpmd3r\Pictures
   -- FOLDERS -------------------------------------------------------------------------------------  
    >  1     Use this folder
       2     ..  Parent folder
@@ -2281,12 +2479,12 @@
   ------------------------------------------------------------------------------------------------  
    Choose what you want to do. Each action works independently.
                                                                                   ------ --
-    RRRR   III  PPPP    OOO   SSSS  TTTTT  EEEEE                    .-------------/---.-----        
-    R   R   I   P   P  O   O  S       T    E                  /-----.+:=------/////>--+------       
-    RRRR    I   PPPP   O   O   SSS    T    EEEE           /----=---:----::=///------/-----
-    R  R    I   P      O   O      S   T    E            ---------==/-------..:. -----
-    R   R  III  P       OOO   SSSS    T    EEEEE         ---- ----:-- ----------
-                                                           ---------
+    RRRR   III  PPPP    OOO   SSSS  TTTTT  EEEEE                    .-------------/---////>-        
+    R   R   I   P   P  O   O  S       T    E                   -----.+:-----------////-------       
+    RRRR    I   PPPP   O   O   SSS    T    EEEE           ---------:---+:.=--------- -----
+    R  R    I   P      O   O      S   T    E            ----/----=-/-------.:=------
+    R   R  III  P       OOO   SSSS    T    EEEEE          ------+-------------
+                                                           ----- ---
 
    Choose an action, then browse images or folders.
   -- MAIN MENU -----------------------------------------------------------------------------------  
