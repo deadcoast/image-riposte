@@ -1,0 +1,10 @@
+{
+  "before": 785,
+  "after": 788,
+  "added": [
+    "src\\riposte\\terminal\\reports.py:LINE: error: Call to untyped function \"text\" in typed context  [no-untyped-call]",
+    "src\\riposte\\terminal\\reports.py:LINE: error: Call to untyped function \"pair\" in typed context  [no-untyped-call]",
+    "src\\riposte\\terminal\\reports.py:LINE: error: Call to untyped function \"pair\" in typed context  [no-untyped-call]"
+  ],
+  "removed": []
+}

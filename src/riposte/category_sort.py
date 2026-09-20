@@ -14,7 +14,7 @@ from typing import Any, Callable, Sequence
 
 from .category_rules import load_rules, match_title
 from .errors import RiposteError
-from .policy import Policy, sort_folder_for, sort_excluded
+from .policy import Policy, sort_folder_for, sort_excluded, path_category
 from .sanitize import decode_clean, encode_clean, png_audit
 from .sort_history import latest_sort
 from .sort_titles import title_records
@@ -102,19 +102,28 @@ def category_plan(root: Path, policy: Policy, *, assignments: Sequence[str] = ()
                 manual = old["category"]
             match: dict[str, Any]
             if manual and manual != "auto":
-                if manual not in labels:
-                    raise RiposteError("CATEGORY_ASSIGNMENT_REQUIRED")
-                match = {"status": "MANUAL", "category": {"slug": manual, "label": labels[manual]}, "matches": []}
+                # Explicit new assignments were validated above. A saved manual
+                # choice remains meaningful even after its matching rule goes away.
+                match = {"status": "MANUAL", "category": {"slug": manual, "label": labels.get(manual, manual)}, "matches": []}
             else:
-                match = match_title(Path(original).stem, rules.rules) if original else {"status": "ORIGINAL_TITLE_REQUIRED", "category": None, "matches": []}
+                match = match_title(Path(original).stem, rules.rules) if original else {"status": "ORIGINAL_TITLE_UNAVAILABLE", "category": None, "matches": []}
             item["match_status"] = match["status"]
             item["matches"] = match["matches"]
             counts[match["status"].lower() + "_files"] += 1
-            if match["category"] is None:
-                raise RiposteError("CATEGORY_" + match["status"])
-            slug = match["category"]["slug"]
-            terms: list[str] = next((r["matched_terms"] for r in match["matches"] if r["slug"] == slug), [])
-            item.update(category=match["category"], matched_terms=terms)
+            category = match["category"]
+            category_source = match["status"] if category else "NONE"
+            if category is None and previous and manual != "auto":
+                # No new match is not consent to remove an existing category.
+                # The catalog's canonical path is usable even for legacy rows
+                # whose original-title record is absent.
+                retained = path_category(relative)
+                if retained:
+                    category = {"slug": retained, "label": labels.get(retained, retained)}
+                    category_source = "PRESERVED"
+            category_slug = category["slug"] if category else None
+            terms: list[str] = next((r["matched_terms"] for r in match["matches"] if r["slug"] == category_slug), [])
+            item.update(category=category, category_source=category_source, matched_terms=terms)
+            counts["category_files" if category else "without_category_files"] += 1
             if previous:
                 if not _validate_managed(path, previous):
                     raise RiposteError("CATALOG_FILE_CHANGED")
@@ -128,12 +137,12 @@ def category_plan(root: Path, policy: Policy, *, assignments: Sequence[str] = ()
                 audit = png_audit(data)
                 info = {"day": audit["date"], "date_source": clean.date_source, "width": audit["width"],
                         "height": audit["height"], "sha256": audit["sha256"], "bytes": len(data)}
-            folder = sort_folder_for(info["day"], info["width"], info["height"], media, slug)
+            folder = sort_folder_for(info["day"], info["width"], info["height"], media, category_slug)
             staying = previous is not None and path.parent.relative_to(root) == folder
             destination = relative if staying else _next_relative(root, folder, path.suffix.lower() if media == "vid" else ".png", next_numbers=numbers)
             item.update(destination=destination, action="KEEP" if staying else "SORT", expected=info,
                         title={"id": previous["id"] if previous else None, "media": media, "original_filename": original,
-                               "category": slug, "manual": match["status"] == "MANUAL", "matched_terms": terms,
+                               "category": category_slug, "manual": match["status"] == "MANUAL", "matched_terms": terms,
                                "sha256": info["sha256"], "rule_revision": rules.revision})
             folders[folder.as_posix()] += 1
             counts["already_sorted" if staying else "files_to_sort"] += 1
@@ -149,7 +158,7 @@ def category_plan(root: Path, policy: Policy, *, assignments: Sequence[str] = ()
     if set(overrides) - seen or any(r["source"] in overrides and r["kind"] not in {"IMAGE", "VIDEO"} for r in files):
         blockers["CATEGORY_ASSIGNMENT_INVALID"] += 1
     root_stat = root.stat()
-    basis = {"version": 1, "root": str(root), "identity": [root_stat.st_dev, root_stat.st_ino],
+    basis = {"version": 2, "root": str(root), "identity": [root_stat.st_dev, root_stat.st_ino],
              "policy": asdict(policy), "rules": rules.revision, "titles": titles, "catalog": managed,
              "history": {k: history[k] for k in ("id", "status")} if history else None,
              "assignments": overrides, "files": files, "blockers": dict(blockers)}

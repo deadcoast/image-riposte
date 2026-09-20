@@ -14,8 +14,8 @@ controls/help; `terminal/service.py` for the operation boundary shared with CLI.
   scan code immediately; a second keyboard-availability poll is not appropriate.
 - Riposte Sorter is the default first action, exposing exactly Sort, Dry Run and
   Enter Path. The session retains the selected root. Its preset uses download
-  dates, saved category rules and Year/Month/img-or-vid/Category/Size, with
-  unmatched titles routed to uncategorized. It never infers rules or sidecar
+  dates, saved category rules and Year/Month/img-or-vid/[Category if found]/Size.
+  Missing or tied matches use the ordinary route. It never infers rules or sidecar
   deletion. Full Sort Workshop owns the existing configurable flow.
 - Sort explains its recursive folder scope before selection. It previews
   sanitation/organization and requires the exact `REPLACE` confirmation before
@@ -82,6 +82,13 @@ journals; they are never PNG metadata or publishing pack contents.
   exact plan. Every file shows its source, original title (or unknown), matched
   terms, category and destination. A changed setting, rule revision, catalog,
   source or occupied destination invalidates apply consent.
+- Category matching enriches the route and is never a prerequisite for sorting.
+  Missing/empty rules, unmatched names, ties and unavailable original titles use
+  the ordinary date/media/size route. Keep existing category folders when there
+  is no new match; stored manual choices survive rule removal. Explicit `=auto`
+  clears a manual choice and uses current matches or the ordinary route. Preserve
+  truthful unknown titles. This user correction supersedes earlier mandatory-
+  assignment interpretations; see `evidence/optional-categories/`.
 - Full Sort Workshop exposes `s` for saved rules, `c` for discovery, `u` for
   undo, a category toggle and manual assignments. Rule replacement requires
   `SAVE`; file replacement requires `REPLACE` with the plan ID from the result.
@@ -144,3 +151,4 @@ journals; they are never PNG metadata or publishing pack contents.
 | Table Selection | Existing publication/library owners | Independent image selection policy | Category destination rows are read-only, with no row selection | Existing browser/publication regression suite |
 | Terminal menu and folder selection | `terminal/controller.py`, `paths.py`, `render.py`, `keyboard.py`, `app.py` | Three-action user request and existing operation consent | Riposte Sorter preset; Full Sort Workshop configuration; multi-input protection | `tests/test_sorter_menu.py`, `tests/test_terminal_polish.py`; final Windows ConPTY checks in `evidence/terminal-polish/` |
 | Sorting exclusion | `policy.FLOAT_DIRECTORIES`, `sort_excluded`, shared sort planners/walker | User's `_float_` / `__float__` storage rule | Exact case-insensitive directory names at any depth; protection intake remains available | `tests/test_float_sort.py`, synthetic protection/combined tests in `tests/test_workflows.py` |
+| Optional categories | Shared `category_sort.category_plan` and saved-rule matcher | User correction: categories apply if found | Ordinary route for absent/tied/unknown matches; retained existing categories; optional manual choices | `tests/test_optional_categories.py`, CLI/API/video/combined checks and actual launcher sort/undo in `evidence/optional-categories/` |

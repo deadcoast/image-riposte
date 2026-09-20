@@ -1,0 +1,24 @@
+                                                                        
+   R I P O S T E    /  Riposte Sorter                                   
+                                                                        
+  --------------------------------------------------------------------  
+   MAIN MENU / Riposte Sorter                                           
+                                                                        
+   FOLDER                                                               
+   C:\Users\ryanf\AppData\Local\Temp\riposte-optional-categories-a_xv   
+   qv3t                                                                 
+                                                                        
+  -- SORT ACTIONS ----------------------------------------------------  
+    > 1. Sort                                                           
+                                                                        
+      2. Dry Run                                                        
+                                                                        
+      3. Enter Path                                                     
+                                                                        
+   Year / Month / img-or-vid / [Category if found] / Size               
+   _float_ / __float__: never sorted; RIPOSTE allowed.                  
+   Subfolders included; float storage excluded. Sort previews first.    
+  --------------------------------------------------------------------  
+   [Enter] Choose   [1/2/3] Choose   [g] Enter Path   [b] Browse        
+   [u] Undo   [Esc] Back   [F1] Help                                    
+                                                                        

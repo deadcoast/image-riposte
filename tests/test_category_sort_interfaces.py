@@ -127,6 +127,39 @@ def test_combined_propagates_exact_category_consent_before_protection(root, make
     assert result['sorting']['checkpoint'] == 'COMPLETE' and len(calls) == 1
 
 
+def test_cli_optional_categories_sort_numbered_files_without_rules(root, make_image):
+    source = make_image(root / 'SML01.png'); original = source.read_bytes()
+    runner = CliRunner()
+    args = ['--json', 'sort', str(root), '--date-mode', 'modified', '--categories']
+    preview = runner.invoke(app, args)
+    assert preview.exit_code == 0, preview.output
+    result = json.loads(preview.stdout)
+    assert result['ready'] and result['files'][0]['category'] is None
+    applied = runner.invoke(app, [*args, '--apply', '--plan-id', result['plan_id']])
+    assert applied.exit_code == 0, applied.output
+    assert catalog(root)[0]['relative'] == '2025/March/img/SML/SML01.png'
+    assert runner.invoke(app, ['--json', 'undo-sort', str(root), '--apply']).exit_code == 0
+    assert source.read_bytes() == original
+
+
+def test_api_optional_categories_accept_unknown_and_tied_titles(root, make_image):
+    sources = [make_image(root / name) for name in ('SML01.png', 'hockey.png', 'other.png')]
+    originals = [p.read_bytes() for p in sources]
+    with TestClient(create_app(root, 'optional-category-test')) as client:
+        client.headers['X-Riposte-Token'] = 'optional-category-test'
+        saved = client.post('/api/category-rules', json={'categories': ['Hockey=hockey', 'Sport=hockey'], 'save': True, 'expected_revision': 'missing'})
+        assert saved.status_code == 200
+        options = {'categories': True, 'date_mode': 'modified'}
+        preview = job(client, 'organize', options)['result']
+        assert preview['ready'] and all(f['category'] is None for f in preview['files'])
+        applied = job(client, 'organize', {**options, 'apply': True, 'acknowledge_source_removal': True, 'plan_id': preview['plan_id']})
+        assert applied['state'] == 'done' and len(catalog(root)) == 3
+        recovery = job(client, 'undo-sort', {})['result']
+        undone = job(client, 'undo-sort', {'apply': True, 'acknowledge_restore': True, 'sort_id': recovery['sort_id']})
+        assert undone['state'] == 'done'
+    assert [p.read_bytes() for p in sources] == originals
+
+
 def test_category_browser_native():
     import os
     from pathlib import Path

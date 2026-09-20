@@ -117,7 +117,8 @@ def test_default_dry_run_uses_category_policy_and_cannot_apply(root, make_image)
         assert c.state.page.values["sorter_mode"] == "dry-run"
         plan = c.state.page.result
         assert plan["ready"] and plan["category_sorting"]
-        assert "/img/uncategorized/SML/" in plan["files"][0]["destination"]
+        assert "/img/SML/" in plan["files"][0]["destination"]
+        assert plan["files"][0]["category"] is None
         assert c.state.page.request.values["date_mode"] == "download"
         assert not c.state.page.request.values["discard_sidecars"]
         assert "[Enter] Return" in render(c.state, 100, 34).plain()

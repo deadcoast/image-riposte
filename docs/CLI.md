@@ -15,8 +15,8 @@ Open **Riposte Sorter** (the default main-menu action): **1. Sort**, **2. Dry Ru
 **3. Enter Path**. Enter a folder once per session using `3` or `g`; both Sort and
 Dry Run ask for it directly if none is selected. No configuration screens precede
 the preview. The preset uses download dates, saved categories, separate img/vid
-folders and existing size bins. Missing matches use `uncategorized`; ambiguous
-matches require correction in **Full Sort Workshop**. Sidecars are preserved
+folders and existing size bins. Missing, tied or unavailable title matches use
+the ordinary date/media/size route; no category setup is required. Sidecars are preserved
 unless separately authorized there. Sort reviews a fresh exact plan and requires
 REPLACE; Dry Run has no apply action. `b` optionally browses folders and `u`
 previews undo. Direct equivalent: `riposte sort ROOT --categories`.
@@ -112,14 +112,15 @@ combine it with `--save --expected-revision REVISION` to clear saved rules.
 
 Aliases and phrases match complete normalized words wherever they occur in the
 filename stem. Exclusions apply to that category alone. Higher priority wins;
-equal highest priorities stay ambiguous and require review. Unmatched titles
-show `Uncategorized`. Generated numbered titles require trustworthy original
-titles or manual assignment; filename-only discovery does not guess them.
+equal highest priorities stay ambiguous without choosing an arbitrary category.
+Unmatched and unknown titles still sort by date/media/size. Filename-only
+discovery does not guess original titles from generated numbered names.
 
 Folder slugs default to normalized category labels joined with hyphens. Use
 `--slug "New label=existing-slug"` to retain a folder identity when renaming a
 label. Duplicate slugs, Windows device names and unsafe path characters are
-rejected; `uncategorized` is reserved for unmatched titles. Unicode letters are
+rejected; `uncategorized` remains a reserved explicit assignment for compatibility.
+It is no longer inserted automatically for unmatched files. Unicode letters are
 supported. Rules allow up to 32 categories, 32 included/excluded phrases each,
 and priorities from -1,000,000 to 1,000,000. Phrases have one to three words.
 
@@ -138,7 +139,7 @@ riposte --json sort ROOT --categories --date-mode modified
 # Copy plan_id from that unchanged preview; repeat the same options.
 riposte sort ROOT --categories --date-mode modified --apply --plan-id PLAN_ID
 
-# Resolve a tie or an old numbered file with no trustworthy original title.
+# Optionally assign a category to a tie or an old numbered file.
 riposte sort ROOT --categories --assign "2025/March/img/SML/SML01.png=hockey"
 
 # Preview and apply recovery separately.
@@ -146,12 +147,14 @@ riposte undo-sort ROOT
 riposte undo-sort ROOT --apply --sort-id SORT_ID
 ```
 
-The layout is `Year/Month/img-or-vid/Category/Size`, for example
+The layout is `Year/Month/img-or-vid/[Category if found]/Size`, for example
 `2025/March/img/hockey/SML/SML01.png`. A category plan shows source path, original
 filename (unknown for old untracked files), matched terms, category and exact
 numbered destination. Minimum discovery counts do not limit saved-rule matches.
-Rules apply to words anywhere in the original title. Equal-priority matches block
-apply until resolved; unmatched titles use `uncategorized`.
+Rules apply to words anywhere in the original title. Equal-priority, absent and
+unknown-title matches do not block sorting: they use the ordinary route without
+a category. An existing category is preserved when no new match is available.
+No rules or manual assignments are required, even with `--categories` enabled.
 
 `--assign` repeats for multiple files. It uses a source-relative path and a saved
 slug, or `uncategorized`. A manual choice persists across later sorts; `=auto`
@@ -168,7 +171,9 @@ overwritten or assigned a different destination after approval.
 New sorts retain trustworthy original basenames privately, including normal sorts
 performed before enabling categories. Media IDs survive moves and identical bytes
 in different files keep separate identities. Existing catalogs remain readable;
-older numbered files without a trustworthy record require manual assignment. Image
+older numbered files without a trustworthy record sort without inventing titles
+or requiring manual assignment. Removing a saved rule does not remove an existing
+manual category choice. Image
 metadata remains date-only; videos keep their bytes and metadata. Undo restores
 the private provenance/assignments and both catalogs in one transaction. Rule
 edits themselves are separate operations and are not undone with a sort.

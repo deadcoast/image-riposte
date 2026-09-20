@@ -50,7 +50,7 @@
   assert($('apply').disabled,'preview alone is not consent');
   assert($('plan-summary').querySelector('strong').textContent==='1','category file count is visible');
   assert($('category-destinations').textContent.includes('2025/March/img/hockey/SML/SML01.png'),'exact destination visible');
-  assert($('category-destinations').textContent.includes('0 unmatched · 0 ambiguous'),'match summary is visible');
+  assert($('category-destinations').textContent.includes('Categories are optional'),'optional category policy is visible');
   $('ack-remove').click();assert(!$('apply').disabled,'explicit consent enables apply');
   failApply=true;$('apply').click();await wait(()=>!$('sort-error').hidden);
   assert($('sort-error').textContent.includes('Inspect again'),'stale server receipt recovery');
@@ -64,6 +64,13 @@
   $('ack-undo').click();$('undo-apply').click();await wait(()=>$('undo-summary').textContent==='Undo: COMPLETE');
   assert(posts.find(p=>p.url==='/api/undo-sort'&&p.body.apply).body.sort_id==='sort-one','undo bound to preview');
   $('sort-recovery').open=false;
+  plan={mode:'READ_ONLY',category_sorting:true,plan_id:'d'.repeat(64),ready:true,counts:{files_to_sort:1,without_category_files:1},blockers:{},files:[
+    {source:'SML01.png',original_filename:null,category:null,match_status:'ORIGINAL_TITLE_UNAVAILABLE',action:'SORT',destination:'2025/March/img/SML/SML01.png'}]};
+  $('run-plan').click();await wait(()=>$('sort-status').textContent.includes('Review the destinations'));
+  assert($('category-destinations').textContent.includes('No category; standard date/media/size'),'unknown titles describe their usable fallback');
+  assert(!$('category-destinations').textContent.includes('Needs assignment'),'missing categories do not require assignment');
+  $('ack-remove').click();assert(!$('apply').disabled,'unknown category does not disable consented sort');
+  $('apply').click();await wait(()=>$('sort-status').textContent.includes('Sort: COMPLETE'));
   $('sort-categories').click();assert($('category-options').hidden,'ordinary sorting hides category editor');
   plan={mode:'READ_ONLY',category_sorting:false,plan_id:'c'.repeat(64),ready:true,counts:{images_to_migrate:1},blockers:{},files:[
     {source:'ordinary-private-title.png',action:'SORT',destination:'2025/March/img/SML/SML01.png'}]};

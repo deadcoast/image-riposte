@@ -33,7 +33,7 @@ def test_exact_preview_readonly_and_missing_consent(root, make_image):
     before = image.read_bytes()
     p = plan(root, POLICY, categories=True)
     assert not (root / ".riposte").exists()
-    assert p["files"][0]["destination"] == "2025/March/img/uncategorized/SML/SML01.png"
+    assert p["files"][0]["destination"] == "2025/March/img/SML/SML01.png"
     assert p == plan(root, POLICY, categories=True)
     assert p["counts"]["unmatched_files"] == 1
     with pytest.raises(RiposteError, match="CATEGORY_PREVIEW_REQUIRED"):
@@ -86,7 +86,7 @@ def test_changed_preview_refuses_before_writes(root, make_image, change):
     assert not (root / "2025/March/img/hockey").exists()
 
 
-def test_legacy_numbered_files_need_manual_assignment_and_restore_absence(root, make_image):
+def test_legacy_numbered_files_allow_optional_assignment_and_restore_absence(root, make_image):
     rules(root)
     make_image(root / "hockey.png")
     organize(root, POLICY, plan_id=_sort_preview(root, POLICY)["plan_id"])
@@ -94,7 +94,8 @@ def test_legacy_numbered_files_need_manual_assignment_and_restore_absence(root, 
     with contextlib.closing(connect(root)) as db:
         db.execute("DELETE FROM sort_titles")
         db.commit()
-    assert plan(root, POLICY, categories=True)["blockers"] == {"CATEGORY_ORIGINAL_TITLE_REQUIRED": 1}
+    preview = plan(root, POLICY, categories=True)
+    assert preview["ready"] and preview["files"][0]["category"] is None
     result = apply(root, assignments=[row["relative"] + "=hockey"])
     assert result["checkpoint"] == "COMPLETE"
     assert title_records(root)[0]["original_filename"] is None
@@ -109,7 +110,8 @@ def test_ambiguity_override_exclusion_unicode_and_empty_rules(root, make_image):
     rules(root, "Équipe=hockey", "Sports=hockey")
     make_image(root / "winter-HOCKEY.png")
     p = plan(root, POLICY, categories=True)
-    assert p["blockers"] == {"CATEGORY_AMBIGUOUS": 1}
+    assert p["ready"] and p["blockers"] == {}
+    assert p["files"][0]["category"] is None
     assert p["counts"]["ambiguous_files"] == 1
     assert apply(root, assignments=["winter-HOCKEY.png=équipe"])["checkpoint"] == "COMPLETE"
     assert "/équipe/" in catalog(root)[0]["relative"]
@@ -278,7 +280,7 @@ def test_unreadable_directory_blocks_frozen_plan(root, monkeypatch):
 def test_normalized_numbered_title_stays_unknown_with_manual_assignment(root, make_image):
     make_image(root / "ＳＭＬ01.png")
     p = plan(root, POLICY, categories=True)
-    assert p["blockers"] == {"CATEGORY_ORIGINAL_TITLE_REQUIRED": 1}
+    assert p["ready"] and p["files"][0]["category"] is None
     assert apply(root, assignments=["ＳＭＬ01.png=uncategorized"])["checkpoint"] == "COMPLETE"
     assert title_records(root)[0]["original_filename"] is None
 

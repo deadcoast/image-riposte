@@ -1,0 +1,10 @@
+{
+  "result": "PASS",
+  "checks": [
+    "Default Sort previews numbered and unmatched images without category rules or workspace writes",
+    "REPLACE actually sorts all three images into date/media/size; float storage is untouched",
+    "Repeat sorting recognizes numbered outputs without category setup",
+    "UNDO restores every original byte and name and returns to the sorter",
+    "Actual launcher exits zero and restores the cursor"
+  ]
+}

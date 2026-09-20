@@ -29,6 +29,20 @@ def make_video():
     return create
 
 
+def test_numbered_video_sorts_with_optional_categories_and_no_rules(root, make_video):
+    video = make_video(root / 'SML01.mp4'); original = video.read_bytes()
+    preview = plan(root, POLICY, categories=True)
+    assert preview['ready'] and preview['files'][0]['category'] is None
+    assert preview['files'][0]['original_filename'] is None
+    assert organize(root, POLICY, categories=True, plan_id=preview['plan_id'])['checkpoint'] == 'COMPLETE'
+    row = video_catalog(root)[0]
+    assert row['relative'] == '2025/March/vid/SML/SML01.mp4'
+    assert (root / row['relative']).read_bytes() == original
+    assert audit_workspace(root)['checkpoint'] == 'COMPLETE'
+    assert undo_sort(root, apply=True)['checkpoint'] == 'COMPLETE'
+    assert video.read_bytes() == original
+
+
 @pytest.mark.parametrize("extension", ["mp4", "mov", "mkv", "webm", "avi"])
 def test_real_mixed_video_sort_preview_idempotence_and_undo(root, make_image, make_video, extension):
     image = make_image(root / "photo.png")

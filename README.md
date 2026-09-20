@@ -74,8 +74,10 @@ for the session. **Full Sort Workshop** retains the configurable workflow.
 
 Riposte Sorter uses download dates (creation/birth time with modified-time
 fallback), saved filename-category rules, and
-`Year/Month/img-or-vid/Category/Size`. Unmatched titles go to `uncategorized`;
-ambiguous rules or missing title provenance remain blockers for the workshop.
+`Year/Month/img-or-vid/[Category if found]/Size`. Categories are optional per file:
+no saved rules, no match, tied matches or unknown original titles all use the
+ordinary date/media/size route. Existing categories are retained when no new
+match is available. No category setup or manual assignment is required to sort.
 Images become date-only PNGs, videos keep their bytes, and originals remain
 privately recoverable. Sidecar deletion requires explicit workshop consent.
 **Sort** displays the exact preview, then requires `REPLACE`. **Dry Run** only
@@ -202,7 +204,8 @@ The direct equivalent is `riposte categories ROOT --category "Hockey=hockey;goal
 Groups in this screen are session drafts; they are not saved and cannot move files. Overlapping
 groups are shown for review. Discovery reads filename stems by media extension,
 without validating image/video contents. Generated numbered names are excluded
-because they need original-title provenance or a manual assignment. Opt-in category sorting uses the
+because generated names do not establish meaningful category keywords. They still
+sort normally without categories. Opt-in category sorting uses the
 `Year/Month/img-or-vid/Category/Size` layout below.
 
 **Reusable rules can be saved through the CLI, terminal and browser.** Preview with
@@ -221,8 +224,9 @@ See [the command reference](docs/CLI.md#saved-category-rules).
 read-only plan containing every source, trusted original title, matching term,
 category and exact destination. Apply with `--categories --apply --plan-id ID`
 using the ID from that preview. Changed files, rules, assignments, catalogs or
-destinations require a refreshed preview. Unmatched titles go to Uncategorized;
-ties and old numbered files need an explicit `--assign "relative/path=slug"`.
+destinations require a refreshed preview. Unmatched, tied and unknown titles
+sort normally without a category; an existing category is retained. Optional
+`--assign "relative/path=slug"` lets you choose a category explicitly.
 Sorts from this version retain original titles and assignments in the private
 `sort_titles` table, separate from the public media catalog. Undo restores these
 records together with the image/video catalog; output PNG metadata remains date

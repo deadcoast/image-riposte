@@ -221,6 +221,15 @@ def test_float_images_can_be_protected_without_sorting(root, make_image, recipe,
     assert b'PRIVATE_FIXTURE_PAYLOAD' not in exact
 
 
+def test_combined_category_sort_protects_numbered_and_unmatched_without_rules(root, make_image, models):
+    for name in ('SML01.png', 'unmatched.png'): make_image(root / name, size=(96, 80))
+    result = execute(reviewed_combined(root, values(all_images=True, categories=True, date_mode='modified')))
+    assert result['workflow'] == 'SORT_RIPOSTE'
+    assert result['sorting']['checkpoint'] == 'COMPLETE'
+    assert result['counts']['READY_FOR_REVIEW'] == 2 and len(models) == 1
+    assert all('/img/SML/' in row['relative'] for row in catalog(root))
+
+
 @pytest.mark.parametrize('categories', [False, True])
 def test_combined_sort_keeps_float_storage_and_protects_sorted_images(root, make_image, models, categories):
     held = make_image(root / '__float__' / 'private painting.png', size=(96, 80))

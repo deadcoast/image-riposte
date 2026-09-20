@@ -237,6 +237,6 @@ def discover_categories(root: Path, *, min_count: int = 2, max_words: int = 3,
                        "overlaps": [{"categories": [drafts[a].label, drafts[b].label], "count": count}
                                     for (a, b), count in sorted(overlaps.items())],
                        "ambiguous_examples": ambiguous_examples, "unmatched_examples": unmatched_examples,
-                       "unmatched_proposal": "Uncategorized"},
+                       "unmatched_proposal": "Standard date/media/size; no category required"},
             "next": "Edit category groups and rerun to review. Use category-rules with the same groups to preview and explicitly save reusable rules. Then preview sort --categories before applying its exact plan.",
-            "title_policy": "Generated SML/MED/LRG/XTL numbered names are excluded; original-title provenance or manual assignment is required."}
+            "title_policy": "Generated SML/MED/LRG/XTL names are excluded from keyword discovery. They can still be sorted without a category; manual assignment is optional."}

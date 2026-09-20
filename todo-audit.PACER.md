@@ -14,7 +14,72 @@ INFERRED: keep all four connected CSVs byte-identical during catch-up, so recipr
 links cannot advance TODO indirectly. Reconcile them together through guarded
 PACER commands only at the completion milestone.
 
-### Terminal polish and float-storage exclusion / 2026-09-20 / bounded work complete
+### Optional-category correction / 2026-09-20 / implementation and bounded verification
+
+USER (original wording):
+
+> OK i tested the sorter and you have completely broken it by not completing the category option. its not mandatory; its if found. NOTHING SORTS NOW. YOU ADDED RUDIMENTARY; BASIC INTEGRATION FOR A COMPLEX PROBLEM, APPROVED IT, VALIDATED IT, POLISHED IT, THEN FUCKING GUARD RAILED THE ENTIRE APPLICATION BEHIND IT. LIES, LIES, LIES, LIES AND RETARARDATION AI SLOP
+
+USER correction supersedes the earlier agent interpretation that original-title
+availability and unambiguous categories are prerequisites for sorting. Earlier
+tests explicitly asserted those incorrect blocking behaviors; their passing
+counts did not establish the intended category workflow. Historical evidence is
+retained, but that semantic acceptance is withdrawn here.
+
+OBSERVED: category_plan raises category blockers for generated names, missing
+original-title provenance and tied matches. The default sorter always enables
+that planner, and apply refuses the entire preview when it is not ready. It also
+creates an uncategorized layer for unmatched titles. Saved manual categories
+become blockers when their rule is removed.
+
+INFERRED corrective behavior: use a category when matched or explicitly assigned;
+otherwise use the ordinary date/media/size route. Preserve an existing confirmed
+category when no new match is available, including stored manual choices after
+rule removal. Explicit auto assignment may clear a previous manual choice. Keep
+original titles unknown when unknown; never fabricate title provenance. Preserve
+float exclusions, receipt binding, source verification, REPLACE/UNDO and private
+recovery. Test the actual default Sort action through confirmation and repeat
+sorting with no rules, numbered files, legacy catalogs, and mixed matches.
+
+Read-only PACER onboarding remains structurally valid with eleven stale historical
+records. Source queries: category_sort OVR-1249, category_rules OVR-1169, render
+OVR-047, reports OVR-162, browser category-sort OVR-1251. Work/evidence lives in
+`evidence/optional-categories/`; all four registers remain frozen. Additional
+owners queried: actions OVR-038, title_categories OVR-1080, index OVR-031.
+
+Implemented: categories enrich matching files; absent/tied/unknown matches take
+the ordinary route. Existing catalog categories and saved manual choices survive
+missing title records or rule removal. Explicit auto can clear a previous choice.
+No unknown title is fabricated. Shared engine, terminal/browser copy and current
+documentation agree. Receipt version 2 rejects prior-semantic previews.
+
+Executed: eight initial failures reproduced, then all eight passed. Final affected
+suite passes 236 cases with one symlink skip and one native-browser deselection;
+it includes an added legacy-category case. Broader suite: 1,412 passed, nine
+platform skips, two native-browser deselections. Both real Chromium cases passed
+separately. Actual Windows ConPTY START.ps1 and START.cmd preview/apply three
+numbered/unmatched images with no rules, repeat with NO CHANGES, and undo to
+exact original bytes/names; float storage stays unchanged. No user artwork or
+user-owned terminal window was operated. Simulated cell renders were reviewed
+at 72x24 and 100x34; they are not native screenshots.
+
+External contracts pass 479 signatures / 56 modules / 66 files and retain 13
+negative diagnostics. Initial raw audit: 789 diagnostics; final audit: 788 in
+36 of 59 files after removing one local-name collision, retaining existing typing debt and three new calls to
+untyped report helpers. Source-wide typing cleanliness is not claimed. Fresh
+wheel/sdist contain all 66 reviewed application files. The static UI scanner
+retains the same 66 findings; no clean scanner or clean-install claim.
+The external design-document linter was unavailable offline (package not cached);
+its failure is retained. Scoped source whitespace checks pass. All four register
+hashes are unchanged; read-only validation is valid with the same eleven stale
+historical evidence records.
+
+Next: retain this correction as current behavior and reconcile its source/test/
+evidence references at the authorized audit milestone. The overall audit remains
+open, PAC-034 stays shelved, and synthetic/runtime evidence does not establish
+model efficacy or human product acceptance.
+
+### Terminal polish and float-storage exclusion / 2026-09-20 / historical bounded evidence; category acceptance corrected above
 
 USER (original wording): "PROVIDE ANOTHER POLISH PASS ON THE UI AND OPERATION."
 

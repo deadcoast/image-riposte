@@ -59,7 +59,7 @@ INPUT_FIELDS = tuple(Field(f"input{i}", "File or folder" if i == 1 else f"Additi
 SORT_FIELDS = (
     Field("date_mode", "Date basis", "choice", "download", "Creation/birth time with modified-time fallback, or an explicit alternative.", ("download", "modified", "embedded")),
     Field("discard_sidecars", "Discard metadata sidecars", "bool", False, "Authorize known metadata sidecar deletion during Apply, not during preview."),
-    Field("categories", "Sort by filename category", "bool", False, "Use saved rules. Preview exact Year/Month/img-or-vid/Category/Size destinations before Apply."),
+    Field("categories", "Use categories if found", "bool", False, "Use matching saved rules when available. Otherwise sort by date/media/size; existing categories stay."),
     Field("assignments", "Manual categories", "text", "", 'JSON list of source-relative-path=slug strings, for example ["2025/March/img/SML/SML01.png=hockey"]. Use =auto to clear a saved manual choice.', optional=True))
 
 ACTIONS = (

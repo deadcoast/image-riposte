@@ -56,11 +56,11 @@ def test_priorities_aliases_exclusions_phrases_and_ties():
     assert cr.match_title("table-hockey-practice", rules)["category"]["slug"] == "practice"
     assert cr.match_title("fieldhockey-player", rules)["status"] == "UNMATCHED"
     assert cr.match_title("hockey-table-practice", rules)["category"]["slug"] == "hockey"
-    assert cr.match_title("toy-goaltender", rules)["category"]["label"] == "Uncategorized"
+    assert cr.match_title("toy-goaltender", rules)["category"] is None
     tied = cr.build_rules(["Hockey=hockey", "Practice=practice"])
     assert cr.match_title("hockey-practice", tied)["status"] == "AMBIGUOUS"
     assert cr.match_title("hockey-practice", tied)["category"] is None
-    assert cr.match_title("SML001", rules)["status"] == "ORIGINAL_TITLE_REQUIRED"
+    assert cr.match_title("SML001", rules)["status"] == "ORIGINAL_TITLE_UNAVAILABLE"
 
 
 def test_unicode_normalization_slug_stability_and_explicit_rename(root):
@@ -201,7 +201,7 @@ def test_legacy_state_save_and_readonly_match_counts(root):
     assert report["review"]["counts"]["analyzed_files"] == 3
     assert report["review"]["counts"]["original_title_required"] == 1
     assert report["review"]["counts"]["ambiguous_files"] == 1
-    assert report["review"]["assignments"] == {"hockey": 1, "uncategorized": 1}
+    assert report["review"]["assignments"] == {"hockey": 1}
     assert cr.load_rules(root) == stored and snapshot(root) == before
     assert not (root / ".riposte").exists()
 

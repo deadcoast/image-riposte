@@ -54,12 +54,12 @@ window.RiposteSort = (() => {
   function destinations(result) {
     const area=$('category-destinations');area.replaceChildren();
     const counts=result.counts||{};
-    if(result.category_sorting)area.append(el('p','',`${counts.unmatched_files||0} unmatched · ${counts.ambiguous_files||0} ambiguous`));
+    if(result.category_sorting)area.append(el('p','',`${counts.without_category_files||0} without category · ${counts.ambiguous_files||0} ambiguous. Categories are optional; unmatched files use date/media/size, and existing categories stay.`));
     for(const item of result.files||[]) {
       const row=el('article','sort-file');row.append(el('strong','',item.source));
       if(result.category_sorting) {
         row.append(el('p','', 'Original title: '+(item.original_filename||'unknown')));
-        row.append(el('p','',(item.category?.label||'Needs assignment')+' · '+(item.matched_terms?.join(', ')||item.match_status||item.action||'')));
+        row.append(el('p','',(item.category?.label||'No category; standard date/media/size')+' · '+(item.category_source==='PRESERVED'?'Existing category retained':item.matched_terms?.join(', ')||item.match_status||item.action||'')));
       } else row.append(el('p','',item.action||'Blocked'));
       row.append(el('p','sort-destination',item.destination||item.error||item.action||'Blocked'));area.append(row);
     }

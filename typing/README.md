@@ -5,10 +5,23 @@ The Markdown audit is active and the PACER CSV TODO is frozen. This guide's
 current counts come from `evidence/verification.json`; earlier task records below
 remain historical. On 2026-09-20 all 66 application hashes and 479 source/stub
 signatures were checked by the full external contract suite, which passed.
-The separate fresh implementation audit reports 785 diagnostics in 36 of 59
+The separate fresh implementation audit reports 788 diagnostics in 36 of 59
 Python files. Strict settings are unchanged; the source tree remains unclean.
 
-The terminal polish and float-storage review admits ten changed source owners
+The optional-category correction admits eight changed application owners against
+the terminal-polish snapshot in `source-reviewed-optional-categories.json`.
+No callable signatures change. Existing dynamic report contracts already permit
+an absent category; the planner now uses ordinary date/media/size destinations
+for missing, tied or unavailable title matches. It also reports retained category
+choices and uses receipt version 2. Earlier tests that asserted mandatory category
+assignment were incorrect for the user's intent; external contract success did
+not establish that intent. The initial raw audit found 789 diagnostics, including
+a reused local name with incompatible optionality. Its rename removes that issue.
+Three added raw diagnostics are calls into existing untyped report helpers; no
+Any declaration, ignore or configuration relaxation was introduced. Before/after
+evidence and actual launcher sort/undo checks are in `../evidence/optional-categories/`.
+
+The historical terminal polish and float-storage review admits ten changed source owners
 against the direction-reversal snapshot in `source-reviewed-terminal-polish.json`.
 The sole new function is `policy.sort_excluded(directory: Path) -> bool`, shared
 by sort discovery/planning and intentionally absent from protection intake.

@@ -29,6 +29,8 @@ for tested scope. Earlier visual specifications remain historical design context
 
 The default first action opens one stable screen: selected folder, **1. Sort**,
 **2. Dry Run**, **3. Enter Path**, followed by the date/media/category/size route.
+The category segment is explicitly "if found". Missing, ambiguous or unknown
+categories must never look like required setup; the ordinary route stays usable.
 The existing configurable flow is **Full Sort Workshop**. Keep the same terminal
 monospace, foreground palette and explicit `>` focus marker. Numbering identifies
 actions, not required stages. Path input starts empty so a pasted path cannot be

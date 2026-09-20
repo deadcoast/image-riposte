@@ -96,7 +96,7 @@
 <label class="checkbox"><input type="checkbox" id="discard-sidecars">Discard recognized metadata sidecars and thumbnail caches.</label>
 <label class="checkbox"><input type="checkbox" id="sort-categories">Sort by filename category</label>
 <div id="category-options" hidden>
-<p class="field-help">Year / Month / img-or-vid / Category / Size. Unmatched titles go to Uncategorized. Ties and old numbered files need a manual category.</p>
+<p class="field-help">Categories are used when found. Unmatched, tied or unknown titles sort by Year / Month / img-or-vid / Size. Existing categories stay unless a new match or explicit assignment changes them. No category setup is required.</p>
 <details id="category-editor"><summary>Discover and save category rules</summary>
 <label>Minimum matching files<input id="category-min-count" type="number" min="1" value="2"></label>
 <button id="category-discover" class="secondary">Discover filename terms</button>
@@ -113,7 +113,7 @@
 <button id="category-save" class="primary" disabled>Save reviewed rules</button>
 </details>
 <label>Manual assignments<textarea class="resize-none" id="category-assignments" rows="3" spellcheck="false" aria-describedby="category-assignment-help" placeholder="2025/March/img/SML/SML01.png=hockey"></textarea></label>
-<p id="category-assignment-help" class="field-help">One source-relative-path=category-slug per line. Use =uncategorized for the fallback or =auto to clear a previous manual choice.</p>
+<p id="category-assignment-help" class="field-help">Optional: one source-relative-path=category-slug per line. Use =auto to clear a previous choice, or =uncategorized to explicitly choose that folder.</p>
 </div>
 <button id="run-plan" class="secondary">Inspect without changes</button>
 <p id="sort-status" class="field-help" role="status" aria-live="polite">Inspect this folder before applying.</p>

@@ -129,10 +129,11 @@ def sorter(c: Surface, state: Session) -> None:
         c.text(4, 11+n*2, f"{'>' if focused else ' '} {n+1}. {row['title']}",
                "accent" if focused else "text", bold=focused, width=c.width-8)
         if c.width >= 100: c.text(24, 11+n*2, row["summary"], "muted", width=c.width-28)
-    c.text(3, 17, "Year / Month / img-or-vid / Category / Size", "text", width=c.width-6)
+    c.text(3, 17, "Year / Month / img-or-vid / [Category if found] / Size", "text", width=c.width-6)
     c.text(3, 18, "_float_ / __float__: never sorted; RIPOSTE allowed.", "muted", width=c.width-6)
     if c.height >= 28:
-        c.wrap(3, 19, "Download dates; saved category rules; unmatched titles go to Uncategorized. "
+        c.wrap(3, 19, "Download dates; categories only when matched. No category setup required. "
+               "Unmatched or unknown titles sort by date, media and size; existing categories stay. "
                "Images become date-only PNGs; videos keep their bytes. Originals stay in private undo history. "
                "Sidecars require Full Sort Workshop consent.", c.width-6, c.height-25, "muted")
     footer(c, state)

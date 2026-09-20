@@ -173,14 +173,17 @@ def blockers(w, data):
 
 
 def category_destinations(w: Writer, data: dict) -> None:
-    w.section("Exact category destinations")
+    w.section("Exact destinations / optional categories")
     counts = data.get("counts", {})
     w.pair("Unmatched files", counts.get("unmatched_files", 0))
     w.pair("Ambiguous files", counts.get("ambiguous_files", 0))
+    w.pair("Without a category", counts.get("without_category_files", 0))
+    w.text("Categories are optional. No match or unknown title uses date/media/size; existing categories are kept.", "muted")
     for item in data.get("files", []):
         w.text(item["source"], bold=True)
-        w.pair("Original title", item.get("original_filename") or "Unknown: manual assignment required", 2)
-        w.pair("Category", (item.get("category") or {}).get("label", item.get("error", "None")), 2)
+        w.pair("Original title", item.get("original_filename") or "Unknown; sorting still available", 2)
+        w.pair("Category", (item.get("category") or {}).get("label", "None; standard date/media/size"), 2)
+        if item.get("category_source") == "PRESERVED": w.pair("Category choice", "Existing category retained", 2)
         w.pair("Matched terms", ", ".join(item.get("matched_terms", [])) or item.get("match_status", "None"), 2)
         w.pair("Destination", item.get("destination") or item.get("action", "Blocked"), 2)
     w.pair("Preview ID", data.get("plan_id"))
@@ -217,7 +220,7 @@ def overview(data, command="", width=94) -> Report:
             r = Report("Filename categories", "READ ONLY" if data.get("checkpoint") == "COMPLETE" else "INCOMPLETE", "accent",
                        "Filename suggestions and session groups only. No files or reusable rules are written.")
             r.metrics = [("Titles analyzed", str(counts.get("analyzed_files", 0))), ("Suggestions", str(data.get("candidate_count", 0))),
-                         ("Original title needed", str(counts.get("original_title_required", 0)))]
+                         ("Titles unavailable", str(counts.get("original_title_required", 0)))]
             w.section("Suggestions / matching files")
             w.rows(("Term", "Files", "Example"), [(row["term"], str(row["count"]), row["examples"][0] if row["examples"] else "")
                     for row in data.get("candidates", [])], [3, 1, 5])
@@ -232,7 +235,7 @@ def overview(data, command="", width=94) -> Report:
                 w.pair("Ambiguous files", counts.get("ambiguous_files", 0))
                 for overlap in review.get("overlaps", []): w.pair(" / ".join(overlap["categories"]), overlap["count"])
             w.text("Return to edit Category groups: Hockey=hockey;goalie. Use commas between groups. Clear a group to remove it.")
-            w.text("Numbered sorted names are excluded. Details shows all samples and match evidence. Media contents were not validated.", "muted")
+            w.text("Numbered names are excluded from suggestions; they can still sort without a category. Details shows match evidence. Media contents were not validated.", "muted")
             if data.get("checkpoint") == "INCOMPLETE": w.text("Some paths could not be scanned; counts are incomplete.", "warn")
         elif mode == "CATEGORY_RULES":
             r = Report("Saved category rules", data.get("status", "STORED"), "accent", "Rules are reusable. Sorting requires its own preview and confirmation.")

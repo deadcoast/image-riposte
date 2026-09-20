@@ -1,0 +1,2 @@
+usage: native_console.py [-h] [--entry {powershell,cmd}] [--trace] [--motion]
+native_console.py: error: unrecognized arguments: --launcher cmd

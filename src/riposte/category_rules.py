@@ -200,9 +200,9 @@ def save_rules(root: Path, rules: Sequence[CategoryRule], *, expected_revision: 
 
 
 def match_title(stem: str, rules: Sequence[CategoryRule]) -> dict[str, Any]:
-    """Match whole words/contiguous phrases; higher priority wins, ties need review."""
+    """Match whole words/phrases; absent or tied matches have no category."""
     if GENERATED_TITLE.fullmatch(unicodedata.normalize("NFKC", stem)):
-        return {"status": "ORIGINAL_TITLE_REQUIRED", "category": None, "matches": []}
+        return {"status": "ORIGINAL_TITLE_UNAVAILABLE", "category": None, "matches": []}
     tokens = title_tokens(stem)
     terms = {" ".join(tokens[start:start + length]) for start in range(len(tokens))
              for length in range(1, 4) if start + length <= len(tokens)}
@@ -211,7 +211,7 @@ def match_title(stem: str, rules: Sequence[CategoryRule]) -> dict[str, Any]:
                for rule in rules if terms.intersection(rule.terms) and not terms.intersection(rule.exclusions)]
     matches.sort(key=lambda row: (-row["priority"], row["slug"]))
     if not matches:
-        return {"status": "UNMATCHED", "category": {"label": "Uncategorized", "slug": "uncategorized"}, "matches": []}
+        return {"status": "UNMATCHED", "category": None, "matches": []}
     winners = [row for row in matches if row["priority"] == matches[0]["priority"]]
     return {"status": "MATCHED" if len(winners) == 1 else "AMBIGUOUS",
             "category": {"label": winners[0]["label"], "slug": winners[0]["slug"]} if len(winners) == 1 else None,
@@ -241,7 +241,7 @@ def review_matches(root: Path, rules: Sequence[CategoryRule], *, sample_limit: i
     return {"checkpoint": "INCOMPLETE" if counts["unreadable_files"] or counts["unreadable_directories"] else "COMPLETE",
             "basis": "FILENAME_STEMS_BY_MEDIA_EXTENSION", "media_validated": False,
             "counts": dict(counts), "assignments": dict(assignments), "examples": samples,
-            "title_policy": "Generated numbered titles require trustworthy original-title provenance or manual assignment."}
+            "title_policy": "Generated names do not supply category evidence. Sorting can continue without a category; manual assignment is optional."}
 
 
 def category_rules(root: Path, *, categories: Sequence[str] = (), exclusions: Sequence[str] = (),
@@ -267,6 +267,6 @@ def category_rules(root: Path, *, categories: Sequence[str] = (), exclusions: Se
     return {"mode": "CATEGORY_RULES", "writes": save, "rules_saved": save,
             "status": "SAVED" if save else "DRAFT" if supplied else "STORED" if stored.revision != MISSING_REVISION else "ABSENT",
             "revision": stored.revision, "rules": rules_document(rules), "review": matching,
-            "unmatched": {"label": "Uncategorized", "slug": "uncategorized"},
+            "unmatched": None,
             "sorting_enabled": False,
             "next": "Save a reviewed replacement with --save --expected-revision. Then preview sort --categories; applying requires --apply --plan-id from that unchanged preview."}
