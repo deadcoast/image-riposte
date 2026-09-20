@@ -1,0 +1,49 @@
+{
+  "requirement": "OGM-002",
+  "meaning": "cab61136ee7f1dff1d0e65666500efbc1441552cdc2c5fb577823694afa8c75a",
+  "sources": {
+    "typing/test_tooling.py": "06936eeb2cfcf156bcea0d296abd91ff316e6c6dc398a4c4e9960509b2e57724",
+    "typing/check.py": "5add57cca935ca73d178d7f297892429f7581ec5fc72a2b435c67bcea1fbb1bf",
+    "typing/pacer_inventory.py": "6bf50691b72973bff5e4b0eddc4676ad234d9856ed37e02be4fefe58e8fed9cb",
+    "typing/evidence/source-environment.json": "bbd297d0f095bc207e6537810c0ea1e971a78b6a874cee5af286877e40241cb8",
+    "typing/evidence/source-current-command.json": "90f03ad1dbc466513efecef02a3e5a456e9c6206d8634a9c059da6db15c7d166",
+    "evidence/patch-v050/root-mypy.json": "c87bf9475086557b10f0d5d7b2a165ba8972400e030b467fe62e9d6e1cdc9e64",
+    "evidence/patch-v050/root-mypy-dot.txt": "78a3b1c0f5395e6487e5ae4d5a3d270a9286ae431c094b0f3763f8acfa4b31f2",
+    "evidence/patch-v050/root-mypy-default.txt": "78a3b1c0f5395e6487e5ae4d5a3d270a9286ae431c094b0f3763f8acfa4b31f2",
+    "typing/evidence/source-reviewed-v050.json": "0b62c31d7fc3e617bbc418ee56b962aeba0c03699103e94d90e5d52a5a0ac966",
+    "typing/evidence/pac-003-root-audit.json": "5c1555e201fe1dc7db6a8f14b53e33e2d48f8d098d5790cd627ef0fea5ff39c1",
+    "typing/evidence/pac-003-before.json": "062e2a21c61af2102001d5352a24ad73f93dc875d40d8db27660e90c9fd95ccb",
+    "typing/mypy-contracts.ini": "78fddb2607c7cdb260de23c75b2570d07407dd9ba4aefeebccbfeb0b4c27e70e",
+    "typing/evidence/tooling-regressions.txt": "f5f2a11461c87d8344683db594dc490e5b93478c8df3658e9515d9c0e9e7e9ae",
+    "typing/evidence/source-after.json": "50f4abaedb70d83ace7d4df0c98b577d526368c2da65566067f04771b8884186",
+    "typing/evidence/mypy-tooling.txt": "281a094c39385b4d7b53e5db635f52158036861433c2a4975b9039e77a627a24",
+    "typing/evidence/runtime-contracts.txt": "044fe016203d67b05a9940a4c8a1173e3def8a350fce4ffb2ad4f9c15892d253",
+    "typing/evidence/pacer-inventory.json": "d4ee327537386a2e96bde76c4f326384e6e77ea36119ec876d8811e0711b93bb",
+    "typing/mypy-source.ini": "f168d5874f12d6258a8e35311ea4fc90ebeab878a51fb1268cc1a89e8cb104bf",
+    "typing/evidence/verification.json": "c0616e2135a10756e8185fa29bd80d7364c6a87dfdae32c039314ab3525612e7",
+    "typing/evidence/source-before.json": "d3fa8409db29ebf923523671b44fade9caf459f627bd4f16ea07a4ff6d094f8b",
+    "typing/README.md": "2d637932b6160f33a48cd60730ec9383e97e9b824b1c7200e20b0ae2ff65fe86",
+    "mypy.ini": "c0961208a99c02083a873c32a8bd5ca6a7ba1c88d601eb2210fb3f94c00d2d99"
+  },
+  "result": "PASS",
+  "command": [
+    ".venv/Scripts/python.exe evidence/pacer-resumption/verify.py --packages",
+    ".venv/Scripts/python.exe evidence/pacer-resumption/acceptance.py --pacer-source <installed PACER src>",
+    ".venv/Scripts/python.exe -m pytest -q -k \"not browser_native and not native_browser and not browser_review_in_real_chromium\"",
+    ".venv/Scripts/python.exe -m pytest -q -k \"browser_native or native_browser or browser_review_in_real_chromium\"",
+    "uv run --project typing --frozen --cache-dir typing/.cache/uv python typing/check.py"
+  ],
+  "review": "Separate strict source and contract configurations remain intact. Raw source check covers 65 Python files and retains 823 diagnostics; contract identity covers 73 application files. Tooling regressions exercise source discovery and generated-metadata exclusion.",
+  "test_modules": {},
+  "historical": {
+    "selective_patch": "PASS: retained archives, decisions, source snapshot and dependency inputs",
+    "identification": "PASS: four lists and 16 findings with original source identity",
+    "limits": "Historical events are not reapplied over later authorized development."
+  },
+  "limits": [
+    "Full Python suite predates the final version-label-only HTML/JS edit; native browser and live-server checks cover that edit.",
+    "Existing Windows environment; no clean installation or minimum-Python/platform matrix.",
+    "Synthetic files and CPU/stub/tiny-random model checks do not establish independent human acceptance, classification accuracy or model efficacy."
+  ],
+  "raw_source_typing": "FAIL: 823 diagnostics; strict configuration unchanged"
+}

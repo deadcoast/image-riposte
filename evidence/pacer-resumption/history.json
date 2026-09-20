@@ -1,0 +1,5 @@
+{
+  "selective_patch": "PASS: retained archives, decisions, source snapshot and dependency inputs",
+  "identification": "PASS: four lists and 16 findings with original source identity",
+  "limits": "Historical events are not reapplied over later authorized development."
+}

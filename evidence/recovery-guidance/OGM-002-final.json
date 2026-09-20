@@ -1,0 +1,50 @@
+{
+  "requirement": "OGM-002",
+  "meaning": "cab61136ee7f1dff1d0e65666500efbc1441552cdc2c5fb577823694afa8c75a",
+  "sources": {
+    "typing/test_tooling.py": "06936eeb2cfcf156bcea0d296abd91ff316e6c6dc398a4c4e9960509b2e57724",
+    "typing/check.py": "aeb3bd57817fb0309763bcd2e1d143fffe11b4f9e9946c86b42e9230ca9f420f",
+    "typing/pacer_inventory.py": "53f62584a6406a97a7c4c0d41a846b6537f1d5fdc2c772cd9651e2e000d47525",
+    "typing/evidence/source-environment.json": "bbd297d0f095bc207e6537810c0ea1e971a78b6a874cee5af286877e40241cb8",
+    "typing/evidence/source-current-command.json": "26fa569e103a0177888bbf63e18ab51fd24bc98e5765b4f381d2d45eb8528ef0",
+    "evidence/patch-v050/root-mypy.json": "c87bf9475086557b10f0d5d7b2a165ba8972400e030b467fe62e9d6e1cdc9e64",
+    "evidence/patch-v050/root-mypy-dot.txt": "78a3b1c0f5395e6487e5ae4d5a3d270a9286ae431c094b0f3763f8acfa4b31f2",
+    "evidence/patch-v050/root-mypy-default.txt": "78a3b1c0f5395e6487e5ae4d5a3d270a9286ae431c094b0f3763f8acfa4b31f2",
+    "typing/evidence/source-reviewed-v050.json": "0b62c31d7fc3e617bbc418ee56b962aeba0c03699103e94d90e5d52a5a0ac966",
+    "typing/evidence/pac-003-root-audit.json": "5c1555e201fe1dc7db6a8f14b53e33e2d48f8d098d5790cd627ef0fea5ff39c1",
+    "typing/evidence/pac-003-before.json": "062e2a21c61af2102001d5352a24ad73f93dc875d40d8db27660e90c9fd95ccb",
+    "typing/mypy-contracts.ini": "78fddb2607c7cdb260de23c75b2570d07407dd9ba4aefeebccbfeb0b4c27e70e",
+    "typing/evidence/tooling-regressions.txt": "177fbf8389a646931cd468e3fa50dc576f8cd97d40c6558d26c21bfc2accb345",
+    "typing/evidence/source-after.json": "ebc551b91ff92957ba9001cd0645120a2fea534191f2557c7aad62c1b1c2994a",
+    "typing/evidence/mypy-tooling.txt": "281a094c39385b4d7b53e5db635f52158036861433c2a4975b9039e77a627a24",
+    "typing/evidence/runtime-contracts.txt": "f1d0218a88565172589fbfa2e3147b910d4febd49a731905743ed0cb125d0146",
+    "typing/evidence/pacer-inventory.json": "bc039ed8411c59001de92116d883fa108c5b9688e2fead594fa9912b993a53a4",
+    "typing/mypy-source.ini": "f168d5874f12d6258a8e35311ea4fc90ebeab878a51fb1268cc1a89e8cb104bf",
+    "typing/evidence/verification.json": "d7f85ae1d5f7c403ffd3344afe05d36553deab42995ff7dde0db6696b100c7ac",
+    "typing/evidence/source-before.json": "d3fa8409db29ebf923523671b44fade9caf459f627bd4f16ea07a4ff6d094f8b",
+    "typing/README.md": "3cf7be96ea6a43c6f75ae9f9a850f5512b3ef851e75499ef170cba6b1ae1f63f",
+    "mypy.ini": "c0961208a99c02083a873c32a8bd5ca6a7ba1c88d601eb2210fb3f94c00d2d99"
+  },
+  "result": "PASS",
+  "command": [
+    ".venv/Scripts/python.exe evidence/recovery-guidance/verify.py",
+    ".venv/Scripts/python.exe -m pytest -q -k \"not browser_native and not native_browser and not browser_review_in_real_chromium\" --junitxml=evidence/recovery-guidance/suite.xml",
+    ".venv/Scripts/python.exe -m pytest -q -k \"browser_native or native_browser or browser_review_in_real_chromium\" -o cache_dir=.tmp/recovery-guidance/native-cache --junitxml=evidence/recovery-guidance/native.xml",
+    ".venv/Scripts/python.exe evidence/recovery-guidance/live_browser.py",
+    "uv run --project typing --frozen --cache-dir typing/.cache/uv python typing/check.py",
+    ".venv/Scripts/python.exe typing/pacer_inventory.py"
+  ],
+  "review": "PAC-038 source review: error codes are sanitized at construction; job metadata adds only an allowlisted operation family. The other runtime changes are recovery presentation. Engine math, matching, source replacement, lease ownership and history integrity implementations are unchanged. Current relevant regressions pass. Historical platform/model/human evidence retains its original scope and is not claimed as newly executed. Strict source audit rerun: FAIL at 825 diagnostics in 36 files. Two new diagnostics are calls to existing untyped report helpers. External contracts pass separately; settings, ignores and dynamic declarations are unchanged. Final inventory output refreshed after evidence-generator metadata corrections; only typing/evidence/pacer-inventory.json changed in this accepted source basis. Inventory remains PASS with no issues; application, test results, contracts and packages are unchanged.",
+  "executed_module_coverage": {
+    "test_recovery_guidance": {
+      "passed": 20,
+      "skipped": 0
+    }
+  },
+  "previous_review": "Separate strict source and contract configurations remain intact. Raw source check covers 65 Python files and retains 823 diagnostics; contract identity covers 73 application files. Tooling regressions exercise source discovery and generated-metadata exclusion.",
+  "scope_limits": [
+    "Existing Windows environments, not clean installation or other hosts.",
+    "Synthetic media; no independent human or assistive-technology acceptance, classification accuracy or protection efficacy.",
+    "Generic UI static audit has 82 findings with separate dispositions; not a global UI pass."
+  ]
+}

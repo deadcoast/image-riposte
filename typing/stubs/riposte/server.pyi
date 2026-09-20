@@ -111,6 +111,7 @@ class ExecutionRequest(StrictModel):
     device: Literal['auto', 'cpu', 'cuda', 'mps'] = ...
 
 class Jobs:
+    closed: bool
     pool: ThreadPoolExecutor
     lock: threading.Lock
     data: dict[str, Report]
@@ -118,7 +119,7 @@ class Jobs:
 
     def __init__(self) -> None: ...
 
-    def start(self, fn: Callable[..., object], cancellable: bool=True, **kwargs: Any) -> JobStarted: ...
+    def start(self, fn: Callable[..., object], cancellable: bool=True, *, read_only: bool=False, operation: str='general', **kwargs: Any) -> JobStarted: ...
 
     def cancel(self, key: str) -> JobCancelled: ...
 

@@ -1,0 +1,17 @@
+AssertionError [ERR_ASSERTION]: native browser result: TypeError: Cannot read properties of null (reading 'value')
+    at http://127.0.0.1:12382/probe.js:38:88
++ actual - expected
+
++ "TypeError: Cannot read properties of null (reading 'value')\n" +
++   '    at http://127.0.0.1:12382/probe.js:38:88'
+- 'PASS'
+
+    at main (C:\Users\ryanf\github\_new\image-riposte\tests\category_sort_browser.cjs:65:12) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: "TypeError: Cannot read properties of null (reading 'value')\n" +
+    '    at http://127.0.0.1:12382/probe.js:38:88',
+  expected: 'PASS',
+  operator: 'strictEqual',
+  diff: 'simple'
+}

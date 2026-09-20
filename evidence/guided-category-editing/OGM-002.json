@@ -1,0 +1,99 @@
+{
+  "requirement": "OGM-002",
+  "meaning": "cab61136ee7f1dff1d0e65666500efbc1441552cdc2c5fb577823694afa8c75a",
+  "sources": {
+    "typing/test_tooling.py": "06936eeb2cfcf156bcea0d296abd91ff316e6c6dc398a4c4e9960509b2e57724",
+    "typing/check.py": "421f5f2ee1ee5b5afa60086d3a46a294659323724981b780bffafd32591a9fa8",
+    "typing/pacer_inventory.py": "3931312a07e59638477250f68b288e83b35f4f6e4bb494d4826d751de3c22ab6",
+    "typing/evidence/source-environment.json": "bbd297d0f095bc207e6537810c0ea1e971a78b6a874cee5af286877e40241cb8",
+    "typing/evidence/source-current-command.json": "9ab2332cc268497bc37ea7d1a74c60021d680ce9a41f87ed85abbfeeee8fa024",
+    "evidence/patch-v050/root-mypy.json": "c87bf9475086557b10f0d5d7b2a165ba8972400e030b467fe62e9d6e1cdc9e64",
+    "evidence/patch-v050/root-mypy-dot.txt": "78a3b1c0f5395e6487e5ae4d5a3d270a9286ae431c094b0f3763f8acfa4b31f2",
+    "evidence/patch-v050/root-mypy-default.txt": "78a3b1c0f5395e6487e5ae4d5a3d270a9286ae431c094b0f3763f8acfa4b31f2",
+    "typing/evidence/source-reviewed-v050.json": "0b62c31d7fc3e617bbc418ee56b962aeba0c03699103e94d90e5d52a5a0ac966",
+    "typing/evidence/pac-003-root-audit.json": "5c1555e201fe1dc7db6a8f14b53e33e2d48f8d098d5790cd627ef0fea5ff39c1",
+    "typing/evidence/pac-003-before.json": "062e2a21c61af2102001d5352a24ad73f93dc875d40d8db27660e90c9fd95ccb",
+    "typing/mypy-contracts.ini": "78fddb2607c7cdb260de23c75b2570d07407dd9ba4aefeebccbfeb0b4c27e70e",
+    "typing/evidence/tooling-regressions.txt": "076be2043d2240d3dd1f57fe7bb1403ef8d44e3d1f84c56841b2a0bd02c648a6",
+    "typing/evidence/source-after.json": "fa20a098c74970c6b9ea2892cfbf4a49cced50aeb255dfceb5d269aed689afde",
+    "typing/evidence/mypy-tooling.txt": "281a094c39385b4d7b53e5db635f52158036861433c2a4975b9039e77a627a24",
+    "typing/evidence/runtime-contracts.txt": "71ea62881b35834075a4d99393ae59b5e6721b20040088b0038dfbb7027243eb",
+    "typing/evidence/pacer-inventory.json": "03e0cb43b62afcb1e97f2c7420ffcfbe40a79a3d1277f31be54c4537edda88f2",
+    "typing/mypy-source.ini": "f168d5874f12d6258a8e35311ea4fc90ebeab878a51fb1268cc1a89e8cb104bf",
+    "typing/evidence/verification.json": "c0616e2135a10756e8185fa29bd80d7364c6a87dfdae32c039314ab3525612e7",
+    "typing/evidence/source-before.json": "d3fa8409db29ebf923523671b44fade9caf459f627bd4f16ea07a4ff6d094f8b",
+    "typing/README.md": "379d918bb22d9a603265de0d05dabda3df69cec8be56a34ada3fc69adc68c3dd",
+    "mypy.ini": "c0961208a99c02083a873c32a8bd5ca6a7ba1c88d601eb2210fb3f94c00d2d99"
+  },
+  "result": "PASS",
+  "command": [
+    ".venv/Scripts/python.exe evidence/guided-category-editing/verify.py",
+    ".venv/Scripts/python.exe -m pytest -q -k \"not browser_native and not native_browser and not browser_review_in_real_chromium\"",
+    ".venv/Scripts/python.exe -m pytest -q -k \"browser_native or native_browser or browser_review_in_real_chromium\"",
+    ".venv/Scripts/python.exe evidence/guided-category-editing/live_browser.py",
+    "uv run --project typing --frozen --cache-dir typing/.cache/uv python typing/check.py"
+  ],
+  "review": "The strict source audit was rerun and still fails at 823 diagnostics in 36 files. Seven external contract stages pass separately. No ignore, exclude, Python-runtime change or diagnostic suppression was introduced.",
+  "prior_scope_review": "Separate strict source and contract configurations remain intact. Raw source check covers 65 Python files and retains 823 diagnostics; contract identity covers 73 application files. Tooling regressions exercise source discovery and generated-metadata exclusion.",
+  "changed_sources_since_acceptance": [
+    "typing/README.md",
+    "typing/check.py",
+    "typing/evidence/pacer-inventory.json",
+    "typing/evidence/runtime-contracts.txt",
+    "typing/evidence/source-after.json",
+    "typing/evidence/source-current-command.json",
+    "typing/evidence/tooling-regressions.txt",
+    "typing/pacer_inventory.py"
+  ],
+  "test_modules": {},
+  "previous_artifact": "evidence\\pacer-resumption\\OGM-002.json",
+  "previous_artifact_sha256": "8346a1e12d8ac43638af3a3815073111ccfab3ba979e58f6c28b0c199f360ddf",
+  "verification": {
+    "result": "PASS",
+    "application_files": 73,
+    "changed_application_files": [
+      "src/riposte/static/category-sort.js",
+      "src/riposte/static/index.html",
+      "src/riposte/static/style.css"
+    ],
+    "suite": {
+      "tests": 1508,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 9,
+      "passed": 1499
+    },
+    "native": {
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 3
+    },
+    "contracts": {
+      "mypy-contracts": true,
+      "mypy-tooling": true,
+      "stubtest": true,
+      "runtime-contracts": true,
+      "tooling-regressions": true,
+      "negative-consumers": true,
+      "source-stable": true
+    },
+    "live": {
+      "result": "PASS",
+      "media_files": 58,
+      "float_files": 2,
+      "restored_bytes_and_mtimes": true,
+      "no_unexpected_public_files": true,
+      "no_fetch_mocks": true,
+      "scope": "Native Chromium with authenticated API: empty rules, row creation, inline validation, review/save, stable rename, actual concurrent-rule conflict, per-file choices, exact preview, consented sort and undo, paging and keyboard."
+    },
+    "packages_match": true,
+    "strict_source_typing": "FAIL: 823 diagnostics in 36 files; unchanged Python source and strict settings",
+    "limits": [
+      "Existing Windows environments, not clean installation or other hosts.",
+      "Synthetic media; no independent human or assistive-technology acceptance, classification accuracy or protection efficacy.",
+      "Generic UI static audit has 81 findings, reviewed separately; not a global UI pass."
+    ]
+  }
+}

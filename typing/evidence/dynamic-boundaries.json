@@ -371,57 +371,57 @@
   },
   {
     "file": "typing/stubs/riposte/server.pyi",
-    "line": 116,
+    "line": 117,
     "declaration": "data: dict[str, Report]"
   },
   {
     "file": "typing/stubs/riposte/server.pyi",
-    "line": 121,
-    "declaration": "def start(self, fn: Callable[..., object], cancellable: bool=True, **kwargs: Any) -> JobStarted:"
+    "line": 122,
+    "declaration": "def start(self, fn: Callable[..., object], cancellable: bool=True, *, read_only: bool=False, operation: str='general', **kwargs: Any) -> JobStarted:"
   },
   {
     "file": "typing/stubs/riposte/server.pyi",
-    "line": 125,
+    "line": 126,
     "declaration": "def snapshot(self) -> list[Report]:"
   },
   {
     "file": "typing/stubs/riposte/sort_history.pyi",
-    "line": 10,
+    "line": 11,
     "declaration": "def _save(root: Path, journal: Report) -> None:"
   },
   {
     "file": "typing/stubs/riposte/sort_history.pyi",
-    "line": 12,
+    "line": 13,
     "declaration": "def latest_sort(root: Path) -> Report | None:"
   },
   {
     "file": "typing/stubs/riposte/sort_history.pyi",
-    "line": 26,
-    "declaration": "def _check(root: Path, journal: Report) -> UndoSortReport:"
+    "line": 27,
+    "declaration": "def _check(root: Path, journal: Report, progress: Progress | None=...) -> UndoSortReport:"
   },
   {
     "file": "typing/stubs/riposte/sort_history.pyi",
-    "line": 18,
+    "line": 19,
     "declaration": "journal: Report"
   },
   {
     "file": "typing/stubs/riposte/sort_history.pyi",
-    "line": 20,
+    "line": 21,
     "declaration": "def record_title(self, row: Report, *, db: sqlite3.Connection | None=...) -> None:"
   },
   {
     "file": "typing/stubs/riposte/sort_history.pyi",
-    "line": 21,
+    "line": 22,
     "declaration": "def prepare(self, source: Path, output: str | None, expected: Report | None, media: str, before_row: CatalogRow | None=...) -> Report:"
   },
   {
     "file": "typing/stubs/riposte/sort_history.pyi",
-    "line": 22,
+    "line": 23,
     "declaration": "def reject_output(self, entry: Report) -> None:"
   },
   {
     "file": "typing/stubs/riposte/sort_history.pyi",
-    "line": 23,
+    "line": 24,
     "declaration": "def remove_source(self, entry: Report) -> None:"
   },
   {

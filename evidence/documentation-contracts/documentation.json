@@ -1,0 +1,971 @@
+{
+  "result": "PASS",
+  "issues": [],
+  "parsed_examples": [
+    {
+      "document": "README.md",
+      "line": 177,
+      "argv": [
+        "riposte"
+      ],
+      "result": "PARSED"
+    },
+    {
+      "document": "README.md",
+      "line": 178,
+      "argv": [
+        "riposte",
+        "--root",
+        "ROOT"
+      ],
+      "result": "PARSED"
+    },
+    {
+      "document": "README.md",
+      "line": 179,
+      "argv": [
+        "riposte",
+        "ui",
+        "ROOT"
+      ],
+      "result": "PARSED"
+    },
+    {
+      "document": "README.md",
+      "line": 180,
+      "argv": [
+        "riposte",
+        "ui",
+        "ROOT",
+        "--linear"
+      ],
+      "result": "PARSED"
+    },
+    {
+      "document": "README.md",
+      "line": 181,
+      "argv": [
+        "riposte",
+        "--help"
+      ],
+      "result": "HELP_OR_VERSION"
+    },
+    {
+      "document": "README.md",
+      "line": 182,
+      "argv": [
+        "riposte",
+        "publish",
+        "--help"
+      ],
+      "result": "HELP_OR_VERSION"
+    },
+    {
+      "document": "README.md",
+      "line": 320,
+      "argv": [
+        "riposte",
+        "list",
+        "ROOT",
+        "--year",
+        "2026",
+        "--month",
+        "September",
+        "--size",
+        "MED"
+      ],
+      "result": "PARSED"
+    },
+    {
+      "document": "README.md",
+      "line": 321,
+      "argv": [
+        "riposte",
+        "list",
+        "ROOT",
+        "--search",
+        "September",
+        "--limit",
+        "20",
+        "--offset",
+        "0"
+      ],
+      "result": "PARSED"
+    },
+    {
+      "document": "README.md",
+      "line": 322,
+      "argv": [
+        "riposte",
+        "inspect",
+        "ROOT",
+        "IMAGE_ID"
+      ],
+      "result": "PARSED"
+    },
+    {
+      "document": "README.md",
+      "line": 325,
+      "argv": [
+        "riposte",
+        "--json",
+        "organize",
+        "ROOT",
+        "--date-mode",
+        "modified",
+        "--discard-sidecars"
+      ],
+      "result": "PARSED"
+    },
+    {
+      "document": "README.md",
+      "line": 328,
+      "argv": [
+        "riposte",
+        "organize",
+        "ROOT",
+        "--apply",
+        "--plan-id",
+        "PLAN_ID",
+        "--date-mode",
+        "modified",
+        "--discard-sidecars"
+      ],
+      "result": "PARSED"
+    },
+    {
+      "document": "README.md",
+      "line": 329,
+      "argv": [
+        "riposte",
+        "audit",
+        "ROOT"
+      ],
+      "result": "PARSED"
+    },
+    {
+      "document": "README.md",
+      "line": 332,
+      "argv": [
+        "riposte",
+        "publish",
+        "ROOT",
+        "--all",
+        "--year",
+        "2026",
+        "--month",
+        "9",
+        "--edge",
+        "1024",
+        "--edge",
+        "1536",
+        "--plan"
+      ],
+      "result": "PARSED"
+    },
+    {
+      "document": "README.md",
+      "line": 335,
+      "argv": [
+        "riposte",
+        "publish",
+        "ROOT",
+        "--image",
+        "IMAGE_ID",
+        "--vae",
+        "D:\\Models\\Encoder",
+        "--edge",
+        "1536",
+        "--epsilon",
+        "4",
+        "--steps",
+        "24",
+        "--restarts",
+        "2"
+      ],
+      "result": "PARSED"
+    },
+    {
+      "document": "README.md",
+      "line": 338,
+      "argv": [
+        "riposte",
+        "publications",
+        "ROOT",
+        "BATCH_ID"
+      ],
+      "result": "PARSED"
+    },
+    {
+      "document": "README.md",
+      "line": 339,
+      "argv": [
+        "riposte",
+        "image",
+        "ROOT",
+        "--batch",
+        "BATCH_ID",
+        "--item",
+        "ITEM_ID",
+        "--open"
+      ],
+      "result": "PARSED"
+    },
+    {
+      "document": "README.md",
+      "line": 340,
+      "argv": [
+        "riposte",
+        "review",
+        "ROOT",
+        "BATCH_ID",
+        "--item",
+        "ITEM_ID",
+        "--visual-accepted",
+        "--acknowledge-unverified"
+      ],
+      "result": "PARSED"
+    },
+    {
+      "document": "README.md",
+      "line": 341,
+      "argv": [
+        "riposte",
+        "package",
+        "ROOT",
+        "BATCH_ID"
+      ],
+      "result": "PARSED"
+    },
+    {
+      "document": "README.md",
+      "line": 344,
+      "argv": [
+        "riposte",
+        "resume",
+        "ROOT",
+        "BATCH_ID",
+        "--vae",
+        "D:\\Models\\Encoder"
+      ],
+      "result": "PARSED"
+    },
+    {
+      "document": "README.md",
+      "line": 354,
+      "argv": [
+        "riposte",
+        "--json",
+        "list",
+        "ROOT"
+      ],
+      "result": "PARSED"
+    },
+    {
+      "document": "README.md",
+      "line": 355,
+      "argv": [
+        "riposte",
+        "--json",
+        "--events",
+        "publish",
+        "ROOT",
+        "--all",
+        "--vae",
+        "D:\\Models\\Encoder",
+        "--edge",
+        "1024"
+      ],
+      "result": "PARSED"
+    },
+    {
+      "document": "docs/CLI.md",
+      "line": 46,
+      "argv": [
+        "riposte",
+        "duplicates",
+        "D:\\Artwork"
+      ],
+      "result": "PARSED"
+    },
+    {
+      "document": "docs/CLI.md",
+      "line": 47,
+      "argv": [
+        "riposte",
+        "duplicates",
+        "D:\\Artwork",
+        "--report",
+        "D:\\Reports\\duplicates.json"
+      ],
+      "result": "PARSED"
+    },
+    {
+      "document": "docs/CLI.md",
+      "line": 48,
+      "argv": [
+        "riposte",
+        "--json",
+        "duplicates",
+        "D:\\Artwork",
+        "--no-videos",
+        "--no-include-float"
+      ],
+      "result": "PARSED"
+    },
+    {
+      "document": "docs/CLI.md",
+      "line": 49,
+      "argv": [
+        "riposte",
+        "duplicates",
+        "D:\\Artwork",
+        "--no-visual",
+        "--report",
+        "D:\\Reports\\exact.csv"
+      ],
+      "result": "PARSED"
+    },
+    {
+      "document": "docs/CLI.md",
+      "line": 132,
+      "argv": [
+        "riposte",
+        "categories",
+        "ROOT",
+        "--category",
+        "Hockey=hockey;goalie;goaltender"
+      ],
+      "result": "PARSED"
+    },
+    {
+      "document": "docs/CLI.md",
+      "line": 133,
+      "argv": [
+        "riposte",
+        "categories",
+        "ROOT",
+        "--category",
+        "Sports=hockey",
+        "--category",
+        "Practice=practice"
+      ],
+      "result": "PARSED"
+    },
+    {
+      "document": "docs/CLI.md",
+      "line": 151,
+      "argv": [
+        "riposte",
+        "category-rules",
+        "ROOT",
+        "--category",
+        "Hockey=hockey;goalie;goaltender",
+        "--exclude",
+        "Hockey=table hockey;toy",
+        "--priority",
+        "Hockey=10",
+        "--review"
+      ],
+      "result": "PARSED"
+    },
+    {
+      "document": "docs/CLI.md",
+      "line": 154,
+      "argv": [
+        "riposte",
+        "category-rules",
+        "ROOT",
+        "--category",
+        "Hockey=hockey;goalie;goaltender",
+        "--exclude",
+        "Hockey=table hockey;toy",
+        "--priority",
+        "Hockey=10",
+        "--save",
+        "--expected-revision",
+        "missing"
+      ],
+      "result": "PARSED"
+    },
+    {
+      "document": "docs/CLI.md",
+      "line": 157,
+      "argv": [
+        "riposte",
+        "category-rules",
+        "ROOT",
+        "--review"
+      ],
+      "result": "PARSED"
+    },
+    {
+      "document": "docs/CLI.md",
+      "line": 189,
+      "argv": [
+        "riposte",
+        "--json",
+        "sort",
+        "ROOT",
+        "--categories",
+        "--date-mode",
+        "modified"
+      ],
+      "result": "PARSED"
+    },
+    {
+      "document": "docs/CLI.md",
+      "line": 192,
+      "argv": [
+        "riposte",
+        "sort",
+        "ROOT",
+        "--categories",
+        "--date-mode",
+        "modified",
+        "--apply",
+        "--plan-id",
+        "PLAN_ID"
+      ],
+      "result": "PARSED"
+    },
+    {
+      "document": "docs/CLI.md",
+      "line": 195,
+      "argv": [
+        "riposte",
+        "sort",
+        "ROOT",
+        "--categories",
+        "--assign",
+        "2025/March/img/SML/SML01.png=hockey"
+      ],
+      "result": "PARSED"
+    },
+    {
+      "document": "docs/CLI.md",
+      "line": 198,
+      "argv": [
+        "riposte",
+        "undo-sort",
+        "ROOT"
+      ],
+      "result": "PARSED"
+    },
+    {
+      "document": "docs/CLI.md",
+      "line": 199,
+      "argv": [
+        "riposte",
+        "undo-sort",
+        "ROOT",
+        "--apply",
+        "--sort-id",
+        "SORT_ID"
+      ],
+      "result": "PARSED"
+    },
+    {
+      "document": "docs/CLI.md",
+      "line": 273,
+      "argv": [
+        "riposte",
+        "sort",
+        "ROOT"
+      ],
+      "result": "PARSED"
+    },
+    {
+      "document": "docs/CLI.md",
+      "line": 274,
+      "argv": [
+        "riposte",
+        "sort",
+        "ROOT",
+        "--apply",
+        "--plan-id",
+        "PLAN_ID"
+      ],
+      "result": "PARSED"
+    },
+    {
+      "document": "docs/CLI.md",
+      "line": 277,
+      "argv": [
+        "riposte",
+        "undo-sort",
+        "ROOT"
+      ],
+      "result": "PARSED"
+    },
+    {
+      "document": "docs/CLI.md",
+      "line": 278,
+      "argv": [
+        "riposte",
+        "undo-sort",
+        "ROOT",
+        "--apply",
+        "--sort-id",
+        "SORT_ID"
+      ],
+      "result": "PARSED"
+    },
+    {
+      "document": "docs/CLI.md",
+      "line": 281,
+      "argv": [
+        "riposte",
+        "riposte",
+        "ROOT",
+        "--input",
+        "D:\\Images\\drawing.png",
+        "--input",
+        "D:\\Images\\New",
+        "--plan"
+      ],
+      "result": "PARSED"
+    },
+    {
+      "document": "docs/CLI.md",
+      "line": 282,
+      "argv": [
+        "riposte",
+        "riposte",
+        "ROOT",
+        "--input",
+        "D:\\Images\\drawing.png",
+        "--input",
+        "D:\\Images\\New",
+        "--vae",
+        "MODEL"
+      ],
+      "result": "PARSED"
+    },
+    {
+      "document": "docs/CLI.md",
+      "line": 285,
+      "argv": [
+        "riposte",
+        "sort-riposte",
+        "ROOT",
+        "--all",
+        "--vae",
+        "MODEL"
+      ],
+      "result": "PARSED"
+    },
+    {
+      "document": "docs/CLI.md",
+      "line": 286,
+      "argv": [
+        "riposte",
+        "sort-riposte",
+        "ROOT",
+        "--all",
+        "--vae",
+        "MODEL",
+        "--apply",
+        "--plan-id",
+        "COMBINED_PLAN_ID"
+      ],
+      "result": "PARSED"
+    },
+    {
+      "document": "docs/CLI.md",
+      "line": 317,
+      "argv": [
+        "riposte",
+        "--json",
+        "sort",
+        "ROOT"
+      ],
+      "result": "PARSED"
+    },
+    {
+      "document": "docs/CLI.md",
+      "line": 318,
+      "argv": [
+        "riposte",
+        "--human",
+        "sort",
+        "ROOT"
+      ],
+      "result": "PARSED"
+    },
+    {
+      "document": "docs/CLI.md",
+      "line": 319,
+      "argv": [
+        "riposte",
+        "--plain",
+        "sort",
+        "ROOT"
+      ],
+      "result": "PARSED"
+    },
+    {
+      "document": "docs/CLI.md",
+      "line": 320,
+      "argv": [
+        "riposte",
+        "--events",
+        "--json",
+        "sort",
+        "ROOT"
+      ],
+      "result": "PARSED"
+    },
+    {
+      "document": "docs/CLI.md",
+      "line": 321,
+      "argv": [
+        "riposte",
+        "--no-animation",
+        "ui",
+        "ROOT"
+      ],
+      "result": "PARSED"
+    },
+    {
+      "document": "docs/CLI.md",
+      "line": 322,
+      "argv": [
+        "riposte",
+        "--theme",
+        "goks",
+        "ui",
+        "ROOT"
+      ],
+      "result": "PARSED"
+    },
+    {
+      "document": "docs/CLI.md",
+      "line": 323,
+      "argv": [
+        "riposte",
+        "--theme",
+        "light",
+        "ui",
+        "ROOT"
+      ],
+      "result": "PARSED"
+    },
+    {
+      "document": "docs/CLI.md",
+      "line": 324,
+      "argv": [
+        "riposte",
+        "--theme",
+        "mono",
+        "--fps",
+        "12",
+        "ui",
+        "ROOT"
+      ],
+      "result": "PARSED"
+    },
+    {
+      "document": "docs/CLI.md",
+      "line": 325,
+      "argv": [
+        "riposte",
+        "--no-color",
+        "ui",
+        "ROOT"
+      ],
+      "result": "PARSED"
+    },
+    {
+      "document": "docs/CLI.md",
+      "line": 384,
+      "argv": [
+        "riposte",
+        "challenge",
+        "ROOT",
+        "TRIAL_ID",
+        "--model",
+        "LOCAL_MODEL",
+        "--task",
+        "edit",
+        "--seed",
+        "7",
+        "--view",
+        "identity"
+      ],
+      "result": "PARSED"
+    },
+    {
+      "document": "docs/CLI.md",
+      "line": 385,
+      "argv": [
+        "riposte",
+        "experiment",
+        "ROOT"
+      ],
+      "result": "PARSED"
+    },
+    {
+      "document": "docs/CLI.md",
+      "line": 386,
+      "argv": [
+        "riposte",
+        "experiment",
+        "ROOT",
+        "RUN_ID"
+      ],
+      "result": "PARSED"
+    },
+    {
+      "document": "docs/CLI.md",
+      "line": 387,
+      "argv": [
+        "riposte",
+        "experiment-packet",
+        "ROOT",
+        "RUN_ID"
+      ],
+      "result": "PARSED"
+    },
+    {
+      "document": "docs/CLI.md",
+      "line": 388,
+      "argv": [
+        "riposte",
+        "experiment-review",
+        "ROOT",
+        "RUN_ID",
+        "--ratings",
+        "COMPLETED_RATINGS_JSON"
+      ],
+      "result": "PARSED"
+    },
+    {
+      "document": "docs/CLI.md",
+      "line": 419,
+      "argv": [
+        "riposte",
+        "challenge",
+        "ROOT",
+        "TRIAL_ID",
+        "--model",
+        "LOCAL_KONTEXT",
+        "--task",
+        "edit",
+        "--seed",
+        "7",
+        "--view",
+        "identity",
+        "--steps",
+        "25"
+      ],
+      "result": "PARSED"
+    },
+    {
+      "document": "docs/CLI.md",
+      "line": 420,
+      "argv": [
+        "riposte",
+        "cohort-challenge",
+        "ROOT",
+        "--trial",
+        "TRIAL_A",
+        "--trial",
+        "TRIAL_B",
+        "--sample-size",
+        "2",
+        "--model",
+        "LOCAL_KONTEXT",
+        "--task",
+        "edit"
+      ],
+      "result": "PARSED"
+    },
+    {
+      "document": "docs/CLI.md",
+      "line": 462,
+      "argv": [
+        "riposte",
+        "cohort-challenge",
+        "ROOT",
+        "--trial",
+        "TRIAL_A",
+        "--trial",
+        "TRIAL_B",
+        "--trial",
+        "TRIAL_C",
+        "--sample-size",
+        "2",
+        "--model",
+        "LOCAL_MODEL",
+        "--task",
+        "edit",
+        "--seed",
+        "7",
+        "--view",
+        "identity",
+        "--steps",
+        "25"
+      ],
+      "result": "PARSED"
+    },
+    {
+      "document": "docs/CLI.md",
+      "line": 463,
+      "argv": [
+        "riposte",
+        "cohort",
+        "ROOT"
+      ],
+      "result": "PARSED"
+    },
+    {
+      "document": "docs/CLI.md",
+      "line": 464,
+      "argv": [
+        "riposte",
+        "cohort",
+        "ROOT",
+        "COHORT_ID"
+      ],
+      "result": "PARSED"
+    },
+    {
+      "document": "docs/CLI.md",
+      "line": 500,
+      "argv": [
+        "riposte",
+        "--json",
+        "panel-create",
+        "ROOT",
+        "--run",
+        "RUN_ID",
+        "--reviewers",
+        "3"
+      ],
+      "result": "PARSED"
+    },
+    {
+      "document": "docs/CLI.md",
+      "line": 501,
+      "argv": [
+        "riposte",
+        "--json",
+        "panel",
+        "ROOT",
+        "PANEL_ID"
+      ],
+      "result": "PARSED"
+    },
+    {
+      "document": "docs/CLI.md",
+      "line": 502,
+      "argv": [
+        "riposte",
+        "panel-packet",
+        "ROOT",
+        "PANEL_ID",
+        "REVIEWER_ID"
+      ],
+      "result": "PARSED"
+    },
+    {
+      "document": "docs/CLI.md",
+      "line": 503,
+      "argv": [
+        "riposte",
+        "panel-review",
+        "ROOT",
+        "PANEL_ID",
+        "--ratings",
+        "completed-ratings.json"
+      ],
+      "result": "PARSED"
+    },
+    {
+      "document": "docs/CLI.md",
+      "line": 504,
+      "argv": [
+        "riposte",
+        "--json",
+        "panel",
+        "ROOT",
+        "PANEL_ID"
+      ],
+      "result": "PARSED"
+    },
+    {
+      "document": "docs/CLI.md",
+      "line": 505,
+      "argv": [
+        "riposte",
+        "panel",
+        "ROOT"
+      ],
+      "result": "PARSED"
+    }
+  ],
+  "command_inventory": [
+    "audit",
+    "benchmark",
+    "categories",
+    "category-rules",
+    "challenge",
+    "cohort",
+    "cohort-challenge",
+    "compare",
+    "doctor",
+    "duplicates",
+    "evaluations",
+    "experiment",
+    "experiment-packet",
+    "experiment-review",
+    "export",
+    "frame",
+    "generation",
+    "generations",
+    "guard",
+    "image",
+    "inspect",
+    "list",
+    "organize",
+    "package",
+    "panel",
+    "panel-create",
+    "panel-packet",
+    "panel-review",
+    "protect",
+    "publications",
+    "publish",
+    "qualify",
+    "resume",
+    "review",
+    "riposte",
+    "serve",
+    "sort",
+    "sort-riposte",
+    "trials",
+    "ui",
+    "undo-sort",
+    "upgrade",
+    "workshop"
+  ],
+  "local_links_checked": 167,
+  "preserved_records": [
+    "docs/HISTORY-v02-README.md",
+    "docs/ENGINE-v02.md",
+    "docs/ENGINE-v03.md",
+    "docs/WAVE-02-PLAN.md",
+    "docs/WAVE-03-HANDOFF.md",
+    "docs/REVISION-v05.md",
+    "docs/PATCH-v05-MERGE.md",
+    "docs/VALIDATION.md",
+    "docs/01EXPANSION.md",
+    "docs/UI-DESIGN.md",
+    "docs/DEVELOPMENT-SPEC.md from # Historical entry-point amendment / RIPOSTE 0.4",
+    "docs/WAVE-04.md from ## Completed development",
+    "docs/TERMINAL-DESIGN.spec.md from ## Mandate"
+  ],
+  "unchanged_application_files": 76,
+  "scope": "Shipping Typer parser and local documentation links; examples are not executed as write/model operations."
+}

@@ -1,6 +1,129 @@
 # TODO, PACE AND NODULE AUDIT
 
-## CORRECTION / working authority, 2026-09-18
+## PAC-039 / current documentation and historical contracts / 2026-09-20
+
+USER: "CONTINUE development utilizing the NEXT PAC". INFERRED: continue the
+PAC-039 handoff named by PAC-038; clean-install PAC-034 remains shelved.
+
+OBSERVED: the maintained threat model contradicted its own amendment about
+private original retention; publishing advice still suggested manual crash-lock
+removal. The CLI inventory omitted nine shipping research commands and the
+linear example selected the wrong home action. Current entry points sent readers
+to historical merge checks as though they were current. Pre-edit bytes/findings
+are retained in `evidence/documentation-contracts/before.zip` and `before.json`.
+
+IMPLEMENTED: `docs/README.md` maps current guides and history;
+`docs/CURRENT-CONTRACT.md` defines exact workflow/consent, generated-image metadata,
+private recovery/title, unchanged-video and explicit report-export boundaries.
+Current privacy/publishing guides and CLI examples are corrected. Three historical
+documents have precise navigation wrappers; their bodies and ten other archives
+remain byte-identical. Source distributions include the maintained guides.
+
+EXECUTED: 325 focused privacy/recovery regressions passed with one Windows symlink
+skip; all seven external declaration checks passed (536 signatures, 63 leaf
+modules). Shipping parser, complete 43-command inventory, local links and archive
+checks pass. All 76 application files match the preceding reviewed snapshot.
+Fresh package parity, exact counts, command logs and source-bound acceptance are
+retained in [evidence/documentation-contracts/README.md](evidence/documentation-contracts/README.md).
+The previous 825-diagnostic strict source audit remains a failure; it was not
+rerun or reclassified by this documentation-only stage. No new UI/human, model,
+clean-install or cross-platform qualification is claimed.
+
+PACE: NDL-025, lane documentation-contracts; OGM-026. Guarded admission, acceptance
+and closure outcomes are retained in that evidence folder's `governance.json`.
+The release milestone remains open. Next planned task: PAC-040, reusable path-free
+publishing recipes; task-specific pacing/review precedes its implementation.
+
+## PAC-038 / consistent error and recovery guidance / 2026-09-20
+
+USER: "Next: PAC-038 — consistent error and recovery guidance."
+
+OBSERVED: terminal and browser maintained separate recovery dictionaries;
+unknown terminal errors had no next action, browser fallbacks could repeat raw
+exception text, and small error screens could clip guidance without scrolling.
+The retained pre-fix regressions are `evidence/recovery-guidance/before.txt`.
+
+IMPLEMENTED: one packaged semantic catalog, sanitized error construction,
+operation-specific safe fallback, shared blocked-preview explanations,
+informational category outcomes, persistent browser guidance inside dialogs and
+scrollable terminal recovery with a fixed visible code. Changes preserve explicit
+consent, category draft/revision protection and all sorting/history/lease guards.
+
+EXECUTED: 1,519 regression tests passed; nine platform-specific cases skipped.
+Three additional real-Chromium tests passed. A real authenticated local-server
+workflow rejected a concurrent rule revision, retained the draft, rejected a
+request without sort consent, and restored all 58 generated files through undo;
+both float directories were untouched. Seven external contract stages pass for
+76 source files and 536 signatures. Raw source typing still fails at 825
+diagnostics, including two additional calls to existing untyped rendering helpers.
+The generic UI audit retains 82 findings with recorded dispositions.
+
+PACE: NDL-024, lane recovery-guidance; requirement OGM-025. Source registration,
+package parity and guarded completion records are in
+`evidence/recovery-guidance/README.md`. This evidence does not qualify human
+usability, other terminal hosts, clean installation or model efficacy. PAC-034
+remains shelved; the release milestone remains open. Next planned task: PAC-039.
+
+## PACER resumption / 2026-09-20 / active checkpoint
+
+USER (original wording):
+
+> OK UPDATE WHAT NEEDS TO BE UPDATED AND CONTINUE TO PAC WORKFLOW FROM THE @todo.audit.PACER.md
+
+INFERRED: this authorizes coordinated guarded reconciliation and continued PAC
+development from this file (`todo-audit.PACER.md`, the actual filename). It
+supersedes the temporary freeze below; the original instruction and historical
+evidence remain preserved. The release milestone is still open and PAC-034 remains
+shelved. NDL-021 admits PAC-044 reconciliation, PAC-036 exact acceptance review,
+PAC-029 through PAC-033 bounded repair reconciliation, and PAC-035 browser scan jobs.
+
+OBSERVED intake: the graph was structurally valid, but implemented PAC-029 through
+PAC-033 still appeared as pending proposals. Twelve completed requirements had
+stale evidence; seven other requirements were already incomplete. Deferred source,
+symbol and validation registrations include the PCUC tools, sorter refinements and
+Duplicate Finder. Historical check counts below describe their own source versions.
+
+PAC-035 now routes category discovery, rule review, ordinary/category previews and
+undo inspection through cancellable jobs. The dialog exposes progress and Cancel;
+settings changes and closing reject old replies. Completion and shutdown retain
+the read-only boundary; replacement, saved-rule writes and undo commits finish
+without interruption. The browser footer now uses the running application version.
+
+Executed evidence: ten pre-repair failures retained; 72 affected checks pass;
+1,499 broad tests pass with nine platform skips, plus all three native browser
+tests. A real authenticated server/Chromium run on 960 generated images confirms
+cancellation and unchanged input bytes/mtime. Seven external contract stages pass
+at 531 signatures / 62 leaf modules / 73 application files. Strict source typing
+remains failing at 823 diagnostics. The final footer-only edit is covered by final
+native browser/live-server checks after the broad suite. Current evidence,
+guarded reconciliation and exact acceptance reviews: `evidence/pacer-resumption/README.md`.
+
+OGM-018 is reconciled with the user's correction: categories apply when supported;
+unknown or ambiguous titles continue through ordinary Year/Month/img-or-vid/Size
+routing. Optional assignments, saved rules and private title provenance remain.
+OGM-016's old future-work sentence is superseded by implemented OGM-017/018.
+Both original meanings and earlier acceptances are preserved in register history.
+PAC-037 completed the guided category editing assignment (NDL-023 / OGM-024),
+authorized by USER: "Next: PAC-037 — guided category editing". Structured browser
+rules and per-file selectors now replace the syntax textareas. Inline errors,
+stable folder identity on rename, protected draft reload, explicit review/save,
+paging and preview/consent invalidation are implemented. CLI and terminal expert
+syntax remain supported. The real-server Chromium run saved and renamed rules,
+rejected a concurrent-rule revision, sorted 58 generated images and undid them;
+all originals and two float-storage files retained exact bytes and mtimes.
+Executed evidence: 95 focused passes, 1,499 broad passes with nine platform skips,
+three native Chromium passes, seven external contract stages and byte-equal
+source/wheel/sdist application files. Strict source typing still has 823 diagnostics.
+Current evidence and guarded closure: `evidence/guided-category-editing/README.md`.
+Its next planned item was PAC-038; the current implementation record is above.
+PAC-034 stays shelved; real-model efficacy,
+independent classification accuracy, remaining typing debt and the release
+milestone remain open.
+
+The sections below are historical checkpoints unless explicitly updated in the
+working checklist. A historical "next action" does not override this checkpoint.
+
+## CORRECTION / historical catch-up authority, 2026-09-18
 
 USER (original wording):
 
@@ -321,16 +444,17 @@ See [project status](docs/PROJECT-STATUS.md) for current contracts and release g
 
 | Item | Current audit status | Required next evidence |
 | --- | --- | --- |
-| PAC-029 | DONE in Markdown; bounded repair accepted | Native lease/atomic markers, live exclusion, concurrency, interrupted exact undo and legacy upgrade verified; unknown old locks stay blocked; CSV reconciliation deferred |
-| PAC-030 | DONE in Markdown; bounded repair accepted | Shared CLI/API/terminal guard, source/wheel layouts, canonical paths, junctions, independent siblings and relocation/undo verified; CSV reconciliation deferred |
-| PAC-031 | DONE in Markdown; bounded repair accepted | Ordinary/combined receipts, exact destinations, stale rejection, interface transport, partial undo and installed contracts verified; CSV reconciliation deferred |
-| PAC-032 | DONE in Markdown; bounded repair accepted | Indexed lookup, operation-local maps, catalog revision guards, before/after scaling, full suite and installed contracts verified; CSV reconciliation deferred |
-| PAC-033 | BOUNDED REDUCTION ACCEPTED; 1,100 to 876 diagnostics | Shared request/result and mutation-boundary annotations; remaining raw-source debt stays open |
+| PAC-029 | DONE; bounded repair reconciled | Native lease/atomic markers, live exclusion, concurrency, interrupted exact undo and legacy upgrade; unknown old locks stay blocked; current regressions pass |
+| PAC-030 | DONE; bounded repair reconciled | Shared CLI/API/terminal guard, source/wheel layouts, canonical paths, junctions, independent siblings and relocation/undo; current regressions pass |
+| PAC-031 | DONE; bounded repair reconciled | Ordinary/combined receipts, exact destinations, stale rejection, interface transport and partial undo; current regressions pass |
+| PAC-032 | DONE; bounded repair reconciled | Indexed lookup, operation-local maps and revision guards; original scaling measures retained and current row-budget regressions pass |
+| PAC-033 | DONE; bounded reduction reconciled | Original 1,100 to 876 reduction retained; current audit remains FAIL at 823 diagnostics; further source typing work stays open |
 | PAC-015 | OPEN; qualification incomplete | Real local models/native platforms; separate visual and efficacy evidence |
 | PAC-034 | SHELVED by user for later development | Clean/upgrade installation across the Python/platform matrix |
-| PAC-035 | OPEN; preview cancellation unsupported | Cancellable read-only browser jobs, progress and stale-result checks |
-| PAC-036 | OPEN; legacy evidence needs review | Fresh proof for each exact requirement, preserving history |
-| PAC-037 | OPEN; guided controls unbuilt | Structured rules/assignments, validation, keyboard access and consent |
+| PAC-035 | DONE; browser scan jobs implemented | Ten pre-fix failures, 72 affected passes, native Chromium and actual server scans; cooperative cancellation, stale replies and shutdown boundaries |
+| PAC-036 | DONE; exact legacy requirements reviewed | Fresh source-bound reports for OGM-001 through OGM-019; historical merge/identification proof retains its original scope |
+| PAC-044 / PAC-045 | DONE; coordinated reconciliation | Source/symbol inventory and legacy acceptance reconciled; OGM-020 through OGM-023 record bounded PCUC/sorter/duplicate/browser integration claims |
+| PAC-037 | IMPLEMENTED AND VERIFIED at stated scope | Structured browser rules/assignments, validation, stable folder names, keyboard access, paging, actual save/sort/undo and consent; guarded closure and proof in `evidence/guided-category-editing/README.md` |
 | PAC-038 | OPEN; guidance differs by interface | Shared safe recovery guidance with sanitized codes |
 | PAC-039 | IN PROGRESS; current status/supersession corrected | Complete document/command audit against shipping source |
 | PAC-040 | OPEN; recipe library unbuilt | Versioned path-free recipes without saved approval/execution |

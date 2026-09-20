@@ -1,0 +1,9 @@
+{
+  "result": "PASS",
+  "media_files": 58,
+  "float_files": 2,
+  "restored_bytes_and_mtimes": true,
+  "no_unexpected_public_files": true,
+  "no_fetch_mocks": true,
+  "scope": "Recovery-guidance revision: native Chromium with authenticated API: empty rules, row creation, inline validation, review/save, stable rename, actual concurrent-rule conflict, per-file choices, exact preview, consented sort and undo, paging and keyboard."
+}

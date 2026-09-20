@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="2" skipped="0" tests="3" time="0.131" timestamp="2026-09-20T09:27:54.811512-07:00" hostname="homeone"><testcase classname="tests.test_recovery_guidance" name="test_error_constructor_never_keeps_private_exception_text" time="0.001"><failure message="AssertionError: assert 'C:\\private\...ailed\nsecret' == 'OPERATION_FAILED'&#10;  &#10;  - OPERATION_FAILED&#10;  + C:\private\artwork.png: decoder failed&#10;  + secret">def test_error_constructor_never_keeps_private_exception_text():
+        problem = RiposteError('C:\\private\\artwork.png: decoder failed\nsecret')
+&gt;       assert problem.code == str(problem) == 'OPERATION_FAILED'
+E       AssertionError: assert 'C:\\private\...ailed\nsecret' == 'OPERATION_FAILED'
+E         
+E         - OPERATION_FAILED
+E         + C:\private\artwork.png: decoder failed
+E         + secret
+
+tests\test_recovery_guidance.py:12: AssertionError</failure></testcase><testcase classname="tests.test_recovery_guidance" name="test_unknown_human_error_has_safe_next_action" time="0.003"><failure message="AssertionError: assert 'Next action:' in '\n  [STOP] FUTURE_FAILURE\n'">capsys = &lt;_pytest.capture.CaptureFixture object at 0x0000023A0260C590&gt;
+
+    def test_unknown_human_error_has_safe_next_action(capsys):
+        error('FUTURE_FAILURE', Presentation(plain=True))
+        rendered = capsys.readouterr().err
+        assert 'FUTURE_FAILURE' in rendered
+&gt;       assert 'Next action:' in rendered
+E       AssertionError: assert 'Next action:' in '\n  [STOP] FUTURE_FAILURE\n'
+
+tests\test_recovery_guidance.py:19: AssertionError</failure></testcase><testcase classname="tests.test_recovery_guidance" name="test_machine_error_stays_code_only" time="0.000" /></testsuite></testsuites>

@@ -1,0 +1,37 @@
+{
+  "requirement": "OGM-008",
+  "meaning": "ebe4108e46373bb8a4b285032b92409cb91cbc204d40080dc92834a795a01ecc",
+  "sources": {
+    "evidence/browser-review/README.md": "c795f3774ca7c52e210313788e0b0869c92376387a753e797fa6e8c886784e73",
+    "tests/browser_review.cjs": "c8367e48924371bfcc20ee954a114153e2f98d3ae9f45e1f9ad9ca62d4dbf81a",
+    "tests/test_browser_review.py": "8be9063a792e733aad3b13eb56b61ffd2401ce4641834c9be6a1998bd008c181",
+    "src/riposte/static/publish.js": "639451897dd7402243571acf68a38785e75001bec50c310c969a3d10510b2b2c",
+    "src/riposte/static/app.js": "ec7fbfc214bf09bf1fe55c27ef6e3a787b3fa8040f89d9fffee0ff22c87cd9d1"
+  },
+  "result": "PASS",
+  "command": [
+    ".venv/Scripts/python.exe evidence/pacer-resumption/verify.py --packages",
+    ".venv/Scripts/python.exe evidence/pacer-resumption/acceptance.py --pacer-source <installed PACER src>",
+    ".venv/Scripts/python.exe -m pytest -q -k \"not browser_native and not native_browser and not browser_review_in_real_chromium\"",
+    ".venv/Scripts/python.exe -m pytest -q -k \"browser_native or native_browser or browser_review_in_real_chromium\"",
+    "uv run --project typing --frozen --cache-dir typing/.cache/uv python typing/check.py"
+  ],
+  "review": "Browser review regressions plus the separate real Chromium test pass for decoded previews, acknowledgement, fresh requests, superseded loads, close/reopen and duplicate-decision protection.",
+  "test_modules": {
+    "test_browser_review": {
+      "passed": 20,
+      "skipped": 0
+    }
+  },
+  "historical": {
+    "selective_patch": "PASS: retained archives, decisions, source snapshot and dependency inputs",
+    "identification": "PASS: four lists and 16 findings with original source identity",
+    "limits": "Historical events are not reapplied over later authorized development."
+  },
+  "limits": [
+    "Full Python suite predates the final version-label-only HTML/JS edit; native browser and live-server checks cover that edit.",
+    "Existing Windows environment; no clean installation or minimum-Python/platform matrix.",
+    "Synthetic files and CPU/stub/tiny-random model checks do not establish independent human acceptance, classification accuracy or model efficacy."
+  ],
+  "raw_source_typing": "FAIL: 823 diagnostics; strict configuration unchanged"
+}

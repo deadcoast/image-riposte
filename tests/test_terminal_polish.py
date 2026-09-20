@@ -89,7 +89,8 @@ def test_stale_sort_retains_recovery_and_path_shortcut(menu, root, make_image):
     menu.key(Key("char", "REPLACE")); menu.key(Key("enter")); finish(menu)
     assert menu.state.page.code == "CATEGORY_PREVIEW_CHANGED"
     screen = render(menu.state, 72, 24).plain()
-    assert "Preview again" in screen and "[g] Enter Path" in screen
+    assert "Inspect again" in screen and "[g] Enter Path" in screen
+    assert "CATEGORY_PREVIEW_CHANGED" in screen
     menu.key(Key("char", "a"))
     assert menu.state.page.code == "CATEGORY_PREVIEW_CHANGED"
     menu.key(Key("char", "g"))

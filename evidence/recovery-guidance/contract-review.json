@@ -1,0 +1,33 @@
+{
+  "owners": [
+    "src/riposte/errors.py",
+    "src/riposte/recovery.py",
+    "src/riposte/server.py",
+    "src/riposte/static/app.js",
+    "src/riposte/static/category-sort.js",
+    "src/riposte/static/duplicates.js",
+    "src/riposte/static/index.html",
+    "src/riposte/static/publish.js",
+    "src/riposte/static/recovery-catalog.json",
+    "src/riposte/static/recovery.js",
+    "src/riposte/static/style.css",
+    "src/riposte/terminal/controller.py",
+    "src/riposte/terminal/interaction.py",
+    "src/riposte/terminal/jobs.py",
+    "src/riposte/terminal/output.py",
+    "src/riposte/terminal/render.py",
+    "src/riposte/terminal/reports.py"
+  ],
+  "signatures": 536,
+  "leaf_modules": 63,
+  "application_files": 76,
+  "review": [
+    "RiposteError sanitizes its code using the existing terminal grammar; machine error envelopes remain code-only.",
+    "The typed recovery module and browser loader read the same packaged JSON; unavailable data has bounded safe fallback.",
+    "Jobs expose only an allowlisted operation family, never request arguments, paths or exception messages.",
+    "Presentation consumers use shared titles/actions and preserve machine codes; informational category states do not affect readiness.",
+    "Terminal scrolling and browser persistent notices never retry operations, grant consent or discard category drafts.",
+    "Source replacement, history integrity, lease ownership, model computation and category matching implementations are unchanged.",
+    "External declarations review new signatures and the recovery record; raw implementation typing remains a separate failing audit."
+  ]
+}

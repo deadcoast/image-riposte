@@ -1,0 +1,440 @@
+[
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "FILE",
+      "Path": "evidence/recovery-guidance/README.md",
+      "Symbol": "",
+      "Exports": "",
+      "Imports": "",
+      "Requires": "",
+      "Purpose": "Typing validation input, evidence or development authority",
+      "ID": "OVR-2203",
+      "Tags": "#typing-index"
+    }
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "FILE",
+      "Path": "evidence/recovery-guidance/live_browser.py",
+      "Symbol": "",
+      "Exports": "HERE;ROOT;before;folder;inventory;listener;names;server;thread",
+      "Imports": "from PIL import Image\nfrom pathlib import Path\nfrom riposte.server import create_app\nimport hashlib\nimport json\nimport os\nimport socket\nimport subprocess\nimport tempfile\nimport threading\nimport time\nimport uvicorn",
+      "Requires": "OVR-029",
+      "Purpose": "Typing validation input, evidence or development authority",
+      "ID": "OVR-2204",
+      "Tags": "#typing-index"
+    }
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "FILE",
+      "Path": "evidence/recovery-guidance/live_probe.js",
+      "Symbol": "",
+      "Exports": "",
+      "Imports": "",
+      "Requires": "",
+      "Purpose": "Typing validation input, evidence or development authority",
+      "ID": "OVR-2205",
+      "Tags": "#typing-index"
+    }
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "FILE",
+      "Path": "evidence/recovery-guidance/review_contracts.py",
+      "Symbol": "",
+      "Exports": "HERE;ROOT;after;before;changed;check;expected;issues;modules;review;signatures;spec",
+      "Imports": "from pathlib import Path\nimport importlib.util\nimport json\nimport xml.etree.ElementTree as ET",
+      "Requires": "",
+      "Purpose": "Typing validation input, evidence or development authority",
+      "ID": "OVR-2206",
+      "Tags": "#typing-index"
+    }
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "FILE",
+      "Path": "evidence/recovery-guidance/verify.py",
+      "Symbol": "",
+      "Exports": "HERE;ROOT;counts;digest;manifest;prepare_acceptance;read;verify",
+      "Imports": "from pacer_mcp.service import Service\nfrom pathlib import Path\nimport argparse\nimport csv\nimport hashlib\nimport importlib.util\nimport json\nimport sys\nimport tarfile\nimport xml.etree.ElementTree as ET\nimport zipfile",
+      "Requires": "",
+      "Purpose": "Typing validation input, evidence or development authority",
+      "ID": "OVR-2207",
+      "Tags": "#typing-index"
+    }
+  },
+  {
+    "op": "set",
+    "id": "OVR-014",
+    "fields": {
+      "Exports": "RiposteError;RiposteError.__init__;safe_code",
+      "Imports": "import re"
+    }
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "FILE",
+      "Path": "src/riposte/recovery.py",
+      "Symbol": "",
+      "Exports": "CATALOG;Catalog;Entry;Guidance;_catalog;guidance;recovery_text",
+      "Imports": "from .errors import safe_code\nfrom __future__ import annotations\nfrom dataclasses import dataclass\nfrom pathlib import Path\nfrom typing import TypedDict, cast\nimport json",
+      "Requires": "OVR-014",
+      "Purpose": "Existing application module riposte.recovery",
+      "ID": "OVR-2208",
+      "Tags": "#typing-index"
+    }
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "FILE",
+      "Path": "src/riposte/static/recovery-catalog.json",
+      "Symbol": "",
+      "Exports": "",
+      "Imports": "",
+      "Requires": "",
+      "Purpose": "Existing application asset",
+      "ID": "OVR-2209",
+      "Tags": "#typing-index"
+    }
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "FILE",
+      "Path": "src/riposte/static/recovery.js",
+      "Symbol": "",
+      "Exports": "",
+      "Imports": "",
+      "Requires": "",
+      "Purpose": "Existing application asset",
+      "ID": "OVR-2210",
+      "Tags": "#typing-index"
+    }
+  },
+  {
+    "op": "set",
+    "id": "OVR-040",
+    "fields": {
+      "Imports": "from ..duplicate_review import DuplicateReview\nfrom ..duplicates import LABELS\nfrom ..errors import RiposteError\nfrom ..metrics import TRANSFORMS\nfrom ..records import CatalogRow, RequestValues\nfrom ..recovery import recovery_text\nfrom .actions import ACTIONS, BY_KEY, Field, defaults, make_request, parse_value\nfrom .interaction import fields_for, contextual_help\nfrom .jobs import Operation, safe_code\nfrom .keyboard import Key\nfrom .output import Presentation\nfrom .paths import Picker, starting_directory, validate_workspace, locations\nfrom .preview import make_preview\nfrom .render import view_rows, scroll_limit\nfrom .service import Request, execute, image_bytes, root_of\nfrom .state import Session, Page, Editor\nfrom __future__ import annotations\nfrom collections.abc import Callable, Mapping, Sequence\nfrom dataclasses import replace\nfrom pathlib import Path\nfrom typing import cast\nimport time",
+      "Requires": "OVR-014;OVR-018;OVR-038;OVR-042;OVR-043;OVR-045;OVR-046;OVR-047;OVR-048;OVR-050;OVR-160;OVR-1885;OVR-1886;OVR-1890;OVR-2208;OVR-875"
+    }
+  },
+  {
+    "op": "set",
+    "id": "OVR-042",
+    "fields": {
+      "Imports": "from ..errors import RiposteError, safe_code as _safe_code\nfrom ..records import Progress\nfrom .service import Request, CANCELLABLE, execute, result_exit_code\nfrom __future__ import annotations\nfrom collections import deque\nfrom collections.abc import Callable, Mapping\nfrom dataclasses import dataclass, field\nfrom typing import Self\nimport re\nimport threading\nimport time"
+    }
+  },
+  {
+    "op": "set",
+    "id": "OVR-045",
+    "fields": {
+      "Imports": "from ..recovery import CATALOG, guidance\nfrom .jobs import Operation, safe_code\nfrom .material import activity_trace\nfrom .reports import overview, report_lines\nfrom .service import Request\nfrom .signals import termination_guard, TerminationRequested\nfrom .surface import Surface, PALETTES, ascii_text\nfrom __future__ import annotations\nfrom dataclasses import dataclass\nfrom rich import box\nfrom rich.console import Console\nfrom rich.live import Live\nfrom rich.panel import Panel\nfrom rich.table import Table\nfrom rich.text import Text\nimport json\nimport os\nimport sys\nimport time",
+      "Requires": "OVR-042;OVR-044;OVR-048;OVR-049;OVR-051;OVR-162;OVR-2208"
+    }
+  },
+  {
+    "op": "set",
+    "id": "OVR-047",
+    "fields": {
+      "Exports": "_error_lines;_help_lines;_report_data;asset;batches;collection;command_page;confirm;duplicates;editor_overlay;footer;form;header;help_page;home;item;job;page_window;picker;preferences;render;result;scroll_limit;shown;sorter;view_rows;workshop",
+      "Imports": "from .. import __version__\nfrom ..recovery import guidance\nfrom .actions import BY_KEY, ACTIONS, command_line\nfrom .interaction import hints, context, fields_for, GLOBAL\nfrom .material import LOGO, counterstroke, activity_trace\nfrom .preview import paint_preview\nfrom .reports import overview, report_lines, paint_lines, Writer, label, Line, Run, fold\nfrom .state import Session, HOME\nfrom .surface import Surface, ascii_text\nfrom __future__ import annotations\nimport json\nimport textwrap",
+      "Requires": "OVR-009;OVR-038;OVR-044;OVR-046;OVR-050;OVR-051;OVR-160;OVR-162;OVR-2208"
+    }
+  },
+  {
+    "op": "set",
+    "id": "OVR-162",
+    "fields": {
+      "Imports": "from ..duplicate_review import DuplicateReview\nfrom ..recovery import guidance\nfrom ..recovery import recovery_text\nfrom .surface import ascii_text, PALETTES\nfrom __future__ import annotations\nfrom dataclasses import dataclass, field\nfrom rich.style import Style\nfrom rich.text import Text\nfrom typing import Any\nimport json\nimport re\nimport textwrap",
+      "Requires": "OVR-051;OVR-1885;OVR-2208"
+    }
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "FILE",
+      "Path": "tests/recovery_guidance.cjs",
+      "Symbol": "",
+      "Exports": "",
+      "Imports": "",
+      "Requires": "",
+      "Purpose": "Typing validation input, evidence or development authority",
+      "ID": "OVR-2211",
+      "Tags": "#typing-index"
+    }
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "FILE",
+      "Path": "tests/test_recovery_guidance.py",
+      "Symbol": "",
+      "Exports": "test_actionable_safety_boundaries;test_actual_api_and_job_errors_sanitize_private_text;test_error_constructor_never_keeps_private_exception_text;test_full_recovery_remains_readable_at_72_by_24;test_javascript_catalog_parity_and_unavailable_bundle_fallback;test_machine_error_stays_code_only;test_optional_category_information_never_requires_assignment;test_unknown_failure_uses_operation_and_preserves_only_safe_code;test_unknown_human_error_has_safe_next_action",
+      "Imports": "from dataclasses import asdict\nfrom fastapi.testclient import TestClient\nfrom pathlib import Path\nfrom riposte import server\nfrom riposte.errors import RiposteError\nfrom riposte.recovery import CATALOG, guidance\nfrom riposte.terminal.controller import Controller\nfrom riposte.terminal.keyboard import Key\nfrom riposte.terminal.output import Presentation, error\nfrom riposte.terminal.render import render, scroll_limit\nfrom riposte.terminal.service import Request\nfrom riposte.terminal.state import Page\nimport json\nimport pytest\nimport subprocess\nimport time",
+      "Requires": "OVR-009;OVR-014;OVR-029;OVR-040;OVR-043;OVR-045;OVR-047;OVR-048;OVR-050;OVR-2208",
+      "Purpose": "Typing validation input, evidence or development authority",
+      "ID": "OVR-2212",
+      "Tags": "#typing-index"
+    }
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "FILE",
+      "Path": "typing/evidence/source-reviewed-recovery-guidance.json",
+      "Symbol": "",
+      "Exports": "",
+      "Imports": "",
+      "Requires": "",
+      "Purpose": "Typing validation input, evidence or development authority",
+      "ID": "OVR-2213",
+      "Tags": "#typing-index"
+    }
+  },
+  {
+    "op": "set",
+    "id": "OVR-081",
+    "fields": {
+      "Exports": "RiposteError;RiposteError.__init__;safe_code"
+    }
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "FILE",
+      "Path": "typing/stubs/riposte/recovery.pyi",
+      "Symbol": "",
+      "Exports": "CATALOG;Catalog;Entry;Guidance;_catalog;guidance;recovery_text",
+      "Imports": "from dataclasses import dataclass\nfrom typing import TypedDict",
+      "Requires": "OVR-2208",
+      "Purpose": "External source-derived typing declarations",
+      "ID": "OVR-2214",
+      "Tags": "#typing-index"
+    }
+  },
+  {
+    "op": "set",
+    "id": "OVR-108",
+    "fields": {
+      "Exports": "_error_lines;_help_lines;_report_data;asset;batches;collection;command_page;confirm;duplicates;editor_overlay;footer;form;header;help_page;home;item;job;page_window;picker;preferences;render;result;scroll_limit;shown;sorter;view_rows;workshop",
+      "Imports": "from .. import __version__ as __version__\nfrom ..recovery import guidance as guidance\nfrom .actions import ACTIONS as ACTIONS, BY_KEY as BY_KEY, command_line as command_line\nfrom .interaction import hints as hints, context as context, fields_for as fields_for, GLOBAL as GLOBAL\nfrom .material import LOGO as LOGO, activity_trace as activity_trace, counterstroke as counterstroke\nfrom .preview import paint_preview as paint_preview\nfrom .reports import Report as _SemanticReport, Line as _Line\nfrom .reports import overview as overview, report_lines as report_lines, paint_lines as paint_lines, Writer as Writer, label as label\nfrom .state import HOME as HOME, Session as Session\nfrom .surface import Surface as Surface, ascii_text as ascii_text\nfrom _riposte_types import Report",
+      "Requires": "OVR-047;OVR-075;OVR-076;OVR-099;OVR-105;OVR-107;OVR-111;OVR-112;OVR-167;OVR-169;OVR-2214"
+    }
+  },
+  {
+    "op": "set",
+    "id": "OVR-380",
+    "fields": {
+      "Requires": "OVR-014;OVR-2215"
+    }
+  },
+  {
+    "op": "set",
+    "id": "OVR-381",
+    "fields": {
+      "Requires": "OVR-014;OVR-2215"
+    }
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/errors.py",
+      "Symbol": "safe_code",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-014",
+      "Tags": "#source-symbol",
+      "ID": "OVR-2215"
+    }
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "CONFIG",
+      "Path": "src/riposte/recovery.py",
+      "Symbol": "CATALOG",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-2208;OVR-2220",
+      "Tags": "#source-symbol",
+      "ID": "OVR-2216"
+    }
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "CLASS",
+      "Path": "src/riposte/recovery.py",
+      "Symbol": "Catalog",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-2208;OVR-2218",
+      "Tags": "#source-symbol",
+      "ID": "OVR-2217"
+    }
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "CLASS",
+      "Path": "src/riposte/recovery.py",
+      "Symbol": "Entry",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-2208",
+      "Tags": "#source-symbol",
+      "ID": "OVR-2218"
+    }
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "CLASS",
+      "Path": "src/riposte/recovery.py",
+      "Symbol": "Guidance",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-2208",
+      "Tags": "#source-symbol",
+      "ID": "OVR-2219"
+    }
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/recovery.py",
+      "Symbol": "_catalog",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-2208;OVR-2215;OVR-2217",
+      "Tags": "#source-symbol",
+      "ID": "OVR-2220"
+    }
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/recovery.py",
+      "Symbol": "guidance",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-2208;OVR-2215;OVR-2216;OVR-2219",
+      "Tags": "#source-symbol",
+      "ID": "OVR-2221"
+    }
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/recovery.py",
+      "Symbol": "recovery_text",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-2208;OVR-2221",
+      "Tags": "#source-symbol",
+      "ID": "OVR-2222"
+    }
+  },
+  {
+    "op": "set",
+    "id": "OVR-568",
+    "fields": {
+      "Requires": "OVR-040;OVR-194;OVR-197;OVR-2043;OVR-2058;OVR-2117;OVR-2126;OVR-2222;OVR-380;OVR-402;OVR-543;OVR-547;OVR-561;OVR-562;OVR-563;OVR-606;OVR-615;OVR-617;OVR-635;OVR-638;OVR-649;OVR-670;OVR-672;OVR-696;OVR-699;OVR-700;OVR-705;OVR-710;OVR-712;OVR-713;OVR-884;OVR-890;OVR-891;OVR-892"
+    }
+  },
+  {
+    "op": "set",
+    "id": "OVR-571",
+    "fields": {
+      "Requires": "OVR-040;OVR-2156;OVR-2222;OVR-380;OVR-563;OVR-572;OVR-587;OVR-589;OVR-638;OVR-696;OVR-705;OVR-710;OVR-712;OVR-892"
+    }
+  },
+  {
+    "op": "set",
+    "id": "OVR-615",
+    "fields": {
+      "Requires": "OVR-042;OVR-2215"
+    }
+  },
+  {
+    "op": "set",
+    "id": "OVR-638",
+    "fields": {
+      "Requires": "OVR-045;OVR-2216;OVR-2221"
+    }
+  },
+  {
+    "op": "set",
+    "id": "OVR-641",
+    "fields": {
+      "Requires": "OVR-045;OVR-2221;OVR-615;OVR-635;OVR-638"
+    }
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/render.py",
+      "Symbol": "_error_lines",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-047;OVR-198;OVR-199;OVR-2221;OVR-686;OVR-713",
+      "Tags": "#source-symbol",
+      "ID": "OVR-2223"
+    }
+  },
+  {
+    "op": "set",
+    "id": "OVR-669",
+    "fields": {
+      "Requires": "OVR-047;OVR-205;OVR-2221;OVR-2223;OVR-638;OVR-652;OVR-659;OVR-687"
+    }
+  },
+  {
+    "op": "set",
+    "id": "OVR-670",
+    "fields": {
+      "Requires": "OVR-047;OVR-2223;OVR-560;OVR-651;OVR-652"
+    }
+  },
+  {
+    "op": "set",
+    "id": "OVR-685",
+    "fields": {
+      "Requires": "OVR-162;OVR-198;OVR-2221;OVR-638;OVR-687"
+    }
+  },
+  {
+    "op": "set",
+    "id": "OVR-1273",
+    "fields": {
+      "Requires": "OVR-162;OVR-201;OVR-2222"
+    }
+  }
+]

@@ -1,12 +1,26 @@
 # RIPOSTE / current project status
 
+PAC-039 clarifies [current workflow and data boundaries](CURRENT-CONTRACT.md),
+corrects conflicting privacy/lock guidance and links historical claims to their
+replacements. [Documentation evidence](../evidence/documentation-contracts/README.md)
+records parser/link checks, unchanged application bytes, historical preservation,
+focused regressions and package parity. This stage changes no application behavior.
+
+PAC-038 implements shared recovery guidance for terminal and browser errors and
+blocked reports, with persistent browser notices and scrollable terminal text.
+Category ties and unknown titles remain informational and sortable. Current proof:
+[recovery guidance](../evidence/recovery-guidance/README.md). The strict source audit
+still fails (825 diagnostics); external declarations and product regressions have
+separate, stated scopes.
+
 Reviewed 2026-09-20. **Version 0.5.0; development audit open; release milestone pending.**
 The working list, correction and resumption checkpoint are in
-[todo-audit.PACER.md](../todo-audit.PACER.md). The four PACER CSVs remain frozen
-until that work is complete and the specification can be reconciled together.
-PAC-029 through PAC-033 have bounded implementation acceptance in the Markdown audit. PAC-028
-was the preceding identification audit. Remaining findings and CSV reconciliation
-are open.
+[todo-audit.PACER.md](../todo-audit.PACER.md). Guarded PACER updates resumed on
+2026-09-20 under NDL-021: PAC-044 reconciles deferred implementation records,
+PAC-036 reviews exact acceptance evidence, and PAC-035 implements cancellable browser
+scans. PAC-029 through PAC-033 have bounded implementation evidence. PAC-028 was
+the preceding identification audit. PAC-034 remains shelved; remaining findings
+and the release milestone are open.
 
 The terminal defaults to **Riposte Sorter** with **Sort / Dry Run / Enter Path**;
 **Full Sort Workshop** retains detailed configuration. The shared keyboard loop
@@ -33,6 +47,19 @@ PowerShell ConPTY and browser evidence is retained in
 [evidence/duplicates](../evidence/duplicates/README.md). The 5,101-file synthetic
 scan preserved content and mtimes. Scores remain heuristics: independent artwork
 classification accuracy and semantic matching are not qualified.
+
+Browser sorting discovery, rule review and sort/undo inspections now use
+cancellable jobs, with progress and Cancel inside the dialog. Changed settings
+invalidate old replies; cancelled scans cannot publish usable previews. Sort,
+undo and saved-rule commits remain non-cancellable. The browser version label
+uses the running server version. See [current evidence](../evidence/pacer-resumption/README.md).
+
+Guided browser category editing (PAC-037) adds structured rule rows, stable folder
+identity on rename, inline errors and per-file saved-category choices. Review,
+save, sort preview and consent remain separate; categories remain optional.
+Real Chromium exercised save conflicts, sorting and undo on 58 generated images
+plus two excluded float files, restoring every original byte and modified time.
+See [guided category evidence](../evidence/guided-category-editing/README.md).
 
 The user has shelved PAC-034 and directed research-led development under
 [Provable Claims and Use Cases](PCUC.md). PCUC-001 now integrates shared-view
@@ -82,8 +109,8 @@ certify every historical distribution, test artifact, model or native interface.
 ## Current operation and privacy contracts
 
 - Sort, RIPOSTE and Sort + RIPOSTE are independent choices. Startup, location
-  selection and previews do not grant operation consent. The normal menu has nine
-  actions; Workshop is optional. See [README](../README.md) and [CLI](CLI.md).
+  selection and previews do not grant operation consent. Riposte Sorter and Full
+  Sort Workshop are separate entries; Duplicate Finder and Workshop have their own shortcuts. See [README](../README.md) and [CLI](CLI.md).
 - Generated images and public publishing packs contain audited date-only PNGs.
   Private recovery history intentionally retains original bytes, metadata, names
   and timestamps. Private category provenance lives in `sort_titles` and recovery
@@ -111,16 +138,23 @@ certify every historical distribution, test artifact, model or native interface.
 
 ## Evidence and its limits
 
+Rows name the stage that executed each check. Older counts describe those
+snapshots, not new runs during PAC-039; use each stage's evidence for exact scope.
+
 | Evidence | Result and boundary |
 | --- | --- |
-| Windows full suite | 1,484 passed, 9 platform skips, 3 browser tests separately selected; final Duplicate Finder focused run: 49 passed after the last API annotations and cancellation cases; warnings retained |
+| PAC-039 documentation | Current parser/link and historical-byte checks; focused privacy/recovery regressions, external contracts and fresh package equality. Exact results: [documentation evidence](../evidence/documentation-contracts/README.md). No application behavior changes or new platform/model/human qualification |
+| PAC-038 application baseline | 1,519 regressions passed, 9 platform skips, 3 native Chromium tests passed; 76 application files, 536 signatures, seven external stages passed; strict source audit still fails at 825 diagnostics. Exact scope: [recovery evidence](../evidence/recovery-guidance/README.md) |
+| PAC-035 Windows full suite (historical) | 1,499 passed, 9 platform skips; all 3 native browser tests passed separately. Final close-status-only JavaScript refinement is covered by repeated native and actual-server checks; Python source is unchanged. Warnings retained |
 | Focused initial typing verification | 254 passed, 1 Windows symlink-privilege skip before final consumer/controller annotations; final source is covered by the full suite |
 | Historical PAC-032 scaling measurements | At 16/32/64 cataloged images, returned audit rows are 32/64/128, all-ID lookup rows 16/32/64, and sorting rows 128/256/512; current full suite retains the row-budget regressions |
 | Historical PAC-029 POSIX lease probe | Passed on existing Ubuntu WSL Python 3.12.3: live exclusion, process death, persistent identity, adjacent state rename; low-level lease only |
-| Fresh external contract suite | All seven stages passed; 531 signatures, 62 importable leaf modules, 73 application files match reviewed identity; all 13 existing negative checks retained |
-| Fresh source-body audit | 823 diagnostics in 36 files, 65 Python files checked; still failing with unchanged strict settings; the five duplicate modules have no diagnostics; 26 added calls into existing untyped presentation helpers |
+| PAC-035 external contract suite (historical) | All seven stages passed; 531 signatures, 62 importable leaf modules, 73 application files match reviewed identity; all 13 existing negative checks retained |
+| PAC-035 source-body audit (historical) | 823 diagnostics in 36 files, 65 Python files checked; still failing with unchanged strict settings; unchanged from the Duplicate Finder stage |
 | Duplicate Finder native and scale checks | Actual START.ps1 via Windows ConPTY; local Chromium state/race tests plus a real server/scanner run; 5,101 synthetic files scanned in 62.674s with content and mtime preservation; no independent artwork precision/recall claim |
-| Duplicate Finder packages | All 73 application files byte-match reviewed source, fresh wheel and sdist; current README and duplicate guide included in sdist; existing editable native execution, not a clean installation |
+| PAC-035 distributions (historical) | All 73 application files byte-match reviewed source, fresh wheel and sdist; current README, duplicate guide and UX contract included in sdist; existing editable native execution, not a clean installation |
+| PAC-035 scans | Historical ten before-fix failures, 72 affected passes and real authenticated 960-image cancellation run. Current suite retains deterministic stale-response, completion-race and shutdown tests |
+| PAC-037 guided editing | 95 focused checks plus native Chromium row/assignment validation, paging, keyboard and recovery; actual server saves/renames rules, rejects a revision conflict, sorts and undoes 58 generated images, preserving all bytes/mtimes and two float files |
 | Historical PAC-033 source-consumer checks | Positive consumers passed and nine invalid uses failed at exact lines/codes against the then-current source |
 | PCUC gradient and memory checks | Eight independent sequential-VJP comparisons pass; maximum float32 absolute error 1.87e-9; logical saved-tensor peak 66,564 bytes for 1/4/16 repeated contexts, zero retained after return |
 | PCUC paired engine runs | Five synthetic CPU cases retain identical pixels/selection/scores; 1.23x–2.29x median speedup, including the convolution-heavy case; model call counts unchanged, no CUDA available |
@@ -129,11 +163,15 @@ certify every historical distribution, test artifact, model or native interface.
 | PCUC panel mathematics | 9,837 patterns and 87,376 completions plus 729 two-item patterns, 4,096 completions and 1,024 Cohen cases; exact descriptive arithmetic, no real-rater reliability evidence |
 | PCUC Kontext path | 4,115 exact aspect selections and 17 lattice/area checks; real tiny random VAE/CLIP/T5/flow-transformer serialization and CPU execution preserve paired repeatability, context-token geometry and input sensitivity; no pretrained/native CUDA/bfloat16 qualification |
 | Historical Kontext distributions and isolated target | All 66 then-current application files matched source/sdist/wheel/installed target; fixed Kontext loader/conditioning/packet and prior panel/cohort/experiment/solver/workflow guards checked with synthetic models; existing Windows dependencies, not clean bootstrap |
-| Real Windows entry points | Existing editable wrapper reports 0.5.0; PowerShell START opens the raw interactive duplicate workflow, scans, filters, searches and returns before exiting zero with cursor restored |
+| PAC-035 Windows entry points (historical) | Then-current existing-install wrapper reports 0.5.0 and PowerShell START opens the linear menu and exits zero on q. Prior Duplicate Finder ConPTY checks separately cover raw interactive navigation, scanning, filtering and searching |
 | Prior review's entry/probe checks | 29 launcher/menu tests and real Windows entry checks passed; five then-open observations reproduced before PAC-029 implementation |
-| PACER structural validation | Valid; stale source/document evidence and missing new source registrations remain deferred under the CSV freeze |
+| PACER reconciliation | Guarded updates register deferred source/symbols and current evidence; exact requirement reviews retain historical acceptance. Current command results are in evidence/pacer-resumption; graph validity does not qualify unsupported models or platforms |
 
-Current development evidence: [Duplicate Finder](../evidence/duplicates/README.md).
+Current documentation evidence: [PAC-039](../evidence/documentation-contracts/README.md).
+Latest application evidence: [Recovery guidance](../evidence/recovery-guidance/README.md).
+Prior stage: [Guided category editing](../evidence/guided-category-editing/README.md).
+Prior reconciliation and browser scans: [PACER resumption](../evidence/pacer-resumption/README.md).
+Prior finder stage: [Duplicate Finder](../evidence/duplicates/README.md).
 Prior research stage: [PCUC Kontext backend](../evidence/pcuc-kontext/README.md).
 Prior reviewer stage: [PCUC reviewer panels](../evidence/pcuc-review-panels/README.md).
 Prior cohort stage: [PCUC cohorts](../evidence/pcuc-cohorts/README.md).
@@ -148,22 +186,20 @@ Historical review baseline: [milestone reconciliation evidence](../evidence/mile
 Earlier implementation evidence: [category sorting](../evidence/category-sort/README.md),
 [sort recovery](../evidence/sort-recovery/README.md), and
 [typing](../typing/README.md). PAC-033 changes fourteen application files, including
-the new shared records module. Earlier repairs and their
-evidence remain preserved. All four CSV hashes
-remain unchanged. Version, dependency lockfiles, installer and launcher code remain
-0.5.0-compatible; no dependencies or model weights were added.
-
-The current validation report and deferred source/symbol plan are retained with
-the repair evidence. No CSV requirement acceptance was refreshed during the freeze. They
-must be evaluated and reconciled with the other open evidence at the milestone;
-structural validity does not mean evidence freshness or product completion.
+the new shared records module. Earlier repairs and their evidence remain preserved.
+Version, dependency lockfiles, installer and launcher code remain 0.5.0-compatible;
+no dependencies or model weights were added. Current source/symbol admission and
+manual acceptance use guarded commands; the earlier frozen-register reports
+describe historical snapshots. They must not be rerun as current acceptance.
 
 ## Documentation authority and milestone
 
-Current source defines implemented behavior. README, CLI, UX-CONTRACT and this
-status page describe the current checkout. DEVELOPMENT-SPEC, WAVE-04, VALIDATION
-and the older threat-model text retain their historical scopes; their earlier
-blanket ban on original retention is superseded by explicit private undo history.
+Current source defines implemented behavior. The [documentation map](README.md)
+separates maintained guides from archived records; the [supersession table](CURRENT-CONTRACT.md#superseded-historical-claims)
+links each older contract to its current replacement. THREAT-MODEL and PUBLISHING
+are maintained current guides. DEVELOPMENT-SPEC, WAVE-04, terminal design and
+VALIDATION retain their historical bodies/scopes. Private undo history supersedes
+the earlier blanket original-retention ban.
 The selective 0.5 merge record is historical evidence for that merge, not a current
 whole-product acceptance report. See [CHANGELOG.md](CHANGELOG.md) for later work.
 

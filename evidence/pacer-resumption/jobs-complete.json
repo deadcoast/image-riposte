@@ -1,0 +1,13 @@
+[
+  {
+    "op": "transition",
+    "id": "PAC-035",
+    "status": "REVIEW"
+  },
+  {
+    "op": "transition",
+    "id": "PAC-035",
+    "status": "DONE",
+    "evidence": "PAC-035 implemented and verified: 10 retained pre-repair failures; 72 affected passes; 1499 broad passes with 9 platform skips; 3 final Chromium tests and actual authenticated 960-image server scan with unchanged bytes/mtimes. Current external contracts and 73-file wheel/sdist match; cancellation/close/completion boundaries and explicit consent covered. evidence/pacer-resumption/README.md; no model, human-host or clean-install claim."
+  }
+]

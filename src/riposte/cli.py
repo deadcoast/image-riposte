@@ -177,6 +177,8 @@ def inspect(ctx: typer.Context, root: Root, image_id: Annotated[str, typer.Argum
 @command("riposte", "WORKFLOWS")
 @command("sort-riposte", "WORKFLOWS")
 def publish(ctx: typer.Context, root: Root,
+            recipe_name: Annotated[Optional[str], typer.Option("--recipe", help="Load saved publishing settings; explicit setting flags override them. Paths and approvals are never loaded.")] = None,
+            recipe_revision: Annotated[Optional[str], typer.Option("--recipe-revision", help="Optional exact recipe revision from recipes; reject a changed selection.")] = None,
             image: Annotated[Optional[list[str]], typer.Option("--image", help="Target exact clean image IDs; repeat for a selection.")] = None,
             all_images: Annotated[bool, typer.Option("--all", help="Explicitly select the full collection, optionally filtered.")] = False,
             vae: Vae = None,
@@ -209,6 +211,9 @@ def publish(ctx: typer.Context, root: Root,
     operation = ("sort-riposte-plan" if plan or not apply else "sort-riposte") if combined else ("plan" if plan else "publish")
     if ctx.info_name == "riposte": operation = "riposte-plan" if plan else "riposte"
     dispatch(ctx, operation, root, image_ids=image or [], all_images=all_images, vae_dirs=vae or [],
+             recipe_name=recipe_name, recipe_revision=recipe_revision,
+             recipe_overrides=[("edges" if key == "edge" else key) for key in ("edge", "epsilon", "steps", "restarts", "seed", "preserve_white", "delta_e76_p95", "rms_fraction")
+                               if (source := ctx.get_parameter_source(key)) is not None and source.name != "DEFAULT"],
              edges=edge or [1536], epsilon=epsilon, steps=steps, restarts=restarts, seed=seed,
              preserve_white=preserve_white, inpaint=inpaint, video=video, device=device,
              delta_e76_p95=delta_e76_p95, rms_fraction=rms_fraction, year=year, month=month, size=size,
@@ -218,6 +223,34 @@ def publish(ctx: typer.Context, root: Root,
 
 # Discoverable alias, identical parameter schema and backend path.
 app.command("protect", cls=RichCommand, rich_help_panel="PROTECT + PUBLISH", help="Alias of publish; same full parameter surface.")(publish)
+
+
+@command("recipes", "PROTECT + PUBLISH")
+def recipes(ctx: typer.Context, root: Root,
+            name: Annotated[Optional[str], typer.Argument(help="Leave empty to list saved recipes.")] = None,
+            preview: Annotated[bool, typer.Option(help="Preview named settings, including a new recipe with defaults.")] = False,
+            save: Annotated[bool, typer.Option(help="Explicitly save only these publishing settings; never starts processing.")] = False,
+            expected_revision: Annotated[Optional[str], typer.Option(help="Library revision from preview; use missing for the first save.")] = None,
+            edge: Annotated[Optional[list[int]], typer.Option("--edge", min=64, max=4096)] = None,
+            epsilon: Annotated[Optional[int], typer.Option(min=1, max=16)] = None,
+            steps: Annotated[Optional[int], typer.Option(min=1, max=1000)] = None,
+            restarts: Annotated[Optional[int], typer.Option(min=1, max=4)] = None,
+            seed: Annotated[Optional[int], typer.Option(min=0, max=4294967295)] = None,
+            preserve_white: Annotated[Optional[bool], typer.Option("--preserve-white/--no-preserve-white")] = None,
+            delta_e76_p95: Annotated[Optional[float], typer.Option(min=.1, max=40)] = None,
+            rms_fraction: Annotated[Optional[float], typer.Option(min=.1, max=1)] = None):
+    """List, inspect or preview a named recipe; save only with an explicit revision."""
+    from .recipes import inspect_recipes
+    settings = {key: value for key, value in dict(edges=edge, epsilon=epsilon, steps=steps,
+                restarts=restarts, seed=seed, preserve_white=preserve_white,
+                delta_e76_p95=delta_e76_p95, rms_fraction=rms_fraction).items() if value is not None}
+    if save:
+        if name is None: raise RiposteError("RECIPE_NAME_REQUIRED")
+        if expected_revision is None: raise RiposteError("RECIPE_REVISION_REQUIRED")
+        draft = inspect_recipes(root, name, settings=settings)
+        dispatch(ctx, "recipes-save", root, recipe_name=name, recipe_settings=draft["settings"], expected_revision=expected_revision)
+    if expected_revision is not None: raise RiposteError("RECIPE_REVISION_REQUIRES_SAVE")
+    dispatch(ctx, "recipes", root, recipe_name=name, recipe_settings=settings if preview or settings else None)
 
 
 @command("publications", "PROTECT + PUBLISH")

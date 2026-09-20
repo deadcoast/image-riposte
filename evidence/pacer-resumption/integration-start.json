@@ -1,0 +1,18 @@
+[
+  {
+    "op": "append",
+    "id": "NDL-022",
+    "field": "Notes",
+    "text": "Display name: Implemented integration acceptance (retained in Title). Intake used the supported custom Title column; NoduleName was left blank and is lifecycle-protected. No direct CSV correction or history rewrite is performed."
+  },
+  {
+    "op": "transition",
+    "id": "PAC-045",
+    "status": "DOING"
+  },
+  {
+    "op": "checkpoint",
+    "id": "PAC-045",
+    "next_action": "verify"
+  }
+]

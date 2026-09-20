@@ -1,0 +1,30 @@
+FF.                                                                      [100%]
+================================== FAILURES ===================================
+__________ test_error_constructor_never_keeps_private_exception_text __________
+
+    def test_error_constructor_never_keeps_private_exception_text():
+        problem = RiposteError('C:\\private\\artwork.png: decoder failed\nsecret')
+>       assert problem.code == str(problem) == 'OPERATION_FAILED'
+E       AssertionError: assert 'C:\\private\...ailed\nsecret' == 'OPERATION_FAILED'
+E         
+E         - OPERATION_FAILED
+E         + C:\private\artwork.png: decoder failed
+E         + secret
+
+tests\test_recovery_guidance.py:12: AssertionError
+________________ test_unknown_human_error_has_safe_next_action ________________
+
+capsys = <_pytest.capture.CaptureFixture object at 0x0000023A0260C590>
+
+    def test_unknown_human_error_has_safe_next_action(capsys):
+        error('FUTURE_FAILURE', Presentation(plain=True))
+        rendered = capsys.readouterr().err
+        assert 'FUTURE_FAILURE' in rendered
+>       assert 'Next action:' in rendered
+E       AssertionError: assert 'Next action:' in '\n  [STOP] FUTURE_FAILURE\n'
+
+tests\test_recovery_guidance.py:19: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/test_recovery_guidance.py::test_error_constructor_never_keeps_private_exception_text
+FAILED tests/test_recovery_guidance.py::test_unknown_human_error_has_safe_next_action
+2 failed, 1 passed in 0.17s

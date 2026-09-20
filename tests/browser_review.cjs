@@ -68,14 +68,15 @@ function setup() {
     counts: {PENDING: 0, BLOCKED: 0, READY_FOR_REVIEW: 2, ACCEPTED: 0}};
   let urlSequence = 0;
   const context = vm.createContext({
-    console, setTimeout, clearTimeout,
-    document: {getElementById: $, createElement: tag => new Element(tag),
+    console, setTimeout, clearTimeout, AbortController,
+    document: {getElementById: $, createElement: tag => new Element(tag), addEventListener() {},
       querySelectorAll: selector => selector.startsWith('.pub-sizes') ? [size] : []},
     window: {}, location: {hash: '', pathname: '/'}, URLSearchParams,
     sessionStorage: {getItem: () => 'test-session'}, history: {},
     URL: {createObjectURL: () => 'blob:preview-' + (++urlSequence),
       revokeObjectURL: url => revoked.push(url)},
     fetch: (url, options) => {
+      if(url==='/static/recovery-catalog.json')return Promise.resolve({ok:true,json:async()=>JSON.parse(fs.readFileSync(path.join(staticDir,'recovery-catalog.json'),'utf8'))});
       assert.equal(options.headers['X-Riposte-Token'], 'test-session');
       if (url.includes('/image/') && url.includes('?view=')) {
         const pending = {...deferred(), url, options}; images.push(pending);
@@ -94,9 +95,10 @@ function setup() {
     },
   });
   const source = fs.readFileSync(path.join(staticDir, 'app.js'), 'utf8');
+  vm.runInContext(fs.readFileSync(path.join(staticDir, 'recovery.js'), 'utf8'), context);
   // Load the shared declarations and functions, without starting application polling.
   vm.runInContext(source.slice(0, source.indexOf('function shortName(')), context);
-  vm.runInContext('toast = message => notices.push(message)',
+  vm.runInContext('toast = message => notices.push(message); error = (e,op) => notices.push(recovery.text(e.message,op||e.operation));',
     Object.assign(context, {notices}));
   context.setView = view => views.push(view);
   vm.runInContext(fs.readFileSync(path.join(staticDir, 'publish.js'), 'utf8'), context);
@@ -351,6 +353,7 @@ async function nativeBrowser() {
     if (url === '/') {response.setHeader('Content-Type', 'text/html; charset=utf-8'); response.end(html);}
     else if (url === '/static/app.js') {response.setHeader('Content-Type', 'text/javascript'); response.end(app.slice(0, app.indexOf('function shortName(')));}
     else if (url === '/static/publish.js') {response.setHeader('Content-Type', 'text/javascript'); response.end(fs.readFileSync(path.join(staticDir, 'publish.js')));}
+    else if (url === '/static/recovery.js' || url === '/static/recovery-catalog.json') {response.setHeader('Content-Type',url.endsWith('.js')?'text/javascript':'application/json');response.end(fs.readFileSync(path.join(staticDir,path.basename(url))));}
     else if (url === '/probe.js') {response.setHeader('Content-Type', 'text/javascript'); response.end(probe);}
     else if (url === '/api/publication/batch') {response.setHeader('Content-Type', 'application/json'); response.end(JSON.stringify(batch));}
     else if (url.startsWith('/api/publication/batch/image/')) {response.setHeader('Content-Type', 'image/png'); response.end(png);}

@@ -2,7 +2,7 @@
 from _riposte_types import Report
 from .actions import ACTIONS as ACTIONS, BY_KEY as BY_KEY, command_line as command_line
 from .material import LOGO as LOGO, activity_trace as activity_trace, counterstroke as counterstroke
-from .output import RECOVERY as RECOVERY
+from ..recovery import guidance as guidance
 from .preview import paint_preview as paint_preview
 from .state import HOME as HOME, Session as Session
 from .surface import Surface as Surface, ascii_text as ascii_text
@@ -48,6 +48,8 @@ def _help_lines(state: Session, actual_width: int | None = None) -> list[_Line]:
 def scroll_limit(state: Session) -> int: ...
 
 def result(c: Surface, state: Session) -> None: ...
+
+def _error_lines(state: Session, actual_width: int | None = None) -> list[_Line]: ...
 
 def job(c: Surface, state: Session, time: float) -> None: ...
 

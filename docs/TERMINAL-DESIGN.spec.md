@@ -1,9 +1,12 @@
-# RIPOSTE / MIVIN terminal design specification / 0.5
+# RIPOSTE / historical MIVIN terminal design specification / 0.5
 
-The 0.5 terminal revision retains the architectural, motion and consent contracts
-below. Its foreground-only palette, semantic reports and contextual controls
-supersede the earlier colour and selection details. See [REVISION-v05.md](REVISION-v05.md)
-and [PATCH-v05-MERGE.md](PATCH-v05-MERGE.md) for design provenance and current verification.
+This retained design body records the 0.5 terminal intent; design claims are not
+current implementation proof. Use the [current CLI](CLI.md), [UX contract](UX-CONTRACT.md)
+and [workflow/consent boundary](CURRENT-CONTRACT.md#independent-workflows-and-consent)
+for operation, and [project status](PROJECT-STATUS.md#evidence-and-its-limits) for
+qualified evidence. [REVISION-v05](REVISION-v05.md) and
+[PATCH-v05-MERGE](PATCH-v05-MERGE.md) remain historical provenance.
+The original body below is preserved byte-for-byte.
 
 ## Mandate
 

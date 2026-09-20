@@ -6,10 +6,11 @@ from collections.abc import Callable, Mapping, Sequence
 from typing import cast
 from ..records import CatalogRow, RequestValues
 import time
-from .actions import ACTIONS, BY_KEY, Field, defaults, make_request, parse_value
+from .actions import ACTIONS, BY_KEY, PUB_FIELDS, Field, defaults, make_request, parse_value
 from .jobs import Operation, safe_code
 from .keyboard import Key
-from .output import Presentation, RECOVERY
+from .output import Presentation
+from ..recovery import recovery_text
 from .preview import make_preview
 from .render import view_rows, scroll_limit
 from .service import Request, execute, image_bytes, root_of
@@ -246,6 +247,30 @@ class Controller:
         p = self.state.page
         return make_request(cast(str, p.action), self.state.root, p.values, sorted(self.state.selected))
 
+    def recipes(self, *, reload: bool = False) -> None:
+        result = execute(Request("recipes", self.state.root))
+        rows = [{**row, "title": row["name"]} for row in result["recipes"]]
+        self.show(Page("recipes", "PUBLISHING RECIPES", rows=rows, result=result), remember=not reload)
+
+    def load_recipe(self) -> None:
+        from ..recipes import inspect_recipes
+        row = self.selected_row()
+        if not row: return
+        current = inspect_recipes(root_of(Request("recipes", self.state.root)), row["name"])
+        if current["recipe_revision"] != row["recipe_revision"]:
+            raise RiposteError("RECIPE_CHANGED")
+        self.back()
+        self.state.page.values.update(current["settings"])
+        self.state.page.values.update(recipe_name=current["name"], recipe_revision=current["recipe_revision"])
+        self.state.notice = "Recipe loaded. Review or edit settings before starting protection."
+
+    def recipe_save_name(self) -> None:
+        p = self.state.page
+        # Validate settings without requiring images or local model paths.
+        for field in PUB_FIELDS[:8]: parse_value(field, p.values[field.key])
+        name = str(p.values.get("recipe_name") or "")
+        self.state.editor = Editor(Field("recipe_name", "Recipe name", help="Name these settings; Enter previews, then s saves. No processing starts."), name, len(name), target="recipe-save-name")
+
     def save_model_session(self, values: Mapping[str, object]) -> None:
         for key in ("vae1", "vae2", "vae3", "vae4", "device", "inpaint", "video"):
             if key in values: self.state.models[key] = values[key]
@@ -299,7 +324,7 @@ class Controller:
                     break
         self.state.operation = None
         try:
-            if request.name not in {"organize", "undo-sort", "duplicates"}: self.refresh()
+            if request.name not in {"organize", "undo-sort", "duplicates", "recipes", "recipes-save"}: self.refresh()
         except RiposteError as exc: self.state.notice = safe_code(exc.code)
         if self.state.exit_after_job:
             self.state.running = False
@@ -318,6 +343,11 @@ class Controller:
             self.back()
             self.state.notice = "Audited PNG handed to the local viewer; no approval was recorded."
         else:
+            if request.name == "recipes-save":
+                for page in reversed(self.state.stack):
+                    if page.name == "form" and page.action in {"publish", "riposte", "sort-riposte"}:
+                        page.values.update(recipe_name=result["name"], recipe_revision=result["recipe_revision"])
+                        break
             heading = {"plan": "PUBLISHING PLAN", "organize": "MIGRATION PREVIEW", "apply": "ORGANIZATION RESULT",
                        "package": "APPROVED IMAGE PACK", "doctor": "LOCAL RUNTIME"}.get(request.name, "OPERATION RESULT")
             self.show(Page("result", heading, result=result, request=request), remember=False)
@@ -384,6 +414,14 @@ class Controller:
         e = cast(Editor, self.state.editor)
         try:
             value = parse_value(e.field, e.value)
+            if e.target == "recipe-save-name":
+                from ..recipes import inspect_recipes
+                settings = {field.key: parse_value(field, self.state.page.values[field.key]) for field in PUB_FIELDS[:8]}
+                result = inspect_recipes(root_of(Request("recipes", self.state.root)), value, settings=settings)
+                self.state.editor = None
+                self.show(Page("result", "RECIPE PREVIEW", result=result,
+                               request=Request("recipes", self.state.root, {"recipe_name": result["name"], "recipe_settings": settings})))
+                return
             if e.target == "duplicate-export":
                 receipt = self.state.page.display_cache["review"].export(Path(value))
                 self.state.editor = None
@@ -437,7 +475,7 @@ class Controller:
         except (RiposteError, OSError, ValueError) as exc:
             e.error = True
             e.error_message = ("Folder not found. Choose an existing folder." if isinstance(exc, RiposteError) and exc.code == "ROOT_INVALID"
-                               else RECOVERY.get(exc.code, "Check this value, then try again.") if isinstance(exc, RiposteError)
+                               else recovery_text(exc.code) if isinstance(exc, RiposteError)
                                else "Cannot read this location. Check access and try again." if isinstance(exc, OSError)
                                else "Invalid value. Correct this field.")
 
@@ -599,7 +637,15 @@ class Controller:
             if ch == "p":
                 if p.image_id not in self.state.selected: self.toggle_selection(cast(CatalogRow, p.report))
                 return self.action("publish")
+        elif p.name == "recipes":
+            if key.name == "enter": return self.load_recipe()
+            if ch == "r": return self.recipes(reload=True)
+            if ch == "i" and (row := self.selected_row()):
+                return self.run(Request("recipes", self.state.root, {"recipe_name": row["name"]}))
         elif p.name == "form":
+            if p.action in {"publish", "riposte", "sort-riposte"}:
+                if ch == "l": return self.recipes()
+                if ch == "s": return self.recipe_save_name()
             if ch == "g" and p.action == "duplicates": return self.duplicate_path()
             if ch == "g" and p.action == "organize": return self.sort_path()
             if ch == "b":
@@ -687,6 +733,9 @@ class Controller:
                 return
             if ch == "s" and request and request.name == "category-rules" and p.result.get("status") == "DRAFT":
                 return self.confirm(Request("category-rules-save", request.root, cast(RequestValues, {**request.values, "expected_revision": p.result["revision"]})), "SAVE", "Save these reusable rules. Sorting remains a separate preview and confirmation.")
+            if ch == "s" and request and request.name == "recipes" and p.result.get("status") == "DRAFT":
+                return self.run(Request("recipes-save", request.root, {"recipe_name": p.result["name"],
+                                "recipe_settings": p.result["settings"], "expected_revision": p.result["revision"]}))
             if ch == "u" and request and request.name == "undo-sort" and p.result.get("ready"):
                 return self.confirm(Request("undo-sort-apply", request.root, {"sort_id": p.result["sort_id"]}), "UNDO", "Restore original names and bytes from the last sort. Remove only its verified sorted copies.")
             if ch == "r" and request and request.name == "plan":

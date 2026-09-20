@@ -1,0 +1,5 @@
+{
+  "preliminary_history_check": "FAIL: whole pyproject.toml bytes differ from the old patch closure",
+  "reviewed_reason": "The later neutral menu wording changed only the package description after version 0.5.0. Dependency declarations, optional dependencies, Python minimum, entry point and build-system declarations match the retained pre-merge Git blob; other lockfile hashes match.",
+  "resolution": "acceptance.py retains archive/decision/snapshot integrity and compares dependency semantics. Original historical verifier and reports are unchanged."
+}

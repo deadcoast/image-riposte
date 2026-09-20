@@ -1,0 +1,29 @@
+AssertionError [ERR_ASSERTION]: native browser result: FAIL TypeError: Cannot read properties of undefined (reading 'some')
+    at <anonymous>:33:29
+    at wait (<anonymous>:4:54)
+    at <anonymous>:33:9
++ actual - expected
+
++ "FAIL TypeError: Cannot read properties of undefined (reading 'some')\n" +
++   '    at <anonymous>:33:29\n' +
++   '    at wait (<anonymous>:4:54)\n' +
++   '    at <anonymous>:33:9'
+- 'PASS'
+
+    at main (C:\Users\ryanf\github\_new\image-riposte\tests\category_sort_browser.cjs:65:12) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: "FAIL TypeError: Cannot read properties of undefined (reading 'some')\n" +
+    '    at <anonymous>:33:29\n' +
+    '    at wait (<anonymous>:4:54)\n' +
+    '    at <anonymous>:33:9',
+  expected: 'PASS',
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Traceback (most recent call last):
+  File "C:\Users\ryanf\github\_new\image-riposte\evidence\guided-category-editing\live_browser.py", line 47, in <module>
+    assert run.returncode == 0
+           ^^^^^^^^^^^^^^^^^^^
+AssertionError

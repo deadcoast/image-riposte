@@ -3,7 +3,7 @@
     {
       "category": "unresolved",
       "file": "src/riposte/static/index.html",
-      "line": 37,
+      "line": 48,
       "message": "Native select is used without an explicit ownership decision.",
       "remediation": "Record Select/Listbox as native or reuse the authored canonical owner.",
       "ruleId": "ownership.native-select-undecided",
@@ -75,7 +75,7 @@
     {
       "category": "violation",
       "file": "src/riposte/static/index.html",
-      "line": 19,
+      "line": 18,
       "message": "Enabled literal button has no detectable action or submit behavior.",
       "remediation": "Connect the button to a real action, make it a submit button, or disable/remove it.",
       "ruleId": "affordance.actionless-button",
@@ -84,7 +84,7 @@
     {
       "category": "violation",
       "file": "src/riposte/static/index.html",
-      "line": 21,
+      "line": 20,
       "message": "Enabled literal button has no detectable action or submit behavior.",
       "remediation": "Connect the button to a real action, make it a submit button, or disable/remove it.",
       "ruleId": "affordance.actionless-button",
@@ -93,7 +93,7 @@
     {
       "category": "violation",
       "file": "src/riposte/static/index.html",
-      "line": 25,
+      "line": 22,
       "message": "Enabled literal button has no detectable action or submit behavior.",
       "remediation": "Connect the button to a real action, make it a submit button, or disable/remove it.",
       "ruleId": "affordance.actionless-button",
@@ -138,7 +138,7 @@
     {
       "category": "violation",
       "file": "src/riposte/static/index.html",
-      "line": 31,
+      "line": 30,
       "message": "Enabled literal button has no detectable action or submit behavior.",
       "remediation": "Connect the button to a real action, make it a submit button, or disable/remove it.",
       "ruleId": "affordance.actionless-button",
@@ -147,52 +147,7 @@
     {
       "category": "violation",
       "file": "src/riposte/static/index.html",
-      "line": 36,
-      "message": "Enabled literal button has no detectable action or submit behavior.",
-      "remediation": "Connect the button to a real action, make it a submit button, or disable/remove it.",
-      "ruleId": "affordance.actionless-button",
-      "severity": "error"
-    },
-    {
-      "category": "violation",
-      "file": "src/riposte/static/index.html",
-      "line": 36,
-      "message": "Enabled literal button has no detectable action or submit behavior.",
-      "remediation": "Connect the button to a real action, make it a submit button, or disable/remove it.",
-      "ruleId": "affordance.actionless-button",
-      "severity": "error"
-    },
-    {
-      "category": "violation",
-      "file": "src/riposte/static/index.html",
-      "line": 36,
-      "message": "Enabled literal button has no detectable action or submit behavior.",
-      "remediation": "Connect the button to a real action, make it a submit button, or disable/remove it.",
-      "ruleId": "affordance.actionless-button",
-      "severity": "error"
-    },
-    {
-      "category": "violation",
-      "file": "src/riposte/static/index.html",
-      "line": 36,
-      "message": "Enabled literal button has no detectable action or submit behavior.",
-      "remediation": "Connect the button to a real action, make it a submit button, or disable/remove it.",
-      "ruleId": "affordance.actionless-button",
-      "severity": "error"
-    },
-    {
-      "category": "violation",
-      "file": "src/riposte/static/index.html",
-      "line": 36,
-      "message": "Enabled literal button has no detectable action or submit behavior.",
-      "remediation": "Connect the button to a real action, make it a submit button, or disable/remove it.",
-      "ruleId": "affordance.actionless-button",
-      "severity": "error"
-    },
-    {
-      "category": "violation",
-      "file": "src/riposte/static/index.html",
-      "line": 39,
+      "line": 32,
       "message": "Enabled literal button has no detectable action or submit behavior.",
       "remediation": "Connect the button to a real action, make it a submit button, or disable/remove it.",
       "ruleId": "affordance.actionless-button",
@@ -210,7 +165,7 @@
     {
       "category": "violation",
       "file": "src/riposte/static/index.html",
-      "line": 41,
+      "line": 49,
       "message": "Enabled literal button has no detectable action or submit behavior.",
       "remediation": "Connect the button to a real action, make it a submit button, or disable/remove it.",
       "ruleId": "affordance.actionless-button",
@@ -219,7 +174,7 @@
     {
       "category": "violation",
       "file": "src/riposte/static/index.html",
-      "line": 45,
+      "line": 49,
       "message": "Enabled literal button has no detectable action or submit behavior.",
       "remediation": "Connect the button to a real action, make it a submit button, or disable/remove it.",
       "ruleId": "affordance.actionless-button",
@@ -228,7 +183,7 @@
     {
       "category": "violation",
       "file": "src/riposte/static/index.html",
-      "line": 45,
+      "line": 49,
       "message": "Enabled literal button has no detectable action or submit behavior.",
       "remediation": "Connect the button to a real action, make it a submit button, or disable/remove it.",
       "ruleId": "affordance.actionless-button",
@@ -237,7 +192,52 @@
     {
       "category": "violation",
       "file": "src/riposte/static/index.html",
-      "line": 53,
+      "line": 49,
+      "message": "Enabled literal button has no detectable action or submit behavior.",
+      "remediation": "Connect the button to a real action, make it a submit button, or disable/remove it.",
+      "ruleId": "affordance.actionless-button",
+      "severity": "error"
+    },
+    {
+      "category": "violation",
+      "file": "src/riposte/static/index.html",
+      "line": 55,
+      "message": "Enabled literal button has no detectable action or submit behavior.",
+      "remediation": "Connect the button to a real action, make it a submit button, or disable/remove it.",
+      "ruleId": "affordance.actionless-button",
+      "severity": "error"
+    },
+    {
+      "category": "violation",
+      "file": "src/riposte/static/index.html",
+      "line": 55,
+      "message": "Enabled literal button has no detectable action or submit behavior.",
+      "remediation": "Connect the button to a real action, make it a submit button, or disable/remove it.",
+      "ruleId": "affordance.actionless-button",
+      "severity": "error"
+    },
+    {
+      "category": "violation",
+      "file": "src/riposte/static/index.html",
+      "line": 55,
+      "message": "Enabled literal button has no detectable action or submit behavior.",
+      "remediation": "Connect the button to a real action, make it a submit button, or disable/remove it.",
+      "ruleId": "affordance.actionless-button",
+      "severity": "error"
+    },
+    {
+      "category": "violation",
+      "file": "src/riposte/static/index.html",
+      "line": 55,
+      "message": "Enabled literal button has no detectable action or submit behavior.",
+      "remediation": "Connect the button to a real action, make it a submit button, or disable/remove it.",
+      "ruleId": "affordance.actionless-button",
+      "severity": "error"
+    },
+    {
+      "category": "violation",
+      "file": "src/riposte/static/index.html",
+      "line": 55,
       "message": "Enabled literal button has no detectable action or submit behavior.",
       "remediation": "Connect the button to a real action, make it a submit button, or disable/remove it.",
       "ruleId": "affordance.actionless-button",
@@ -255,7 +255,16 @@
     {
       "category": "violation",
       "file": "src/riposte/static/index.html",
-      "line": 64,
+      "line": 60,
+      "message": "Enabled literal button has no detectable action or submit behavior.",
+      "remediation": "Connect the button to a real action, make it a submit button, or disable/remove it.",
+      "ruleId": "affordance.actionless-button",
+      "severity": "error"
+    },
+    {
+      "category": "violation",
+      "file": "src/riposte/static/index.html",
+      "line": 60,
       "message": "Enabled literal button has no detectable action or submit behavior.",
       "remediation": "Connect the button to a real action, make it a submit button, or disable/remove it.",
       "ruleId": "affordance.actionless-button",
@@ -282,69 +291,6 @@
     {
       "category": "violation",
       "file": "src/riposte/static/index.html",
-      "line": 71,
-      "message": "Enabled literal button has no detectable action or submit behavior.",
-      "remediation": "Connect the button to a real action, make it a submit button, or disable/remove it.",
-      "ruleId": "affordance.actionless-button",
-      "severity": "error"
-    },
-    {
-      "category": "violation",
-      "file": "src/riposte/static/index.html",
-      "line": 71,
-      "message": "Enabled literal button has no detectable action or submit behavior.",
-      "remediation": "Connect the button to a real action, make it a submit button, or disable/remove it.",
-      "ruleId": "affordance.actionless-button",
-      "severity": "error"
-    },
-    {
-      "category": "violation",
-      "file": "src/riposte/static/index.html",
-      "line": 71,
-      "message": "Enabled literal button has no detectable action or submit behavior.",
-      "remediation": "Connect the button to a real action, make it a submit button, or disable/remove it.",
-      "ruleId": "affordance.actionless-button",
-      "severity": "error"
-    },
-    {
-      "category": "violation",
-      "file": "src/riposte/static/index.html",
-      "line": 71,
-      "message": "Enabled literal button has no detectable action or submit behavior.",
-      "remediation": "Connect the button to a real action, make it a submit button, or disable/remove it.",
-      "ruleId": "affordance.actionless-button",
-      "severity": "error"
-    },
-    {
-      "category": "violation",
-      "file": "src/riposte/static/index.html",
-      "line": 72,
-      "message": "Enabled literal button has no detectable action or submit behavior.",
-      "remediation": "Connect the button to a real action, make it a submit button, or disable/remove it.",
-      "ruleId": "affordance.actionless-button",
-      "severity": "error"
-    },
-    {
-      "category": "violation",
-      "file": "src/riposte/static/index.html",
-      "line": 72,
-      "message": "Enabled literal button has no detectable action or submit behavior.",
-      "remediation": "Connect the button to a real action, make it a submit button, or disable/remove it.",
-      "ruleId": "affordance.actionless-button",
-      "severity": "error"
-    },
-    {
-      "category": "violation",
-      "file": "src/riposte/static/index.html",
-      "line": 72,
-      "message": "Enabled literal button has no detectable action or submit behavior.",
-      "remediation": "Connect the button to a real action, make it a submit button, or disable/remove it.",
-      "ruleId": "affordance.actionless-button",
-      "severity": "error"
-    },
-    {
-      "category": "violation",
-      "file": "src/riposte/static/index.html",
       "line": 72,
       "message": "Enabled literal button has no detectable action or submit behavior.",
       "remediation": "Connect the button to a real action, make it a submit button, or disable/remove it.",
@@ -355,51 +301,6 @@
       "category": "violation",
       "file": "src/riposte/static/index.html",
       "line": 77,
-      "message": "Enabled literal button has no detectable action or submit behavior.",
-      "remediation": "Connect the button to a real action, make it a submit button, or disable/remove it.",
-      "ruleId": "affordance.actionless-button",
-      "severity": "error"
-    },
-    {
-      "category": "violation",
-      "file": "src/riposte/static/index.html",
-      "line": 77,
-      "message": "Enabled literal button has no detectable action or submit behavior.",
-      "remediation": "Connect the button to a real action, make it a submit button, or disable/remove it.",
-      "ruleId": "affordance.actionless-button",
-      "severity": "error"
-    },
-    {
-      "category": "violation",
-      "file": "src/riposte/static/index.html",
-      "line": 77,
-      "message": "Enabled literal button has no detectable action or submit behavior.",
-      "remediation": "Connect the button to a real action, make it a submit button, or disable/remove it.",
-      "ruleId": "affordance.actionless-button",
-      "severity": "error"
-    },
-    {
-      "category": "violation",
-      "file": "src/riposte/static/index.html",
-      "line": 82,
-      "message": "Enabled literal button has no detectable action or submit behavior.",
-      "remediation": "Connect the button to a real action, make it a submit button, or disable/remove it.",
-      "ruleId": "affordance.actionless-button",
-      "severity": "error"
-    },
-    {
-      "category": "violation",
-      "file": "src/riposte/static/index.html",
-      "line": 82,
-      "message": "Enabled literal button has no detectable action or submit behavior.",
-      "remediation": "Connect the button to a real action, make it a submit button, or disable/remove it.",
-      "ruleId": "affordance.actionless-button",
-      "severity": "error"
-    },
-    {
-      "category": "violation",
-      "file": "src/riposte/static/index.html",
-      "line": 82,
       "message": "Enabled literal button has no detectable action or submit behavior.",
       "remediation": "Connect the button to a real action, make it a submit button, or disable/remove it.",
       "ruleId": "affordance.actionless-button",
@@ -427,42 +328,6 @@
       "category": "violation",
       "file": "src/riposte/static/index.html",
       "line": 83,
-      "message": "Enabled literal button has no detectable action or submit behavior.",
-      "remediation": "Connect the button to a real action, make it a submit button, or disable/remove it.",
-      "ruleId": "affordance.actionless-button",
-      "severity": "error"
-    },
-    {
-      "category": "violation",
-      "file": "src/riposte/static/index.html",
-      "line": 84,
-      "message": "Enabled literal button has no detectable action or submit behavior.",
-      "remediation": "Connect the button to a real action, make it a submit button, or disable/remove it.",
-      "ruleId": "affordance.actionless-button",
-      "severity": "error"
-    },
-    {
-      "category": "violation",
-      "file": "src/riposte/static/index.html",
-      "line": 84,
-      "message": "Enabled literal button has no detectable action or submit behavior.",
-      "remediation": "Connect the button to a real action, make it a submit button, or disable/remove it.",
-      "ruleId": "affordance.actionless-button",
-      "severity": "error"
-    },
-    {
-      "category": "violation",
-      "file": "src/riposte/static/index.html",
-      "line": 84,
-      "message": "Enabled literal button has no detectable action or submit behavior.",
-      "remediation": "Connect the button to a real action, make it a submit button, or disable/remove it.",
-      "ruleId": "affordance.actionless-button",
-      "severity": "error"
-    },
-    {
-      "category": "violation",
-      "file": "src/riposte/static/index.html",
-      "line": 85,
       "message": "Enabled literal button has no detectable action or submit behavior.",
       "remediation": "Connect the button to a real action, make it a submit button, or disable/remove it.",
       "ruleId": "affordance.actionless-button",
@@ -480,6 +345,123 @@
     {
       "category": "violation",
       "file": "src/riposte/static/index.html",
+      "line": 90,
+      "message": "Enabled literal button has no detectable action or submit behavior.",
+      "remediation": "Connect the button to a real action, make it a submit button, or disable/remove it.",
+      "ruleId": "affordance.actionless-button",
+      "severity": "error"
+    },
+    {
+      "category": "violation",
+      "file": "src/riposte/static/index.html",
+      "line": 90,
+      "message": "Enabled literal button has no detectable action or submit behavior.",
+      "remediation": "Connect the button to a real action, make it a submit button, or disable/remove it.",
+      "ruleId": "affordance.actionless-button",
+      "severity": "error"
+    },
+    {
+      "category": "violation",
+      "file": "src/riposte/static/index.html",
+      "line": 90,
+      "message": "Enabled literal button has no detectable action or submit behavior.",
+      "remediation": "Connect the button to a real action, make it a submit button, or disable/remove it.",
+      "ruleId": "affordance.actionless-button",
+      "severity": "error"
+    },
+    {
+      "category": "violation",
+      "file": "src/riposte/static/index.html",
+      "line": 91,
+      "message": "Enabled literal button has no detectable action or submit behavior.",
+      "remediation": "Connect the button to a real action, make it a submit button, or disable/remove it.",
+      "ruleId": "affordance.actionless-button",
+      "severity": "error"
+    },
+    {
+      "category": "violation",
+      "file": "src/riposte/static/index.html",
+      "line": 91,
+      "message": "Enabled literal button has no detectable action or submit behavior.",
+      "remediation": "Connect the button to a real action, make it a submit button, or disable/remove it.",
+      "ruleId": "affordance.actionless-button",
+      "severity": "error"
+    },
+    {
+      "category": "violation",
+      "file": "src/riposte/static/index.html",
+      "line": 91,
+      "message": "Enabled literal button has no detectable action or submit behavior.",
+      "remediation": "Connect the button to a real action, make it a submit button, or disable/remove it.",
+      "ruleId": "affordance.actionless-button",
+      "severity": "error"
+    },
+    {
+      "category": "violation",
+      "file": "src/riposte/static/index.html",
+      "line": 91,
+      "message": "Enabled literal button has no detectable action or submit behavior.",
+      "remediation": "Connect the button to a real action, make it a submit button, or disable/remove it.",
+      "ruleId": "affordance.actionless-button",
+      "severity": "error"
+    },
+    {
+      "category": "violation",
+      "file": "src/riposte/static/index.html",
+      "line": 96,
+      "message": "Enabled literal button has no detectable action or submit behavior.",
+      "remediation": "Connect the button to a real action, make it a submit button, or disable/remove it.",
+      "ruleId": "affordance.actionless-button",
+      "severity": "error"
+    },
+    {
+      "category": "violation",
+      "file": "src/riposte/static/index.html",
+      "line": 96,
+      "message": "Enabled literal button has no detectable action or submit behavior.",
+      "remediation": "Connect the button to a real action, make it a submit button, or disable/remove it.",
+      "ruleId": "affordance.actionless-button",
+      "severity": "error"
+    },
+    {
+      "category": "violation",
+      "file": "src/riposte/static/index.html",
+      "line": 96,
+      "message": "Enabled literal button has no detectable action or submit behavior.",
+      "remediation": "Connect the button to a real action, make it a submit button, or disable/remove it.",
+      "ruleId": "affordance.actionless-button",
+      "severity": "error"
+    },
+    {
+      "category": "violation",
+      "file": "src/riposte/static/index.html",
+      "line": 101,
+      "message": "Enabled literal button has no detectable action or submit behavior.",
+      "remediation": "Connect the button to a real action, make it a submit button, or disable/remove it.",
+      "ruleId": "affordance.actionless-button",
+      "severity": "error"
+    },
+    {
+      "category": "violation",
+      "file": "src/riposte/static/index.html",
+      "line": 101,
+      "message": "Enabled literal button has no detectable action or submit behavior.",
+      "remediation": "Connect the button to a real action, make it a submit button, or disable/remove it.",
+      "ruleId": "affordance.actionless-button",
+      "severity": "error"
+    },
+    {
+      "category": "violation",
+      "file": "src/riposte/static/index.html",
+      "line": 101,
+      "message": "Enabled literal button has no detectable action or submit behavior.",
+      "remediation": "Connect the button to a real action, make it a submit button, or disable/remove it.",
+      "ruleId": "affordance.actionless-button",
+      "severity": "error"
+    },
+    {
+      "category": "violation",
+      "file": "src/riposte/static/index.html",
       "line": 102,
       "message": "Enabled literal button has no detectable action or submit behavior.",
       "remediation": "Connect the button to a real action, make it a submit button, or disable/remove it.",
@@ -489,7 +471,7 @@
     {
       "category": "violation",
       "file": "src/riposte/static/index.html",
-      "line": 111,
+      "line": 102,
       "message": "Enabled literal button has no detectable action or submit behavior.",
       "remediation": "Connect the button to a real action, make it a submit button, or disable/remove it.",
       "ruleId": "affordance.actionless-button",
@@ -498,7 +480,7 @@
     {
       "category": "violation",
       "file": "src/riposte/static/index.html",
-      "line": 111,
+      "line": 102,
       "message": "Enabled literal button has no detectable action or submit behavior.",
       "remediation": "Connect the button to a real action, make it a submit button, or disable/remove it.",
       "ruleId": "affordance.actionless-button",
@@ -507,7 +489,7 @@
     {
       "category": "violation",
       "file": "src/riposte/static/index.html",
-      "line": 118,
+      "line": 103,
       "message": "Enabled literal button has no detectable action or submit behavior.",
       "remediation": "Connect the button to a real action, make it a submit button, or disable/remove it.",
       "ruleId": "affordance.actionless-button",
@@ -516,7 +498,7 @@
     {
       "category": "violation",
       "file": "src/riposte/static/index.html",
-      "line": 128,
+      "line": 103,
       "message": "Enabled literal button has no detectable action or submit behavior.",
       "remediation": "Connect the button to a real action, make it a submit button, or disable/remove it.",
       "ruleId": "affordance.actionless-button",
@@ -525,7 +507,7 @@
     {
       "category": "violation",
       "file": "src/riposte/static/index.html",
-      "line": 135,
+      "line": 103,
       "message": "Enabled literal button has no detectable action or submit behavior.",
       "remediation": "Connect the button to a real action, make it a submit button, or disable/remove it.",
       "ruleId": "affordance.actionless-button",
@@ -534,7 +516,7 @@
     {
       "category": "violation",
       "file": "src/riposte/static/index.html",
-      "line": 135,
+      "line": 104,
       "message": "Enabled literal button has no detectable action or submit behavior.",
       "remediation": "Connect the button to a real action, make it a submit button, or disable/remove it.",
       "ruleId": "affordance.actionless-button",
@@ -543,7 +525,7 @@
     {
       "category": "violation",
       "file": "src/riposte/static/index.html",
-      "line": 135,
+      "line": 109,
       "message": "Enabled literal button has no detectable action or submit behavior.",
       "remediation": "Connect the button to a real action, make it a submit button, or disable/remove it.",
       "ruleId": "affordance.actionless-button",
@@ -552,7 +534,7 @@
     {
       "category": "violation",
       "file": "src/riposte/static/index.html",
-      "line": 135,
+      "line": 121,
       "message": "Enabled literal button has no detectable action or submit behavior.",
       "remediation": "Connect the button to a real action, make it a submit button, or disable/remove it.",
       "ruleId": "affordance.actionless-button",
@@ -561,7 +543,7 @@
     {
       "category": "violation",
       "file": "src/riposte/static/index.html",
-      "line": 135,
+      "line": 130,
       "message": "Enabled literal button has no detectable action or submit behavior.",
       "remediation": "Connect the button to a real action, make it a submit button, or disable/remove it.",
       "ruleId": "affordance.actionless-button",
@@ -570,7 +552,7 @@
     {
       "category": "violation",
       "file": "src/riposte/static/index.html",
-      "line": 135,
+      "line": 130,
       "message": "Enabled literal button has no detectable action or submit behavior.",
       "remediation": "Connect the button to a real action, make it a submit button, or disable/remove it.",
       "ruleId": "affordance.actionless-button",
@@ -579,7 +561,7 @@
     {
       "category": "violation",
       "file": "src/riposte/static/index.html",
-      "line": 135,
+      "line": 137,
       "message": "Enabled literal button has no detectable action or submit behavior.",
       "remediation": "Connect the button to a real action, make it a submit button, or disable/remove it.",
       "ruleId": "affordance.actionless-button",
@@ -588,7 +570,97 @@
     {
       "category": "violation",
       "file": "src/riposte/static/index.html",
-      "line": 57,
+      "line": 142,
+      "message": "Enabled literal button has no detectable action or submit behavior.",
+      "remediation": "Connect the button to a real action, make it a submit button, or disable/remove it.",
+      "ruleId": "affordance.actionless-button",
+      "severity": "error"
+    },
+    {
+      "category": "violation",
+      "file": "src/riposte/static/index.html",
+      "line": 152,
+      "message": "Enabled literal button has no detectable action or submit behavior.",
+      "remediation": "Connect the button to a real action, make it a submit button, or disable/remove it.",
+      "ruleId": "affordance.actionless-button",
+      "severity": "error"
+    },
+    {
+      "category": "violation",
+      "file": "src/riposte/static/index.html",
+      "line": 159,
+      "message": "Enabled literal button has no detectable action or submit behavior.",
+      "remediation": "Connect the button to a real action, make it a submit button, or disable/remove it.",
+      "ruleId": "affordance.actionless-button",
+      "severity": "error"
+    },
+    {
+      "category": "violation",
+      "file": "src/riposte/static/index.html",
+      "line": 159,
+      "message": "Enabled literal button has no detectable action or submit behavior.",
+      "remediation": "Connect the button to a real action, make it a submit button, or disable/remove it.",
+      "ruleId": "affordance.actionless-button",
+      "severity": "error"
+    },
+    {
+      "category": "violation",
+      "file": "src/riposte/static/index.html",
+      "line": 159,
+      "message": "Enabled literal button has no detectable action or submit behavior.",
+      "remediation": "Connect the button to a real action, make it a submit button, or disable/remove it.",
+      "ruleId": "affordance.actionless-button",
+      "severity": "error"
+    },
+    {
+      "category": "violation",
+      "file": "src/riposte/static/index.html",
+      "line": 159,
+      "message": "Enabled literal button has no detectable action or submit behavior.",
+      "remediation": "Connect the button to a real action, make it a submit button, or disable/remove it.",
+      "ruleId": "affordance.actionless-button",
+      "severity": "error"
+    },
+    {
+      "category": "violation",
+      "file": "src/riposte/static/index.html",
+      "line": 159,
+      "message": "Enabled literal button has no detectable action or submit behavior.",
+      "remediation": "Connect the button to a real action, make it a submit button, or disable/remove it.",
+      "ruleId": "affordance.actionless-button",
+      "severity": "error"
+    },
+    {
+      "category": "violation",
+      "file": "src/riposte/static/index.html",
+      "line": 159,
+      "message": "Enabled literal button has no detectable action or submit behavior.",
+      "remediation": "Connect the button to a real action, make it a submit button, or disable/remove it.",
+      "ruleId": "affordance.actionless-button",
+      "severity": "error"
+    },
+    {
+      "category": "violation",
+      "file": "src/riposte/static/index.html",
+      "line": 159,
+      "message": "Enabled literal button has no detectable action or submit behavior.",
+      "remediation": "Connect the button to a real action, make it a submit button, or disable/remove it.",
+      "ruleId": "affordance.actionless-button",
+      "severity": "error"
+    },
+    {
+      "category": "violation",
+      "file": "src/riposte/static/app.js",
+      "line": 59,
+      "message": "Empty hash links look actionable but have no destination.",
+      "remediation": "Use a real route/action or render non-interactive text.",
+      "ruleId": "affordance.empty-href",
+      "severity": "error"
+    },
+    {
+      "category": "violation",
+      "file": "src/riposte/static/index.html",
+      "line": 76,
       "message": "Literal product textarea does not show evidence of the canonical resize-none rule.",
       "remediation": "Use the shared Textarea owner or apply resize-none/resize: none with adequate height or auto-grow behavior.",
       "ruleId": "form.textarea-resize-missing",
@@ -599,10 +671,10 @@
   "projectRoot": "C:\\Users\\ryanf\\github\\_new\\image-riposte",
   "schemaVersion": 1,
   "summary": {
-    "errors": 66,
-    "total": 66,
+    "errors": 74,
+    "total": 74,
     "unresolved": 1,
-    "violations": 65,
+    "violations": 73,
     "warnings": 0
   }
 }

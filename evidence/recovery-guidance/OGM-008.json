@@ -1,0 +1,36 @@
+{
+  "requirement": "OGM-008",
+  "meaning": "ebe4108e46373bb8a4b285032b92409cb91cbc204d40080dc92834a795a01ecc",
+  "sources": {
+    "evidence/browser-review/README.md": "c795f3774ca7c52e210313788e0b0869c92376387a753e797fa6e8c886784e73",
+    "tests/browser_review.cjs": "75f604c14024dd0e1ed1c0256b087cefbf6443efb903dbd716428c4cb935b556",
+    "tests/test_browser_review.py": "8be9063a792e733aad3b13eb56b61ffd2401ce4641834c9be6a1998bd008c181",
+    "src/riposte/static/publish.js": "3364df84d3ab7de65fe4e344bfe273b2d8d260697db5e3b59bfe733b9c9a7545",
+    "src/riposte/static/app.js": "1e5eb278d01e1e462269efd463a225f4440f0bb6a57c98fb697f317a71584893"
+  },
+  "result": "PASS",
+  "command": [
+    ".venv/Scripts/python.exe evidence/recovery-guidance/verify.py",
+    ".venv/Scripts/python.exe -m pytest -q -k \"not browser_native and not native_browser and not browser_review_in_real_chromium\" --junitxml=evidence/recovery-guidance/suite.xml",
+    ".venv/Scripts/python.exe -m pytest -q -k \"browser_native or native_browser or browser_review_in_real_chromium\" -o cache_dir=.tmp/recovery-guidance/native-cache --junitxml=evidence/recovery-guidance/native.xml",
+    ".venv/Scripts/python.exe evidence/recovery-guidance/live_browser.py",
+    "uv run --project typing --frozen --cache-dir typing/.cache/uv python typing/check.py"
+  ],
+  "review": "PAC-038 source review: error codes are sanitized at construction; job metadata adds only an allowlisted operation family. The other runtime changes are recovery presentation. Engine math, matching, source replacement, lease ownership and history integrity implementations are unchanged. Current relevant regressions pass. Historical platform/model/human evidence retains its original scope and is not claimed as newly executed. All publication review state/race regressions and native Chromium pixel-decode/consent checks pass with the shared recovery client loaded. Immediate request dispatch, current image receipts and explicit acknowledgements remain enforced.",
+  "executed_module_coverage": {
+    "test_browser_review": {
+      "passed": 20,
+      "skipped": 0
+    },
+    "test_recovery_guidance": {
+      "passed": 20,
+      "skipped": 0
+    }
+  },
+  "previous_review": "Browser review regressions plus the separate real Chromium test pass for decoded previews, acknowledgement, fresh requests, superseded loads, close/reopen and duplicate-decision protection.",
+  "scope_limits": [
+    "Existing Windows environments, not clean installation or other hosts.",
+    "Synthetic media; no independent human or assistive-technology acceptance, classification accuracy or protection efficacy.",
+    "Generic UI static audit has 82 findings with separate dispositions; not a global UI pass."
+  ]
+}

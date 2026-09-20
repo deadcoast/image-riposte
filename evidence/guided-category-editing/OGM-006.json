@@ -1,0 +1,110 @@
+{
+  "requirement": "OGM-006",
+  "meaning": "95632225c08108ae3b3a9c0d968d82d0621dda358897002c2578ae25dabda1f0",
+  "sources": {
+    "docs/PUBLISHING.md": "25f888b1f13b9269072fbc36c0c3243fff99df8d7b93c5a97c2a76e7cd7bcddb",
+    "evidence/model-identity/README.md": "2c7863a68c8125433b52bad56bc97f47aaf26a3371040118ed5f90be574ca6e8",
+    "tests/test_model_configuration_identity.py": "dd3476a0546601a2ce31a3b1e3efac0bfca390217a573b67a78961bc26ddd6db",
+    "src/riposte/temporal.py": "e224555e5fdd1f98fcf030d5c66d99ee38440a0154959e63a2fe434fe42bbef9",
+    "src/riposte/policy.py": "1f26521de3439a45856dd4d9af4d6cc4a0d2bc92f7cc53b43b82bb9c09a35562",
+    "src/riposte/errors.py": "7a9c08b799d1c713fbd82e30fd145a6dc3085c215848893e31d1ec066abc5244",
+    "src/riposte/models.py": "cd6d2fd05c0288e270879bc260dcd299a3fcbe378bc564b571826ad1992c1fcf",
+    "src/riposte/store.py": "b4ba88fd1c207b82eef4e9b6b2fe9aef9cf19ce9a0e3d29dadfe8c2a5ce6210d",
+    "src/riposte/records.py": "df52f3e318ef097c364da841113e54e6c07de92c0cb5170355155c947312e08e",
+    "src/riposte/locking.py": "90200f7b491d378b4c1e5a0e663d11a6e89f59fbdb489979541b97e981a10b17",
+    "src/riposte/sanitize.py": "f73004a30ae104ea6ace31b65f97212391ccdb80f7e13573181135d280c31f4e",
+    "src/riposte/release_guard.py": "6e2a67a6b83be731ccd0f432c597938e0552f5e4fccc6e0ea974fed18f35334a",
+    "src/riposte/context_graph.py": "5c92c1a8064f54b9b42d5dc779d922527172b526800245a168ebcc11defffe77",
+    "src/riposte/views.py": "901a71db135ce03b0c929d230de1bacb73542dcc1570df166f36013a906b90e7",
+    "src/riposte/optimizer.py": "b992d697787ca9b4fb9a79a2d1d4f4e1953f8e98a687f01e69ae8a9349e41a99",
+    "src/riposte/metrics.py": "0d873a0cb8972b5bdce14eb3cdc49ab391af31a297981fda1ad37603496c22eb",
+    "src/riposte/quality.py": "3af92838360f5f9ce65d69973eef37a6dd006d733f56c376443a2228d3c9656d",
+    "src/riposte/coupled.py": "13ac7507a4ec6f9f81f97719a80a36d670fed1796fc05eed121a7da7c49c0403",
+    "src/riposte/publication.py": "35fb3dfccdb3cb23095db5b631d1ee07abaddedaf402281e54db42cb4408e05e",
+    "src/riposte/intake.py": "5fdea54e8c89d58230c68521317b89044de39e9b40e1cf173e5b9cd4575a97c4",
+    "src/riposte/runtime_probe.py": "67178701646b2d6e144b42400398394c85c14963a27f3e4a359d0942221f712d",
+    "src/riposte/organizer.py": "bbc8bd1c17c833e749ef13f4a679007a3924ee8a05df6b97bd1880c7d5d1588d",
+    "src/riposte/video.py": "34083ce45e6f51ea03e3914206b7ae37f56d2ee8e80bfcc529f8d00dfb093382",
+    "src/riposte/sort_history.py": "aa82eb4dd31787b02d9ec81cf824a4bb7579173b3f57737f33d6cecd5772766a",
+    "src/riposte/sort_titles.py": "12ca0b37e91007cbe45c6dd7f83d3a1e71665eeb1c72c0702c278ff9f78e8bf0",
+    "src/riposte/sort_plan.py": "0f7c27092029699caded7e4f93097c17cf6bfeeb7dd2f63836e813db3bde0ae6",
+    "src/riposte/category_sort.py": "691b956cd8ffb18d30995b8dda169f605b211bc176fb0cc55e2dfd4e9c45d343",
+    "src/riposte/category_corpus.py": "8bb923a6ce843d4e14b3294403c053f38a6663b0b42d14406e6d9467e324b047",
+    "src/riposte/title_categories.py": "3382e9ab39cbde60343b5ded84bfe71c8059946919b32740b03d71817b348ed4",
+    "src/riposte/category_rules.py": "e059e403d39d392858c9c1f8a088df5d01b8b507ad860bc77db4b08d69159fc5",
+    "src/riposte/catalog_guard.py": "e79d817cf428c1655d713f369d34806bedfb12b46c871e21f10c2cb3fb5bae38",
+    "src/riposte/lab.py": "3845f3e3abedd03d1f0c200b84395e6b46f67b2ff120f6e8a8fc75a2d8c03093",
+    "src/riposte/qualification.py": "4fc049f680adc31c34f02499d8dfe4ebed9af46f47fa1cd554f50ead273231ce",
+    "src/riposte/__init__.py": "a9e9d2abdceaac2c47ed5846a874787f47337c407e2b2aa8064a32b53489f28d",
+    "src/riposte/static/index.html": "a8ee749708bd90ac1b5c9372ad60db3ccdc1398f650c9e97251b48e7429496a7"
+  },
+  "result": "PASS",
+  "command": [
+    ".venv/Scripts/python.exe evidence/guided-category-editing/verify.py",
+    ".venv/Scripts/python.exe -m pytest -q -k \"not browser_native and not native_browser and not browser_review_in_real_chromium\"",
+    ".venv/Scripts/python.exe -m pytest -q -k \"browser_native or native_browser or browser_review_in_real_chromium\"",
+    ".venv/Scripts/python.exe evidence/guided-category-editing/live_browser.py",
+    "uv run --project typing --frozen --cache-dir typing/.cache/uv python typing/check.py"
+  ],
+  "review": "PAC-037 source delta reviewed: Python runtime and contract declarations unchanged; changed browser controls use existing requests, saved-rule revisions and exact-preview consent. Current full module regressions and all three native browser tests pass. Changed documentation describes bounded results. Earlier launcher, historical merge/identification and model evidence retain their original dates and qualification limits.",
+  "prior_scope_review": "Content/configuration identity and resume/load drift regressions pass. Fixed adapters are exercised at their test scope; real pretrained model execution remains separately unqualified.",
+  "changed_sources_since_acceptance": [
+    "src/riposte/static/index.html"
+  ],
+  "test_modules": {
+    "test_model_configuration_identity": {
+      "passed": 18,
+      "skipped": 0
+    }
+  },
+  "previous_artifact": "evidence\\pacer-resumption\\OGM-006.json",
+  "previous_artifact_sha256": "6ffd8ccc9674677f39ab806da52c09aff368f11a24d297ba37b9f0fcc26554dd",
+  "verification": {
+    "result": "PASS",
+    "application_files": 73,
+    "changed_application_files": [
+      "src/riposte/static/category-sort.js",
+      "src/riposte/static/index.html",
+      "src/riposte/static/style.css"
+    ],
+    "suite": {
+      "tests": 1508,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 9,
+      "passed": 1499
+    },
+    "native": {
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 3
+    },
+    "contracts": {
+      "mypy-contracts": true,
+      "mypy-tooling": true,
+      "stubtest": true,
+      "runtime-contracts": true,
+      "tooling-regressions": true,
+      "negative-consumers": true,
+      "source-stable": true
+    },
+    "live": {
+      "result": "PASS",
+      "media_files": 58,
+      "float_files": 2,
+      "restored_bytes_and_mtimes": true,
+      "no_unexpected_public_files": true,
+      "no_fetch_mocks": true,
+      "scope": "Native Chromium with authenticated API: empty rules, row creation, inline validation, review/save, stable rename, actual concurrent-rule conflict, per-file choices, exact preview, consented sort and undo, paging and keyboard."
+    },
+    "packages_match": true,
+    "strict_source_typing": "FAIL: 823 diagnostics in 36 files; unchanged Python source and strict settings",
+    "limits": [
+      "Existing Windows environments, not clean installation or other hosts.",
+      "Synthetic media; no independent human or assistive-technology acceptance, classification accuracy or protection efficacy.",
+      "Generic UI static audit has 81 findings, reviewed separately; not a global UI pass."
+    ]
+  }
+}

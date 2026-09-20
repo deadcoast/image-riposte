@@ -1,0 +1,9 @@
+{
+  "added": [
+    "src\\riposte\\terminal\\reports.py: error: Call to untyped function \"text\" in typed context  [no-untyped-call]",
+    "src\\riposte\\terminal\\render.py: error: Call to untyped function \"paint_lines\" in typed context  [no-untyped-call]"
+  ],
+  "removed": [],
+  "old_count": 823,
+  "new_count": 825
+}

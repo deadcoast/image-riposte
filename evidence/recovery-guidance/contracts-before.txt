@@ -1,0 +1,9 @@
+warning: `VIRTUAL_ENV=.venv` does not match the project environment path `typing\.venv` and will be ignored; use `--active` to target the active environment instead
+Source/stub parity: 533 signatures, 62 importable leaf modules
+Missing stub: recovery
+errors:safe_code: missing declaration
+server:Jobs.start: source/stub parameter mismatch
+terminal\output:error: source/stub parameter mismatch
+terminal\render:_error_lines: missing declaration
+terminal\reports:blockers: source/stub parameter mismatch
+Source differs from the reviewed snapshot; re-review these contracts: src/riposte/errors.py, src/riposte/recovery.py, src/riposte/server.py, src/riposte/static/app.js, src/riposte/static/category-sort.js, src/riposte/static/duplicates.js, src/riposte/static/index.html, src/riposte/static/publish.js, src/riposte/static/recovery-catalog.json, src/riposte/static/recovery.js, src/riposte/static/style.css, src/riposte/terminal/controller.py, src/riposte/terminal/interaction.py, src/riposte/terminal/jobs.py, src/riposte/terminal/output.py, src/riposte/terminal/render.py, src/riposte/terminal/reports.py

@@ -1,0 +1,15 @@
+AssertionError [ERR_ASSERTION]: {"visible":true,"left":-2,"right":356,"bottom":772,"scroll":356,"client":356,"modal":true}
+    at main (C:\Users\ryanf\github\_new\image-riposte\tests\category_sort_browser.cjs:77:16) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
+
+Traceback (most recent call last):
+  File "C:\Users\ryanf\github\_new\image-riposte\evidence\recovery-guidance\live_browser.py", line 47, in <module>
+    assert run.returncode == 0
+           ^^^^^^^^^^^^^^^^^^^
+AssertionError

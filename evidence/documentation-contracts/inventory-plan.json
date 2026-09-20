@@ -1,0 +1,77 @@
+[
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "FILE",
+      "Path": "docs/CURRENT-CONTRACT.md",
+      "Symbol": "",
+      "Exports": "",
+      "Imports": "",
+      "Requires": "",
+      "Purpose": "Typing validation input, evidence or development authority",
+      "ID": "OVR-2252",
+      "Tags": "#typing-index"
+    }
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "FILE",
+      "Path": "docs/README.md",
+      "Symbol": "",
+      "Exports": "",
+      "Imports": "",
+      "Requires": "",
+      "Purpose": "Typing validation input, evidence or development authority",
+      "ID": "OVR-2253",
+      "Tags": "#typing-index"
+    }
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "FILE",
+      "Path": "docs/THREAT-MODEL.md",
+      "Symbol": "",
+      "Exports": "",
+      "Imports": "",
+      "Requires": "",
+      "Purpose": "Typing validation input, evidence or development authority",
+      "ID": "OVR-2254",
+      "Tags": "#typing-index"
+    }
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "FILE",
+      "Path": "evidence/documentation-contracts/README.md",
+      "Symbol": "",
+      "Exports": "",
+      "Imports": "",
+      "Requires": "",
+      "Purpose": "Typing validation input, evidence or development authority",
+      "ID": "OVR-2255",
+      "Tags": "#typing-index"
+    }
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "FILE",
+      "Path": "evidence/documentation-contracts/verify.py",
+      "Symbol": "",
+      "Exports": "ARCHIVES;CURRENT;FOCUSED_COMMAND;HERE;ROOT;WRAPPERS;acceptance;anchors;capture;digest;examples;manifest;packages;read;verify",
+      "Imports": "from contextlib import redirect_stdout, redirect_stderr\nfrom pacer_mcp.service import Service\nfrom pathlib import Path\nfrom riposte.cli import app\nfrom typer.main import get_command\nfrom urllib.parse import unquote, urlsplit\nimport argparse\nimport csv\nimport hashlib\nimport importlib.util\nimport io\nimport json\nimport re\nimport shlex\nimport sys\nimport tarfile\nimport xml.etree.ElementTree as ET\nimport zipfile",
+      "Requires": "OVR-012",
+      "Purpose": "Typing validation input, evidence or development authority",
+      "ID": "OVR-2256",
+      "Tags": "#typing-index"
+    }
+  }
+]

@@ -1,0 +1,12 @@
+AssertionError [ERR_ASSERTION]: Escape closes select before dialog
+
+false !== true
+
+    at main (C:\Users\ryanf\github\_new\image-riposte\tests\category_sort_browser.cjs:86:141) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: 'strictEqual',
+  diff: 'simple'
+}

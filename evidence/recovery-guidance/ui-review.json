@@ -1,0 +1,17 @@
+{
+  "scope": "PAC-038 recovery surfaces and retained sibling contracts",
+  "static_result": "82 findings retained; not a global static pass",
+  "dispositions": {
+    "affordance.actionless-button": "79 literal HTML buttons have external ID-bound handlers; the added Dismiss message button binds in app.js and is exercised in Chromium without discarding draft input.",
+    "ownership.native-select-undecided": "docs/DESIGN.md and docs/UX-CONTRACT.md explicitly choose native date and category selects. The root-only document lookup does not discover the project's docs location. Native open popup, arrows, Escape and narrow viewport are exercised and pictured.",
+    "affordance.empty-href": "Existing app.js runtime download link receives the actual artifact URL before use. Guided editing adds no link.",
+    "form.textarea-resize-missing": "Existing duplicate parameter textarea is outside PAC-037. Guided phrase fields use resize-none and the existing explicit resize:none stylesheet, with three visible lines and accessible scrolling."
+  },
+  "review": [
+    "Retained workbench tokens, native controls and the shared job/error owners; compared the date selector and duplicate settings sibling.",
+    "Structured rows stack at 390px; exact paths and correction messages wrap. Visually reviewed wide/narrow row and open-choice screenshots.",
+    "No network fonts, new dependency, custom modal, token duplication, persisted private paths, automatic writes or mandatory category setup.",
+    "Automated Chromium proves the exercised keyboard/state/layout behaviors; no independent human or screen-reader certification.",
+    "Persistent recovery notice fits 1100px and 390px viewports, stays inside the active dialog, wraps its safe code/action and has a working dismissal. Lock notice screenshots use a presentation fixture after actual server testing."
+  ]
+}

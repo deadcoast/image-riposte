@@ -1,0 +1,74 @@
+FFFFFFFFFF                                                               [100%]
+================================== FAILURES ===================================
+____________ test_readonly_browser_scans_are_jobs[organize-body0] _____________
+tests\test_browser_scan_jobs.py:41: in test_readonly_browser_scans_are_jobs
+    assert row['cancellable'] and row['read_only']
+E   assert (False)
+____________ test_readonly_browser_scans_are_jobs[organize-body1] _____________
+tests\test_browser_scan_jobs.py:41: in test_readonly_browser_scans_are_jobs
+    assert row['cancellable'] and row['read_only']
+E   assert (False)
+___________ test_readonly_browser_scans_are_jobs[categories-body2] ____________
+tests\test_browser_scan_jobs.py:39: in test_readonly_browser_scans_are_jobs
+    identifier = response.json()['job_id']
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^
+E   KeyError: 'job_id'
+_________ test_readonly_browser_scans_are_jobs[category-rules-body3] __________
+tests\test_browser_scan_jobs.py:39: in test_readonly_browser_scans_are_jobs
+    identifier = response.json()['job_id']
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^
+E   KeyError: 'job_id'
+____________ test_readonly_browser_scans_are_jobs[undo-sort-body4] ____________
+tests\test_browser_scan_jobs.py:41: in test_readonly_browser_scans_are_jobs
+    assert row['cancellable'] and row['read_only']
+E   assert (False)
+____________ test_cancel_at_last_readonly_boundary_discards_result ____________
+tests\test_browser_scan_jobs.py:57: in test_cancel_at_last_readonly_boundary_discards_result
+    assert entered.wait(5)
+E   assert False
+E    +  where False = wait(5)
+E    +    where wait = <threading.Event at 0x297359c6af0: unset>.wait
+_________ test_progress_is_bounded_and_cannot_overwrite_job_identity __________
+tests\test_browser_scan_jobs.py:80: in test_progress_is_bounded_and_cannot_overwrite_job_identity
+    assert entered.wait(5)
+E   assert False
+E    +  where False = wait(5)
+E    +    where wait = <threading.Event at 0x29735a87c80: unset>.wait
+_______ test_shutdown_cancels_scans_but_allows_commits_to_finish[True] ________
+tests\test_browser_scan_jobs.py:102: in test_shutdown_cancels_scans_but_allows_commits_to_finish
+    assert entered.wait(5)
+E   assert False
+E    +  where False = wait(5)
+E    +    where wait = <threading.Event at 0x29735a720b0: unset>.wait
+_______ test_shutdown_cancels_scans_but_allows_commits_to_finish[False] _______
+tests\test_browser_scan_jobs.py:102: in test_shutdown_cancels_scans_but_allows_commits_to_finish
+    assert entered.wait(5)
+E   assert False
+E    +  where False = wait(5)
+E    +    where wait = <threading.Event at 0x29735afccb0: unset>.wait
+___________ test_undo_preview_cooperates_without_cancelling_commit ____________
+tests\test_browser_scan_jobs.py:124: in test_undo_preview_cooperates_without_cancelling_commit
+    undo_sort(root, progress=cancel)
+E   TypeError: undo_sort() got an unexpected keyword argument 'progress'
+============================== warnings summary ===============================
+.venv\Lib\site-packages\fastapi\testclient.py:1
+  C:\Users\ryanf\github\_new\image-riposte\.venv\Lib\site-packages\fastapi\testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    from starlette.testclient import TestClient as TestClient  # noqa
+
+.venv\Lib\site-packages\starlette\testclient.py:53
+  C:\Users\ryanf\github\_new\image-riposte\.venv\Lib\site-packages\starlette\testclient.py:53: DeprecationWarning: The anyio.abc.BlockingPortal alias is deprecated, use anyio.from_thread.BlockingPortal instead.
+    _PortalFactoryType = Callable[[], AbstractContextManager[anyio.abc.BlockingPortal]]
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ===========================
+FAILED tests/test_browser_scan_jobs.py::test_readonly_browser_scans_are_jobs[organize-body0]
+FAILED tests/test_browser_scan_jobs.py::test_readonly_browser_scans_are_jobs[organize-body1]
+FAILED tests/test_browser_scan_jobs.py::test_readonly_browser_scans_are_jobs[categories-body2]
+FAILED tests/test_browser_scan_jobs.py::test_readonly_browser_scans_are_jobs[category-rules-body3]
+FAILED tests/test_browser_scan_jobs.py::test_readonly_browser_scans_are_jobs[undo-sort-body4]
+FAILED tests/test_browser_scan_jobs.py::test_cancel_at_last_readonly_boundary_discards_result
+FAILED tests/test_browser_scan_jobs.py::test_progress_is_bounded_and_cannot_overwrite_job_identity
+FAILED tests/test_browser_scan_jobs.py::test_shutdown_cancels_scans_but_allows_commits_to_finish[True]
+FAILED tests/test_browser_scan_jobs.py::test_shutdown_cancels_scans_but_allows_commits_to_finish[False]
+FAILED tests/test_browser_scan_jobs.py::test_undo_preview_cooperates_without_cancelling_commit
+10 failed, 2 warnings in 23.05s

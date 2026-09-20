@@ -1,0 +1,60 @@
+{
+  "task": "PAC-039",
+  "task_rows": [
+    {
+      "ID": "PAC-039",
+      "Title": "Clarify current documentation versus historical privacy and workflow contracts",
+      "Status": "DONE",
+      "OGMRefs": "OGM-026",
+      "ApprovalState": "APPROVED"
+    }
+  ],
+  "closure": {
+    "preview": false,
+    "changed_ids": [
+      "NDL-025",
+      "OGM-026",
+      "PAC-039"
+    ],
+    "changed_files": [
+      "archive/nodules/NDL-025.PACER.csv",
+      "nodule.PACER.csv",
+      "organism.PACER.csv",
+      "todo.PACER.csv"
+    ],
+    "validation": {
+      "valid": true,
+      "errors": [],
+      "warnings": []
+    },
+    "revision": "ce06787611a0f3abd0a16287cb603ae76fa3b5451a510c40924b7884ee15432a"
+  },
+  "revision": "ce06787611a0f3abd0a16287cb603ae76fa3b5451a510c40924b7884ee15432a",
+  "health": {
+    "todo": {
+      "DONE": 43,
+      "TODO": 6
+    },
+    "organism": {
+      "VALIDATED_COMPLETE": 26
+    },
+    "nodule": {
+      "ABSORBED": 25
+    }
+  },
+  "active": {
+    "rows": [],
+    "total": 0,
+    "offset": 0,
+    "next_offset": null
+  },
+  "stale_evidence": [],
+  "validation": {
+    "revision": "ce06787611a0f3abd0a16287cb603ae76fa3b5451a510c40924b7884ee15432a",
+    "valid": true,
+    "errors": [],
+    "warnings": [],
+    "stale_evidence": []
+  },
+  "limits": "PAC-039 documentation scope only; no whole-product acceptance or new platform/model/human qualification."
+}

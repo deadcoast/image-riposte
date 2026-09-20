@@ -1,5 +1,9 @@
 # RIPOSTE / terminal and command reference
 
+This is the shipping CLI reference. See the [current contract](CURRENT-CONTRACT.md)
+for consent, generated-image metadata and private-state scope; older command/menu
+counts are historical. The inventory below includes every registered command.
+
 `ROOT` must be an existing, unlinked directory separate from the loaded RIPOSTE
 application. The source checkout's project root, or an installed wheel's `riposte`
 package directory, cannot equal, contain or be contained by `ROOT`. CLI, terminal
@@ -97,6 +101,15 @@ Every listed command is a real Typer command; use `riposte COMMAND --help` for p
 | `compare ROOT IMAGE_ID CANDIDATE` | External candidate | Sanitize, compare and commit an expert trial |
 | `qualify ROOT TRIAL_ID` | Repeated evaluation `--vae` | Save controlled encoder comparisons |
 | `challenge ROOT TRIAL_ID` | `--model`, `--task`, repeated `--seed`/`--view` | Five-arm reference generation |
+| `experiment ROOT [RUN_ID]` | All experiments or one | Inspect committed protocols, reviews and descriptive outcomes |
+| `experiment-packet ROOT RUN_ID` | One experiment | Explicitly export concealed-label review material |
+| `experiment-review ROOT RUN_ID` | One experiment | Record primary endpoint ratings against the committed run |
+| `cohort-challenge ROOT` | Repeated `--trial`, `--model`, `--sample-size` | Commit a prospective cohort and attempt selected members |
+| `cohort ROOT [COHORT_ID]` | All cohorts or one | Inspect membership, retained missing outcomes and finite-sample bounds |
+| `panel-create ROOT` | Repeated `--run`, `--reviewers`, optional `--rubric` | Commit a fixed reviewer-calibration panel |
+| `panel ROOT [PANEL_ID]` | All panels or one | Inspect protocol, packets, responses and descriptive agreement |
+| `panel-packet ROOT PANEL_ID REVIEWER_ID` | One assigned reviewer slot | Explicitly export its concealed-label packet |
+| `panel-review ROOT PANEL_ID` | `--ratings` JSON file | Record one final response for a reviewer slot |
 | `benchmark ROOT TRIAL_ID` | `--model`, `--task` | Inherited two-arm compatibility runner |
 | `export ROOT TRIAL_ID` | Expert trial | Explicitly acknowledged unverified export, not an approved-image pack |
 | `trials ROOT [TRIAL_ID]` | All trials or one | Inspect saved trial reports |
@@ -122,11 +135,11 @@ riposte categories ROOT --category "Sports=hockey" --category "Practice=practice
 
 Each explicit group selects or renames a category and merges its supplied terms.
 Repeated groups show overlaps for review without assigning a winner. In the menu,
-open Sort and press `c`; edit Category groups and run again to review them.
+open Full Sort Workshop and press `c`; edit Category groups and run again to review them.
 Separate groups with commas in the form. The report shows matching-file counts
 and title examples; Details retains the complete bounded report.
 
-This milestone writes no media, catalog entries or saved rules. It does not
+Discovery writes no media, catalog entries or saved rules. It does not
 decode media or infer titles for numbered SML/MED/LRG/XTL files. Saved rules use
 the separate command below. Exact destinations and private title provenance are available through the
 separate opt-in sorting mode described below.
@@ -262,7 +275,7 @@ riposte sort ROOT --apply --plan-id PLAN_ID
 
 # Inspect recovery before explicitly restoring the last recorded sort.
 riposte undo-sort ROOT
-riposte undo-sort ROOT --apply
+riposte undo-sort ROOT --apply --sort-id SORT_ID
 
 # Protect selected originals without restructuring their directory.
 riposte riposte ROOT --input "D:\Images\drawing.png" --input "D:\Images\New" --plan
@@ -301,10 +314,10 @@ The workshop guard retains `--engine coupled|encoder`; the primary publish route
 ## Presentation and terminal capabilities
 
 ```text
-riposte --json COMMAND ...
-riposte --human COMMAND ...
-riposte --plain COMMAND ...
-riposte --events --json COMMAND ...
+riposte --json sort ROOT
+riposte --human sort ROOT
+riposte --plain sort ROOT
+riposte --events --json sort ROOT
 riposte --no-animation ui ROOT
 riposte --theme goks ui ROOT
 riposte --theme light ui ROOT
@@ -335,7 +348,7 @@ The source-migration preview shows the actual current plan, then `a` opens the e
 `riposte ui ROOT --linear` uses the same controller and service without raw key capture or animated updates. Useful typed instructions:
 
 ```text
-2                         choose Image library from the home menu
+4                         choose Image library from the home menu
 select 1,3                toggle visible row numbers in the library
 p                         configure publishing for the selection
 edit 1 1024,1536           set the first form field
@@ -542,7 +555,7 @@ The terminal's thumbnail is a composition aid. `image --open` hands verified PNG
 
 Direct results preserve the existing JSON payloads and positional ROOT/ID conventions. Exit status 2 also reflects incomplete checkpoints or blocked publishing items; it is not solely a parser error. Sensitive argument values and underlying exceptions are not echoed. Use the command help to correct invalid inputs.
 
-Old SHROUD state stays readable until explicitly upgraded. v0.2/v0.3 workspaces need no catalog rewrite to use this terminal. The prior argparse source is retained as history, not a second executable command implementation. The browser and image engines remain unchanged.
+Old SHROUD state stays readable until explicitly upgraded. v0.2/v0.3 workspaces need no catalog rewrite to use this terminal. The prior argparse source is retained as history, not a second executable command implementation. Later browser and engine changes are recorded with their own evidence in [project status](PROJECT-STATUS.md).
 
 ## Menu-first startup
 

@@ -1,5 +1,7 @@
 # Main product contract: protect and publish
 
+This maintained guide covers publishing artifacts. The [current data contract](CURRENT-CONTRACT.md#public-outputs-versus-private-state) separately describes private original-byte sort recovery, original-title records, unchanged videos and explicit research/duplicate exports. Statements about sanitized publishing inputs or temporary files below do not apply to those other artifacts.
+
 The normal path imports no workshop module. `publication.py` owns the publishing lifecycle; `open_in_workshop` is the only optional bridge into `lab.py`. That bridge copies the exact committed pixels and is idempotent for the same output. There is no engine rerun, extra resizing or secret change of candidate.
 
 ## State and data boundaries
@@ -44,10 +46,15 @@ Model identities bind the selected weight bytes and the names and bytes of JSON 
 
 Older unfinished batches without configuration fingerprints cannot establish the new identity match and must be restarted as a new batch. Their already committed candidates remain available for review and export.
 
-A stale process lock following a system crash requires stopping all RIPOSTE processes and confirming that no operation remains active before manual removal. No unsafe automatic unlock was added. A committed-but-corrupted result is not quietly replaced. Failed model loads or unavailable GPU memory remain explicit failures rather than triggers to drop the requested defense objective.
+After a crash, a matching abandoned operation marker can be reclaimed only after RIPOSTE acquires the exclusive OS lease on `.riposte-operation.lease`. Its persistent presence does not mean an operation is active. A live lease or unknown marker remains blocked; do not delete lock markers or the lease file. Follow the operation's recovery guidance and preserve workspace history. See [recovery and locks](CURRENT-CONTRACT.md#recovery-and-locks). A committed-but-corrupted result is not quietly replaced. Failed model loads or unavailable GPU memory remain explicit failures rather than triggers to drop the requested defense objective.
 
 ## Useful views, not a new application inside the application
 
 The primary page owns collection selection, rendition choices, pixel budget, optional model objectives, the batch queue, exact-pixel review, actual JPEG/resize/crop/blur previews, and the final PNG download. Native-pixel inspection and numerical quality do not require entry into the workshop.
 
 The supporting workshop owns advanced encoder controls and five-arm full-generation comparison. Its old standalone export remains an explicitly unverified expert path for compatibility, not the main reviewed publishing-pack workflow. No old helper command was silently removed. No workshop score becomes an automatic success badge on publishing outputs.
+
+Date-only metadata is a generated-PNG and publishing-pack boundary. Local JSON
+protocols, model/review records and explicit research packets may contain
+technical timestamps, hashes and settings. Keep them distinct from artwork
+approved for publication; see [the threat model](THREAT-MODEL.md).

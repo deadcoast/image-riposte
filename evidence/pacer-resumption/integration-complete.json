@@ -1,0 +1,18 @@
+[
+  {
+    "op": "transition",
+    "id": "PAC-045",
+    "status": "REVIEW"
+  },
+  {
+    "op": "transition",
+    "id": "PAC-045",
+    "status": "DONE",
+    "evidence": "OGM-020 through OGM-023 have reviewed exact source-bound current reports. Full regression, native browser, real-server scan, external contracts and source/package evidence are retained in evidence/pacer-resumption; requirements explicitly exclude efficacy, independent human acceptance, calibrated similarity accuracy and clean installation."
+  },
+  {
+    "op": "absorb",
+    "id": "NDL-022",
+    "evidence": "PAC-045 complete; OGM-020 through OGM-023 currently verified at their explicit bounded scopes. No new application feature or unsupported qualification is inferred by this acceptance reconciliation. evidence/pacer-resumption/decisions.json and OGM-020.json through OGM-023.json."
+  }
+]

@@ -1,12 +1,22 @@
 # RIPOSTE / source-derived external typing
 
 Current project/milestone status is in [PROJECT-STATUS.md](../docs/PROJECT-STATUS.md).
-The Markdown audit is active and the PACER CSV TODO is frozen. This guide's
-current counts come from `evidence/verification.json`; earlier task records below
-remain historical. On 2026-09-20 all 73 application hashes and 531 source/stub
-signatures were checked by the full external contract suite, which passed.
-The separate implementation audit reports 823 diagnostics in 36 of 65
+Guarded register updates resumed under the named checkpoint
+[todo-audit.PACER.md](../todo-audit.PACER.md). This guide's current counts come from
+`evidence/verification.json`; earlier task records below remain historical.
+PAC-038 reviewed 76 application hashes and 536 source/stub signatures across 63
+leaf modules; all seven external stages pass, including 13 negative checks.
+The separate implementation audit reports 825 diagnostics in 36 of 66
 Python files. Strict settings are unchanged; the source tree remains unclean.
+
+`source-reviewed-recovery-guidance.json` records the reviewed 17-file recovery
+delta. The new typed recovery module reads the same packaged catalog as the
+browser. Constructor sanitization, operation-only job metadata and presentation
+signatures have source-derived declarations. Sorting, history and model engines
+are unchanged. The two added raw diagnostics are calls to existing untyped
+`Writer.text` and `paint_lines` helpers; no suppression, dynamic annotation or
+strict-setting relaxation was added. See `../evidence/recovery-guidance/` for
+pre-fix failures, contract review, raw-source delta and current evidence.
 
 The independent Duplicate Finder admits twenty changed/new owners in
 `source-reviewed-duplicates.json`, against the retained sorting-research snapshot.
@@ -474,8 +484,22 @@ names; it is not a guarantee about Python's dynamic export behavior. The index
 excludes build/history trees and caches. Run the external contract checker before
 acceptance: a recorded pass read by the inventory is not a fresh test execution.
 The inventory still registers and hashes generated `.egg-info` inputs separately;
-its application identity comparison uses the same 57-file scope as the checker.
+its application identity comparison uses the same 73-file scope as the checker.
 Source/stub definitions are indexed in FILE exports and the JSON report, with
 source symbol rows checked independently. Previously authored extra dependency
 edges are retained. Missing, duplicate, retired or insufficiently linked symbol
 records cause a nonzero result.
+
+The 2026-09-20 reconciliation uses `source-reviewed-browser-jobs.json`, with 65
+source Python modules and their paired declarations. `terminal.service.Progress`
+is retained as a reviewed re-export of `records.Progress`; its old OVR identity
+is preserved. `evidence/pacer-resumption/` records the reviewed source changes,
+executed contracts and guarded inventory operations. Strict source typing remains
+separate and failing at 823 diagnostics. Historical snapshots are retained.
+
+PAC-037's current snapshot is `source-reviewed-guided-categories.json`. Its source
+delta is limited to the category JavaScript, sorting-dialog HTML and stylesheet;
+Python runtime signatures and paired declarations do not change. The review in
+`evidence/guided-category-editing/contract-review.json` binds this delta to native
+browser, real local API and shared parser/consent regression checks. The previous
+snapshot and acceptance artifacts remain historical evidence.

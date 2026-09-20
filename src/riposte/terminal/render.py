@@ -7,9 +7,9 @@ from .material import LOGO, counterstroke, activity_trace
 from .state import Session, HOME
 from .actions import BY_KEY, ACTIONS, command_line
 from .preview import paint_preview
-from .output import RECOVERY
+from ..recovery import guidance
 from .interaction import hints, context, fields_for, GLOBAL
-from .reports import overview, report_lines, paint_lines, Writer, label
+from .reports import overview, report_lines, paint_lines, Writer, label, Line, Run, fold
 from .. import __version__
 
 
@@ -352,22 +352,33 @@ def _help_lines(state, actual_width=None):
     return w.lines
 
 
+def _error_lines(state: Session, actual_width: int | None = None) -> list[Line]:
+    p = state.page
+    item = guidance(p.code, p.request.name if p.request else "")
+    width = max(12, (actual_width or state.width)-8)
+    rows = [Line((Run(item.title, "text", True),)), Line(),
+            Line((Run("Next action", "accent", True),)), Line((Run(item.action),))]
+    return [wrapped for row in rows for wrapped in fold(row, width)]
+
+
 def scroll_limit(state):
     p=state.page
     if p.name=="help":return max(0,len(_help_lines(state))-max(1,state.height-15))
     if p.name=="command":
         return max(0,len(textwrap.wrap(command_line(p.request),max(12,state.width-6)))-max(1,state.height-19)) if p.request else 0
-    if p.name!="result" or p.code:return 0
+    if p.name!="result":return 0
+    if p.code:return max(0,len(_error_lines(state))-max(1,state.height-16))
     return max(0,len(_report_data(state)[1])-max(1,state.height-(10 if state.height<30 else 14)-6))
 
 def result(c,state):
     p=state.page
     if p.code:
         c.text(3,6,"[STOPPED]  OPERATION NEEDS ATTENTION","danger",bold=True)
-        c.wrap(3,8,label(p.code),c.width-6,3,"text",bold=True)
-        c.rule(11,label="NEXT ACTION")
-        c.wrap(3,13,RECOVERY.get(p.code,"No raw backend error or personal path was printed. Review the settings and retry the action."),c.width-6,max(2,c.height-21),"text")
-        c.text(3,c.height-6,"CODE / "+p.code,"code",width=c.width-6)
+        lines = _error_lines(state, c.width)
+        c.rule(8,label="RECOVERY")
+        start,end = paint_lines(c,lines,4,10,c.width-8,max(1,c.height-16),p.scroll)
+        c.text(3,7,f"Up/Down scroll / lines {start+1}-{end} of {len(lines)}","muted",width=c.width-6)
+        c.text(3,c.height-6,"CODE / " + guidance(p.code).code,"code",width=c.width-6)
         footer(c,state);return
     report,lines=_report_data(state,c.width)
     c.text(3,6,report.title.upper(),"text",bold=True,width=c.width-6)

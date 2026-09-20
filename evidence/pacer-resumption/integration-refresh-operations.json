@@ -1,0 +1,26 @@
+[
+  {
+    "op": "verify",
+    "id": "OGM-020",
+    "artifact": "OVR-2180",
+    "evidence": "2026-09-20 reviewed current source and exact scope: Current production shared-view, protocol/drift, cohort/missingness, panel/agreement and fixed Kontext regression modules pass. Evidence remains mathematical, synthetic or tiny-random CPU plumbing; no pretrained CUDA/bfloat16, useful editing, independent reviewers, preregistration or efficacy qualification. Evidence: evidence/pacer-resumption/OGM-020.json"
+  },
+  {
+    "op": "verify",
+    "id": "OGM-021",
+    "artifact": "OVR-2181",
+    "evidence": "2026-09-20 reviewed current source and exact scope: Three-action sorter, Workshop, input-reversal regression, path entry, optional category fallback, actual years and sorting-only float exclusions pass. Prior native Windows ConPTY evidence is retained; current launcher check is linear mode. No independent human-host acceptance or filename classification accuracy claim. Evidence: evidence/pacer-resumption/OGM-021.json"
+  },
+  {
+    "op": "verify",
+    "id": "OGM-022",
+    "artifact": "OVR-2182",
+    "evidence": "2026-09-20 reviewed current source and exact scope: Forty-nine detector/video/interface regressions and separate real Chromium finder checks pass. Exact groups, non-transitive heuristic pairs, confidence evidence, limits, source preservation, cancellation, paging and explicit exports are exercised. No calibrated probabilities, whole-video equality from samples, automatic keeper or deletion claim. Evidence: evidence/pacer-resumption/OGM-022.json"
+  },
+  {
+    "op": "verify",
+    "id": "OGM-023",
+    "artifact": "OVR-2183",
+    "evidence": "2026-09-20 reviewed current source and exact scope: Ten before-fix failures and seventy-two affected passes support the repair. Current real Chromium state tests and real authenticated server scans over 960 synthetic images cover cancellation, progress, exact inspection, independent consent and stale replies. Deterministic completion/shutdown seams preserve non-cancellable commits. Evidence: evidence/pacer-resumption/OGM-023.json"
+  }
+]

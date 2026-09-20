@@ -2,10 +2,17 @@
 
 **Local image protection and organization. Interactive terminal menu and direct commands.**
 
+Use the [documentation map](docs/README.md) and [current workflow/data contract](docs/CURRENT-CONTRACT.md) for public export, private recovery and historical-document boundaries.
+
 Current development status, version/configuration identity and validation limits
 are in [PROJECT-STATUS.md](docs/PROJECT-STATUS.md). The
-[Markdown audit](todo-audit.PACER.md) controls the current catch-up work;
-`todo.PACER.csv` remains frozen until the audit-completion milestone. Version
+[development audit and checkpoints](todo-audit.PACER.md) records the implementation
+history. Guarded PACER updates resumed on 2026-09-20: PAC-044 reconciles that history,
+PAC-036 reviews acceptance, PAC-035 adds cancellable browser scans, and PAC-037
+adds guided browser category editing. PAC-038 shares recovery guidance across the
+terminal and browser: errors retain a sanitized code and a concrete next action.
+Browser messages stay until dismissed; small terminal windows can scroll the full
+guidance. See [recovery guidance evidence](evidence/recovery-guidance/README.md). Version
 0.5.0 identifies this checkout, not completion of the open audit or model qualification.
 
 Development follows [Provable Claims and Use Cases](docs/PCUC.md). The publishing
@@ -167,12 +174,12 @@ bash START.sh         # Opens the menu; no folder required
 With the installed entry available:
 
 ```text
-riposte                                Interactive main action menu
-riposte --root ROOT                     Main menu with an initial folder
-riposte ui ROOT                         Explicit interactive entry
-riposte ui ROOT --linear                Numbered, line-input alternative
-riposte --help                          Complete typed command reference
-riposte publish --help                  All publishing controls
+riposte                                # Interactive main action menu
+riposte --root ROOT                     # Main menu with an initial folder
+riposte ui ROOT                         # Explicit interactive entry
+riposte ui ROOT --linear                # Numbered, line-input alternative
+riposte --help                          # Complete typed command reference
+riposte publish --help                  # All publishing controls
 ```
 
 Direct commands and interactive forms call the same operation service. The interface does not simulate an engine, shell out to a pretend CLI, or execute the text displayed in the command lens.
@@ -183,7 +190,7 @@ The main action deck includes **Riposte Sorter / RIPOSTE / Sort + RIPOSTE / Imag
 | --- | --- | --- |
 | Riposte Sorter | **Sort / Dry Run / Enter Path** with the category preset | `riposte sort ROOT --categories`; add `--apply --plan-id PLAN_ID` from that preview to replace sources |
 | Full Sort Workshop | Configure dates, sidecars, categories and assignments; preview before `REPLACE` | `riposte sort ROOT` plus the corresponding options |
-| Undo last sort | **Undo last sort** previews recovery, then requires `UNDO`; also available with `u` in the Sort form | `riposte undo-sort ROOT`; add `--apply` to restore |
+| Undo last sort | **Undo last sort** previews recovery, then requires `UNDO`; also available with `u` in the Sort form | `riposte undo-sort ROOT`; restore the reviewed ID with `--apply --sort-id SORT_ID` |
 | RIPOSTE | **RIPOSTE** accepts a file or directory; library `p` protects selected catalog images | `riposte riposte ROOT --input PATH --vae MODEL`; repeat `--input` for more files/folders; add `--plan` for a read-only preview |
 | Sort + RIPOSTE | **Sort + RIPOSTE** previews sorting and protection, then requires `REPLACE` | `riposte sort-riposte ROOT --all --vae MODEL`; add `--apply --plan-id PLAN_ID` from the combined preview to run both |
 
@@ -228,6 +235,20 @@ sorting in the workshop or direct CLI. Riposte Sorter's preset uses saved rules
 and supported local filename patterns.
 In Full Sort Workshop, press `s` for saved rules. In the browser,
 enable Sort by filename category and open Discover and save category rules.
+The browser loads saved categories into labeled rows: name, stable folder name,
+matching phrases, exclusions and priority. Enter one phrase per line. Renaming
+the display name keeps its folder name. Inline errors identify invalid fields;
+**Review rule changes** checks a draft, and **Save reviewed rules** explicitly
+replaces the saved rules. Unsaved edits never change sorting. Reloading protects
+an unsaved draft with **Keep draft / Discard draft and load**.
+
+After **Inspect without changes**, choose a saved category beside any file,
+**Automatic** to clear a manual choice, or **Uncategorized** for that explicit
+folder. **Keep current choice** preserves the current saved choice. File lists
+show 50 entries per page; choices persist across pages. Inspect again after any
+change, review the exact destinations, then acknowledge and apply. These controls
+are optional; missing categories never prevent ordinary date/month sorting.
+See [guided editor verification](evidence/guided-category-editing/README.md).
 See [the command reference](docs/CLI.md#saved-category-rules).
 
 **Category sorting is the Riposte Sorter preset and optional in other entries.** Run `riposte sort ROOT --categories` for a
@@ -355,19 +376,20 @@ and [executed evidence](evidence/sorting-research/README.md).
 
 Sanitation still decodes supported input, applies orientation, converts supported colour profiles, rebuilds pixels, clears fully transparent hidden RGB, and writes fresh PNG with only its date. Applying organization saves private original copies for undo before removing source paths. Video bytes and private recovery copies retain original metadata; date-only sanitation applies to generated images. Unsupported and failed inputs remain blockers. This is not forensic erasure of operating-system caches or data encoded into visible images.
 
-The protection engines are unchanged in this CLI release and remain **experimental**. Generating a candidate, passing a numerical visual limit, or accepting its appearance does not establish AI resistance. No new efficacy or pretrained-model result is claimed here. There is no watermark, audience login, licensing gate, images upload or noise-only fallback.
+The protection engines remain **experimental**; current research integrations and their limits are recorded in [PCUC](docs/PCUC.md). Generating a candidate, passing a numerical visual limit, or accepting its appearance does not establish AI resistance. No new efficacy or pretrained-model result is claimed here. There is no watermark, audience login, licensing gate, images upload or noise-only fallback.
 
 ## Optional helpers and reference
 
 All inherited helper paths remain accessible, including standalone guard, external comparison, encoder qualification, five-arm generation, legacy paired benchmark, trial export and exact-file handoff. The `generation` and `frame` commands expose complete saved reports and audited frames. They are below the main product actions, not prerequisites for normal publishing.
 
 - [Complete CLI and linear-menu reference](docs/CLI.md)
-- [Terminal visual and interaction specification](docs/TERMINAL-DESIGN.spec.md)
+- [Current terminal/browser interaction contract](docs/UX-CONTRACT.md)
+- [Historical terminal design specification](docs/TERMINAL-DESIGN.spec.md)
 - [Publishing contracts](docs/PUBLISHING.md)
-- [Image-engine mathematics](docs/ENGINE-v03.md)
-- [Development record and next grouped implementation](docs/WAVE-04.md)
-- [Terminal revision and selective merge](docs/PATCH-v05-MERGE.md)
+- [Historical 0.3 image-engine mathematics](docs/ENGINE-v03.md)
+- [Historical Wave 04 delivery record](docs/WAVE-04.md)
+- [Historical terminal revision and selective merge](docs/PATCH-v05-MERGE.md)
 - [Current project status and validation](docs/PROJECT-STATUS.md)
 - [Historical 0.4 validation and provenance](docs/VALIDATION.md)
 
-The previous CLI, README, validation and evidence are retained under `history/v0.3.0/`. The original 0.4.0 and supplied 0.5.0 snapshots remain in `packages/`. The merge preserves image-engine, sanitation, organization, publication, storage and browser files. Historical screenshots, wheels and test claims in those ZIPs are not validation of this checkout; current checks are recorded in the merge record. No user images was used in development captures; previews show original synthetic geometric fixtures.
+The previous CLI, README, validation and evidence are retained under `history/v0.3.0/`. The original 0.4.0 and supplied 0.5.0 snapshots remain in `packages/`. The selective merge record describes that historical integration; later application changes and checks are linked from [current project status](docs/PROJECT-STATUS.md). Historical screenshots, wheels and test claims in those ZIPs are not validation of this checkout. Development captures use original synthetic geometric fixtures.

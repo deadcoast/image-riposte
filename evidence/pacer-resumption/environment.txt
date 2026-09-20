@@ -1,0 +1,4 @@
+Would use project environment at: .venv
+Resolved 80 packages in 0.83ms
+Audited 28 packages in 55ms
+Would make no changes

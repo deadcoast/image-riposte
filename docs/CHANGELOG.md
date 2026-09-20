@@ -1,5 +1,34 @@
 # 0.5.0 / current development checkout
 
+PAC-039 adds a current workflow/data contract and documentation map, precise
+historical supersession links, corrected private-original and crash-lock guidance,
+and the complete shipping command inventory. Historical bodies remain byte-identical;
+application behavior is unchanged. CLI parser checks, archive preservation and
+scoped regression/package results are in [documentation evidence](../evidence/documentation-contracts/README.md).
+
+PAC-038 adds one packaged recovery catalog for terminal and browser errors,
+blocked previews and optional category outcomes. Guidance distinguishes locks,
+damaged history, stale previews and changed rules without bypassing their checks.
+Error codes are sanitized at construction; unknown failures receive an
+operation-specific next step. Browser errors persist until dismissed and remain
+visible inside dialogs; terminal errors scroll at 72×24 while keeping the code
+visible. See [recovery evidence](../evidence/recovery-guidance/README.md).
+
+PAC-037 adds guided browser category rows with inline validation, stable folder
+names on display-name changes, explicit draft/review/save state, protected draft
+reloads and per-file category choices. Paged file controls retain selections;
+changes require fresh preview and consent. Optional category fallback, CLI and
+terminal expert syntax are retained. See [guided editor evidence](../evidence/guided-category-editing/README.md).
+
+PAC-035 makes browser sorting discovery, rule review and sort/undo inspections
+cancellable jobs, with progress and Cancel inside the sorting dialog. Stale
+responses and cancelled completions cannot grant operation consent. Shutdown
+allows accepted source commits to finish. The footer displays the running version.
+PACER reconciliation resumes from `todo-audit.PACER.md`, registering prior PCUC,
+sorter and Duplicate Finder work with scoped evidence and retained history.
+See [resumption evidence](../evidence/pacer-resumption/README.md). The release
+milestone remains open and clean-install qualification remains shelved.
+
 PCUC-005 integrates a fixed local FLUX Kontext editing backend with existing
 experiment, cohort and reviewer-panel workflows. Explicit preferred-resolution
 preparation, model-specific conditioning and named component/tokenizer asset

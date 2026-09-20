@@ -1,0 +1,16 @@
+Traceback (most recent call last):
+  File "C:\Users\ryanf\github\_new\image-riposte\evidence\pacer-resumption\reconcile.py", line 60, in <module>
+    main()
+    ~~~~^^
+  File "C:\Users\ryanf\github\_new\image-riposte\evidence\pacer-resumption\reconcile.py", line 51, in main
+    result = service.apply(batch, actor='codex', revision=onboard['revision'],
+                           onboarding=onboard['onboarding'], context=context['receipt'])
+  File "C:\Users\ryanf\.codex\plugins\cache\personal\pacer\0.5.0+local.r639252038407200308.ea11f6b76a4f64e0\src\pacer_mcp\service.py", line 174, in apply
+    editor.execute(operation)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "C:\Users\ryanf\.codex\plugins\cache\personal\pacer\0.5.0+local.r639252038407200308.ea11f6b76a4f64e0\src\pacer_mcp\commands.py", line 94, in execute
+    self.set_fields(register, row, operation["fields"])
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ryanf\.codex\plugins\cache\personal\pacer\0.5.0+local.r639252038407200308.ea11f6b76a4f64e0\src\pacer_mcp\commands.py", line 216, in set_fields
+    raise ValueError("Protected field; use lifecycle or append commands")
+ValueError: Protected field; use lifecycle or append commands

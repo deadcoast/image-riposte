@@ -1,0 +1,223 @@
+[
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2190",
+      "AssetType": "FILE",
+      "Path": "evidence/guided-category-editing/OGM-001.json",
+      "Purpose": "PAC-037 reviewed source-bound evidence for OGM-001; previous acceptance preserved",
+      "Tags": "#acceptance #guided-categories"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-001",
+    "artifact": "OVR-2190",
+    "evidence": "PAC-037 scoped review and executed regression evidence: evidence/guided-category-editing/OGM-001.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2191",
+      "AssetType": "FILE",
+      "Path": "evidence/guided-category-editing/OGM-002.json",
+      "Purpose": "PAC-037 reviewed source-bound evidence for OGM-002; previous acceptance preserved",
+      "Tags": "#acceptance #guided-categories"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-002",
+    "artifact": "OVR-2191",
+    "evidence": "PAC-037 scoped review and executed regression evidence: evidence/guided-category-editing/OGM-002.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2192",
+      "AssetType": "FILE",
+      "Path": "evidence/guided-category-editing/OGM-003.json",
+      "Purpose": "PAC-037 reviewed source-bound evidence for OGM-003; previous acceptance preserved",
+      "Tags": "#acceptance #guided-categories"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-003",
+    "artifact": "OVR-2192",
+    "evidence": "PAC-037 scoped review and executed regression evidence: evidence/guided-category-editing/OGM-003.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2193",
+      "AssetType": "FILE",
+      "Path": "evidence/guided-category-editing/OGM-006.json",
+      "Purpose": "PAC-037 reviewed source-bound evidence for OGM-006; previous acceptance preserved",
+      "Tags": "#acceptance #guided-categories"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-006",
+    "artifact": "OVR-2193",
+    "evidence": "PAC-037 scoped review and executed regression evidence: evidence/guided-category-editing/OGM-006.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2194",
+      "AssetType": "FILE",
+      "Path": "evidence/guided-category-editing/OGM-009.json",
+      "Purpose": "PAC-037 reviewed source-bound evidence for OGM-009; previous acceptance preserved",
+      "Tags": "#acceptance #guided-categories"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-009",
+    "artifact": "OVR-2194",
+    "evidence": "PAC-037 scoped review and executed regression evidence: evidence/guided-category-editing/OGM-009.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2195",
+      "AssetType": "FILE",
+      "Path": "evidence/guided-category-editing/OGM-010.json",
+      "Purpose": "PAC-037 reviewed source-bound evidence for OGM-010; previous acceptance preserved",
+      "Tags": "#acceptance #guided-categories"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-010",
+    "artifact": "OVR-2195",
+    "evidence": "PAC-037 scoped review and executed regression evidence: evidence/guided-category-editing/OGM-010.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2196",
+      "AssetType": "FILE",
+      "Path": "evidence/guided-category-editing/OGM-011.json",
+      "Purpose": "PAC-037 reviewed source-bound evidence for OGM-011; previous acceptance preserved",
+      "Tags": "#acceptance #guided-categories"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-011",
+    "artifact": "OVR-2196",
+    "evidence": "PAC-037 scoped review and executed regression evidence: evidence/guided-category-editing/OGM-011.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2197",
+      "AssetType": "FILE",
+      "Path": "evidence/guided-category-editing/OGM-016.json",
+      "Purpose": "PAC-037 reviewed source-bound evidence for OGM-016; previous acceptance preserved",
+      "Tags": "#acceptance #guided-categories"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-016",
+    "artifact": "OVR-2197",
+    "evidence": "PAC-037 scoped review and executed regression evidence: evidence/guided-category-editing/OGM-016.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2198",
+      "AssetType": "FILE",
+      "Path": "evidence/guided-category-editing/OGM-018.json",
+      "Purpose": "PAC-037 reviewed source-bound evidence for OGM-018; previous acceptance preserved",
+      "Tags": "#acceptance #guided-categories"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-018",
+    "artifact": "OVR-2198",
+    "evidence": "PAC-037 scoped review and executed regression evidence: evidence/guided-category-editing/OGM-018.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2199",
+      "AssetType": "FILE",
+      "Path": "evidence/guided-category-editing/OGM-019.json",
+      "Purpose": "PAC-037 reviewed source-bound evidence for OGM-019; previous acceptance preserved",
+      "Tags": "#acceptance #guided-categories"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-019",
+    "artifact": "OVR-2199",
+    "evidence": "PAC-037 scoped review and executed regression evidence: evidence/guided-category-editing/OGM-019.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2200",
+      "AssetType": "FILE",
+      "Path": "evidence/guided-category-editing/OGM-021.json",
+      "Purpose": "PAC-037 reviewed source-bound evidence for OGM-021; previous acceptance preserved",
+      "Tags": "#acceptance #guided-categories"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-021",
+    "artifact": "OVR-2200",
+    "evidence": "PAC-037 scoped review and executed regression evidence: evidence/guided-category-editing/OGM-021.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2201",
+      "AssetType": "FILE",
+      "Path": "evidence/guided-category-editing/OGM-023.json",
+      "Purpose": "PAC-037 reviewed source-bound evidence for OGM-023; previous acceptance preserved",
+      "Tags": "#acceptance #guided-categories"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-023",
+    "artifact": "OVR-2201",
+    "evidence": "PAC-037 scoped review and executed regression evidence: evidence/guided-category-editing/OGM-023.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2202",
+      "AssetType": "FILE",
+      "Path": "evidence/guided-category-editing/OGM-024.json",
+      "Purpose": "PAC-037 reviewed source-bound evidence for OGM-024; previous acceptance preserved",
+      "Tags": "#acceptance #guided-categories"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-024",
+    "artifact": "OVR-2202",
+    "evidence": "PAC-037 scoped review and executed regression evidence: evidence/guided-category-editing/OGM-024.json"
+  }
+]

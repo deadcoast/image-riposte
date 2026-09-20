@@ -1,0 +1,53 @@
+[
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2249",
+      "AssetType": "FILE",
+      "Path": "evidence/recovery-guidance/OGM-001-final.json",
+      "Purpose": "PAC-038 final inventory evidence refresh for OGM-001; original acceptance file preserved",
+      "Tags": "#acceptance #recovery-guidance"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-001",
+    "artifact": "OVR-2249",
+    "evidence": "evidence/recovery-guidance/OGM-001-final.json; final inventory PASS with zero issues; prior artifact preserved."
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2250",
+      "AssetType": "FILE",
+      "Path": "evidence/recovery-guidance/OGM-002-final.json",
+      "Purpose": "PAC-038 final inventory evidence refresh for OGM-002; original acceptance file preserved",
+      "Tags": "#acceptance #recovery-guidance"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-002",
+    "artifact": "OVR-2250",
+    "evidence": "evidence/recovery-guidance/OGM-002-final.json; final inventory PASS with zero issues; prior artifact preserved."
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2251",
+      "AssetType": "FILE",
+      "Path": "evidence/recovery-guidance/OGM-003-final.json",
+      "Purpose": "PAC-038 final inventory evidence refresh for OGM-003; original acceptance file preserved",
+      "Tags": "#acceptance #recovery-guidance"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-003",
+    "artifact": "OVR-2251",
+    "evidence": "evidence/recovery-guidance/OGM-003-final.json; final inventory PASS with zero issues; prior artifact preserved."
+  }
+]

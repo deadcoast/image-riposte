@@ -28,6 +28,18 @@
 .sort-file{padding:14px 0;border-bottom:1px solid var(--line);font:11px/1.7 var(--mono)}.sort-file p{margin:5px 0}.sort-destination{color:var(--mint)}
 .sort-suggestion{display:flex;align-items:center;gap:12px;padding:8px 0;font-size:11px}.sort-suggestion button{flex-shrink:0}
 .sort-error{color:var(--amber);overflow-wrap:anywhere}#sort-status{min-height:2.8em}.sort-file-list:empty{display:none}
+.category-row{min-width:0;margin:18px 0;padding:16px;border:1px solid var(--line)}
+.category-row legend{padding:0 8px;color:var(--mint);font:12px var(--mono)}
+.category-rule-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 18px}
+.category-rule-grid label{min-width:0;margin:0}.category-rule-grid input,.category-rule-grid textarea{width:100%;box-sizing:border-box}
+.category-rule-grid .field-help,.category-rule-grid .sort-error{display:block;font-size:11px;line-height:1.6;margin-top:6px}
+.category-rule-grid [aria-invalid="true"],.category-assignment[aria-invalid="true"]{border-color:var(--amber)}
+.category-row button{margin-top:14px}.category-row textarea{resize:none;min-height:82px}
+#category-draft-state{border-left:2px solid var(--mint);padding-left:12px;min-height:2.8em}
+#category-pages{align-items:center;justify-content:space-between;margin:12px 0}
+.sort-outdated .sort-destination::before{content:'Previous inspection · ';color:var(--amber)}
+.category-assignment{max-width:100%;min-width:0}.sort-file label{margin:12px 0 4px}
+@media(max-width:600px){.category-rule-grid{grid-template-columns:minmax(0,1fr)}.category-row{padding:12px}#category-pages button{font-size:11px;padding:10px}}
 @media(max-width:580px){.sort-suggestion{display:block}.sort-suggestion span{display:block;margin-top:6px}}
 @media(forced-colors:active){*{scrollbar-color:auto}}
 
@@ -35,3 +47,13 @@ html:has(dialog[open]){overflow:hidden;scrollbar-gutter:stable}
 /* Duplicate Finder shares the local workbench palette and typography. */
 .duplicate-desk{padding:24px 27px;min-width:0}.duplicate-settings{border-bottom:1px solid var(--line);padding-bottom:20px;display:grid;gap:16px}.duplicate-controls{display:flex;flex-wrap:wrap;align-items:center;gap:12px}.duplicate-controls label{display:flex;gap:8px;align-items:center}.duplicate-desk input:not([type=checkbox]),.duplicate-desk select{background:var(--stage);color:var(--text);border:1px solid #56645e;border-radius:3px;padding:9px;min-width:0;max-width:100%}.duplicate-desk input[type=number]{width:112px}.duplicate-desk summary{cursor:pointer;padding:10px 0;color:var(--mint-soft)}#dup-status{padding:15px 0;color:var(--mint-soft)}.duplicate-counts{display:flex;flex-wrap:wrap;gap:30px;margin-bottom:15px}.duplicate-counts strong{display:block;font:30px var(--mono);color:var(--mint)}.duplicate-counts span{font:10px var(--mono);color:var(--text)}.duplicate-policy{font-size:12px;padding:10px 0;max-width:90ch}#dup-coverage-body{max-height:280px;overflow:auto;padding:12px;border:1px solid var(--line)}#dup-coverage-body p{margin-bottom:7px}.duplicate-filters{display:flex;align-items:end;flex-wrap:wrap;gap:14px;padding:18px 0}.duplicate-filters label{display:grid;gap:6px;font-size:11px}.duplicate-search{flex:1;min-width:180px}.duplicate-review{display:grid;grid-template-columns:minmax(230px,2fr) minmax(0,3fr);gap:22px;margin-top:20px}.duplicate-row{display:block;width:100%;text-align:left;padding:15px 12px;border-bottom:1px solid var(--line);border-left:3px solid transparent;background:var(--surface)}.duplicate-row[aria-pressed=true]{border-left-color:var(--mint);background:#23332c}.duplicate-row-heading{display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between;font:11px var(--mono);margin-bottom:9px}.duplicate-score{color:var(--mint);font-family:var(--mono)}.duplicate-path{display:block;overflow-wrap:anywhere;font-size:12px}.duplicate-row small{display:block;margin-top:8px;color:var(--muted)}#dup-detail{min-width:0;border-left:1px solid var(--line);padding-left:20px}#dup-detail h2{font-size:18px}#dup-detail h3{font-size:13px;padding-top:18px}.duplicate-pair{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:15px}.duplicate-pair figure{margin:0;min-width:0;background:var(--stage);padding:10px}.duplicate-image{display:block;width:100%;height:220px;object-fit:contain;margin-top:10px}.duplicate-pair small,.duplicate-members small{display:block;font-size:10px;color:var(--muted);overflow-wrap:anywhere}.duplicate-signals{display:grid;grid-template-columns:minmax(110px,1fr) minmax(0,2fr);gap:7px;font-size:11px}.duplicate-signals dd{margin:0;overflow-wrap:anywhere;color:var(--muted)}.duplicate-members{list-style:none;padding:0;max-height:260px;overflow:auto}.duplicate-members li{padding:10px 0;border-bottom:1px solid var(--line)}.duplicate-member{text-align:left;padding:5px 0;color:var(--mint-soft);overflow-wrap:anywhere;max-width:100%}.duplicate-empty{padding:20px 8px}.duplicate-desk details{min-width:0}.duplicate-desk p{overflow-wrap:anywhere}@media(max-width:1050px){.duplicate-review{grid-template-columns:1fr}#dup-detail{border-left:0;border-top:1px solid var(--line);padding:20px 0}.duplicate-pair{max-width:800px}}@media(max-width:600px){.duplicate-desk{padding:18px}.duplicate-pair{grid-template-columns:1fr}.duplicate-counts{gap:18px}.duplicate-controls label{flex-wrap:wrap}.duplicate-image{height:240px}}
 .duplicate-counts small{display:block;margin-top:4px;font-size:10px}
+:root .sort-activity {position:sticky;bottom:0;z-index:1;background:var(--surface);padding:12px 0;min-height:100px;border-top:1px solid var(--line)}
+.sort-activity progress {display:block;width:100%;margin-bottom:8px}
+.sort-activity button {min-width:190px}
+
+/* Persistent, wrapping guidance; no retry or write action is attached. */
+#recovery-notice{position:fixed;z-index:90;bottom:72px;right:16px;width:min(540px,calc(100% - 32px));max-height:50vh;overflow:auto;padding:18px;background:var(--surface,#17191e);color:var(--text,#f2f0e9);border:1px solid var(--amber,#e0a85a);box-shadow:0 8px 32px #0006}
+#recovery-message{margin:0 0 12px;white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.5}
+.plan-summary{flex-wrap:wrap}
+.sort-blocker{flex:1 0 100%;min-width:0;white-space:pre-wrap;overflow-wrap:anywhere}
+#undo-summary{white-space:pre-wrap}

@@ -1,0 +1,95 @@
+F..                                                                      [100%]
+================================== FAILURES ===================================
+_____________________ test_browser_review[native_browser] _____________________
+
+scenario = 'native_browser'
+
+    @pytest.mark.parametrize('scenario', [
+        'approval_waits_for_decode',
+        'failed_image_blocks_approval',
+        'failed_decode_blocks_approval',
+        'new_review_clears_old_pixels',
+        'superseded_load_cannot_authorize',
+        'original_pixels_required',
+        'cached_preview_is_revalidated',
+        'closed_review_cannot_submit',
+        'native_close_cancels_review',
+        'duplicate_decisions_blocked',
+        'old_decision_keeps_new_review_open',
+        'failed_decision_can_retry',
+        'rejection_without_images',
+        'same_path_load_race',
+        'late_decode_keeps_current_image',
+        'fresh_urls_are_released',
+        'acknowledgements_required',
+        'stale_receipt_is_not_success',
+        'old_workshop_keeps_new_review_open',
+        'workshop_handoff',
+        'native_browser',
+    ])
+    def test_browser_review(scenario):
+        node = shutil.which('node')
+        if node is None:
+            pytest.skip('Node is required to execute the browser JavaScript')
+        browser = None
+        if scenario == 'native_browser':
+            candidates = [
+                os.environ.get('RIPOSTE_TEST_BROWSER', ''),
+                shutil.which('chromium') or shutil.which('google-chrome') or '',
+                'C:/Program Files/Google/Chrome/Application/chrome.exe',
+                'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe',
+            ]
+            browser = next((name for name in candidates if name and Path(name).is_file()), None)
+            if browser is None:
+                pytest.skip('A local Chromium browser is required for native DOM verification')
+        script = Path(__file__).with_name('browser_review.cjs')
+        result = subprocess.run([node, str(script), scenario, *([browser] if browser else [])],
+                                capture_output=True, text=True, encoding='utf-8', timeout=30)
+>       assert result.returncode == 0, result.stdout + result.stderr
+E       AssertionError: AssertionError [ERR_ASSERTION]: native browser result: Error: Timed out: ()=>document.querySelector('#pub-outputs button')
+E             at wait (http://127.0.0.1:10392/probe.js:4:117)
+E             at async http://127.0.0.1:10392/probe.js:8:7
+E         + actual - expected
+E         
+E         + "Error: Timed out: ()=>document.querySelector('#pub-outputs button')\n" +
+E         +   '    at wait (http://127.0.0.1:10392/probe.js:4:117)\n' +
+E         +   '    at async http://127.0.0.1:10392/probe.js:8:7'
+E         - 'PASS'
+E         
+E             at nativeBrowser (C:\Users\ryanf\github\_new\image-riposte\tests\browser_review.cjs:401:12)
+E             at async C:\Users\ryanf\github\_new\image-riposte\tests\browser_review.cjs:418:5 {
+E           generatedMessage: false,
+E           code: 'ERR_ASSERTION',
+E           actual: "Error: Timed out: ()=>document.querySelector('#pub-outputs button')\n" +
+E             '    at wait (http://127.0.0.1:10392/probe.js:4:117)\n' +
+E             '    at async http://127.0.0.1:10392/probe.js:8:7',
+E           expected: 'PASS',
+E           operator: 'strictEqual',
+E           diff: 'simple'
+E         }
+E         
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['C:\\nvm4w\\nodejs\\node.EXE', 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\tests\\browser_r... http://127.0.0.1:10392/probe.js:8:7\',\n  expected: \'PASS\',\n  operator: \'strictEqual\',\n  diff: \'simple\'\n}\n').returncode
+
+tests\test_browser_review.py:51: AssertionError
+============================== warnings summary ===============================
+.venv\Lib\site-packages\fastapi\testclient.py:1
+  C:\Users\ryanf\github\_new\image-riposte\.venv\Lib\site-packages\fastapi\testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    from starlette.testclient import TestClient as TestClient  # noqa
+
+.venv\Lib\site-packages\starlette\testclient.py:53
+  C:\Users\ryanf\github\_new\image-riposte\.venv\Lib\site-packages\starlette\testclient.py:53: DeprecationWarning: The anyio.abc.BlockingPortal alias is deprecated, use anyio.from_thread.BlockingPortal instead.
+    _PortalFactoryType = Callable[[], AbstractContextManager[anyio.abc.BlockingPortal]]
+
+.venv\Lib\site-packages\_pytest\cacheprovider.py:469
+  C:\Users\ryanf\github\_new\image-riposte\.venv\Lib\site-packages\_pytest\cacheprovider.py:469: PytestCacheWarning: could not create cache path C:\Users\ryanf\github\_new\image-riposte\.pytest_cache\v\cache\nodeids: [WinError 183] Cannot create a file when that file already exists: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\.pytest_cache\\v\\cache'
+    config.cache.set("cache/nodeids", sorted(self.cached_nodeids))
+
+.venv\Lib\site-packages\_pytest\cacheprovider.py:423
+  C:\Users\ryanf\github\_new\image-riposte\.venv\Lib\site-packages\_pytest\cacheprovider.py:423: PytestCacheWarning: could not create cache path C:\Users\ryanf\github\_new\image-riposte\.pytest_cache\v\cache\lastfailed: [WinError 183] Cannot create a file when that file already exists: 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\.pytest_cache\\v\\cache'
+    config.cache.set("cache/lastfailed", self.lastfailed)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ===========================
+FAILED tests/test_browser_review.py::test_browser_review[native_browser] - As...
+1 failed, 2 passed, 1528 deselected, 4 warnings in 8.07s

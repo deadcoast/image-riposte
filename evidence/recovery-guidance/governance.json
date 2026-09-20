@@ -1,0 +1,52 @@
+{
+  "closure": {
+    "preview": false,
+    "changed_ids": [
+      "NDL-024",
+      "OGM-025",
+      "PAC-038"
+    ],
+    "changed_files": [
+      "archive/nodules/NDL-024.PACER.csv",
+      "nodule.PACER.csv",
+      "organism.PACER.csv",
+      "todo.PACER.csv"
+    ],
+    "validation": {
+      "valid": true,
+      "errors": [],
+      "warnings": []
+    },
+    "revision": "4f5efcf083375f8b4ce8fcc75098dfdc55e65989bfe7359a36b0148f76f08f05"
+  },
+  "validation": {
+    "revision": "1c26d4ae8add2163577663fa550e8ed3341de7f4f2ef0db22781291b8bcb1712",
+    "valid": true,
+    "errors": [],
+    "warnings": [],
+    "stale_evidence": []
+  },
+  "active": {
+    "rows": [],
+    "total": 0,
+    "offset": 0,
+    "next_offset": null
+  },
+  "stale_evidence": [],
+  "next_task": "PAC-039",
+  "evidence": "evidence/recovery-guidance/verification.json",
+  "task": {
+    "ID": "PAC-038",
+    "Title": "Unify actionable recovery messages across terminal and browser",
+    "Status": "DONE",
+    "ApprovalState": "APPROVED",
+    "DoneAt": "2026-09-20T17:07:32Z"
+  },
+  "nodule": {
+    "ID": "NDL-024",
+    "Status": "ABSORBED",
+    "AbsorbedAt": "2026-09-20T17:07:32Z"
+  },
+  "final_inventory_refresh": "evidence/recovery-guidance/final-acceptance-review.json",
+  "final_revision": "1c26d4ae8add2163577663fa550e8ed3341de7f4f2ef0db22781291b8bcb1712"
+}

@@ -1,0 +1,29 @@
+
+  RIPOSTE / IMAGE SECURITY
+  Find DUPLICATE, MAYBE DUPLICATE and CLOSELY RELATED files. Never sorts or removes sources.
+
+  Usage: riposte duplicates [OPTIONS] ROOT
+PARAMETERS                                                                                          
++--------------------------------------+-----------------------------------------------------------+
+| ROOT                                 | Existing dedicated image folder; everything inside is in  |
+|                                      | scope.  [required]                                        |
+| --visual / --no-visual               | Add normalized-pixel and visual evidence to exact byte    |
+|                                      | comparisons.  [default: visual]                           |
+| --videos / --no-videos               | Sample video frames with local FFmpeg; byte comparison is |
+|                                      | always available.  [default: videos]                      |
+| --include-float / --no-include-float | Inspect float storage independently of sorting.           |
+|                                      | [default: include-float]                                  |
+| --max-files INTEGER RANGE            | Maximum inventoried files; hitting a limit reports        |
+|                                      | incomplete coverage.  [default: 100000; 1<=x<=200000]     |
+| --max-visual INTEGER RANGE           | Maximum distinct media decoded after byte-copy collapse.  |
+|                                      | [default: 10000; 1<=x<=20000]                             |
+| --max-pairs INTEGER RANGE            | Maximum visual candidate pairs.  [default: 100000;        |
+|                                      | 1<=x<=500000]                                             |
+| --max-findings INTEGER RANGE         | Maximum reported findings; truncation is explicit.        |
+|                                      | [default: 20000; 1<=x<=50000]                             |
+| --max-file-bytes INTEGER RANGE       | Largest individual file to hash.  [default: 4294967296;   |
+|                                      | 1<=x<=68719476736]                                        |
+| --report PATH                        | Explicitly export a new JSON (full evidence) or CSV       |
+|                                      | (finding summary) file. Never overwrite.                  |
+| --help                               | Show this message and exit.                               |
++--------------------------------------+-----------------------------------------------------------+

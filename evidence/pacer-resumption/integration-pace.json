@@ -1,0 +1,72 @@
+[
+  {
+    "op": "pace",
+    "nodule": {
+      "ID": "NDL-022",
+      "Title": "Implemented integration acceptance",
+      "Lane": "integration-acceptance",
+      "UserRequest": "OK UPDATE WHAT NEEDS TO BE UPDATED AND CONTINUE TO PAC WORKFLOW FROM THE @todo.audit.PACER.md",
+      "Intent": "Reconcile bounded requirements for already implemented PCUC, sorter, duplicate and browser-job behavior using current execution evidence; no new feature scope or efficacy claim.",
+      "TargetOVR": "OVR-1881;OVR-1887;OVR-1880;OVR-1891;OVR-1888;OVR-1886;OVR-022;OVR-043",
+      "SpawnedPACs": "PAC-045",
+      "ContextPolicy": "REQUIRED",
+      "AbsorptionCriteria": "Register exact bounded requirements for implemented PCUC tools, opinionated sorter refinements, Duplicate Finder and PAC-035 browser inspections; review their source/test/evidence support and verify each without claiming real-model efficacy, human usability, calibrated similarity accuracy or clean installation. Preserve prior evidence and user wording.",
+      "NewAssets": "",
+      "Tags": "#reconciliation"
+    },
+    "tasks": [],
+    "requirements": [
+      {
+        "ID": "OGM-020",
+        "Title": "PCUC operational tools at bounded evidence scope",
+        "Domain": "PCUC",
+        "Requirement": "Shared-view production gradients retain tested sequential-VJP equivalence and best-feasible publishing behavior. Local experiment commitments, cohort denominators and missingness bounds, separate reviewer panels and fixed local Kontext conditioning preserve identity, drift and append-only review contracts. Acceptance is limited to mathematical, synthetic, stub and tiny-random CPU regression evidence; it does not qualify pretrained CUDA/bfloat16 execution, independent preregistration/reviewers, useful editing or protection efficacy.",
+        "BlockedByOGM": "OGM-005",
+        "OVRRefs": "OVR-1881;OVR-026;OVR-1887;OVR-1880;OVR-1891;OVR-1888;OVR-1902;OVR-1906;OVR-1901;OVR-1912;OVR-1908;OVR-1289",
+        "Authority": "INFERRED",
+        "OriginText": "OK UPDATE WHAT NEEDS TO BE UPDATED AND CONTINUE TO PAC WORKFLOW FROM THE @todo.audit.PACER.md",
+        "RuleType": "manual",
+        "Status": "PACED_REQUIREMENT",
+        "Tags": "#reconciliation #bounded-evidence"
+      },
+      {
+        "ID": "OGM-021",
+        "Title": "Opinionated sorter and reserved user storage",
+        "Domain": "SORTER",
+        "Requirement": "The default terminal Riposte Sorter presents Sort, Dry Run and Enter Path; Full Sort Workshop retains detailed options. Isolated Windows direction scan codes are consumed without another physical key, and folder selection follows stable displayed rows with path entry at every depth. Optional supported categories extend actual Year/Month routing; unmatched or ambiguous titles still sort. Exact case-insensitive _float_ and __float__ directory subtrees are excluded from sorting, while standalone RIPOSTE can process them. Dry runs do not grant mutation consent. Synthetic regression and retained native evidence do not certify the users actual VS Code host or independent filename classification accuracy.",
+        "BlockedByOGM": "OGM-018",
+        "OVRRefs": "OVR-043;OVR-040;OVR-875;OVR-047;OVR-022;OVR-021;OVR-1249;OVR-1918;OVR-1916;OVR-1919;OVR-1911;OVR-1917;OVR-1907",
+        "Authority": "INFERRED",
+        "OriginText": "OK UPDATE WHAT NEEDS TO BE UPDATED AND CONTINUE TO PAC WORKFLOW FROM THE @todo.audit.PACER.md",
+        "RuleType": "manual",
+        "Status": "PACED_REQUIREMENT",
+        "Tags": "#reconciliation #bounded-evidence"
+      },
+      {
+        "ID": "OGM-022",
+        "Title": "Independent evidence-bearing Duplicate Finder",
+        "Domain": "DUPLICATES",
+        "Requirement": "Independent CLI, terminal and authenticated local browser scans report DUPLICATE, MAYBE DUPLICATE and CLOSELY RELATED with paths, confidence basis, evidence, bounded coverage and per-file issues. Only verified byte or complete normalized-pixel equality earns DUPLICATE; direct visual relationships do not become transitive equality groups. Image transforms/crops and sampled video comparisons remain bounded heuristics, not calibrated probabilities or arbitrary semantic matching. Scans preserve inputs, can cancel, revalidate sources, exclude internal state and allow explicit report export without sorting, deletion or automatic keeper decisions. Float inclusion is independently selectable. Review supports filtering, paging and fresh paired previews.",
+        "OVRRefs": "OVR-1882;OVR-1883;OVR-1884;OVR-1885;OVR-1886;OVR-1903;OVR-1904;OVR-1905;OVR-1893;OVR-029;OVR-048;OVR-1288",
+        "Authority": "INFERRED",
+        "OriginText": "OK UPDATE WHAT NEEDS TO BE UPDATED AND CONTINUE TO PAC WORKFLOW FROM THE @todo.audit.PACER.md",
+        "RuleType": "manual",
+        "Status": "PACED_REQUIREMENT",
+        "Tags": "#reconciliation #bounded-evidence"
+      },
+      {
+        "ID": "OGM-023",
+        "Title": "Cancellable browser sorting inspections",
+        "Domain": "BROWSER",
+        "Requirement": "Category discovery, rule review, ordinary/category sort previews and undo inspection run as authenticated cancellable read-only jobs with bounded phase/count progress visible inside the sorting dialog. Cancellation at completion cannot publish usable consent receipts; changed settings and closed dialogs invalidate old replies. Shutdown rejects new jobs and signals scans while active source-replacement, undo and rule-save commits finish without cancellation. Cancellation is cooperative at scan checkpoints, not an interrupt of arbitrary decoder/hash calls. Loading saved rules remains a bounded direct request.",
+        "BlockedByOGM": "OGM-018",
+        "OVRRefs": "OVR-029;OVR-950;OVR-030;OVR-1251;OVR-031;OVR-034;OVR-1899;OVR-1253;OVR-1252;OVR-1434;OVR-1435",
+        "Authority": "INFERRED",
+        "OriginText": "OK UPDATE WHAT NEEDS TO BE UPDATED AND CONTINUE TO PAC WORKFLOW FROM THE @todo.audit.PACER.md",
+        "RuleType": "manual",
+        "Status": "PACED_REQUIREMENT",
+        "Tags": "#reconciliation #bounded-evidence"
+      }
+    ]
+  }
+]

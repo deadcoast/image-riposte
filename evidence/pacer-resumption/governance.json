@@ -1,0 +1,342 @@
+{
+  "validation": {
+    "revision": "1c19a79c15ca3c99b0d07ff4454a2f87a57408b2fee64d7c7bf836d5f7da7a1e",
+    "valid": true,
+    "errors": [],
+    "warnings": [],
+    "stale_evidence": []
+  },
+  "requirements": [
+    {
+      "id": "OGM-001",
+      "result": "PASS",
+      "freshness": "CURRENT"
+    },
+    {
+      "id": "OGM-002",
+      "result": "PASS",
+      "freshness": "CURRENT"
+    },
+    {
+      "id": "OGM-003",
+      "result": "PASS",
+      "freshness": "CURRENT"
+    },
+    {
+      "id": "OGM-004",
+      "result": "PASS",
+      "freshness": "CURRENT"
+    },
+    {
+      "id": "OGM-005",
+      "result": "PASS",
+      "freshness": "CURRENT"
+    },
+    {
+      "id": "OGM-006",
+      "result": "PASS",
+      "freshness": "CURRENT"
+    },
+    {
+      "id": "OGM-007",
+      "result": "PASS",
+      "freshness": "CURRENT"
+    },
+    {
+      "id": "OGM-008",
+      "result": "PASS",
+      "freshness": "CURRENT"
+    },
+    {
+      "id": "OGM-009",
+      "result": "PASS",
+      "freshness": "CURRENT"
+    },
+    {
+      "id": "OGM-010",
+      "result": "PASS",
+      "freshness": "CURRENT"
+    },
+    {
+      "id": "OGM-011",
+      "result": "PASS",
+      "freshness": "CURRENT"
+    },
+    {
+      "id": "OGM-012",
+      "result": "PASS",
+      "freshness": "CURRENT"
+    },
+    {
+      "id": "OGM-013",
+      "result": "PASS",
+      "freshness": "CURRENT"
+    },
+    {
+      "id": "OGM-014",
+      "result": "PASS",
+      "freshness": "CURRENT"
+    },
+    {
+      "id": "OGM-015",
+      "result": "PASS",
+      "freshness": "CURRENT"
+    },
+    {
+      "id": "OGM-016",
+      "result": "PASS",
+      "freshness": "CURRENT"
+    },
+    {
+      "id": "OGM-017",
+      "result": "PASS",
+      "freshness": "CURRENT"
+    },
+    {
+      "id": "OGM-018",
+      "result": "PASS",
+      "freshness": "CURRENT"
+    },
+    {
+      "id": "OGM-019",
+      "result": "PASS",
+      "freshness": "CURRENT"
+    },
+    {
+      "id": "OGM-020",
+      "result": "PASS",
+      "freshness": "CURRENT"
+    },
+    {
+      "id": "OGM-021",
+      "result": "PASS",
+      "freshness": "CURRENT"
+    },
+    {
+      "id": "OGM-022",
+      "result": "PASS",
+      "freshness": "CURRENT"
+    },
+    {
+      "id": "OGM-023",
+      "result": "PASS",
+      "freshness": "CURRENT"
+    }
+  ],
+  "active": {
+    "rows": [],
+    "total": 0,
+    "offset": 0,
+    "next_offset": null
+  },
+  "completed_tasks": {
+    "revision": "1c19a79c15ca3c99b0d07ff4454a2f87a57408b2fee64d7c7bf836d5f7da7a1e",
+    "rows": [
+      {
+        "ID": "PAC-001",
+        "Title": "Index and verify existing source-derived typing contracts",
+        "Status": "DONE"
+      },
+      {
+        "ID": "PAC-002",
+        "Title": "Resolve Windows input identity mismatch in organizer",
+        "Status": "DONE"
+      },
+      {
+        "ID": "PAC-003",
+        "Title": "Make mypy entry points reproducible and source drift precise",
+        "Status": "DONE"
+      },
+      {
+        "ID": "PAC-004",
+        "Title": "Selectively integrate the shelved terminal revision",
+        "Status": "DONE"
+      },
+      {
+        "ID": "PAC-005",
+        "Title": "Complete missing symbol-level PACER inventory coverage",
+        "Status": "DONE"
+      },
+      {
+        "ID": "PAC-006",
+        "Title": "Resolve unfinished selective-patch acceptance and PACER closure",
+        "Status": "DONE"
+      },
+      {
+        "ID": "PAC-007",
+        "Title": "Audit development claims across the existing application",
+        "Status": "DONE"
+      },
+      {
+        "ID": "PAC-008",
+        "Title": "Repair Windows browser text decoding",
+        "Status": "DONE"
+      },
+      {
+        "ID": "PAC-009",
+        "Title": "Correct browser job outcomes and workspace audit reporting",
+        "Status": "DONE"
+      },
+      {
+        "ID": "PAC-010",
+        "Title": "Invalidate changed publication approvals and permit rejection",
+        "Status": "DONE"
+      },
+      {
+        "ID": "PAC-011",
+        "Title": "Enforce API body limit for streamed requests",
+        "Status": "DONE"
+      },
+      {
+        "ID": "PAC-012",
+        "Title": "Repair linear form focus navigation",
+        "Status": "DONE"
+      },
+      {
+        "ID": "PAC-013",
+        "Title": "Verify optional model preflight and legacy optimizer failure semantics",
+        "Status": "DONE"
+      },
+      {
+        "ID": "PAC-014",
+        "Title": "Repair test portability and expose optional-dependency coverage gaps",
+        "Status": "DONE"
+      },
+      {
+        "ID": "PAC-016",
+        "Title": "Improve production optimizer candidate search and quality recovery",
+        "Status": "DONE"
+      },
+      {
+        "ID": "PAC-017",
+        "Title": "Bind model configuration into publication resume identity",
+        "Status": "DONE"
+      },
+      {
+        "ID": "PAC-018",
+        "Title": "Bound publication review memory and bind exact report snapshots",
+        "Status": "DONE"
+      },
+      {
+        "ID": "PAC-019",
+        "Title": "Require current loaded pixels for browser publication review",
+        "Status": "DONE"
+      },
+      {
+        "ID": "PAC-020",
+        "Title": "Implement independent Sort, RIPOSTE and combined workflows",
+        "Status": "DONE"
+      },
+      {
+        "ID": "PAC-021",
+        "Title": "Verify workflow installation integration and repair stale source launchers",
+        "Status": "DONE"
+      },
+      {
+        "ID": "PAC-022",
+        "Title": "Correct menu-first image workflow and separate installation from startup",
+        "Status": "DONE"
+      },
+      {
+        "ID": "PAC-023",
+        "Title": "Add reversible image and video sorting with preview",
+        "Status": "DONE"
+      },
+      {
+        "ID": "PAC-024",
+        "Title": "Preserve source changes during sort journal commits",
+        "Status": "DONE"
+      },
+      {
+        "ID": "PAC-025",
+        "Title": "Keep partial sorts recoverable and allocate destinations once",
+        "Status": "DONE"
+      },
+      {
+        "ID": "PAC-026",
+        "Title": "Preserve late destination collisions through sort and undo",
+        "Status": "DONE"
+      },
+      {
+        "ID": "PAC-027",
+        "Title": "Add optional title-derived sorting categories",
+        "Status": "DONE"
+      },
+      {
+        "ID": "PAC-027A",
+        "Title": "Read-only title discovery and session category review",
+        "Status": "DONE"
+      },
+      {
+        "ID": "PAC-027B",
+        "Title": "Persist reviewed category rules and integrate reversible category sorting",
+        "Status": "DONE"
+      },
+      {
+        "ID": "PAC-027BA",
+        "Title": "Save reusable category rules and review deterministic matches",
+        "Status": "DONE"
+      },
+      {
+        "ID": "PAC-027BB",
+        "Title": "Integrate saved category rules with exact previews and reversible sorting",
+        "Status": "DONE"
+      },
+      {
+        "ID": "PAC-028",
+        "Title": "Identify and prioritize the next development work",
+        "Status": "DONE"
+      },
+      {
+        "ID": "PAC-029",
+        "Title": "Recover safely from abandoned workspace locks",
+        "Status": "DONE"
+      },
+      {
+        "ID": "PAC-030",
+        "Title": "Enforce application-folder separation at the shared operation boundary",
+        "Status": "DONE"
+      },
+      {
+        "ID": "PAC-031",
+        "Title": "Bind ordinary sorting to the preview confirmed by the user",
+        "Status": "DONE"
+      },
+      {
+        "ID": "PAC-032",
+        "Title": "Remove repeated full-catalog reads from sorting and lookup",
+        "Status": "DONE"
+      },
+      {
+        "ID": "PAC-033",
+        "Title": "Reduce application source typing debt without weakening checks",
+        "Status": "DONE"
+      },
+      {
+        "ID": "PAC-035",
+        "Title": "Make long read-only browser scans cancellable with visible progress",
+        "Status": "DONE"
+      },
+      {
+        "ID": "PAC-036",
+        "Title": "Refresh legacy acceptance evidence without erasing its history",
+        "Status": "DONE"
+      },
+      {
+        "ID": "PAC-044",
+        "Title": "Reconcile the implemented Markdown audit with current PACER state",
+        "Status": "DONE"
+      },
+      {
+        "ID": "PAC-045",
+        "Title": "Reconcile implemented research, sorter and duplicate claims",
+        "Status": "DONE"
+      }
+    ],
+    "total": 40,
+    "offset": 0,
+    "next_offset": null
+  },
+  "next_audit_item": "PAC-037: guided category-rule and per-file assignment controls",
+  "shelved": "PAC-034: clean installation qualification"
+}

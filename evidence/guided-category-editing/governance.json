@@ -1,0 +1,47 @@
+{
+  "revision": "fcecce761258af2741532e2f5aab7654f19b6d2eacee4ae842c5a11ff190b24a",
+  "validation": {
+    "valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "health": {
+    "todo": {
+      "DONE": 41,
+      "TODO": 8
+    },
+    "organism": {
+      "VALIDATED_COMPLETE": 24
+    },
+    "nodule": {
+      "ABSORBED": 23
+    }
+  },
+  "active": {
+    "rows": [],
+    "total": 0,
+    "offset": 0,
+    "next_offset": null
+  },
+  "stale_evidence": [],
+  "task": [
+    {
+      "ID": "PAC-037",
+      "Status": "DONE",
+      "ApprovalState": "APPROVED",
+      "OGMRefs": "OGM-024",
+      "NDLRefs": "NDL-023"
+    }
+  ],
+  "requirement": {
+    "id": "OGM-024",
+    "result": "PASS",
+    "freshness": "CURRENT",
+    "dependencies": {
+      "OGM-018": "CURRENT",
+      "OGM-023": "CURRENT"
+    }
+  },
+  "next_planned": "PAC-038",
+  "shelved": "PAC-034"
+}

@@ -1,5 +1,13 @@
 # RIPOSTE terminal design
 
+Recovery presentation uses `recovery.py` and `static/recovery.js` with one packaged
+`static/recovery-catalog.json`. Both consumers expose the same explanation, safe
+next action and sanitized machine code; operation families refine unknown-failure
+and cancellation advice. No guidance action invokes a write. Error screens keep
+the code visible while Up/Down and Page Up/Down scroll the explanation at 72×24.
+The browser keeps dismissible errors visible, including inside the active dialog;
+informational category outcomes stay in file rows and never become blockers.
+
 RIPOSTE is a local image protection and organization tool. People may protect a
 few images, sort a folder after additions, or explicitly run both operations.
 The main menu presents these independent choices before asking for locations.
@@ -95,3 +103,32 @@ The English local desktop audience and existing type scale remain the target.
 Actual Chromium screenshots at 1100×900 and 390×844, keyboard/state fixtures and
 the live six-image server run are in `evidence/duplicates/`. These do not establish
 screen-reader acceptance, Japanese IME behavior or independent human usability.
+
+## Sorting scan progress / PAC-035
+
+The sorting dialog shows the current job phase and Cancel beside its inspection
+controls. Counts appear only when the scanner supplies a bounded total; there is
+no estimated percentage for unknown work. The same job drives the shared footer.
+Cancel remains reachable inside the modal by keyboard and on narrow screens.
+Cancellation preserves form inputs and requires a new inspection before consent.
+Changing settings or closing the dialog invalidates earlier inspection receipts.
+Replacement, saved-rule writes and undo commits finish without interruption.
+The footer's version comes from the running server's state response.
+
+## Guided categories / PAC-037
+
+The sorting dialog keeps the existing green workbench palette, native controls
+and shared job feedback. Each category is a fieldset with paired name/folder
+fields, matching/excluded phrase lists and a numeric priority. It stacks into
+one column below 600px. Folder identity stays explicit beside the editable name;
+renaming a loaded category never silently renames its folder. Draft state appears
+above the rows. Reload uses an inline Keep draft / Discard draft and load choice.
+Review and Save remain separate actions; saved rules alone drive sort previews.
+
+Per-file selectors live beside the exact destination, with 50 files per page.
+The dialog owns the outer scroll and the existing file list owns its bounded
+scroll. Pending selections remain in memory across pages and dialog closes.
+Sensitive paths, matching phrases and choices are never put in browser storage
+or URLs. Native dropdown geometry is platform owned, matching the date selector.
+Old destinations are visibly marked after settings change. No new theme, font,
+component library, runtime dependency or mandatory sorting step is introduced.

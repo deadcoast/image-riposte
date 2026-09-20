@@ -1,0 +1,35 @@
+.................F....................                                   [100%]
+================================== FAILURES ===================================
+_______________ test_full_recovery_remains_readable_at_72_by_24 _______________
+
+root = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/pytest-of-ryanf/pytest-554/test_full_recovery_remains_rea0/workspace')
+
+    def test_full_recovery_remains_readable_at_72_by_24(root):
+        from riposte.terminal.controller import Controller
+        from riposte.terminal.keyboard import Key
+        from riposte.terminal.render import render, scroll_limit
+        from riposte.terminal.service import Request
+        from riposte.terminal.state import Page
+        controller = Controller(root, Presentation())
+        try:
+            controller.show(Page('result', 'STOPPED', code='WORKSPACE_LOCKED', request=Request('apply', root)))
+            controller.state.width, controller.state.height = 72, 24
+>           assert scroll_limit(controller.state) > 0
+E           AssertionError: assert 0 > 0
+E            +  where 0 = <function scroll_limit at 0x00000196DC3849E0>(Session(root=WindowsPath('C:/Users/ryanf/AppData/Local/Temp/pytest-of-ryanf/pytest-554/test_full_recovery_remains_rea0...sed=False, frozen_time=0.0, running=True, exit_after_job=False, switch_linear=False, handoff=None, width=72, height=24))
+E            +    where Session(root=WindowsPath('C:/Users/ryanf/AppData/Local/Temp/pytest-of-ryanf/pytest-554/test_full_recovery_remains_rea0...sed=False, frozen_time=0.0, running=True, exit_after_job=False, switch_linear=False, handoff=None, width=72, height=24) = <riposte.terminal.controller.Controller object at 0x00000196DAF93B60>.state
+
+tests\test_recovery_guidance.py:74: AssertionError
+============================== warnings summary ===============================
+tests/test_recovery_guidance.py::test_actual_api_and_job_errors_sanitize_private_text
+  C:\Users\ryanf\github\_new\image-riposte\.venv\Lib\site-packages\fastapi\testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    from starlette.testclient import TestClient as TestClient  # noqa
+
+tests/test_recovery_guidance.py::test_actual_api_and_job_errors_sanitize_private_text
+  C:\Users\ryanf\github\_new\image-riposte\.venv\Lib\site-packages\starlette\testclient.py:53: DeprecationWarning: The anyio.abc.BlockingPortal alias is deprecated, use anyio.from_thread.BlockingPortal instead.
+    _PortalFactoryType = Callable[[], AbstractContextManager[anyio.abc.BlockingPortal]]
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ===========================
+FAILED tests/test_recovery_guidance.py::test_full_recovery_remains_readable_at_72_by_24
+1 failed, 37 passed, 2 warnings in 1.29s

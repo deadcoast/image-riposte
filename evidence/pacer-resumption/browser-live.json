@@ -1,0 +1,7 @@
+{
+  "result": "PASS",
+  "files": 960,
+  "unchanged_bytes_and_mtimes": true,
+  "no_fetch_mocks": true,
+  "scope": "Authenticated API and actual sorter scans: cancellation, discovery, rule review, exact preview, consent, keyboard and narrow layout."
+}

@@ -1,0 +1,272 @@
+[
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2257",
+      "AssetType": "FILE",
+      "Path": "evidence/documentation-contracts/OGM-001.json",
+      "Purpose": "PAC-039 documentation-delta acceptance for OGM-001",
+      "PACRefs": "PAC-039",
+      "Tags": "#acceptance #documentation-contracts"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-001",
+    "artifact": "OVR-2257",
+    "evidence": "PAC-039 source-bound documentation review and scoped execution: evidence/documentation-contracts/OGM-001.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2258",
+      "AssetType": "FILE",
+      "Path": "evidence/documentation-contracts/OGM-002.json",
+      "Purpose": "PAC-039 documentation-delta acceptance for OGM-002",
+      "PACRefs": "PAC-039",
+      "Tags": "#acceptance #documentation-contracts"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-002",
+    "artifact": "OVR-2258",
+    "evidence": "PAC-039 source-bound documentation review and scoped execution: evidence/documentation-contracts/OGM-002.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2259",
+      "AssetType": "FILE",
+      "Path": "evidence/documentation-contracts/OGM-003.json",
+      "Purpose": "PAC-039 documentation-delta acceptance for OGM-003",
+      "PACRefs": "PAC-039",
+      "Tags": "#acceptance #documentation-contracts"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-003",
+    "artifact": "OVR-2259",
+    "evidence": "PAC-039 source-bound documentation review and scoped execution: evidence/documentation-contracts/OGM-003.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2260",
+      "AssetType": "FILE",
+      "Path": "evidence/documentation-contracts/OGM-006.json",
+      "Purpose": "PAC-039 documentation-delta acceptance for OGM-006",
+      "PACRefs": "PAC-039",
+      "Tags": "#acceptance #documentation-contracts"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-006",
+    "artifact": "OVR-2260",
+    "evidence": "PAC-039 source-bound documentation review and scoped execution: evidence/documentation-contracts/OGM-006.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2261",
+      "AssetType": "FILE",
+      "Path": "evidence/documentation-contracts/OGM-007.json",
+      "Purpose": "PAC-039 documentation-delta acceptance for OGM-007",
+      "PACRefs": "PAC-039",
+      "Tags": "#acceptance #documentation-contracts"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-007",
+    "artifact": "OVR-2261",
+    "evidence": "PAC-039 source-bound documentation review and scoped execution: evidence/documentation-contracts/OGM-007.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2262",
+      "AssetType": "FILE",
+      "Path": "evidence/documentation-contracts/OGM-009.json",
+      "Purpose": "PAC-039 documentation-delta acceptance for OGM-009",
+      "PACRefs": "PAC-039",
+      "Tags": "#acceptance #documentation-contracts"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-009",
+    "artifact": "OVR-2262",
+    "evidence": "PAC-039 source-bound documentation review and scoped execution: evidence/documentation-contracts/OGM-009.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2263",
+      "AssetType": "FILE",
+      "Path": "evidence/documentation-contracts/OGM-010.json",
+      "Purpose": "PAC-039 documentation-delta acceptance for OGM-010",
+      "PACRefs": "PAC-039",
+      "Tags": "#acceptance #documentation-contracts"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-010",
+    "artifact": "OVR-2263",
+    "evidence": "PAC-039 source-bound documentation review and scoped execution: evidence/documentation-contracts/OGM-010.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2264",
+      "AssetType": "FILE",
+      "Path": "evidence/documentation-contracts/OGM-011.json",
+      "Purpose": "PAC-039 documentation-delta acceptance for OGM-011",
+      "PACRefs": "PAC-039",
+      "Tags": "#acceptance #documentation-contracts"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-011",
+    "artifact": "OVR-2264",
+    "evidence": "PAC-039 source-bound documentation review and scoped execution: evidence/documentation-contracts/OGM-011.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2265",
+      "AssetType": "FILE",
+      "Path": "evidence/documentation-contracts/OGM-018.json",
+      "Purpose": "PAC-039 documentation-delta acceptance for OGM-018",
+      "PACRefs": "PAC-039",
+      "Tags": "#acceptance #documentation-contracts"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-018",
+    "artifact": "OVR-2265",
+    "evidence": "PAC-039 source-bound documentation review and scoped execution: evidence/documentation-contracts/OGM-018.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2266",
+      "AssetType": "FILE",
+      "Path": "evidence/documentation-contracts/OGM-019.json",
+      "Purpose": "PAC-039 documentation-delta acceptance for OGM-019",
+      "PACRefs": "PAC-039",
+      "Tags": "#acceptance #documentation-contracts"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-019",
+    "artifact": "OVR-2266",
+    "evidence": "PAC-039 source-bound documentation review and scoped execution: evidence/documentation-contracts/OGM-019.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2267",
+      "AssetType": "FILE",
+      "Path": "evidence/documentation-contracts/OGM-021.json",
+      "Purpose": "PAC-039 documentation-delta acceptance for OGM-021",
+      "PACRefs": "PAC-039",
+      "Tags": "#acceptance #documentation-contracts"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-021",
+    "artifact": "OVR-2267",
+    "evidence": "PAC-039 source-bound documentation review and scoped execution: evidence/documentation-contracts/OGM-021.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2268",
+      "AssetType": "FILE",
+      "Path": "evidence/documentation-contracts/OGM-023.json",
+      "Purpose": "PAC-039 documentation-delta acceptance for OGM-023",
+      "PACRefs": "PAC-039",
+      "Tags": "#acceptance #documentation-contracts"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-023",
+    "artifact": "OVR-2268",
+    "evidence": "PAC-039 source-bound documentation review and scoped execution: evidence/documentation-contracts/OGM-023.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2269",
+      "AssetType": "FILE",
+      "Path": "evidence/documentation-contracts/OGM-024.json",
+      "Purpose": "PAC-039 documentation-delta acceptance for OGM-024",
+      "PACRefs": "PAC-039",
+      "Tags": "#acceptance #documentation-contracts"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-024",
+    "artifact": "OVR-2269",
+    "evidence": "PAC-039 source-bound documentation review and scoped execution: evidence/documentation-contracts/OGM-024.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2270",
+      "AssetType": "FILE",
+      "Path": "evidence/documentation-contracts/OGM-025.json",
+      "Purpose": "PAC-039 documentation-delta acceptance for OGM-025",
+      "PACRefs": "PAC-039",
+      "Tags": "#acceptance #documentation-contracts"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-025",
+    "artifact": "OVR-2270",
+    "evidence": "PAC-039 source-bound documentation review and scoped execution: evidence/documentation-contracts/OGM-025.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2271",
+      "AssetType": "FILE",
+      "Path": "evidence/documentation-contracts/OGM-026.json",
+      "Purpose": "PAC-039 documentation-delta acceptance for OGM-026",
+      "PACRefs": "PAC-039",
+      "Tags": "#acceptance #documentation-contracts"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-026",
+    "artifact": "OVR-2271",
+    "evidence": "PAC-039 source-bound documentation review and scoped execution: evidence/documentation-contracts/OGM-026.json"
+  }
+]

@@ -104,6 +104,8 @@ class ExportRequest(StrictModel):
     acknowledge_unverified: bool = False
 
 class PublishRequest(StrictModel):
+    recipe_name: str | None = Field(default=None, max_length=64)
+    recipe_revision: str | None = Field(default=None, pattern=r"^[0-9a-f]{64}$")
     image_ids: list[str] = Field(min_length=1, max_length=200)
     vae_directories: list[str] = Field(default_factory=list, max_length=4)
     edges: list[int] = Field(default_factory=lambda: [1536], min_length=1, max_length=3)
@@ -118,6 +120,13 @@ class PublishRequest(StrictModel):
     temporal_directory: str = Field(default="", max_length=2048)
     device: Literal["auto", "cpu", "cuda", "mps"] = "auto"
     plan_only: bool = False
+
+class RecipeRequest(StrictModel):
+    name: str = Field(min_length=1, max_length=64)
+    settings: dict[str, object] = Field(default_factory=dict)
+    save: bool = False
+    expected_revision: str | None = None
+
 
 class ResumePublishRequest(StrictModel):
     vae_directories: list[str] = Field(min_length=1, max_length=4)
@@ -140,9 +149,13 @@ class Jobs:
         self.pool = concurrent.futures.ThreadPoolExecutor(max_workers=1, thread_name_prefix="riposte")
         self.data, self.events = {}, {}
         self.lock = threading.Lock()
+        self.closed = False
 
-    def start(self, fn, cancellable: bool = True, **kwargs):
+    def start(self, fn, cancellable: bool = True, *, read_only: bool = False, operation: str = "general", **kwargs):
+        from .terminal.jobs import safe_phase
         with self.lock:
+            if self.closed:
+                raise RiposteError("JOB_MANAGER_CLOSED")
             if any(j["state"] in {"queued", "running"} for j in self.data.values()):
                 raise RiposteError("JOB_ALREADY_RUNNING")
             if len(self.data) > 20:
@@ -152,21 +165,37 @@ class Jobs:
             event = threading.Event()
             self.events[key] = event
             self.data[key] = {"id": key, "state": "queued", "phase": "Queued",
-                              "cancellable": cancellable, "cancel_requested": False}
+                              "cancellable": cancellable, "cancel_requested": False, "read_only": read_only,
+                              "operation": operation if operation in {"sort", "undo", "rules", "duplicates", "publish"} else "general"}
 
         def progress(update):
-            if cancellable and event.is_set():
-                raise RiposteError("JOB_CANCELLED")
             with self.lock:
-                self.data[key].update(update)
+                if cancellable and event.is_set():
+                    raise RiposteError("JOB_CANCELLED")
+                job = self.data[key]
+                phase = safe_phase(update.get("phase", job["phase"]))
+                if phase != job["phase"]:
+                    for field in ("processed", "total", "item", "items"):
+                        job.pop(field, None)
+                job["phase"] = phase
+                for field in ("processed", "total", "item", "items"):
+                    value = update.get(field)
+                    if type(value) is int and 0 <= value <= 2**53 - 1:
+                        job[field] = value
 
         def finish(update):
             with self.lock:
+                # Cancellation and successful read-only completion share one lock.
+                # A cancelled preview must never publish a usable consent receipt.
+                if read_only and cancellable and event.is_set():
+                    update = {"state": "cancelled", "phase": "Cancelled safely", "code": "JOB_CANCELLED"}
                 self.data[key].update(update)
 
         def run():
             try:
-                progress({"state": "running"})
+                with self.lock:
+                    self.data[key]["state"] = "running"
+                progress({"phase": "Starting operation"})
                 result = fn(progress=progress, **kwargs)
                 incomplete = isinstance(result, dict) and (
                     result.get("checkpoint") == "INCOMPLETE" or result.get("ready") is False
@@ -179,7 +208,11 @@ class Jobs:
                         "phase": "Cancelled safely" if exc.code == "JOB_CANCELLED" else "Stopped", "code": exc.code})
             except Exception:
                 finish({"state": "error", "phase": "Stopped", "code": "OPERATION_FAILED"})
-        self.pool.submit(run)
+        with self.lock:
+            if self.closed:
+                self.data[key].update(state="cancelled", phase="Cancelled safely", code="JOB_CANCELLED")
+            else:
+                self.pool.submit(run)
         return {"job_id": key}
 
     def cancel(self, key):
@@ -191,7 +224,7 @@ class Jobs:
                 raise RiposteError("JOB_CANCELLATION_UNSUPPORTED")
             job["cancel_requested"] = True
             self.events[key].set()
-        return {"status": "CANCEL_REQUESTED", "boundary": "NEXT_MODEL_OR_ITERATION_CHECKPOINT"}
+        return {"status": "CANCEL_REQUESTED", "boundary": "NEXT_SCAN_CHECKPOINT" if job["read_only"] else "NEXT_MODEL_OR_ITERATION_CHECKPOINT"}
 
     def snapshot(self):
         with self.lock:
@@ -199,10 +232,14 @@ class Jobs:
 
     def close(self):
         with self.lock:
+            self.closed = True
             for key, job in self.data.items():
-                if job["cancellable"]:
+                if job["cancellable"] and job["state"] in {"queued", "running"}:
                     self.events[key].set()
-        self.pool.shutdown(wait=False, cancel_futures=True)
+                    job["cancel_requested"] = True
+        # Queued work runs its first cooperative checkpoint, ensuring every job
+        # reaches a terminal state. A source commit is allowed to finish.
+        self.pool.shutdown(wait=False, cancel_futures=False)
 
 class _BodyLimitMiddleware:
     """Bound consumed API bytes before JSON parsing, including streamed bodies."""
@@ -319,7 +356,7 @@ def create_app(root: Path, token: str | None = None) -> FastAPI:
                     del duplicate_reports[next(iter(duplicate_reports))]
             # Jobs/state polling never retransmits the full inventory.
             return review.summary()
-        return cast(dict[str, str], jobs.start(work))
+        return cast(dict[str, str], jobs.start(work, operation="duplicates"))
     @app.get('/api/duplicates/{scan_id}')
     def duplicate_summary(scan_id: str) -> dict[str, object]:
         return duplicate_report(scan_id).summary()
@@ -349,7 +386,8 @@ def create_app(root: Path, token: str | None = None) -> FastAPI:
         policy=Policy(date_mode=body.date_mode,discard_sidecars=body.discard_sidecars)
         options = {"categories": body.categories, "assignments": body.assignments}
         if body.apply: options["plan_id"] = body.plan_id
-        return app.state.jobs.start(organize if body.apply else plan,cancellable=False,root=root,policy=policy, **options)
+        return app.state.jobs.start(organize if body.apply else plan, cancellable=not body.apply,
+                                    read_only=not body.apply, operation="sort", root=root, policy=policy, **options)
     @app.get("/api/category-rules")
     def stored_category_rules():
         from .category_rules import category_rules
@@ -357,19 +395,20 @@ def create_app(root: Path, token: str | None = None) -> FastAPI:
     @app.post("/api/category-rules")
     def category_rules_endpoint(body: CategoryRulesRequest):
         from .category_rules import category_rules
-        return category_rules(root, **body.model_dump())
+        return app.state.jobs.start(category_rules, cancellable=not body.save,
+                                    read_only=not body.save, operation="rules", root=root, **body.model_dump())
     @app.post("/api/categories")
     def category_discovery_endpoint(body: CategoryDiscoveryRequest):
         from .title_categories import discover_categories
-        return discover_categories(root, **body.model_dump())
+        return app.state.jobs.start(discover_categories, read_only=True, operation="rules", root=root, **body.model_dump())
     @app.post("/api/undo-sort")
     def undo_sort_endpoint(body: UndoSortRequest):
         from .sort_history import undo_sort
         if body.apply and (not body.acknowledge_restore or not body.sort_id):
             raise RiposteError("ACKNOWLEDGE_SORT_RESTORE_REQUIRED")
         def work(progress):
-            return undo_sort(root, apply=body.apply, sort_id=body.sort_id)
-        return app.state.jobs.start(work, cancellable=False)
+            return undo_sort(root, apply=body.apply, sort_id=body.sort_id, progress=progress)
+        return app.state.jobs.start(work, cancellable=not body.apply, read_only=not body.apply, operation="undo")
     @app.get("/api/audit")
     def audit():
         return audit_workspace(root)
@@ -457,18 +496,32 @@ def create_app(root: Path, token: str | None = None) -> FastAPI:
 
     @app.post("/api/publish")
     def publish(body: PublishRequest):
-        from .publication import PublishRecipe, start_publication, publication_plan
-        from .quality import QualityLimits
-        from .release_guard import ReleaseConfig
-        recipe = PublishRecipe(tuple(body.edges), ReleaseConfig(steps=body.steps, restarts=body.restarts, seed=body.seed),
-                               QualityLimits(epsilon_255=body.epsilon, preserve_white=body.preserve_white,
-                                             delta_e76_p95=body.delta_e76_p95, rms_fraction=body.rms_fraction))
+        from .publication import start_publication, publication_plan
+        from .recipes import SETTINGS, resolve_recipe
+        values = body.model_dump()
+        recipe = resolve_recipe(root, body.recipe_name, revision=body.recipe_revision,
+                                overrides={key: values[key] for key in body.model_fields_set if key in SETTINGS})
         if body.plan_only:
             return publication_plan(root, body.image_ids, recipe)
-        return app.state.jobs.start(start_publication, root=root, image_ids=body.image_ids,
+        return app.state.jobs.start(start_publication, operation="publish", root=root, image_ids=body.image_ids,
                                    vae_dirs=model_paths(body.vae_directories), recipe=recipe, device=body.device,
                                    pipeline_dir=Path(body.pipeline_directory) if body.pipeline_directory else None,
                                    temporal_dir=Path(body.temporal_directory) if body.temporal_directory else None)
+
+    @app.get("/api/recipes")
+    def recipes_list(name: str | None = None):
+        from .recipes import inspect_recipes
+        return inspect_recipes(root, name)
+
+    @app.post("/api/recipes")
+    def recipes_edit(body: RecipeRequest):
+        from .recipes import inspect_recipes, save_recipe
+        draft = inspect_recipes(root, body.name, settings=body.settings)
+        if not body.save:
+            return draft
+        if any(job["state"] in {"queued", "running"} for job in app.state.jobs.snapshot()):
+            raise RiposteError("OPERATION_ALREADY_RUNNING")
+        return save_recipe(root, body.name, draft["settings"], expected_revision=body.expected_revision or "")
 
     @app.get("/api/publication/{batch_id}")
     def publish_status(batch_id: str):
@@ -478,7 +531,7 @@ def create_app(root: Path, token: str | None = None) -> FastAPI:
     @app.post("/api/publication/{batch_id}/resume")
     def publish_resume(batch_id: str, body: ResumePublishRequest):
         from .publication import resume_publication
-        return app.state.jobs.start(resume_publication, root=root, batch_id=batch_id,
+        return app.state.jobs.start(resume_publication, operation="publish", root=root, batch_id=batch_id,
                                    vae_dirs=model_paths(body.vae_directories), device=body.device,
                                    pipeline_dir=Path(body.pipeline_directory) if body.pipeline_directory else None,
                                    temporal_dir=Path(body.temporal_directory) if body.temporal_directory else None)

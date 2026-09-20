@@ -1,0 +1,116 @@
+[
+  {
+    "op": "verify",
+    "id": "OGM-001",
+    "artifact": "OVR-2161",
+    "evidence": "2026-09-20 reviewed current source and exact scope: Reconciled source/stub/static-symbol inventory and all seven external contract stages. The Progress re-export keeps its historical identity. No source-body/model/UI efficacy inference. Evidence: evidence/pacer-resumption/OGM-001.json"
+  },
+  {
+    "op": "verify",
+    "id": "OGM-002",
+    "artifact": "OVR-2162",
+    "evidence": "2026-09-20 reviewed current source and exact scope: Separate strict source and contract configurations remain intact. Raw source check covers 65 Python files and retains 823 diagnostics; contract identity covers 73 application files. Tooling regressions exercise source discovery and generated-metadata exclusion. Evidence: evidence/pacer-resumption/OGM-002.json"
+  },
+  {
+    "op": "verify",
+    "id": "OGM-003",
+    "artifact": "OVR-2163",
+    "evidence": "2026-09-20 reviewed current source and exact scope: Historical selective merge: exact archive bytes, per-file merge decisions and original source snapshot are rechecked without reapplying the old patch over later authorized work. Current terminal regressions and external contracts pass; original failures remain retained. Evidence: evidence/pacer-resumption/OGM-003.json"
+  },
+  {
+    "op": "verify",
+    "id": "OGM-004",
+    "artifact": "OVR-2164",
+    "evidence": "2026-09-20 reviewed current source and exact scope: The bounded repair regressions pass in the existing Windows environment. Model fakes and browser tests establish the stated contracts, not pretrained-model efficacy or all-platform acceptance. Evidence: evidence/pacer-resumption/OGM-004.json"
+  },
+  {
+    "op": "verify",
+    "id": "OGM-005",
+    "artifact": "OVR-2165",
+    "evidence": "2026-09-20 reviewed current source and exact scope: Production search regression cases retain bounded backtracking, best feasible quantized candidate selection and positive improvement handling. Synthetic objective behavior only. Evidence: evidence/pacer-resumption/OGM-005.json"
+  },
+  {
+    "op": "verify",
+    "id": "OGM-006",
+    "artifact": "OVR-2166",
+    "evidence": "2026-09-20 reviewed current source and exact scope: Content/configuration identity and resume/load drift regressions pass. Fixed adapters are exercised at their test scope; real pretrained model execution remains separately unqualified. Evidence: evidence/pacer-resumption/OGM-006.json"
+  },
+  {
+    "op": "verify",
+    "id": "OGM-007",
+    "artifact": "OVR-2167",
+    "evidence": "2026-09-20 reviewed current source and exact scope: All-output validation, decoded-buffer release and exact report-byte review binding regressions pass. Evidence: evidence/pacer-resumption/OGM-007.json"
+  },
+  {
+    "op": "verify",
+    "id": "OGM-008",
+    "artifact": "OVR-2168",
+    "evidence": "2026-09-20 reviewed current source and exact scope: Browser review regressions plus the separate real Chromium test pass for decoded previews, acknowledgement, fresh requests, superseded loads, close/reopen and duplicate-decision protection. Evidence: evidence/pacer-resumption/OGM-008.json"
+  },
+  {
+    "op": "verify",
+    "id": "OGM-009",
+    "artifact": "OVR-2169",
+    "evidence": "2026-09-20 reviewed current source and exact scope: Independent Sort, RIPOSTE and combined workflow contracts and explicit input/consent paths pass. Evidence: evidence/pacer-resumption/OGM-009.json"
+  },
+  {
+    "op": "verify",
+    "id": "OGM-010",
+    "artifact": "OVR-2170",
+    "evidence": "2026-09-20 reviewed current source and exact scope: Launcher refresh regressions pass; real riposte.cmd and START.ps1 linear entry checks use the existing editable installation. Fresh wheel/sdist bytes match all 73 application files. No clean installation or minimum-version/platform matrix claimed. Evidence: evidence/pacer-resumption/OGM-010.json"
+  },
+  {
+    "op": "verify",
+    "id": "OGM-011",
+    "artifact": "OVR-2171",
+    "evidence": "2026-09-20 reviewed current source and exact scope: Menu-first independent actions, path navigation, isolated direction input regression and consent contracts pass. Current real linear START entry and retained Windows ConPTY evidence have distinct scopes; the user's VS Code window was not controlled. Evidence: evidence/pacer-resumption/OGM-011.json"
+  },
+  {
+    "op": "verify",
+    "id": "OGM-012",
+    "artifact": "OVR-2172",
+    "evidence": "2026-09-20 reviewed current source and exact scope: Read-only previews, original recovery, exact undo, lease recovery and ordinary year/month image/video routing pass. Optional categories extend the ordinary route; no video protection implied. Evidence: evidence/pacer-resumption/OGM-012.json"
+  },
+  {
+    "op": "verify",
+    "id": "OGM-013",
+    "artifact": "OVR-2173",
+    "evidence": "2026-09-20 reviewed current source and exact scope: Removal-intent journal races preserve changed inputs and recoverable originals. This does not claim exclusive control of external editors. Evidence: evidence/pacer-resumption/OGM-013.json"
+  },
+  {
+    "op": "verify",
+    "id": "OGM-014",
+    "artifact": "OVR-2174",
+    "evidence": "2026-09-20 reviewed current source and exact scope: Partial-failure destination reservation, original-backup ownership, later-file progress, undo and once-per-destination sequence discovery regressions pass. Evidence: evidence/pacer-resumption/OGM-014.json"
+  },
+  {
+    "op": "verify",
+    "id": "OGM-015",
+    "artifact": "OVR-2175",
+    "evidence": "2026-09-20 reviewed current source and exact scope: Late collisions retain unrelated outputs and timestamps; rejected outputs cannot gain undo ownership, including equal-byte cases. Evidence: evidence/pacer-resumption/OGM-015.json"
+  },
+  {
+    "op": "verify",
+    "id": "OGM-016",
+    "artifact": "OVR-2176",
+    "evidence": "2026-09-20 reviewed current source and exact scope: Bounded Unicode whole-word/phrase discovery, explicit overlap/sample counts, draft review, exclusions and cancellation pass. The historical future-work sentence is superseded by implemented OGM-017/018; discovery itself remains read-only. Evidence: evidence/pacer-resumption/OGM-016.json"
+  },
+  {
+    "op": "verify",
+    "id": "OGM-017",
+    "artifact": "OVR-2177",
+    "evidence": "2026-09-20 reviewed current source and exact scope: Versioned private saved rules, deterministic matching, ambiguity, stale revisions, atomic save and read-only review regressions pass. Browser review now runs as a cancellable job; explicit save remains non-cancellable. Evidence: evidence/pacer-resumption/OGM-017.json"
+  },
+  {
+    "op": "verify",
+    "id": "OGM-018",
+    "artifact": "OVR-2178",
+    "evidence": "2026-09-20 reviewed current source and exact scope: Current user correction is explicit: categories apply if supported, unmatched/ambiguous titles use ordinary routing, existing assignments remain recoverable, float folders are skipped only by sorting. Exact plan binding, consent, privacy, collision and undo regressions and real Chromium flows pass. Filename proposal accuracy is not independently qualified. Evidence: evidence/pacer-resumption/OGM-018.json"
+  },
+  {
+    "op": "verify",
+    "id": "OGM-019",
+    "artifact": "OVR-2179",
+    "evidence": "2026-09-20 reviewed current source and exact scope: Historical PAC-028 identification: all four lists and 16 source-bound findings remain in the retained review. Its 56-file source identity matches the original category-sort snapshot. Later authorized repairs are recorded separately; this acceptance does not mark its proposals implemented. Evidence: evidence/pacer-resumption/OGM-019.json"
+  }
+]

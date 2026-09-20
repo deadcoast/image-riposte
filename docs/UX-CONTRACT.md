@@ -1,5 +1,19 @@
 # Interactive entry and image workflow contract
 
+Recovery owner: `recovery.py`, `static/recovery.js` and the shared packaged
+`static/recovery-catalog.json`. Direct errors, job failures and blocked sort/undo
+previews use the same code and action. Unknown codes keep their sanitized machine
+identity and get an operation-specific safe fallback. Missing catalog data leaves
+the original safe code visible and asks the user to inspect status before retrying.
+
+Browser errors are persistent dismissible notices (or inline sorting errors),
+visible within the active modal. Success notifications remain temporary toasts.
+Dismissal does not retry, reset input or discard a draft. Failed network responses
+do not imply that a write stopped. Locks are never deleted by guidance; interrupted
+sorts lead to an undo preview and integrity blockers stay in force. Category ties,
+unmatched names and missing original titles are informational: the normal
+Year/Month/media/size route remains available, retaining any existing category.
+
 Owner: `terminal/controller.py` for navigation and operation consent;
 `terminal/paths.py` for read-only browsing; `terminal/interaction.py` for shared
 controls/help; `terminal/service.py` for the operation boundary shared with CLI.
@@ -166,13 +180,48 @@ journals; they are never PNG metadata or publishing pack contents.
   float storage, even using it as its results workspace. Existing explicit undo
   follows its recorded journal; the rule does not rewrite historical recovery.
 - No optional model or protection efficacy is qualified by synthetic CPU tests.
-  Frozen register reconciliation and clean-install qualification remain deferred.
+  PACER reconciliation resumed on 2026-09-20; clean-install qualification remains shelved.
+
+### Browser scan jobs / PAC-035 / 2026-09-20
+
+- Category discovery, rule review, ordinary/category previews and undo inspection
+  return authenticated job IDs. Clients poll `/api/state`; read-only scans support
+  `/api/jobs/{job_id}/cancel` at the next scan checkpoint. Loading saved rules remains
+  a direct bounded request. Saving rules is a non-cancellable write job.
+- The active phase, available counts and Cancel appear inside the sorting dialog.
+  Cancellation requested and cancelled are separate states. No usable preview or
+  review result is published after cancellation, even at the completion boundary.
+- Discovery, rules and sort settings carry separate revision checks. Old replies
+  cannot overwrite newer input or authorize replacement. Closing invalidates
+  receipts and acknowledgements; input text remains available on reopening.
+- Shutdown rejects new jobs and signals cancellable work. Already accepted sort,
+  undo and rule-save commits may finish; cancelling a scan grants no write consent.
+- Actual Chromium and server evidence is in `evidence/pacer-resumption/`.
 
 ### Canonical UI Map
 
+PAC-037 replaces browser syntax textareas with structured rule fieldsets and
+native per-file selects; CLI and terminal expert syntax remain compatible.
+Field errors retain input, associate correction text with the input, and focus
+the first invalid field on Review. Loaded slugs survive label-only renames.
+Saved rules load automatically on first category use unless the user has already
+edited a draft. Reloading an edited draft needs the inline discard choice.
+Closing keeps inputs and choices while invalidating review/preview receipts.
+Review is read-only; Save binds the reviewed revision and never starts sorting.
+
+File choices use saved categories, not draft rows or inferred corpus labels.
+Keep current choice omits an override; Automatic explicitly clears a manual
+override; Uncategorized explicitly selects that folder. A choice invalidates
+the exact preview and acknowledgement. Paging retains choices, with 50 rendered
+file controls per page. Reset pending file choices also recovers a removed file
+or category. Failed loading exposes Reload category choices while ordinary
+inspection stays available. Transient private drafts, paths and paging stay in
+memory, with no URL/localStorage persistence. Browser keyboard and real-server
+save/conflict/sort/undo evidence: `evidence/guided-category-editing/`.
+
 | Capability | Canonical owner | Source of truth | Allowed variants | Verification |
 | --- | --- | --- | --- | --- |
-| Form | `static/index.html`, `static/category-sort.js`; terminal field schema | PAC-027 consent and rule grammar | Native inputs and textareas; terminal JSON assignment list | CLI/API/controller tests and real Chromium state matrix |
+| Form | `static/index.html`, `static/category-sort.js`; terminal field schema | PAC-027 consent and shared server rule parser | Structured browser fieldsets, phrase lists and inline errors; terminal expert syntax | CLI/API/controller tests, Chromium state matrix and real-server save/sort/undo |
 | Select/Listbox | Native HTML select; terminal choice field | Date policy enum in `policy.py` | Platform popup geometry accepted | Browser keyboard and narrow viewport checks |
 | Date | `Policy`, `extract_day` | Date-only output policy in README | Existing download/modified/embedded enum; no calendar widget | Organizer regression tests |
 | Scrollbar | `static/style.css` | Existing runtime palette tokens | Dialog/list geometry, forced-colors system baseline | Chromium viewport assertions and screenshots |

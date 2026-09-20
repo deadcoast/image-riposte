@@ -1,9 +1,12 @@
-# Wave 04 / native product interface, not a testing handoff
+# Wave 04 / historical native product interface delivery
 
-Historical 0.4 wave record. Later independent workflows, nine-action menu,
-INSTALL/START separation, video/undo and category work are indexed in
-[PROJECT-STATUS.md](PROJECT-STATUS.md). The continuity counts below apply to this
-wave only; the continuing proposals are tracked in the frozen Markdown audit.
+This is the original 0.4 delivery record, not the current action deck or command
+inventory. Its seven-action/27-command scope is superseded by the
+[current CLI inventory](CLI.md#command-inventory) and
+[independent workflows](CURRENT-CONTRACT.md#independent-workflows-and-consent).
+Use [project status](PROJECT-STATUS.md) for later qualifications and
+[todo-audit.PACER.md](../todo-audit.PACER.md) for current development checkpoints.
+The completed-development body below remains byte-identical to its prior record.
 
 ## Completed development
 

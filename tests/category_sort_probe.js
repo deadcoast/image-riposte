@@ -1,10 +1,14 @@
 // Real DOM state matrix; the Python interface test exercises the actual API/filesystem.
 (async()=>{
+  await recovery.ready;
   const assert=(ok,message)=>{if(!ok)throw Error(message);};
   const wait=async test=>{for(let n=0;n<150;n++){if(test())return;await new Promise(r=>setTimeout(r,20));}throw Error('Timed out: '+test);};
   const change=(id,value)=>{$(id).value=value;$(id).dispatchEvent(new Event('input',{bubbles:true}));};
+  const rows=()=>[...document.querySelectorAll('.category-row')];
+  const field=(row,key)=>row.querySelector(`[data-field="${key}"]`);
+  const edit=(row,key,value)=>{const input=field(row,key);input.value=value;input.dispatchEvent(new Event('input',{bubbles:true}));};
   clearInterval(pollTimer);await wait(()=>!refreshing);
-  const held=[],posts=[],jobs=[];let hold=false,failApply=false,serial=0;
+  const held=[],posts=[],jobs=[];let hold=false,failApply=false,failChoices=false,serial=0;
   const rules={version:1,categories:[{label:'Hockey',slug:'hockey',terms:['hockey','goalie'],exclusions:[],priority:0}]};
   let plan={mode:'READ_ONLY',category_sorting:true,plan_id:'a'.repeat(64),ready:true,counts:{files_to_sort:1},blockers:{},files:[
     {source:'winter-hockey-goalie-practice.png',original_filename:'winter-hockey-goalie-practice.png',category:{slug:'hockey',label:'Hockey'},matched_terms:['goalie','hockey'],destination:'2025/March/img/hockey/SML/SML01.png'}]};
@@ -13,23 +17,38 @@
     if(body)posts.push({url,body});
     let value;
     if(url==='/api/state')value={images:[],trials:[],publications:[],jobs};
-    else if(url==='/api/category-rules')value={mode:'CATEGORY_RULES',status:body?.save?'SAVED':body?'DRAFT':'STORED',revision:'b'.repeat(64),rules:body?.clear?{version:1,categories:[]}:rules};
+    else if(url==='/api/category-rules'){if(!body&&failChoices)throw Error('offline');value={mode:'CATEGORY_RULES',status:body?.save?'SAVED':body?'DRAFT':'STORED',revision:'b'.repeat(64),rules:body?.clear?{version:1,categories:[]}:rules};}
     else if(url==='/api/categories')value={checkpoint:'COMPLETE',candidates:[{term:'hockey',count:5,examples:['winter-hockey-goalie-practice.png']}],corpus:{categories:[{label:'forest',terms:['forest','tree'],support:4}]}};
     else if(url==='/api/organize'||url==='/api/undo-sort'){
       if(hold)await new Promise(resolve=>held.push(resolve));
       const id=String(++serial),result=url.endsWith('undo-sort')?(body.apply?{mode:'UNDO_SORT',checkpoint:'COMPLETE'}:{mode:'UNDO_SORT_PREVIEW',sort_id:'sort-one',ready:true,files_to_restore:1,outputs_to_remove:1}):body.apply?{mode:'APPLY',checkpoint:'COMPLETE',counts:{migrated:1}}:plan;
       jobs.push(body.apply&&failApply?{id,state:'error',code:body.categories?'CATEGORY_PREVIEW_CHANGED':'SORT_PREVIEW_CHANGED'}:{id,state:'done',result});value={job_id:id};
     } else value={};
+    if(body&&(url==='/api/categories'||url==='/api/category-rules')){
+      if(hold)await new Promise(resolve=>held.push(resolve));
+      const id=String(++serial);jobs.push({id,state:'done',result:value});value={job_id:id};
+    }
     return new Response(JSON.stringify(value),{headers:{'Content-Type':'application/json'}});
   };
   $('scan').focus();$('scan').click();assert($('organize-dialog').open,'native dialog');
   $('sort-categories').click();assert(!$('category-options').hidden,'category disclosure');
   $('category-editor').open=true;
+  await wait(()=>rows().length===1);assert(field(rows()[0],'label').value==='Hockey','saved rules load without replacing an edited draft');
+  rows()[0].querySelector('button').click();
+  hold=true;$('category-discover').click();await wait(()=>held.length===1);
+  change('category-min-count','3');hold=false;held.splice(0).forEach(release=>release());
+  await wait(()=>$('sort-status').textContent.includes('outdated'));
+  assert(!document.querySelector('.sort-suggestion button'),'outdated discovery stays unusable');
+  change('category-min-count','2');
   $('category-discover').click();await wait(()=>document.querySelector('.sort-suggestion button'));
-  document.querySelector('.sort-suggestion button').click();assert($('category-groups').value==='forest=forest;tree','select complete supported group');
-  [...document.querySelectorAll('.sort-suggestion button')].find(b=>b.textContent==='Use hockey').click();assert($('category-groups').value.endsWith('hockey=hockey'),'select discovered term');
+  document.querySelector('.sort-suggestion button').click();assert(field(rows()[0],'terms').value==='forest\ntree','select complete supported group');
+  [...document.querySelectorAll('.sort-suggestion button')].find(b=>b.textContent==='Use hockey').click();assert(field(rows()[1],'terms').value==='hockey','select discovered term');
   $('category-review').click();await wait(()=>!$('category-save').disabled);
-  change('category-groups','Hockey=hockey;goalie');assert($('category-save').disabled,'draft change revokes saved-rule consent');
+  hold=true;$('category-review').click();await wait(()=>held.length===1);
+  edit(rows()[0],'label','New');hold=false;held.splice(0).forEach(release=>release());
+  await wait(()=>$('sort-status').textContent.includes('outdated'));
+  assert($('category-save').disabled,'outdated rule review cannot authorize save');
+  edit(rows()[0],'label','Forest');assert($('category-save').disabled,'draft change revokes saved-rule consent');
   $('category-review').click();await wait(()=>!$('category-save').disabled);
   $('category-save').click();$('category-save').click();await wait(()=>!$('category-review').disabled);
   assert(posts.filter(p=>p.url.endsWith('category-rules')&&p.body.save).length===1,'one saved replacement');
@@ -40,7 +59,26 @@
   const cleared=posts.find(p=>p.body.save&&p.body.clear);
   assert(cleared&&cleared.body.categories.length===0,'clear submits an empty replacement');
   $('category-load').click();await wait(()=>$('category-review-result').textContent.startsWith('Loaded.'));
-  assert($('category-groups').value==='Hockey=hockey;goalie'&&!$('category-clear').checked,'load restores editable saved rules');
+  assert(field(rows()[0],'terms').value==='hockey\ngoalie'&&!$('category-clear').checked,'load restores editable saved rules');
+  const beforeInvalid=posts.length;
+  edit(rows()[0],'priority','0.5');$('category-review').click();
+  assert(posts.length===beforeInvalid&&field(rows()[0],'priority').getAttribute('aria-invalid')==='true','invalid integer rejected inline without a request');
+  assert(document.activeElement===field(rows()[0],'priority'),'invalid priority receives focus');
+  edit(rows()[0],'priority','0');edit(rows()[0],'exclusions','HOCKEY');$('category-review').click();
+  assert(field(rows()[0],'exclusions').getAttribute('aria-invalid')==='true','normalized contradiction rejected');
+  edit(rows()[0],'exclusions','street hockey');edit(rows()[0],'label','Ice Hockey');
+  assert(field(rows()[0],'slug').value==='hockey','label-only rename retains folder identity');
+  $('category-review').click();await wait(()=>!$('category-save').disabled);
+  const renamed=posts.at(-1).body;
+  assert(renamed.categories[0]==='Ice Hockey=hockey;goalie'&&renamed.slugs[0]==='Ice Hockey=hockey','rename serializes stable slug and phrases');
+  assert($('category-draft-state').textContent.includes('not saved'),'review is visibly distinct from save');
+  $('category-load').click();assert(!$('category-reload-confirm').hidden&&field(rows()[0],'label').value==='Ice Hockey','load protects unsaved draft');
+  $('category-reload-cancel').click();assert(field(rows()[0],'label').value==='Ice Hockey','keep draft');
+  $('category-load').click();$('category-reload-confirmed').click();await wait(()=>field(rows()[0],'label').value==='Hockey');
+  $('category-add').click();const extra=rows()[1];edit(extra,'label','HOCKEY');edit(extra,'slug','hockey');edit(extra,'terms','snow');
+  assert(field(extra,'label').getAttribute('aria-invalid')==='true'&&field(rows()[0],'slug').getAttribute('aria-invalid')==='true','duplicates mark both affected rows');
+  extra.querySelector('button').click();assert(document.activeElement===field(rows()[0],'label'),'removing row restores useful focus');
+  $('category-review').click();await wait(()=>!$('category-save').disabled);
   $('category-editor').open=false;
   hold=true;$('run-plan').click();$('run-plan').click();await wait(()=>held.length===1);
   change('date-mode','modified');hold=false;held.splice(0).forEach(release=>release());
@@ -52,6 +90,13 @@
   assert($('plan-summary').querySelector('strong').textContent==='1','category file count is visible');
   assert($('category-destinations').textContent.includes('2025/March/img/hockey/SML/SML01.png'),'exact destination visible');
   assert($('category-destinations').textContent.includes('Categories are optional'),'optional category policy is visible');
+  const choice=document.querySelector('.category-assignment');
+  assert(choice&&!choice.disabled&&[...choice.options].some(o=>o.value==='hockey'),'saved category choices are available per file');
+  $('ack-remove').click();assert(!$('apply').disabled,'consent before assignment change');
+  choice.value='uncategorized';choice.dispatchEvent(new Event('change'));
+  assert($('apply').disabled&&!$('ack-remove').checked,'assignment revokes old preview and consent');
+  $('run-plan').click();await wait(()=>$('sort-status').textContent.includes('Review the destinations'));
+  assert(posts.at(-1).body.assignments[0]==='winter-hockey-goalie-practice.png=uncategorized','guided assignment serializes existing API grammar');
   $('ack-remove').click();assert(!$('apply').disabled,'explicit consent enables apply');
   failApply=true;$('apply').click();await wait(()=>!$('sort-error').hidden);
   assert($('sort-error').textContent.includes('Inspect again'),'stale server receipt recovery');
@@ -100,6 +145,38 @@
   delete plan.plan_id;$('run-plan').click();await wait(()=>$('sort-status').textContent.includes('Review the destinations'));
   $('ack-remove').click();assert($('apply').disabled,'receiptless response cannot enable apply');
   plan.plan_id='c'.repeat(64);$('run-plan').click();await wait(()=>$('sort-status').textContent.includes('Review the destinations'));
+  // A large preview creates a bounded control set and keeps choices across pages.
+  $('sort-categories').click();await wait(()=>!document.querySelector('.category-assignment')||!document.querySelector('.category-assignment').disabled);
+  plan={...plan,category_sorting:true,files:Array.from({length:121},(_,i)=>({source:'file-'+i+'.png',kind:'IMAGE',destination:'2025/March/img/SML/SML'+i+'.png'}))};
+  $('run-plan').click();await wait(()=>$('category-range').textContent==='1–50 of 121 files');
+  assert(document.querySelectorAll('.category-assignment').length===50,'bounded assignment controls');
+  let picked=document.querySelector('.category-assignment');picked.value='hockey';picked.dispatchEvent(new Event('change'));
+  $('category-next').click();assert($('category-range').textContent==='51–100 of 121 files','next page');
+  $('category-prev').click();assert(document.querySelector('.category-assignment').value==='hockey','choice survives page change');
+  $('category-choice-reset').click();assert(document.querySelector('.category-assignment').value===''&&$('apply').disabled,'reset clears pending choices and consent');
+  // Failed choice reads preserve fields and do not block ordinary inspection.
+  $('sort-categories').click();failChoices=true;$('sort-categories').click();await wait(()=>!$('category-choice-retry').hidden);
+  assert(document.querySelector('.category-assignment').disabled,'unavailable choices cannot be edited');
+  assert(!$('run-plan').disabled&&rows().length===1,'failed choice read keeps inspection and draft available');
+  failChoices=false;$('category-choice-retry').click();await wait(()=>!document.querySelector('.category-assignment').disabled);
+  edit(rows()[0],'label','Retained draft');picked=document.querySelector('.category-assignment');picked.value='hockey';picked.dispatchEvent(new Event('change'));
+  $('organize-dialog').close();$('scan').focus();$('scan').click();
+  assert(field(rows()[0],'label').value==='Retained draft'&&document.querySelector('.category-assignment').value==='hockey','dialog close retains fields and choices');
+  assert($('apply').disabled&&$('category-save').disabled&&!$('ack-remove').checked,'dialog close invalidates both receipts');
+  $('category-editor').open=true;
+  const draftBefore=field(rows()[0],'label').value;
+  error(new Error('WORKSPACE_LOCKED'),'sort');
+  assert(!$('recovery-notice').hidden&&$('organize-dialog').contains($('recovery-notice')),'persistent guidance is visible in the active modal');
+  assert($('recovery-message').textContent.includes('Do not delete lock files')&&$('recovery-message').textContent.includes('Code: WORKSPACE_LOCKED'),'shared safe lock recovery');
+  await new Promise(resolve=>setTimeout(resolve,30));
+  assert(!$('recovery-notice').hidden,'error is not a transient toast');
+  $('recovery-dismiss').click();assert($('recovery-notice').hidden&&field(rows()[0],'label').value===draftBefore,'dismiss retains draft');
+  error(new Error('C:\\private\\artwork.png: secret decoder error'),'sort');
+  assert(!$('recovery-message').textContent.includes('private')&&$('recovery-message').textContent.includes('OPERATION_FAILED'),'raw failures sanitized');
+  $('recovery-dismiss').click();
+  planSummary({counts:{},blockers:{SORT_HISTORY_INVALID:1}});
+  assert($('plan-summary').textContent.includes('do not delete or reset the history'),'blocked previews have actionable recovery');
+  assert(recovery.lookup('AMBIGUOUS','sort').level==='info'&&recovery.text('ORIGINAL_TITLE_UNAVAILABLE','sort').includes('No correction is required to sort'),'optional category information');
   $('organize-dialog').scrollTop=0;
   document.getElementById('native-proof').textContent='PASS';
 })().catch(error=>{document.getElementById('native-proof').textContent=error.stack;});

@@ -161,18 +161,20 @@ def tree(writer: Writer, data, depth=0):
     else:writer.text(scalar(data),role(data))
 
 
-def blockers(w, data):
+def blockers(w, data, operation=""):
+    from ..recovery import guidance
     w.section("Needs attention")
     if not data:
         w.text("[CLEAR] No unresolved input blockers were reported.","good"); return
-    from .output import RECOVERY
     for code,count in data.items():
-        w.add(Run(f"[! {count}] ","danger",True),Run(label(code),"text",True))
-        w.text(RECOVERY.get(code,"This input needs attention; it has not been silently removed."),"muted")
-        w.text("Code: "+str(code),"code")
+        item = guidance(code, operation)
+        w.add(Run(f"[! {count}] ","danger",True),Run(item.title,"text",True))
+        w.text("Next action: " + item.action,"muted")
+        w.text("Code: " + item.code,"code")
 
 
 def category_destinations(w: Writer, data: dict) -> None:
+    from ..recovery import recovery_text
     w.section("Exact destinations / optional categories")
     counts = data.get("counts", {})
     w.pair("Unmatched files", counts.get("unmatched_files", 0))
@@ -191,6 +193,8 @@ def category_destinations(w: Writer, data: dict) -> None:
         if item.get("category_source") == "PRESERVED": w.pair("Category choice", "Existing category retained", 2)
         if item.get("category_source") == "CORPUS": w.pair("Category choice", "Local filename pattern", 2)
         w.pair("Matched terms", ", ".join(item.get("matched_terms", [])) or item.get("match_status", "None"), 2)
+        if item.get("match_status") in {"AMBIGUOUS", "ORIGINAL_TITLE_UNAVAILABLE", "UNMATCHED"}:
+            w.text(recovery_text(item["match_status"], "sort"), "muted")
         w.pair("Destination", item.get("destination") or item.get("action", "Blocked"), 2)
     w.pair("Preview ID", data.get("plan_id"))
     w.text("Changed files, rules or destinations require a fresh preview.")
@@ -299,7 +303,7 @@ def overview(data, command="", width=94) -> Report:
             w.section("Sorting")
             tree(w, sorting.get("counts", {}))
             w.text("Sort images and videos separately; protect images only. Original copies are retained privately for undo.", "warn")
-            blockers(w, sorting.get("blockers", {}))
+            blockers(w, sorting.get("blockers", {}), "sort")
             if sorting.get("category_sorting"):
                 category_destinations(w, sorting)
             w.section("Protection")
@@ -318,7 +322,7 @@ def overview(data, command="", width=94) -> Report:
             w.pair("Sorted copies to remove", data.get("outputs_to_remove", 0))
             w.text("Conflicts block undo. Protection outputs and review records stay in place.")
             w.text("Sorts made before recovery history was introduced cannot be undone.")
-            blockers(w, data.get("blockers", {}))
+            blockers(w, data.get("blockers", {}), command)
         elif mode in {"READ_ONLY","APPLY"}:
             preview=mode=="READ_ONLY";counts=data.get("counts",{});blocked=data.get("blockers",{})
             r=Report("Migration plan" if preview else "Clean & organize", "READ ONLY" if preview else data.get("checkpoint","RECORDED"),
@@ -335,7 +339,7 @@ def overview(data, command="", width=94) -> Report:
             if data.get("destinations"):
                 w.section("Calendar / output routes")
                 w.rows(("Destination","Files"),[(folder,str(count)) for folder,count in data["destinations"].items()],[5,1])
-            blockers(w,blocked)
+            blockers(w,blocked,command)
             if data.get("category_sorting"):
                 category_destinations(w, data)
             if "remaining_unmanaged_inputs" in data:w.pair("Remaining unmanaged inputs",data["remaining_unmanaged_inputs"])
@@ -395,7 +399,7 @@ def overview(data, command="", width=94) -> Report:
             r.metrics=[("Clean images",str(data.get("verified_images",0))), ("Clean artifacts",str(data.get("verified_artifacts",0))),
                        ("Blockers",str(sum(data.get("blockers",{}).values())))]
             w.section("Verified scope");w.pair("Metadata policy",data.get("metadata_policy","Not reported"))
-            blockers(w,data.get("blockers",{}))
+            blockers(w,data.get("blockers",{}),command)
         elif "runtime" in data or command=="doctor":
             rt=data.get("runtime",{})
             r=Report("Local processing runtime","INSPECTED","accent","Device and package availability are shown separately from model execution.")

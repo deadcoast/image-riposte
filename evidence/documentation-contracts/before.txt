@@ -1,0 +1,200 @@
+
+  RIPOSTE / IMAGE SECURITY
+  Clean masters in. Reviewed publishing images out. No watermark or upload gate.
+
+  Usage: riposte [OPTIONS] COMMAND [ARGS]...
+PARAMETERS                                                                                          
++--------------------------------+-----------------------------------------------------------------+
+| -w, --root PATH                | Initial workspace for the interactive terminal.                 |
+| --json                         | One JSON result on stdout; code-only errors on stderr.          |
+| --human                        | Rich readable direct-command output, even when piped.           |
+| --plain                        | Linear menus and plain ASCII output; no ANSI or motion.         |
+| --no-color                     | Disable colour; also respects NO_COLOR.                         |
+| --no-animation, --no-anim      | Freeze aesthetic motion; keep actual status updates.            |
+| --theme [goks|dark|light|mono] | Terminal palette.  [default: goks]                              |
+| --fps INTEGER RANGE            | Maximum terminal refresh frequency, not processing speed.       |
+|                                | [default: 12; 4<=x<=30]                                         |
+| --events                       | Code-defined progress JSON Lines on stderr for direct commands. |
+| --version                      | Show installed release.                                         |
+| --install-completion           | Install completion for the current shell.                       |
+| --show-completion              | Show completion for the current shell, to copy it or customize  |
+|                                | the installation.                                               |
+| --help                         | Show this message and exit.                                     |
++--------------------------------+-----------------------------------------------------------------+
+INTERFACE                                                                               
+ ui                Open the interactive Rich ASCII terminal.                            
+ serve             Run the existing local browser interface as an optional alternative. 
+WORKFLOWS                                                                                     
+ sort              Read-only recursive plan; --apply explicitly replaces sources.             
+ undo-sort         Preview undo; --apply restores original names, bytes and modified times.   
+ duplicates        Find DUPLICATE, MAYBE DUPLICATE and CLOSELY RELATED files.                 
+ sort-riposte      Protect a selected batch at each final size; clean masters stay unchanged. 
+ riposte           Protect a selected batch at each final size; clean masters stay unchanged. 
+CLEAN COLLECTION                                                                   
+ organize          Read-only recursive plan; --apply explicitly replaces sources.  
+ categories        Discover filename categories and review explicit groups.        
+ category-rules    Inspect saved rules or preview a replacement.                   
+ audit             Verify clean image containers and calendar/size organization.   
+ list              List and target cleaned image; never sort by file extension.    
+ inspect           Independently audit a selected clean image and show its record. 
+PROTECT + PUBLISH                                                                             
+ publish           Protect a selected batch at each final size; clean masters stay unchanged. 
+ protect           Alias of publish; same full parameter surface.                             
+ publications      List batches or inspect their real output/review states.                   
+ resume            Resume unfinished output work with matching local model identities.        
+ review            Accept exact pixels or revoke approval.                                    
+ package           Write a calendar/size ZIP containing only exact approved PNGs.             
+ image             Inspect or open verified pixels without starting the browser workshop.     
+LOCAL RUNTIME                                                                         
+ doctor            Inspect local runtime or execute a selected local encoder probe.   
+ upgrade           Explicit legacy-state rename; image and identifiers are preserved. 
+OPTIONAL WORKSHOP                                                                               
+ guard              Expert standalone candidate path.                                           
+ compare            Sanitize and compare an externally processed candidate.                     
+ qualify            Controlled encoder comparison; not an efficacy verdict.                     
+ challenge          Generate clean/candidate/three-control arms with matched seeds.             
+ benchmark          Legacy paired generation compatibility path.                                
+ experiment         List attempts or inspect a protocol, bound outputs and recorded reviews.    
+ cohort-challenge   Commit the full cohort, then generate one attempt per selected artwork.     
+ cohort             List committed cohorts or inspect all members and missing-outcome bounds.   
+ panel-create       Freeze calibration items, rubric and separate reviewer assignments.         
+ panel              List panels or inspect exact agreement, missing decisions and disagreement. 
+ panel-packet       Export the local blinded packet for one assigned reviewer slot.             
+ panel-review       Record one final response.                                                  
+ experiment-packet  Export verified frames with concealed arm labels and a ratings template.    
+ experiment-review  Append endpoint decisions and a descriptive matched-control contrast.       
+ export             Unreviewed expert trial export.                                             
+ trials             List trials or read one complete trial report.                              
+ evaluations        Read saved controlled encoder results.                                      
+ generations        Read saved generation-run summaries.                                        
+ generation         Read one complete saved generation report, including committed frame names. 
+ frame              Inspect or open an exact saved generation frame; no generator runs.         
+ workshop           Open helper menus, or hand off BATCH_ID ITEM_ID as exact pixels.            
+
+  No command opens the animated terminal. Piped direct results are JSON. ROOT is a dedicated image 
+folder.
+
+  RIPOSTE / IMAGE SECURITY
+  Protect a selected batch at each final size; clean masters stay unchanged.
+
+  Usage: riposte publish [OPTIONS] ROOT
+PARAMETERS                                                                                          
++--------------------------------------------+-----------------------------------------------------+
+| ROOT                                       | Existing dedicated image folder; everything inside  |
+|                                            | is in scope.  [required]                            |
+| --image TEXT                               | Target exact clean image IDs; repeat for a          |
+|                                            | selection.                                          |
+| --all                                      | Explicitly select the full collection, optionally   |
+|                                            | filtered.                                           |
+| --vae PATH                                 | Local encoder directory. Repeat for up to four; no  |
+|                                            | automatic download.                                 |
+| --edge INTEGER RANGE                       | Independent final publishing edge. Repeat up to     |
+|                                            | three.  [64<=x<=4096]                               |
+| --epsilon INTEGER RANGE                    | Integer per-channel change cap.  [default: 4;       |
+|                                            | 1<=x<=16]                                           |
+| --steps INTEGER RANGE                      | Optimization iterations per restart.  [default: 24; |
+|                                            | 1<=x<=1000]                                         |
+| --restarts INTEGER RANGE                   | Seeded starts; keep the best feasible candidate.    |
+|                                            | [default: 2; 1<=x<=4]                               |
+| --seed INTEGER RANGE                       | [default: 7; 0<=x<=4294967295]                      |
+| --plan                                     | Read-only selection and sizing preview; no model    |
+|                                            | needed.                                             |
+| --preserve-white / --no-preserve-white     | [default: preserve-white]                           |
+| --inpaint PATH                             | Optional local nine-channel inpainting objective.   |
+| --video PATH                               | Optional local SVD temporal objective, not          |
+|                                            | text-guided.                                        |
+| --device [auto|cpu|cuda|mps]               | [default: auto]                                     |
+| --delta-e76-p95 FLOAT RANGE                | 95th percentile colour-difference limit.  [default: |
+|                                            | 6.0; 0.1<=x<=40]                                    |
+| --rms-fraction FLOAT RANGE                 | Local RMS fraction of the pixel-change cap.         |
+|                                            | [default: 0.95; 0.1<=x<=1]                          |
+| --year TEXT                                | Calendar filter, with --all only.                   |
+| --month TEXT                               | Month filter, with --all only.                      |
+| --size TEXT                                | Size-bin filter, with --all only.                   |
+| --input PATH                               | Source file or folder; repeat to combine            |
+|                                            | selections. Preserves originals; mutually exclusive |
+|                                            | with --image/--all.                                 |
+| --date-mode [download|modified|embedded]   | Date basis for selected raw inputs or sorting.      |
+|                                            | [default: download]                                 |
+| --apply                                    | Sort + RIPOSTE only: authorize source replacement   |
+|                                            | then protection. Otherwise this workflow previews.  |
+| --discard-sidecars / --no-discard-sidecars | Sort + RIPOSTE only: authorize metadata sidecar     |
+|                                            | deletion during sorting.  [default:                 |
+|                                            | no-discard-sidecars]                                |
+| --categories                               | Sort + RIPOSTE only: use saved category rules.      |
+| --assign TEXT                              | Manual source-relative-path=category-slug; repeat.  |
+| --plan-id TEXT                             | Combined preview ID required with sort-riposte      |
+|                                            | --apply; binds sorting and protection choices.      |
+| --help                                     | Show this message and exit.                         |
++--------------------------------------------+-----------------------------------------------------+
+{
+  "result": "FAIL",
+  "issues": [
+    "README.md:175: UsageError: No such command 'Interactive'.",
+    "README.md:176: UsageError: No such command 'Main'.",
+    "README.md:177: UsageError: Got unexpected extra argument(s) (Explicit interactive entry)",
+    "README.md:178: UsageError: Got unexpected extra argument(s) (Numbered, line-input alternative)",
+    "README.md:179: Exit: 0",
+    "README.md:180: Exit: 0",
+    "Missing current document: docs/README.md",
+    "Missing current document: docs/CURRENT-CONTRACT.md",
+    "docs/CLI.md:304: UsageError: No such command 'COMMAND'.",
+    "docs/CLI.md:305: UsageError: No such command 'COMMAND'.",
+    "docs/CLI.md:306: UsageError: No such command 'COMMAND'.",
+    "docs/CLI.md:307: UsageError: No such command 'COMMAND'.",
+    "CLI inventory differs: missing=cohort,cohort-challenge,experiment,experiment-packet,experiment-review,panel,panel-create,panel-packet,panel-review; obsolete=",
+    "Current threat-model contradiction: They are never intentionally copied to a persistent application backup",
+    "Current threat-model contradiction: There is no contaminated-original rollback copy",
+    "Current threat-model contradiction: hashes are calculated only after cleansing",
+    "Current publishing guide recommends manual lock removal",
+    "Linear example selects the wrong home action"
+  ],
+  "command_inventory": [
+    "audit",
+    "benchmark",
+    "categories",
+    "category-rules",
+    "challenge",
+    "cohort",
+    "cohort-challenge",
+    "compare",
+    "doctor",
+    "duplicates",
+    "evaluations",
+    "experiment",
+    "experiment-packet",
+    "experiment-review",
+    "export",
+    "frame",
+    "generation",
+    "generations",
+    "guard",
+    "image",
+    "inspect",
+    "list",
+    "organize",
+    "package",
+    "panel",
+    "panel-create",
+    "panel-packet",
+    "panel-review",
+    "protect",
+    "publications",
+    "publish",
+    "qualify",
+    "resume",
+    "review",
+    "riposte",
+    "serve",
+    "sort",
+    "sort-riposte",
+    "trials",
+    "ui",
+    "undo-sort",
+    "upgrade",
+    "workshop"
+  ],
+  "local_links_checked": 78,
+  "unchanged_application_files": 76,
+  "scope": "Shipping Typer parser and local documentation links; examples are not executed as write/model operations."
+}

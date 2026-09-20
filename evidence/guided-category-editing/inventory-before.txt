@@ -1,0 +1,23 @@
+{
+  "result": "FAIL",
+  "counts": {
+    "source_files": 73,
+    "source_modules": 65,
+    "paired_stubs": 65,
+    "indexed_files": 1023,
+    "source_symbols": 733,
+    "tool_functions": 9,
+    "symbol_dependency_edges": 3103,
+    "static_definitions": 2809,
+    "local_dependency_edges": 1189
+  },
+  "source_unchanged": true,
+  "issues": [
+    "Unregistered file: evidence/guided-category-editing/README.md",
+    "Unregistered file: evidence/guided-category-editing/live_browser.py",
+    "Unregistered file: evidence/guided-category-editing/live_probe.js",
+    "Unregistered file: evidence/guided-category-editing/review_contracts.py",
+    "Unregistered file: evidence/guided-category-editing/verify.py",
+    "Unregistered file: typing/evidence/source-reviewed-guided-categories.json"
+  ]
+}

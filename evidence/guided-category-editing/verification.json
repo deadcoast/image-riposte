@@ -1,0 +1,48 @@
+{
+  "result": "PASS",
+  "application_files": 73,
+  "changed_application_files": [
+    "src/riposte/static/category-sort.js",
+    "src/riposte/static/index.html",
+    "src/riposte/static/style.css"
+  ],
+  "suite": {
+    "tests": 1508,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 9,
+    "passed": 1499
+  },
+  "native": {
+    "tests": 3,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "passed": 3
+  },
+  "contracts": {
+    "mypy-contracts": true,
+    "mypy-tooling": true,
+    "stubtest": true,
+    "runtime-contracts": true,
+    "tooling-regressions": true,
+    "negative-consumers": true,
+    "source-stable": true
+  },
+  "live": {
+    "result": "PASS",
+    "media_files": 58,
+    "float_files": 2,
+    "restored_bytes_and_mtimes": true,
+    "no_unexpected_public_files": true,
+    "no_fetch_mocks": true,
+    "scope": "Native Chromium with authenticated API: empty rules, row creation, inline validation, review/save, stable rename, actual concurrent-rule conflict, per-file choices, exact preview, consented sort and undo, paging and keyboard."
+  },
+  "packages_match": true,
+  "strict_source_typing": "FAIL: 823 diagnostics in 36 files; unchanged Python source and strict settings",
+  "limits": [
+    "Existing Windows environments, not clean installation or other hosts.",
+    "Synthetic media; no independent human or assistive-technology acceptance, classification accuracy or protection efficacy.",
+    "Generic UI static audit has 81 findings, reviewed separately; not a global UI pass."
+  ]
+}

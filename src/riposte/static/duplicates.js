@@ -50,7 +50,7 @@ window.RiposteDuplicates = (() => {
         button.onclick=()=>detail(row);$('dup-list').append(button);
       }
       if(!page.rows.length)$('dup-list').append(el('p','duplicate-empty','No findings match these filters. Scan coverage lists any skipped files and limits.'));
-    }catch(e){if(current===revision){$('dup-list').replaceChildren(el('p','amber','Findings unavailable. Run a new scan to rebuild this session’s report.'));error(e);}}
+    }catch(e){if(current===revision){$('dup-list').replaceChildren(el('p','amber','Findings unavailable. Run a new scan to rebuild this session’s report.'));error(e,'duplicates');}}
   }
   async function preview(container,source,id,stamp=null){
     container.replaceChildren();container.append(el('p','duplicate-path',source.relative));
@@ -82,7 +82,7 @@ window.RiposteDuplicates = (() => {
         const button=el('button','secondary',title);button.disabled=step<0?data.offset===0:data.offset+data.members.length>=data.count;
         button.onclick=()=>members(group,container,side,current,id,data.offset+step);controls.append(button);
       }container.append(controls);
-    }catch(e){if(current===detailRevision){container.replaceChildren(el('p','amber','Member list unavailable. Rescan and retry.'));error(e);}}
+    }catch(e){if(current===detailRevision){container.replaceChildren(el('p','amber','Member list unavailable. Rescan and retry.'));error(e,'duplicates');}}
   }
   async function detail(row){
     clearDetail();selected=row.id;const current=detailRevision,id=scan.scan_id;
@@ -109,7 +109,7 @@ window.RiposteDuplicates = (() => {
       }evidence.append(values);root.append(evidence);
       const leftMembers=el('section');root.append(leftMembers);members(data.left,leftMembers,'Left',current,id);
       if(data.right){const rightMembers=el('section');root.append(rightMembers);members(data.right,rightMembers,'Right',current,id);}
-    }catch(e){if(current===detailRevision){$('dup-detail').replaceChildren(el('p','amber','Finding unavailable. Run a new scan.'));error(e);}}
+    }catch(e){if(current===detailRevision){$('dup-detail').replaceChildren(el('p','amber','Finding unavailable. Run a new scan.'));error(e,'duplicates');}}
   }
   async function exportReport(format){
     if(!scan)return;const id=scan.scan_id;
@@ -118,7 +118,7 @@ window.RiposteDuplicates = (() => {
       if(!response.ok)throw Error('DUPLICATE_SCAN_EXPIRED');
       const url=URL.createObjectURL(await response.blob()),anchor=el('a');anchor.href=url;anchor.download=`riposte-duplicates-${id.slice(0,12)}.${format}`;
       document.body.append(anchor);anchor.click();anchor.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);
-    }catch(e){status('Export unavailable. Rescan to rebuild the report.');error(e);}
+    }catch(e){status('Export unavailable. Rescan to rebuild the report.');error(e,'duplicates');}
   }
   $('dup-form').onsubmit=async event=>{
     event.preventDefault();if(starting||busyJob||jobId)return;
@@ -133,10 +133,10 @@ window.RiposteDuplicates = (() => {
       const answer=await api('duplicates',{visual:$('dup-visual').checked,videos:$('dup-videos').checked,include_float:$('dup-float').checked,
         max_files:Number($('dup-max-files').value),max_visual:Number($('dup-max-visual').value),max_pairs:Number($('dup-max-pairs').value)});
       jobId=answer.job_id;busyJob=jobId;status('Scanning files and comparing content. Progress and cancellation are available below.');
-    }catch(e){status('Scan could not start. Check the settings and retry.');error(e);}
+    }catch(e){status('Scan could not start. Check the settings and retry.');error(e,'duplicates');}
     finally{starting=false;updateDisabled();refresh();}
   };
-  $('dup-cancel').onclick=async()=>{if(!jobId)return;try{await api('jobs/'+jobId+'/cancel',{});status('Stop requested. Waiting for the current safe checkpoint.');}catch(e){error(e);}};
+  $('dup-cancel').onclick=async()=>{if(!jobId)return;try{await api('jobs/'+jobId+'/cancel',{});status('Stop requested. Waiting for the current safe checkpoint.');}catch(e){error(e,'duplicates');}};
   $('dup-visual').onchange=updateDisabled;
   for(const id of ['dup-label','dup-media','dup-confidence','dup-order'])$(id).onchange=()=>{offset=0;results();};
   $('dup-search').oninput=()=>{clearTimeout(timer);revision++;clearDetail();timer=setTimeout(()=>{offset=0;results();},180);};
@@ -146,7 +146,7 @@ window.RiposteDuplicates = (() => {
     if(job.id!==jobId&&job.result?.mode!=='DUPLICATE_SCAN')return false;
     if(jobId&&job.id!==jobId)return true;
     jobId=null;updateDisabled();
-    if(!['done','incomplete'].includes(job.state)){status(job.state==='cancelled'?'Scan cancelled. No files changed; any displayed results are from the previous scan.':'Scan failed: '+human(job.code)+'. Any displayed results are from the previous scan.');return true;}
+    if(!['done','incomplete'].includes(job.state)){status(job.state==='cancelled'?'Scan cancelled. No files changed; any displayed results are from the previous scan.':recovery.text(job.code,'duplicates')+' Any displayed results are from the previous scan.');return true;}
     scan=job.result;offset=0;revision++;clearDetail();$('dup-results').hidden=false;$('dup-root').textContent=scan.root;
     $('dup-counts').replaceChildren();for(const label of labels){const block=el('div');block.append(el('strong','',String(scan.counts[label]||0)),el('span','',label),el('small','muted',label==='DUPLICATE'?'Exact groups':'Pair relationships'));$('dup-counts').append(block);}
     coverage(scan);status(scan.checkpoint==='COMPLETE'?'Scan complete within the recorded coverage. No files changed.':'Scan incomplete. Findings cover the successfully compared files; review skipped files and limits.');results();return true;

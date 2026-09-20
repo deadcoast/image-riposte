@@ -1,0 +1,151 @@
+[
+  {
+    "op": "append",
+    "id": "PAC-036",
+    "field": "LearningNotes",
+    "text": "Reviewed each of 19 original requirements against current source and scoped executed evidence; all have separate current source-bound reports. Historical selective-merge and four-list identification records remain historical, with exact archive/decision identity rechecked. User category corrections amend OGM-012/016/018 with original meanings preserved. Raw typing, native/model and clean-install limitations remain explicit. Current evidence: evidence/pacer-resumption/README.md."
+  },
+  {
+    "op": "transition",
+    "id": "PAC-036",
+    "status": "REVIEW"
+  },
+  {
+    "op": "transition",
+    "id": "PAC-036",
+    "status": "DONE",
+    "evidence": "Reviewed each of 19 original requirements against current source and scoped executed evidence; all have separate current source-bound reports. Historical selective-merge and four-list identification records remain historical, with exact archive/decision identity rechecked. User category corrections amend OGM-012/016/018 with original meanings preserved. Raw typing, native/model and clean-install limitations remain explicit. evidence/pacer-resumption/README.md"
+  },
+  {
+    "op": "transition",
+    "id": "PAC-029",
+    "status": "DOING"
+  },
+  {
+    "op": "append",
+    "id": "PAC-029",
+    "field": "LearningNotes",
+    "text": "Reconciled implemented OS-lease crash recovery from evidence/workspace-lease. Current 24 workspace-lease and 21 sort-recovery regression cases pass, with exact undo and unknown-legacy-marker refusal retained. Historical native Windows and WSL low-level lease evidence retains its original scope. Current evidence: evidence/pacer-resumption/README.md."
+  },
+  {
+    "op": "transition",
+    "id": "PAC-029",
+    "status": "REVIEW"
+  },
+  {
+    "op": "transition",
+    "id": "PAC-029",
+    "status": "DONE",
+    "evidence": "Reconciled implemented OS-lease crash recovery from evidence/workspace-lease. Current 24 workspace-lease and 21 sort-recovery regression cases pass, with exact undo and unknown-legacy-marker refusal retained. Historical native Windows and WSL low-level lease evidence retains its original scope. evidence/pacer-resumption/README.md"
+  },
+  {
+    "op": "transition",
+    "id": "PAC-030",
+    "status": "DOING"
+  },
+  {
+    "op": "append",
+    "id": "PAC-030",
+    "field": "LearningNotes",
+    "text": "Reconciled shared loaded-application root guard from evidence/application-roots. Current 37 application-root cases: 36 pass and one Windows symlink privilege skip; junction, source and installed-layout contracts retained. Source and fresh wheel/sdist match; no clean installation claim. Current evidence: evidence/pacer-resumption/README.md."
+  },
+  {
+    "op": "transition",
+    "id": "PAC-030",
+    "status": "REVIEW"
+  },
+  {
+    "op": "transition",
+    "id": "PAC-030",
+    "status": "DONE",
+    "evidence": "Reconciled shared loaded-application root guard from evidence/application-roots. Current 37 application-root cases: 36 pass and one Windows symlink privilege skip; junction, source and installed-layout contracts retained. Source and fresh wheel/sdist match; no clean installation claim. evidence/pacer-resumption/README.md"
+  },
+  {
+    "op": "transition",
+    "id": "PAC-031",
+    "status": "DOING"
+  },
+  {
+    "op": "append",
+    "id": "PAC-031",
+    "field": "LearningNotes",
+    "text": "Reconciled ordinary/combined exact preview binding from evidence/sort-preview. Current 33 preview-binding cases pass, retaining source/policy/catalog/destination drift rejection before mutation, explicit consent and recovery. Current evidence: evidence/pacer-resumption/README.md."
+  },
+  {
+    "op": "transition",
+    "id": "PAC-031",
+    "status": "REVIEW"
+  },
+  {
+    "op": "transition",
+    "id": "PAC-031",
+    "status": "DONE",
+    "evidence": "Reconciled ordinary/combined exact preview binding from evidence/sort-preview. Current 33 preview-binding cases pass, retaining source/policy/catalog/destination drift rejection before mutation, explicit consent and recovery. evidence/pacer-resumption/README.md"
+  },
+  {
+    "op": "transition",
+    "id": "PAC-032",
+    "status": "DOING"
+  },
+  {
+    "op": "append",
+    "id": "PAC-032",
+    "field": "LearningNotes",
+    "text": "Reconciled indexed catalog lookup, operation-local maps and revision guards from evidence/catalog-scaling. Current 25 scaling cases pass. Original 16/32/64 row/bytes/time/memory measures remain historical; current guards are regression-tested. Current evidence: evidence/pacer-resumption/README.md."
+  },
+  {
+    "op": "transition",
+    "id": "PAC-032",
+    "status": "REVIEW"
+  },
+  {
+    "op": "transition",
+    "id": "PAC-032",
+    "status": "DONE",
+    "evidence": "Reconciled indexed catalog lookup, operation-local maps and revision guards from evidence/catalog-scaling. Current 25 scaling cases pass. Original 16/32/64 row/bytes/time/memory measures remain historical; current guards are regression-tested. evidence/pacer-resumption/README.md"
+  },
+  {
+    "op": "transition",
+    "id": "PAC-033",
+    "status": "DOING"
+  },
+  {
+    "op": "append",
+    "id": "PAC-033",
+    "field": "LearningNotes",
+    "text": "Reconciled source-derived request/result and mutation boundary typing from evidence/source-typing. The original 1100-to-876 diagnostic reduction and failure history are retained. Current strict source audit has 823 diagnostics in 36/65 files; seven external contract stages and current regressions pass. No source-wide typing completion claim. Current evidence: evidence/pacer-resumption/README.md."
+  },
+  {
+    "op": "transition",
+    "id": "PAC-033",
+    "status": "REVIEW"
+  },
+  {
+    "op": "transition",
+    "id": "PAC-033",
+    "status": "DONE",
+    "evidence": "Reconciled source-derived request/result and mutation boundary typing from evidence/source-typing. The original 1100-to-876 diagnostic reduction and failure history are retained. Current strict source audit has 823 diagnostics in 36/65 files; seven external contract stages and current regressions pass. No source-wide typing completion claim. evidence/pacer-resumption/README.md"
+  },
+  {
+    "op": "append",
+    "id": "PAC-044",
+    "field": "LearningNotes",
+    "text": "Reconciled 874 deferred file/symbol assets, current source dependencies and preserved Progress alias. Inventory passes: 73 application files, 65 paired modules, 733 source symbols and 1017 admitted files. All 23 scoped requirements have reviewed current evidence, with later integrations separately recorded under PAC-045. Current authority/status/UX/audit/release snapshot and fresh 0.5.0 packages align; actual Windows launcher and no-change offline environment checks pass. No product-release, clean-install, model-efficacy or source-typing completion claim. Current evidence: evidence/pacer-resumption/README.md."
+  },
+  {
+    "op": "transition",
+    "id": "PAC-044",
+    "status": "REVIEW"
+  },
+  {
+    "op": "transition",
+    "id": "PAC-044",
+    "status": "DONE",
+    "evidence": "Reconciled 874 deferred file/symbol assets, current source dependencies and preserved Progress alias. Inventory passes: 73 application files, 65 paired modules, 733 source symbols and 1017 admitted files. All 23 scoped requirements have reviewed current evidence, with later integrations separately recorded under PAC-045. Current authority/status/UX/audit/release snapshot and fresh 0.5.0 packages align; actual Windows launcher and no-change offline environment checks pass. No product-release, clean-install, model-efficacy or source-typing completion claim. evidence/pacer-resumption/README.md"
+  },
+  {
+    "op": "absorb",
+    "id": "NDL-021",
+    "evidence": "PAC-029 through PAC-033, PAC-035, PAC-036 and PAC-044 reconciled/completed at their stated scopes. Source/symbol inventory, exact acceptance, current documentation/version/launcher/configuration and 73-file distributions verified. Historical failures and qualification gaps retained. PAC-034 shelved; next audit development item PAC-037."
+  }
+]

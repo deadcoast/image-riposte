@@ -31,6 +31,7 @@ class Request:
 
 # These are application effects, not a permission system for hostile local code.
 EFFECTS = {
+    "recipes": "INSPECT", "recipes-save": "SAVE_PUBLISHING_RECIPE",
     "duplicates": "INSPECT",
     "categories": "INSPECT",
     "category-rules": "INSPECT", "category-rules-save": "SAVE_CATEGORY_RULES",
@@ -113,6 +114,16 @@ def recipe(values: RequestValues) -> PublishRecipe:
                                        rms_fraction=values.get("rms_fraction", .95)))
 
 
+def resolved_recipe(root: Path, values: RequestValues) -> PublishRecipe:
+    from ..recipes import SETTINGS, resolve_recipe
+    keys = values.get("recipe_overrides", tuple(SETTINGS))
+    if any(key not in SETTINGS for key in keys):
+        raise RiposteError("RECIPE_SETTINGS_INVALID")
+    data: dict[str, object] = dict(values)
+    return resolve_recipe(root, values.get("recipe_name"), revision=values.get("recipe_revision"),
+                          overrides={key: data[key] for key in keys if key in data})
+
+
 def image_selection(root: Path, values: RequestValues) -> list[str]:
     ids = list(values.get("image_ids") or [])
     all_images = values.get("all_images", False)
@@ -152,6 +163,14 @@ def execute(request: Request, progress: Progress | None = None) -> Any:
             result["model" if len(entries) == 1 else "models"] = entries[0] if len(entries) == 1 else entries
         return result
     root = root_of(request)
+    if name in {"recipes", "recipes-save"}:
+        from ..recipes import inspect_recipes, save_recipe
+        if name == "recipes-save":
+            if not v.get("recipe_name") or v.get("recipe_settings") is None:
+                raise RiposteError("RECIPE_NAME_REQUIRED")
+            return save_recipe(root, cast(str, v["recipe_name"]), cast(dict[str, object], v["recipe_settings"]),
+                               expected_revision=v.get("expected_revision") or "")
+        return inspect_recipes(root, v.get("recipe_name"), settings=v.get("recipe_settings"))
     if name == "duplicates":
         from ..duplicates import ScanOptions, scan_duplicates
         from ..duplicate_review import DuplicateReview
@@ -209,7 +228,7 @@ def execute(request: Request, progress: Progress | None = None) -> Any:
         # Validate selection before replacement; new IDs are resolved only for
         # reviewed image destinations after sorting.
         selected = image_selection(root, v)
-        configuration = recipe(v)
+        configuration = resolved_recipe(root, v)
         if not v.get("all_images"):
             publication_plan(root, selected, configuration)
         policy = Policy(date_mode=v.get("date_mode", "download"), discard_sidecars=v.get("discard_sidecars", False))
@@ -260,7 +279,7 @@ def execute(request: Request, progress: Progress | None = None) -> Any:
         inputs = [Path(p).expanduser().absolute() for p in v.get("input_paths", [])]
         if inputs and (v.get("image_ids") or v.get("all_images") or any(v.get(k) for k in ("year", "month", "size"))):
             raise RiposteError("INPUT_SELECTION_CONFLICT")
-        ids, configuration = ([] if inputs else image_selection(root, v)), recipe(v)
+        ids, configuration = ([] if inputs else image_selection(root, v)), resolved_recipe(root, v)
         intake = {"input_paths": inputs, "date_mode": v.get("date_mode", "download")}
         if name in {"plan", "riposte-plan"}: return publication_plan(root, ids, configuration, **intake)
         return start_publication(root, ids, _paths(v), configuration, device=v.get("device", "auto"),

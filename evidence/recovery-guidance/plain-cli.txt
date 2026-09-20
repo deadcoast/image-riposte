@@ -1,0 +1,4 @@
+
+  [STOP] ROOT_INVALID
+  Root invalid.
+  Next action: Select an existing dedicated image directory.

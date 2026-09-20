@@ -1,0 +1,477 @@
+[
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2224",
+      "AssetType": "FILE",
+      "Path": "evidence/recovery-guidance/OGM-001.json",
+      "Purpose": "PAC-038 scoped acceptance for OGM-001",
+      "PACRefs": "PAC-038",
+      "Notes": "Current scoped acceptance; previous evidence preserved",
+      "Tags": "#acceptance #recovery-guidance"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-001",
+    "artifact": "OVR-2224",
+    "evidence": "PAC-038 scoped review and executed regression evidence: evidence/recovery-guidance/OGM-001.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2225",
+      "AssetType": "FILE",
+      "Path": "evidence/recovery-guidance/OGM-002.json",
+      "Purpose": "PAC-038 scoped acceptance for OGM-002",
+      "PACRefs": "PAC-038",
+      "Notes": "Current scoped acceptance; previous evidence preserved",
+      "Tags": "#acceptance #recovery-guidance"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-002",
+    "artifact": "OVR-2225",
+    "evidence": "PAC-038 scoped review and executed regression evidence: evidence/recovery-guidance/OGM-002.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2226",
+      "AssetType": "FILE",
+      "Path": "evidence/recovery-guidance/OGM-003.json",
+      "Purpose": "PAC-038 scoped acceptance for OGM-003",
+      "PACRefs": "PAC-038",
+      "Notes": "Current scoped acceptance; previous evidence preserved",
+      "Tags": "#acceptance #recovery-guidance"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-003",
+    "artifact": "OVR-2226",
+    "evidence": "PAC-038 scoped review and executed regression evidence: evidence/recovery-guidance/OGM-003.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2227",
+      "AssetType": "FILE",
+      "Path": "evidence/recovery-guidance/OGM-004.json",
+      "Purpose": "PAC-038 scoped acceptance for OGM-004",
+      "PACRefs": "PAC-038",
+      "Notes": "Current scoped acceptance; previous evidence preserved",
+      "Tags": "#acceptance #recovery-guidance"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-004",
+    "artifact": "OVR-2227",
+    "evidence": "PAC-038 scoped review and executed regression evidence: evidence/recovery-guidance/OGM-004.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2228",
+      "AssetType": "FILE",
+      "Path": "evidence/recovery-guidance/OGM-005.json",
+      "Purpose": "PAC-038 scoped acceptance for OGM-005",
+      "PACRefs": "PAC-038",
+      "Notes": "Current scoped acceptance; previous evidence preserved",
+      "Tags": "#acceptance #recovery-guidance"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-005",
+    "artifact": "OVR-2228",
+    "evidence": "PAC-038 scoped review and executed regression evidence: evidence/recovery-guidance/OGM-005.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2229",
+      "AssetType": "FILE",
+      "Path": "evidence/recovery-guidance/OGM-006.json",
+      "Purpose": "PAC-038 scoped acceptance for OGM-006",
+      "PACRefs": "PAC-038",
+      "Notes": "Current scoped acceptance; previous evidence preserved",
+      "Tags": "#acceptance #recovery-guidance"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-006",
+    "artifact": "OVR-2229",
+    "evidence": "PAC-038 scoped review and executed regression evidence: evidence/recovery-guidance/OGM-006.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2230",
+      "AssetType": "FILE",
+      "Path": "evidence/recovery-guidance/OGM-007.json",
+      "Purpose": "PAC-038 scoped acceptance for OGM-007",
+      "PACRefs": "PAC-038",
+      "Notes": "Current scoped acceptance; previous evidence preserved",
+      "Tags": "#acceptance #recovery-guidance"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-007",
+    "artifact": "OVR-2230",
+    "evidence": "PAC-038 scoped review and executed regression evidence: evidence/recovery-guidance/OGM-007.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2231",
+      "AssetType": "FILE",
+      "Path": "evidence/recovery-guidance/OGM-008.json",
+      "Purpose": "PAC-038 scoped acceptance for OGM-008",
+      "PACRefs": "PAC-038",
+      "Notes": "Current scoped acceptance; previous evidence preserved",
+      "Tags": "#acceptance #recovery-guidance"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-008",
+    "artifact": "OVR-2231",
+    "evidence": "PAC-038 scoped review and executed regression evidence: evidence/recovery-guidance/OGM-008.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2232",
+      "AssetType": "FILE",
+      "Path": "evidence/recovery-guidance/OGM-009.json",
+      "Purpose": "PAC-038 scoped acceptance for OGM-009",
+      "PACRefs": "PAC-038",
+      "Notes": "Current scoped acceptance; previous evidence preserved",
+      "Tags": "#acceptance #recovery-guidance"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-009",
+    "artifact": "OVR-2232",
+    "evidence": "PAC-038 scoped review and executed regression evidence: evidence/recovery-guidance/OGM-009.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2233",
+      "AssetType": "FILE",
+      "Path": "evidence/recovery-guidance/OGM-010.json",
+      "Purpose": "PAC-038 scoped acceptance for OGM-010",
+      "PACRefs": "PAC-038",
+      "Notes": "Current scoped acceptance; previous evidence preserved",
+      "Tags": "#acceptance #recovery-guidance"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-010",
+    "artifact": "OVR-2233",
+    "evidence": "PAC-038 scoped review and executed regression evidence: evidence/recovery-guidance/OGM-010.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2234",
+      "AssetType": "FILE",
+      "Path": "evidence/recovery-guidance/OGM-011.json",
+      "Purpose": "PAC-038 scoped acceptance for OGM-011",
+      "PACRefs": "PAC-038",
+      "Notes": "Current scoped acceptance; previous evidence preserved",
+      "Tags": "#acceptance #recovery-guidance"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-011",
+    "artifact": "OVR-2234",
+    "evidence": "PAC-038 scoped review and executed regression evidence: evidence/recovery-guidance/OGM-011.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2235",
+      "AssetType": "FILE",
+      "Path": "evidence/recovery-guidance/OGM-012.json",
+      "Purpose": "PAC-038 scoped acceptance for OGM-012",
+      "PACRefs": "PAC-038",
+      "Notes": "Current scoped acceptance; previous evidence preserved",
+      "Tags": "#acceptance #recovery-guidance"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-012",
+    "artifact": "OVR-2235",
+    "evidence": "PAC-038 scoped review and executed regression evidence: evidence/recovery-guidance/OGM-012.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2236",
+      "AssetType": "FILE",
+      "Path": "evidence/recovery-guidance/OGM-013.json",
+      "Purpose": "PAC-038 scoped acceptance for OGM-013",
+      "PACRefs": "PAC-038",
+      "Notes": "Current scoped acceptance; previous evidence preserved",
+      "Tags": "#acceptance #recovery-guidance"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-013",
+    "artifact": "OVR-2236",
+    "evidence": "PAC-038 scoped review and executed regression evidence: evidence/recovery-guidance/OGM-013.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2237",
+      "AssetType": "FILE",
+      "Path": "evidence/recovery-guidance/OGM-014.json",
+      "Purpose": "PAC-038 scoped acceptance for OGM-014",
+      "PACRefs": "PAC-038",
+      "Notes": "Current scoped acceptance; previous evidence preserved",
+      "Tags": "#acceptance #recovery-guidance"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-014",
+    "artifact": "OVR-2237",
+    "evidence": "PAC-038 scoped review and executed regression evidence: evidence/recovery-guidance/OGM-014.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2238",
+      "AssetType": "FILE",
+      "Path": "evidence/recovery-guidance/OGM-015.json",
+      "Purpose": "PAC-038 scoped acceptance for OGM-015",
+      "PACRefs": "PAC-038",
+      "Notes": "Current scoped acceptance; previous evidence preserved",
+      "Tags": "#acceptance #recovery-guidance"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-015",
+    "artifact": "OVR-2238",
+    "evidence": "PAC-038 scoped review and executed regression evidence: evidence/recovery-guidance/OGM-015.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2239",
+      "AssetType": "FILE",
+      "Path": "evidence/recovery-guidance/OGM-016.json",
+      "Purpose": "PAC-038 scoped acceptance for OGM-016",
+      "PACRefs": "PAC-038",
+      "Notes": "Current scoped acceptance; previous evidence preserved",
+      "Tags": "#acceptance #recovery-guidance"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-016",
+    "artifact": "OVR-2239",
+    "evidence": "PAC-038 scoped review and executed regression evidence: evidence/recovery-guidance/OGM-016.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2240",
+      "AssetType": "FILE",
+      "Path": "evidence/recovery-guidance/OGM-017.json",
+      "Purpose": "PAC-038 scoped acceptance for OGM-017",
+      "PACRefs": "PAC-038",
+      "Notes": "Current scoped acceptance; previous evidence preserved",
+      "Tags": "#acceptance #recovery-guidance"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-017",
+    "artifact": "OVR-2240",
+    "evidence": "PAC-038 scoped review and executed regression evidence: evidence/recovery-guidance/OGM-017.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2241",
+      "AssetType": "FILE",
+      "Path": "evidence/recovery-guidance/OGM-018.json",
+      "Purpose": "PAC-038 scoped acceptance for OGM-018",
+      "PACRefs": "PAC-038",
+      "Notes": "Current scoped acceptance; previous evidence preserved",
+      "Tags": "#acceptance #recovery-guidance"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-018",
+    "artifact": "OVR-2241",
+    "evidence": "PAC-038 scoped review and executed regression evidence: evidence/recovery-guidance/OGM-018.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2242",
+      "AssetType": "FILE",
+      "Path": "evidence/recovery-guidance/OGM-019.json",
+      "Purpose": "PAC-038 scoped acceptance for OGM-019",
+      "PACRefs": "PAC-038",
+      "Notes": "Current scoped acceptance; previous evidence preserved",
+      "Tags": "#acceptance #recovery-guidance"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-019",
+    "artifact": "OVR-2242",
+    "evidence": "PAC-038 scoped review and executed regression evidence: evidence/recovery-guidance/OGM-019.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2243",
+      "AssetType": "FILE",
+      "Path": "evidence/recovery-guidance/OGM-020.json",
+      "Purpose": "PAC-038 scoped acceptance for OGM-020",
+      "PACRefs": "PAC-038",
+      "Notes": "Current scoped acceptance; previous evidence preserved",
+      "Tags": "#acceptance #recovery-guidance"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-020",
+    "artifact": "OVR-2243",
+    "evidence": "PAC-038 scoped review and executed regression evidence: evidence/recovery-guidance/OGM-020.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2244",
+      "AssetType": "FILE",
+      "Path": "evidence/recovery-guidance/OGM-021.json",
+      "Purpose": "PAC-038 scoped acceptance for OGM-021",
+      "PACRefs": "PAC-038",
+      "Notes": "Current scoped acceptance; previous evidence preserved",
+      "Tags": "#acceptance #recovery-guidance"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-021",
+    "artifact": "OVR-2244",
+    "evidence": "PAC-038 scoped review and executed regression evidence: evidence/recovery-guidance/OGM-021.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2245",
+      "AssetType": "FILE",
+      "Path": "evidence/recovery-guidance/OGM-022.json",
+      "Purpose": "PAC-038 scoped acceptance for OGM-022",
+      "PACRefs": "PAC-038",
+      "Notes": "Current scoped acceptance; previous evidence preserved",
+      "Tags": "#acceptance #recovery-guidance"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-022",
+    "artifact": "OVR-2245",
+    "evidence": "PAC-038 scoped review and executed regression evidence: evidence/recovery-guidance/OGM-022.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2246",
+      "AssetType": "FILE",
+      "Path": "evidence/recovery-guidance/OGM-023.json",
+      "Purpose": "PAC-038 scoped acceptance for OGM-023",
+      "PACRefs": "PAC-038",
+      "Notes": "Current scoped acceptance; previous evidence preserved",
+      "Tags": "#acceptance #recovery-guidance"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-023",
+    "artifact": "OVR-2246",
+    "evidence": "PAC-038 scoped review and executed regression evidence: evidence/recovery-guidance/OGM-023.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2247",
+      "AssetType": "FILE",
+      "Path": "evidence/recovery-guidance/OGM-024.json",
+      "Purpose": "PAC-038 scoped acceptance for OGM-024",
+      "PACRefs": "PAC-038",
+      "Notes": "Current scoped acceptance; previous evidence preserved",
+      "Tags": "#acceptance #recovery-guidance"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-024",
+    "artifact": "OVR-2247",
+    "evidence": "PAC-038 scoped review and executed regression evidence: evidence/recovery-guidance/OGM-024.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2248",
+      "AssetType": "FILE",
+      "Path": "evidence/recovery-guidance/OGM-025.json",
+      "Purpose": "PAC-038 scoped acceptance for OGM-025",
+      "PACRefs": "PAC-038",
+      "Notes": "Current scoped acceptance; previous evidence preserved",
+      "Tags": "#acceptance #recovery-guidance"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-025",
+    "artifact": "OVR-2248",
+    "evidence": "PAC-038 scoped review and executed regression evidence: evidence/recovery-guidance/OGM-025.json"
+  }
+]

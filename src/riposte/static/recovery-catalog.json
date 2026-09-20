@@ -1,0 +1,492 @@
+{
+  "version": 1,
+  "aliases": {
+    "sort": "sort",
+    "organize": "sort",
+    "apply": "sort",
+    "sort-riposte": "sort",
+    "sort-riposte-plan": "sort",
+    "plan": "sort",
+    "inspect": "sort",
+    "rules": "rules",
+    "categories": "rules",
+    "category-rules": "rules",
+    "category-rules-save": "rules",
+    "review": "rules",
+    "save": "rules",
+    "load": "rules",
+    "discover": "rules",
+    "undo": "undo",
+    "undo-sort": "undo",
+    "restore": "undo",
+    "undo-sort-apply": "undo",
+    "duplicates": "duplicates",
+    "duplicate-scan": "duplicates",
+    "duplicate-export": "duplicates",
+    "publish": "publish",
+    "riposte": "publish",
+    "riposte-plan": "publish",
+    "package": "publish",
+    "resume": "publish",
+    "review-publication": "publish",
+    "publications": "publish",
+    "batches": "publish"
+  },
+  "entries": {
+    "DUPLICATE_SOURCE_CHANGED": {
+      "title": "Duplicate source changed.",
+      "action": "A compared file changed. Run a new duplicate scan before reviewing it."
+    },
+    "DUPLICATE_REPORT_EXISTS": {
+      "title": "Duplicate report exists.",
+      "action": "That report already exists. Choose a new .json or .csv filename."
+    },
+    "DUPLICATE_REPORT_PATH_INVALID": {
+      "title": "Duplicate report path invalid.",
+      "action": "Choose a new report file in an existing local folder without linked directories."
+    },
+    "DUPLICATE_REPORT_WRITE_FAILED": {
+      "title": "Duplicate report write failed.",
+      "action": "The report could not be written. Check access and choose another path."
+    },
+    "DUPLICATE_EXPORT_FORMAT_INVALID": {
+      "title": "Duplicate export format invalid.",
+      "action": "Use .json for complete evidence or .csv for the finding summary."
+    },
+    "DUPLICATE_OPTIONS_INVALID": {
+      "title": "Duplicate options invalid.",
+      "action": "Use positive scan limits within the supported ranges."
+    },
+    "SORT_FLOAT_ROOT": {
+      "title": "Sort float root.",
+      "action": "This folder is inside _float_ or __float__ and is excluded from sorting. Choose its outside parent to sort other files, or use RIPOSTE to protect these images."
+    },
+    "CATEGORY_PREVIEW_REQUIRED": {
+      "title": "Category preview required.",
+      "action": "Preview the sort first, then confirm that displayed plan with REPLACE."
+    },
+    "CATEGORY_PREVIEW_CHANGED": {
+      "title": "Category preview changed.",
+      "action": "Files, rules or destinations changed. Inspect again, review the updated plan, then confirm before applying."
+    },
+    "CATEGORY_PREVIEW_BLOCKED": {
+      "title": "Category preview blocked.",
+      "action": "Review the blockers in the sort preview. Full Sort Workshop lets you adjust categories and sidecar consent before previewing again."
+    },
+    "SORT_PREVIEW_REQUIRED": {
+      "title": "Sort preview required.",
+      "action": "Preview this sort first, then apply with its plan ID. In the terminal, inspect and confirm the displayed plan."
+    },
+    "SORT_PREVIEW_CHANGED": {
+      "title": "Sort preview changed.",
+      "action": "Files, destinations or settings changed. Inspect again and confirm the refreshed plan before sorting."
+    },
+    "IMAGE_FOLDER_OVERLAPS_APPLICATION": {
+      "title": "Image folder overlaps application.",
+      "action": "Choose an image/results folder separate from the RIPOSTE application folder, outside it and its parents."
+    },
+    "APPLICATION_LAYOUT_INVALID": {
+      "title": "Application layout invalid.",
+      "action": "RIPOSTE could not verify its source checkout configuration. Restore pyproject.toml before selecting an image/results folder."
+    },
+    "VIDEO_PROBE_UNAVAILABLE": {
+      "title": "Video probe unavailable.",
+      "action": "Video sorting needs ffprobe from FFmpeg on PATH. Image-only sorting works without it."
+    },
+    "VIDEO_PROBE_FAILED": {
+      "title": "Video probe failed.",
+      "action": "This video could not be read. Its original stays in place; inspect or repair it separately."
+    },
+    "NO_SORT_TO_UNDO": {
+      "title": "No sort to undo.",
+      "action": "No recorded sort is available. Sorts made before undo history was introduced cannot be restored by this application."
+    },
+    "SORT_RECOVERY_REQUIRED": {
+      "title": "An interrupted sort needs recovery.",
+      "action": "Open Undo last sort and review its recovery preview and blockers. Confirm UNDO only when ready, then create a new sort preview. Keep the history and recovery copies intact."
+    },
+    "SORT_HISTORY_CHANGED_REPREVIEW": {
+      "title": "Sort history changed repreview.",
+      "action": "The last sort changed since your preview. Preview Undo last sort again."
+    },
+    "UNDO_SOURCE_OCCUPIED": {
+      "title": "Undo source occupied.",
+      "action": "An original path is occupied by a later file. Move that file somewhere safe, then preview undo again."
+    },
+    "UNDO_SOURCE_CHANGED": {
+      "title": "An original changed during recovery.",
+      "action": "Preserve the current original separately. Compare it with the recorded recovery copy before restoring the expected version from a verified backup, then preview undo again. Keep history intact."
+    },
+    "UNDO_OUTPUT_CHANGED": {
+      "title": "A sorted output changed after sorting.",
+      "action": "Keep a separate copy of the edited output. Restore the exact recorded output from a verified backup if available, then preview Undo last sort again. Do not overwrite your only edited copy or bypass verification."
+    },
+    "UNDO_BACKUP_CHANGED": {
+      "title": "Undo backup changed.",
+      "action": "A recovery copy is missing or damaged. Restore the recovery history from your backup before retrying."
+    },
+    "UNDO_CATALOG_CHANGED": {
+      "title": "The catalog changed after sorting.",
+      "action": "Preserve the current catalog and all image files. Inspect the sort journal and restore only a verified consistent backup before previewing undo again; do not force an older catalog over newer work."
+    },
+    "SORT_HISTORY_INVALID": {
+      "title": "Sort recovery history could not be verified.",
+      "action": "Stop changes in this workspace. Preserve originals, sorted copies and .riposte/sort-history (or the legacy state folder) together. Inspect the journal or restore a verified backup before previewing Undo last sort; do not delete or reset the history."
+    },
+    "INPUT_SELECTION_CONFLICT": {
+      "title": "Input selection conflict.",
+      "action": "Choose files/folders with --input, or catalog images with --image/--all. Use a separate run for each selection type."
+    },
+    "SORT_USES_WORKSPACE_ROOT": {
+      "title": "Sort uses workspace root.",
+      "action": "Sort + RIPOSTE sorts ROOT. For selected files or folders without sorting, choose RIPOSTE and --input."
+    },
+    "SORT_CONSENT_REQUIRES_COMBINED_WORKFLOW": {
+      "title": "Sort consent requires combined workflow.",
+      "action": "Use sort or sort-riposte for source replacement. RIPOSTE preserves original inputs."
+    },
+    "INPUT_NOT_FOUND": {
+      "title": "Input not found.",
+      "action": "Choose an existing image or directory; relative paths use the current working directory."
+    },
+    "INPUT_LINK_REQUIRES_REVIEW": {
+      "title": "Input link requires review.",
+      "action": "Select the original file or directory directly; symbolic links and junctions are not followed."
+    },
+    "INPUT_APPLICATION_STATE_REJECTED": {
+      "title": "Input application state rejected.",
+      "action": "Choose original image or a catalog image. Internal application records are excluded from input discovery."
+    },
+    "INPUT_DECODE_FAILED": {
+      "title": "Input decode failed.",
+      "action": "A selected image could not be decoded. Repair it or select other inputs; originals remain unchanged."
+    },
+    "INPUT_UNREADABLE": {
+      "title": "Input unreadable.",
+      "action": "Check read access to the selected directory and preview again."
+    },
+    "INPUT_CHANGED_REPLAN": {
+      "title": "Input changed replan.",
+      "action": "An input changed during inspection. Preview the current selection again."
+    },
+    "NO_INPUT_IMAGES": {
+      "title": "No input images.",
+      "action": "Select at least one decodable image or a directory containing images."
+    },
+    "PUBLICATION_INPUT_MISSING": {
+      "title": "Publication input missing.",
+      "action": "The batch's clean input snapshot is missing. Restore its application state or start a new batch from the originals."
+    },
+    "DECODE_FAILED": {
+      "title": "Decode failed.",
+      "action": "The image could not be decoded; the source was left untouched."
+    },
+    "SIDECAR_REQUIRES_DISCARD": {
+      "title": "Sidecar requires discard.",
+      "action": "Enable Discard metadata sidecars before applying their removal."
+    },
+    "UNSUPPORTED_FILE": {
+      "title": "Unsupported file.",
+      "action": "Review this unsupported input separately; it was not silently removed."
+    },
+    "CATALOG_FILE_CHANGED": {
+      "title": "Catalog file changed.",
+      "action": "A managed clean image changed outside RIPOSTE; inspect the file before proceeding."
+    },
+    "CATALOG_FILE_MISSING": {
+      "title": "Catalog file missing.",
+      "action": "A catalogued clean image is missing; restore the intended clean file before proceeding."
+    },
+    "CLI_ARGUMENT_INVALID": {
+      "title": "Cli argument invalid.",
+      "action": "Use riposte COMMAND --help for the accepted arguments and ranges. Rejected values are not echoed."
+    },
+    "CLEAN_MASTER_VIEW_INVALID": {
+      "title": "Clean master view invalid.",
+      "action": "Clean-master inspection is identity-only. Use a publishing output or trial for difference and transport views."
+    },
+    "ROOT_INVALID": {
+      "title": "Root invalid.",
+      "action": "Select an existing dedicated image directory."
+    },
+    "WORKSPACE_REQUIRED": {
+      "title": "Workspace required.",
+      "action": "Choose a workspace in the menu or supply ROOT in the command."
+    },
+    "SELECT_IMAGES_OR_ALL": {
+      "title": "Select images or all.",
+      "action": "Use one or more --image IDs, or use --all; not both."
+    },
+    "ORGANIZATION_CHECKPOINT_REQUIRED": {
+      "title": "Organization checkpoint required.",
+      "action": "Open Clean & organize to inspect the unresolved inputs."
+    },
+    "NO_MODEL_NO_PROTECTION": {
+      "title": "No model no protection.",
+      "action": "Choose a compatible local encoder. No noise-only fallback is used."
+    },
+    "LOCAL_VAE_DIRECTORY_REQUIRED": {
+      "title": "Local vae directory required.",
+      "action": "Select a local encoder directory containing config and safetensors."
+    },
+    "OPTIONAL_DEPENDENCIES_REQUIRED": {
+      "title": "Optional dependencies required.",
+      "action": "Install this application's [lab] extra into its Python environment."
+    },
+    "WORKSPACE_LOCKED": {
+      "title": "This workspace is locked.",
+      "action": "Wait for the current operation to finish; check other RIPOSTE windows and terminals. After a crashed process has exited, retry once: RIPOSTE checks ownership before reclaiming a matching abandoned marker. If it stays locked, keep the lock, lease and history intact and record this code for investigation. Do not delete lock files."
+    },
+    "PUBLICATION_REVIEW_ACKNOWLEDGEMENT_REQUIRED": {
+      "title": "Publication review acknowledgement required.",
+      "action": "Record visual acceptance and the unverified-status acknowledgement."
+    },
+    "NO_APPROVED_PUBLICATION_OUTPUTS": {
+      "title": "No approved publication outputs.",
+      "action": "Review the exact candidate images before packaging."
+    },
+    "LOCAL_VIEWER_UNAVAILABLE": {
+      "title": "Local viewer unavailable.",
+      "action": "No local image viewer accepted the handoff. The audited PNG is unchanged."
+    },
+    "JOB_CANCELLED": {
+      "title": "The operation was cancelled at a safe boundary.",
+      "action": "Inspect the recorded result before starting another operation. Completed outputs may remain.",
+      "operations": {
+        "duplicates": "Scanning changed no files. Previous displayed findings may be out of date; run a new scan when ready.",
+        "sort": "The read-only inspection stopped. Create a new preview before confirming a sort.",
+        "rules": "The read-only review stopped. Your editor draft remains available; review it again before saving.",
+        "undo": "The read-only undo inspection stopped. Preview Undo last sort again before confirming UNDO.",
+        "publish": "Check the batch and retained outputs before resuming with matching model identities. Review the actual output pixels before approval; changes are never retried automatically."
+      }
+    },
+    "INTERACTIVE_REQUIRES_TTY": {
+      "title": "Interactive requires tty.",
+      "action": "Use a terminal, ui --linear for explicit scripted menus, or a direct command."
+    },
+    "FIELD_VALUE_INVALID": {
+      "title": "Field value invalid.",
+      "action": "Correct the selected field; press Esc to discard this edit."
+    },
+    "PUBLICATION_ARTIFACT_CHANGED": {
+      "title": "Publication artifact changed.",
+      "action": "The committed file no longer matches its record. It was not silently replaced."
+    },
+    "OUTPUT_WRITE_REFUSED": {
+      "title": "Output write refused.",
+      "action": "Choose a new output filename; this operation never overwrites an unrelated file."
+    },
+    "OPERATION_FAILED": {
+      "title": "The operation could not finish.",
+      "action": "Keep files and recovery records intact. Check the operation status before trying again; changes are never retried automatically.",
+      "operations": {
+        "sort": "Inspect the current files and sort history before retrying. If a sort was interrupted, preview Undo last sort. Otherwise create and review a fresh sort preview; changes are never retried automatically.",
+        "rules": "Your draft stays available in the editor. Copy any edits you need before loading saved rules, then review the replacement before saving. Changes are never retried automatically.",
+        "undo": "Keep originals, sorted copies and recovery records intact. Preview Undo last sort and inspect its blockers before confirming UNDO; changes are never retried automatically.",
+        "publish": "Check the batch and retained outputs before resuming with matching model identities. Review the actual output pixels before approval; changes are never retried automatically.",
+        "duplicates": "Run a fresh duplicate scan with the current files and settings. Scanning changes no files; any previous findings may be out of date."
+      }
+    },
+    "NETWORK_UNAVAILABLE": {
+      "title": "The local server could not be reached.",
+      "action": "Check that RIPOSTE is still running and reopen its private session URL. Check job status before retrying a write: a missing response does not show whether it completed.",
+      "operations": {
+        "sort": "Reconnect to the local server, then inspect job status and sort history. A missing response does not prove that sorting stopped. Review a new preview before retrying.",
+        "rules": "Reconnect to the local server. Copy your draft before loading saved rules to check whether the save completed; review again before saving.",
+        "duplicates": "Reconnect to the local server and check scan status. Start a new scan only if the previous scan is no longer running; scanning changes no files.",
+        "undo": "Reconnect to the local server and inspect job status. Keep all recovery files intact; preview Undo last sort again before retrying.",
+        "publish": "Reconnect to the local server and check batch status and retained outputs before resuming. A missing response does not prove that publishing stopped."
+      }
+    },
+    "REQUEST_FAILED": {
+      "title": "The server response could not be read.",
+      "action": "Check operation status before retrying. Keep files and recovery records intact; the missing result does not show whether changes completed.",
+      "operations": {
+        "sort": "Reconnect to the local server, then inspect job status and sort history. A missing response does not prove that sorting stopped. Review a new preview before retrying.",
+        "rules": "Reconnect to the local server. Copy your draft before loading saved rules to check whether the save completed; review again before saving.",
+        "duplicates": "Reconnect to the local server and check scan status. Start a new scan only if the previous scan is no longer running; scanning changes no files.",
+        "undo": "Reconnect to the local server and inspect job status. Keep all recovery files intact; preview Undo last sort again before retrying.",
+        "publish": "Reconnect to the local server and check batch status and retained outputs before resuming. A missing response does not prove that publishing stopped."
+      }
+    },
+    "WORKSPACE_LOCK_UNAVAILABLE": {
+      "title": "Workspace ownership could not be established.",
+      "action": "Check write access to this local workspace and whether another process is using it. Keep lock and lease files intact. Do not bypass the ownership check or delete lock files."
+    },
+    "STATE_PATH_INVALID": {
+      "title": "Application state cannot be accessed safely.",
+      "action": "Keep the application state and recovery records intact. Inspect linked, replaced or inaccessible state paths and permissions before retrying; do not delete lock files or reset history."
+    },
+    "UNDO_ASSIGNMENTS_CHANGED": {
+      "title": "Private category assignments changed after sorting.",
+      "action": "Keep the current assignments and sort history intact. Inspect the saved journal and restore a verified consistent backup before previewing undo again; do not reset assignment records."
+    },
+    "CATEGORY_RULES_CHANGED": {
+      "title": "Saved category rules changed.",
+      "action": "Copy any draft edits you need before loading saved rules. Load the current rules, review your replacement, then save against that revision. Inspect sort destinations again after saving."
+    },
+    "CATEGORY_REVISION_REQUIRED": {
+      "title": "A reviewed rules revision is required.",
+      "action": "Review the category draft again before saving it. Use the revision returned by that review; do not invent a revision or bypass the check."
+    },
+    "CATEGORY_RULES_UNREADABLE": {
+      "title": "Saved category rules could not be read.",
+      "action": "Keep a copy of the saved category-rules.json in the application state folder. Check read access or restore a valid backup, then load and review the rules. You can turn off categories in Full Sort Workshop to preview date/media/size sorting."
+    },
+    "CATEGORY_RULES_INVALID": {
+      "title": "Category rules are invalid.",
+      "action": "Check category names, matching phrases and highlighted fields. If the saved file is damaged, preserve it before restoring valid rules. You can turn off categories in Full Sort Workshop to preview without categories. Clearing saved rules requires an explicit choice."
+    },
+    "CATEGORY_DRAFT_INVALID": {
+      "title": "The category draft is invalid.",
+      "action": "Check category names and matching phrases. Each phrase supports one to three words. Correct highlighted fields, then review the draft again."
+    },
+    "CATEGORY_SLUG_INVALID": {
+      "title": "A category folder name is invalid.",
+      "action": "Use lowercase words separated by hyphens, up to 80 characters. Avoid reserved folder names, then review the draft again."
+    },
+    "CATEGORY_SLUG_DUPLICATE": {
+      "title": "Category folder names must be unique.",
+      "action": "Give each category a different folder name, then review the replacement again."
+    },
+    "CATEGORY_RULE_CONTRADICTION": {
+      "title": "A phrase is both matched and excluded.",
+      "action": "Remove that phrase from one list, then review the category draft again."
+    },
+    "CATEGORY_PRIORITY_INVALID": {
+      "title": "A category priority is invalid.",
+      "action": "Enter a whole number from -1000000 to 1000000, then review the draft again."
+    },
+    "CATEGORY_DRAFT_REQUIRED": {
+      "title": "No category draft is ready.",
+      "action": "Add category rules, or explicitly select Clear all saved rules. Review the draft before saving."
+    },
+    "CATEGORY_OVERRIDE_INVALID": {
+      "title": "A rule override refers to an unknown category.",
+      "action": "Check that exclusion, priority and folder-name overrides use the name of a category in this replacement draft. Review again before saving."
+    },
+    "CATEGORY_OPTIONS_INVALID": {
+      "title": "Category options are invalid.",
+      "action": "Use a positive whole number for the discovery minimum count. Review the command help or highlighted category fields for other supported values."
+    },
+    "CATEGORY_ASSIGNMENT_INVALID": {
+      "title": "A selected file or category is no longer available.",
+      "action": "Reload category choices, clear or replace the affected per-file choice and inspect again. Selecting a category is optional; automatic sorting remains available."
+    },
+    "ACKNOWLEDGE_SOURCE_REMOVAL_REQUIRED": {
+      "title": "Source replacement has not been confirmed.",
+      "action": "Inspect the exact destinations first. Confirm the displayed preview before applying; a new preview is required if files or settings changed."
+    },
+    "TITLE_PROVENANCE_CHANGED": {
+      "title": "Saved original-title records changed.",
+      "action": "Inspect again to build a preview from the current records. Keep private title records intact; never infer a missing title from an unrelated file."
+    },
+    "SOURCE_CHANGED": {
+      "title": "An input changed during the operation.",
+      "action": "Inspect the current files and sort history before retrying. Preserve all versions; use Undo last sort if the journal reports an interrupted sort."
+    },
+    "SOURCE_CHANGED_OUTPUT_RETAINED": {
+      "title": "An input changed after an output was written.",
+      "action": "Keep both the original and retained output. Preview Undo last sort to inspect recorded changes before attempting another sort; do not delete the retained output or recovery history."
+    },
+    "DESTINATION_EXISTS": {
+      "title": "A destination is already occupied.",
+      "action": "Preserve the existing file. Inspect again to review current destinations; do not overwrite an unrelated file to force this plan through."
+    },
+    "WRITE_VERIFY_FAILED": {
+      "title": "A written copy failed verification.",
+      "action": "Keep originals and recovery records intact. Check storage health and available space, then inspect recorded changes with Undo last sort before attempting another sort."
+    },
+    "HARDLINK_REQUIRES_REVIEW": {
+      "title": "A linked file needs review.",
+      "action": "Select an independent original file for processing. Inspect its links before making changes; RIPOSTE will not silently rewrite shared file content."
+    },
+    "AMBIGUOUS": {
+      "title": "More than one category matches.",
+      "action": "No correction is required to sort. Files without an existing category use Year/Month/media/size; an existing category stays. You may optionally choose a category, then inspect again.",
+      "level": "info"
+    },
+    "ORIGINAL_TITLE_UNAVAILABLE": {
+      "title": "The original title is unavailable.",
+      "action": "No correction is required to sort. Files without an existing category use Year/Month/media/size; an existing category stays. You may optionally choose a category, then inspect again.",
+      "level": "info"
+    },
+    "UNMATCHED": {
+      "title": "No category matches this title.",
+      "action": "No correction is required to sort. Files without an existing category use Year/Month/media/size; an existing category stays. You may optionally choose a category, then inspect again.",
+      "level": "info"
+    },
+    "SESSION_REQUIRED": {
+      "title": "The private browser session is missing.",
+      "action": "Open the private session URL printed by riposte serve. Keep that URL private; reopening it reconnects this browser to the running local server."
+    },
+    "HOST_REJECTED": {
+      "title": "This server address is not allowed.",
+      "action": "Open the local address printed by riposte serve; do not bypass its host check."
+    },
+    "ORIGIN_REJECTED": {
+      "title": "This browser origin is not allowed.",
+      "action": "Open the private local session URL printed by riposte serve and retry from that page."
+    },
+    "REQUEST_INVALID": {
+      "title": "The request contains unsupported values.",
+      "action": "Check the selected fields and supported ranges, then submit again. Refresh an outdated browser page after preserving draft edits."
+    },
+    "REQUEST_TOO_LARGE": {
+      "title": "The request is too large.",
+      "action": "Reduce the selection or category draft and try again within the documented limits."
+    },
+    "IMAGE_READ_FAILED": {
+      "title": "The requested image could not be loaded.",
+      "action": "Check that the local server and recorded image are available, then reopen the review. Do not approve an image you could not inspect."
+    },
+    "INSTALL_LAB_DEPENDENCIES": {
+      "title": "Optional model dependencies are missing.",
+      "action": "Install this application's [lab] extra into its Python environment, then run Check setup again."
+    },
+    "VAE_ARCHITECTURE_UNSUPPORTED": {
+      "title": "This model architecture is not supported.",
+      "action": "Choose a compatible local AutoencoderKL or AutoencoderTiny encoder directory, then run Check setup."
+    },
+    "DEVICE_UNAVAILABLE": {
+      "title": "The selected compute device is unavailable.",
+      "action": "Run Check setup and choose an available device; CPU is an option for supported models."
+    },
+    "NO_EDITABLE_PIXEL_BUDGET": {
+      "title": "The settings leave no editable pixels.",
+      "action": "Review the protection budget and frozen-region settings, then preview again. No noise-only fallback is used."
+    },
+    "ZERO_GRADIENT_NO_CANDIDATE": {
+      "title": "The model supplied no usable image gradient.",
+      "action": "Check the selected model and supported configuration before another run. No noise-only candidate was created."
+    },
+    "CANDIDATE_SIZE_MISMATCH": {
+      "title": "The candidate dimensions do not match.",
+      "action": "Choose an image matching the selected publishing raster dimensions, then reopen the visual review."
+    },
+    "DUPLICATE_SCAN_NOT_FOUND": {
+      "title": "This duplicate scan is no longer available.",
+      "action": "Run a new duplicate scan to rebuild the session report. Scanning changes no files."
+    },
+    "DUPLICATE_FINDING_NOT_FOUND": {
+      "title": "This finding is no longer available.",
+      "action": "Open the current duplicate scan or run a new scan, then select a finding from that report."
+    },
+    "ACKNOWLEDGE_SORT_RESTORE_REQUIRED": {
+      "title": "Undo has not been confirmed.",
+      "action": "Preview Undo last sort and inspect its blockers. Confirm that specific sort only when the preview is ready; keep its sort ID for the restore request."
+    },
+    "JOB_ALREADY_RUNNING": {
+      "title": "An operation is already running.",
+      "action": "Wait for its completion or request Stop if that operation supports cancellation. Inspect its result before starting another operation."
+    },
+    "JOB_CANCELLATION_UNSUPPORTED": {
+      "title": "This commit cannot be interrupted safely.",
+      "action": "Wait for the sort, undo or rules save to finish. Do not close its process or remove lock files during a source or record commit."
+    },
+    "JOB_MANAGER_CLOSED": {
+      "title": "The local job manager is shutting down.",
+      "action": "Wait for the current process to finish, then launch RIPOSTE again and inspect recorded operation status before retrying."
+    }
+  }
+}

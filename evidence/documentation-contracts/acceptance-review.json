@@ -1,0 +1,217 @@
+[
+  {
+    "id": "OGM-001",
+    "changed_sources": [
+      "MANIFEST.in",
+      "README.md",
+      "RELEASE-MANIFEST.json",
+      "docs/CHANGELOG.md",
+      "docs/CLI.md",
+      "docs/PROJECT-STATUS.md",
+      "docs/TERMINAL-DESIGN.spec.md",
+      "src/riposte_studio.egg-info/PKG-INFO",
+      "src/riposte_studio.egg-info/SOURCES.txt",
+      "todo-audit.PACER.md",
+      "typing/evidence/pacer-inventory.json",
+      "typing/evidence/runtime-contracts.txt",
+      "typing/evidence/tooling-regressions.txt",
+      "typing/pacer_inventory.py"
+    ],
+    "review": "PAC-039 documentation-only delta review. Every one of the 76 application files matches the preceding reviewed snapshot. Source/stub/launcher/runtime-test behavior is unchanged; changed direct inputs are enumerated below. Generated egg-info PKG-INFO and SOURCES.txt reflect the README and documentation inclusion change. Prior requirement-specific execution remains historical evidence with its original limitations. Fresh focused privacy/recovery regressions, seven external stages, parser/link/archive checks and package equality support the documentation change, not a new whole-product/platform/model qualification. Inventory admits the current documentation/index/evidence owners; seven external stages pass against the unchanged 76-file application and 536 declared signatures. Inventory scope remains explicit."
+  },
+  {
+    "id": "OGM-002",
+    "changed_sources": [
+      "typing/evidence/pacer-inventory.json",
+      "typing/evidence/runtime-contracts.txt",
+      "typing/evidence/tooling-regressions.txt",
+      "typing/pacer_inventory.py"
+    ],
+    "review": "PAC-039 documentation-only delta review. Every one of the 76 application files matches the preceding reviewed snapshot. Source/stub/launcher/runtime-test behavior is unchanged; changed direct inputs are enumerated below. Generated egg-info PKG-INFO and SOURCES.txt reflect the README and documentation inclusion change. Prior requirement-specific execution remains historical evidence with its original limitations. Fresh focused privacy/recovery regressions, seven external stages, parser/link/archive checks and package equality support the documentation change, not a new whole-product/platform/model qualification. The source audit is not rerun or reclassified. PAC-038 retains 825 strict diagnostics in 36 of 66 files; current application bytes match that evidence. External tooling checks run separately."
+  },
+  {
+    "id": "OGM-003",
+    "changed_sources": [
+      "README.md",
+      "docs/CHANGELOG.md",
+      "docs/CLI.md",
+      "docs/TERMINAL-DESIGN.spec.md",
+      "typing/evidence/pacer-inventory.json",
+      "typing/evidence/runtime-contracts.txt",
+      "typing/evidence/tooling-regressions.txt",
+      "typing/pacer_inventory.py"
+    ],
+    "review": "PAC-039 documentation-only delta review. Every one of the 76 application files matches the preceding reviewed snapshot. Source/stub/launcher/runtime-test behavior is unchanged; changed direct inputs are enumerated below. Generated egg-info PKG-INFO and SOURCES.txt reflect the README and documentation inclusion change. Prior requirement-specific execution remains historical evidence with its original limitations. Fresh focused privacy/recovery regressions, seven external stages, parser/link/archive checks and package equality support the documentation change, not a new whole-product/platform/model qualification. No implementation change in this requirement; its earlier source-bound review remains applicable after documentation correction and dependency refresh."
+  },
+  {
+    "id": "OGM-006",
+    "changed_sources": [
+      "docs/PUBLISHING.md"
+    ],
+    "review": "PAC-039 documentation-only delta review. Every one of the 76 application files matches the preceding reviewed snapshot. Source/stub/launcher/runtime-test behavior is unchanged; changed direct inputs are enumerated below. Generated egg-info PKG-INFO and SOURCES.txt reflect the README and documentation inclusion change. Prior requirement-specific execution remains historical evidence with its original limitations. Fresh focused privacy/recovery regressions, seven external stages, parser/link/archive checks and package equality support the documentation change, not a new whole-product/platform/model qualification. No implementation change in this requirement; its earlier source-bound review remains applicable after documentation correction and dependency refresh."
+  },
+  {
+    "id": "OGM-007",
+    "changed_sources": [
+      "docs/PUBLISHING.md"
+    ],
+    "review": "PAC-039 documentation-only delta review. Every one of the 76 application files matches the preceding reviewed snapshot. Source/stub/launcher/runtime-test behavior is unchanged; changed direct inputs are enumerated below. Generated egg-info PKG-INFO and SOURCES.txt reflect the README and documentation inclusion change. Prior requirement-specific execution remains historical evidence with its original limitations. Fresh focused privacy/recovery regressions, seven external stages, parser/link/archive checks and package equality support the documentation change, not a new whole-product/platform/model qualification. No implementation change in this requirement; its earlier source-bound review remains applicable after documentation correction and dependency refresh."
+  },
+  {
+    "id": "OGM-009",
+    "changed_sources": [
+      "README.md",
+      "docs/CLI.md"
+    ],
+    "review": "PAC-039 documentation-only delta review. Every one of the 76 application files matches the preceding reviewed snapshot. Source/stub/launcher/runtime-test behavior is unchanged; changed direct inputs are enumerated below. Generated egg-info PKG-INFO and SOURCES.txt reflect the README and documentation inclusion change. Prior requirement-specific execution remains historical evidence with its original limitations. Fresh focused privacy/recovery regressions, seven external stages, parser/link/archive checks and package equality support the documentation change, not a new whole-product/platform/model qualification. No implementation change in this requirement; its earlier source-bound review remains applicable after documentation correction and dependency refresh."
+  },
+  {
+    "id": "OGM-010",
+    "changed_sources": [],
+    "review": "PAC-039 documentation-only delta review. Every one of the 76 application files matches the preceding reviewed snapshot. Source/stub/launcher/runtime-test behavior is unchanged; changed direct inputs are enumerated below. Generated egg-info PKG-INFO and SOURCES.txt reflect the README and documentation inclusion change. Prior requirement-specific execution remains historical evidence with its original limitations. Fresh focused privacy/recovery regressions, seven external stages, parser/link/archive checks and package equality support the documentation change, not a new whole-product/platform/model qualification. Fresh offline wheel and sdist match every application file; all ten current-entry documents match their sdist bytes. This does not qualify a clean installation."
+  },
+  {
+    "id": "OGM-011",
+    "changed_sources": [
+      "MANIFEST.in",
+      "README.md",
+      "docs/CLI.md"
+    ],
+    "review": "PAC-039 documentation-only delta review. Every one of the 76 application files matches the preceding reviewed snapshot. Source/stub/launcher/runtime-test behavior is unchanged; changed direct inputs are enumerated below. Generated egg-info PKG-INFO and SOURCES.txt reflect the README and documentation inclusion change. Prior requirement-specific execution remains historical evidence with its original limitations. Fresh focused privacy/recovery regressions, seven external stages, parser/link/archive checks and package equality support the documentation change, not a new whole-product/platform/model qualification. No implementation change in this requirement; its earlier source-bound review remains applicable after documentation correction and dependency refresh."
+  },
+  {
+    "id": "OGM-018",
+    "changed_sources": [
+      "MANIFEST.in",
+      "README.md",
+      "docs/CLI.md",
+      "typing/pacer_inventory.py"
+    ],
+    "review": "PAC-039 documentation-only delta review. Every one of the 76 application files matches the preceding reviewed snapshot. Source/stub/launcher/runtime-test behavior is unchanged; changed direct inputs are enumerated below. Generated egg-info PKG-INFO and SOURCES.txt reflect the README and documentation inclusion change. Prior requirement-specific execution remains historical evidence with its original limitations. Fresh focused privacy/recovery regressions, seven external stages, parser/link/archive checks and package equality support the documentation change, not a new whole-product/platform/model qualification. Current focused tests exercise optional category routing, original-title provenance, private exact recovery, float exclusions and frozen preview/consent behavior. Docs now reflect those boundaries."
+  },
+  {
+    "id": "OGM-019",
+    "changed_sources": [
+      "README.md",
+      "docs/DEVELOPMENT-SPEC.md",
+      "docs/WAVE-04.md"
+    ],
+    "review": "PAC-039 documentation-only delta review. Every one of the 76 application files matches the preceding reviewed snapshot. Source/stub/launcher/runtime-test behavior is unchanged; changed direct inputs are enumerated below. Generated egg-info PKG-INFO and SOURCES.txt reflect the README and documentation inclusion change. Prior requirement-specific execution remains historical evidence with its original limitations. Fresh focused privacy/recovery regressions, seven external stages, parser/link/archive checks and package equality support the documentation change, not a new whole-product/platform/model qualification. No implementation change in this requirement; its earlier source-bound review remains applicable after documentation correction and dependency refresh."
+  },
+  {
+    "id": "OGM-021",
+    "changed_sources": [],
+    "review": "PAC-039 documentation-only delta review. Every one of the 76 application files matches the preceding reviewed snapshot. Source/stub/launcher/runtime-test behavior is unchanged; changed direct inputs are enumerated below. Generated egg-info PKG-INFO and SOURCES.txt reflect the README and documentation inclusion change. Prior requirement-specific execution remains historical evidence with its original limitations. Fresh focused privacy/recovery regressions, seven external stages, parser/link/archive checks and package equality support the documentation change, not a new whole-product/platform/model qualification. No implementation change in this requirement; its earlier source-bound review remains applicable after documentation correction and dependency refresh."
+  },
+  {
+    "id": "OGM-023",
+    "changed_sources": [],
+    "review": "PAC-039 documentation-only delta review. Every one of the 76 application files matches the preceding reviewed snapshot. Source/stub/launcher/runtime-test behavior is unchanged; changed direct inputs are enumerated below. Generated egg-info PKG-INFO and SOURCES.txt reflect the README and documentation inclusion change. Prior requirement-specific execution remains historical evidence with its original limitations. Fresh focused privacy/recovery regressions, seven external stages, parser/link/archive checks and package equality support the documentation change, not a new whole-product/platform/model qualification. No implementation change in this requirement; its earlier source-bound review remains applicable after documentation correction and dependency refresh."
+  },
+  {
+    "id": "OGM-024",
+    "changed_sources": [
+      "MANIFEST.in",
+      "README.md",
+      "typing/pacer_inventory.py"
+    ],
+    "review": "PAC-039 documentation-only delta review. Every one of the 76 application files matches the preceding reviewed snapshot. Source/stub/launcher/runtime-test behavior is unchanged; changed direct inputs are enumerated below. Generated egg-info PKG-INFO and SOURCES.txt reflect the README and documentation inclusion change. Prior requirement-specific execution remains historical evidence with its original limitations. Fresh focused privacy/recovery regressions, seven external stages, parser/link/archive checks and package equality support the documentation change, not a new whole-product/platform/model qualification. No implementation change in this requirement; its earlier source-bound review remains applicable after documentation correction and dependency refresh."
+  },
+  {
+    "id": "OGM-025",
+    "changed_sources": [
+      "README.md",
+      "docs/CHANGELOG.md",
+      "docs/PROJECT-STATUS.md",
+      "typing/pacer_inventory.py"
+    ],
+    "review": "PAC-039 documentation-only delta review. Every one of the 76 application files matches the preceding reviewed snapshot. Source/stub/launcher/runtime-test behavior is unchanged; changed direct inputs are enumerated below. Generated egg-info PKG-INFO and SOURCES.txt reflect the README and documentation inclusion change. Prior requirement-specific execution remains historical evidence with its original limitations. Fresh focused privacy/recovery regressions, seven external stages, parser/link/archive checks and package equality support the documentation change, not a new whole-product/platform/model qualification. Runtime guidance catalog/consumers and their prior source-bound checks are unchanged. Current guides remove manual lock deletion and explain matching-marker recovery consistent with the executed lease regressions."
+  },
+  {
+    "id": "OGM-026",
+    "changed_sources": [
+      "MANIFEST.in",
+      "README.md",
+      "docs/CHANGELOG.md",
+      "docs/CLI.md",
+      "docs/CURRENT-CONTRACT.md",
+      "docs/DEVELOPMENT-SPEC.md",
+      "docs/PROJECT-STATUS.md",
+      "docs/PUBLISHING.md",
+      "docs/README.md",
+      "docs/TERMINAL-DESIGN.spec.md",
+      "docs/THREAT-MODEL.md",
+      "docs/WAVE-04.md",
+      "evidence/documentation-contracts/README.md",
+      "evidence/documentation-contracts/verify.py",
+      "src/riposte/__init__.py",
+      "src/riposte/agreement.py",
+      "src/riposte/benchmark.py",
+      "src/riposte/catalog_guard.py",
+      "src/riposte/category_corpus.py",
+      "src/riposte/category_rules.py",
+      "src/riposte/category_sort.py",
+      "src/riposte/cli.py",
+      "src/riposte/cohort.py",
+      "src/riposte/context_graph.py",
+      "src/riposte/coupled.py",
+      "src/riposte/duplicate_features.py",
+      "src/riposte/duplicate_index.py",
+      "src/riposte/duplicate_media.py",
+      "src/riposte/duplicate_review.py",
+      "src/riposte/duplicates.py",
+      "src/riposte/errors.py",
+      "src/riposte/experiment.py",
+      "src/riposte/generation.py",
+      "src/riposte/intake.py",
+      "src/riposte/kontext.py",
+      "src/riposte/lab.py",
+      "src/riposte/locking.py",
+      "src/riposte/metrics.py",
+      "src/riposte/models.py",
+      "src/riposte/optimizer.py",
+      "src/riposte/organizer.py",
+      "src/riposte/policy.py",
+      "src/riposte/publication.py",
+      "src/riposte/qualification.py",
+      "src/riposte/quality.py",
+      "src/riposte/records.py",
+      "src/riposte/recovery.py",
+      "src/riposte/release_guard.py",
+      "src/riposte/review_panel.py",
+      "src/riposte/runtime_probe.py",
+      "src/riposte/sanitize.py",
+      "src/riposte/server.py",
+      "src/riposte/sort_history.py",
+      "src/riposte/sort_plan.py",
+      "src/riposte/sort_titles.py",
+      "src/riposte/store.py",
+      "src/riposte/temporal.py",
+      "src/riposte/terminal/actions.py",
+      "src/riposte/terminal/app.py",
+      "src/riposte/terminal/controller.py",
+      "src/riposte/terminal/help.py",
+      "src/riposte/terminal/interaction.py",
+      "src/riposte/terminal/jobs.py",
+      "src/riposte/terminal/keyboard.py",
+      "src/riposte/terminal/material.py",
+      "src/riposte/terminal/output.py",
+      "src/riposte/terminal/palette.py",
+      "src/riposte/terminal/paths.py",
+      "src/riposte/terminal/preview.py",
+      "src/riposte/terminal/render.py",
+      "src/riposte/terminal/reports.py",
+      "src/riposte/terminal/service.py",
+      "src/riposte/terminal/signals.py",
+      "src/riposte/terminal/state.py",
+      "src/riposte/terminal/surface.py",
+      "src/riposte/title_categories.py",
+      "src/riposte/video.py",
+      "src/riposte/views.py",
+      "todo-audit.PACER.md",
+      "typing/check.py",
+      "typing/pacer_inventory.py"
+    ],
+    "review": "PAC-039 documentation-only delta review. Every one of the 76 application files matches the preceding reviewed snapshot. Source/stub/launcher/runtime-test behavior is unchanged; changed direct inputs are enumerated below. Generated egg-info PKG-INFO and SOURCES.txt reflect the README and documentation inclusion change. Prior requirement-specific execution remains historical evidence with its original limitations. Fresh focused privacy/recovery regressions, seven external stages, parser/link/archive checks and package equality support the documentation change, not a new whole-product/platform/model qualification. Current entry guides distinguish PNG metadata from private original/title state, raw videos and explicit report exports. Exact supersession links replace obsolete deck/privacy contracts. All documented fenced commands parse against shipping Typer; inventory equals all 43 commands. Ten full archives and three historical bodies remain byte-identical. Current links resolve and wheel/sdist match source."
+  }
+]

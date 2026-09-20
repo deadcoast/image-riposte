@@ -8,6 +8,18 @@ protection efficacy. Report validation at its actual tested scope.
 
 ## PACER
 
+### PACER resumption / 2026-09-20
+
+USER: "OK UPDATE WHAT NEEDS TO BE UPDATED AND CONTINUE TO PAC WORKFLOW FROM THE @todo.audit.PACER.md".
+This resumes guarded PACER updates from `todo-audit.PACER.md` and supersedes the
+temporary register freeze below. Reconcile deferred source/symbol references,
+bounded completed work and evidence without erasing the historical checkpoints.
+NDL-021 admits PAC-044 reconciliation, PAC-036 acceptance review and PAC-035
+cancellable browser scans, including the earlier PAC-029 through PAC-033 repairs.
+PAC-034 remains shelved. Unavailable model/platform qualifications and the overall
+release milestone remain open. Historical freeze instructions below describe the
+earlier catch-up interval; they do not prohibit the now-authorized reconciliation.
+
 ### PCUC development direction / 2026-09-18
 
 The user shelved "Next: PAC-034 — clean installation qualification. FOR LATER

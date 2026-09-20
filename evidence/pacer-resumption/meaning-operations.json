@@ -1,0 +1,123 @@
+[
+  {
+    "op": "transition",
+    "id": "OGM-005",
+    "status": "PACED_REQUIREMENT",
+    "evidence": "2026-09-20 PAC-036 exact-claim review: prior source bindings are stale after authorized development; retain history and reverify only with current evidence."
+  },
+  {
+    "op": "transition",
+    "id": "OGM-007",
+    "status": "PACED_REQUIREMENT",
+    "evidence": "2026-09-20 PAC-036 exact-claim review: prior source bindings are stale after authorized development; retain history and reverify only with current evidence."
+  },
+  {
+    "op": "transition",
+    "id": "OGM-008",
+    "status": "PACED_REQUIREMENT",
+    "evidence": "2026-09-20 PAC-036 exact-claim review: prior source bindings are stale after authorized development; retain history and reverify only with current evidence."
+  },
+  {
+    "op": "transition",
+    "id": "OGM-009",
+    "status": "PACED_REQUIREMENT",
+    "evidence": "2026-09-20 PAC-036 exact-claim review: prior source bindings are stale after authorized development; retain history and reverify only with current evidence."
+  },
+  {
+    "op": "transition",
+    "id": "OGM-010",
+    "status": "PACED_REQUIREMENT",
+    "evidence": "2026-09-20 PAC-036 exact-claim review: prior source bindings are stale after authorized development; retain history and reverify only with current evidence."
+  },
+  {
+    "op": "transition",
+    "id": "OGM-011",
+    "status": "PACED_REQUIREMENT",
+    "evidence": "2026-09-20 PAC-036 exact-claim review: prior source bindings are stale after authorized development; retain history and reverify only with current evidence."
+  },
+  {
+    "op": "transition",
+    "id": "OGM-013",
+    "status": "PACED_REQUIREMENT",
+    "evidence": "2026-09-20 PAC-036 exact-claim review: prior source bindings are stale after authorized development; retain history and reverify only with current evidence."
+  },
+  {
+    "op": "transition",
+    "id": "OGM-014",
+    "status": "PACED_REQUIREMENT",
+    "evidence": "2026-09-20 PAC-036 exact-claim review: prior source bindings are stale after authorized development; retain history and reverify only with current evidence."
+  },
+  {
+    "op": "transition",
+    "id": "OGM-015",
+    "status": "PACED_REQUIREMENT",
+    "evidence": "2026-09-20 PAC-036 exact-claim review: prior source bindings are stale after authorized development; retain history and reverify only with current evidence."
+  },
+  {
+    "op": "transition",
+    "id": "OGM-016",
+    "status": "PACED_REQUIREMENT",
+    "evidence": "2026-09-20 PAC-036 exact-claim review: prior source bindings are stale after authorized development; retain history and reverify only with current evidence."
+  },
+  {
+    "op": "transition",
+    "id": "OGM-017",
+    "status": "PACED_REQUIREMENT",
+    "evidence": "2026-09-20 PAC-036 exact-claim review: prior source bindings are stale after authorized development; retain history and reverify only with current evidence."
+  },
+  {
+    "op": "transition",
+    "id": "OGM-019",
+    "status": "PACED_REQUIREMENT",
+    "evidence": "2026-09-20 PAC-036 exact-claim review: prior source bindings are stale after authorized development; retain history and reverify only with current evidence."
+  },
+  {
+    "op": "append",
+    "id": "OGM-012",
+    "field": "Notes",
+    "text": "2026-09-20 user-correction reconciliation. Prior requirement: INFERRED: New sorts have read-only previews and recoverable original files guarded against overwrite or changed outputs. Images and videos use Year/Month/img-or-vid/Size without passing videos into protection. Both commands and the interactive terminal expose recovery; old image catalogs remain readable."
+  },
+  {
+    "op": "set",
+    "id": "OGM-012",
+    "fields": {
+      "Requirement": "INFERRED: New sorts have read-only exact previews and recoverable original files guarded against overwrite or changed outputs. The ordinary image/video route is Year/Month/img-or-vid/Size; optional supported categories extend that route without passing videos into protection. Both commands and the interactive terminal expose recovery; old image catalogs remain readable."
+    }
+  },
+  {
+    "op": "append",
+    "id": "OGM-016",
+    "field": "Notes",
+    "text": "2026-09-20 user-correction reconciliation. Prior requirement: INFERRED first milestone of the user-resumed PAC-027 plan: Unicode-normalized whole words and contiguous short phrases are counted once per eligible filename; thresholds and filler/ignored terms are configurable. Read-only CLI and terminal review supports labelled merged/manual category drafts with explicit overlap counts, bounded samples, generated-name exclusions and cancellation. It creates no media, catalog or reusable rule state and preserves ordinary sorting. Persistent category sorting remains PAC-027B."
+  },
+  {
+    "op": "set",
+    "id": "OGM-016",
+    "fields": {
+      "Requirement": "INFERRED first milestone of the user-resumed PAC-027 plan: Unicode-normalized whole words and contiguous short phrases are counted once per eligible filename; thresholds and filler/ignored terms are configurable. Read-only CLI and terminal review supports labelled merged/manual category drafts with explicit overlap counts, bounded samples, generated-name exclusions and cancellation. It creates no media, catalog or reusable rule state and preserves ordinary sorting."
+    }
+  },
+  {
+    "op": "append",
+    "id": "OGM-018",
+    "field": "Notes",
+    "text": "2026-09-20 user-correction reconciliation. Prior requirement: Category sorting remains opt-in and applies only a read-only exact destination preview bound to current sources, rules and catalogs. Reusable rules match trusted original titles; old numbered files require manual assignment. Stable image/video identities and private titles/assignments survive repeat sorts and are restored by exact undo, including interrupted work. CLI, terminal and browser/API preserve explicit consent, no-overwrite collisions, Unicode categories, legacy catalogs, date-only image metadata and unchanged video bytes."
+  },
+  {
+    "op": "set",
+    "id": "OGM-018",
+    "fields": {
+      "Requirement": "The default Riposte Sorter applies categories when supported by saved rules or bounded filename proposals; absent, unknown or ambiguous matches continue through ordinary Year/Month/img-or-vid/Size routing. Sorting applies only a read-only exact destination preview bound to current sources, rules, catalogs and options. Reusable rules match trusted original titles; old generated names are not guessed and optional manual assignments remain available. Stable image/video identities and private titles/assignments survive repeat sorts and are restored by exact undo, including interrupted work. CLI, terminal and browser/API preserve explicit consent, no-overwrite collisions, Unicode categories, legacy catalogs, date-only image metadata and unchanged video bytes. Exact case-insensitive _float_ and __float__ directories are excluded from sorting only; standalone RIPOSTE remains available."
+    }
+  },
+  {
+    "op": "transition",
+    "id": "PAC-036",
+    "status": "DOING"
+  },
+  {
+    "op": "checkpoint",
+    "id": "PAC-036",
+    "next_action": "verify"
+  }
+]

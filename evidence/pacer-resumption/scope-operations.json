@@ -1,0 +1,287 @@
+[
+  {
+    "op": "link",
+    "id": "PAC-029",
+    "field": "OVRRefs",
+    "target": "OVR-1889"
+  },
+  {
+    "op": "link",
+    "id": "PAC-029",
+    "field": "OVRRefs",
+    "target": "OVR-035"
+  },
+  {
+    "op": "link",
+    "id": "PAC-029",
+    "field": "OVRRefs",
+    "target": "OVR-950"
+  },
+  {
+    "op": "link",
+    "id": "PAC-029",
+    "field": "OVRRefs",
+    "target": "OVR-1926"
+  },
+  {
+    "op": "link",
+    "id": "PAC-029",
+    "field": "OVRRefs",
+    "target": "OVR-1858"
+  },
+  {
+    "op": "link",
+    "id": "PAC-030",
+    "field": "OVRRefs",
+    "target": "OVR-048"
+  },
+  {
+    "op": "link",
+    "id": "PAC-030",
+    "field": "OVRRefs",
+    "target": "OVR-1897"
+  },
+  {
+    "op": "link",
+    "id": "PAC-030",
+    "field": "OVRRefs",
+    "target": "OVR-1292"
+  },
+  {
+    "op": "link",
+    "id": "PAC-031",
+    "field": "OVRRefs",
+    "target": "OVR-021"
+  },
+  {
+    "op": "link",
+    "id": "PAC-031",
+    "field": "OVRRefs",
+    "target": "OVR-048"
+  },
+  {
+    "op": "link",
+    "id": "PAC-031",
+    "field": "OVRRefs",
+    "target": "OVR-040"
+  },
+  {
+    "op": "link",
+    "id": "PAC-031",
+    "field": "OVRRefs",
+    "target": "OVR-1915"
+  },
+  {
+    "op": "link",
+    "id": "PAC-031",
+    "field": "OVRRefs",
+    "target": "OVR-1591"
+  },
+  {
+    "op": "link",
+    "id": "PAC-032",
+    "field": "OVRRefs",
+    "target": "OVR-035"
+  },
+  {
+    "op": "link",
+    "id": "PAC-032",
+    "field": "OVRRefs",
+    "target": "OVR-021"
+  },
+  {
+    "op": "link",
+    "id": "PAC-032",
+    "field": "OVRRefs",
+    "target": "OVR-950"
+  },
+  {
+    "op": "link",
+    "id": "PAC-032",
+    "field": "OVRRefs",
+    "target": "OVR-1900"
+  },
+  {
+    "op": "link",
+    "id": "PAC-032",
+    "field": "OVRRefs",
+    "target": "OVR-1307"
+  },
+  {
+    "op": "link",
+    "id": "PAC-033",
+    "field": "OVRRefs",
+    "target": "OVR-1890"
+  },
+  {
+    "op": "link",
+    "id": "PAC-033",
+    "field": "OVRRefs",
+    "target": "OVR-059"
+  },
+  {
+    "op": "link",
+    "id": "PAC-033",
+    "field": "OVRRefs",
+    "target": "OVR-1714"
+  },
+  {
+    "op": "link",
+    "id": "PAC-035",
+    "field": "OVRRefs",
+    "target": "OVR-029"
+  },
+  {
+    "op": "link",
+    "id": "PAC-035",
+    "field": "OVRRefs",
+    "target": "OVR-950"
+  },
+  {
+    "op": "link",
+    "id": "PAC-035",
+    "field": "OVRRefs",
+    "target": "OVR-030"
+  },
+  {
+    "op": "link",
+    "id": "PAC-035",
+    "field": "OVRRefs",
+    "target": "OVR-1251"
+  },
+  {
+    "op": "link",
+    "id": "PAC-035",
+    "field": "OVRRefs",
+    "target": "OVR-031"
+  },
+  {
+    "op": "link",
+    "id": "PAC-035",
+    "field": "OVRRefs",
+    "target": "OVR-034"
+  },
+  {
+    "op": "link",
+    "id": "PAC-035",
+    "field": "OVRRefs",
+    "target": "OVR-1899"
+  },
+  {
+    "op": "link",
+    "id": "PAC-035",
+    "field": "OVRRefs",
+    "target": "OVR-1255"
+  },
+  {
+    "op": "link",
+    "id": "PAC-035",
+    "field": "OVRRefs",
+    "target": "OVR-1253"
+  },
+  {
+    "op": "link",
+    "id": "PAC-035",
+    "field": "OVRRefs",
+    "target": "OVR-1252"
+  },
+  {
+    "op": "link",
+    "id": "PAC-035",
+    "field": "OVRRefs",
+    "target": "OVR-1433"
+  },
+  {
+    "op": "link",
+    "id": "PAC-036",
+    "field": "OVRRefs",
+    "target": "OVR-1587"
+  },
+  {
+    "op": "link",
+    "id": "PAC-036",
+    "field": "OVRRefs",
+    "target": "OVR-1588"
+  },
+  {
+    "op": "link",
+    "id": "PAC-036",
+    "field": "OVRRefs",
+    "target": "OVR-1433"
+  },
+  {
+    "op": "link",
+    "id": "PAC-044",
+    "field": "OVRRefs",
+    "target": "OVR-071"
+  },
+  {
+    "op": "link",
+    "id": "PAC-044",
+    "field": "OVRRefs",
+    "target": "OVR-1890"
+  },
+  {
+    "op": "link",
+    "id": "PAC-044",
+    "field": "OVRRefs",
+    "target": "OVR-1886"
+  },
+  {
+    "op": "link",
+    "id": "PAC-044",
+    "field": "OVRRefs",
+    "target": "OVR-1887"
+  },
+  {
+    "op": "link",
+    "id": "PAC-044",
+    "field": "OVRRefs",
+    "target": "OVR-1880"
+  },
+  {
+    "op": "link",
+    "id": "PAC-044",
+    "field": "OVRRefs",
+    "target": "OVR-1891"
+  },
+  {
+    "op": "link",
+    "id": "PAC-044",
+    "field": "OVRRefs",
+    "target": "OVR-1888"
+  },
+  {
+    "op": "link",
+    "id": "PAC-044",
+    "field": "OVRRefs",
+    "target": "OVR-1290"
+  },
+  {
+    "op": "link",
+    "id": "PAC-044",
+    "field": "OVRRefs",
+    "target": "OVR-1433"
+  },
+  {
+    "op": "add",
+    "register": "todo",
+    "row": {
+      "ID": "PAC-045",
+      "Title": "Reconcile implemented research, sorter and duplicate claims",
+      "Phase": "RECONCILIATION",
+      "Priority": "MEDIUM",
+      "DoD": "Register exact bounded requirements for implemented PCUC tools, opinionated sorter refinements, Duplicate Finder and PAC-035 browser inspections; review their source/test/evidence support and verify each without claiming real-model efficacy, human usability, calibrated similarity accuracy or clean installation. Preserve prior evidence and user wording.",
+      "OVRRefs": "OVR-1433;OVR-1588",
+      "ApprovalState": "PENDING",
+      "Context": "OK UPDATE WHAT NEEDS TO BE UPDATED AND CONTINUE TO PAC WORKFLOW FROM THE @todo.audit.PACER.md",
+      "Tags": "#reconciliation"
+    }
+  },
+  {
+    "op": "approval",
+    "id": "PAC-045",
+    "state": "APPROVED",
+    "evidence": "OK UPDATE WHAT NEEDS TO BE UPDATED AND CONTINUE TO PAC WORKFLOW FROM THE @todo.audit.PACER.md; scoped reconciliation of the already authorized and implemented work in that audit."
+  }
+]

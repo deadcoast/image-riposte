@@ -1,0 +1,42 @@
+{
+  "result": "PASS",
+  "version": "0.5.0",
+  "source_files": 73,
+  "suite": {
+    "tests": 1508,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 9,
+    "passed": 1499
+  },
+  "native_browser": {
+    "tests": 3,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "passed": 3
+  },
+  "external_contracts": {
+    "mypy-contracts": true,
+    "mypy-tooling": true,
+    "stubtest": true,
+    "runtime-contracts": true,
+    "tooling-regressions": true,
+    "negative-consumers": true,
+    "source-stable": true
+  },
+  "source_typing": "FAIL: 823 diagnostics; strict configuration unchanged",
+  "packages_match": true,
+  "live_browser": {
+    "result": "PASS",
+    "files": 960,
+    "unchanged_bytes_and_mtimes": true,
+    "no_fetch_mocks": true,
+    "scope": "Authenticated API and actual sorter scans: cancellation, discovery, rule review, exact preview, consent, keyboard and narrow layout."
+  },
+  "limits": [
+    "Full Python suite predates the final version-label-only HTML/JS edit; native browser and live-server checks cover that edit.",
+    "Existing Windows environment; no clean installation or minimum-Python/platform matrix.",
+    "Synthetic files and CPU/stub/tiny-random model checks do not establish independent human acceptance, classification accuracy or model efficacy."
+  ]
+}

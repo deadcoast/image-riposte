@@ -47,6 +47,7 @@ def hints(state):
                 Hint("u", "Undo", "Preview the last sort's recovery."),
                 Hint("Esc", "Back", "Return to the main menu.")]
     rows={
+        "recipes":[Hint("Enter", "Load settings", "Load the highlighted recipe without changing files, model paths or approvals."), Hint("i", "Preview", "Read all saved settings."), Hint("r", "Reload", "Read the current recipe library."), Hint("Esc", "Back", "Keep the form settings.")],
         "picker":[Hint("Enter","Open / choose","Open a folder, toggle a file, or confirm the highlighted selection row."),Hint("Up/Down","Move","Move the highlight."),Hint("Space","Select","Select or unselect a file or folder for protection."),Hint("s","This folder","Select or unselect the current folder for protection."),Hint("Backspace","Parent","Browse the parent folder."),Hint("l","Locations","Browse home, Pictures, and drives."),Hint("g","Go to path","Optionally type or paste a folder location."),Hint("Esc","Cancel","Return without starting an operation.")],
         "home":[Hint("Enter","Open","Choose an independent action. Arrows or visible shortcuts open an action."),Hint("Arrows","Move","Move the highlight; Enter opens the selected action."),Hint("1-9/d/w","Choose","Open a numbered action, d for Duplicate Finder, or w for expert protection helpers."),Hint("/","Find","Filter the action list."),Hint("q","Quit","Leave RIPOSTE.")],
         "library":[Hint("Enter","Select","Add or remove the focused image from your publishing selection."),Hint("i","Inspect","Open the focused image without changing your selection."),Hint("p","Protect","Configure protection for selected images."),Hint("/","Find","Filter dates, canonical names or image IDs."),Hint("a","Select visible","Add every visible image, up to the selection limit."),Hint("n","Clear selection","Remove selected images from the current selection; files are unchanged.")],
@@ -69,6 +70,8 @@ def hints(state):
             primary=Hint("Enter","Toggle" if f.kind=="bool" else "Change" if f.kind=="choice" else "Edit",f.help)
         else:primary=Hint("Enter","Preview" if p.action in {"publish","riposte","sort-riposte","organize"} else "Run",BY_KEY[p.action].summary)
         controls=[primary]
+        if p.action in {"publish", "riposte", "sort-riposte"}:
+            controls.extend([Hint("l", "Recipes", "Choose and load named settings; paths and approvals stay separate."), Hint("s", "Save recipe", "Name and review these settings before explicitly saving.")])
         if p.action == "duplicates": controls.append(Hint("g", "Enter Path", "Change the scan folder while keeping these settings."))
         if p.cursor<len(fields) and fields[p.cursor].kind=="path":controls.append(Hint("b","Browse","Choose this location in the file/folder browser."))
         if p.action in {"publish","riposte","sort-riposte","organize"}:controls.append(Hint("p","Preview","Read-only plan; no images are written."))
@@ -89,7 +92,7 @@ def hints(state):
     if p.name=="result":
         name=p.request.name if p.request else ""
         if p.code:
-            controls = [Hint("Enter", "Return", "Return without starting another operation.")]
+            controls = [Hint("Enter", "Return", "Return without starting another operation."), Hint("Up/Down", "Scroll", "Scroll the complete recovery guidance; Page Up/Down move a page.")]
             if p.values.get("sorter_mode"): controls.append(Hint("g", "Enter Path", "Return to Riposte Sorter and choose another folder."))
             return controls + [Hint("Esc", "Back", "Return to the previous screen.")]
         primary=(Hint("Enter","Confirm undo","Open the explicit UNDO confirmation; conflicts block restoration.") if name=="undo-sort" and not p.code and p.result.get("ready")
@@ -103,6 +106,8 @@ def hints(state):
         elif p.values.get("sort_changes") is False:
             primary = Hint("Enter", "Return", "This preview has no changes to apply. Return to Riposte Sorter.")
         saving = [Hint("s", "Save rules", "Confirm SAVE to persist this reviewed replacement without moving files.")] if name == "category-rules" and not p.code and p.result.get("status") == "DRAFT" else []
+        if name == "recipes" and not p.code and p.result.get("status") == "DRAFT":
+            saving = [Hint("s", "Save recipe", "Save the displayed settings only; no processing or approval.")]
         if p.values.get("sorter_mode"):
             if name == "organize" and not p.code:
                 saving.append(Hint("w", "Full Sort Workshop", "Adjust this preview's settings; inspect blockers before previewing again."))

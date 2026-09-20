@@ -21,7 +21,7 @@ from .policy import is_link, same_file_state
 from .store import catalog, check_root, connect, safe_child, state_dir, state_name, state_relative, workspace_lock
 from .video import file_hash, video_catalog
 from .sort_titles import title_records, validate_title, save_title, restore_titles
-from .records import CatalogRow
+from .records import CatalogRow, Progress
 
 
 def _save(root: Path, journal: dict[str, Any]) -> None:
@@ -208,7 +208,7 @@ class SortHistory:
         return str(self.journal["id"])
 
 
-def _check(root: Path, journal: dict[str, Any]) -> dict[str, Any]:
+def _check(root: Path, journal: dict[str, Any], progress: Progress | None = None) -> dict[str, Any]:
     """Validate the entire undo before its first write; rechecked during commit."""
     blockers: dict[str, int] = {}
     def blocked(code: str) -> None:
@@ -217,6 +217,8 @@ def _check(root: Path, journal: dict[str, Any]) -> dict[str, Any]:
         current = {"img": catalog(root), "vid": video_catalog(root)}
         before = {"img": journal["images"], "vid": journal["videos"]}
         for index, entry in enumerate(journal["entries"]):
+            if progress:
+                progress({"phase": "Inspecting undo recovery", "processed": index, "total": len(journal["entries"])})
             source = _media_path(root, entry["source"])
             if entry["source"] == entry["output"]:
                 raise RiposteError("SORT_HISTORY_INVALID")
@@ -264,6 +266,8 @@ def _check(root: Path, journal: dict[str, Any]) -> dict[str, Any]:
     except (OSError, KeyError, TypeError, ValueError):
         blocked("SORT_HISTORY_INVALID")
     except RiposteError as exc:
+        if exc.code == "JOB_CANCELLED":
+            raise
         blocked(exc.code)
     return {"mode": "UNDO_SORT_PREVIEW", "sort_id": journal["id"], "ready": not blockers,
             "files_to_restore": sum(bool(e.get("removing")) for e in journal["entries"]),
@@ -272,7 +276,7 @@ def _check(root: Path, journal: dict[str, Any]) -> dict[str, Any]:
             "scope": "Restore this sort only. Protection outputs and review records stay in place."}
 
 
-def undo_sort(root: Path, apply: bool = False, sort_id: str | None = None) -> dict[str, Any]:
+def undo_sort(root: Path, apply: bool = False, sort_id: str | None = None, *, progress: Progress | None = None) -> dict[str, Any]:
     root = check_root(root)
     journal = latest_sort(root)
     if journal is None:
@@ -280,7 +284,7 @@ def undo_sort(root: Path, apply: bool = False, sort_id: str | None = None) -> di
     if sort_id is not None and journal["id"] != sort_id:
         raise RiposteError("SORT_HISTORY_CHANGED_REPREVIEW")
     if not apply:
-        return _check(root, journal)
+        return _check(root, journal, progress)
     with workspace_lock(root):
         journal = latest_sort(root)
         if journal is None:

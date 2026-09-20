@@ -1,0 +1,22 @@
+
+  RIPOSTE / IMAGE SECURITY
+  Read-only recursive plan; --apply explicitly replaces sources.
+
+  Usage: riposte sort [OPTIONS] ROOT
+PARAMETERS                                                                                          
++------------------------------------------+-------------------------------------------------------+
+| ROOT                                     | Existing dedicated image folder; everything inside is |
+|                                          | in scope.  [required]                                 |
+| --apply                                  | AUTHORIZE sorting sources. Private original copies    |
+|                                          | are retained for undo.                                |
+| --discard-sidecars                       | Authorize known metadata sidecar/cache removal on     |
+|                                          | apply.                                                |
+| --date-mode [download|modified|embedded] | Date-only retention basis.  [default: download]       |
+| --categories                             | Use saved category rules and preview exact            |
+|                                          | destinations.                                         |
+| --assign TEXT                            | Manual source-relative-path=category-slug; repeat.    |
+|                                          | Use =auto to clear a saved manual choice.             |
+| --plan-id TEXT                           | Exact preview ID; required with --apply. Repreview    |
+|                                          | after input or policy changes.                        |
+| --help                                   | Show this message and exit.                           |
++------------------------------------------+-------------------------------------------------------+

@@ -11,13 +11,13 @@ import time
 import re
 from collections.abc import Callable, Mapping
 from typing import Self
-from ..errors import RiposteError
+from ..errors import RiposteError, safe_code as _safe_code
 from .service import Request, CANCELLABLE, execute, result_exit_code
 from ..records import Progress
 
 
 def safe_code(value: object) -> str:
-    return value if isinstance(value, str) and re.fullmatch(r"[A-Z][A-Z0-9_]{0,99}", value) else "OPERATION_FAILED"
+    return _safe_code(value)
 
 
 def safe_phase(value: object) -> str:

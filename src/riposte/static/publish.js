@@ -49,7 +49,7 @@ window.RipostePublish = (() => {
       const ready=item.status==='READY_FOR_REVIEW',card=el('article','pub-output'+(ready?'':' placeholder')+(item.review==='ACCEPTED'?' approved':''));
       const content=ready?el('button'):el('div'),picture=el('div','pub-output-image'),copy=el('div','pub-output-copy');
       if(ready){const image=el('img');image.alt='';picture.append(image);loadImage(image,'publication/'+batch.id+'/image/'+item.id+'/candidate?thumb=true');content.setAttribute('aria-label','Review '+item.relative.split('/').pop());const batchID=batch.id;content.onclick=()=>openReview(item,batchID);}
-      else picture.textContent=item.status==='BLOCKED'?(messages[item.code]||item.code.replaceAll('_',' ')):'WAITING FOR PROTECTION';
+      else picture.textContent=item.status==='BLOCKED'?recovery.text(item.code,'publish'):'WAITING FOR PROTECTION';
       copy.append(el('strong','',ready?item.relative.split('/').pop():'Image '+String(batch.items.indexOf(item)+1).padStart(2,'0')),
         el('span','',item.date+(ready?' · '+item.width+' × '+item.height:' · edge '+item.max_edge)),
         el('span','pub-output-status',ready?(item.review==='ACCEPTED'?'APPROVED · UNVERIFIED':item.review==='REJECTED'?'DO NOT PUBLISH':item.review==='STALE'?'CHANGED · REVIEW AGAIN':'VISUAL REVIEW REQUIRED'):item.status));
@@ -60,7 +60,7 @@ window.RipostePublish = (() => {
   async function loadBatch(force=false){
     if(!current||fetching)return;fetching=true;const id=current;
     try{const data=await api('publication/'+id);if(current===id){batch=data;renderBatch();}}
-    catch(e){error(e);}finally{fetching=false;}
+    catch(e){error(e,'publish');}finally{fetching=false;}
   }
   function onState(data){
     $('candidate-count').textContent=String((data.publications||[]).reduce((n,b)=>n+b.counts.READY_FOR_REVIEW,0));
@@ -78,7 +78,7 @@ window.RipostePublish = (() => {
   async function completed(result){
     current=result.id;batch=result;renderBatch();setView('publish');
     state.audit=null;renderAuditBadge();
-    try{state.audit=await api('audit');}catch(e){error(e);}
+    try{state.audit=await api('audit');}catch(e){error(e,'publish');}
     renderAuditBadge();
   }
   async function openReview(item,batchID){
@@ -126,14 +126,14 @@ window.RipostePublish = (() => {
       closeReview();
       const approved=result.items.some(item=>item.id===target.item.id&&item.review==='ACCEPTED');
       toast(accepted?(approved?'This exact PNG is approved for the publishing pack. AI resistance remains unverified.':'The output changed and is not approved. Reopen it for review.'):'This image is excluded from the publishing pack.');
-    }catch(e){if(review===target)error(e);}
+    }catch(e){if(review===target)error(e,'publish');}
     finally{target.pending=false;if(review===target)disabled();}
   }
   $('pub-select-all').onclick=()=>{for(const row of state.images)selected.add(row.id);renderSources(true);};$('pub-clear').onclick=()=>{selected.clear();renderSources(true);};
   for(const id of ['pub-models','pub-device','pub-steps','pub-restarts','pub-inpaint','pub-video','pub-rms','pub-colour','pub-white'])$(id).addEventListener('input',disabled);
   for(const input of document.querySelectorAll('.pub-sizes input'))input.onchange=disabled;
   $('pub-epsilon').oninput=()=>{$('pub-epsilon-value').textContent=$('pub-epsilon').value+' / 255';};
-  $('pub-plan-button').onclick=async()=>{try{const r=await api('publish',{...request(),plan_only:true});$('pub-plan').querySelector('p').textContent=r.images+' clean master'+(r.images===1?'':'s')+' → '+r.outputs+' independently protected output'+(r.outputs===1?'':'s')+'. '+r.duplicate_renders_avoided+' duplicate size'+(r.duplicate_renders_avoided===1?'':'s')+' skipped. Originals remain unchanged. Preview changed no files.';}catch(e){error(e);}};
+  $('pub-plan-button').onclick=async()=>{try{const r=await api('publish',{...request(),plan_only:true});$('pub-plan').querySelector('p').textContent=r.images+' clean master'+(r.images===1?'':'s')+' → '+r.outputs+' independently protected output'+(r.outputs===1?'':'s')+'. '+r.duplicate_renders_avoided+' duplicate size'+(r.duplicate_renders_avoided===1?'':'s')+' skipped. Originals remain unchanged. Preview changed no files.';}catch(e){error(e,'publish');}};
   $('pub-start').onclick=()=>launch('publish',request());
   $('pub-execute').onclick=()=>launch('execute-model',{vae_directories:models(),device:$('pub-device').value});
   $('pub-resume').onclick=()=>{if(current)launch('publication/'+current+'/resume',settings());};
@@ -142,7 +142,7 @@ window.RipostePublish = (() => {
     const response=await fetch('/api/publication/'+batch.id+'/pack',{headers:requestHeaders,cache:'no-store'});
     if(!response.ok){const r=await response.json();throw new Error(r.code||'DOWNLOAD_FAILED');}
     const url=URL.createObjectURL(await response.blob()),link=el('a');link.href=url;link.download='RIPOSTE-'+String(batch.sequence).padStart(2,'0')+'.zip';document.body.append(link);link.click();link.remove();setTimeout(()=>URL.revokeObjectURL(url),10000);
-  }catch(e){error(e);}};
+  }catch(e){error(e,'publish');}};
   $('pub-review-close').onclick=closeReview;
   $('pub-review-dialog').addEventListener('close',()=>{if(!$('pub-review-dialog').open)closeReview();});
   $('pub-review-view').onchange=renderReview;
@@ -158,7 +158,7 @@ window.RipostePublish = (() => {
       const t=await api('publication/'+target.batchID+'/workshop/'+target.item.id,{});
       if(review!==target)return;
       state.selected=state.images.find(x=>x.id===t.image_id);state.trial=t;state.trials.unshift(t);state.transport='identity';$('transport-view').value='identity';closeReview();setView('lab');toast('The workshop is inspecting the exact publishing output. It did not regenerate the image.');
-    }catch(e){if(review===target)error(e);}
+    }catch(e){if(review===target)error(e,'publish');}
     finally{target.pending=false;if(review===target)disabled();}
   };
   return {onState,activate,chooseCurrent,completed};

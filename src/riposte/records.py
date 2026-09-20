@@ -56,6 +56,10 @@ class ImageInfo(PngAudit):
     relative: NotRequired[str]
 
 class RequestValues(TypedDict, total=False):
+    recipe_name: str | None
+    recipe_revision: str | None
+    recipe_overrides: Sequence[str]
+    recipe_settings: Mapping[str, object] | None
     visual: bool
     videos: bool
     include_float: bool

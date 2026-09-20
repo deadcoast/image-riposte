@@ -1,0 +1,31 @@
+// Real authenticated API, scanner and Chromium. No fetch/controller mocks.
+(async()=>{
+  const assert=(ok,message)=>{if(!ok)throw Error(message);};
+  const wait=async test=>{for(let n=0;n<2000;n++){if(test())return;await new Promise(r=>setTimeout(r,20));}throw Error('Timed out: '+test);};
+  await wait(()=>!refreshing);
+  assert($('footer-version').textContent===(await api('state')).version,'footer uses running version');
+  $('scan').focus();$('scan').click();$('date-mode').value='modified';
+  $('date-mode').dispatchEvent(new Event('input',{bubbles:true}));
+  $('run-plan').click();
+  await wait(()=>!$('sort-activity').hidden&&!$('sort-cancel').disabled);
+  assert($('sort-job-detail').textContent.includes('Read-only'),'read-only semantics visible');
+  $('sort-cancel').scrollIntoView({block:'center'});$('sort-cancel').focus();
+  assert(document.activeElement.id==='sort-cancel','cancellation reachable inside native modal');
+  $('sort-cancel').click();
+  await wait(()=>$('sort-status').textContent.startsWith('Inspection cancelled'));
+  assert($('apply').disabled&&!state.plan,'cancelled scan cannot authorize sorting');
+  const cancelled=(await api('state')).jobs.find(j=>j.state==='cancelled');
+  assert(cancelled?.read_only&&!cancelled.result,'actual worker dropped cancelled result');
+  $('sort-categories').click();$('category-editor').open=true;
+  $('category-discover').click();
+  await wait(()=>document.querySelector('.sort-suggestion button'));
+  assert($('category-suggestions').textContent.includes('hockey'),'actual filename discovery');
+  $('category-groups').value='Hockey=hockey';$('category-groups').dispatchEvent(new Event('input',{bubbles:true}));
+  $('category-review').click();await wait(()=>!$('category-save').disabled);
+  assert($('category-review-result').textContent.includes('960'),'actual rule review covers fixture');
+  $('category-editor').open=false;$('run-plan').click();
+  await wait(()=>$('sort-status').textContent.startsWith('Review the destinations'));
+  assert($('apply').disabled&&state.plan,'completed preview still needs separate acknowledgement');
+  assert($('category-destinations').querySelectorAll('article').length===960,'all exact destinations displayed');
+  $('native-proof').textContent='PASS';
+})().catch(e=>{$('native-proof').textContent='FAIL '+e.stack;});

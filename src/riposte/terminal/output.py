@@ -11,6 +11,7 @@ from rich.table import Table
 from rich.text import Text
 from rich.panel import Panel
 from rich.live import Live
+from ..recovery import CATALOG, guidance
 from .surface import Surface, PALETTES, ascii_text
 from .material import activity_trace
 from .jobs import Operation, safe_code
@@ -38,77 +39,20 @@ class Presentation:
                        force_terminal=False if self.plain or os.environ.get("TERM") == "dumb" else None)
 
 
-RECOVERY = {
-    "DUPLICATE_SOURCE_CHANGED": "A compared file changed. Run a new duplicate scan before reviewing it.",
-    "DUPLICATE_REPORT_EXISTS": "That report already exists. Choose a new .json or .csv filename.",
-    "DUPLICATE_REPORT_PATH_INVALID": "Choose a new report file in an existing local folder without linked directories.",
-    "DUPLICATE_REPORT_WRITE_FAILED": "The report could not be written. Check access and choose another path.",
-    "DUPLICATE_EXPORT_FORMAT_INVALID": "Use .json for complete evidence or .csv for the finding summary.",
-    "DUPLICATE_OPTIONS_INVALID": "Use positive scan limits within the supported ranges.",
-    "SORT_FLOAT_ROOT": "This folder is inside _float_ or __float__ and is excluded from sorting. Choose its outside parent to sort other files, or use RIPOSTE to protect these images.",
-    "CATEGORY_PREVIEW_REQUIRED": "Preview the sort first, then confirm that displayed plan with REPLACE.",
-    "CATEGORY_PREVIEW_CHANGED": "Files, rules or destinations changed. Preview again, review the updated plan, then confirm REPLACE.",
-    "CATEGORY_PREVIEW_BLOCKED": "Review the blockers in the sort preview. Full Sort Workshop lets you adjust categories and sidecar consent before previewing again.",
-    "SORT_PREVIEW_REQUIRED": "Preview this sort first, then apply with its plan ID. In the terminal, inspect and confirm the displayed plan.",
-    "SORT_PREVIEW_CHANGED": "Files, destinations or settings changed. Inspect again and confirm the refreshed plan before sorting.",
-    "IMAGE_FOLDER_OVERLAPS_APPLICATION": "Choose an image/results folder separate from the RIPOSTE application folder, outside it and its parents.",
-    "APPLICATION_LAYOUT_INVALID": "RIPOSTE could not verify its source checkout configuration. Restore pyproject.toml before selecting an image/results folder.",
-    "VIDEO_PROBE_UNAVAILABLE": "Video sorting needs ffprobe from FFmpeg on PATH. Image-only sorting works without it.",
-    "VIDEO_PROBE_FAILED": "This video could not be read. Its original stays in place; inspect or repair it separately.",
-    "NO_SORT_TO_UNDO": "No recorded sort is available. Sorts made before undo history was introduced cannot be restored by this application.",
-    "SORT_RECOVERY_REQUIRED": "An interrupted sort or undo needs recovery. Choose Undo last sort before sorting again.",
-    "SORT_HISTORY_CHANGED_REPREVIEW": "The last sort changed since your preview. Preview Undo last sort again.",
-    "UNDO_SOURCE_OCCUPIED": "An original path is occupied by a later file. Move that file somewhere safe, then preview undo again.",
-    "UNDO_SOURCE_CHANGED": "An original file changed during recovery. Preserve the current file elsewhere before retrying.",
-    "UNDO_OUTPUT_CHANGED": "A sorted file has changed since sorting. Preserve that version elsewhere before retrying undo.",
-    "UNDO_BACKUP_CHANGED": "A recovery copy is missing or damaged. Restore the recovery history from your backup before retrying.",
-    "UNDO_CATALOG_CHANGED": "The image/video catalog changed after sorting. Undo has stopped without overwriting it.",
-    "SORT_HISTORY_INVALID": "Recovery history cannot be verified. Keep its files intact and inspect the saved journal before making further changes.",
-    "INPUT_SELECTION_CONFLICT": "Choose files/folders with --input, or catalog images with --image/--all. Use a separate run for each selection type.",
-    "SORT_USES_WORKSPACE_ROOT": "Sort + RIPOSTE sorts ROOT. For selected files or folders without sorting, choose RIPOSTE and --input.",
-    "SORT_CONSENT_REQUIRES_COMBINED_WORKFLOW": "Use sort or sort-riposte for source replacement. RIPOSTE preserves original inputs.",
-    "INPUT_NOT_FOUND": "Choose an existing image or directory; relative paths use the current working directory.",
-    "INPUT_LINK_REQUIRES_REVIEW": "Select the original file or directory directly; symbolic links and junctions are not followed.",
-    "INPUT_APPLICATION_STATE_REJECTED": "Choose original image or a catalog image. Internal application records are excluded from input discovery.",
-    "INPUT_DECODE_FAILED": "A selected image could not be decoded. Repair it or select other inputs; originals remain unchanged.",
-    "INPUT_UNREADABLE": "Check read access to the selected directory and preview again.",
-    "INPUT_CHANGED_REPLAN": "An input changed during inspection. Preview the current selection again.",
-    "NO_INPUT_IMAGES": "Select at least one decodable image or a directory containing images.",
-    "PUBLICATION_INPUT_MISSING": "The batch's clean input snapshot is missing. Restore its application state or start a new batch from the originals.",
-    "DECODE_FAILED": "The image could not be decoded; the source was left untouched.",
-    "SIDECAR_REQUIRES_DISCARD": "Enable Discard metadata sidecars before applying their removal.",
-    "UNSUPPORTED_FILE": "Review this unsupported input separately; it was not silently removed.",
-    "CATALOG_FILE_CHANGED": "A managed clean image changed outside RIPOSTE; inspect the file before proceeding.",
-    "CATALOG_FILE_MISSING": "A catalogued clean image is missing; restore the intended clean file before proceeding.",
-    "CLI_ARGUMENT_INVALID": "Use riposte COMMAND --help for the accepted arguments and ranges. Rejected values are not echoed.",
-    "CLEAN_MASTER_VIEW_INVALID": "Clean-master inspection is identity-only. Use a publishing output or trial for difference and transport views.",
-    "ROOT_INVALID": "Select an existing dedicated image directory.",
-    "WORKSPACE_REQUIRED": "Choose a workspace in the menu or supply ROOT in the command.",
-    "SELECT_IMAGES_OR_ALL": "Use one or more --image IDs, or use --all; not both.",
-    "ORGANIZATION_CHECKPOINT_REQUIRED": "Open Clean & organize to inspect the unresolved inputs.",
-    "NO_MODEL_NO_PROTECTION": "Choose a compatible local encoder. No noise-only fallback is used.",
-    "LOCAL_VAE_DIRECTORY_REQUIRED": "Select a local encoder directory containing config and safetensors.",
-    "OPTIONAL_DEPENDENCIES_REQUIRED": "Install this application's [lab] extra into its Python environment.",
-    "WORKSPACE_LOCKED": "Another operation owns this workspace. Do not remove an active lock.",
-    "PUBLICATION_REVIEW_ACKNOWLEDGEMENT_REQUIRED": "Record visual acceptance and the unverified-status acknowledgement.",
-    "NO_APPROVED_PUBLICATION_OUTPUTS": "Review the exact candidate images before packaging.",
-    "LOCAL_VIEWER_UNAVAILABLE": "No local image viewer accepted the handoff. The audited PNG is unchanged.",
-    "JOB_CANCELLED": "Completed publishing outputs are retained; resume uses matching model identities.",
-    "INTERACTIVE_REQUIRES_TTY": "Use a terminal, ui --linear for explicit scripted menus, or a direct command.",
-    "FIELD_VALUE_INVALID": "Correct the selected field; press Esc to discard this edit.",
-    "PUBLICATION_ARTIFACT_CHANGED": "The committed file no longer matches its record. It was not silently replaced.",
-    "OUTPUT_WRITE_REFUSED": "Choose a new output filename; this operation never overwrites an unrelated file.",
-}
+# Compatibility view; all presentations use the shared catalog below.
+RECOVERY = {code: guidance(code).action for code in CATALOG["entries"]}
 
 
-def error(code: str, presentation: Presentation):
+def error(code: str, presentation: Presentation, operation: str = ""):
     code = safe_code(code)
     if presentation.machine:
         print(json.dumps({"error": code}), file=sys.stderr)
     else:
         console = presentation.console(stderr=True)
         console.print(Text(f"\n  [STOP] {code}", style="bold " + PALETTES[presentation.theme]["danger"]))
-        if code in RECOVERY: console.print(Text("  " + RECOVERY[code]))
+        item = guidance(code, operation)
+        console.print(Text("  " + item.title))
+        console.print(Text("  Next action: " + item.action))
 
 
 def result_table(rows, title=None):
@@ -213,6 +157,6 @@ def _run_direct(request: Request, presentation: Presentation):
                 except KeyboardInterrupt: op.cancel()
         op.join()
     snapshot = op.snapshot()
-    if snapshot.code: error(snapshot.code, presentation)
+    if snapshot.code: error(snapshot.code, presentation, request.name)
     elif op.result is not None: emit(op.result, presentation, request.name)
     return 143 if terminated else op.exit_code

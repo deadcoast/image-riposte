@@ -1,0 +1,60 @@
+{
+  "result": "PASS",
+  "issues": [],
+  "command_inventory": [
+    "audit",
+    "benchmark",
+    "categories",
+    "category-rules",
+    "challenge",
+    "cohort",
+    "cohort-challenge",
+    "compare",
+    "doctor",
+    "duplicates",
+    "evaluations",
+    "experiment",
+    "experiment-packet",
+    "experiment-review",
+    "export",
+    "frame",
+    "generation",
+    "generations",
+    "guard",
+    "image",
+    "inspect",
+    "list",
+    "organize",
+    "package",
+    "panel",
+    "panel-create",
+    "panel-packet",
+    "panel-review",
+    "protect",
+    "publications",
+    "publish",
+    "qualify",
+    "resume",
+    "review",
+    "riposte",
+    "serve",
+    "sort",
+    "sort-riposte",
+    "trials",
+    "ui",
+    "undo-sort",
+    "upgrade",
+    "workshop"
+  ],
+  "local_links_checked": 167,
+  "unchanged_application_files": 76,
+  "scope": "Shipping Typer parser and local documentation links; examples are not executed as write/model operations."
+}
+Traceback (most recent call last):
+  File "C:\Users\ryanf\github\_new\image-riposte\evidence\documentation-contracts\verify.py", line 234, in <module>
+    elif args.pacer_source: print(json.dumps(acceptance(args.pacer_source), indent=2))
+                                             ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ryanf\github\_new\image-riposte\evidence\documentation-contracts\verify.py", line 194, in acceptance
+    assert all(not p.startswith(('src/', 'tests/', 'typing/stubs/')) for p in changed), (row['ID'], changed)
+           ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ('OGM-001', ['MANIFEST.in', 'README.md', 'RELEASE-MANIFEST.json', 'docs/CHANGELOG.md', 'docs/CLI.md', 'docs/PROJECT-STATUS.md', 'docs/TERMINAL-DESIGN.spec.md', 'src/riposte_studio.egg-info/PKG-INFO', 'src/riposte_studio.egg-info/SOURCES.txt', 'todo-audit.PACER.md', 'typing/evidence/pacer-inventory.json', 'typing/evidence/runtime-contracts.txt', 'typing/evidence/tooling-regressions.txt', 'typing/pacer_inventory.py'])

@@ -1,0 +1,235 @@
+[
+  {
+    "id": "OGM-001",
+    "changed_sources": [
+      "MANIFEST.in",
+      "README.md",
+      "RELEASE-MANIFEST.json",
+      "docs/CHANGELOG.md",
+      "docs/DESIGN.md",
+      "docs/PROJECT-STATUS.md",
+      "docs/UX-CONTRACT.md",
+      "evidence/guided-category-editing/README.md",
+      "evidence/guided-category-editing/live_browser.py",
+      "evidence/guided-category-editing/live_probe.js",
+      "evidence/guided-category-editing/review_contracts.py",
+      "evidence/guided-category-editing/verify.py",
+      "src/riposte/static/category-sort.js",
+      "src/riposte/static/index.html",
+      "src/riposte/static/style.css",
+      "src/riposte_studio.egg-info/PKG-INFO",
+      "src/riposte_studio.egg-info/SOURCES.txt",
+      "tests/category_sort_browser.cjs",
+      "tests/category_sort_probe.js",
+      "todo-audit.PACER.md",
+      "typing/README.md",
+      "typing/check.py",
+      "typing/evidence/pacer-inventory.json",
+      "typing/evidence/runtime-contracts.txt",
+      "typing/evidence/source-after.json",
+      "typing/evidence/source-current-command.json",
+      "typing/evidence/source-reviewed-guided-categories.json",
+      "typing/evidence/tooling-regressions.txt",
+      "typing/pacer_inventory.py"
+    ],
+    "review": "Expanded input inventory passes with six guided-editor evidence/snapshot owners admitted. Current external contracts pass all seven stages at 531 signatures, 62 leaf modules and 73 application files; source/symbol/stub graph remains complete at its declared scope."
+  },
+  {
+    "id": "OGM-002",
+    "changed_sources": [
+      "typing/README.md",
+      "typing/check.py",
+      "typing/evidence/pacer-inventory.json",
+      "typing/evidence/runtime-contracts.txt",
+      "typing/evidence/source-after.json",
+      "typing/evidence/source-current-command.json",
+      "typing/evidence/tooling-regressions.txt",
+      "typing/pacer_inventory.py"
+    ],
+    "review": "The strict source audit was rerun and still fails at 823 diagnostics in 36 files. Seven external contract stages pass separately. No ignore, exclude, Python-runtime change or diagnostic suppression was introduced."
+  },
+  {
+    "id": "OGM-003",
+    "changed_sources": [
+      "README.md",
+      "docs/CHANGELOG.md",
+      "typing/README.md",
+      "typing/check.py",
+      "typing/evidence/pacer-inventory.json",
+      "typing/evidence/runtime-contracts.txt",
+      "typing/evidence/source-after.json",
+      "typing/evidence/tooling-regressions.txt",
+      "typing/pacer_inventory.py"
+    ],
+    "review": "PAC-037 source delta reviewed: Python runtime and contract declarations unchanged; changed browser controls use existing requests, saved-rule revisions and exact-preview consent. Current full module regressions and all three native browser tests pass. Changed documentation describes bounded results. Earlier launcher, historical merge/identification and model evidence retain their original dates and qualification limits."
+  },
+  {
+    "id": "OGM-006",
+    "changed_sources": [
+      "src/riposte/static/index.html"
+    ],
+    "review": "PAC-037 source delta reviewed: Python runtime and contract declarations unchanged; changed browser controls use existing requests, saved-rule revisions and exact-preview consent. Current full module regressions and all three native browser tests pass. Changed documentation describes bounded results. Earlier launcher, historical merge/identification and model evidence retain their original dates and qualification limits."
+  },
+  {
+    "id": "OGM-009",
+    "changed_sources": [
+      "README.md"
+    ],
+    "review": "PAC-037 source delta reviewed: Python runtime and contract declarations unchanged; changed browser controls use existing requests, saved-rule revisions and exact-preview consent. Current full module regressions and all three native browser tests pass. Changed documentation describes bounded results. Earlier launcher, historical merge/identification and model evidence retain their original dates and qualification limits."
+  },
+  {
+    "id": "OGM-010",
+    "changed_sources": [],
+    "review": "Fresh wheel/sdist application files match all 73 reviewed source files. Current README and design/UX/status docs match the source distribution; MANIFEST now includes the previously omitted status guide. Launcher source is unchanged and retains prior execution evidence; this is not clean installation."
+  },
+  {
+    "id": "OGM-011",
+    "changed_sources": [
+      "MANIFEST.in",
+      "README.md",
+      "docs/DESIGN.md",
+      "docs/UX-CONTRACT.md",
+      "src/riposte/static/index.html"
+    ],
+    "review": "PAC-037 source delta reviewed: Python runtime and contract declarations unchanged; changed browser controls use existing requests, saved-rule revisions and exact-preview consent. Current full module regressions and all three native browser tests pass. Changed documentation describes bounded results. Earlier launcher, historical merge/identification and model evidence retain their original dates and qualification limits."
+  },
+  {
+    "id": "OGM-016",
+    "changed_sources": [
+      "typing/check.py"
+    ],
+    "review": "PAC-037 source delta reviewed: Python runtime and contract declarations unchanged; changed browser controls use existing requests, saved-rule revisions and exact-preview consent. Current full module regressions and all three native browser tests pass. Changed documentation describes bounded results. Earlier launcher, historical merge/identification and model evidence retain their original dates and qualification limits."
+  },
+  {
+    "id": "OGM-018",
+    "changed_sources": [
+      "MANIFEST.in",
+      "README.md",
+      "docs/DESIGN.md",
+      "docs/UX-CONTRACT.md",
+      "src/riposte/static/category-sort.js",
+      "src/riposte/static/index.html",
+      "src/riposte/static/style.css",
+      "tests/category_sort_browser.cjs",
+      "tests/category_sort_probe.js",
+      "typing/README.md",
+      "typing/check.py",
+      "typing/pacer_inventory.py"
+    ],
+    "review": "PAC-037 source delta reviewed: Python runtime and contract declarations unchanged; changed browser controls use existing requests, saved-rule revisions and exact-preview consent. Current full module regressions and all three native browser tests pass. Changed documentation describes bounded results. Earlier launcher, historical merge/identification and model evidence retain their original dates and qualification limits."
+  },
+  {
+    "id": "OGM-019",
+    "changed_sources": [
+      "README.md",
+      "src/riposte/static/category-sort.js",
+      "src/riposte/static/index.html",
+      "typing/check.py"
+    ],
+    "review": "PAC-037 source delta reviewed: Python runtime and contract declarations unchanged; changed browser controls use existing requests, saved-rule revisions and exact-preview consent. Current full module regressions and all three native browser tests pass. Changed documentation describes bounded results. Earlier launcher, historical merge/identification and model evidence retain their original dates and qualification limits."
+  },
+  {
+    "id": "OGM-021",
+    "changed_sources": [],
+    "review": "PAC-037 source delta reviewed: Python runtime and contract declarations unchanged; changed browser controls use existing requests, saved-rule revisions and exact-preview consent. Current full module regressions and all three native browser tests pass. Changed documentation describes bounded results. Earlier launcher, historical merge/identification and model evidence retain their original dates and qualification limits."
+  },
+  {
+    "id": "OGM-023",
+    "changed_sources": [
+      "src/riposte/static/category-sort.js",
+      "src/riposte/static/index.html",
+      "src/riposte/static/style.css",
+      "tests/category_sort_browser.cjs",
+      "tests/category_sort_probe.js"
+    ],
+    "review": "Current deterministic cancellation/completion/shutdown regressions pass. The browser retains job IDs, phase/cancel controls and generation checks; guided editor tests reject stale review/preview replies. Prior 960-file live cancellation evidence remains historical; the current 58-file live workflow verifies real save/conflict/preview/apply/undo integration."
+  },
+  {
+    "id": "OGM-024",
+    "changed_sources": [
+      "MANIFEST.in",
+      "README.md",
+      "docs/DESIGN.md",
+      "docs/UX-CONTRACT.md",
+      "evidence/guided-category-editing/README.md",
+      "evidence/guided-category-editing/live_browser.py",
+      "evidence/guided-category-editing/live_probe.js",
+      "evidence/guided-category-editing/review_contracts.py",
+      "evidence/guided-category-editing/verify.py",
+      "src/riposte/__init__.py",
+      "src/riposte/agreement.py",
+      "src/riposte/benchmark.py",
+      "src/riposte/catalog_guard.py",
+      "src/riposte/category_corpus.py",
+      "src/riposte/category_rules.py",
+      "src/riposte/category_sort.py",
+      "src/riposte/cli.py",
+      "src/riposte/cohort.py",
+      "src/riposte/context_graph.py",
+      "src/riposte/coupled.py",
+      "src/riposte/duplicate_features.py",
+      "src/riposte/duplicate_index.py",
+      "src/riposte/duplicate_media.py",
+      "src/riposte/duplicate_review.py",
+      "src/riposte/duplicates.py",
+      "src/riposte/errors.py",
+      "src/riposte/experiment.py",
+      "src/riposte/generation.py",
+      "src/riposte/intake.py",
+      "src/riposte/kontext.py",
+      "src/riposte/lab.py",
+      "src/riposte/locking.py",
+      "src/riposte/metrics.py",
+      "src/riposte/models.py",
+      "src/riposte/optimizer.py",
+      "src/riposte/organizer.py",
+      "src/riposte/policy.py",
+      "src/riposte/publication.py",
+      "src/riposte/qualification.py",
+      "src/riposte/quality.py",
+      "src/riposte/records.py",
+      "src/riposte/release_guard.py",
+      "src/riposte/review_panel.py",
+      "src/riposte/runtime_probe.py",
+      "src/riposte/sanitize.py",
+      "src/riposte/server.py",
+      "src/riposte/sort_history.py",
+      "src/riposte/sort_plan.py",
+      "src/riposte/sort_titles.py",
+      "src/riposte/static/category-sort.js",
+      "src/riposte/static/index.html",
+      "src/riposte/static/style.css",
+      "src/riposte/store.py",
+      "src/riposte/temporal.py",
+      "src/riposte/terminal/actions.py",
+      "src/riposte/terminal/app.py",
+      "src/riposte/terminal/controller.py",
+      "src/riposte/terminal/help.py",
+      "src/riposte/terminal/interaction.py",
+      "src/riposte/terminal/jobs.py",
+      "src/riposte/terminal/keyboard.py",
+      "src/riposte/terminal/material.py",
+      "src/riposte/terminal/output.py",
+      "src/riposte/terminal/palette.py",
+      "src/riposte/terminal/paths.py",
+      "src/riposte/terminal/preview.py",
+      "src/riposte/terminal/render.py",
+      "src/riposte/terminal/reports.py",
+      "src/riposte/terminal/service.py",
+      "src/riposte/terminal/signals.py",
+      "src/riposte/terminal/state.py",
+      "src/riposte/terminal/surface.py",
+      "src/riposte/title_categories.py",
+      "src/riposte/video.py",
+      "src/riposte/views.py",
+      "tests/category_sort_browser.cjs",
+      "tests/category_sort_probe.js",
+      "tests/test_category_sort_interfaces.py",
+      "typing/README.md",
+      "typing/check.py",
+      "typing/evidence/source-reviewed-guided-categories.json",
+      "typing/pacer_inventory.py"
+    ],
+    "review": "Structured browser rows and per-file selectors demonstrated with native validation/focus/state tests and actual authenticated save, stable rename, concurrent-rule conflict, optional categories, exact preview, explicit apply, undo and float preservation. CLI/terminal syntax and all Python runtime signatures remain unchanged."
+  }
+]

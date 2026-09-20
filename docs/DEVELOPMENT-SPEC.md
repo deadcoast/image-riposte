@@ -1,12 +1,13 @@
 # Historical development specification / current supersession
 
-The text below preserves earlier delivery contracts. Current implementation and
-evidence are indexed in [PROJECT-STATUS.md](PROJECT-STATUS.md), [README](../README.md)
-and [CLI.md](CLI.md). The old absolute bans on retaining originals, original names
-and source hashes are superseded for private undo history and private category
-provenance. Date-only sanitation still applies to generated images/public exports;
-videos retain original bytes and metadata. The earlier seven-action/27-command
-interface is historical. Current source and explicit operation consent prevail.
+The original specification and entry-point amendment below are historical.
+Their private-original ban, workspace-wide date-only wording, fixed year buckets
+and seven-action/27-command deck have been superseded. Follow the
+[exact replacement table](CURRENT-CONTRACT.md#superseded-historical-claims),
+[current privacy boundary](CURRENT-CONTRACT.md#public-outputs-versus-private-state)
+and [independent workflows and consent](CURRENT-CONTRACT.md#independent-workflows-and-consent).
+Use [CLI](CLI.md) for commands and [project status](PROJECT-STATUS.md) for current
+evidence. The historical body below is preserved byte-for-byte.
 
 # Historical entry-point amendment / RIPOSTE 0.4
 

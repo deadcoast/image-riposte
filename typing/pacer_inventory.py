@@ -469,6 +469,42 @@ INPUTS += (
 
 INPUTS += ('evidence/sort-recovery/README.md', 'evidence/sort-recovery/suite-final.xml', 'evidence/sort-recovery/source-mypy-current.txt', 'evidence/sort-recovery/inventory-first.txt')
 
+# PAC-044 admits the deferred integration/evidence owners, and PAC-035 its jobs.
+# Each listed tree is task evidence, never user media, models or a build output.
+INPUTS += tuple(sorted({
+    'todo-audit.PACER.md', 'docs/PROJECT-STATUS.md', 'RELEASE-MANIFEST.json',
+    'docs/DUPLICATES.md', 'docs/research/sorting/RIPOSTE-REVIEW.md',
+    'typing/evidence/source-reviewed-duplicates.json',
+    'typing/evidence/source-reviewed-browser-jobs.json',
+    'typing/evidence/source-reviewed-guided-categories.json',
+    'typing/evidence/source-reviewed-recovery-guidance.json',
+    'docs/README.md', 'docs/CURRENT-CONTRACT.md', 'docs/THREAT-MODEL.md',
+    'evidence/documentation-contracts/README.md',
+    'evidence/documentation-contracts/verify.py',
+    'evidence/recovery-guidance/README.md',
+    'evidence/recovery-guidance/review_contracts.py',
+    'evidence/recovery-guidance/live_browser.py',
+    'evidence/recovery-guidance/live_probe.js',
+    'evidence/recovery-guidance/verify.py',
+    'evidence/guided-category-editing/README.md',
+    'evidence/guided-category-editing/review_contracts.py',
+    'evidence/guided-category-editing/live_browser.py',
+    'evidence/guided-category-editing/live_probe.js',
+    'evidence/guided-category-editing/verify.py',
+    'evidence/pacer-resumption/README.md', 'evidence/pacer-resumption/reconcile.py',
+    'evidence/pacer-resumption/review_contracts.py',
+    'evidence/pacer-resumption/live_browser.py', 'evidence/pacer-resumption/live_probe.js',
+    'evidence/pacer-resumption/verify.py', 'evidence/pacer-resumption/acceptance.py',
+    'evidence/pacer-resumption/decisions.json',
+    *(p.relative_to(ROOT).as_posix() for p in (ROOT / 'tests').glob('*') if p.is_file()),
+    *(p.relative_to(ROOT).as_posix()
+      for folder in ('duplicates', 'sorting-research', 'optional-categories',
+                     'terminal-polish', 'sorter-menu', 'terminal-direction')
+      for p in (ROOT / 'evidence' / folder).rglob('*')
+      if p.is_file() and '__pycache__' not in p.parts
+      and p.name not in {'inventory-plan.json', 'inventory-final.txt', 'register-context.json'}),
+}))
+
 
 def digest(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()

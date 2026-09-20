@@ -1,0 +1,18 @@
+{
+  "owners": [
+    "src/riposte/static/category-sort.js",
+    "src/riposte/static/index.html",
+    "src/riposte/static/style.css"
+  ],
+  "signatures": 531,
+  "leaf_modules": 62,
+  "application_files": 73,
+  "python_runtime_unchanged": true,
+  "review": [
+    "Structured browser fields serialize the existing categories/exclusions/priorities/slugs request arrays.",
+    "The shared Python parser remains authoritative; client errors provide immediate correction hints.",
+    "Assignment maps serialize existing path=slug requests and cannot grant exact-preview consent.",
+    "Explicit save uses the reviewed options and revision, preserving the current conflict boundary.",
+    "Runtime Python signatures, stubs, sorting engine, CLI and terminal source remain unchanged."
+  ]
+}

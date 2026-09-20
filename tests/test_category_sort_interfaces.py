@@ -109,12 +109,12 @@ def test_api_rules_discovery_sort_and_undo(root, make_image):
         for endpoint in ('categories', 'category-rules', 'organize', 'undo-sort'):
             assert client.post('/api/' + endpoint, json={}).status_code == 401
         client.headers['X-Riposte-Token'] = 'category-test'
-        discovery = client.post('/api/categories', json={'min_count': 1})
-        assert discovery.status_code == 200 and discovery.json()['candidates'][0]['term'] == 'hockey'
-        draft = client.post('/api/category-rules', json={'categories': ['Hockey=hockey']}).json()
+        discovery = job(client, 'categories', {'min_count': 1})['result']
+        assert discovery['candidates'][0]['term'] == 'hockey'
+        draft = job(client, 'category-rules', {'categories': ['Hockey=hockey']})['result']
         assert draft['status'] == 'DRAFT' and not (root / '.riposte').exists()
-        saved = client.post('/api/category-rules', json={'categories': ['Hockey=hockey'], 'save': True, 'expected_revision': draft['revision']})
-        assert saved.status_code == 200 and saved.json()['status'] == 'SAVED'
+        saved = job(client, 'category-rules', {'categories': ['Hockey=hockey'], 'save': True, 'expected_revision': draft['revision']})
+        assert saved['state'] == 'done' and saved['result']['status'] == 'SAVED'
         options = {'categories': True, 'date_mode': 'modified'}
         preview = job(client, 'organize', options)['result']
         assert client.post('/api/organize', json={**options, 'apply': True, 'plan_id': preview['plan_id']}).status_code == 400
@@ -163,8 +163,8 @@ def test_api_optional_categories_accept_unknown_and_tied_titles(root, make_image
     originals = [p.read_bytes() for p in sources]
     with TestClient(create_app(root, 'optional-category-test')) as client:
         client.headers['X-Riposte-Token'] = 'optional-category-test'
-        saved = client.post('/api/category-rules', json={'categories': ['Hockey=hockey', 'Sport=hockey'], 'save': True, 'expected_revision': 'missing'})
-        assert saved.status_code == 200
+        saved = job(client, 'category-rules', {'categories': ['Hockey=hockey', 'Sport=hockey'], 'save': True, 'expected_revision': 'missing'})
+        assert saved['state'] == 'done'
         options = {'categories': True, 'date_mode': 'modified'}
         preview = job(client, 'organize', options)['result']
         assert preview['ready'] and all(f['category'] is None for f in preview['files'])

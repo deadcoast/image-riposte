@@ -204,34 +204,42 @@ def make_request(key: str, root: Path | None, values: dict, selected=()) -> Requ
         except (ValueError, TypeError):
             raise RiposteError("CATEGORY_ASSIGNMENT_INVALID") from None
     if key == "review": parsed["item_ids"] = list(parsed["item_ids"])
+    if key in {"publish", "riposte", "sort-riposte"}:
+        for option in ("recipe_name", "recipe_revision"):
+            if values.get(option): parsed[option] = values[option]
     return Request(key, root, cast(RequestValues, parsed))
 
 
 def request_argv(request: Request) -> list[str]:
     """Generate a real Typer command, never execute the rendered command line."""
     name = {"category-rules-save": "category-rules", "plan": "publish", "riposte-plan": "riposte", "sort-riposte-plan": "sort-riposte", "apply": "organize", "undo-sort-apply": "undo-sort", "handoff": "workshop", "open-image": "image"}.get(request.name, request.name)
+    if name == "recipes-save": name = "recipes"
     args = ["riposte", name]
     if request.root is not None and name != "doctor": args.append(str(request.root))
     values: Mapping[str, object] = request.values
+    if name == "recipes":
+        values = {**values, **cast(Mapping[str, object], values.get("recipe_settings") or {})}
     pos = {"inspect": ("image_id",), "guard": ("image_id",), "compare": ("image_id", "candidate"),
            "qualify": ("trial_id",), "challenge": ("trial_id",), "benchmark": ("trial_id",), "export": ("trial_id",),
            "publications": ("batch_id",), "resume": ("batch_id",), "review": ("batch_id",), "package": ("batch_id",),
            "trials": ("trial_id",), "evaluations": ("trial_id",), "generations": ("trial_id",), "generation": ("run_id",), "frame": ("run_id", "relative"), "workshop": ("batch_id", "item_id")}.get(name, ())
+    if name == "recipes": pos = ("recipe_name",)
     for key in pos:
         if values.get(key): args.append(str(values[key]))
     aliases = {"duplicate_report": "report", "assignments": "assign", "exclusions": "exclude", "priorities": "priority", "slugs": "slug", "category_specs": "category", "input_paths": "input", "open_viewer": "open", "vae_dirs": "vae", "image_ids": "image", "all_images": "all", "edges": "edge", "item_ids": "item", "seeds": "seed", "views": "view"}
     for key, value in values.items():
+        if key in {"recipe_settings", "recipe_overrides"}: continue
         if name == "categories" and key == "fillers" and value == "":
             args.extend(["--fillers", ""])
             continue
         if key in pos or value is None or value == "" or value == [] or value == (): continue
         if name == "guard" and key == "inpaint": option = "pipeline"
-        else: option = aliases.get(key, key).replace("_", "-")
+        else: option = "recipe" if key == "recipe_name" else aliases.get(key, key).replace("_", "-")
         if isinstance(value, bool):
             if key in {"visual", "videos", "include_float"}:
                 args.append("--" + ("" if value else "no-") + option)
             elif key == "preserve_white":
-                if not value: args.append("--no-preserve-white")
+                args.append("--preserve-white" if value else "--no-preserve-white")
             elif value: args.append("--" + option)
         elif isinstance(value, (list, tuple)):
             for entry in value: args.extend(["--" + option, str(entry)])
@@ -240,6 +248,8 @@ def request_argv(request: Request) -> list[str]:
     if request.name in {"apply", "sort-riposte", "undo-sort-apply"}: args.append("--apply")
     if request.name == "open-image": args.append("--open")
     if request.name == "category-rules-save": args.append("--save")
+    if request.name == "recipes-save": args.append("--save")
+    elif request.name == "recipes" and request.values.get("recipe_settings") is not None: args.append("--preview")
     return args
 
 

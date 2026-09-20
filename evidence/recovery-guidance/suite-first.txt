@@ -1,0 +1,359 @@
+...............................s..............F........F.FF......F...... [  4%]
+........................................................................ [  9%]
+....s................................................................... [ 14%]
+........................................................................ [ 18%]
+........................................................................ [ 23%]
+........................................................................ [ 28%]
+........................................................................ [ 32%]
+..............s......................................................... [ 37%]
+........................................................................ [ 42%]
+........................................................................ [ 47%]
+........................................................................ [ 51%]
+........................................................................ [ 56%]
+........F............................................................... [ 61%]
+...................................................s.................... [ 65%]
+........................................................................ [ 70%]
+........................................................................ [ 75%]
+................s....................................................... [ 80%]
+........................................................................ [ 84%]
+ssss.................................................................... [ 89%]
+........................................................................ [ 94%]
+........................................................................ [ 98%]
+................                                                         [100%]
+================================== FAILURES ===================================
+_______________ test_browser_review[approval_waits_for_decode] ________________
+
+scenario = 'approval_waits_for_decode'
+
+    @pytest.mark.parametrize('scenario', [
+        'approval_waits_for_decode',
+        'failed_image_blocks_approval',
+        'failed_decode_blocks_approval',
+        'new_review_clears_old_pixels',
+        'superseded_load_cannot_authorize',
+        'original_pixels_required',
+        'cached_preview_is_revalidated',
+        'closed_review_cannot_submit',
+        'native_close_cancels_review',
+        'duplicate_decisions_blocked',
+        'old_decision_keeps_new_review_open',
+        'failed_decision_can_retry',
+        'rejection_without_images',
+        'same_path_load_race',
+        'late_decode_keeps_current_image',
+        'fresh_urls_are_released',
+        'acknowledgements_required',
+        'stale_receipt_is_not_success',
+        'old_workshop_keeps_new_review_open',
+        'workshop_handoff',
+        'native_browser',
+    ])
+    def test_browser_review(scenario):
+        node = shutil.which('node')
+        if node is None:
+            pytest.skip('Node is required to execute the browser JavaScript')
+        browser = None
+        if scenario == 'native_browser':
+            candidates = [
+                os.environ.get('RIPOSTE_TEST_BROWSER', ''),
+                shutil.which('chromium') or shutil.which('google-chrome') or '',
+                'C:/Program Files/Google/Chrome/Application/chrome.exe',
+                'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe',
+            ]
+            browser = next((name for name in candidates if name and Path(name).is_file()), None)
+            if browser is None:
+                pytest.skip('A local Chromium browser is required for native DOM verification')
+        script = Path(__file__).with_name('browser_review.cjs')
+        result = subprocess.run([node, str(script), scenario, *([browser] if browser else [])],
+                                capture_output=True, text=True, encoding='utf-8', timeout=30)
+>       assert result.returncode == 0, result.stdout + result.stderr
+E       AssertionError: TypeError: Cannot read properties of undefined (reading 'body')
+E             at Object.approval_waits_for_decode (C:\Users\ryanf\github\_new\image-riposte\tests\browser_review.cjs:145:37)
+E             at async C:\Users\ryanf\github\_new\image-riposte\tests\browser_review.cjs:421:3
+E         
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['C:\\nvm4w\\nodejs\\node.EXE', 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\tests\\browser_r...ser_review.cjs:145:37)\n    at async C:\\Users\\ryanf\\github\\_new\\image-riposte\\tests\\browser_review.cjs:421:3\n").returncode
+
+tests\test_browser_review.py:51: AssertionError
+______________ test_browser_review[duplicate_decisions_blocked] _______________
+
+scenario = 'duplicate_decisions_blocked'
+
+    @pytest.mark.parametrize('scenario', [
+        'approval_waits_for_decode',
+        'failed_image_blocks_approval',
+        'failed_decode_blocks_approval',
+        'new_review_clears_old_pixels',
+        'superseded_load_cannot_authorize',
+        'original_pixels_required',
+        'cached_preview_is_revalidated',
+        'closed_review_cannot_submit',
+        'native_close_cancels_review',
+        'duplicate_decisions_blocked',
+        'old_decision_keeps_new_review_open',
+        'failed_decision_can_retry',
+        'rejection_without_images',
+        'same_path_load_race',
+        'late_decode_keeps_current_image',
+        'fresh_urls_are_released',
+        'acknowledgements_required',
+        'stale_receipt_is_not_success',
+        'old_workshop_keeps_new_review_open',
+        'workshop_handoff',
+        'native_browser',
+    ])
+    def test_browser_review(scenario):
+        node = shutil.which('node')
+        if node is None:
+            pytest.skip('Node is required to execute the browser JavaScript')
+        browser = None
+        if scenario == 'native_browser':
+            candidates = [
+                os.environ.get('RIPOSTE_TEST_BROWSER', ''),
+                shutil.which('chromium') or shutil.which('google-chrome') or '',
+                'C:/Program Files/Google/Chrome/Application/chrome.exe',
+                'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe',
+            ]
+            browser = next((name for name in candidates if name and Path(name).is_file()), None)
+            if browser is None:
+                pytest.skip('A local Chromium browser is required for native DOM verification')
+        script = Path(__file__).with_name('browser_review.cjs')
+        result = subprocess.run([node, str(script), scenario, *([browser] if browser else [])],
+                                capture_output=True, text=True, encoding='utf-8', timeout=30)
+>       assert result.returncode == 0, result.stdout + result.stderr
+E       AssertionError: AssertionError [ERR_ASSERTION]: only one decision can be in flight
+E         
+E         0 !== 1
+E         
+E             at Object.duplicate_decisions_blocked (C:\Users\ryanf\github\_new\image-riposte\tests\browser_review.cjs:217:12)
+E             at async C:\Users\ryanf\github\_new\image-riposte\tests\browser_review.cjs:421:3 {
+E           generatedMessage: false,
+E           code: 'ERR_ASSERTION',
+E           actual: 0,
+E           expected: 1,
+E           operator: 'strictEqual',
+E           diff: 'simple'
+E         }
+E         
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['C:\\nvm4w\\nodejs\\node.EXE', 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\tests\\browser_r...ge: false,\n  code: 'ERR_ASSERTION',\n  actual: 0,\n  expected: 1,\n  operator: 'strictEqual',\n  diff: 'simple'\n}\n").returncode
+
+tests\test_browser_review.py:51: AssertionError
+_______________ test_browser_review[failed_decision_can_retry] ________________
+
+scenario = 'failed_decision_can_retry'
+
+    @pytest.mark.parametrize('scenario', [
+        'approval_waits_for_decode',
+        'failed_image_blocks_approval',
+        'failed_decode_blocks_approval',
+        'new_review_clears_old_pixels',
+        'superseded_load_cannot_authorize',
+        'original_pixels_required',
+        'cached_preview_is_revalidated',
+        'closed_review_cannot_submit',
+        'native_close_cancels_review',
+        'duplicate_decisions_blocked',
+        'old_decision_keeps_new_review_open',
+        'failed_decision_can_retry',
+        'rejection_without_images',
+        'same_path_load_race',
+        'late_decode_keeps_current_image',
+        'fresh_urls_are_released',
+        'acknowledgements_required',
+        'stale_receipt_is_not_success',
+        'old_workshop_keeps_new_review_open',
+        'workshop_handoff',
+        'native_browser',
+    ])
+    def test_browser_review(scenario):
+        node = shutil.which('node')
+        if node is None:
+            pytest.skip('Node is required to execute the browser JavaScript')
+        browser = None
+        if scenario == 'native_browser':
+            candidates = [
+                os.environ.get('RIPOSTE_TEST_BROWSER', ''),
+                shutil.which('chromium') or shutil.which('google-chrome') or '',
+                'C:/Program Files/Google/Chrome/Application/chrome.exe',
+                'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe',
+            ]
+            browser = next((name for name in candidates if name and Path(name).is_file()), None)
+            if browser is None:
+                pytest.skip('A local Chromium browser is required for native DOM verification')
+        script = Path(__file__).with_name('browser_review.cjs')
+        result = subprocess.run([node, str(script), scenario, *([browser] if browser else [])],
+                                capture_output=True, text=True, encoding='utf-8', timeout=30)
+>       assert result.returncode == 0, result.stdout + result.stderr
+E       AssertionError: TypeError: Cannot read properties of undefined (reading 'reject')
+E             at Object.failed_decision_can_retry (C:\Users\ryanf\github\_new\image-riposte\tests\browser_review.cjs:233:20)
+E             at async C:\Users\ryanf\github\_new\image-riposte\tests\browser_review.cjs:421:3
+E         
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['C:\\nvm4w\\nodejs\\node.EXE', 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\tests\\browser_r...ser_review.cjs:233:20)\n    at async C:\\Users\\ryanf\\github\\_new\\image-riposte\\tests\\browser_review.cjs:421:3\n").returncode
+
+tests\test_browser_review.py:51: AssertionError
+________________ test_browser_review[rejection_without_images] ________________
+
+scenario = 'rejection_without_images'
+
+    @pytest.mark.parametrize('scenario', [
+        'approval_waits_for_decode',
+        'failed_image_blocks_approval',
+        'failed_decode_blocks_approval',
+        'new_review_clears_old_pixels',
+        'superseded_load_cannot_authorize',
+        'original_pixels_required',
+        'cached_preview_is_revalidated',
+        'closed_review_cannot_submit',
+        'native_close_cancels_review',
+        'duplicate_decisions_blocked',
+        'old_decision_keeps_new_review_open',
+        'failed_decision_can_retry',
+        'rejection_without_images',
+        'same_path_load_race',
+        'late_decode_keeps_current_image',
+        'fresh_urls_are_released',
+        'acknowledgements_required',
+        'stale_receipt_is_not_success',
+        'old_workshop_keeps_new_review_open',
+        'workshop_handoff',
+        'native_browser',
+    ])
+    def test_browser_review(scenario):
+        node = shutil.which('node')
+        if node is None:
+            pytest.skip('Node is required to execute the browser JavaScript')
+        browser = None
+        if scenario == 'native_browser':
+            candidates = [
+                os.environ.get('RIPOSTE_TEST_BROWSER', ''),
+                shutil.which('chromium') or shutil.which('google-chrome') or '',
+                'C:/Program Files/Google/Chrome/Application/chrome.exe',
+                'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe',
+            ]
+            browser = next((name for name in candidates if name and Path(name).is_file()), None)
+            if browser is None:
+                pytest.skip('A local Chromium browser is required for native DOM verification')
+        script = Path(__file__).with_name('browser_review.cjs')
+        result = subprocess.run([node, str(script), scenario, *([browser] if browser else [])],
+                                capture_output=True, text=True, encoding='utf-8', timeout=30)
+>       assert result.returncode == 0, result.stdout + result.stderr
+E       AssertionError: AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+E         
+E         0 !== 1
+E         
+E             at Object.rejection_without_images (C:\Users\ryanf\github\_new\image-riposte\tests\browser_review.cjs:243:12)
+E             at C:\Users\ryanf\github\_new\image-riposte\tests\browser_review.cjs:421:35 {
+E           generatedMessage: true,
+E           code: 'ERR_ASSERTION',
+E           actual: 0,
+E           expected: 1,
+E           operator: 'strictEqual',
+E           diff: 'simple'
+E         }
+E         
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['C:\\nvm4w\\nodejs\\node.EXE', 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\tests\\browser_r...age: true,\n  code: 'ERR_ASSERTION',\n  actual: 0,\n  expected: 1,\n  operator: 'strictEqual',\n  diff: 'simple'\n}\n").returncode
+
+tests\test_browser_review.py:51: AssertionError
+____________________ test_browser_review[workshop_handoff] ____________________
+
+scenario = 'workshop_handoff'
+
+    @pytest.mark.parametrize('scenario', [
+        'approval_waits_for_decode',
+        'failed_image_blocks_approval',
+        'failed_decode_blocks_approval',
+        'new_review_clears_old_pixels',
+        'superseded_load_cannot_authorize',
+        'original_pixels_required',
+        'cached_preview_is_revalidated',
+        'closed_review_cannot_submit',
+        'native_close_cancels_review',
+        'duplicate_decisions_blocked',
+        'old_decision_keeps_new_review_open',
+        'failed_decision_can_retry',
+        'rejection_without_images',
+        'same_path_load_race',
+        'late_decode_keeps_current_image',
+        'fresh_urls_are_released',
+        'acknowledgements_required',
+        'stale_receipt_is_not_success',
+        'old_workshop_keeps_new_review_open',
+        'workshop_handoff',
+        'native_browser',
+    ])
+    def test_browser_review(scenario):
+        node = shutil.which('node')
+        if node is None:
+            pytest.skip('Node is required to execute the browser JavaScript')
+        browser = None
+        if scenario == 'native_browser':
+            candidates = [
+                os.environ.get('RIPOSTE_TEST_BROWSER', ''),
+                shutil.which('chromium') or shutil.which('google-chrome') or '',
+                'C:/Program Files/Google/Chrome/Application/chrome.exe',
+                'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe',
+            ]
+            browser = next((name for name in candidates if name and Path(name).is_file()), None)
+            if browser is None:
+                pytest.skip('A local Chromium browser is required for native DOM verification')
+        script = Path(__file__).with_name('browser_review.cjs')
+        result = subprocess.run([node, str(script), scenario, *([browser] if browser else [])],
+                                capture_output=True, text=True, encoding='utf-8', timeout=30)
+>       assert result.returncode == 0, result.stdout + result.stderr
+E       AssertionError: TypeError: Cannot read properties of undefined (reading 'resolve')
+E             at Object.workshop_handoff (C:\Users\ryanf\github\_new\image-riposte\tests\browser_review.cjs:301:20)
+E             at C:\Users\ryanf\github\_new\image-riposte\tests\browser_review.cjs:421:35
+E         
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['C:\\nvm4w\\nodejs\\node.EXE', 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\tests\\browser_r...\browser_review.cjs:301:20)\n    at C:\\Users\\ryanf\\github\\_new\\image-riposte\\tests\\browser_review.cjs:421:35\n").returncode
+
+tests\test_browser_review.py:51: AssertionError
+_____________ test_stale_sort_retains_recovery_and_path_shortcut ______________
+
+menu = <riposte.terminal.controller.Controller object at 0x00000208B99DE660>
+root = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/pytest-of-ryanf/pytest-552/test_stale_sort_retains_recove0/workspace')
+make_image = <function make_image.<locals>.create at 0x00000208C64A4040>
+
+    def test_stale_sort_retains_recovery_and_path_shortcut(menu, root, make_image):
+        source = make_image(root / "painting.png")
+        menu.key(Key("char", "1")); finish(menu)
+        menu.key(Key("enter"))
+        source.write_bytes(b"changed after preview")
+        menu.key(Key("char", "REPLACE")); menu.key(Key("enter")); finish(menu)
+        assert menu.state.page.code == "CATEGORY_PREVIEW_CHANGED"
+        screen = render(menu.state, 72, 24).plain()
+>       assert "Preview again" in screen and "[g] Enter Path" in screen
+E       AssertionError: assert ('Preview again' in '                                                                        \n   R I P O S T E    /  Riposte Sorter / Sto...                                            \n                                                                        ')
+
+tests\test_terminal_polish.py:92: AssertionError
+============================== warnings summary ===============================
+.venv\Lib\site-packages\fastapi\testclient.py:1
+  C:\Users\ryanf\github\_new\image-riposte\.venv\Lib\site-packages\fastapi\testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    from starlette.testclient import TestClient as TestClient  # noqa
+
+.venv\Lib\site-packages\starlette\testclient.py:53
+  C:\Users\ryanf\github\_new\image-riposte\.venv\Lib\site-packages\starlette\testclient.py:53: DeprecationWarning: The anyio.abc.BlockingPortal alias is deprecated, use anyio.from_thread.BlockingPortal instead.
+    _PortalFactoryType = Callable[[], AbstractContextManager[anyio.abc.BlockingPortal]]
+
+tests/test_kontext.py::test_real_tiny_random_pipeline_cpu_numeric_path
+  C:\Users\ryanf\github\_new\image-riposte\.venv\Lib\site-packages\diffusers\utils\deprecation_utils.py:23: FutureWarning: `torch_dtype` is deprecated and will be removed in version 1.0.0. Please use `dtype` instead.
+    deprecate("torch_dtype", "1.0.0", _TORCH_DTYPE_DEPRECATION_MESSAGE)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ===========================
+SKIPPED [1] tests\test_application_roots.py:139: Windows symlink privilege unavailable; junction exercised separately
+SKIPPED [1] tests\test_category_rules.py:185: symlinks unavailable
+SKIPPED [1] tests\test_organizer.py:80: Symlinks unavailable
+SKIPPED [1] tests\test_v02_models.py:38: Windows symlink creation privilege unavailable
+SKIPPED [1] tests\test_v03_temporal.py:134: Windows account lacks symlink privilege
+SKIPPED [4] tests\test_v04_terminal_host.py:8: POSIX pseudo-terminal contract
+FAILED tests/test_browser_review.py::test_browser_review[approval_waits_for_decode]
+FAILED tests/test_browser_review.py::test_browser_review[duplicate_decisions_blocked]
+FAILED tests/test_browser_review.py::test_browser_review[failed_decision_can_retry]
+FAILED tests/test_browser_review.py::test_browser_review[rejection_without_images]
+FAILED tests/test_browser_review.py::test_browser_review[workshop_handoff] - ...
+FAILED tests/test_terminal_polish.py::test_stale_sort_retains_recovery_and_path_shortcut
+6 failed, 1513 passed, 9 skipped, 3 deselected, 3 warnings in 225.53s (0:03:45)

@@ -1,12 +1,9 @@
 # Threat model and data lifecycle
 
-Current lifecycle amendment (0.5.0 development): the older no-original-retention
-text below predates undo and video sorting. Explicit sorts now retain private
-original bytes/metadata/names/timestamps for recovery; category provenance is
-private too. Videos retain their embedded metadata. Generated images and public
-publishing packs remain audited date-only PNGs. See
-[PROJECT-STATUS.md](PROJECT-STATUS.md) and [README](../README.md) for the current
-boundary. Keep recovery history private; deleting it removes recovery capability.
+Maintained for the 0.5.0 development checkout, reviewed under PAC-039. This guide
+describes current boundaries, including private undo history and independent
+workflows. See [the current contract](CURRENT-CONTRACT.md) for exact artifact
+scope and [project status](PROJECT-STATUS.md) for qualification limits.
 
 ## Protected assets and attacker access
 
@@ -16,11 +13,11 @@ The privacy track addresses image-container metadata and application-created cop
 
 ## Location-data edict as an executable boundary
 
-RIPOSTE does not need to recognize every spelling of every location tag. It discards the source metadata container and rebuilds from pixels under a tiny allowlist. Date is the only retained descriptive image field. A copied source hash could still fingerprint a contaminated original, so hashes are calculated only after cleansing.
+For generated PNGs, RIPOSTE discards the source metadata container and rebuilds from pixels under a tiny allowlist. Date is the only retained descriptive image field. Hashes in public image-processing reports refer to cleaned artifacts. Private sorting/recovery and duplicate analysis also hash original bytes for identity and integrity; these hashes can fingerprint originals and are not anonymous identifiers.
 
-Raw image bytes and metadata may be read transiently for decoding, orientation and date extraction. They are never intentionally copied to a persistent application backup, quarantine folder, thumbnail cache, database record or error report. Temporary image writes contain already-sanitized PNG bytes. The catalog stores canonical paths only. The code and tests contain field names and synthetic markers, not real location records.
+Explicit sorting intentionally persists original bytes and metadata in private `.riposte/sort-history/` backups, with original paths, names, hashes and modification times in recovery journals. The private catalog's `sort_titles` table retains original filenames and category provenance. Keep this state out of public uploads; deleting it removes undo/recovery capability. Standalone RIPOSTE leaves selected originals unchanged and stores sanitized input snapshots. Generated image writes contain audited PNG data, but recovery backups deliberately contain original data. Sorted videos retain their complete original bytes and embedded metadata.
 
-A source that cannot be safely decoded or faithfully converted remains where it was and blocks `COMPLETE`. This is a deliberate distinction between **not importing contamination** and **claiming every byte already present on the user's disk was erased**. Unknown files are not deleted speculatively. Known sidecars and thumbnail caches require explicit discard authorization. Existing empty former directories are removed after migration.
+A source that cannot be safely decoded or faithfully converted remains where it was and prevents a complete whole-workspace sort/audit. An ordinary sort may still process valid planned files and retain their recovery history. Standalone RIPOSTE validates selected inputs without requiring an unrelated whole-folder cleanup. Unknown files are not deleted speculatively. Known sidecars and thumbnail caches require explicit discard authorization; float directories are excluded from sorting. Empty former directories may be removed after migration. Neither an incomplete sort nor generated-image sanitation claims to erase every original byte on disk.
 
 The application does not recursively cleanse unrelated folders, an external model directory or an external candidate's original file. Importing an external candidate sanitizes the pixels copied into the managed workspace; its source is read-only. Global filesystem cleanup was neither requested nor safely inferable from an artwork-root operation.
 
@@ -50,7 +47,12 @@ Decoding and model execution currently occur in the application's process/thread
 | Encoder qualification | Clean control PNGs; safe model weight hashes; view/mask scope; numerical comparisons; unknown protocol retained as unknown |
 | Generation review | Date-only frames; safe model component hashes; fixed conditioning; seeds/views; filter flags; numerical comparisons; explicit unscored status |
 | Legacy benchmark | Earlier date-only paired frames and fixed settings; compatibility data |
-| Export | Date-only candidate PNG; no embedded trial report |
+| Publishing pack / workshop image export | Date-only PNGs; main packs require accepted outputs, while the expert workshop export is explicitly unverified |
+| Sort recovery | Private original bytes/metadata; journal paths, names, hashes and modification times |
+| Private title provenance | Original filenames, categories, matched terms, rule revision and hashes in `sort_titles` |
+| Sorted video | Original bytes and embedded metadata; no image-sanitation claim |
+| Explicit duplicate report export | Plaintext paths/findings; JSON also retains scan root, options, identity hashes and detailed evidence |
+| Experiment/cohort/panel state and packets | Local commitments, technical identities/settings, timestamps where needed and review material; not publishing packs |
 | Persistent failure report | Fixed error codes and aggregate counts; no raw exception or source-path dump |
 | Transient jobs | In-memory status and sanitized results; user-entered local resource paths used only to perform the requested operation |
 
@@ -58,9 +60,9 @@ The reserved `.riposte` directory is accepted only with the expected workspace m
 
 ## File safety tradeoffs
 
-Explicit Apply is the boundary for source deletion. The sequence is decode → clean → write → verify → catalog → confirm source has not changed → unlink. A failure leaves the source, and may leave an additional clean output, rather than destroying the only image. There is no contaminated-original rollback copy.
+Explicit Apply with a matching preview and source-removal acknowledgement is the boundary for source replacement. Sorting creates private recovery material before destructive replacement, verifies the planned source and destination, writes/verifies the output and records progress. A failure can leave a source, a clean output and/or recoverable private backup. Undo and interrupted-sort recovery validate journal/file identities and reject conflicts rather than overwrite unknown changes. Selected-input standalone protection does not remove its source files.
 
-The write protocol and lock reduce accidental collisions and concurrent RIPOSTE operations. They are not a transaction across the file system and database. A hostile process can race directory changes; a power loss can leave a duplicate or stale lock. A changed or missing catalog file blocks clean qualification. Repair should preserve available clean rasters and re-establish an audited checkpoint, not hide inconsistencies.
+The write protocol and lock reduce accidental collisions and concurrent RIPOSTE operations. They are not a transaction across the filesystem and database. A hostile process can race directory changes; a power loss can leave partial state. Recovery reclaims a matching abandoned marker only while holding the exclusive OS lease; unknown markers remain blocked. Do not delete lock markers or the persistent root lease file. A changed or missing catalog file blocks clean qualification. Preserve available files/history and follow the [current recovery boundary](CURRENT-CONTRACT.md#recovery-and-locks).
 
 ## Anti-AI claims allowed by this release
 
@@ -79,6 +81,6 @@ GPU/CPU tensors, framework caches, error behavior in third-party libraries and p
 This distinction is the central product boundary: **privacy sanitation is enforced now; broad AI-reuse resistance is the experimental objective, not a completed guarantee.**
 
 
-## 0.3 publishing extension
+## Publishing boundary
 
-The primary path adds numeric fidelity gates and exact-file review/export binding, not an efficacy certificate. Model paths are transient; only code-defined technical identities and cleaned-image hashes enter its records. Publishing packs contain accepted date-only PNGs only. Review receipts are local integrity relationships, not signatures against a hostile machine owner. Cancellation retains completed sanitized outputs; abrupt interruptions may require stale-lock inspection. Existing copies and previously downloaded packs cannot be erased remotely. The temporal branch measures first-step predicted-latent dynamics, not decoded-video suppression or text-guided protection. See PUBLISHING.md and ENGINE-v03.md.
+The primary publishing path adds numeric fidelity gates and exact-file review/export binding, not an efficacy certificate. Its request records use technical model identities and cleaned-image hashes, excluding raw source filenames/paths and raw metadata. This restriction describes publishing records, not private sort recovery or user-requested duplicate reports. Publishing packs contain accepted date-only PNGs only. Review receipts are local integrity relationships, not signatures against a hostile machine owner. Cancellation retains completed sanitized outputs. Existing copies and previously downloaded packs cannot be erased remotely. The temporal branch measures first-step predicted-latent dynamics, not decoded-video suppression or text-guided protection. See [Publishing](PUBLISHING.md) and [current research qualifications](PCUC.md).

@@ -1,0 +1,92 @@
+[
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "FILE",
+      "Path": "evidence/guided-category-editing/README.md",
+      "Symbol": "",
+      "Exports": "",
+      "Imports": "",
+      "Requires": "",
+      "Purpose": "Typing validation input, evidence or development authority",
+      "ID": "OVR-2184",
+      "Tags": "#typing-index"
+    }
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "FILE",
+      "Path": "evidence/guided-category-editing/live_browser.py",
+      "Symbol": "",
+      "Exports": "HERE;ROOT;before;folder;inventory;listener;names;server;thread",
+      "Imports": "from PIL import Image\nfrom pathlib import Path\nfrom riposte.server import create_app\nimport hashlib\nimport json\nimport os\nimport socket\nimport subprocess\nimport tempfile\nimport threading\nimport time\nimport uvicorn",
+      "Requires": "OVR-029",
+      "Purpose": "Typing validation input, evidence or development authority",
+      "ID": "OVR-2185",
+      "Tags": "#typing-index"
+    }
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "FILE",
+      "Path": "evidence/guided-category-editing/live_probe.js",
+      "Symbol": "",
+      "Exports": "",
+      "Imports": "",
+      "Requires": "",
+      "Purpose": "Typing validation input, evidence or development authority",
+      "ID": "OVR-2186",
+      "Tags": "#typing-index"
+    }
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "FILE",
+      "Path": "evidence/guided-category-editing/review_contracts.py",
+      "Symbol": "",
+      "Exports": "HERE;ROOT;after;before;changed;check;expected;issues;modules;review;signatures;spec",
+      "Imports": "from pathlib import Path\nimport importlib.util\nimport json",
+      "Requires": "",
+      "Purpose": "Typing validation input, evidence or development authority",
+      "ID": "OVR-2187",
+      "Tags": "#typing-index"
+    }
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "FILE",
+      "Path": "evidence/guided-category-editing/verify.py",
+      "Symbol": "",
+      "Exports": "HERE;ROOT;counts;digest;manifest;prepare_acceptance;read;verify",
+      "Imports": "from pacer_mcp.service import Service\nfrom pathlib import Path\nimport argparse\nimport csv\nimport hashlib\nimport importlib.util\nimport json\nimport sys\nimport tarfile\nimport xml.etree.ElementTree as ET\nimport zipfile",
+      "Requires": "",
+      "Purpose": "Typing validation input, evidence or development authority",
+      "ID": "OVR-2188",
+      "Tags": "#typing-index"
+    }
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "FILE",
+      "Path": "typing/evidence/source-reviewed-guided-categories.json",
+      "Symbol": "",
+      "Exports": "",
+      "Imports": "",
+      "Requires": "",
+      "Purpose": "Typing validation input, evidence or development authority",
+      "ID": "OVR-2189",
+      "Tags": "#typing-index"
+    }
+  }
+]
