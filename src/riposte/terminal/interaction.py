@@ -28,6 +28,13 @@ def fields_for(page):
 
 def hints(state):
     p=state.page
+    if p.name == "library" and p.values.get("private_search"):
+        return [Hint("Enter", "Select", "Select this image for protection; private titles are never added to published files."),
+                Hint("s /", "Search", "Change original-title, category and date filters."),
+                Hint("[ / ]", "Pages", "Previous or next bounded result page. Changed catalogs require a restart."),
+                Hint("r", "Restart", "Read the current library from its first page."),
+                Hint("i", "Inspect", "Audit and inspect the focused image."), Hint("p", "Protect", "Configure protection for selected image IDs."),
+                Hint("a", "Select page", "Select only this result page."), Hint("n", "Clear selection", "Clear the selection without changing files.")]
     if p.name == "duplicates":
         return [Hint("Enter", "Evidence", "Inspect the matching basis, signals and member paths."),
                 Hint("1-4", "Filter", "All / DUPLICATE / MAYBE DUPLICATE / CLOSELY RELATED."),
@@ -108,6 +115,9 @@ def hints(state):
         saving = [Hint("s", "Save rules", "Confirm SAVE to persist this reviewed replacement without moving files.")] if name == "category-rules" and not p.code and p.result.get("status") == "DRAFT" else []
         if name == "recipes" and not p.code and p.result.get("status") == "DRAFT":
             saving = [Hint("s", "Save recipe", "Save the displayed settings only; no processing or approval.")]
+        if p.result.get("budget_previews") and not p.code:
+            saving.append(Hint("m", "Mask preview", "Open the next final-size artist mask overlay in your local viewer. No output approval is recorded."))
+            saving.append(Hint("[ / ]", "Mask pages", "Previous/next three final-raster previews; the full batch selection is retained."))
         if p.values.get("sorter_mode"):
             if name == "organize" and not p.code:
                 saving.append(Hint("w", "Full Sort Workshop", "Adjust this preview's settings; inspect blockers before previewing again."))
@@ -115,6 +125,7 @@ def hints(state):
             return [primary,*saving,Hint("t","Report view","Cycle Overview, complete Details, and syntax-coloured JSON."),Hint("Up/Down","Scroll","Scroll the report; Page Up/Down move a page."),Hint("Esc","Back","Return to Riposte Sorter.")]
         return [primary,*saving,Hint("t","Report view","Cycle Overview, complete Details, and syntax-coloured JSON."),Hint("Up/Down","Scroll","Scroll the selected report view; Page Up/Down move a page."),Hint("b","Batches","Open publishing batches."),Hint("Esc","Back","Return to the previous screen.")]
     controls=rows.get(p.name,[])
+    if p.name == "library": controls.insert(1, Hint("s", "Private search", "Opt in to saved original-title and category search; results stay local."))
     if p.name=="picker":
         controls=[h for h in controls if p.result.multiple or h.key not in {"Space","s"}]
         if not p.result.multiple:

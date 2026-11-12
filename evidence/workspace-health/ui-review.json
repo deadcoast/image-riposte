@@ -1,0 +1,17 @@
+{
+  "scope": "PAC-041 optional workspace health; no global UI compliance claim",
+  "static_findings": {
+    "ownership.native-select-undecided": 1,
+    "affordance.actionless-button": 85,
+    "affordance.empty-href": 1,
+    "form.textarea-resize-missing": 1
+  },
+  "dispositions": {
+    "affordance.actionless-button": "85 literal-line findings include four new externally ID-bound health controls; handlers exist in health.js and native test exercises inspect/close, retry, and job/cancel states. Scanner does not resolve those handlers.",
+    "ownership.native-select-undecided": "Existing platform-owned selects documented in docs/DESIGN.md; health introduces no select.",
+    "affordance.empty-href": "Existing runtime download link unchanged; no new links.",
+    "form.textarea-resize-missing": "Existing duplicate settings textarea unchanged; health adds no textarea."
+  },
+  "visual_review": "Viewed wide/narrow screenshots: readable adaptive byte units, wrapping content, visible scrollbar, no horizontal overflow. Native Escape returns focus to visible workspace action after moving it out of the narrow-hidden footer. Existing workbench tokens retained.",
+  "limits": "Native health inspection uses actual authenticated server; offline/delayed replies and partial/cancelled presentation are injected. Automated keyboard/viewport checks are not human usability, screen-reader or user-host acceptance."
+}

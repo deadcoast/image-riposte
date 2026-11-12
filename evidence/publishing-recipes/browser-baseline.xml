@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="1" time="5.906" timestamp="2026-09-20T11:03:10.974970-07:00" hostname="homeone"><testcase classname="tests.test_category_sort_interfaces" name="test_category_browser_native" time="5.383"><failure message="AssertionError: Error: Browser command timed out: Page.navigate&#10;      at Timeout._onTimeout (C:\Users\ryanf\github\_new\image-riposte\tests\category_sort_browser.cjs:47:66)&#10;      at listOnTimeout (node:internal/timers:605:17)&#10;      at process.processTimers (node:internal/timers:541:7)&#10;  &#10;assert 1 == 0&#10; +  where 1 = CompletedProcess(args=['C:\\nvm4w\\nodejs\\node.EXE', 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\tests\\category_...:66)\n    at listOnTimeout (node:internal/timers:605:17)\n    at process.processTimers (node:internal/timers:541:7)\n').returncode">def test_category_browser_native():
+        import os
+        from pathlib import Path
+        import shutil
+        import subprocess
+        node = shutil.which('node')
+        browser = next((p for p in [os.environ.get('RIPOSTE_TEST_BROWSER', ''), shutil.which('chromium'),
+                       'C:/Program Files/Google/Chrome/Application/chrome.exe',
+                       'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe'] if p and Path(p).is_file()), None)
+        if not node or not browser: pytest.skip('Local Node and Chromium required')
+        run = subprocess.run([node, str(Path(__file__).with_name('category_sort_browser.cjs')), browser],
+                             capture_output=True, text=True, encoding='utf-8', timeout=40)
+&gt;       assert run.returncode == 0, run.stdout + run.stderr
+E       AssertionError: Error: Browser command timed out: Page.navigate
+E             at Timeout._onTimeout (C:\Users\ryanf\github\_new\image-riposte\tests\category_sort_browser.cjs:47:66)
+E             at listOnTimeout (node:internal/timers:605:17)
+E             at process.processTimers (node:internal/timers:541:7)
+E         
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['C:\\nvm4w\\nodejs\\node.EXE', 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\tests\\category_...:66)\n    at listOnTimeout (node:internal/timers:605:17)\n    at process.processTimers (node:internal/timers:541:7)\n').returncode
+
+tests\test_category_sort_interfaces.py:191: AssertionError</failure></testcase></testsuite></testsuites>

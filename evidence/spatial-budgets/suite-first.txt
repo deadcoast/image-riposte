@@ -1,0 +1,67 @@
+...............................s........................................ [  4%]
+........................................................................ [  8%]
+....s................................................................... [ 12%]
+........................................................................ [ 17%]
+........................................................................ [ 21%]
+........................................................................ [ 25%]
+..............s......................................................... [ 29%]
+..........................................s............................. [ 34%]
+........................................................................ [ 38%]
+.........................................................s.............. [ 42%]
+........................................................................ [ 47%]
+........................................................................ [ 51%]
+........................................................................ [ 55%]
+........................................................................ [ 59%]
+........................................................................ [ 64%]
+.............................s.......................................... [ 68%]
+........................................................................ [ 72%]
+..................................................................s..... [ 76%]
+........................................................................ [ 81%]
+..................................................ssss.................. [ 85%]
+........................................................................ [ 89%]
+.............................................................F.......... [ 94%]
+.....................................................................s.. [ 98%]
+............................                                             [100%]
+================================== FAILURES ===================================
+_______________ test_advanced_disclosure_preserves_all_settings _______________
+
+root = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/pytest-of-ryanf/pytest-585/test_advanced_disclosure_prese0/workspace')
+
+    def test_advanced_disclosure_preserves_all_settings(root):
+        c=Controller(root,Presentation());c.state.selected.add("a"*32);c.action("publish")
+        p=c.state.page;p.values.update(steps=73,vae4="SESSION_ONLY")
+        assert len(fields_for(p))==5
+>       c.key(Key("char","f"));assert p.advanced and len(fields_for(p))==15
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AssertionError: assert (True and 17 == 15)
+E        +  where True = Page(name='form', title='PROTECT & PUBLISH', cursor=0, query='', query_edit=False, scroll=0, report_view='overview', a..., preview=None, kind='candidate', view='identity', report={}, confirm_word='', confirm_request=None, success_page=None).advanced
+E        +  and   17 = len((Field(key='edges', label='Publishing edges', kind='ints', default=(1536,), help='1-3 distinct final edges, comma-sepa...t=True, help='Leave zero-budget white pixels unchanged.', choices=(), minimum=None, maximum=None, optional=False), ...))
+E        +    where (Field(key='edges', label='Publishing edges', kind='ints', default=(1536,), help='1-3 distinct final edges, comma-sepa...t=True, help='Leave zero-budget white pixels unchanged.', choices=(), minimum=None, maximum=None, optional=False), ...) = fields_for(Page(name='form', title='PROTECT & PUBLISH', cursor=0, query='', query_edit=False, scroll=0, report_view='overview', a..., preview=None, kind='candidate', view='identity', report={}, confirm_word='', confirm_request=None, success_page=None))
+
+tests\test_v05_revision.py:105: AssertionError
+============================== warnings summary ===============================
+.venv\Lib\site-packages\fastapi\testclient.py:1
+  C:\Users\ryanf\github\_new\image-riposte\.venv\Lib\site-packages\fastapi\testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    from starlette.testclient import TestClient as TestClient  # noqa
+
+.venv\Lib\site-packages\starlette\testclient.py:53
+  C:\Users\ryanf\github\_new\image-riposte\.venv\Lib\site-packages\starlette\testclient.py:53: DeprecationWarning: The anyio.abc.BlockingPortal alias is deprecated, use anyio.from_thread.BlockingPortal instead.
+    _PortalFactoryType = Callable[[], AbstractContextManager[anyio.abc.BlockingPortal]]
+
+tests/test_kontext.py::test_real_tiny_random_pipeline_cpu_numeric_path
+  C:\Users\ryanf\github\_new\image-riposte\.venv\Lib\site-packages\diffusers\utils\deprecation_utils.py:23: FutureWarning: `torch_dtype` is deprecated and will be removed in version 1.0.0. Please use `dtype` instead.
+    deprecate("torch_dtype", "1.0.0", _TORCH_DTYPE_DEPRECATION_MESSAGE)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ===========================
+SKIPPED [1] tests\test_application_roots.py:139: Windows symlink privilege unavailable; junction exercised separately
+SKIPPED [1] tests\test_category_rules.py:185: symlinks unavailable
+SKIPPED [1] tests\test_library_search.py:125: Symlink privilege unavailable
+SKIPPED [1] tests\test_organizer.py:80: Symlinks unavailable
+SKIPPED [1] tests\test_recipes.py:134: Symlink privilege unavailable on this Windows account
+SKIPPED [1] tests\test_v02_models.py:38: Windows symlink creation privilege unavailable
+SKIPPED [1] tests\test_v03_temporal.py:134: Windows account lacks symlink privilege
+SKIPPED [4] tests\test_v04_terminal_host.py:8: POSIX pseudo-terminal contract
+SKIPPED [1] tests\test_workspace_health.py:158: Symbolic links unavailable
+FAILED tests/test_v05_revision.py::test_advanced_disclosure_preserves_all_settings
+1 failed, 1671 passed, 12 skipped, 7 deselected, 3 warnings in 229.99s (0:03:49)

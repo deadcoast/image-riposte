@@ -1,0 +1,14 @@
+[
+  {
+    "op": "transition",
+    "id": "OGM-002",
+    "status": "PACED_REQUIREMENT",
+    "evidence": "PAC-040 admits recipe source/contracts and inventory; separate raw typing failure is retained pending fresh source-bound acceptance."
+  },
+  {
+    "op": "transition",
+    "id": "OGM-001",
+    "status": "PACED_REQUIREMENT",
+    "evidence": "PAC-040 admits new named recipe source, records, adapters, declarations and validation inputs; reconcile current inventory before accepting."
+  }
+]

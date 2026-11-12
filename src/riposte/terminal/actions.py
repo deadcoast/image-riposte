@@ -50,6 +50,8 @@ EPSILON = Field("epsilon", "Channel-change cap", "int", 4, "Maximum integer 8-bi
 WHITE = Field("preserve_white", "Preserve smooth white", "bool", True, "Leave zero-budget white pixels unchanged.")
 EDGES = Field("edges", "Publishing edges", "ints", (1536,), "1-3 distinct final edges, comma-separated. No upscale.", minimum=64, maximum=4096)
 PUB_FIELDS = (EDGES, EPSILON, STEPS, Field("restarts", "Search restarts", "int", 2, "Keep the best acceptable checkpoint across starts.", minimum=1, maximum=4), SEED, WHITE,
+              Field("budget_mask", "Artist mask (optional)", "path", "", "One selected image. 8-bit grayscale PNG: black preserves, white allows automatic limits. Preview before running.", optional=True),
+              Field("budget_map", "Artist mask map (optional)", "path", "", "Private JSON exported from browser publishing; exact source-bound masks. Use this OR one PNG mask.", optional=True),
               Field("delta_e76_p95", "Colour-difference cap", "float", 6.0, "95th percentile CIELAB Delta E76 limit.", minimum=.1, maximum=40),
               Field("rms_fraction", "Local RMS fraction", "float", .95, "Local-tile RMS as a fraction of the pixel cap.", minimum=.1, maximum=1),
               DEVICE, *VAE_FIELDS, INPAINT, VIDEO)
@@ -63,6 +65,14 @@ SORT_FIELDS = (
     Field("assignments", "Manual categories", "text", "", 'JSON list of source-relative-path=slug strings, for example ["2025/March/img/SML/SML01.png=hockey"]. Use =auto to clear a saved manual choice.', optional=True))
 
 ACTIONS = (
+    Action("library-search", "Private library search", "PRIMARY", "Find saved original titles and category assignments. Results stay private.", (
+        Field("search", "Title, path, date or ID", "text", "", "Literal Unicode search; original titles are private.", optional=True),
+        Field("category", "Category folder", "text", "", "Exact saved category folder slug; blank includes all.", optional=True),
+        Field("title_state", "Original title", "choice", "all", "Unknown means no usable original title; generated names are never guessed.", ("all", "known", "unknown")),
+        Field("year", "Year", "text", "", "Four-digit year; blank includes all.", optional=True),
+        Field("month", "Month", "text", "", "Month name, abbreviation or 1-12; blank includes all.", optional=True),
+        Field("size", "Size", "choice", "all", "Canonical size folder.", ("all", "SML", "MED", "LRG", "XTL")),
+        Field("limit", "Results per page", "int", 50, "At most 500 results per page.", minimum=1, maximum=500))),
     Action("duplicates", "Duplicate Finder", "PRIMARY", "Find duplicate and related files with confidence and evidence. Originals stay unchanged.", (
         Field("visual", "Visual matching", "bool", True, "Compare normalized pixels, image transforms/crops and structural evidence as well as exact bytes."),
         Field("videos", "Sample videos", "bool", True, "Compare five video timestamps using local FFmpeg. Exact byte comparisons always include videos."),
@@ -89,6 +99,7 @@ ACTIONS = (
         Field("slugs", "Stable folder names", "words", (), "Renamed label=existing-slug preserves category identity.", optional=True),
         Field("clear", "Clear all saved rules", "bool", False, "Preview removal of all rules; saving requires separate confirmation."),
         Field("review", "Show matching examples", "bool", True, "Review filenames without moving them."))),
+    Action("health", "Storage & recovery", "PRIMARY", "Inspect space and recovery history. No files are changed."),
     Action("audit", "Audit clean workspace", "PRIMARY", "Verify date-only images and calendar/size organization."),
     Action("doctor", "Local model setup", "SYSTEM", "Inspect runtime or execute a local encoder input-gradient probe.", (*VAE_FIELDS, DEVICE, Field("execute", "Run encoder probe", "bool", False, "Execution-only diagnostic; does not certify protection."))),
     Action("resume", "Resume publishing", "PRIMARY", "Reuse committed outputs; retry unfinished work with matching models.", (BATCH, *VAE_FIELDS, DEVICE, INPAINT, VIDEO)),

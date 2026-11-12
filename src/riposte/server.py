@@ -104,6 +104,8 @@ class ExportRequest(StrictModel):
     acknowledge_unverified: bool = False
 
 class PublishRequest(StrictModel):
+    masks: list[dict[str, object]] = Field(default_factory=list, max_length=200)
+    budget_offset: int = Field(default=0, ge=0, le=599)
     recipe_name: str | None = Field(default=None, max_length=64)
     recipe_revision: str | None = Field(default=None, pattern=r"^[0-9a-f]{64}$")
     image_ids: list[str] = Field(min_length=1, max_length=200)
@@ -120,6 +122,27 @@ class PublishRequest(StrictModel):
     temporal_directory: str = Field(default="", max_length=2048)
     device: Literal["auto", "cpu", "cuda", "mps"] = "auto"
     plan_only: bool = False
+
+
+class ArtistMaskRequest(StrictModel):
+    image_id: str = Field(pattern=r"^[0-9a-f]{32}$")
+    png: str = Field(min_length=1, max_length=2_796_204)
+
+class HealthRequest(StrictModel):
+    max_entries: int = Field(default=100_000, ge=1, le=200_000, strict=True)
+
+
+class LibrarySearchRequest(StrictModel):
+    search: str = Field(default="", max_length=200)
+    category: str = Field(default="", max_length=96)
+    title_state: Literal["all", "known", "unknown"] = "all"
+    year: str | None = None
+    month: str | None = None
+    size: str | None = None
+    limit: int = Field(default=50, ge=1, le=500, strict=True)
+    offset: int = Field(default=0, ge=0, le=1_000_000_000, strict=True)
+    expected_revision: str | None = Field(default=None, pattern=r"^[0-9a-f]{64}$")
+
 
 class RecipeRequest(StrictModel):
     name: str = Field(min_length=1, max_length=64)
@@ -166,7 +189,7 @@ class Jobs:
             self.events[key] = event
             self.data[key] = {"id": key, "state": "queued", "phase": "Queued",
                               "cancellable": cancellable, "cancel_requested": False, "read_only": read_only,
-                              "operation": operation if operation in {"sort", "undo", "rules", "duplicates", "publish"} else "general"}
+                              "operation": operation if operation in {"sort", "undo", "rules", "duplicates", "publish", "health"} else "general"}
 
         def progress(update):
             with self.lock:
@@ -241,6 +264,10 @@ class Jobs:
         # reaches a terminal state. A source commit is allowed to finish.
         self.pool.shutdown(wait=False, cancel_futures=False)
 
+def api_body_limit(path: str) -> int:
+    return 6_000_000 if path == "/api/publish" else 2_800_000 if path == "/api/artist-mask" else 32768
+
+
 class _BodyLimitMiddleware:
     """Bound consumed API bytes before JSON parsing, including streamed bodies."""
     def __init__(self, app):
@@ -255,7 +282,7 @@ class _BodyLimitMiddleware:
             if message['type'] == 'http.disconnect':
                 return
             chunk = message.get('body', b'')
-            if len(body) + len(chunk) > 32768:
+            if len(body) + len(chunk) > api_body_limit(scope['path']):
                 response = JSONResponse({'code': 'REQUEST_TOO_LARGE'}, status_code=413)
                 return await response(scope, receive, send)
             body.extend(chunk)
@@ -312,7 +339,7 @@ def create_app(root: Path, token: str | None = None) -> FastAPI:
             if request.headers.get("sec-fetch-site") == "cross-site":
                 return JSONResponse({"code":"ORIGIN_REJECTED"},status_code=403)
             length=request.headers.get("content-length")
-            if length and (not length.isdigit() or int(length)>32768):
+            if length and (not length.isdigit() or int(length)>api_body_limit(request.url.path)):
                 return JSONResponse({"code":"REQUEST_TOO_LARGE"},status_code=413)
         response=await call_next(request)
         response.headers.update({"Cache-Control":"no-store", "Referrer-Policy":"no-referrer",
@@ -343,6 +370,10 @@ def create_app(root: Path, token: str | None = None) -> FastAPI:
     @app.get("/api/methods")
     def methods():
         return json.loads((Path(__file__).parent/"methods.json").read_text(encoding="utf-8"))
+    @app.post("/api/library-search")
+    def library_search_endpoint(body: LibrarySearchRequest) -> dict[str, object]:
+        from .library_search import search_library
+        return cast(dict[str, object], search_library(root, **body.model_dump()))
     @app.post('/api/duplicates')
     def duplicates_endpoint(body: DuplicateScanRequest) -> dict[str, str]:
         from .duplicates import ScanOptions, scan_duplicates
@@ -496,17 +527,41 @@ def create_app(root: Path, token: str | None = None) -> FastAPI:
 
     @app.post("/api/publish")
     def publish(body: PublishRequest):
+        from dataclasses import replace
+        from .spatial import ArtistMask
         from .publication import start_publication, publication_plan
         from .recipes import SETTINGS, resolve_recipe
         values = body.model_dump()
         recipe = resolve_recipe(root, body.recipe_name, revision=body.recipe_revision,
                                 overrides={key: values[key] for key in body.model_fields_set if key in SETTINGS})
+        if body.masks:
+            recipe = replace(recipe, masks=tuple(ArtistMask.from_dict(item) for item in body.masks))
         if body.plan_only:
-            return publication_plan(root, body.image_ids, recipe)
+            return publication_plan(root, body.image_ids, recipe, budget_offset=body.budget_offset)
         return app.state.jobs.start(start_publication, operation="publish", root=root, image_ids=body.image_ids,
                                    vae_dirs=model_paths(body.vae_directories), recipe=recipe, device=body.device,
                                    pipeline_dir=Path(body.pipeline_directory) if body.pipeline_directory else None,
                                    temporal_dir=Path(body.temporal_directory) if body.temporal_directory else None)
+
+    @app.post("/api/artist-mask")
+    def artist_mask(body: ArtistMaskRequest) -> dict[str, object]:
+        import base64
+        import binascii
+        from .spatial import ArtistMask
+        row = find_image(root, body.image_id)
+        try:
+            raw = base64.b64decode(body.png, validate=True)
+        except (ValueError, binascii.Error):
+            raise RiposteError("ARTIST_MASK_PNG_INVALID") from None
+        mask = ArtistMask.from_png(raw, row["sha256"])
+        mask.validate_aspect((row["width"], row["height"]))
+        return {"mask": mask.public(), "writes": False}
+
+    @app.post("/api/health")
+    def health_endpoint(body: HealthRequest) -> dict[str, str]:
+        from .health import inspect_health
+        return cast(dict[str, str], jobs.start(inspect_health, root=root, max_entries=body.max_entries,
+                                               read_only=True, operation="health"))
 
     @app.get("/api/recipes")
     def recipes_list(name: str | None = None):
@@ -519,9 +574,13 @@ def create_app(root: Path, token: str | None = None) -> FastAPI:
         draft = inspect_recipes(root, body.name, settings=body.settings)
         if not body.save:
             return draft
-        if any(job["state"] in {"queued", "running"} for job in app.state.jobs.snapshot()):
-            raise RiposteError("OPERATION_ALREADY_RUNNING")
-        return save_recipe(root, body.name, draft["settings"], expected_revision=body.expected_revision or "")
+        with app.state.jobs.lock:
+            if app.state.jobs.closed:
+                raise RiposteError("JOB_MANAGER_CLOSED")
+            if any(job["state"] in {"queued", "running"} for job in app.state.jobs.data.values()):
+                raise RiposteError("JOB_ALREADY_RUNNING")
+            assert draft["settings"] is not None
+            return save_recipe(root, body.name, draft["settings"], expected_revision=body.expected_revision or "")
 
     @app.get("/api/publication/{batch_id}")
     def publish_status(batch_id: str):

@@ -1,0 +1,4 @@
+[
+  {"op":"transition","id":"PAC-042","status":"REVIEW","evidence":"Seven final interface typing diagnostics corrected. Focused annotation regression and six native browser checks pass; current external contracts and package parity pass. Final full-suite replay and source-bound acceptance follow."},
+  {"op":"checkpoint","id":"PAC-042","next_action":"verify"}
+]

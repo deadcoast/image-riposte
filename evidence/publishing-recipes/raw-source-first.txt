@@ -1,0 +1,3 @@
+warning: `VIRTUAL_ENV=.venv` does not match the project environment path `typing\.venv` and will be ignored; use `--active` to target the active environment instead
+usage: check.py [-h] [--source] [--source-python SOURCE_PYTHON]
+check.py: error: unrecognized arguments: --source-audit

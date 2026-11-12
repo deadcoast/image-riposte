@@ -1,0 +1,41 @@
+warning: `VIRTUAL_ENV=.venv` does not match the project environment path `typing\.venv` and will be ignored; use `--active` to target the active environment instead
+{
+  "result": "FAIL",
+  "counts": {
+    "source_files": 81,
+    "source_modules": 69,
+    "paired_stubs": 69,
+    "indexed_files": 1070,
+    "source_symbols": 789,
+    "tool_functions": 9,
+    "symbol_dependency_edges": 3340,
+    "static_definitions": 3063,
+    "local_dependency_edges": 1296
+  },
+  "source_unchanged": true,
+  "issues": [
+    "Unregistered file: evidence/private-library-search/README.md",
+    "Unregistered file: evidence/private-library-search/contract-review.json",
+    "Unregistered file: evidence/private-library-search/prepare.py",
+    "Unregistered file: evidence/private-library-search/requirement-review.json",
+    "Unregistered file: evidence/private-library-search/verify.py",
+    "Stale index: src/riposte/cli.py: Exports",
+    "Unregistered file: src/riposte/library_search.py",
+    "Stale index: src/riposte/server.py: Exports, Imports, Requires",
+    "Unregistered file: src/riposte/static/library-search.js",
+    "Stale index: src/riposte/terminal/service.py: Imports, Requires",
+    "Unregistered file: tests/library_search_browser.cjs",
+    "Unregistered file: tests/test_library_search.py",
+    "Stale index: typing/stubs/riposte/cli.pyi: Exports",
+    "Unregistered file: typing/stubs/riposte/library_search.pyi",
+    "Stale index: typing/stubs/riposte/server.pyi: Exports",
+    "Unregistered symbol: src/riposte/cli.py:library_search",
+    "Unregistered symbol: src/riposte/library_search.py:SearchReport",
+    "Unregistered symbol: src/riposte/library_search.py:SearchRow",
+    "Unregistered symbol: src/riposte/library_search.py:normalized",
+    "Unregistered symbol: src/riposte/library_search.py:search_library",
+    "Unregistered symbol: src/riposte/server.py:LibrarySearchRequest",
+    "Stale symbol: src/riposte/server.py:create_app: Requires",
+    "Stale symbol: src/riposte/terminal/service.py:execute: Requires"
+  ]
+}

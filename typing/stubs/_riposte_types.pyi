@@ -1,3 +1,4 @@
+from riposte.spatial import ArtistMaskRecord, BudgetSummary
 """Type-only records derived from source; never import this module at runtime.
 
 Report and ModelTensor mark unresolved dynamic JSON and optional ML boundaries.
@@ -109,6 +110,7 @@ class QualityPolicy(TypedDict):
     tile_size: int
 
 class QualityReport(FidelityReport):
+    spatial_budget: NotRequired[BudgetSummary]
     status: Literal["PASS", "BLOCKED"]
     policy: QualityPolicy
     blockers: list[str]
@@ -129,11 +131,13 @@ class ReleaseSettings(TypedDict):
     frequency_weight: float
 
 class RecipeRecord(TypedDict):
+    masks: NotRequired[list[ArtistMaskRecord]]
     edges: tuple[int, ...]
     guard: ReleaseSettings
     quality: QualityPolicy
 
 class PublicationTask(TypedDict):
+    artist_mask_sha256: NotRequired[str]
     image_id: str
     date: str
     max_edge: int
@@ -141,6 +145,10 @@ class PublicationTask(TypedDict):
     index: int
 
 class PublicationPlan(TypedDict):
+    budget_previews: NotRequired[list[Report]]
+    budget_revision: NotRequired[str]
+    budget_preview_total: NotRequired[int]
+    budget_preview_offset: NotRequired[int]
     mode: Literal["PUBLICATION_PLAN"]
     images: int
     outputs: int

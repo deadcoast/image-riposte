@@ -1,0 +1,71 @@
+
+  RIPOSTE / IMAGE SECURITY
+  Protect a selected batch at each final size; clean masters stay unchanged.
+
+  Usage: riposte publish [OPTIONS] ROOT
+PARAMETERS                                                                                          
++--------------------------------------------+-----------------------------------------------------+
+| ROOT                                       | Existing dedicated image folder; everything inside  |
+|                                            | is in scope.  [required]                            |
+| --budget-mask PATH                         | Optional grayscale PNG mask for one selected image: |
+|                                            | black preserves, white permits automatic limits.    |
+| --budget-map PATH                          | Private mask map exported from publishing; binds    |
+|                                            | masks to exact clean source hashes.                 |
+| --view-budget INTEGER RANGE                | With --plan: open this numbered mask overlay in     |
+|                                            | your local image viewer. Creates only a private     |
+|                                            | date-only preview cache.  [1<=x<=600]               |
+| --budget-revision TEXT                     | Exact budget revision from --plan; reject changed   |
+|                                            | masks, sizes or quality limits.                     |
+| --budget-offset INTEGER RANGE              | With --plan: skip this many masked rasters;         |
+|                                            | previews return at most three.  [default: 0;        |
+|                                            | 0<=x<=599]                                          |
+| --recipe TEXT                              | Load saved publishing settings; explicit setting    |
+|                                            | flags override them. Paths and approvals are never  |
+|                                            | loaded.                                             |
+| --recipe-revision TEXT                     | Optional exact recipe revision from recipes; reject |
+|                                            | a changed selection.                                |
+| --image TEXT                               | Target exact clean image IDs; repeat for a          |
+|                                            | selection.                                          |
+| --all                                      | Explicitly select the full collection, optionally   |
+|                                            | filtered.                                           |
+| --vae PATH                                 | Local encoder directory. Repeat for up to four; no  |
+|                                            | automatic download.                                 |
+| --edge INTEGER RANGE                       | Independent final publishing edge. Repeat up to     |
+|                                            | three.  [64<=x<=4096]                               |
+| --epsilon INTEGER RANGE                    | Integer per-channel change cap.  [default: 4;       |
+|                                            | 1<=x<=16]                                           |
+| --steps INTEGER RANGE                      | Optimization iterations per restart.  [default: 24; |
+|                                            | 1<=x<=1000]                                         |
+| --restarts INTEGER RANGE                   | Seeded starts; keep the best feasible candidate.    |
+|                                            | [default: 2; 1<=x<=4]                               |
+| --seed INTEGER RANGE                       | [default: 7; 0<=x<=4294967295]                      |
+| --plan                                     | Read-only selection and sizing preview; no model    |
+|                                            | needed.                                             |
+| --preserve-white / --no-preserve-white     | [default: preserve-white]                           |
+| --inpaint PATH                             | Optional local nine-channel inpainting objective.   |
+| --video PATH                               | Optional local SVD temporal objective, not          |
+|                                            | text-guided.                                        |
+| --device [auto|cpu|cuda|mps]               | [default: auto]                                     |
+| --delta-e76-p95 FLOAT RANGE                | 95th percentile colour-difference limit.  [default: |
+|                                            | 6.0; 0.1<=x<=40]                                    |
+| --rms-fraction FLOAT RANGE                 | Local RMS fraction of the pixel-change cap.         |
+|                                            | [default: 0.95; 0.1<=x<=1]                          |
+| --year TEXT                                | Calendar filter, with --all only.                   |
+| --month TEXT                               | Month filter, with --all only.                      |
+| --size TEXT                                | Size-bin filter, with --all only.                   |
+| --input PATH                               | Source file or folder; repeat to combine            |
+|                                            | selections. Preserves originals; mutually exclusive |
+|                                            | with --image/--all.                                 |
+| --date-mode [download|modified|embedded]   | Date basis for selected raw inputs or sorting.      |
+|                                            | [default: download]                                 |
+| --apply                                    | Sort + RIPOSTE only: authorize source replacement   |
+|                                            | then protection. Otherwise this workflow previews.  |
+| --discard-sidecars / --no-discard-sidecars | Sort + RIPOSTE only: authorize metadata sidecar     |
+|                                            | deletion during sorting.  [default:                 |
+|                                            | no-discard-sidecars]                                |
+| --categories                               | Sort + RIPOSTE only: use saved category rules.      |
+| --assign TEXT                              | Manual source-relative-path=category-slug; repeat.  |
+| --plan-id TEXT                             | Combined preview ID required with sort-riposte      |
+|                                            | --apply; binds sorting and protection choices.      |
+| --help                                     | Show this message and exit.                         |
++--------------------------------------------+-----------------------------------------------------+

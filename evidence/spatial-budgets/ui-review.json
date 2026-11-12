@@ -1,0 +1,17 @@
+{
+  "scope": "PAC-043 mask controls only; no global static UI compliance claim",
+  "static_findings": {
+    "ownership.native-select-undecided": 1,
+    "affordance.actionless-button": 89,
+    "affordance.empty-href": 1,
+    "form.textarea-resize-missing": 1
+  },
+  "dispositions": {
+    "affordance.actionless-button": "Static literal scan does not follow external ID-bound handlers. Spatial upload/remove/preview/cancel are exercised in actual Chromium; export has an explicit source-bound JSON download handler. Existing unrelated button findings retained.",
+    "ownership.native-select-undecided": "Native platform-owned popup decision lives in docs/DESIGN.md and docs/UX-CONTRACT.md. Native source selection keyboard popup exercised through Chromium CDP.",
+    "affordance.empty-href": "Existing runtime download anchor, unchanged. New budget downloads have populated data or blob URLs.",
+    "form.textarea-resize-missing": "Existing duplicate textarea; no new textarea in this task."
+  },
+  "visual_review": "Inspected screenshots at 1280x1000 and 390x844. Existing workbench tokens and natural page scroll retained; mask overlay, labels, file picker, correction text and cap download fit without horizontal overflow. Final paged-preview screenshots were reinspected at both sizes; six rasters are served three per page. Actual Chromium exercises next/previous pages.",
+  "limits": "Real server mask parsing/previews and native select keys; file selection and slow/offline responses injected. No human or screen-reader acceptance."
+}

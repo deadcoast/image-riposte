@@ -1,0 +1,67 @@
+{
+  "result": "PASS",
+  "application_files": 83,
+  "changed_application_files": [
+    "src/riposte/cli.py",
+    "src/riposte/publication.py",
+    "src/riposte/quality.py",
+    "src/riposte/records.py",
+    "src/riposte/release_guard.py",
+    "src/riposte/server.py",
+    "src/riposte/spatial.py",
+    "src/riposte/static/index.html",
+    "src/riposte/static/publish.css",
+    "src/riposte/static/publish.js",
+    "src/riposte/static/recovery-catalog.json",
+    "src/riposte/static/spatial.js",
+    "src/riposte/terminal/actions.py",
+    "src/riposte/terminal/controller.py",
+    "src/riposte/terminal/interaction.py",
+    "src/riposte/terminal/reports.py",
+    "src/riposte/terminal/service.py"
+  ],
+  "focused": {
+    "tests": 188,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 1,
+    "passed": 187
+  },
+  "suite": {
+    "tests": 1684,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 12,
+    "passed": 1672
+  },
+  "native": {
+    "tests": 7,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "passed": 7
+  },
+  "contracts": {
+    "mypy-contracts": true,
+    "mypy-tooling": true,
+    "stubtest": true,
+    "runtime-contracts": true,
+    "tooling-regressions": true,
+    "negative-consumers": true,
+    "source-stable": true
+  },
+  "packages_match": true,
+  "strict_source_typing": "FAIL: Found 876 errors in 36 files (checked 70 source files)",
+  "documentation": {
+    "commands": 46,
+    "examples": 79,
+    "links": 177
+  },
+  "limits": [
+    "Existing Windows dependencies; no clean-install, different OS or user VS Code host qualification.",
+    "Synthetic media and existing synthetic/tiny-random CPU engine tests; no pretrained-model efficacy or independent human/accessibility acceptance.",
+    "Native mask test uses the real authenticated local server for PNG validation and final-raster previews; delayed/offline responses and file-input selection are explicitly injected. Native select keys are sent through Chromium CDP.",
+    "Initial failures were fixture mistakes: captured CLI output mode, auth header, wrong keyboard import and identical native source hashes. The original failure artifacts remain available. A real positional recipe-field regression was repaired and a stale advanced-field count updated with mask-preservation checks.",
+    "Strict source typing remains failing; external declarations pass separately. Static UI findings have scoped dispositions, not a global pass."
+  ]
+}

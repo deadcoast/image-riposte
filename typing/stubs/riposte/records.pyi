@@ -56,6 +56,19 @@ class ImageInfo(PngAudit):
     relative: NotRequired[str]
 
 class RequestValues(TypedDict, total=False):
+    budget_mask: Path | str | None
+    budget_map: Path | str | None
+    budget_preview: Mapping[str, object]
+    view_budget: int | None
+    budget_revision: str | None
+    budget_offset: int
+    category: str
+    title_state: str
+    max_entries: int
+    recipe_name: str | None
+    recipe_revision: str | None
+    recipe_overrides: Sequence[str]
+    recipe_settings: Mapping[str, object] | None
     visual: bool
     videos: bool
     include_float: bool

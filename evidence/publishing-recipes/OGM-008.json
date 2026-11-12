@@ -1,0 +1,37 @@
+{
+  "requirement": "OGM-008",
+  "meaning": "ebe4108e46373bb8a4b285032b92409cb91cbc204d40080dc92834a795a01ecc",
+  "sources": {
+    "evidence/browser-review/README.md": "c795f3774ca7c52e210313788e0b0869c92376387a753e797fa6e8c886784e73",
+    "tests/browser_review.cjs": "75f604c14024dd0e1ed1c0256b087cefbf6443efb903dbd716428c4cb935b556",
+    "tests/test_browser_review.py": "8be9063a792e733aad3b13eb56b61ffd2401ce4641834c9be6a1998bd008c181",
+    "src/riposte/static/publish.js": "05bce83f1c6e9060d23ad4c8059137093208282851efd8bf56b0882713118302",
+    "src/riposte/static/app.js": "1e5eb278d01e1e462269efd463a225f4440f0bb6a57c98fb697f317a71584893"
+  },
+  "result": "PASS",
+  "command": [
+    ".venv/Scripts/python.exe evidence/publishing-recipes/verify.py",
+    ".venv/Scripts/python.exe -m pytest -q -k \"not browser_native and not native_browser and not browser_review_in_real_chromium\" --junitxml=evidence/publishing-recipes/suite.xml",
+    ".venv/Scripts/python.exe -m pytest -q -k \"browser_native or native_browser or browser_review_in_real_chromium\" --junitxml=evidence/publishing-recipes/native.xml",
+    "uv run --project typing --frozen --cache-dir typing/.cache/uv python typing/check.py"
+  ],
+  "review": "Publication-review native Chromium and source regression tests pass with the new publishing controls present. Recipe loading does not set either acknowledgement, alter selected output receipts or invoke review. Fresh decoded images and exact current decisions remain required.",
+  "changed_sources_since_previous_acceptance": [
+    "src/riposte/static/publish.js"
+  ],
+  "executed_modules": {
+    "test_browser_review": {
+      "passed": 21,
+      "skipped": 0
+    }
+  },
+  "previous_review_artifact": "evidence/recovery-guidance/OGM-008.json",
+  "previous_review_sha256": "5bf4a84337dfac63dd678eb7af12bdabed39dc6765b83d34e9566bceab497d1d",
+  "scope_limits": [
+    "Existing Windows dependencies; no clean-install, different OS or user VS Code host qualification.",
+    "Synthetic media and existing synthetic/tiny-random CPU engine tests; no pretrained-model efficacy or independent human/accessibility acceptance.",
+    "Native recipe test uses the real authenticated local server for save, conflict and publishing preview; delayed/offline replies are injected for those two UI recovery cases.",
+    "First full run had a sort state-polling response without jobs; retained failure, focused retry and final full run are recorded separately. Cause not established.",
+    "Strict source typing remains failing; external declarations pass separately. Static UI findings have scoped dispositions, not a global pass."
+  ]
+}

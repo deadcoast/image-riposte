@@ -1,0 +1,16 @@
+{
+  "baseline": "Ordinary list search omits private original titles",
+  "query": "moonlight",
+  "canonical_matches": 0,
+  "private_title_saved": "private-moonlight-sketch.png",
+  "canonical_record_keys": [
+    "id",
+    "relative",
+    "day",
+    "date_source",
+    "width",
+    "height",
+    "sha256",
+    "bytes"
+  ]
+}

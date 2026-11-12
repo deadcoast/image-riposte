@@ -1,0 +1,33 @@
+......................sF................................................ [ 79%]
+...................                                                      [100%]
+================================== FAILURES ===================================
+______________ test_search_is_not_a_claim_of_current_image_bytes ______________
+
+root = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/pytest-of-ryanf/pytest-574/test_search_is_not_a_claim_of_0/workspace')
+make_image = <function make_image.<locals>.create at 0x0000028649CBD590>
+
+    def test_search_is_not_a_claim_of_current_image_bytes(root, make_image):
+        row = sorted_images(root, make_image, 1)[0]
+        make_image(root/row['relative'], color=(240, 5, 10))
+        assert search_library(root, search='moonlight')['total'] == 1
+>       with pytest.raises(RiposteError, match='CATALOG_FILE_CHANGED'):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AssertionError: Regex pattern did not match.
+E         Expected regex: 'CATALOG_FILE_CHANGED'
+E         Actual message: 'PNG_METADATA_REJECTED'
+
+tests\test_library_search.py:134: AssertionError
+============================== warnings summary ===============================
+.venv\Lib\site-packages\fastapi\testclient.py:1
+  C:\Users\ryanf\github\_new\image-riposte\.venv\Lib\site-packages\fastapi\testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    from starlette.testclient import TestClient as TestClient  # noqa
+
+.venv\Lib\site-packages\starlette\testclient.py:53
+  C:\Users\ryanf\github\_new\image-riposte\.venv\Lib\site-packages\starlette\testclient.py:53: DeprecationWarning: The anyio.abc.BlockingPortal alias is deprecated, use anyio.from_thread.BlockingPortal instead.
+    _PortalFactoryType = Callable[[], AbstractContextManager[anyio.abc.BlockingPortal]]
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ===========================
+SKIPPED [1] tests\test_library_search.py:125: Symlink privilege unavailable
+FAILED tests/test_library_search.py::test_search_is_not_a_claim_of_current_image_bytes
+1 failed, 89 passed, 1 skipped, 1 deselected, 2 warnings in 26.33s

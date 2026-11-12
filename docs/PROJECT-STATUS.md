@@ -1,5 +1,16 @@
 # RIPOSTE / current project status
 
+PAC-042 adds opt-in private original-title and category search across CLI, terminal and browser. One read-only catalog/provenance snapshot supplies bounded pages and detects changes between pages. Missing or mismatched titles stay unknown; default catalogs and shared files remain unchanged. See [private-search evidence](../evidence/private-library-search/README.md).
+
+PAC-041 adds optional read-only storage and recovery inspection across CLI, terminal and browser. Bounded usage, available capacity, qualified backup envelopes, OS filesystem flags and recovery headers are reported without pruning or claiming recoverability. See [workspace health evidence](../evidence/workspace-health/README.md).
+
+PAC-040 adds a versioned publishing recipe library shared by CLI, terminal and
+browser. It stores eight supported settings, excludes paths/models/approvals,
+and rejects stale saves or loaded recipe revisions. Loading does not start
+processing. [Publishing recipe evidence](../evidence/publishing-recipes/README.md)
+records source, interface, type-contract and package checks at their tested scope.
+
+
 PAC-039 clarifies [current workflow and data boundaries](CURRENT-CONTRACT.md),
 corrects conflicting privacy/lock guidance and links historical claims to their
 replacements. [Documentation evidence](../evidence/documentation-contracts/README.md)
@@ -212,3 +223,8 @@ protocol that can test whether component proxies predict useful protection.
 It requires explicit model/task identities and cannot inherit synthetic speed results.
 Remaining source typing debt stays visible for further scoped work. No tag, new
 release number or product-complete claim is made by this bounded repair.
+
+PAC-043 integrates optional source-bound artist masks with conservative final-size
+resampling, preview, optimization, quality gates and resume/review/package binding.
+Validation and remaining qualifications are recorded in
+[evidence/spatial-budgets](../evidence/spatial-budgets/README.md).

@@ -1,0 +1,17 @@
+{
+  "owners": [
+    "src/riposte/cli.py",
+    "src/riposte/health.py",
+    "src/riposte/records.py",
+    "src/riposte/server.py",
+    "src/riposte/static/app.js",
+    "src/riposte/static/health.js",
+    "src/riposte/static/index.html",
+    "src/riposte/static/publish.css",
+    "src/riposte/terminal/actions.py",
+    "src/riposte/terminal/controller.py",
+    "src/riposte/terminal/reports.py",
+    "src/riposte/terminal/service.py"
+  ],
+  "review": "PAC-041: new read-only health module typed records and bounded callback contract; CLI health signature, strict HTTP request, RequestValues.max_entries. Service and terminal reuse existing request/result/effect boundaries. Browser uses existing authenticated job/feedback owners; inspection never invokes lease, writes, deletion, sort or undo. External declarations reviewed against the changed source; runtime scope tested separately."
+}

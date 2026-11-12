@@ -212,6 +212,7 @@ class Controller:
     def preferences(self) -> None:
         rows = [
             {"key": "workspace", "title": "Image workspace", "value": "SELECTED" if self.state.root else "NOT SELECTED"},
+            {"key": "health", "title": "Storage & recovery", "value": "READ ONLY"},
             {"key": "theme", "title": "Palette", "value": self.state.presentation.theme.upper()},
             {"key": "motion", "title": "ASCII motion", "value": "PAUSED" if self.state.paused else "LIVE"},
             {"key": "fps", "title": "Refresh ceiling", "value": str(self.state.presentation.fps) + " fps"},
@@ -259,15 +260,18 @@ class Controller:
         current = inspect_recipes(root_of(Request("recipes", self.state.root)), row["name"])
         if current["recipe_revision"] != row["recipe_revision"]:
             raise RiposteError("RECIPE_CHANGED")
+        assert current["settings"] is not None
         self.back()
         self.state.page.values.update(current["settings"])
         self.state.page.values.update(recipe_name=current["name"], recipe_revision=current["recipe_revision"])
         self.state.notice = "Recipe loaded. Review or edit settings before starting protection."
 
     def recipe_save_name(self) -> None:
+        from ..recipes import SETTINGS
         p = self.state.page
         # Validate settings without requiring images or local model paths.
-        for field in PUB_FIELDS[:8]: parse_value(field, p.values[field.key])
+        for field in PUB_FIELDS:
+            if field.key in SETTINGS: parse_value(field, p.values[field.key])
         name = str(p.values.get("recipe_name") or "")
         self.state.editor = Editor(Field("recipe_name", "Recipe name", help="Name these settings; Enter previews, then s saves. No processing starts."), name, len(name), target="recipe-save-name")
 
@@ -324,7 +328,7 @@ class Controller:
                     break
         self.state.operation = None
         try:
-            if request.name not in {"organize", "undo-sort", "duplicates", "recipes", "recipes-save"}: self.refresh()
+            if request.name not in {"library-search", "organize", "undo-sort", "duplicates", "recipes", "recipes-save"}: self.refresh()
         except RiposteError as exc: self.state.notice = safe_code(exc.code)
         if self.state.exit_after_job:
             self.state.running = False
@@ -333,6 +337,9 @@ class Controller:
             self.show(Page("result", "Riposte Sorter / Stopped" if sorter_mode else "OPERATION STOPPED",
                            code=snapshot.code, request=request,
                            values={"sorter_mode": sorter_mode} if sorter_mode else {}), remember=False)
+        elif request.name == "library-search":
+            self.show(Page("library", "PRIVATE LIBRARY SEARCH", rows=result["rows"], result=result,
+                           request=request, values={"private_search": True}), remember=False)
         elif request.name == "duplicates":
             from ..duplicate_review import DuplicateReview
             self.show(Page("duplicates", "DUPLICATE FINDER", result=result, request=request,
@@ -415,8 +422,8 @@ class Controller:
         try:
             value = parse_value(e.field, e.value)
             if e.target == "recipe-save-name":
-                from ..recipes import inspect_recipes
-                settings = {field.key: parse_value(field, self.state.page.values[field.key]) for field in PUB_FIELDS[:8]}
+                from ..recipes import inspect_recipes, SETTINGS
+                settings = {field.key: parse_value(field, self.state.page.values[field.key]) for field in PUB_FIELDS if field.key in SETTINGS}
                 result = inspect_recipes(root_of(Request("recipes", self.state.root)), value, settings=settings)
                 self.state.editor = None
                 self.show(Page("result", "RECIPE PREVIEW", result=result,
@@ -578,6 +585,8 @@ class Controller:
         if key.name == "pagedown": return self.move(page_size)
         if key.name == "home": p.cursor = 0; p.scroll = 0; return
         if key.name == "end": return self.move(1000000)
+        if ch == "/" and p.name == "library" and p.values.get("private_search"):
+            return self.action("library-search", p.request.values)
         if ch == "/" and p.name in {"home", "library", "batches", "batch", "workshop", "duplicates"}: p.query_edit = True; return
         if p.name in {"home", "workshop"}:
             if p.name == "home" and ch == "d": return self.begin_action("duplicates")
@@ -621,6 +630,18 @@ class Controller:
                 if selected == "path": return self.sort_path()
                 return self.run_sorter(selected)
         elif p.name == "library":
+            if ch == "s": return self.action("library-search", p.request.values if p.values.get("private_search") else {})
+            if p.values.get("private_search") and ch in {"[", "]", "r"}:
+                private_values = dict(p.request.values)
+                if ch == "r":
+                    private_values.update(offset=0, expected_revision=None)
+                else:
+                    offset = max(0, p.result["offset"] - p.result["limit"]) if ch == "[" else p.result["next_offset"]
+                    if offset is None or offset == p.result["offset"]: return
+                    private_values.update(offset=offset, expected_revision=p.result["revision"])
+                self.run(Request("library-search", self.state.root, cast(RequestValues, private_values)))
+                self.state.stack.pop()  # paging replaces this result, without stacking private copies
+                return
             row = self.selected_row()
             if (key.name == "enter" or ch == " ") and row: return self.toggle_selection(row)
             if ch == "a":
@@ -699,6 +720,16 @@ class Controller:
             if ch == "w": return self.action("handoff", {"batch_id":p.batch_id,"item_id":cast(str, p.item_id)})
         elif p.name == "result":
             request = p.request
+            if ch in {"[", "]"} and request and not p.code and p.result.get("budget_previews"):
+                offset = p.result.get("budget_preview_offset", 0) + (3 if ch == "]" else -3)
+                if 0 <= offset < p.result["budget_preview_total"]:
+                    return self.run(Request(request.name, request.root, cast(RequestValues, {**request.values, "budget_offset": offset})))
+                return
+            if ch == "m" and not p.code and p.result.get("budget_previews"):
+                previews = p.result["budget_previews"]
+                index = p.values.get("budget_preview_index", 0) % len(previews)
+                p.values["budget_preview_index"] = index + 1
+                return self.run(Request("open-image", self.state.root, {"budget_preview": previews[index]}))
             if ch == "g" and p.values.get("sorter_mode"):
                 self.back()
                 return self.sort_path()
@@ -739,9 +770,9 @@ class Controller:
             if ch == "u" and request and request.name == "undo-sort" and p.result.get("ready"):
                 return self.confirm(Request("undo-sort-apply", request.root, {"sort_id": p.result["sort_id"]}), "UNDO", "Restore original names and bytes from the last sort. Remove only its verified sorted copies.")
             if ch == "r" and request and request.name == "plan":
-                return self.run(Request("publish", request.root, request.values))
+                return self.run(Request("publish", request.root, cast(RequestValues, {**request.values, "budget_revision": p.result.get("budget_revision")})))
             if ch == "r" and request and request.name == "riposte-plan":
-                return self.run(Request("riposte", request.root, request.values))
+                return self.run(Request("riposte", request.root, cast(RequestValues, {**request.values, "budget_revision": p.result.get("budget_revision")})))
             if ch == "r" and request and request.name == "sort-riposte-plan":
                 sorting = p.result.get("sorting", {})
                 if request.values.get("categories") and not sorting.get("ready"):
@@ -754,6 +785,7 @@ class Controller:
             if key.name != "enter": return
             row = self.selected_row()
             if row["key"] == "workspace": return self.edit_workspace()
+            if row["key"] == "health": return self.action("health")
             if row["key"] == "theme": return self.cycle_theme()
             if row["key"] == "motion": return self.freeze_motion()
             if row["key"] == "fps":

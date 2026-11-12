@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="1" time="2.109" timestamp="2026-09-20T11:45:18.686441-07:00" hostname="homeone"><testcase classname="tests.test_workspace_health" name="test_health_browser_native" time="1.516"><failure message="AssertionError: AssertionError [ERR_ASSERTION]: Escape closes inspection and restores focus&#10;  &#10;  false !== true&#10;  &#10;      at main (C:\Users\ryanf\github\_new\image-riposte\tests\health_browser.cjs:118:12) {&#10;    generatedMessage: false,&#10;    code: 'ERR_ASSERTION',&#10;    actual: false,&#10;    expected: true,&#10;    operator: 'strictEqual',&#10;    diff: 'simple'&#10;  }&#10;  &#10;assert 1 == 0&#10; +  where 1 = CompletedProcess(args=['C:\\nvm4w\\nodejs\\node.EXE', 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\tests\\health_br...se,\n  code: 'ERR_ASSERTION',\n  actual: false,\n  expected: true,\n  operator: 'strictEqual',\n  diff: 'simple'\n}\n&quot;).returncode">root = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/riposte-health-pac041-native-03/test_health_browser_native0/workspace')
+make_image = &lt;function make_image.&lt;locals&gt;.create at 0x000001B26A126B90&gt;
+
+    def test_health_browser_native(root,make_image):
+        import os
+        from pathlib import Path
+        import shutil
+        import socket
+        import subprocess
+        import threading
+        import time
+        import uvicorn
+        from riposte.organizer import organize,plan
+        from riposte.policy import Policy
+        node=shutil.which('node')
+        browser=next((p for p in [os.environ.get('RIPOSTE_TEST_BROWSER',''),shutil.which('chromium'),
+            'C:/Program Files/Google/Chrome/Application/chrome.exe','C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe'] if p and Path(p).is_file()),None)
+        if not node or not browser:pytest.skip('Local Node and Chromium required')
+        make_image(root/'drawing.png');policy=Policy(date_mode='modified')
+        organize(root,policy,plan_id=plan(root,policy)['plan_id'])
+        before=snapshot(root)
+        listener=socket.socket();listener.bind(('127.0.0.1',0));listener.listen()
+        server=uvicorn.Server(uvicorn.Config(create_app(root,'health-native'),log_level='error'))
+        thread=threading.Thread(target=server.run,kwargs={'sockets':[listener]},daemon=True);thread.start()
+        try:
+            for _ in range(100):
+                if server.started:break
+                time.sleep(.02)
+            assert server.started
+            args=[node,str(Path(__file__).with_name('health_browser.cjs')),browser]
+            if os.environ.get('RIPOSTE_HEALTH_SCREENSHOTS'):args.append(os.environ['RIPOSTE_HEALTH_SCREENSHOTS'])
+            run=subprocess.run(args,env={**os.environ,'RIPOSTE_SORT_LIVE':f'http://127.0.0.1:{listener.getsockname()[1]}/#token=health-native'},
+                               capture_output=True,text=True,encoding='utf-8',timeout=90)
+&gt;           assert run.returncode==0,run.stdout+run.stderr
+E           AssertionError: AssertionError [ERR_ASSERTION]: Escape closes inspection and restores focus
+E             
+E             false !== true
+E             
+E                 at main (C:\Users\ryanf\github\_new\image-riposte\tests\health_browser.cjs:118:12) {
+E               generatedMessage: false,
+E               code: 'ERR_ASSERTION',
+E               actual: false,
+E               expected: true,
+E               operator: 'strictEqual',
+E               diff: 'simple'
+E             }
+E             
+E           assert 1 == 0
+E            +  where 1 = CompletedProcess(args=['C:\\nvm4w\\nodejs\\node.EXE', 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\tests\\health_br...se,\n  code: 'ERR_ASSERTION',\n  actual: false,\n  expected: true,\n  operator: 'strictEqual',\n  diff: 'simple'\n}\n").returncode
+
+tests\test_workspace_health.py:246: AssertionError</failure></testcase></testsuite></testsuites>

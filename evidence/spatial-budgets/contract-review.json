@@ -1,0 +1,22 @@
+{
+  "owners": [
+    "src/riposte/cli.py",
+    "src/riposte/publication.py",
+    "src/riposte/quality.py",
+    "src/riposte/records.py",
+    "src/riposte/release_guard.py",
+    "src/riposte/server.py",
+    "src/riposte/spatial.py",
+    "src/riposte/static/index.html",
+    "src/riposte/static/publish.css",
+    "src/riposte/static/publish.js",
+    "src/riposte/static/recovery-catalog.json",
+    "src/riposte/static/spatial.js",
+    "src/riposte/terminal/actions.py",
+    "src/riposte/terminal/controller.py",
+    "src/riposte/terminal/interaction.py",
+    "src/riposte/terminal/reports.py",
+    "src/riposte/terminal/service.py"
+  ],
+  "review": "PAC-043 manually reviewed immutable ArtistMask records, bounded PNG/raw-pixel map validation, integer overlap-min resampling and tightening of automatic caps. Source signatures and external declarations include optional masks, typed summaries, recipe/request revision and private preview bytes. Engine and independent quality audit enforce identical caps; saved task/report identities reject changed budgets through resume/review/package. CLI/service/browser preserve no-mask defaults and explicit output approval. Per-path body limits extend the existing streamed-byte middleware. Final review fixes recipe field ownership by canonical SETTINGS rather than positional slicing; narrows optional path types and separates publication-preview locals from prior result types. Cancellation owns its request generation and timeout controller. Final bounded-preview review: three-raster pages carry offsets/totals, shared terminal and browser paging preserve full selection, and start skips preview encoding. Optional API/CLI/stub fields retain backwards-compatible defaults."
+}

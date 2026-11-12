@@ -1,0 +1,1 @@
+{"batch": 0, "operations": 2, "revision": "b2cc2310e7c6efde90f47bdbb37af28f798d4f9ac7aada52140d24a173b904db", "validation": {"valid": true, "errors": [], "warnings": []}}

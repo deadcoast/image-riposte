@@ -1,0 +1,57 @@
+{
+  "requirement": "OGM-002",
+  "meaning": "cab61136ee7f1dff1d0e65666500efbc1441552cdc2c5fb577823694afa8c75a",
+  "sources": {
+    "typing/test_tooling.py": "06936eeb2cfcf156bcea0d296abd91ff316e6c6dc398a4c4e9960509b2e57724",
+    "typing/check.py": "e2c24ec5fd6ce786e82abf526bb59b5ffbeb0dc4cf1941db11e9a300545381f1",
+    "typing/pacer_inventory.py": "9bdd4d9a85d4ffc77138104235ef5c70e1f7adc7d2efc1a2a60b642479dd5d34",
+    "typing/evidence/source-environment.json": "bbd297d0f095bc207e6537810c0ea1e971a78b6a874cee5af286877e40241cb8",
+    "typing/evidence/source-current-command.json": "0b0bf6839116580ee3a311feebfae469b5acf2b2ad37e9513079b49b0ea35377",
+    "evidence/patch-v050/root-mypy.json": "c87bf9475086557b10f0d5d7b2a165ba8972400e030b467fe62e9d6e1cdc9e64",
+    "evidence/patch-v050/root-mypy-dot.txt": "78a3b1c0f5395e6487e5ae4d5a3d270a9286ae431c094b0f3763f8acfa4b31f2",
+    "evidence/patch-v050/root-mypy-default.txt": "78a3b1c0f5395e6487e5ae4d5a3d270a9286ae431c094b0f3763f8acfa4b31f2",
+    "typing/evidence/source-reviewed-v050.json": "0b62c31d7fc3e617bbc418ee56b962aeba0c03699103e94d90e5d52a5a0ac966",
+    "typing/evidence/pac-003-root-audit.json": "5c1555e201fe1dc7db6a8f14b53e33e2d48f8d098d5790cd627ef0fea5ff39c1",
+    "typing/evidence/pac-003-before.json": "062e2a21c61af2102001d5352a24ad73f93dc875d40d8db27660e90c9fd95ccb",
+    "typing/mypy-contracts.ini": "78fddb2607c7cdb260de23c75b2570d07407dd9ba4aefeebccbfeb0b4c27e70e",
+    "typing/evidence/tooling-regressions.txt": "4538ad93a297011477366c7153cd60fc8522ad580ba4954bb3edb9995ee745e4",
+    "typing/evidence/source-after.json": "5af32eab0e695dae8cf7af9dacf8120dc5e0b30e20d4bc06a4f5ce56f06fc4ac",
+    "typing/evidence/mypy-tooling.txt": "281a094c39385b4d7b53e5db635f52158036861433c2a4975b9039e77a627a24",
+    "typing/evidence/runtime-contracts.txt": "aa37e1a05e0da1b46b8fe31c6bf7f7dc195850b15e256d55e712609a8089b5c4",
+    "typing/evidence/pacer-inventory.json": "714e6cdc1eabd02677b7ed8db9d5f16ba9b2a40f4e69f41dcc3ab9494ab78ac2",
+    "typing/mypy-source.ini": "f168d5874f12d6258a8e35311ea4fc90ebeab878a51fb1268cc1a89e8cb104bf",
+    "typing/evidence/verification.json": "f51e4bc6b002812e4aa57e5ae57e1226536e5250185ca840dec8b49a3dd295a3",
+    "typing/evidence/source-before.json": "d3fa8409db29ebf923523671b44fade9caf459f627bd4f16ea07a4ff6d094f8b",
+    "typing/README.md": "a394288af44b7a9464611255b8443984e24554592f158268e4a4ba7d81f783a5",
+    "mypy.ini": "c0961208a99c02083a873c32a8bd5ca6a7ba1c88d601eb2210fb3f94c00d2d99"
+  },
+  "result": "PASS",
+  "command": [
+    ".venv/Scripts/python.exe evidence/publishing-recipes/verify.py",
+    ".venv/Scripts/python.exe -m pytest -q -k \"not browser_native and not native_browser and not browser_review_in_real_chromium\" --junitxml=evidence/publishing-recipes/suite.xml",
+    ".venv/Scripts/python.exe -m pytest -q -k \"browser_native or native_browser or browser_review_in_real_chromium\" --junitxml=evidence/publishing-recipes/native.xml",
+    "uv run --project typing --frozen --cache-dir typing/.cache/uv python typing/check.py"
+  ],
+  "review": "Strict source and external contract configurations remain separate and unchanged. The current raw audit covers 67 Python files and retains 841 diagnostics in 36 files; the new storage module is clean within that audit. Sixteen additional interface/helper diagnostics are enumerated rather than suppressed. Generated metadata exclusion and identity checks pass.",
+  "changed_sources_since_previous_acceptance": [
+    "typing/README.md",
+    "typing/check.py",
+    "typing/evidence/pacer-inventory.json",
+    "typing/evidence/runtime-contracts.txt",
+    "typing/evidence/source-after.json",
+    "typing/evidence/source-current-command.json",
+    "typing/evidence/tooling-regressions.txt",
+    "typing/evidence/verification.json",
+    "typing/pacer_inventory.py"
+  ],
+  "executed_modules": {},
+  "previous_review_artifact": "evidence/documentation-contracts/OGM-002.json",
+  "previous_review_sha256": "ce2467bd185d6a3cb9134b7a257a236883a7c0518ae28323ab7ea76dfff675e3",
+  "scope_limits": [
+    "Existing Windows dependencies; no clean-install, different OS or user VS Code host qualification.",
+    "Synthetic media and existing synthetic/tiny-random CPU engine tests; no pretrained-model efficacy or independent human/accessibility acceptance.",
+    "Native recipe test uses the real authenticated local server for save, conflict and publishing preview; delayed/offline replies are injected for those two UI recovery cases.",
+    "First full run had a sort state-polling response without jobs; retained failure, focused retry and final full run are recorded separately. Cause not established.",
+    "Strict source typing remains failing; external declarations pass separately. Static UI findings have scoped dispositions, not a global pass."
+  ]
+}

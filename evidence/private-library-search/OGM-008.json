@@ -1,0 +1,37 @@
+{
+  "requirement": "OGM-008",
+  "meaning": "ebe4108e46373bb8a4b285032b92409cb91cbc204d40080dc92834a795a01ecc",
+  "sources": {
+    "evidence/browser-review/README.md": "c795f3774ca7c52e210313788e0b0869c92376387a753e797fa6e8c886784e73",
+    "tests/browser_review.cjs": "75f604c14024dd0e1ed1c0256b087cefbf6443efb903dbd716428c4cb935b556",
+    "tests/test_browser_review.py": "8be9063a792e733aad3b13eb56b61ffd2401ce4641834c9be6a1998bd008c181",
+    "src/riposte/static/publish.js": "05bce83f1c6e9060d23ad4c8059137093208282851efd8bf56b0882713118302",
+    "src/riposte/static/app.js": "ea21c051aac4c94c35e54470d0c7ff900b2963a2cdc4e87f653228d0fcfaecbc"
+  },
+  "result": "PASS",
+  "command": [
+    ".venv/Scripts/python.exe evidence/private-library-search/verify.py",
+    ".venv/Scripts/python.exe -m pytest -q -k \"not browser_native and not native_browser and not browser_review_in_real_chromium\" --junitxml=evidence/private-library-search/suite.xml",
+    ".venv/Scripts/python.exe -m pytest -q -k \"browser_native or native_browser or browser_review_in_real_chromium\" --junitxml=evidence/private-library-search/native.xml",
+    "uv run --project typing --frozen --cache-dir typing/.cache/uv python typing/check.py"
+  ],
+  "review": "Native publishing-review checks pass with optional private-search navigation and backward-compatible API abort signal. Private results never enter ordinary image state.",
+  "changed_sources_since_previous_acceptance": [
+    "src/riposte/static/app.js"
+  ],
+  "executed_modules": {
+    "test_browser_review": {
+      "passed": 21,
+      "skipped": 0
+    }
+  },
+  "previous_review_artifact": "evidence/workspace-health/OGM-008.json",
+  "previous_review_sha256": "c4ad5dbf3f1a41529cd612090eb68534da98087bc2ffab3d033d211f22605233",
+  "scope_limits": [
+    "Existing Windows dependencies; no clean-install, different OS or user VS Code host qualification.",
+    "Synthetic media and existing synthetic/tiny-random CPU engine tests; no pretrained-model efficacy or independent human/accessibility acceptance.",
+    "Native private search test uses the real authenticated local server for original-title lookup, paging and selection; delayed/offline and composition events are explicitly injected.",
+    "Initial focused failures came from undeclared fixture categories and a changed-image fixture with invalid metadata. Native testing exposed hidden invalid-field focus, which was fixed; a harness selector error was also retained.",
+    "Strict source typing remains failing; external declarations pass separately. Static UI findings have scoped dispositions, not a global pass."
+  ]
+}

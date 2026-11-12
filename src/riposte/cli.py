@@ -103,6 +103,13 @@ def undo_sort(ctx: typer.Context, root: Root,
     dispatch(ctx, "undo-sort-apply" if apply else "undo-sort", root, sort_id=sort_id)
 
 
+@command("health", "WORKFLOWS")
+def health(ctx: typer.Context, root: Root,
+           max_entries: Annotated[int, typer.Option(min=1, max=200_000, help="Bound storage inspection; partial totals stay explicit.")] = 100_000) -> None:
+    """Inspect storage and recovery without writing, pruning or reclaiming locks."""
+    dispatch(ctx, "health", root, max_entries=max_entries)
+
+
 @command("duplicates", "WORKFLOWS")
 def duplicates(ctx: typer.Context, root: Root,
                visual: Annotated[bool, typer.Option("--visual/--no-visual", help="Add normalized-pixel and visual evidence to exact byte comparisons.")] = True,
@@ -167,6 +174,20 @@ def list_images(ctx: typer.Context, root: Root,
     dispatch(ctx, "list", root, year=year, month=month, size=size, search=search, limit=limit, offset=offset)
 
 
+@command("library-search", "CLEAN COLLECTION")
+def library_search(ctx: typer.Context, root: Root,
+                   search: Annotated[str, typer.Option(help="Private original title, category, canonical path, date or ID; literal Unicode substring.")] = "",
+                   category: Annotated[str, typer.Option(help="Exact saved category folder slug, matched without case.")] = "",
+                   title_state: Annotated[str, typer.Option(help="all, known or unknown original titles.")] = "all",
+                   year: Optional[str] = None, month: Optional[str] = None, size: Optional[str] = None,
+                   limit: Annotated[int, typer.Option(min=1, max=500)] = 50,
+                   offset: Annotated[int, typer.Option(min=0, max=1_000_000_000)] = 0,
+                   expected_revision: Annotated[Optional[str], typer.Option(help="Previous search revision; reject changed pages.")] = None) -> None:
+    """Explicit private lookup. Output contains original filenames; keep it local."""
+    dispatch(ctx, "library-search", root, search=search, category=category, title_state=title_state,
+             year=year, month=month, size=size, limit=limit, offset=offset, expected_revision=expected_revision)
+
+
 @command("inspect", "CLEAN COLLECTION")
 def inspect(ctx: typer.Context, root: Root, image_id: Annotated[str, typer.Argument(help="Exact clean image ID.")]):
     """Independently audit a selected clean image and show its record."""
@@ -177,6 +198,11 @@ def inspect(ctx: typer.Context, root: Root, image_id: Annotated[str, typer.Argum
 @command("riposte", "WORKFLOWS")
 @command("sort-riposte", "WORKFLOWS")
 def publish(ctx: typer.Context, root: Root,
+            budget_mask: Annotated[Optional[Path], typer.Option(help="Optional grayscale PNG mask for one selected image: black preserves, white permits automatic limits.")] = None,
+            budget_map: Annotated[Optional[Path], typer.Option(help="Private mask map exported from publishing; binds masks to exact clean source hashes.")] = None,
+            view_budget: Annotated[Optional[int], typer.Option(min=1, max=600, help="With --plan: open this numbered mask overlay in your local image viewer. Creates only a private date-only preview cache.")] = None,
+            budget_revision: Annotated[Optional[str], typer.Option(help="Exact budget revision from --plan; reject changed masks, sizes or quality limits.")] = None,
+            budget_offset: Annotated[int, typer.Option(min=0, max=599, help="With --plan: skip this many masked rasters; previews return at most three.")] = 0,
             recipe_name: Annotated[Optional[str], typer.Option("--recipe", help="Load saved publishing settings; explicit setting flags override them. Paths and approvals are never loaded.")] = None,
             recipe_revision: Annotated[Optional[str], typer.Option("--recipe-revision", help="Optional exact recipe revision from recipes; reject a changed selection.")] = None,
             image: Annotated[Optional[list[str]], typer.Option("--image", help="Target exact clean image IDs; repeat for a selection.")] = None,
@@ -206,11 +232,14 @@ def publish(ctx: typer.Context, root: Root,
             plan_id: Annotated[Optional[str], typer.Option("--plan-id", help="Combined preview ID required with sort-riposte --apply; binds sorting and protection choices.")] = None):
     """Protect a selected batch at each final size; clean masters stay unchanged."""
     combined = ctx.info_name == "sort-riposte"
+    if view_budget is not None and (not plan or combined):
+        raise RiposteError("ARTIST_MASK_PREVIEW_REQUIRED")
     if not combined and (apply or discard_sidecars or categories or assign or plan_id):
         raise RiposteError("SORT_CONSENT_REQUIRES_COMBINED_WORKFLOW")
     operation = ("sort-riposte-plan" if plan or not apply else "sort-riposte") if combined else ("plan" if plan else "publish")
     if ctx.info_name == "riposte": operation = "riposte-plan" if plan else "riposte"
     dispatch(ctx, operation, root, image_ids=image or [], all_images=all_images, vae_dirs=vae or [],
+             budget_mask=budget_mask, budget_map=budget_map, view_budget=view_budget, budget_revision=budget_revision, budget_offset=budget_offset,
              recipe_name=recipe_name, recipe_revision=recipe_revision,
              recipe_overrides=[("edges" if key == "edge" else key) for key in ("edge", "epsilon", "steps", "restarts", "seed", "preserve_white", "delta_e76_p95", "rms_fraction")
                                if (source := ctx.get_parameter_source(key)) is not None and source.name != "DEFAULT"],

@@ -1,0 +1,25 @@
+[
+  {
+    "op": "append",
+    "id": "PAC-040",
+    "field": "Notes",
+    "text": "Implemented named version-1 publishing recipes across CLI, terminal and authenticated browser. Exact scope and retained evidence: evidence/publishing-recipes/README.md; verification.json. Final suite 1578 passed/10 platform skips; four native Chromium checks; seven external stages (554 signatures, 64 leaf modules, 77 application hashes); fresh wheel/sdist and parser/link/historical-payload checks. Strict raw source remains FAIL at 841 diagnostics; no human/pretrained efficacy/clean-install qualification. Next planned PAC-041 workspace health inspection; PAC-034 remains shelved."
+  },
+  {
+    "op": "append",
+    "id": "PAC-040",
+    "field": "PreviousAttempts",
+    "text": "Retained initial missing recipe command/contracts; initial API test expected 403 instead of actual 401; browser startup failed under sandbox, then shared pytest temporary-directory access failed outside it. Isolated native runs pass. First full run had a sort state-polling response without jobs; cause unconfirmed, focused retry and complete rerun pass without weakening assertions. See evidence/publishing-recipes/README.md for exact logs."
+  },
+  {
+    "op": "transition",
+    "id": "PAC-040",
+    "status": "DONE",
+    "evidence": "Source-bound OGM-027 acceptance and current transitive requirements; evidence/publishing-recipes/verification.json"
+  },
+  {
+    "op": "absorb",
+    "id": "NDL-026",
+    "evidence": "PAC-040 complete, admitted library/source/interface/tests/contracts registered, all 27 requirement acceptances current, guarded validation clean; evidence/publishing-recipes/README.md and verification.json."
+  }
+]

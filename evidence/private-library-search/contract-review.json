@@ -1,0 +1,20 @@
+{
+  "owners": [
+    "src/riposte/cli.py",
+    "src/riposte/library_search.py",
+    "src/riposte/records.py",
+    "src/riposte/server.py",
+    "src/riposte/static/app.js",
+    "src/riposte/static/index.html",
+    "src/riposte/static/library-search.js",
+    "src/riposte/static/publish.css",
+    "src/riposte/static/recovery-catalog.json",
+    "src/riposte/terminal/actions.py",
+    "src/riposte/terminal/controller.py",
+    "src/riposte/terminal/interaction.py",
+    "src/riposte/terminal/render.py",
+    "src/riposte/terminal/reports.py",
+    "src/riposte/terminal/service.py"
+  ],
+  "review": "PAC-042: manually reviewed SearchRow/SearchReport fields and bounded search signature, provenance join and shared cancellation callback; CLI signature, strict authenticated POST body, RequestValues category/title_state. Terminal reuses canonical image selection without private catalog enrichment; browser abort and generation ownership keep private result state separate. External declarations match source parameters and new public model fields; unknown provenance and stale pages covered by real sort/API/controller tests. Final annotation review narrows the optional limit through one local, avoids controller function-scope name collisions and declares endpoint/CLI returns; no source typing suppression added."
+}

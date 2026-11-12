@@ -1,0 +1,71 @@
+{
+  "requirement": "OGM-002",
+  "meaning": "cab61136ee7f1dff1d0e65666500efbc1441552cdc2c5fb577823694afa8c75a",
+  "sources": {
+    "typing/test_tooling.py": "06936eeb2cfcf156bcea0d296abd91ff316e6c6dc398a4c4e9960509b2e57724",
+    "typing/check.py": "5fa3c3d4eedfc10b21e7c8c76c53a2e002140ceb194d2be011907dd80f56a67d",
+    "typing/pacer_inventory.py": "2e85e0bba9ffec52bd7c05b87bb59d124c1fca367e8b9efb2fd2538165b54bc9",
+    "typing/evidence/source-environment.json": "bbd297d0f095bc207e6537810c0ea1e971a78b6a874cee5af286877e40241cb8",
+    "typing/evidence/source-current-command.json": "49e1dc30de0c314ae45c1ce7b24c93c400c710257bee98b15640786270c397a4",
+    "evidence/patch-v050/root-mypy.json": "c87bf9475086557b10f0d5d7b2a165ba8972400e030b467fe62e9d6e1cdc9e64",
+    "evidence/patch-v050/root-mypy-dot.txt": "78a3b1c0f5395e6487e5ae4d5a3d270a9286ae431c094b0f3763f8acfa4b31f2",
+    "evidence/patch-v050/root-mypy-default.txt": "78a3b1c0f5395e6487e5ae4d5a3d270a9286ae431c094b0f3763f8acfa4b31f2",
+    "typing/evidence/source-reviewed-v050.json": "0b62c31d7fc3e617bbc418ee56b962aeba0c03699103e94d90e5d52a5a0ac966",
+    "typing/evidence/pac-003-root-audit.json": "5c1555e201fe1dc7db6a8f14b53e33e2d48f8d098d5790cd627ef0fea5ff39c1",
+    "typing/evidence/pac-003-before.json": "062e2a21c61af2102001d5352a24ad73f93dc875d40d8db27660e90c9fd95ccb",
+    "typing/mypy-contracts.ini": "78fddb2607c7cdb260de23c75b2570d07407dd9ba4aefeebccbfeb0b4c27e70e",
+    "typing/evidence/tooling-regressions.txt": "bb5d8befc8fb042fd8066f4b0a652015e3cf1a40bae8d2ea8c6f62dee5386520",
+    "typing/evidence/source-after.json": "6436f1bc19aeafa907170d260834ec537b84eb2b0cf65a0e7cb60c5d85b55bc7",
+    "typing/evidence/mypy-tooling.txt": "281a094c39385b4d7b53e5db635f52158036861433c2a4975b9039e77a627a24",
+    "typing/evidence/runtime-contracts.txt": "b5f1e753c14eefddf384396ad328114ef34bd8d886b6b80a8081e5b00056287b",
+    "typing/evidence/pacer-inventory.json": "2893673b6a7358873c36b59fb8493979c470a69fece0de054c79f1a3d00c39f9",
+    "typing/mypy-source.ini": "f168d5874f12d6258a8e35311ea4fc90ebeab878a51fb1268cc1a89e8cb104bf",
+    "typing/evidence/verification.json": "7f9b1a902ffcea279c3d0bf7d3ac67c90038e4f093e718f6d40b8ee0a811ab1e",
+    "typing/evidence/source-before.json": "d3fa8409db29ebf923523671b44fade9caf459f627bd4f16ea07a4ff6d094f8b",
+    "typing/README.md": "39b1a9390331255ee5b93239d53ed519a5aa74fe53331a61f1080b521fd1136e",
+    "mypy.ini": "c0961208a99c02083a873c32a8bd5ca6a7ba1c88d601eb2210fb3f94c00d2d99"
+  },
+  "result": "PASS",
+  "command": [
+    ".venv/Scripts/python.exe evidence/spatial-budgets/verify.py"
+  ],
+  "review": "Reviewed the user-approved correction of the mistaken directory declaration, its retained ten file registrations, and the two closure documentation updates plus regenerated manifest. No application, test, declaration or requirement change. Fresh stage verification checks all 83 application hashes, prior test XML outcomes, existing contract outcomes, current documentation and rebuilt package parity. Runtime tests were not rerun for metadata-only closure.",
+  "changed_sources_since_previous_acceptance": [],
+  "previous_review_artifact": "evidence/spatial-budgets/OGM-002-final.json",
+  "previous_review_sha256": "2445dcd43d5950c28f034a71feb2f269e132764bb7f03742fdc9834dbc4c6461",
+  "retained_regression_modules": {},
+  "scope_limits": [
+    "Existing Windows dependencies; no clean-install, different OS or user VS Code host qualification.",
+    "Synthetic media and existing synthetic/tiny-random CPU engine tests; no pretrained-model efficacy or independent human/accessibility acceptance.",
+    "Native mask test uses the real authenticated local server for PNG validation and final-raster previews; delayed/offline responses and file-input selection are explicitly injected. Native select keys are sent through Chromium CDP.",
+    "Initial failures were fixture mistakes: captured CLI output mode, auth header, wrong keyboard import and identical native source hashes. The original failure artifacts remain available. A real positional recipe-field regression was repaired and a stale advanced-field count updated with mask-preservation checks.",
+    "Strict source typing remains failing; external declarations pass separately. Static UI findings have scoped dispositions, not a global pass."
+  ],
+  "correction_receipt": {
+    "mode": "APPLY",
+    "changed_files": [
+      "nodule.PACER.csv"
+    ],
+    "removed_declaration": "evidence/spatial-budgets",
+    "retained_registered_assets": [
+      "evidence/spatial-budgets/README.md",
+      "evidence/spatial-budgets/contract-review.json",
+      "evidence/spatial-budgets/requirement-review.json",
+      "evidence/spatial-budgets/verify.py",
+      "src/riposte/spatial.py",
+      "src/riposte/static/spatial.js",
+      "tests/spatial_browser.cjs",
+      "tests/test_spatial_budgets.py",
+      "typing/evidence/source-reviewed-spatial-budgets.json",
+      "typing/stubs/riposte/spatial.pyi"
+    ],
+    "validation": {
+      "valid": true,
+      "errors": [],
+      "warnings": []
+    },
+    "before_revision": "2d4ca5a4ff7a614d9a9a7929367787a72af313aacbbd795d091ab2a1e5ac77c0",
+    "revision": "469f0e91293bd73116b77ea27f55eae9abe05fa29aa10588deb321dcfad9f5b5"
+  },
+  "manual_review": "Compared all current evaluated source hashes with the prior accepted report; only the two named Markdown closure documents and RELEASE-MANIFEST.json may differ. Requirement meaning is unchanged."
+}

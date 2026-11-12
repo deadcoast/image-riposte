@@ -1,0 +1,11 @@
+{
+  "before": 873,
+  "after": 876,
+  "added": [
+    "src\\riposte\\terminal\\reports.py: error: Call to untyped function \"text\" in typed context  [no-untyped-call]",
+    "src\\riposte\\terminal\\reports.py: error: Call to untyped function \"pair\" in typed context  [no-untyped-call]",
+    "src\\riposte\\terminal\\reports.py: error: Call to untyped function \"section\" in typed context  [no-untyped-call]"
+  ],
+  "removed": [],
+  "review": "Three added calls to existing untyped semantic Writer helpers in reports.py. New spatial module has no diagnostics. No strict-source settings or suppressions changed."
+}

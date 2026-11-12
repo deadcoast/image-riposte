@@ -1,0 +1,17 @@
+[
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "FILE",
+      "Path": "typing/evidence/source-reviewed-private-library-search.json",
+      "Symbol": "",
+      "Exports": "",
+      "Imports": "",
+      "Requires": "",
+      "Purpose": "Typing validation input, evidence or development authority",
+      "ID": "OVR-2404",
+      "Tags": "#typing-index"
+    }
+  }
+]

@@ -1,0 +1,549 @@
+[
+  {
+    "op": "link",
+    "id": "PAC-041",
+    "field": "OVRRefs",
+    "target": "OVR-012"
+  },
+  {
+    "op": "link",
+    "id": "OGM-028",
+    "field": "OVRRefs",
+    "target": "OVR-012"
+  },
+  {
+    "op": "link",
+    "id": "PAC-041",
+    "field": "OVRRefs",
+    "target": "OVR-2340"
+  },
+  {
+    "op": "link",
+    "id": "OGM-028",
+    "field": "OVRRefs",
+    "target": "OVR-2340"
+  },
+  {
+    "op": "link",
+    "id": "PAC-041",
+    "field": "OVRRefs",
+    "target": "OVR-1890"
+  },
+  {
+    "op": "link",
+    "id": "OGM-028",
+    "field": "OVRRefs",
+    "target": "OVR-1890"
+  },
+  {
+    "op": "link",
+    "id": "PAC-041",
+    "field": "OVRRefs",
+    "target": "OVR-029"
+  },
+  {
+    "op": "link",
+    "id": "OGM-028",
+    "field": "OVRRefs",
+    "target": "OVR-029"
+  },
+  {
+    "op": "link",
+    "id": "PAC-041",
+    "field": "OVRRefs",
+    "target": "OVR-030"
+  },
+  {
+    "op": "link",
+    "id": "OGM-028",
+    "field": "OVRRefs",
+    "target": "OVR-030"
+  },
+  {
+    "op": "link",
+    "id": "PAC-041",
+    "field": "OVRRefs",
+    "target": "OVR-2341"
+  },
+  {
+    "op": "link",
+    "id": "OGM-028",
+    "field": "OVRRefs",
+    "target": "OVR-2341"
+  },
+  {
+    "op": "link",
+    "id": "PAC-041",
+    "field": "OVRRefs",
+    "target": "OVR-031"
+  },
+  {
+    "op": "link",
+    "id": "OGM-028",
+    "field": "OVRRefs",
+    "target": "OVR-031"
+  },
+  {
+    "op": "link",
+    "id": "PAC-041",
+    "field": "OVRRefs",
+    "target": "OVR-032"
+  },
+  {
+    "op": "link",
+    "id": "OGM-028",
+    "field": "OVRRefs",
+    "target": "OVR-032"
+  },
+  {
+    "op": "link",
+    "id": "PAC-041",
+    "field": "OVRRefs",
+    "target": "OVR-038"
+  },
+  {
+    "op": "link",
+    "id": "OGM-028",
+    "field": "OVRRefs",
+    "target": "OVR-038"
+  },
+  {
+    "op": "link",
+    "id": "PAC-041",
+    "field": "OVRRefs",
+    "target": "OVR-040"
+  },
+  {
+    "op": "link",
+    "id": "OGM-028",
+    "field": "OVRRefs",
+    "target": "OVR-040"
+  },
+  {
+    "op": "link",
+    "id": "PAC-041",
+    "field": "OVRRefs",
+    "target": "OVR-162"
+  },
+  {
+    "op": "link",
+    "id": "OGM-028",
+    "field": "OVRRefs",
+    "target": "OVR-162"
+  },
+  {
+    "op": "link",
+    "id": "PAC-041",
+    "field": "OVRRefs",
+    "target": "OVR-048"
+  },
+  {
+    "op": "link",
+    "id": "OGM-028",
+    "field": "OVRRefs",
+    "target": "OVR-048"
+  },
+  {
+    "op": "link",
+    "id": "PAC-041",
+    "field": "OVRRefs",
+    "target": "OVR-001"
+  },
+  {
+    "op": "link",
+    "id": "OGM-028",
+    "field": "OVRRefs",
+    "target": "OVR-001"
+  },
+  {
+    "op": "link",
+    "id": "PAC-041",
+    "field": "OVRRefs",
+    "target": "OVR-151"
+  },
+  {
+    "op": "link",
+    "id": "OGM-028",
+    "field": "OVRRefs",
+    "target": "OVR-151"
+  },
+  {
+    "op": "link",
+    "id": "PAC-041",
+    "field": "OVRRefs",
+    "target": "OVR-1290"
+  },
+  {
+    "op": "link",
+    "id": "OGM-028",
+    "field": "OVRRefs",
+    "target": "OVR-1290"
+  },
+  {
+    "op": "link",
+    "id": "PAC-041",
+    "field": "OVRRefs",
+    "target": "OVR-150"
+  },
+  {
+    "op": "link",
+    "id": "OGM-028",
+    "field": "OVRRefs",
+    "target": "OVR-150"
+  },
+  {
+    "op": "link",
+    "id": "PAC-041",
+    "field": "OVRRefs",
+    "target": "OVR-827"
+  },
+  {
+    "op": "link",
+    "id": "OGM-028",
+    "field": "OVRRefs",
+    "target": "OVR-827"
+  },
+  {
+    "op": "link",
+    "id": "PAC-041",
+    "field": "OVRRefs",
+    "target": "OVR-832"
+  },
+  {
+    "op": "link",
+    "id": "OGM-028",
+    "field": "OVRRefs",
+    "target": "OVR-832"
+  },
+  {
+    "op": "link",
+    "id": "PAC-041",
+    "field": "OVRRefs",
+    "target": "OVR-060"
+  },
+  {
+    "op": "link",
+    "id": "OGM-028",
+    "field": "OVRRefs",
+    "target": "OVR-060"
+  },
+  {
+    "op": "link",
+    "id": "PAC-041",
+    "field": "OVRRefs",
+    "target": "OVR-071"
+  },
+  {
+    "op": "link",
+    "id": "OGM-028",
+    "field": "OVRRefs",
+    "target": "OVR-071"
+  },
+  {
+    "op": "link",
+    "id": "PAC-041",
+    "field": "OVRRefs",
+    "target": "OVR-059"
+  },
+  {
+    "op": "link",
+    "id": "OGM-028",
+    "field": "OVRRefs",
+    "target": "OVR-059"
+  },
+  {
+    "op": "link",
+    "id": "PAC-041",
+    "field": "OVRRefs",
+    "target": "OVR-2343"
+  },
+  {
+    "op": "link",
+    "id": "OGM-028",
+    "field": "OVRRefs",
+    "target": "OVR-2343"
+  },
+  {
+    "op": "link",
+    "id": "PAC-041",
+    "field": "OVRRefs",
+    "target": "OVR-2342"
+  },
+  {
+    "op": "link",
+    "id": "OGM-028",
+    "field": "OVRRefs",
+    "target": "OVR-2342"
+  },
+  {
+    "op": "link",
+    "id": "PAC-041",
+    "field": "OVRRefs",
+    "target": "OVR-2345"
+  },
+  {
+    "op": "link",
+    "id": "OGM-028",
+    "field": "OVRRefs",
+    "target": "OVR-2345"
+  },
+  {
+    "op": "link",
+    "id": "PAC-041",
+    "field": "OVRRefs",
+    "target": "OVR-1953"
+  },
+  {
+    "op": "link",
+    "id": "OGM-028",
+    "field": "OVRRefs",
+    "target": "OVR-1953"
+  },
+  {
+    "op": "link",
+    "id": "PAC-041",
+    "field": "OVRRefs",
+    "target": "OVR-079"
+  },
+  {
+    "op": "link",
+    "id": "OGM-028",
+    "field": "OVRRefs",
+    "target": "OVR-079"
+  },
+  {
+    "op": "link",
+    "id": "PAC-041",
+    "field": "OVRRefs",
+    "target": "OVR-095"
+  },
+  {
+    "op": "link",
+    "id": "OGM-028",
+    "field": "OVRRefs",
+    "target": "OVR-095"
+  },
+  {
+    "op": "link",
+    "id": "PAC-041",
+    "field": "OVRRefs",
+    "target": "OVR-2344"
+  },
+  {
+    "op": "link",
+    "id": "OGM-028",
+    "field": "OVRRefs",
+    "target": "OVR-2344"
+  },
+  {
+    "op": "link",
+    "id": "PAC-041",
+    "field": "OVRRefs",
+    "target": "OVR-2339"
+  },
+  {
+    "op": "link",
+    "id": "OGM-028",
+    "field": "OVRRefs",
+    "target": "OVR-2339"
+  },
+  {
+    "op": "link",
+    "id": "PAC-041",
+    "field": "OVRRefs",
+    "target": "OVR-2336"
+  },
+  {
+    "op": "link",
+    "id": "OGM-028",
+    "field": "OVRRefs",
+    "target": "OVR-2336"
+  },
+  {
+    "op": "link",
+    "id": "PAC-041",
+    "field": "OVRRefs",
+    "target": "OVR-2337"
+  },
+  {
+    "op": "link",
+    "id": "OGM-028",
+    "field": "OVRRefs",
+    "target": "OVR-2337"
+  },
+  {
+    "op": "link",
+    "id": "PAC-041",
+    "field": "OVRRefs",
+    "target": "OVR-2338"
+  },
+  {
+    "op": "link",
+    "id": "OGM-028",
+    "field": "OVRRefs",
+    "target": "OVR-2338"
+  },
+  {
+    "op": "link",
+    "id": "OGM-001",
+    "field": "OVRRefs",
+    "target": "OVR-2336"
+  },
+  {
+    "op": "link",
+    "id": "OGM-001",
+    "field": "OVRRefs",
+    "target": "OVR-2337"
+  },
+  {
+    "op": "link",
+    "id": "OGM-001",
+    "field": "OVRRefs",
+    "target": "OVR-2338"
+  },
+  {
+    "op": "link",
+    "id": "OGM-001",
+    "field": "OVRRefs",
+    "target": "OVR-2339"
+  },
+  {
+    "op": "link",
+    "id": "OGM-001",
+    "field": "OVRRefs",
+    "target": "OVR-2340"
+  },
+  {
+    "op": "link",
+    "id": "OGM-001",
+    "field": "OVRRefs",
+    "target": "OVR-2341"
+  },
+  {
+    "op": "link",
+    "id": "OGM-001",
+    "field": "OVRRefs",
+    "target": "OVR-2342"
+  },
+  {
+    "op": "link",
+    "id": "OGM-001",
+    "field": "OVRRefs",
+    "target": "OVR-2343"
+  },
+  {
+    "op": "link",
+    "id": "OGM-001",
+    "field": "OVRRefs",
+    "target": "OVR-2344"
+  },
+  {
+    "op": "link",
+    "id": "OGM-001",
+    "field": "OVRRefs",
+    "target": "OVR-2345"
+  },
+  {
+    "op": "link",
+    "id": "OGM-001",
+    "field": "OVRRefs",
+    "target": "OVR-2346"
+  },
+  {
+    "op": "link",
+    "id": "OGM-001",
+    "field": "OVRRefs",
+    "target": "OVR-2347"
+  },
+  {
+    "op": "link",
+    "id": "OGM-001",
+    "field": "OVRRefs",
+    "target": "OVR-2348"
+  },
+  {
+    "op": "link",
+    "id": "OGM-001",
+    "field": "OVRRefs",
+    "target": "OVR-2349"
+  },
+  {
+    "op": "link",
+    "id": "OGM-001",
+    "field": "OVRRefs",
+    "target": "OVR-2350"
+  },
+  {
+    "op": "link",
+    "id": "OGM-001",
+    "field": "OVRRefs",
+    "target": "OVR-2351"
+  },
+  {
+    "op": "link",
+    "id": "OGM-001",
+    "field": "OVRRefs",
+    "target": "OVR-2352"
+  },
+  {
+    "op": "link",
+    "id": "OGM-001",
+    "field": "OVRRefs",
+    "target": "OVR-2353"
+  },
+  {
+    "op": "link",
+    "id": "OGM-001",
+    "field": "OVRRefs",
+    "target": "OVR-2354"
+  },
+  {
+    "op": "link",
+    "id": "OGM-001",
+    "field": "OVRRefs",
+    "target": "OVR-2355"
+  },
+  {
+    "op": "link",
+    "id": "OGM-001",
+    "field": "OVRRefs",
+    "target": "OVR-2356"
+  },
+  {
+    "op": "link",
+    "id": "OGM-001",
+    "field": "OVRRefs",
+    "target": "OVR-2357"
+  },
+  {
+    "op": "link",
+    "id": "OGM-001",
+    "field": "OVRRefs",
+    "target": "OVR-2358"
+  },
+  {
+    "op": "link",
+    "id": "OGM-001",
+    "field": "OVRRefs",
+    "target": "OVR-2359"
+  },
+  {
+    "op": "set",
+    "id": "NDL-027",
+    "fields": {
+      "TargetOVR": "OVR-012;OVR-029;OVR-035;OVR-950;OVR-038;OVR-048;OVR-050;OVR-162;OVR-001;OVR-2340;OVR-1890;OVR-030;OVR-2341;OVR-031;OVR-032;OVR-040;OVR-151;OVR-1290;OVR-150;OVR-827;OVR-832;OVR-060;OVR-071;OVR-059;OVR-2343;OVR-2342;OVR-2345;OVR-1953;OVR-079;OVR-095;OVR-2344;OVR-2339;OVR-2336;OVR-2337;OVR-2338",
+      "NewAssets": "src/riposte/health.py;typing/stubs/riposte/health.pyi;tests/test_workspace_health.py;evidence/workspace-health/README.md;src/riposte/static/health.js;tests/health_browser.cjs;evidence/workspace-health/verify.py"
+    }
+  },
+  {
+    "op": "transition",
+    "id": "PAC-041",
+    "status": "REVIEW",
+    "evidence": "Source/interface/contracts and runtime/native checks pass at their stated scopes; scoped manual acceptance and package/inventory reconciliation follow."
+  },
+  {
+    "op": "checkpoint",
+    "id": "PAC-041",
+    "next_action": "verify"
+  }
+]

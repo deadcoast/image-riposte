@@ -1,0 +1,16 @@
+{
+  "result": "PASS",
+  "counts": {
+    "source_files": 77,
+    "source_modules": 67,
+    "paired_stubs": 67,
+    "indexed_files": 1050,
+    "source_symbols": 769,
+    "tool_functions": 9,
+    "symbol_dependency_edges": 3262,
+    "static_definitions": 2968,
+    "local_dependency_edges": 1236
+  },
+  "source_unchanged": true,
+  "issues": []
+}

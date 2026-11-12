@@ -1,0 +1,62 @@
+{
+  "requirement": "OGM-015",
+  "meaning": "8eea86883da222fcc59f0a7a3cba775a27087101c8aa9d5a39e517849badea43",
+  "sources": {
+    "tests/test_sort_partial_failures.py": "73ea0d81c3851767acb93792cf0727d3c9d37ddb4c2321204203bf147e2af760",
+    "src/riposte/video.py": "34083ce45e6f51ea03e3914206b7ae37f56d2ee8e80bfcc529f8d00dfb093382",
+    "src/riposte/records.py": "64d6ea0ce979fedae562e86fe99c6ca48ac29c6127bb1ab38bd02924fd960ca8",
+    "src/riposte/store.py": "b4ba88fd1c207b82eef4e9b6b2fe9aef9cf19ce9a0e3d29dadfe8c2a5ce6210d",
+    "src/riposte/locking.py": "90200f7b491d378b4c1e5a0e663d11a6e89f59fbdb489979541b97e981a10b17",
+    "src/riposte/policy.py": "1f26521de3439a45856dd4d9af4d6cc4a0d2bc92f7cc53b43b82bb9c09a35562",
+    "src/riposte/errors.py": "cc52e21f857dec38dfd200cccfcd70d2940fd337f3343221855765955701481d",
+    "src/riposte/sanitize.py": "f73004a30ae104ea6ace31b65f97212391ccdb80f7e13573181135d280c31f4e",
+    "src/riposte/sort_history.py": "aa82eb4dd31787b02d9ec81cf824a4bb7579173b3f57737f33d6cecd5772766a",
+    "src/riposte/sort_titles.py": "12ca0b37e91007cbe45c6dd7f83d3a1e71665eeb1c72c0702c278ff9f78e8bf0",
+    "src/riposte/organizer.py": "bbc8bd1c17c833e749ef13f4a679007a3924ee8a05df6b97bd1880c7d5d1588d",
+    "src/riposte/sort_plan.py": "0f7c27092029699caded7e4f93097c17cf6bfeeb7dd2f63836e813db3bde0ae6",
+    "src/riposte/category_sort.py": "691b956cd8ffb18d30995b8dda169f605b211bc176fb0cc55e2dfd4e9c45d343",
+    "src/riposte/category_corpus.py": "8bb923a6ce843d4e14b3294403c053f38a6663b0b42d14406e6d9467e324b047",
+    "src/riposte/title_categories.py": "3382e9ab39cbde60343b5ded84bfe71c8059946919b32740b03d71817b348ed4",
+    "src/riposte/category_rules.py": "e059e403d39d392858c9c1f8a088df5d01b8b507ad860bc77db4b08d69159fc5",
+    "src/riposte/catalog_guard.py": "e79d817cf428c1655d713f369d34806bedfb12b46c871e21f10c2cb3fb5bae38",
+    "src/riposte/__init__.py": "a9e9d2abdceaac2c47ed5846a874787f47337c407e2b2aa8064a32b53489f28d",
+    "tests/test_sort_collisions.py": "2699c40dcbea319a2185477565483e31f12f8eefeeb6821aa5097864c2f0eb1f",
+    "typing/stubs/riposte/sort_history.pyi": "7f99fb90c905e30c70e4f62a9e4933ca312e76caa3873caa7f499240ab9c40ca",
+    "typing/stubs/riposte/video.pyi": "2ce5336640497d25fb0de5fd61d9e1e6209da066326720c4d311221ac5f34f33",
+    "typing/stubs/riposte/store.pyi": "3ee087d30804d299eae58f1a05bd592df65e1a6a27259e60fdd3338d98dc9afa",
+    "typing/stubs/riposte/locking.pyi": "b78a717d5405a048655c1c0c499678ed95dd4b6ec10d4334c8839eed5121ef36",
+    "typing/stubs/riposte/policy.pyi": "468f1e03ad651e2986e5c1234b8410348ed483c5eeeaf740a497a3deb81948c3",
+    "typing/stubs/riposte/errors.pyi": "52191cef9232164915d6ff7997226afdf0d703eb59075f983f3c07a06fb5ee14",
+    "typing/stubs/_riposte_types.pyi": "20749e43b1a3c1d05d63e62506423d88f1ba5da75e7e8e508d8f9b4214f0a908",
+    "typing/stubs/riposte/records.pyi": "64d6ea0ce979fedae562e86fe99c6ca48ac29c6127bb1ab38bd02924fd960ca8",
+    "typing/stubs/riposte/sanitize.pyi": "7389450202abf94d5a6dd7bf2582bcd00d8fe851265a845db8844b8aa37d3381",
+    "typing/stubs/riposte/sort_titles.pyi": "ea78e287ce60907222bb8f3711191814a6791e877ef723428212dd0eefa4e6dd"
+  },
+  "result": "PASS",
+  "command": [
+    ".venv/Scripts/python.exe evidence/workspace-health/verify.py",
+    ".venv/Scripts/python.exe -m pytest -q -k \"not browser_native and not native_browser and not browser_review_in_real_chromium\" --junitxml=evidence/workspace-health/suite.xml",
+    ".venv/Scripts/python.exe -m pytest -q -k \"browser_native or native_browser or browser_review_in_real_chromium\" --junitxml=evidence/workspace-health/native.xml",
+    "uv run --project typing --frozen --cache-dir typing/.cache/uv python typing/check.py"
+  ],
+  "review": "Exclusive output and undo conflict regressions pass. Health runs no write probe or lock cleanup.",
+  "changed_sources_since_previous_acceptance": [
+    "src/riposte/records.py",
+    "typing/stubs/riposte/records.pyi"
+  ],
+  "executed_modules": {
+    "test_sort_collisions": {
+      "passed": 13,
+      "skipped": 0
+    }
+  },
+  "previous_review_artifact": "evidence/publishing-recipes/OGM-015.json",
+  "previous_review_sha256": "6215a98a0d9597f33b71bf5eab40ad9f74b09c25ec854614aed5a6efa898fe51",
+  "scope_limits": [
+    "Existing Windows dependencies; no clean-install, different OS or user VS Code host qualification.",
+    "Synthetic media and existing synthetic/tiny-random CPU engine tests; no pretrained-model efficacy or independent human/accessibility acceptance.",
+    "Native health test uses the real authenticated local server for read-only inspection and recorded recovery; delayed/offline and partial/cancelled UI states are explicitly injected.",
+    "First focused run exposed Windows lstat/fstat ctime mismatch; first native runs exposed harness polling and hidden narrow opener. Failures retained separately from fixed passes.",
+    "Strict source typing remains failing; external declarations pass separately. Static UI findings have scoped dispositions, not a global pass."
+  ]
+}

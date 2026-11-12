@@ -1,37 +1,42 @@
 [
   {
     "file": "typing/stubs/_riposte_types.pyi",
-    "line": 14,
+    "line": 15,
     "declaration": "Report: TypeAlias = dict[str, Any]"
   },
   {
     "file": "typing/stubs/_riposte_types.pyi",
-    "line": 15,
+    "line": 16,
     "declaration": "ModelTensor: TypeAlias = Any"
   },
   {
     "file": "typing/stubs/_riposte_types.pyi",
-    "line": 30,
+    "line": 31,
     "declaration": "files: list[dict[str, Any]]"
   },
   {
     "file": "typing/stubs/_riposte_types.pyi",
-    "line": 182,
+    "line": 148,
+    "declaration": "budget_previews: NotRequired[list[Report]]"
+  },
+  {
+    "file": "typing/stubs/_riposte_types.pyi",
+    "line": 190,
     "declaration": "recipe: Report"
   },
   {
     "file": "typing/stubs/_riposte_types.pyi",
-    "line": 200,
+    "line": 208,
     "declaration": "def __call__(self, x: ModelTensor, /) -> ModelTensor:"
   },
   {
     "file": "typing/stubs/_riposte_types.pyi",
-    "line": 205,
+    "line": 213,
     "declaration": "def __call__(self, x: ModelTensor, keep: ModelTensor, seed: int, early_fraction: float, prompt_key: str, /) -> ModelTensor:"
   },
   {
     "file": "typing/stubs/_riposte_types.pyi",
-    "line": 209,
+    "line": 217,
     "declaration": "def __call__(self, x: ModelTensor, seed: int, /) -> ModelTensor:"
   },
   {
@@ -128,6 +133,21 @@
     "file": "typing/stubs/riposte/generation.pyi",
     "line": 24,
     "declaration": "pipeline: Any"
+  },
+  {
+    "file": "typing/stubs/riposte/health.pyi",
+    "line": 40,
+    "declaration": "estimate: dict[str, Any]"
+  },
+  {
+    "file": "typing/stubs/riposte/health.pyi",
+    "line": 43,
+    "declaration": "history: dict[str, Any]"
+  },
+  {
+    "file": "typing/stubs/riposte/health.pyi",
+    "line": 44,
+    "declaration": "coverage: dict[str, Any]"
   },
   {
     "file": "typing/stubs/riposte/intake.pyi",
@@ -251,62 +271,72 @@
   },
   {
     "file": "typing/stubs/riposte/publication.pyi",
-    "line": 34,
+    "line": 38,
     "declaration": "def _read(root: Path, relative: str) -> Report:"
   },
   {
     "file": "typing/stubs/riposte/publication.pyi",
-    "line": 36,
+    "line": 40,
     "declaration": "def _read_record(root: Path, relative: str) -> tuple[Report, bytes]:"
   },
   {
     "file": "typing/stubs/riposte/publication.pyi",
-    "line": 38,
+    "line": 42,
     "declaration": "def _replace_json(root: Path, relative: str, report: Report) -> None:"
   },
   {
     "file": "typing/stubs/riposte/publication.pyi",
-    "line": 44,
+    "line": 48,
     "declaration": "def _plan_rows(rows: list[Report], recipe: PublishRecipe) -> PublicationPlan:"
   },
   {
     "file": "typing/stubs/riposte/publication.pyi",
-    "line": 46,
+    "line": 50,
     "declaration": "def _request(root: Path, batch_id: str) -> Report:"
   },
   {
     "file": "typing/stubs/riposte/publication.pyi",
-    "line": 48,
+    "line": 52,
     "declaration": "def _models(vae_dirs: list[Path], device: str, pipeline_dir: Path | None, temporal_dir: Path | None, progress: _Progress | None=None) -> tuple[list[Encoder], InpaintProbe | None, TemporalProbe | None, Report, list[Report]]:"
   },
   {
     "file": "typing/stubs/riposte/publication.pyi",
-    "line": 50,
+    "line": 54,
     "declaration": "def start_publication(root: Path, image_ids: list[str] | tuple[str, ...], vae_dirs: list[Path], recipe: PublishRecipe=..., device: str='auto', pipeline_dir: Path | None=None, temporal_dir: Path | None=None, progress: _Progress | None=None, *, input_paths: list[Path] | None=None, date_mode: str='download', _loaded_models: tuple[list[Encoder], InpaintProbe | None, TemporalProbe | None, Report, list[Report]] | None=None) -> PublicationBatch:"
   },
   {
     "file": "typing/stubs/riposte/publication.pyi",
-    "line": 52,
+    "line": 56,
     "declaration": "def _source_row(root: Path, request: Report, task: Report) -> Report:"
   },
   {
     "file": "typing/stubs/riposte/publication.pyi",
-    "line": 56,
+    "line": 60,
     "declaration": "def _run(root: Path, request: Report, models: tuple[list[Encoder], InpaintProbe | None, TemporalProbe | None, Report, list[Report]], progress: _Progress | None) -> PublicationBatch:"
   },
   {
     "file": "typing/stubs/riposte/publication.pyi",
-    "line": 58,
+    "line": 62,
     "declaration": "def _verified_item(root: Path, request: Report, task: Report) -> tuple[Report, dict[str, _Image], dict[str, bytes], str]:"
   },
   {
     "file": "typing/stubs/riposte/publication.pyi",
-    "line": 74,
+    "line": 78,
     "declaration": "def open_in_workshop(root: Path, batch_id: str, item_id: str) -> Report:"
   },
   {
     "file": "typing/stubs/riposte/publication.pyi",
-    "line": 28,
+    "line": 80,
+    "declaration": "def _budget_previews(image: _Image, row: Report, recipe: PublishRecipe) -> list[Report]:"
+  },
+  {
+    "file": "typing/stubs/riposte/publication.pyi",
+    "line": 82,
+    "declaration": "def _preview_tasks(result: dict[str, Any], offset: int) -> list[dict[str, Any]]:"
+  },
+  {
+    "file": "typing/stubs/riposte/publication.pyi",
+    "line": 32,
     "declaration": "@classmethod"
   },
   {
@@ -331,18 +361,18 @@
   },
   {
     "file": "typing/stubs/riposte/quality.pyi",
-    "line": 26,
+    "line": 27,
     "declaration": "def _lab(rgb: NDArray[Any]) -> NDArray[np.float64]:"
   },
   {
     "file": "typing/stubs/riposte/release_guard.pyi",
-    "line": 27,
+    "line": 28,
     "declaration": "def temporal_energy(frames: ModelTensor) -> ModelTensor:"
   },
   {
     "file": "typing/stubs/riposte/release_guard.pyi",
-    "line": 29,
-    "declaration": "def protect_release(image: Image.Image, encoders: list[EncoderT], config: ReleaseConfig=..., limits: QualityLimits=..., probe: InpaintProbe | None=None, temporal: TemporalProbe | None=None, progress: _Progress | None=None) -> tuple[_Image, Report]:"
+    "line": 30,
+    "declaration": "def protect_release(image: Image.Image, encoders: list[EncoderT], config: ReleaseConfig=..., limits: QualityLimits=..., probe: InpaintProbe | None=None, temporal: TemporalProbe | None=None, progress: _Progress | None=None, *, artist_mask: ArtistMask | None=None) -> tuple[_Image, Report]:"
   },
   {
     "file": "typing/stubs/riposte/runtime_probe.pyi",
@@ -371,17 +401,17 @@
   },
   {
     "file": "typing/stubs/riposte/server.pyi",
-    "line": 117,
+    "line": 121,
     "declaration": "data: dict[str, Report]"
   },
   {
     "file": "typing/stubs/riposte/server.pyi",
-    "line": 122,
+    "line": 126,
     "declaration": "def start(self, fn: Callable[..., object], cancellable: bool=True, *, read_only: bool=False, operation: str='general', **kwargs: Any) -> JobStarted:"
   },
   {
     "file": "typing/stubs/riposte/server.pyi",
-    "line": 126,
+    "line": 130,
     "declaration": "def snapshot(self) -> list[Report]:"
   },
   {
@@ -541,17 +571,17 @@
   },
   {
     "file": "typing/stubs/riposte/terminal/controller.pyi",
-    "line": 61,
+    "line": 67,
     "declaration": "def action(self, key: str, overrides: Mapping[str, Any] | None=None) -> None:"
   },
   {
     "file": "typing/stubs/riposte/terminal/controller.pyi",
-    "line": 65,
+    "line": 71,
     "declaration": "def save_model_session(self, values: Mapping[str, Any]) -> None:"
   },
   {
     "file": "typing/stubs/riposte/terminal/controller.pyi",
-    "line": 75,
+    "line": 81,
     "declaration": "def selected_row(self) -> Report | None:"
   },
   {
@@ -568,6 +598,11 @@
     "file": "typing/stubs/riposte/terminal/reports.pyi",
     "line": 58,
     "declaration": "def category_destinations(w: Writer, data: dict[str, Any]) -> None:"
+  },
+  {
+    "file": "typing/stubs/riposte/terminal/service.pyi",
+    "line": 44,
+    "declaration": "def masked_recipe(configuration: PublishRecipe, values: RequestValues, rows: list[dict[str, Any]]) -> PublishRecipe:"
   },
   {
     "file": "typing/stubs/riposte/terminal/state.pyi",

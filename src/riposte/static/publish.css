@@ -6,3 +6,37 @@
 @media(max-width:580px){.publish-layout{padding:17px 14px}.publish-selection-heading h2{font-size:21px}.publish-selection-heading .eyebrow{font-size:7px}.publish-selection-heading>div+div{max-width:115px;gap:7px}.pub-sources{grid-template-columns:repeat(3,minmax(0,1fr));max-height:285px}.pub-source img{height:83px}.pub-source>span{font-size:8px}.pub-outputs{grid-template-columns:repeat(2,minmax(0,1fr))}.pub-output .pub-output-image{height:145px}.pub-count strong{font-size:21px}.pub-batch-summary{gap:15px}.batch-heading{flex-wrap:wrap}.batch-heading label{max-width:100%}.pub-empty{padding:24px 13px}.pub-empty h3{font-size:17px}#pub-review-dialog{padding:18px 13px;width:calc(100% - 16px)}.pub-review-heading h2{font-size:17px}.pub-review-heading .chip{font-size:7px}.pub-review-pair{gap:7px}.pub-review-pair figure>div{height:210px}.pub-review-pair figcaption{font-size:7px}.pub-review-toolbar .segmented{display:flex;width:100%}.pub-review-toolbar .segmented button{font-size:9px;flex:1}.pub-review-metrics{gap:14px}.pub-review-metrics strong{font-size:17px}.pub-review-actions>div+div{width:100%;flex-wrap:wrap}.pub-review-actions button{flex:1}.primary-nav .nav{font-size:10px}}
 .pub-review-heading{min-width:0}.pub-review-heading h2{min-width:0;overflow-wrap:anywhere;flex:1}.pub-review-heading .chip{flex-shrink:0}.pub-review-toolbar>*{min-width:0;max-width:100%}.pub-review-actions>div{min-width:0}.pub-review-toolbar select{max-width:100%}
 @media(max-width:580px){.pub-review-heading{align-items:flex-start;gap:7px;padding-right:14px}.pub-review-heading h2{font-size:15px}.pub-review-heading .chip{margin-top:10px}.pub-review-toolbar label{width:100%}.pub-review-toolbar label select{flex:1;min-width:0}.pub-review-actions .checkbox{font-size:10px}.pub-review-actions>div+div{flex-shrink:1}}
+
+.pub-recipe-values{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:6px 12px;font-size:12px}.pub-recipe-values[hidden]{display:none}.pub-recipe-values dt{color:var(--muted)}.pub-recipe-values dd{margin:0;overflow-wrap:anywhere}#pub-recipe-status{min-height:3em}#pub-recipes .field-row>*{min-width:0}#pub-recipes button{white-space:normal}#pub-recipes select{width:100%;min-width:0}#pub-recipe-error{overflow-wrap:anywhere}
+/* Storage inspection reuses the shared dialog, type, controls and scrollbars. */
+#health-dialog { width: min(760px, calc(100vw - 32px)); }
+.health-controls { display: flex; gap: 12px; flex-wrap: wrap; margin-block: 20px; }
+#health-status { min-height: 3em; }
+.health-totals { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 12px 20px; margin-block: 24px; }
+.health-totals dd { margin: 0; font-family: var(--mono); text-align: right; }
+#health-result { overflow-wrap: anywhere; }
+#health-result h3 { margin-block: 24px 10px; }
+#health-result li { margin-block: 10px; }
+#health-result pre { white-space: pre-wrap; }
+/* Private search shares dialog tokens and owns only its bounded list layout. */
+#private-search-dialog { width: min(780px, calc(100vw - 32px)); }
+.private-search-filters { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-block: 12px; }
+.private-search-filters label { display: grid; gap: 6px; min-width: 0; }
+#private-search-form input, #private-search-form select { width: 100%; min-width: 0; }
+#private-query { flex: 1; }
+#private-search-form > .field-row { display: flex; }
+#private-query-clear { flex-shrink: 0; }
+#private-search-run { margin-top: 12px; }
+#private-search-status { min-height: 2.8em; }
+#private-results { padding: 0; list-style: none; min-height: 120px; }
+#private-results li { border-top: 1px solid var(--line); padding: 16px 0; overflow-wrap: anywhere; }
+@media (max-width: 600px) { .private-search-filters { grid-template-columns: 1fr; } }
+/* Artist restraint stays inside the existing natural-height settings panel. */
+#spatial-masks { padding-left: 1.1rem; overflow-wrap: anywhere; }
+#spatial-masks li { margin-block: .6rem; }
+#spatial-masks button { display: block; }
+#spatial-status { min-height: 3.5em; }
+#spatial-previews figure { margin: 1rem 0; }
+#spatial-previews img { display: block; width: 100%; height: auto; }
+#spatial-previews figcaption { margin-block: .5rem; font-size: .8rem; overflow-wrap: anywhere; }
+#spatial-file { max-width: 100%; }

@@ -1,5 +1,37 @@
 # TODO, PACE AND NODULE AUDIT
 
+## PAC-040 / reusable publishing recipes / 2026-09-20
+
+USER: "CONTINUE development utilizing the NEXT PAC". INFERRED: follow PAC-039's
+named PAC-040 handoff. NDL-026 admits publishing-recipes; OGM-027 defines the
+bounded requirement. PAC-034 remains shelved.
+
+OBSERVED: existing per-batch PublishRecipe validation had no reusable named
+library. IMPLEMENTED: one versioned private library, allowlisted settings,
+read-only inspection/preview, lease-protected atomic revision-checked saves,
+CLI/terminal/browser selection and complete editable field loading. Machine
+paths, model identity, image selection, device and approvals remain per-run.
+Loaded entry revisions and combined-sort plan binding reject stale choices.
+No recipe action starts processing. Details: docs/PUBLISHING.md, section
+"Reusable publishing recipes".
+
+EXECUTED: 58 focused tests passed with one Windows symlink skip; final full
+regression run 1,578 passed/10 platform skips, plus four native Chromium tests.
+Seven external declaration stages pass (554 signatures, 64 modules, 77 files).
+Strict raw typing remains FAIL at 841 diagnostics; no suppression/configuration
+weakening. Initial browser sandbox/temporary-directory failures and one first-run
+sort state-polling failure are retained alongside passing reruns. The polling
+failure's cause is unconfirmed. No independent human, pretrained-model efficacy,
+clean-install or different-platform qualification is inferred.
+
+The exact evidence index is [evidence/publishing-recipes/README.md](evidence/publishing-recipes/README.md).
+It names test logs, reviewed source contracts, native screenshots, static UI
+findings, parser/archive checks and package verification. Guarded reconciliation,
+source-bound acceptance and task/nodule outcomes are in that folder's
+`governance.json`; earlier evidence is preserved. Next planned task: PAC-041,
+workspace health inspection. Do not silently resume shelved PAC-034.
+
+
 ## PAC-039 / current documentation and historical contracts / 2026-09-20
 
 USER: "CONTINUE development utilizing the NEXT PAC". INFERRED: continue the
@@ -1154,3 +1186,119 @@ contracts, source and evidence together at the still-open audit milestone.
 ─ Conversation recap ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 
   PAC-028 is complete: the PACER source-code review covered eight application areas and compiled 16 prioritized findings in todo.PACER.csv.
+
+
+## PAC-041 - workspace storage and recovery health / 2026-09-20
+
+USER: "CONTINUE development utilizing the NEXT PAC".
+INFERRED: implement the next named proposal as optional read-only inspection.
+OBSERVED: added `health ROOT`, terminal workspace settings, and browser navigation
+with cancellable jobs. Logical usage separates private/recovery/float bytes;
+capacity and a suffix-based backup envelope have explicit scope. Windows volume
+flags are advertised support only; POSIX hard-link capability remains unknown.
+All history headers are bounded; marker observation never acquires/reclaims the
+lease and cannot establish owner liveness. No file pruning or state creation.
+
+First focused run exposed Windows lstat/fstat ctime disagreement; stable identity,
+size and mtime are compared across APIs with same-API lstat revalidation. Initial
+native testing exposed a hidden narrow-screen opener; moved the action into
+visible navigation. Test setup failures and later passes remain in
+`evidence/workspace-health/`. Source/contract review is recorded there by owner.
+Validation and final PACER acceptance are recorded in that directory's README
+and verification reports; no pretrained efficacy or user-host claim follows.
+Next after this bounded stage: PAC-042 - private original-title/category search.
+
+PAC-041 executed checks: 73 focused passes/1 skip; full regression 1,608 passes/
+11 platform or privilege skips; five native browser checks pass. All seven
+external contract stages pass (79 files, 561 signatures); strict source typing
+remains FAIL at 862 diagnostics in 36/68 modules (21 additional calls to existing
+untyped report helpers; health.py has none). Wheel/sdist source and maintained
+text match the manifest; docs examples parse and retained historical payloads
+remain unchanged. Native headless Chromium is not user terminal qualification.
+
+## PAC-042 - private original-title and category library search / 2026-09-20
+
+USER: "CONTINUE development utilizing the NEXT PAC".
+INFERRED: implement the next named proposal as explicit private library lookup.
+OBSERVED: `library-search ROOT`, terminal library **s**, and browser **Private
+library search** read original titles and category assignments in one catalog
+transaction. Unicode literal matching combines category, date, size and title
+availability filters. Bounded pages carry a revision; changed data requires a
+restart. Missing/invalid/mismatched provenance stays unknown. Current media bytes
+are audited by existing inspection, not by search. No workspace write, sorting
+gate, public catalog enrichment, metadata addition or publishing approval.
+
+Browser query state stays in memory, clears on close and handles superseded
+replies, offline/stale errors, IME composition and narrow layouts. Native testing
+found hidden date-filter error focus; the disclosure now opens before focus.
+Fixture/setup errors remain separately recorded in
+`evidence/private-library-search/README.md`, alongside actual executed evidence.
+
+Executed validation: 90 focused passes/1 privilege skip; 1,637 full regression
+passes/12 platform or privilege skips; six native Chromium passes. All seven
+external contract stages pass (81 application files, 564 signatures, 66 importable
+leaf modules). Strict source typing remains FAIL at 873 diagnostics in 36/69
+modules: 11 added calls to existing untyped report helpers, none in the new search
+module. No pretrained, independent human, screen-reader or user-host acceptance
+is implied. Package/docs checks and source-bound PACER reconciliation are recorded
+in the named evidence directory. Next: PAC-043 - artist-defined regional
+protection budgets. PAC-034 remains shelved and the overall release audit open.
+
+
+## PAC-043 — artist-directed spatial protection budgets
+
+USER: "CONTINUE development utilizing the NEXT PAC; if there is no NEXT PAC; review and update the todo.PACER.csv and CONTINUE."
+
+OBSERVED: the previous quality/optimizer path only admitted automatic white/edge
+caps. INFERRED implementation now admits immutable source-bound grayscale masks,
+conservative overlap-min resampling, per-final-raster previews, optimizer projection,
+independent quality audit and mask/task/report identity through resume and exact
+review/package. CLI/terminal and browser expose optional inputs, private map export,
+retry/cancel/stale handling and explicit local viewer previews. No-mask defaults,
+source preservation, float sorting exclusions, date-only output and efficacy limits
+remain covered. Saved recipes use their canonical eight settings and exclude masks.
+Final previews page three rasters at a time without truncating batch selection.
+Batch start skips preview rendering. Paging checks passed 124 tests; the last
+explicit-keyword service repair passed 192 focused checks.
+
+Executed evidence: [evidence/spatial-budgets/README.md](evidence/spatial-budgets/README.md).
+Focused: 187 passed/1 symlink privilege skip. Full non-browser: 1673 passed/12
+platform or privilege skips. Actual Chromium: seven passed. External contracts:
+all seven stages pass, 83 application files, 70 declaration pairs, 582 signatures,
+67 importable modules and 13 expected negative consumers. Strict raw-source typing
+remains FAIL at 876 errors in 36 of 70 modules; three added calls to existing untyped
+report helpers are identified in raw-delta.json. No suppression or setting weakened.
+The suite first caught a stale Advanced-field count; the earlier focused run caught
+a real recipe-field indexing regression, repaired by canonical field membership.
+Prior failures remain in the evidence directory. Packaging/manifest and source-bound
+acceptance records are verified by the stage's verify.py, with actual results in
+verification.json and governance.json. No real-model efficacy, human visual acceptance,
+clean installation or user terminal-host qualification is asserted. PAC-034 stays shelved.
+
+Governance issue to resolve: I mistakenly included the bare directory
+`evidence/spatial-budgets` in NDL-029 NewAssets at intake. The installed profile
+accepts that declaration while active but requires every new asset to be a registered
+file at absorption, and rejects deleting an admitted value. All actual files are now
+registered and retained. The exact proposed metadata correction is
+[evidence/spatial-budgets/nodule-path-correction.json](evidence/spatial-budgets/nodule-path-correction.json).
+Do not invent a FILE row for a directory, relocate evidence to satisfy the guard,
+or remove functional requirements. Nodule absorption remains outstanding until the
+path-declaration correction can be performed through an authorized repair route.
+
+
+### PAC-043 approved metadata correction and closure
+
+USER: "Approve the one-entry correction and close PAC-043".
+
+The reviewed transactional repair removed only the erroneous bare directory from
+NDL-029 NewAssets, preserving all ten registered files and every requirement.
+The exact applied revision and validation are in
+[evidence/spatial-budgets/nodule-path-applied.json](evidence/spatial-budgets/nodule-path-applied.json).
+An initial attempt refused to publish an unintended archive-header expansion;
+that failure remains recorded and the helper now preserves existing columns.
+The correction resolves the governance issue recorded above. Fresh documentation,
+source-hash and rebuilt-package checks carry forward the executed regression
+results without claiming another runtime test run. Final guarded task/nodule
+states and acceptance freshness are recorded in
+[evidence/spatial-budgets/governance.json](evidence/spatial-budgets/governance.json).
+PAC-015 real-model/platform qualification remains pending; PAC-034 stays shelved.

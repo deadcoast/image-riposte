@@ -1,0 +1,22 @@
+{
+  "result": "FAIL",
+  "counts": {
+    "source_files": 83,
+    "source_modules": 70,
+    "paired_stubs": 70,
+    "indexed_files": 1081,
+    "source_symbols": 816,
+    "tool_functions": 9,
+    "symbol_dependency_edges": 3444,
+    "static_definitions": 3153,
+    "local_dependency_edges": 1329
+  },
+  "source_unchanged": true,
+  "issues": [
+    "Stale index: src/riposte/publication.py: Exports",
+    "Stale index: tests/test_spatial_budgets.py: Exports",
+    "Stale index: typing/stubs/riposte/publication.pyi: Exports",
+    "Unregistered symbol: src/riposte/publication.py:_preview_tasks",
+    "Stale symbol: src/riposte/publication.py:publication_plan: Requires"
+  ]
+}

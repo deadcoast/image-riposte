@@ -1,5 +1,9 @@
 # RIPOSTE 0.5.0
 
+**Find original titles:** `riposte library-search ROOT --search "moonlight"`, **s** in the terminal library, or **Private library search** in the browser. This opt-in lookup searches private original filenames and category assignments. See [private search](docs/CLI.md#private-library-search).
+
+**Storage & recovery:** `riposte health ROOT`, the terminal workspace settings, and browser workspace navigation show read-only space and recovery observations. See [inspection details](docs/CLI.md#storage-and-recovery-inspection).
+
 **Local image protection and organization. Interactive terminal menu and direct commands.**
 
 Use the [documentation map](docs/README.md) and [current workflow/data contract](docs/CURRENT-CONTRACT.md) for public export, private recovery and historical-document boundaries.
@@ -45,6 +49,9 @@ file checks and rejection of catalog changes during apply. See the
 [catalog-scaling evidence](evidence/catalog-scaling/README.md) for measured scope.
 
 RIPOSTE lets you protect selected images, sort a folder, or explicitly do both. Sorting separates images and videos, rebuilds images with date-only metadata, and retains original files privately for undo. Protection uses selected local models; exact reviewed outputs can be packaged for sharing. Direct commands and the interactive terminal share the same operations. The browser remains available; the workshop remains optional.
+
+
+Named publishing settings are shared by CLI, terminal and browser. Use `riposte recipes ROOT` or the publishing form's **Recipes** controls. See [reusable publishing recipes](docs/PUBLISHING.md#reusable-publishing-recipes). Loading and saving settings never starts processing.
 
 ## Terminal revision 0.5
 
@@ -393,3 +400,8 @@ All inherited helper paths remain accessible, including standalone guard, extern
 - [Historical 0.4 validation and provenance](docs/VALIDATION.md)
 
 The previous CLI, README, validation and evidence are retained under `history/v0.3.0/`. The original 0.4.0 and supplied 0.5.0 snapshots remain in `packages/`. The selective merge record describes that historical integration; later application changes and checks are linked from [current project status](docs/PROJECT-STATUS.md). Historical screenshots, wheels and test claims in those ZIPs are not validation of this checkout. Development captures use original synthetic geometric fixtures.
+
+Artist-directed budgets are optional in publishing: attach a grayscale PNG under
+**Artist masks**, or use `--budget-mask` for one image and `--budget-map` for a
+private exported map. Black keeps pixels exact; white retains automatic limits.
+See [mask format and final-size previews](docs/PUBLISHING.md#artist-masks).

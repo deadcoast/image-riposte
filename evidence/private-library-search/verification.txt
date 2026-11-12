@@ -1,0 +1,65 @@
+{
+  "result": "PASS",
+  "application_files": 81,
+  "changed_application_files": [
+    "src/riposte/cli.py",
+    "src/riposte/library_search.py",
+    "src/riposte/records.py",
+    "src/riposte/server.py",
+    "src/riposte/static/app.js",
+    "src/riposte/static/index.html",
+    "src/riposte/static/library-search.js",
+    "src/riposte/static/publish.css",
+    "src/riposte/static/recovery-catalog.json",
+    "src/riposte/terminal/actions.py",
+    "src/riposte/terminal/controller.py",
+    "src/riposte/terminal/interaction.py",
+    "src/riposte/terminal/render.py",
+    "src/riposte/terminal/reports.py",
+    "src/riposte/terminal/service.py"
+  ],
+  "focused": {
+    "tests": 91,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 1,
+    "passed": 90
+  },
+  "suite": {
+    "tests": 1649,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 12,
+    "passed": 1637
+  },
+  "native": {
+    "tests": 6,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "passed": 6
+  },
+  "contracts": {
+    "mypy-contracts": true,
+    "mypy-tooling": true,
+    "stubtest": true,
+    "runtime-contracts": true,
+    "tooling-regressions": true,
+    "negative-consumers": true,
+    "source-stable": true
+  },
+  "packages_match": true,
+  "strict_source_typing": "FAIL: Found 880 errors in 36 files (checked 69 source files)",
+  "documentation": {
+    "commands": 46,
+    "examples": 79,
+    "links": 174
+  },
+  "limits": [
+    "Existing Windows dependencies; no clean-install, different OS or user VS Code host qualification.",
+    "Synthetic media and existing synthetic/tiny-random CPU engine tests; no pretrained-model efficacy or independent human/accessibility acceptance.",
+    "Native private search test uses the real authenticated local server for original-title lookup, paging and selection; delayed/offline and composition events are explicitly injected.",
+    "Initial focused failures came from undeclared fixture categories and a changed-image fixture with invalid metadata. Native testing exposed hidden invalid-field focus, which was fixed; a harness selector error was also retained.",
+    "Strict source typing remains failing; external declarations pass separately. Static UI findings have scoped dispositions, not a global pass."
+  ]
+}

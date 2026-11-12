@@ -1,0 +1,26 @@
+{
+  "mode": "APPLY",
+  "changed_files": [
+    "nodule.PACER.csv"
+  ],
+  "removed_declaration": "evidence/spatial-budgets",
+  "retained_registered_assets": [
+    "evidence/spatial-budgets/README.md",
+    "evidence/spatial-budgets/contract-review.json",
+    "evidence/spatial-budgets/requirement-review.json",
+    "evidence/spatial-budgets/verify.py",
+    "src/riposte/spatial.py",
+    "src/riposte/static/spatial.js",
+    "tests/spatial_browser.cjs",
+    "tests/test_spatial_budgets.py",
+    "typing/evidence/source-reviewed-spatial-budgets.json",
+    "typing/stubs/riposte/spatial.pyi"
+  ],
+  "validation": {
+    "valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "before_revision": "2d4ca5a4ff7a614d9a9a7929367787a72af313aacbbd795d091ab2a1e5ac77c0",
+  "revision": "469f0e91293bd73116b77ea27f55eae9abe05fa29aa10588deb321dcfad9f5b5"
+}

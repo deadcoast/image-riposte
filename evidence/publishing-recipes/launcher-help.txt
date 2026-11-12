@@ -1,0 +1,26 @@
+
+  RIPOSTE / IMAGE SECURITY
+  List, inspect or preview a named recipe; save only with an explicit revision.
+
+  Usage: riposte recipes [OPTIONS] ROOT [NAME]
+PARAMETERS                                                                                          
++----------------------------------------+---------------------------------------------------------+
+| ROOT                                   | Existing dedicated image folder; everything inside is   |
+|                                        | in scope.  [required]                                   |
+| [NAME]                                 | Leave empty to list saved recipes.                      |
+| --preview / --no-preview               | Preview named settings, including a new recipe with     |
+|                                        | defaults.  [default: no-preview]                        |
+| --save / --no-save                     | Explicitly save only these publishing settings; never   |
+|                                        | starts processing.  [default: no-save]                  |
+| --expected-revision TEXT               | Library revision from preview; use missing for the      |
+|                                        | first save.                                             |
+| --edge INTEGER RANGE                   | [64<=x<=4096]                                           |
+| --epsilon INTEGER RANGE                | [1<=x<=16]                                              |
+| --steps INTEGER RANGE                  | [1<=x<=1000]                                            |
+| --restarts INTEGER RANGE               | [1<=x<=4]                                               |
+| --seed INTEGER RANGE                   | [0<=x<=4294967295]                                      |
+| --preserve-white / --no-preserve-white |                                                         |
+| --delta-e76-p95 FLOAT RANGE            | [0.1<=x<=40]                                            |
+| --rms-fraction FLOAT RANGE             | [0.1<=x<=1]                                             |
+| --help                                 | Show this message and exit.                             |
++----------------------------------------+---------------------------------------------------------+

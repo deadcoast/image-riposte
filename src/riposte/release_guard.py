@@ -16,6 +16,7 @@ from .coupled import _view_features
 from .context_graph import context_groups, context_values, context_gradient
 from .optimizer import _round_ste
 from .quality import QualityLimits, spatial_budget, quality_report
+from .spatial import ArtistMask
 from .views import image_tensor, tensor_image, spectral_direction, differentiable_view, TRAIN_VIEWS
 
 if TYPE_CHECKING:
@@ -47,7 +48,7 @@ def temporal_energy(frames):
 
 
 def protect_release(image: Image.Image, encoders: list, config: ReleaseConfig = ReleaseConfig(),
-                    limits: QualityLimits = QualityLimits(), probe=None, temporal=None, progress=None):
+                    limits: QualityLimits = QualityLimits(), probe=None, temporal=None, progress=None, *, artist_mask: ArtistMask | None = None):
     import torch
     if not encoders: raise RiposteError("NO_MODEL_NO_PROTECTION")
     if min(image.size) < 16 or max(image.size) > 4096: raise RiposteError("GUARD_DIMENSIONS_INVALID")
@@ -55,7 +56,7 @@ def protect_release(image: Image.Image, encoders: list, config: ReleaseConfig = 
     if any(getattr(m, "device", "cpu") != device for m in encoders + [m for m in (probe, temporal) if m is not None]):
         raise RiposteError("ENSEMBLE_DEVICE_MISMATCH")
     x = image_tensor(image, device)
-    caps = spatial_budget(image, limits)
+    caps = spatial_budget(image, limits, artist_mask)
     budget = torch.from_numpy(caps.astype(np.float32))[None, None].to(device) / 255
     if not bool((budget > 0).any()): raise RiposteError("NO_EDITABLE_PIXEL_BUDGET")
     low, high = (x - budget).clamp(0, 1), (x + budget).clamp(0, 1)
@@ -125,7 +126,7 @@ def protect_release(image: Image.Image, encoders: list, config: ReleaseConfig = 
                 proposal = torch.maximum(torch.minimum(candidate + step_size / 255 * gradient.sign(), high), low).detach()
                 q = proposal.mul(255).round() / 255
                 output = tensor_image(q)
-                quality = quality_report(image, output, limits)
+                quality = quality_report(image, output, limits, artist_mask)
                 if quality["status"] == "PASS":
                     values = scores(q, restart, step)
                     candidate, accepted = proposal, True
@@ -160,7 +161,7 @@ def protect_release(image: Image.Image, encoders: list, config: ReleaseConfig = 
     if not had_gradient: raise RiposteError("ZERO_GRADIENT_NO_CANDIDATE")
     if best is None: raise RiposteError("NO_IMPROVED_FIDELITY_ACCEPTABLE_CANDIDATE")
     notify("Auditing selected final pixels", config.restarts - 1, config.steps)
-    quality = quality_report(image, best, limits)
+    quality = quality_report(image, best, limits, artist_mask)
     if quality["status"] != "PASS": raise RiposteError("FINAL_QUALITY_AUDIT_FAILED")
     rows = [{"kind": b.kind, "view": b.view, "mask": b.mask, "model": b.index + 1,
              "mask_seed": b.seed, "score": value}

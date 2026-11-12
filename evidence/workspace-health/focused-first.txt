@@ -1,0 +1,131 @@
+...FFFF........F......s...                                               [100%]
+================================== FAILURES ===================================
+___________ test_actual_recovery_and_legacy_state_remain_identical ____________
+
+root = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/pytest-of-ryanf/pytest-567/test_actual_recovery_and_legac0/workspace')
+make_image = <function make_image.<locals>.create at 0x0000018F003894E0>
+
+    def test_actual_recovery_and_legacy_state_remain_identical(root, make_image):
+        history(root, make_image)
+        before = snapshot(root); result = inspect_health(root)
+        assert snapshot(root) == before
+>       assert result['history']['statuses'] == {'APPLIED': 1}
+E       AssertionError: assert {'UNVERIFIED': 1} == {'APPLIED': 1}
+E         
+E         Left contains 1 more item:
+E         {'UNVERIFIED': 1}
+E         Right contains 1 more item:
+E         {'APPLIED': 1}
+E         Use -v to get more diff
+
+tests\test_workspace_health.py:76: AssertionError
+___________ test_history_status_not_restore_qualification[APPLYING] ___________
+
+root = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/pytest-of-ryanf/pytest-567/test_history_status_not_restor0/workspace')
+make_image = <function make_image.<locals>.create at 0x0000018F00424460>
+status = 'APPLYING'
+
+    @pytest.mark.parametrize('status', ['APPLYING', 'UNDOING', 'UNDONE', 'OTHER'])
+    def test_history_status_not_restore_qualification(root, make_image, status):
+        path = history(root, make_image); data = json.loads(path.read_text()); data['status'] = status
+        path.write_text(json.dumps(data)); before = snapshot(root)
+        result = inspect_health(root)
+>       assert result['history']['statuses'] == {status if status != 'OTHER' else 'UNVERIFIED': 1}
+E       AssertionError: assert {'UNVERIFIED': 1} == {'APPLYING': 1}
+E         
+E         Left contains 1 more item:
+E         {'UNVERIFIED': 1}
+E         Right contains 1 more item:
+E         {'APPLYING': 1}
+E         Use -v to get more diff
+
+tests\test_workspace_health.py:92: AssertionError
+___________ test_history_status_not_restore_qualification[UNDOING] ____________
+
+root = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/pytest-of-ryanf/pytest-567/test_history_status_not_restor1/workspace')
+make_image = <function make_image.<locals>.create at 0x0000018F00425B10>
+status = 'UNDOING'
+
+    @pytest.mark.parametrize('status', ['APPLYING', 'UNDOING', 'UNDONE', 'OTHER'])
+    def test_history_status_not_restore_qualification(root, make_image, status):
+        path = history(root, make_image); data = json.loads(path.read_text()); data['status'] = status
+        path.write_text(json.dumps(data)); before = snapshot(root)
+        result = inspect_health(root)
+>       assert result['history']['statuses'] == {status if status != 'OTHER' else 'UNVERIFIED': 1}
+E       AssertionError: assert {'UNVERIFIED': 1} == {'UNDOING': 1}
+E         
+E         Left contains 1 more item:
+E         {'UNVERIFIED': 1}
+E         Right contains 1 more item:
+E         {'UNDOING': 1}
+E         Use -v to get more diff
+
+tests\test_workspace_health.py:92: AssertionError
+____________ test_history_status_not_restore_qualification[UNDONE] ____________
+
+root = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/pytest-of-ryanf/pytest-567/test_history_status_not_restor2/workspace')
+make_image = <function make_image.<locals>.create at 0x0000018F00425E80>
+status = 'UNDONE'
+
+    @pytest.mark.parametrize('status', ['APPLYING', 'UNDOING', 'UNDONE', 'OTHER'])
+    def test_history_status_not_restore_qualification(root, make_image, status):
+        path = history(root, make_image); data = json.loads(path.read_text()); data['status'] = status
+        path.write_text(json.dumps(data)); before = snapshot(root)
+        result = inspect_health(root)
+>       assert result['history']['statuses'] == {status if status != 'OTHER' else 'UNVERIFIED': 1}
+E       AssertionError: assert {'UNVERIFIED': 1} == {'UNDONE': 1}
+E         
+E         Left contains 1 more item:
+E         {'UNVERIFIED': 1}
+E         Right contains 1 more item:
+E         {'UNDONE': 1}
+E         Use -v to get more diff
+
+tests\test_workspace_health.py:92: AssertionError
+______________ test_marker_observation_does_not_claim_or_reclaim ______________
+
+root = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/pytest-of-ryanf/pytest-567/test_marker_observation_does_n0/workspace')
+
+    def test_marker_observation_does_not_claim_or_reclaim(root):
+        with workspace_lock(root):
+            marker = (root / '.riposte/operation.lock').read_bytes()
+>           before = snapshot(root)
+                     ^^^^^^^^^^^^^^
+
+tests\test_workspace_health.py:118: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_workspace_health.py:28: in snapshot
+    return {p.relative_to(root).as_posix(): (p.read_bytes(), p.stat().st_mtime_ns)
+                                             ^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/pytest-of-ryanf/pytest-567/test_marker_observation_does_n0/workspace/.riposte-operation.lease')
+
+    def read_bytes(self):
+        """
+        Open the file in bytes mode, read it, and close the file.
+        """
+        with self.open(mode='rb', buffering=0) as f:
+>           return f.read()
+                   ^^^^^^^^
+E           PermissionError: [Errno 13] Permission denied
+
+C:\Python314\Lib\pathlib\__init__.py:778: PermissionError
+============================== warnings summary ===============================
+.venv\Lib\site-packages\fastapi\testclient.py:1
+  C:\Users\ryanf\github\_new\image-riposte\.venv\Lib\site-packages\fastapi\testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    from starlette.testclient import TestClient as TestClient  # noqa
+
+.venv\Lib\site-packages\starlette\testclient.py:53
+  C:\Users\ryanf\github\_new\image-riposte\.venv\Lib\site-packages\starlette\testclient.py:53: DeprecationWarning: The anyio.abc.BlockingPortal alias is deprecated, use anyio.from_thread.BlockingPortal instead.
+    _PortalFactoryType = Callable[[], AbstractContextManager[anyio.abc.BlockingPortal]]
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ===========================
+SKIPPED [1] tests\test_workspace_health.py:158: Symbolic links unavailable
+FAILED tests/test_workspace_health.py::test_actual_recovery_and_legacy_state_remain_identical
+FAILED tests/test_workspace_health.py::test_history_status_not_restore_qualification[APPLYING]
+FAILED tests/test_workspace_health.py::test_history_status_not_restore_qualification[UNDOING]
+FAILED tests/test_workspace_health.py::test_history_status_not_restore_qualification[UNDONE]
+FAILED tests/test_workspace_health.py::test_marker_observation_does_not_claim_or_reclaim
+5 failed, 20 passed, 1 skipped, 2 warnings in 3.07s

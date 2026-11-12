@@ -4,6 +4,29 @@ Current project/milestone status is in [PROJECT-STATUS.md](../docs/PROJECT-STATU
 Guarded register updates resumed under the named checkpoint
 [todo-audit.PACER.md](../todo-audit.PACER.md). This guide's current counts come from
 `evidence/verification.json`; earlier task records below remain historical.
+PAC-042 reviews 81 application hashes, 564 signatures and 66 importable leaf
+modules. All seven external stages pass. The strict source audit remains FAIL:
+873 diagnostics in 36 of 69 Python modules. The 11 additional calls to existing
+untyped report helpers are retained in `../evidence/private-library-search/raw-delta.json`;
+`library_search.py` has no raw diagnostics. Current review snapshot:
+`source-reviewed-spatial-budgets.json`.
+
+PAC-043 admits source-bound immutable ArtistMask records, bounded PNG/map inputs,
+conservative per-raster limits, request limits, previews and primary adapter fields.
+Quality and release contracts carry optional masks; publication requests and
+quality reports bind their identities. Named general recipes remain mask-free.
+The raw-source audit remains distinct from external contracts.
+
+Historical PAC-040 reviews 77 application hashes and 554 source/stub signatures across 64
+leaf modules; all seven external stages pass, including 13 negative checks.
+`source-reviewed-publishing-recipes.json` admits the named library and its CLI,
+terminal and browser integration after reviewing the exact new records, parameters
+and mutation boundaries. The separate strict source audit remains FAIL: 841
+diagnostics in 36 of 67 Python files. Its 16 added interface/helper diagnostics
+are listed in `../evidence/publishing-recipes/raw-delta.json`; the new storage
+module has no raw diagnostics. Strict settings and dynamic declarations are
+unchanged. Earlier results below retain their original tested scope.
+
 PAC-038 reviewed 76 application hashes and 536 source/stub signatures across 63
 leaf modules; all seven external stages pass, including 13 negative checks.
 The separate implementation audit reports 825 diagnostics in 36 of 66
@@ -503,3 +526,8 @@ Python runtime signatures and paired declarations do not change. The review in
 `evidence/guided-category-editing/contract-review.json` binds this delta to native
 browser, real local API and shared parser/consent regression checks. The previous
 snapshot and acceptance artifacts remain historical evidence.
+
+PAC-041 reviews `source-reviewed-workspace-health.json`: the new typed health
+report and source-derived CLI/request declarations extend the external contract.
+Source-body diagnostics remain a separate failing audit; see
+`evidence/workspace-health/` for exact commands and counts.

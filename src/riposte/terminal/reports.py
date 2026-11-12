@@ -225,7 +225,53 @@ def overview(data, command="", width=94) -> Report:
         else:tree(w,data)
     elif isinstance(data,dict):
         mode=data.get("mode","")
-        if mode == "DUPLICATE_SCAN":
+        if mode == "PRIVATE_LIBRARY_SEARCH":
+            r = Report("Private library search", "READ ONLY", "accent", "Original titles are private. Keep this report local.")
+            w.pair("Matching images", data["total"])
+            w.pair("Page offset / limit", str(data["offset"]) + " / " + str(data["limit"]))
+            w.text(data["basis"], "muted")
+            for row in data["rows"]:
+                w.section(row["original_filename"] or "Unknown original title")
+                w.pair("Category", row["category"] or "No trusted category")
+                w.pair("Provenance", row["provenance"])
+                w.pair("Canonical path", row["relative"])
+                w.pair("Image ID", row["id"])
+            if not data["rows"]: w.text("No results on this page. Change filters or restart from offset 0.")
+            w.pair("Next offset", data["next_offset"] if data["next_offset"] is not None else "End")
+            w.pair("Search revision", data["revision"])
+        elif mode == "WORKSPACE_HEALTH":
+            r = Report("Storage & recovery", data["status"], "accent", "Read-only observation. No files changed; recovery retained.")
+            w.section("Storage / logical bytes")
+            for key, title in (("workspace_bytes", "Entire workspace"), ("private_state_bytes", "Private state"),
+                               ("recovery_bytes", "Recovery within private state"), ("float_bytes", "Float storage")):
+                w.pair(title, size(data["usage"][key]))
+            w.pair("Available on volume", size(data["capacity"]["free_bytes"]))
+            w.pair("Backup envelope", size(data["estimate"]["backup_envelope_bytes"]))
+            w.text(data["estimate"]["basis"], "muted")
+            w.section("Recovery and filesystem")
+            w.pair("History folders", data["history"]["directories"])
+            for key, value in data["history"]["statuses"].items(): w.pair(label(key), value)
+            w.text(data["history"]["integrity"], "muted")
+            w.pair("Operation marker", label(data["operation"]["status"]))
+            w.pair("Filesystem", data["filesystem"]["filesystem"] or "Unknown")
+            w.pair("Hard links", label(data["filesystem"]["hard_links"]))
+            w.text(data["filesystem"]["note"], "muted")
+            w.section("Coverage and next steps")
+            w.pair("Entries inspected", data["coverage"]["entries"])
+            for code, count in data["coverage"]["issues"].items(): w.pair(label(code), count)
+            w.text(data["coverage"]["basis"], "muted")
+            for advice in data["guidance"]: w.text(advice)
+        elif mode == "PUBLISHING_RECIPES":
+            r = Report("Publishing recipes", data["status"], "accent", "Settings only. No processing or approval starts here.")
+            if data.get("name"):
+                w.section(data["name"])
+                for key, value in data["settings"].items(): w.pair(key, value)
+            else:
+                w.section("Saved recipes")
+                for row in data["recipes"]: w.pair(row["name"], row["settings"]["edges"])
+                if not data["recipes"]: w.text("No recipes saved yet. Name and preview your publishing settings first.")
+            w.pair("Library revision", data["revision"])
+        elif mode == "DUPLICATE_SCAN":
             from ..duplicate_review import DuplicateReview
             r = Report("Duplicate Finder", data.get("checkpoint", "INCOMPLETE"), "accent", "Read-only comparison. Files were not sorted, removed or selected for deletion.")
             w.text(data['confidence_policy'], "warn")
@@ -360,6 +406,11 @@ def overview(data, command="", width=94) -> Report:
             if guard:w.pair("Search",f"{guard.get('steps','?')} iterations x {guard.get('restarts','?')} restarts")
             if "epsilon_255" in quality:w.pair("Pixel change budget",f"At most {quality['epsilon_255']} of 255 channel levels")
             if "preserve_white" in quality:w.pair("Preserve smooth white",quality["preserve_white"])
+            if data.get("budget_previews"):
+                w.section(f"Artist mask previews: {data.get('budget_preview_total', len(data['budget_previews']))} final rasters")
+                for n, mask in enumerate(data["budget_previews"], data.get("budget_preview_offset", 0) + 1):
+                    w.pair(f"Preview {n}: {mask['width']} x {mask['height']}", f"{mask['unchanged_pixels']} pixels unchanged; peak allowance {mask['maximum_channel_change_255']}/255")
+                w.text("Press m to open each overlay; [ / ] changes pages. CLI: --plan --view-budget NUMBER. Cyan shows artist restraint; this is not an approval.")
             if "delta_e76_p95" in quality:w.pair("Colour-difference limit",quality["delta_e76_p95"])
             w.text("Every model and quality parameter remains available in Details.","muted")
             w.section("Next action")

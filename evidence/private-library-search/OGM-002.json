@@ -1,0 +1,57 @@
+{
+  "requirement": "OGM-002",
+  "meaning": "cab61136ee7f1dff1d0e65666500efbc1441552cdc2c5fb577823694afa8c75a",
+  "sources": {
+    "typing/test_tooling.py": "06936eeb2cfcf156bcea0d296abd91ff316e6c6dc398a4c4e9960509b2e57724",
+    "typing/check.py": "f7045178c5e6ebdc966831af002a3b6f0e41d44da84bb17d6e21a0f922504482",
+    "typing/pacer_inventory.py": "c48d1926a1c5a245473a5c5978c907c6c0312d8d78d85206965a5779e35f2dbb",
+    "typing/evidence/source-environment.json": "bbd297d0f095bc207e6537810c0ea1e971a78b6a874cee5af286877e40241cb8",
+    "typing/evidence/source-current-command.json": "650d8621f0de05fa2cbf434cf9d62035ea2dbecfccc223808e809a3e970c1ddb",
+    "evidence/patch-v050/root-mypy.json": "c87bf9475086557b10f0d5d7b2a165ba8972400e030b467fe62e9d6e1cdc9e64",
+    "evidence/patch-v050/root-mypy-dot.txt": "78a3b1c0f5395e6487e5ae4d5a3d270a9286ae431c094b0f3763f8acfa4b31f2",
+    "evidence/patch-v050/root-mypy-default.txt": "78a3b1c0f5395e6487e5ae4d5a3d270a9286ae431c094b0f3763f8acfa4b31f2",
+    "typing/evidence/source-reviewed-v050.json": "0b62c31d7fc3e617bbc418ee56b962aeba0c03699103e94d90e5d52a5a0ac966",
+    "typing/evidence/pac-003-root-audit.json": "5c1555e201fe1dc7db6a8f14b53e33e2d48f8d098d5790cd627ef0fea5ff39c1",
+    "typing/evidence/pac-003-before.json": "062e2a21c61af2102001d5352a24ad73f93dc875d40d8db27660e90c9fd95ccb",
+    "typing/mypy-contracts.ini": "78fddb2607c7cdb260de23c75b2570d07407dd9ba4aefeebccbfeb0b4c27e70e",
+    "typing/evidence/tooling-regressions.txt": "ae19ded227d11a6ef299b94e85ec78dc2be39edd248e9d5ee389d7173bc052f7",
+    "typing/evidence/source-after.json": "b241b9eb327dc873f025ac762953b60c204b3cbaafd8d6a03f9e3aaf3c8c9880",
+    "typing/evidence/mypy-tooling.txt": "281a094c39385b4d7b53e5db635f52158036861433c2a4975b9039e77a627a24",
+    "typing/evidence/runtime-contracts.txt": "65bdfdaa1b73f26f111ab42ba0eb8c2c45f7b67972bf6fa9e43f97afb4b71c84",
+    "typing/evidence/pacer-inventory.json": "4fc5795277bc98f530c7d30d1a5357904a0bd0e86bcafdf437d34f8ba6f26f23",
+    "typing/mypy-source.ini": "f168d5874f12d6258a8e35311ea4fc90ebeab878a51fb1268cc1a89e8cb104bf",
+    "typing/evidence/verification.json": "bd8131bcc59a6b0333ebe39649432387bbb6bbad604a0b6d13e4f2928b18e1c3",
+    "typing/evidence/source-before.json": "d3fa8409db29ebf923523671b44fade9caf459f627bd4f16ea07a4ff6d094f8b",
+    "typing/README.md": "97a24c16629985f4247fc7dba1f8b387e5af02c738c36a165cdaf4d38f01db9d",
+    "mypy.ini": "c0961208a99c02083a873c32a8bd5ca6a7ba1c88d601eb2210fb3f94c00d2d99"
+  },
+  "result": "PASS",
+  "command": [
+    ".venv/Scripts/python.exe evidence/private-library-search/verify.py",
+    ".venv/Scripts/python.exe -m pytest -q -k \"not browser_native and not native_browser and not browser_review_in_real_chromium\" --junitxml=evidence/private-library-search/suite.xml",
+    ".venv/Scripts/python.exe -m pytest -q -k \"browser_native or native_browser or browser_review_in_real_chromium\" --junitxml=evidence/private-library-search/native.xml",
+    "uv run --project typing --frozen --cache-dir typing/.cache/uv python typing/check.py"
+  ],
+  "review": "Strict source diagnostics retained: 873 in 36/69 modules, +11 existing untyped report-helper calls. New library_search.py has none; settings, exclusions and suppressions unchanged.",
+  "changed_sources_since_previous_acceptance": [
+    "typing/README.md",
+    "typing/check.py",
+    "typing/evidence/pacer-inventory.json",
+    "typing/evidence/runtime-contracts.txt",
+    "typing/evidence/source-after.json",
+    "typing/evidence/source-current-command.json",
+    "typing/evidence/tooling-regressions.txt",
+    "typing/evidence/verification.json",
+    "typing/pacer_inventory.py"
+  ],
+  "executed_modules": {},
+  "previous_review_artifact": "evidence/workspace-health/OGM-002.json",
+  "previous_review_sha256": "f95837064ed4f622f5995e20610f1bfe23e68dc8f6bb74012a6ec4114915ddc2",
+  "scope_limits": [
+    "Existing Windows dependencies; no clean-install, different OS or user VS Code host qualification.",
+    "Synthetic media and existing synthetic/tiny-random CPU engine tests; no pretrained-model efficacy or independent human/accessibility acceptance.",
+    "Native private search test uses the real authenticated local server for original-title lookup, paging and selection; delayed/offline and composition events are explicitly injected.",
+    "Initial focused failures came from undeclared fixture categories and a changed-image fixture with invalid metadata. Native testing exposed hidden invalid-field focus, which was fixed; a harness selector error was also retained.",
+    "Strict source typing remains failing; external declarations pass separately. Static UI findings have scoped dispositions, not a global pass."
+  ]
+}

@@ -1,0 +1,39 @@
+[
+  {
+    "requirement": "OGM-001",
+    "changed_sources": [
+      "RELEASE-MANIFEST.json",
+      "evidence/spatial-budgets/README.md",
+      "todo-audit.PACER.md"
+    ]
+  },
+  {
+    "requirement": "OGM-002",
+    "changed_sources": []
+  },
+  {
+    "requirement": "OGM-026",
+    "changed_sources": [
+      "todo-audit.PACER.md"
+    ]
+  },
+  {
+    "requirement": "OGM-027",
+    "changed_sources": [
+      "todo-audit.PACER.md"
+    ]
+  },
+  {
+    "requirement": "OGM-029",
+    "changed_sources": [
+      "RELEASE-MANIFEST.json",
+      "todo-audit.PACER.md"
+    ]
+  },
+  {
+    "requirement": "OGM-030",
+    "changed_sources": [
+      "evidence/spatial-budgets/README.md"
+    ]
+  }
+]

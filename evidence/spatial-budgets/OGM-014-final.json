@@ -1,0 +1,72 @@
+{
+  "requirement": "OGM-014",
+  "meaning": "176548a9ded2585146616774459b462f5cf5141187d94f7ca42c59a5a90163c4",
+  "sources": {
+    "tests/test_sort_partial_failures.py": "73ea0d81c3851767acb93792cf0727d3c9d37ddb4c2321204203bf147e2af760",
+    "src/riposte/video.py": "34083ce45e6f51ea03e3914206b7ae37f56d2ee8e80bfcc529f8d00dfb093382",
+    "src/riposte/records.py": "cb3e1f52dcf119ba404194309bf5043491010e0fb7b1f0c476ac97388d06e9c0",
+    "src/riposte/store.py": "b4ba88fd1c207b82eef4e9b6b2fe9aef9cf19ce9a0e3d29dadfe8c2a5ce6210d",
+    "src/riposte/locking.py": "90200f7b491d378b4c1e5a0e663d11a6e89f59fbdb489979541b97e981a10b17",
+    "src/riposte/policy.py": "1f26521de3439a45856dd4d9af4d6cc4a0d2bc92f7cc53b43b82bb9c09a35562",
+    "src/riposte/errors.py": "cc52e21f857dec38dfd200cccfcd70d2940fd337f3343221855765955701481d",
+    "src/riposte/sanitize.py": "f73004a30ae104ea6ace31b65f97212391ccdb80f7e13573181135d280c31f4e",
+    "src/riposte/sort_history.py": "aa82eb4dd31787b02d9ec81cf824a4bb7579173b3f57737f33d6cecd5772766a",
+    "src/riposte/sort_titles.py": "12ca0b37e91007cbe45c6dd7f83d3a1e71665eeb1c72c0702c278ff9f78e8bf0",
+    "src/riposte/organizer.py": "bbc8bd1c17c833e749ef13f4a679007a3924ee8a05df6b97bd1880c7d5d1588d",
+    "src/riposte/sort_plan.py": "0f7c27092029699caded7e4f93097c17cf6bfeeb7dd2f63836e813db3bde0ae6",
+    "src/riposte/category_sort.py": "691b956cd8ffb18d30995b8dda169f605b211bc176fb0cc55e2dfd4e9c45d343",
+    "src/riposte/category_corpus.py": "8bb923a6ce843d4e14b3294403c053f38a6663b0b42d14406e6d9467e324b047",
+    "src/riposte/title_categories.py": "3382e9ab39cbde60343b5ded84bfe71c8059946919b32740b03d71817b348ed4",
+    "src/riposte/category_rules.py": "e059e403d39d392858c9c1f8a088df5d01b8b507ad860bc77db4b08d69159fc5",
+    "src/riposte/catalog_guard.py": "e79d817cf428c1655d713f369d34806bedfb12b46c871e21f10c2cb3fb5bae38",
+    "src/riposte/__init__.py": "a9e9d2abdceaac2c47ed5846a874787f47337c407e2b2aa8064a32b53489f28d",
+    "typing/stubs/riposte/sort_history.pyi": "7f99fb90c905e30c70e4f62a9e4933ca312e76caa3873caa7f499240ab9c40ca",
+    "typing/stubs/riposte/video.pyi": "2ce5336640497d25fb0de5fd61d9e1e6209da066326720c4d311221ac5f34f33",
+    "typing/stubs/riposte/store.pyi": "3ee087d30804d299eae58f1a05bd592df65e1a6a27259e60fdd3338d98dc9afa",
+    "typing/stubs/riposte/locking.pyi": "b78a717d5405a048655c1c0c499678ed95dd4b6ec10d4334c8839eed5121ef36",
+    "typing/stubs/riposte/policy.pyi": "468f1e03ad651e2986e5c1234b8410348ed483c5eeeaf740a497a3deb81948c3",
+    "typing/stubs/riposte/errors.pyi": "52191cef9232164915d6ff7997226afdf0d703eb59075f983f3c07a06fb5ee14",
+    "typing/stubs/_riposte_types.pyi": "28d029dcd8803bc9bd982f63622c994f627326d88e9020b8ba1ccd5b1a0856b5",
+    "typing/stubs/riposte/spatial.pyi": "baed34fa5e1f8f0309d0c2613720b066b797b55abb2516e5f4cb98013ebfb994",
+    "src/riposte/spatial.py": "a6df645fb075c9858e80218cc5912a86b4102e8606bba92e76cdc63568744f0e",
+    "src/riposte/intake.py": "5fdea54e8c89d58230c68521317b89044de39e9b40e1cf173e5b9cd4575a97c4",
+    "typing/stubs/riposte/records.pyi": "e0c5cf753a3b446a60aa919c6111e470e7c09af86b158d4892036d7eb75402a9",
+    "typing/stubs/riposte/sanitize.pyi": "7389450202abf94d5a6dd7bf2582bcd00d8fe851265a845db8844b8aa37d3381",
+    "typing/stubs/riposte/sort_titles.pyi": "ea78e287ce60907222bb8f3711191814a6791e877ef723428212dd0eefa4e6dd",
+    "typing/stubs/riposte/organizer.pyi": "56d375ce96c0b3f1a90ec6bc7acc6a113de9628f8f360e0c9ba27c446639d588",
+    "typing/stubs/riposte/catalog_guard.pyi": "78f501b67a6839a6c398fe5cfeccf46099a8fc99be834a1a06d811bd19fc5e78",
+    "typing/stubs/riposte/title_categories.pyi": "079989e82abb0de68702dd65b93d371b31d8bfe80881fca6da69a91d744db04e"
+  },
+  "result": "PASS",
+  "command": [
+    ".venv/Scripts/python.exe evidence/spatial-budgets/verify.py",
+    ".venv/Scripts/python.exe -m pytest -q -k \"not browser_native and not native_browser and not browser_review_in_real_chromium\" --junitxml=evidence/spatial-budgets/suite.xml",
+    ".venv/Scripts/python.exe -m pytest -q -k \"browser_native or native_browser or browser_review_in_real_chromium\" --junitxml=evidence/spatial-budgets/native.xml",
+    "uv run --project typing --frozen --cache-dir typing/.cache/uv python typing/check.py"
+  ],
+  "review": "Partial sort recovery/allocation implementations are unchanged with current regressions. Publication cancellation/resume retains the committed mask bytes and rejects changed request/task identity.",
+  "changed_sources_since_previous_acceptance": [
+    "src/riposte/records.py",
+    "typing/stubs/_riposte_types.pyi",
+    "typing/stubs/riposte/records.pyi"
+  ],
+  "executed_modules": {
+    "test_sort_partial_failures": {
+      "passed": 8,
+      "skipped": 0
+    },
+    "test_catalog_scaling": {
+      "passed": 25,
+      "skipped": 0
+    }
+  },
+  "previous_review_artifact": "evidence/spatial-budgets/OGM-014.json",
+  "previous_review_sha256": "3d2179d48a54686c8322acf0b6a6d11a53fe45f39334748880751e142fc4cb0d",
+  "scope_limits": [
+    "Existing Windows dependencies; no clean-install, different OS or user VS Code host qualification.",
+    "Synthetic media and existing synthetic/tiny-random CPU engine tests; no pretrained-model efficacy or independent human/accessibility acceptance.",
+    "Native mask test uses the real authenticated local server for PNG validation and final-raster previews; delayed/offline responses and file-input selection are explicitly injected. Native select keys are sent through Chromium CDP.",
+    "Initial failures were fixture mistakes: captured CLI output mode, auth header, wrong keyboard import and identical native source hashes. The original failure artifacts remain available. A real positional recipe-field regression was repaired and a stale advanced-field count updated with mask-preservation checks.",
+    "Strict source typing remains failing; external declarations pass separately. Static UI findings have scoped dispositions, not a global pass."
+  ]
+}

@@ -1,0 +1,13 @@
+Traceback (most recent call last):
+  File "C:\Users\ryanf\github\_new\image-riposte\evidence\pacer-resumption\reconcile.py", line 60, in <module>
+    main()
+    ~~~~^^
+  File "C:\Users\ryanf\github\_new\image-riposte\evidence\pacer-resumption\reconcile.py", line 51, in main
+    result = service.apply(batch, actor='codex', revision=onboard['revision'],
+                           onboarding=onboard['onboarding'], context=context['receipt'])
+  File "C:\Users\ryanf\.codex\plugins\cache\personal\pacer\0.5.0+local.r639252038407200308.ea11f6b76a4f64e0\src\pacer_mcp\service.py", line 169, in apply
+    guard_context(snapshot.tables, self.store.root, operations, context)
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ryanf\.codex\plugins\cache\personal\pacer\0.5.0+local.r639252038407200308.ea11f6b76a4f64e0\src\pacer_mcp\context.py", line 373, in guard_context
+    raise ValueError("Stale context; retrieve current task context before applying")
+ValueError: Stale context; retrieve current task context before applying

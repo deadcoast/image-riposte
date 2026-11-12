@@ -1,0 +1,26 @@
+{
+  "previous": 862,
+  "current": 880,
+  "added": [
+    "src\\riposte\\terminal\\reports.py: error: Call to untyped function \"text\" in typed context  [no-untyped-call]",
+    "src\\riposte\\terminal\\reports.py: error: Call to untyped function \"text\" in typed context  [no-untyped-call]",
+    "src\\riposte\\terminal\\reports.py: error: Call to untyped function \"pair\" in typed context  [no-untyped-call]",
+    "src\\riposte\\terminal\\reports.py: error: Call to untyped function \"pair\" in typed context  [no-untyped-call]",
+    "src\\riposte\\terminal\\reports.py: error: Call to untyped function \"pair\" in typed context  [no-untyped-call]",
+    "src\\riposte\\terminal\\reports.py: error: Call to untyped function \"pair\" in typed context  [no-untyped-call]",
+    "src\\riposte\\terminal\\reports.py: error: Call to untyped function \"pair\" in typed context  [no-untyped-call]",
+    "src\\riposte\\terminal\\reports.py: error: Call to untyped function \"pair\" in typed context  [no-untyped-call]",
+    "src\\riposte\\terminal\\reports.py: error: Call to untyped function \"pair\" in typed context  [no-untyped-call]",
+    "src\\riposte\\terminal\\reports.py: error: Call to untyped function \"pair\" in typed context  [no-untyped-call]",
+    "src\\riposte\\terminal\\reports.py: error: Call to untyped function \"section\" in typed context  [no-untyped-call]",
+    "src\\riposte\\terminal\\service.py: error: Argument \"limit\" to \"search_library\" has incompatible type \"int | None\"; expected \"int\"  [arg-type]",
+    "src\\riposte\\server.py: error: Function is missing a return type annotation  [no-untyped-def]",
+    "src\\riposte\\terminal\\controller.py: error: Incompatible types in assignment (expression has type \"RequestValues\", variable has type \"dict[Any, Any]\")  [assignment]",
+    "src\\riposte\\terminal\\controller.py: error: Incompatible types in assignment (expression has type \"RequestValues\", variable has type \"dict[Any, Any]\")  [assignment]",
+    "src\\riposte\\terminal\\controller.py: error: Argument 3 to \"Request\" has incompatible type \"dict[Any, Any]\"; expected \"RequestValues\"  [arg-type]",
+    "src\\riposte\\terminal\\controller.py: error: Argument 3 to \"Request\" has incompatible type \"dict[Any, Any]\"; expected \"RequestValues\"  [arg-type]",
+    "src\\riposte\\cli.py: error: Function is missing a return type annotation  [no-untyped-def]"
+  ],
+  "removed": [],
+  "scope": "Strict source typing remains FAIL. Eighteen additional calls to existing untyped report helpers; new library_search.py has no diagnostics. No settings or suppressions changed."
+}

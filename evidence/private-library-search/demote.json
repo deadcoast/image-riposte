@@ -1,0 +1,4 @@
+[
+  {"op":"transition","id":"OGM-001","status":"SCAFFOLD","evidence":"PAC-042 adds a source module, external declarations and cross-interface search wiring; expand the reviewed inventory basis before current acceptance."},
+  {"op":"transition","id":"OGM-002","status":"SCAFFOLD","evidence":"PAC-042 retains raw-source failures and measures the changed diagnostic basis separately from passing external contracts."}
+]

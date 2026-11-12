@@ -1,0 +1,542 @@
+[
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2501",
+      "AssetType": "FILE",
+      "Path": "evidence/spatial-budgets/OGM-001-final.json",
+      "Purpose": "PAC-043 scoped artist budget integration acceptance for OGM-001",
+      "PACRefs": "PAC-043",
+      "Tags": "#acceptance #spatial-budgets"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-001",
+    "artifact": "OVR-2501",
+    "evidence": "PAC-043 source-bound artist budget integration review and executed regressions: evidence/spatial-budgets/OGM-001-final.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2502",
+      "AssetType": "FILE",
+      "Path": "evidence/spatial-budgets/OGM-002-final.json",
+      "Purpose": "PAC-043 scoped artist budget integration acceptance for OGM-002",
+      "PACRefs": "PAC-043",
+      "Tags": "#acceptance #spatial-budgets"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-002",
+    "artifact": "OVR-2502",
+    "evidence": "PAC-043 source-bound artist budget integration review and executed regressions: evidence/spatial-budgets/OGM-002-final.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2503",
+      "AssetType": "FILE",
+      "Path": "evidence/spatial-budgets/OGM-003-final.json",
+      "Purpose": "PAC-043 scoped artist budget integration acceptance for OGM-003",
+      "PACRefs": "PAC-043",
+      "Tags": "#acceptance #spatial-budgets"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-003",
+    "artifact": "OVR-2503",
+    "evidence": "PAC-043 source-bound artist budget integration review and executed regressions: evidence/spatial-budgets/OGM-003-final.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2504",
+      "AssetType": "FILE",
+      "Path": "evidence/spatial-budgets/OGM-004-final.json",
+      "Purpose": "PAC-043 scoped artist budget integration acceptance for OGM-004",
+      "PACRefs": "PAC-043",
+      "Tags": "#acceptance #spatial-budgets"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-004",
+    "artifact": "OVR-2504",
+    "evidence": "PAC-043 source-bound artist budget integration review and executed regressions: evidence/spatial-budgets/OGM-004-final.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2505",
+      "AssetType": "FILE",
+      "Path": "evidence/spatial-budgets/OGM-005-final.json",
+      "Purpose": "PAC-043 scoped artist budget integration acceptance for OGM-005",
+      "PACRefs": "PAC-043",
+      "Tags": "#acceptance #spatial-budgets"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-005",
+    "artifact": "OVR-2505",
+    "evidence": "PAC-043 source-bound artist budget integration review and executed regressions: evidence/spatial-budgets/OGM-005-final.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2506",
+      "AssetType": "FILE",
+      "Path": "evidence/spatial-budgets/OGM-006-final.json",
+      "Purpose": "PAC-043 scoped artist budget integration acceptance for OGM-006",
+      "PACRefs": "PAC-043",
+      "Tags": "#acceptance #spatial-budgets"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-006",
+    "artifact": "OVR-2506",
+    "evidence": "PAC-043 source-bound artist budget integration review and executed regressions: evidence/spatial-budgets/OGM-006-final.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2507",
+      "AssetType": "FILE",
+      "Path": "evidence/spatial-budgets/OGM-007-final.json",
+      "Purpose": "PAC-043 scoped artist budget integration acceptance for OGM-007",
+      "PACRefs": "PAC-043",
+      "Tags": "#acceptance #spatial-budgets"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-007",
+    "artifact": "OVR-2507",
+    "evidence": "PAC-043 source-bound artist budget integration review and executed regressions: evidence/spatial-budgets/OGM-007-final.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2508",
+      "AssetType": "FILE",
+      "Path": "evidence/spatial-budgets/OGM-008-final.json",
+      "Purpose": "PAC-043 scoped artist budget integration acceptance for OGM-008",
+      "PACRefs": "PAC-043",
+      "Tags": "#acceptance #spatial-budgets"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-008",
+    "artifact": "OVR-2508",
+    "evidence": "PAC-043 source-bound artist budget integration review and executed regressions: evidence/spatial-budgets/OGM-008-final.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2509",
+      "AssetType": "FILE",
+      "Path": "evidence/spatial-budgets/OGM-009-final.json",
+      "Purpose": "PAC-043 scoped artist budget integration acceptance for OGM-009",
+      "PACRefs": "PAC-043",
+      "Tags": "#acceptance #spatial-budgets"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-009",
+    "artifact": "OVR-2509",
+    "evidence": "PAC-043 source-bound artist budget integration review and executed regressions: evidence/spatial-budgets/OGM-009-final.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2510",
+      "AssetType": "FILE",
+      "Path": "evidence/spatial-budgets/OGM-010-final.json",
+      "Purpose": "PAC-043 scoped artist budget integration acceptance for OGM-010",
+      "PACRefs": "PAC-043",
+      "Tags": "#acceptance #spatial-budgets"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-010",
+    "artifact": "OVR-2510",
+    "evidence": "PAC-043 source-bound artist budget integration review and executed regressions: evidence/spatial-budgets/OGM-010-final.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2511",
+      "AssetType": "FILE",
+      "Path": "evidence/spatial-budgets/OGM-011-final.json",
+      "Purpose": "PAC-043 scoped artist budget integration acceptance for OGM-011",
+      "PACRefs": "PAC-043",
+      "Tags": "#acceptance #spatial-budgets"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-011",
+    "artifact": "OVR-2511",
+    "evidence": "PAC-043 source-bound artist budget integration review and executed regressions: evidence/spatial-budgets/OGM-011-final.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2512",
+      "AssetType": "FILE",
+      "Path": "evidence/spatial-budgets/OGM-012-final.json",
+      "Purpose": "PAC-043 scoped artist budget integration acceptance for OGM-012",
+      "PACRefs": "PAC-043",
+      "Tags": "#acceptance #spatial-budgets"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-012",
+    "artifact": "OVR-2512",
+    "evidence": "PAC-043 source-bound artist budget integration review and executed regressions: evidence/spatial-budgets/OGM-012-final.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2513",
+      "AssetType": "FILE",
+      "Path": "evidence/spatial-budgets/OGM-013-final.json",
+      "Purpose": "PAC-043 scoped artist budget integration acceptance for OGM-013",
+      "PACRefs": "PAC-043",
+      "Tags": "#acceptance #spatial-budgets"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-013",
+    "artifact": "OVR-2513",
+    "evidence": "PAC-043 source-bound artist budget integration review and executed regressions: evidence/spatial-budgets/OGM-013-final.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2514",
+      "AssetType": "FILE",
+      "Path": "evidence/spatial-budgets/OGM-014-final.json",
+      "Purpose": "PAC-043 scoped artist budget integration acceptance for OGM-014",
+      "PACRefs": "PAC-043",
+      "Tags": "#acceptance #spatial-budgets"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-014",
+    "artifact": "OVR-2514",
+    "evidence": "PAC-043 source-bound artist budget integration review and executed regressions: evidence/spatial-budgets/OGM-014-final.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2515",
+      "AssetType": "FILE",
+      "Path": "evidence/spatial-budgets/OGM-015-final.json",
+      "Purpose": "PAC-043 scoped artist budget integration acceptance for OGM-015",
+      "PACRefs": "PAC-043",
+      "Tags": "#acceptance #spatial-budgets"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-015",
+    "artifact": "OVR-2515",
+    "evidence": "PAC-043 source-bound artist budget integration review and executed regressions: evidence/spatial-budgets/OGM-015-final.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2516",
+      "AssetType": "FILE",
+      "Path": "evidence/spatial-budgets/OGM-016-final.json",
+      "Purpose": "PAC-043 scoped artist budget integration acceptance for OGM-016",
+      "PACRefs": "PAC-043",
+      "Tags": "#acceptance #spatial-budgets"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-016",
+    "artifact": "OVR-2516",
+    "evidence": "PAC-043 source-bound artist budget integration review and executed regressions: evidence/spatial-budgets/OGM-016-final.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2517",
+      "AssetType": "FILE",
+      "Path": "evidence/spatial-budgets/OGM-017-final.json",
+      "Purpose": "PAC-043 scoped artist budget integration acceptance for OGM-017",
+      "PACRefs": "PAC-043",
+      "Tags": "#acceptance #spatial-budgets"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-017",
+    "artifact": "OVR-2517",
+    "evidence": "PAC-043 source-bound artist budget integration review and executed regressions: evidence/spatial-budgets/OGM-017-final.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2518",
+      "AssetType": "FILE",
+      "Path": "evidence/spatial-budgets/OGM-018-final.json",
+      "Purpose": "PAC-043 scoped artist budget integration acceptance for OGM-018",
+      "PACRefs": "PAC-043",
+      "Tags": "#acceptance #spatial-budgets"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-018",
+    "artifact": "OVR-2518",
+    "evidence": "PAC-043 source-bound artist budget integration review and executed regressions: evidence/spatial-budgets/OGM-018-final.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2519",
+      "AssetType": "FILE",
+      "Path": "evidence/spatial-budgets/OGM-019-final.json",
+      "Purpose": "PAC-043 scoped artist budget integration acceptance for OGM-019",
+      "PACRefs": "PAC-043",
+      "Tags": "#acceptance #spatial-budgets"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-019",
+    "artifact": "OVR-2519",
+    "evidence": "PAC-043 source-bound artist budget integration review and executed regressions: evidence/spatial-budgets/OGM-019-final.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2520",
+      "AssetType": "FILE",
+      "Path": "evidence/spatial-budgets/OGM-020-final.json",
+      "Purpose": "PAC-043 scoped artist budget integration acceptance for OGM-020",
+      "PACRefs": "PAC-043",
+      "Tags": "#acceptance #spatial-budgets"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-020",
+    "artifact": "OVR-2520",
+    "evidence": "PAC-043 source-bound artist budget integration review and executed regressions: evidence/spatial-budgets/OGM-020-final.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2521",
+      "AssetType": "FILE",
+      "Path": "evidence/spatial-budgets/OGM-021-final.json",
+      "Purpose": "PAC-043 scoped artist budget integration acceptance for OGM-021",
+      "PACRefs": "PAC-043",
+      "Tags": "#acceptance #spatial-budgets"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-021",
+    "artifact": "OVR-2521",
+    "evidence": "PAC-043 source-bound artist budget integration review and executed regressions: evidence/spatial-budgets/OGM-021-final.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2522",
+      "AssetType": "FILE",
+      "Path": "evidence/spatial-budgets/OGM-022-final.json",
+      "Purpose": "PAC-043 scoped artist budget integration acceptance for OGM-022",
+      "PACRefs": "PAC-043",
+      "Tags": "#acceptance #spatial-budgets"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-022",
+    "artifact": "OVR-2522",
+    "evidence": "PAC-043 source-bound artist budget integration review and executed regressions: evidence/spatial-budgets/OGM-022-final.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2523",
+      "AssetType": "FILE",
+      "Path": "evidence/spatial-budgets/OGM-023-final.json",
+      "Purpose": "PAC-043 scoped artist budget integration acceptance for OGM-023",
+      "PACRefs": "PAC-043",
+      "Tags": "#acceptance #spatial-budgets"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-023",
+    "artifact": "OVR-2523",
+    "evidence": "PAC-043 source-bound artist budget integration review and executed regressions: evidence/spatial-budgets/OGM-023-final.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2524",
+      "AssetType": "FILE",
+      "Path": "evidence/spatial-budgets/OGM-024-final.json",
+      "Purpose": "PAC-043 scoped artist budget integration acceptance for OGM-024",
+      "PACRefs": "PAC-043",
+      "Tags": "#acceptance #spatial-budgets"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-024",
+    "artifact": "OVR-2524",
+    "evidence": "PAC-043 source-bound artist budget integration review and executed regressions: evidence/spatial-budgets/OGM-024-final.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2525",
+      "AssetType": "FILE",
+      "Path": "evidence/spatial-budgets/OGM-025-final.json",
+      "Purpose": "PAC-043 scoped artist budget integration acceptance for OGM-025",
+      "PACRefs": "PAC-043",
+      "Tags": "#acceptance #spatial-budgets"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-025",
+    "artifact": "OVR-2525",
+    "evidence": "PAC-043 source-bound artist budget integration review and executed regressions: evidence/spatial-budgets/OGM-025-final.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2526",
+      "AssetType": "FILE",
+      "Path": "evidence/spatial-budgets/OGM-026-final.json",
+      "Purpose": "PAC-043 scoped artist budget integration acceptance for OGM-026",
+      "PACRefs": "PAC-043",
+      "Tags": "#acceptance #spatial-budgets"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-026",
+    "artifact": "OVR-2526",
+    "evidence": "PAC-043 source-bound artist budget integration review and executed regressions: evidence/spatial-budgets/OGM-026-final.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2527",
+      "AssetType": "FILE",
+      "Path": "evidence/spatial-budgets/OGM-027-final.json",
+      "Purpose": "PAC-043 scoped artist budget integration acceptance for OGM-027",
+      "PACRefs": "PAC-043",
+      "Tags": "#acceptance #spatial-budgets"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-027",
+    "artifact": "OVR-2527",
+    "evidence": "PAC-043 source-bound artist budget integration review and executed regressions: evidence/spatial-budgets/OGM-027-final.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2528",
+      "AssetType": "FILE",
+      "Path": "evidence/spatial-budgets/OGM-028-final.json",
+      "Purpose": "PAC-043 scoped artist budget integration acceptance for OGM-028",
+      "PACRefs": "PAC-043",
+      "Tags": "#acceptance #spatial-budgets"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-028",
+    "artifact": "OVR-2528",
+    "evidence": "PAC-043 source-bound artist budget integration review and executed regressions: evidence/spatial-budgets/OGM-028-final.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2529",
+      "AssetType": "FILE",
+      "Path": "evidence/spatial-budgets/OGM-029-final.json",
+      "Purpose": "PAC-043 scoped artist budget integration acceptance for OGM-029",
+      "PACRefs": "PAC-043",
+      "Tags": "#acceptance #spatial-budgets"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-029",
+    "artifact": "OVR-2529",
+    "evidence": "PAC-043 source-bound artist budget integration review and executed regressions: evidence/spatial-budgets/OGM-029-final.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2530",
+      "AssetType": "FILE",
+      "Path": "evidence/spatial-budgets/OGM-030-final.json",
+      "Purpose": "PAC-043 scoped artist budget integration acceptance for OGM-030",
+      "PACRefs": "PAC-043",
+      "Tags": "#acceptance #spatial-budgets"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-030",
+    "artifact": "OVR-2530",
+    "evidence": "PAC-043 source-bound artist budget integration review and executed regressions: evidence/spatial-budgets/OGM-030-final.json"
+  }
+]

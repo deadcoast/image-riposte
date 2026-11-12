@@ -1,0 +1,25 @@
+{
+  "scope": "PAC-040 publishing recipe controls and exercised siblings",
+  "static_result": {
+    "errors": 84,
+    "total": 84,
+    "unresolved": 1,
+    "violations": 83,
+    "warnings": 0
+  },
+  "rules": {
+    "ownership.native-select-undecided": 1,
+    "affordance.actionless-button": 81,
+    "affordance.empty-href": 1,
+    "form.textarea-resize-missing": 1
+  },
+  "dispositions": {
+    "affordance.actionless-button": "New recipe buttons have external ID-bound handlers in publish.js; the real Chromium test exercises every new button, pending disablement, stale saves and explicit writes. The scanner groups literal HTML lines and does not resolve external handlers.",
+    "ownership.native-select-undecided": "Canonical docs/DESIGN.md explicitly chooses a platform-owned native recipe popup; root-only lookup misses this maintained docs location. Native arrows, click-open popup, Escape and 390px screenshot were exercised.",
+    "affordance.empty-href": "Existing runtime download link receives its artifact URL before activation; recipe controls add no links.",
+    "form.textarea-resize-missing": "Existing duplicate parameter textarea is outside the recipe change. Recipes add number/text fields, not textareas."
+  },
+  "visual_review": "Viewed wide.png, narrow.png and native-select-open.png: controls and full settings visible, summary wraps, no horizontal overflow, focus visible, native popup selected row matches value. Existing green workbench tokens and natural document scrolling retained.",
+  "limits": "No global UI static pass, independent screen-reader, IME, other browser/OS or human usability certification.",
+  "design_lint": "Not executed: the optional @google/design.md executable is absent from the local npm cache (ENOTCACHED). Existing docs/DESIGN.md remains the project-owned prose contract; no dependency installed or format conversion made."
+}

@@ -1,0 +1,64 @@
+{
+  "result": "PASS",
+  "application_files": 77,
+  "changed_application_files": [
+    "src/riposte/cli.py",
+    "src/riposte/recipes.py",
+    "src/riposte/records.py",
+    "src/riposte/server.py",
+    "src/riposte/static/index.html",
+    "src/riposte/static/publish.css",
+    "src/riposte/static/publish.js",
+    "src/riposte/static/recovery-catalog.json",
+    "src/riposte/terminal/actions.py",
+    "src/riposte/terminal/controller.py",
+    "src/riposte/terminal/interaction.py",
+    "src/riposte/terminal/render.py",
+    "src/riposte/terminal/reports.py",
+    "src/riposte/terminal/service.py"
+  ],
+  "focused": {
+    "tests": 59,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 1,
+    "passed": 58
+  },
+  "suite": {
+    "tests": 1588,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 10,
+    "passed": 1578
+  },
+  "native": {
+    "tests": 4,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "passed": 4
+  },
+  "contracts": {
+    "mypy-contracts": true,
+    "mypy-tooling": true,
+    "stubtest": true,
+    "runtime-contracts": true,
+    "tooling-regressions": true,
+    "negative-consumers": true,
+    "source-stable": true
+  },
+  "packages_match": true,
+  "strict_source_typing": "FAIL: Found 841 errors in 36 files (checked 67 source files)",
+  "documentation": {
+    "commands": 44,
+    "examples": 74,
+    "links": 170
+  },
+  "limits": [
+    "Existing Windows dependencies; no clean-install, different OS or user VS Code host qualification.",
+    "Synthetic media and existing synthetic/tiny-random CPU engine tests; no pretrained-model efficacy or independent human/accessibility acceptance.",
+    "Native recipe test uses the real authenticated local server for save, conflict and publishing preview; delayed/offline replies are injected for those two UI recovery cases.",
+    "First full run had a sort state-polling response without jobs; retained failure, focused retry and final full run are recorded separately. Cause not established.",
+    "Strict source typing remains failing; external declarations pass separately. Static UI findings have scoped dispositions, not a global pass."
+  ]
+}

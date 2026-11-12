@@ -31,6 +31,8 @@ class Request:
 
 # These are application effects, not a permission system for hostile local code.
 EFFECTS = {
+    "library-search": "INSPECT",
+    "health": "INSPECT",
     "recipes": "INSPECT", "recipes-save": "SAVE_PUBLISHING_RECIPE",
     "duplicates": "INSPECT",
     "categories": "INSPECT",
@@ -52,7 +54,7 @@ EFFECTS = {
     "trials": "INSPECT", "evaluations": "INSPECT", "generations": "INSPECT",
     "generation": "INSPECT", "frame": "INSPECT", "handoff": "CREATE_EXACT_TRIAL", "image": "INSPECT", "open-image": "OPEN_LOCAL_VIEWER",
 }
-CANCELLABLE = frozenset({"duplicates", "cohort-challenge", "categories", "category-rules", "organize", "audit", "list", "inspect", "plan", "publish", "resume",
+CANCELLABLE = frozenset({"library-search", "health", "duplicates", "cohort-challenge", "categories", "category-rules", "organize", "audit", "list", "inspect", "plan", "publish", "resume",
                          "guard", "qualify", "challenge", "doctor", "sort-riposte-plan", "riposte", "riposte-plan"})
 
 
@@ -124,6 +126,27 @@ def resolved_recipe(root: Path, values: RequestValues) -> PublishRecipe:
                           overrides={key: data[key] for key in keys if key in data})
 
 
+def masked_recipe(configuration: PublishRecipe, values: RequestValues, rows: list[dict[str, Any]]) -> PublishRecipe:
+    from dataclasses import replace
+    from ..spatial import read_map, read_mask, mask_for
+    mask_path, map_path = values.get("budget_mask"), values.get("budget_map")
+    if mask_path and map_path:
+        raise RiposteError("ARTIST_MASK_SELECTION_INVALID")
+    if mask_path:
+        if len(rows) != 1:
+            raise RiposteError("ARTIST_MASK_SINGLE_IMAGE_REQUIRED")
+        configuration = replace(configuration, masks=(read_mask(Path(mask_path), rows[0]["sha256"]),))
+    elif map_path:
+        configuration = replace(configuration, masks=read_map(Path(map_path)))
+    if {mask.source_sha256 for mask in configuration.masks} - {row["sha256"] for row in rows}:
+        raise RiposteError("ARTIST_MASK_SELECTION_MISMATCH")
+    for row in rows:
+        mask_for(configuration.masks, row)
+    if values.get("budget_revision") is not None and values["budget_revision"] != configuration.budget_revision():
+        raise RiposteError("ARTIST_MASK_PREVIEW_CHANGED")
+    return configuration
+
+
 def image_selection(root: Path, values: RequestValues) -> list[str]:
     ids = list(values.get("image_ids") or [])
     all_images = values.get("all_images", False)
@@ -163,6 +186,9 @@ def execute(request: Request, progress: Progress | None = None) -> Any:
             result["model" if len(entries) == 1 else "models"] = entries[0] if len(entries) == 1 else entries
         return result
     root = root_of(request)
+    if name == "health":
+        from ..health import inspect_health
+        return inspect_health(root, max_entries=v.get("max_entries", 100_000), progress=progress)
     if name in {"recipes", "recipes-save"}:
         from ..recipes import inspect_recipes, save_recipe
         if name == "recipes-save":
@@ -212,6 +238,13 @@ def execute(request: Request, progress: Progress | None = None) -> Any:
         return audit_workspace(root)
     if name == "list":
         return select_rows(root, **cast(ListOptions, {k: v[k] for k in ("year", "month", "size", "search", "limit", "offset") if k in v}))
+    if name == "library-search":
+        from ..library_search import search_library
+        search_limit = v.get("limit")
+        return search_library(root, search=v.get("search", ""), category=v.get("category", ""),
+                              title_state=v.get("title_state", "all"), year=v.get("year"), month=v.get("month"),
+                              size=v.get("size"), limit=search_limit if search_limit is not None else 50,
+                              offset=v.get("offset", 0), expected_revision=v.get("expected_revision"), progress=progress)
     if name == "inspect":
         from ..store import find_image, safe_child
         from ..sanitize import png_audit
@@ -235,6 +268,20 @@ def execute(request: Request, progress: Progress | None = None) -> Any:
         options = {"categories": v.get("categories", False), "assignments": v.get("assignments") or ()} if v.get("categories") or v.get("assignments") else {}
         sorting = plan(root, policy, progress, **cast(PreviewSortOptions, options))
         filters: SelectionFilters = {"year": v.get("year"), "month": v.get("month"), "size": v.get("size")}
+        if v.get("budget_mask") or v.get("budget_map") or v.get("budget_revision"):
+            from ..store import find_image
+            if v.get("all_images"):
+                mask_rows = []
+                for item in sorting["files"]:
+                    if item["kind"] != "IMAGE" or item.get("action") not in {"KEEP", "SORT"}: continue
+                    parts = item["destination"].split("/")
+                    if filters["year"] not in (None, "", "all") and parts[0] != filters["year"]: continue
+                    if parse_month(filters["month"]) is not None and parts[1] != parse_month(filters["month"]): continue
+                    if filters["size"] not in (None, "", "all") and parts[-2] != filters["size"]: continue
+                    mask_rows.append(item["expected"])
+            else:
+                mask_rows = [dict(find_image(root, identifier)) for identifier in selected]
+            configuration = masked_recipe(configuration, v, mask_rows)
         plan_id = receipt({"version": "riposte-combined-sort-1", "sorting": sorting["plan_id"],
                            "all_images": v.get("all_images", False), "selected": sorted(selected),
                            "filters": filters, "recipe": configuration.public(),
@@ -281,7 +328,26 @@ def execute(request: Request, progress: Progress | None = None) -> Any:
             raise RiposteError("INPUT_SELECTION_CONFLICT")
         ids, configuration = ([] if inputs else image_selection(root, v)), resolved_recipe(root, v)
         intake = {"input_paths": inputs, "date_mode": v.get("date_mode", "download")}
-        if name in {"plan", "riposte-plan"}: return publication_plan(root, ids, configuration, **intake)
+        if v.get("budget_mask") or v.get("budget_map") or v.get("budget_revision"):
+            from ..store import find_image
+            from ..intake import inspect_inputs
+            mask_rows = ([source.row for source in inspect_inputs(inputs, Policy(date_mode=v.get("date_mode", "download")), progress)[0]]
+                         if inputs else [dict(find_image(root, identifier)) for identifier in ids])
+            configuration = masked_recipe(configuration, v, mask_rows)
+        if name in {"plan", "riposte-plan"}:
+            view_budget = v.get("view_budget")
+            if view_budget is not None and (type(view_budget) is not int or view_budget < 1):
+                raise RiposteError("ARTIST_MASK_PREVIEW_REQUIRED")
+            budget_offset = ((view_budget - 1) // 3 * 3) if view_budget is not None else v.get("budget_offset", 0)
+            publication_preview = publication_plan(root, ids, configuration, budget_offset=budget_offset,
+                                                   input_paths=inputs, date_mode=v.get("date_mode", "download"))
+            if view_budget is not None:
+                budget_previews = publication_preview.get("budget_previews", [])
+                index = view_budget - budget_offset
+                if not 1 <= index <= len(budget_previews):
+                    raise RiposteError("ARTIST_MASK_PREVIEW_REQUIRED")
+                view_image(root, {"budget_preview": budget_previews[index - 1]}, open_viewer=True)
+            return publication_preview
         return start_publication(root, ids, _paths(v), configuration, device=v.get("device", "auto"),
                                  pipeline_dir=_optional(v, "inpaint"), temporal_dir=_optional(v, "video"), progress=progress, **intake)
     if name == "publications":
@@ -381,6 +447,20 @@ def execute(request: Request, progress: Progress | None = None) -> Any:
 def image_bytes(root: Path, values: RequestValues) -> bytes:
     from ..store import find_image, safe_child
     from ..sanitize import png_audit
+    if values.get("budget_preview"):
+        import base64
+        from PIL import Image
+        from ..sanitize import encode_clean
+        value = values["budget_preview"]
+        try:
+            text = value["overlay_png"]
+            if not isinstance(text, str) or len(text) > 4_194_304: raise ValueError
+            raw = base64.b64decode(text, validate=True)
+            with Image.open(io.BytesIO(raw)) as image:
+                if max(image.size) > 768: raise ValueError
+                return encode_clean(image.convert("RGB"), str(value["date"]))
+        except (ValueError, OSError, KeyError):
+            raise RiposteError("ARTIST_MASK_PREVIEW_REQUIRED") from None
     if values.get("run_id"):
         from ..generation import generation_frame
         return generation_frame(root,values["run_id"],values["relative"])

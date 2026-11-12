@@ -1,0 +1,10 @@
+warning: in the working copy of 'docs/CLI.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'nodule.PACER.csv', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'organism.PACER.csv', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'overlord.PACER.csv', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/riposte/cli.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/riposte/recipes.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/riposte/static/publish.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/riposte/static/publish.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/riposte/terminal/render.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'todo.PACER.csv', LF will be replaced by CRLF the next time Git touches it

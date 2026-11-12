@@ -1,0 +1,35 @@
+{
+  "revision": "94178edd1b5a8936fb6b64f39f31da6b7347286383fc769f40570f3be17f7c68",
+  "health": {
+    "todo": {
+      "DONE": 46,
+      "TODO": 3
+    },
+    "organism": {
+      "VALIDATED_COMPLETE": 29
+    },
+    "nodule": {
+      "ABSORBED": 28
+    }
+  },
+  "validation": {
+    "valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "stale_evidence": [],
+  "task": {
+    "ID": "PAC-042",
+    "Title": "Add private original-title and category library search",
+    "Status": "DONE",
+    "NextAction": "absorb"
+  },
+  "next": {
+    "ID": "PAC-043",
+    "Title": "Add artist-directed spatial protection budgets",
+    "Status": "TODO",
+    "ApprovalState": "PENDING"
+  },
+  "nodule": "archive/nodules/NDL-028.PACER.csv",
+  "evidence": "evidence/private-library-search/README.md"
+}

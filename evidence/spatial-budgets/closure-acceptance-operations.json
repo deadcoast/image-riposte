@@ -1,0 +1,110 @@
+[
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2531",
+      "AssetType": "FILE",
+      "Path": "evidence/spatial-budgets/OGM-001-closure.json",
+      "Purpose": "PAC-043 documentation-only closure review with unchanged application and retained regression evidence for OGM-001",
+      "PACRefs": "PAC-043",
+      "Tags": "#acceptance #spatial-budgets #closure"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-001",
+    "artifact": "OVR-2531",
+    "evidence": "Approved one-entry metadata correction and documentation-only closure; fresh source/package/documentation parity; retained regression evidence: evidence/spatial-budgets/OGM-001-closure.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2532",
+      "AssetType": "FILE",
+      "Path": "evidence/spatial-budgets/OGM-002-closure.json",
+      "Purpose": "PAC-043 documentation-only closure review with unchanged application and retained regression evidence for OGM-002",
+      "PACRefs": "PAC-043",
+      "Tags": "#acceptance #spatial-budgets #closure"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-002",
+    "artifact": "OVR-2532",
+    "evidence": "Approved one-entry metadata correction and documentation-only closure; fresh source/package/documentation parity; retained regression evidence: evidence/spatial-budgets/OGM-002-closure.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2533",
+      "AssetType": "FILE",
+      "Path": "evidence/spatial-budgets/OGM-026-closure.json",
+      "Purpose": "PAC-043 documentation-only closure review with unchanged application and retained regression evidence for OGM-026",
+      "PACRefs": "PAC-043",
+      "Tags": "#acceptance #spatial-budgets #closure"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-026",
+    "artifact": "OVR-2533",
+    "evidence": "Approved one-entry metadata correction and documentation-only closure; fresh source/package/documentation parity; retained regression evidence: evidence/spatial-budgets/OGM-026-closure.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2534",
+      "AssetType": "FILE",
+      "Path": "evidence/spatial-budgets/OGM-027-closure.json",
+      "Purpose": "PAC-043 documentation-only closure review with unchanged application and retained regression evidence for OGM-027",
+      "PACRefs": "PAC-043",
+      "Tags": "#acceptance #spatial-budgets #closure"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-027",
+    "artifact": "OVR-2534",
+    "evidence": "Approved one-entry metadata correction and documentation-only closure; fresh source/package/documentation parity; retained regression evidence: evidence/spatial-budgets/OGM-027-closure.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2535",
+      "AssetType": "FILE",
+      "Path": "evidence/spatial-budgets/OGM-029-closure.json",
+      "Purpose": "PAC-043 documentation-only closure review with unchanged application and retained regression evidence for OGM-029",
+      "PACRefs": "PAC-043",
+      "Tags": "#acceptance #spatial-budgets #closure"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-029",
+    "artifact": "OVR-2535",
+    "evidence": "Approved one-entry metadata correction and documentation-only closure; fresh source/package/documentation parity; retained regression evidence: evidence/spatial-budgets/OGM-029-closure.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2536",
+      "AssetType": "FILE",
+      "Path": "evidence/spatial-budgets/OGM-030-closure.json",
+      "Purpose": "PAC-043 documentation-only closure review with unchanged application and retained regression evidence for OGM-030",
+      "PACRefs": "PAC-043",
+      "Tags": "#acceptance #spatial-budgets #closure"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-030",
+    "artifact": "OVR-2536",
+    "evidence": "Approved one-entry metadata correction and documentation-only closure; fresh source/package/documentation parity; retained regression evidence: evidence/spatial-budgets/OGM-030-closure.json"
+  }
+]

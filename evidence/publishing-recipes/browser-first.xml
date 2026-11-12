@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="1" time="21.345" timestamp="2026-09-20T11:02:31.787435-07:00" hostname="homeone"><testcase classname="tests.test_recipe_interfaces" name="test_recipe_browser_native" time="20.804"><failure message="AssertionError: Error: Browser command timed out: Runtime.evaluate&#10;      at Timeout._onTimeout (C:\Users\ryanf\github\_new\image-riposte\tests\recipes_browser.cjs:100:66)&#10;      at listOnTimeout (node:internal/timers:605:17)&#10;      at process.processTimers (node:internal/timers:541:7)&#10;  &#10;assert 1 == 0&#10; +  where 1 = CompletedProcess(args=['C:\\nvm4w\\nodejs\\node.EXE', 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\tests\\recipes_b...:66)\n    at listOnTimeout (node:internal/timers:605:17)\n    at process.processTimers (node:internal/timers:541:7)\n').returncode">root = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/pytest-of-ryanf/pytest-561/test_recipe_browser_native0/workspace')
+make_image = &lt;function make_image.&lt;locals&gt;.create at 0x000001624C9C5640&gt;
+
+    def test_recipe_browser_native(root,make_image):
+        import os
+        from pathlib import Path
+        import shutil
+        import socket
+        import subprocess
+        import threading
+        import time
+        import uvicorn
+        from riposte.organizer import organize,plan
+        from riposte.policy import Policy
+        node=shutil.which('node')
+        browser=next((p for p in [os.environ.get('RIPOSTE_TEST_BROWSER',''),shutil.which('chromium'),
+            'C:/Program Files/Google/Chrome/Application/chrome.exe','C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe'] if p and Path(p).is_file()),None)
+        if not node or not browser:pytest.skip('Local Node and Chromium required')
+        make_image(root/'drawing.png');policy=Policy(date_mode='modified')
+        organize(root,policy,plan_id=plan(root,policy)['plan_id'])
+        before={str(p.relative_to(root)):p.read_bytes() for p in root.rglob('*.png')}
+        listener=socket.socket();listener.bind(('127.0.0.1',0));listener.listen()
+        server=uvicorn.Server(uvicorn.Config(create_app(root,'recipe-native'),log_level='error'))
+        thread=threading.Thread(target=server.run,kwargs={'sockets':[listener]},daemon=True);thread.start()
+        try:
+            for _ in range(100):
+                if server.started:break
+                time.sleep(.02)
+            assert server.started
+            args=[node,str(Path(__file__).with_name('recipes_browser.cjs')),browser]
+            if os.environ.get('RIPOSTE_RECIPE_SCREENSHOTS'):args.append(os.environ['RIPOSTE_RECIPE_SCREENSHOTS'])
+            run=subprocess.run(args,env={**os.environ,'RIPOSTE_SORT_LIVE':f'http://127.0.0.1:{listener.getsockname()[1]}/#token=recipe-native'},
+                               capture_output=True,text=True,encoding='utf-8',timeout=90)
+&gt;           assert run.returncode==0,run.stdout+run.stderr
+E           AssertionError: Error: Browser command timed out: Runtime.evaluate
+E                 at Timeout._onTimeout (C:\Users\ryanf\github\_new\image-riposte\tests\recipes_browser.cjs:100:66)
+E                 at listOnTimeout (node:internal/timers:605:17)
+E                 at process.processTimers (node:internal/timers:541:7)
+E             
+E           assert 1 == 0
+E            +  where 1 = CompletedProcess(args=['C:\\nvm4w\\nodejs\\node.EXE', 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\tests\\recipes_b...:66)\n    at listOnTimeout (node:internal/timers:605:17)\n    at process.processTimers (node:internal/timers:541:7)\n').returncode
+
+tests\test_recipe_interfaces.py:166: AssertionError</failure></testcase></testsuite></testsuites>

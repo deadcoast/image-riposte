@@ -188,10 +188,26 @@ def picker(c, state):
     footer(c, state)
 
 
+def recipes(c, state):
+    rows = view_rows(state)
+    c.text(3, 6, "SAVED SETTINGS / " + str(len(rows)), "accent", bold=True)
+    c.text(3, 8, "Load settings, then review your selection and local models.", "muted", width=c.width-6)
+    start, end = page_window(state.page.cursor, len(rows), c.height-16)
+    for n in range(start, end):
+        row = rows[n]; focused = n == state.page.cursor; y = 10+n-start
+        if focused: c.fill(3, y, c.width-6, 1, "raised")
+        c.text(3, y, ("> " if focused else "  ") + row["name"], "accent" if focused else "text", bold=focused, width=c.width-6)
+    if not rows: c.wrap(3, 10, "No saved recipes. Return to the publishing form and press s to name, preview and save your settings.", c.width-6, 4)
+    footer(c, state)
+
+
 def collection(c, state):
     rows = view_rows(state)
-    c.text(3, 6, f"CLEAN LIBRARY / {len(rows)} visible / {len(state.selected)} selected", "accent", bold=True, width=c.width-6)
-    c.text(3, 8, "     DATE         SIZE       PIXELS       CANONICAL FILE", "muted", width=c.width-6)
+    private = state.page.values.get("private_search")
+    report = state.page.result if private else {}
+    heading = f"PRIVATE / {report['offset'] + 1 if rows else 0}-{report['offset'] + len(rows)} of {report['total']}" if private else f"CLEAN LIBRARY / {len(rows)} visible"
+    c.text(3, 6, f"{heading} / {len(state.selected)} selected", "accent", bold=True, width=c.width-6)
+    c.text(3, 8, "     DATE         SIZE       PIXELS       " + ("PRIVATE TITLE / CATEGORY" if private else "CANONICAL FILE"), "muted", width=c.width-6)
     c.rule(9)
     capacity = c.height - 16
     start, end = page_window(state.page.cursor, len(rows), capacity)
@@ -201,12 +217,14 @@ def collection(c, state):
         parts = row["relative"].split("/")
         head = f"{'>' if n==state.page.cursor else ' '} {'[x]' if chosen else '[ ]'} {row['day']}   {parts[-2]:3}  {row['width']:5}x{row['height']:<5}  "
         name = row["relative"] if c.width >= 120 else parts[-1] + "  " + row["id"][:12]
+        if private: name = (row["original_filename"] or "Unknown title (" + row["provenance"].lower() + ")") + " / " + (row["category"] or "No trusted category")
         c.text(3, y, head + name, "accent" if chosen or n==state.page.cursor else "text", bold=n==state.page.cursor, width=c.width-6)
     if not rows:
-        c.wrap(4, 12, "No matching clean images. Clean & organize imports your existing image into the calendar hierarchy.", c.width-8, 3)
+        c.wrap(4, 12, "No matches. Press s to change private filters or r to restart paging." if private else "No matching clean images. Clean & organize imports your existing image into the calendar hierarchy.", c.width-8, 3)
     if rows:
         row = rows[min(state.page.cursor, len(rows)-1)]
-        c.text(3, c.height-6, f"ID {row['id']}  |  rows {start+1}-{end}/{len(rows)}", "muted", width=c.width-6)
+        detail = row["relative"] if private else f"ID {row['id']}  |  rows {start+1}-{end}/{len(rows)}"
+        c.text(3, c.height-6, detail, "muted", width=c.width-6)
     footer(c, state, "[Space] select   [a] all visible   [n] clear   [Enter] inspect   [p] protect   [/] find")
 
 
@@ -234,6 +252,7 @@ def form(c, state):
            else "Files and folders / originals stay in place" if p.action == "riposte"
            else "Entire workspace / preview, REPLACE, then protection" if p.action == "sort-riposte"
            else action.effect.replace("_", " "))
+    if p.values.get("recipe_name"): sub = "Recipe: " + str(p.values["recipe_name"]) + " / editable settings"
     c.text(3, 7, sub, "muted", width=c.width-6)
     if state.root: c.text(3, 8, ("Results: " if p.action == "riposte" else "Folder: ") + str(state.root), "muted", width=c.width-6)
     c.rule(9)
@@ -508,7 +527,7 @@ def render(state:Session,width:int,height:int,time:float=0)->Surface:
                'item':lambda:item(c,state),'workshop':lambda:workshop(c,state),'result':lambda:result(c,state),
                'job':lambda:job(c,state,time),'preferences':lambda:preferences(c,state),'help':lambda:help_page(c,state),
                'command':lambda:command_page(c,state),'confirm':lambda:confirm(c,state),'picker':lambda:picker(c,state),
-               'sorter':lambda:sorter(c,state),'duplicates':lambda:duplicates(c,state)}
+               'sorter':lambda:sorter(c,state),'duplicates':lambda:duplicates(c,state),'recipes':lambda:recipes(c,state)}
     renderers.get(page,lambda:home(c,state,time))()
     if state.page.query_edit:
         c.fill(3,c.height-5,c.width-6,1,"raised")

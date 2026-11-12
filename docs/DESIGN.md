@@ -132,3 +132,79 @@ Sensitive paths, matching phrases and choices are never put in browser storage
 or URLs. Native dropdown geometry is platform owned, matching the date selector.
 Old destinations are visibly marked after settings change. No new theme, font,
 component library, runtime dependency or mandatory sorting step is introduced.
+
+## Publishing recipes / PAC-040
+
+The publishing sidebar owns a native disclosure for the recipe library. It uses
+existing labels, buttons, field rows, green focus treatments and error text;
+`publish.css` owns the settings summary geometry and `style.css` owns shared
+colours/type. The native select's popup is deliberately platform owned. No new
+component library, theme, font or dependency is introduced. The existing page
+owns scrolling; the disclosure remains natural height at 390px and desktop widths.
+
+List selection does not change settings until Load settings is activated. Load
+replaces the eight publishing fields, leaving images, models and device intact.
+Preview and Save are separate actions; drafts stay in memory, no browser storage.
+Busy status reserves space. Edits invalidate pending previews; a late load cannot
+replace newer edits. Stale saves preserve drafts and require reload/review, and
+unconfirmed network writes are described as unconfirmed until reread. Error text
+persists inline and receives focus. Long names and summaries wrap within the panel.
+The terminal uses its current list surface and shared footer hints, including
+72×24 layouts; no mandatory extra screen is added to ordinary publishing.
+
+## Storage and recovery inspection / PAC-041
+
+`health.py` owns read-only observations; CLI and terminal share the service and
+semantic report. Terminal workspace settings open the report directly. Browser
+workspace navigation opens a native modal using the shared dialog styles, button
+classes, runtime tokens, global scrollbars and authenticated `app.js` job owner.
+The action remains visible at narrow widths. `health.js` owns only this report's
+layout and job identity; it reuses shared recovery text. Close/Escape returns
+focus to the opener, retains an in-flight inspection, and late completion never
+reopens the dialog. Re-inspection hides stale totals; errors remain inline with
+a retry action. Partial results, unknown capabilities and unverified histories
+are explicit. Cancellation discards the report without touching files. No new
+fonts, theme tokens, native select or stored browser data are introduced.
+
+
+## Private library search / PAC-042
+
+The English local desktop workbench keeps its current tokens, typography,
+buttons, native selects, dialog and global scrollbars. `library_search.py` owns
+literal Unicode matching, catalog-bound provenance, unknown states and paging.
+The terminal shares its worker, action form and library selection. `library-search.js`
+owns the browser dialog's transient query and rows; `app.js` owns authenticated
+requests, existing canonical selection and shared errors. `publish.css` owns the
+new list geometry only. Native select popup geometry remains platform owned.
+
+Opt-in navigation opens a 50-row private result list. Private values never enter
+the normal gallery state, URLs, localStorage, ordinary catalogs or retained jobs.
+Closing aborts pending fetches, clears text/results and restores opener focus.
+Remote input waits 300ms and respects IME composition; explicit submit/clear does
+not wait. Input changes immediately discard old rows, disable paging and revoke
+older responses. One revision binds pages; stale data requires restart without
+changing selected image IDs. Inline errors retain filters; date errors open their
+collapsed disclosure and focus the offending field. No mutation confirmation is
+added. The dialog owns outer scrolling; long titles/paths wrap and filters stack
+below 600px. Read-only search and existing image operations remain separate.
+
+## Artist-directed budgets / PAC-043
+
+The optional publishing disclosure reuses existing native selects, file input,
+buttons, field help, shared API/recovery messages and workbench tokens. Browser
+popup geometry remains platform owned. `spatial.js` owns transient attachments,
+request cancellation and generation checks; `publish.js` owns selection and starts.
+`spatial.py` owns validation/resampling and `publication.py` binds content to sources
+and final rasters. `publish.css` adds only disclosure/list/preview geometry. The
+page keeps natural scrolling; no new theme, font, modal or mandatory screen.
+
+A cyan overlay visibly marks artist restraint over the artwork; exact cap rasters
+and unchanged-pixel counts carry the numerical meaning. Upload progress/error text
+reserves space. Invalid replacement retains the prior attachment with explicit
+feedback. Selection/settings changes discard previews and late replies. Remove
+restores automatic limits. Preview retries retain masks; export is an explicit
+private download. Source changes cannot retarget an attachment. Values stay in
+memory, never URLs or localStorage. English local-desktop scope remains unchanged.
+
+Artist previews page three final rasters at a time with explicit Previous/Next
+controls. Changes invalidate the page; processing retains the full selection.

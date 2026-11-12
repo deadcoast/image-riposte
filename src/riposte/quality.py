@@ -6,6 +6,7 @@ import numpy as np
 from PIL import Image
 from .errors import RiposteError
 from .metrics import fidelity
+from .spatial import ArtistMask, budget_identity
 
 @dataclass(frozen=True)
 class QualityLimits:
@@ -26,7 +27,7 @@ class QualityLimits:
     def public(self):
         return asdict(self)
 
-def spatial_budget(image: Image.Image, limits: QualityLimits) -> np.ndarray:
+def spatial_budget(image: Image.Image, limits: QualityLimits, artist_mask: ArtistMask | None = None) -> np.ndarray:
     """Integer per-pixel channel cap. Smooth white: zero; hard edges: half."""
     x = np.asarray(image.convert("RGB"), dtype=np.float32) / 255
     luma = x.mean(axis=2)
@@ -37,6 +38,8 @@ def spatial_budget(image: Image.Image, limits: QualityLimits) -> np.ndarray:
     caps = np.where(detail > .08, limits.epsilon_255 // 2, limits.epsilon_255)
     if limits.preserve_white:
         caps = np.where((x.min(axis=2) > .97) & (detail < .005), 0, caps)
+    if artist_mask is not None:
+        caps = caps * artist_mask.raster(image.size).astype(np.uint16) // 255
     return caps.astype(np.uint8)
 
 def _lab(rgb):
@@ -50,12 +53,12 @@ def _lab(rgb):
     return np.stack((116 * f[..., 1] - 16, 500 * (f[..., 0] - f[..., 1]),
                      200 * (f[..., 1] - f[..., 2])), axis=-1)
 
-def quality_report(clean, candidate, limits: QualityLimits = QualityLimits()) -> dict:
+def quality_report(clean, candidate, limits: QualityLimits = QualityLimits(), artist_mask: ArtistMask | None = None) -> dict:
     if clean.size != candidate.size:
         raise RiposteError("IMAGE_SIZE_MISMATCH")
     a, b = [np.asarray(im.convert("RGB"), dtype=np.int16) for im in (clean, candidate)]
     delta = np.abs(a - b)
-    caps = spatial_budget(clean, limits)
+    caps = spatial_budget(clean, limits, artist_mask)
     violations = int(np.any(delta > caps[..., None], axis=-1).sum())
     white_changed = int(np.any(delta[caps == 0] != 0, axis=-1).sum())
     square = delta.astype(np.float64) ** 2
@@ -68,6 +71,7 @@ def quality_report(clean, candidate, limits: QualityLimits = QualityLimits()) ->
     if worst > limits.epsilon_255 * limits.rms_fraction + 1e-8: blocked.append("LOCAL_RMS_LIMIT_EXCEEDED")
     if colour_p95 > limits.delta_e76_p95 + 1e-8: blocked.append("COLOUR_DIFFERENCE_LIMIT_EXCEEDED")
     return {"status": "PASS" if not blocked else "BLOCKED", "policy": limits.public(),
+            **({"spatial_budget": budget_identity(caps, artist_mask)} if artist_mask else {}),
             "blockers": blocked, **fidelity(clean, candidate),
             "worst_tile_rmse_255": round(worst, 6), "delta_e76_p95": round(colour_p95, 6),
             "budget_violating_pixels": violations, "protected_pixels_changed": white_changed,

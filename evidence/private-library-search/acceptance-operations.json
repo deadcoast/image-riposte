@@ -1,0 +1,524 @@
+[
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2405",
+      "AssetType": "FILE",
+      "Path": "evidence/private-library-search/OGM-001.json",
+      "Purpose": "PAC-042 scoped private search integration acceptance for OGM-001",
+      "PACRefs": "PAC-042",
+      "Tags": "#acceptance #private-library-search"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-001",
+    "artifact": "OVR-2405",
+    "evidence": "PAC-042 source-bound storage inspection integration review and executed regressions: evidence/private-library-search/OGM-001.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2406",
+      "AssetType": "FILE",
+      "Path": "evidence/private-library-search/OGM-002.json",
+      "Purpose": "PAC-042 scoped private search integration acceptance for OGM-002",
+      "PACRefs": "PAC-042",
+      "Tags": "#acceptance #private-library-search"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-002",
+    "artifact": "OVR-2406",
+    "evidence": "PAC-042 source-bound storage inspection integration review and executed regressions: evidence/private-library-search/OGM-002.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2407",
+      "AssetType": "FILE",
+      "Path": "evidence/private-library-search/OGM-003.json",
+      "Purpose": "PAC-042 scoped private search integration acceptance for OGM-003",
+      "PACRefs": "PAC-042",
+      "Tags": "#acceptance #private-library-search"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-003",
+    "artifact": "OVR-2407",
+    "evidence": "PAC-042 source-bound storage inspection integration review and executed regressions: evidence/private-library-search/OGM-003.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2408",
+      "AssetType": "FILE",
+      "Path": "evidence/private-library-search/OGM-004.json",
+      "Purpose": "PAC-042 scoped private search integration acceptance for OGM-004",
+      "PACRefs": "PAC-042",
+      "Tags": "#acceptance #private-library-search"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-004",
+    "artifact": "OVR-2408",
+    "evidence": "PAC-042 source-bound storage inspection integration review and executed regressions: evidence/private-library-search/OGM-004.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2409",
+      "AssetType": "FILE",
+      "Path": "evidence/private-library-search/OGM-005.json",
+      "Purpose": "PAC-042 scoped private search integration acceptance for OGM-005",
+      "PACRefs": "PAC-042",
+      "Tags": "#acceptance #private-library-search"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-005",
+    "artifact": "OVR-2409",
+    "evidence": "PAC-042 source-bound storage inspection integration review and executed regressions: evidence/private-library-search/OGM-005.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2410",
+      "AssetType": "FILE",
+      "Path": "evidence/private-library-search/OGM-006.json",
+      "Purpose": "PAC-042 scoped private search integration acceptance for OGM-006",
+      "PACRefs": "PAC-042",
+      "Tags": "#acceptance #private-library-search"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-006",
+    "artifact": "OVR-2410",
+    "evidence": "PAC-042 source-bound storage inspection integration review and executed regressions: evidence/private-library-search/OGM-006.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2411",
+      "AssetType": "FILE",
+      "Path": "evidence/private-library-search/OGM-007.json",
+      "Purpose": "PAC-042 scoped private search integration acceptance for OGM-007",
+      "PACRefs": "PAC-042",
+      "Tags": "#acceptance #private-library-search"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-007",
+    "artifact": "OVR-2411",
+    "evidence": "PAC-042 source-bound storage inspection integration review and executed regressions: evidence/private-library-search/OGM-007.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2412",
+      "AssetType": "FILE",
+      "Path": "evidence/private-library-search/OGM-008.json",
+      "Purpose": "PAC-042 scoped private search integration acceptance for OGM-008",
+      "PACRefs": "PAC-042",
+      "Tags": "#acceptance #private-library-search"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-008",
+    "artifact": "OVR-2412",
+    "evidence": "PAC-042 source-bound storage inspection integration review and executed regressions: evidence/private-library-search/OGM-008.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2413",
+      "AssetType": "FILE",
+      "Path": "evidence/private-library-search/OGM-009.json",
+      "Purpose": "PAC-042 scoped private search integration acceptance for OGM-009",
+      "PACRefs": "PAC-042",
+      "Tags": "#acceptance #private-library-search"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-009",
+    "artifact": "OVR-2413",
+    "evidence": "PAC-042 source-bound storage inspection integration review and executed regressions: evidence/private-library-search/OGM-009.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2414",
+      "AssetType": "FILE",
+      "Path": "evidence/private-library-search/OGM-010.json",
+      "Purpose": "PAC-042 scoped private search integration acceptance for OGM-010",
+      "PACRefs": "PAC-042",
+      "Tags": "#acceptance #private-library-search"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-010",
+    "artifact": "OVR-2414",
+    "evidence": "PAC-042 source-bound storage inspection integration review and executed regressions: evidence/private-library-search/OGM-010.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2415",
+      "AssetType": "FILE",
+      "Path": "evidence/private-library-search/OGM-011.json",
+      "Purpose": "PAC-042 scoped private search integration acceptance for OGM-011",
+      "PACRefs": "PAC-042",
+      "Tags": "#acceptance #private-library-search"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-011",
+    "artifact": "OVR-2415",
+    "evidence": "PAC-042 source-bound storage inspection integration review and executed regressions: evidence/private-library-search/OGM-011.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2416",
+      "AssetType": "FILE",
+      "Path": "evidence/private-library-search/OGM-012.json",
+      "Purpose": "PAC-042 scoped private search integration acceptance for OGM-012",
+      "PACRefs": "PAC-042",
+      "Tags": "#acceptance #private-library-search"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-012",
+    "artifact": "OVR-2416",
+    "evidence": "PAC-042 source-bound storage inspection integration review and executed regressions: evidence/private-library-search/OGM-012.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2417",
+      "AssetType": "FILE",
+      "Path": "evidence/private-library-search/OGM-013.json",
+      "Purpose": "PAC-042 scoped private search integration acceptance for OGM-013",
+      "PACRefs": "PAC-042",
+      "Tags": "#acceptance #private-library-search"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-013",
+    "artifact": "OVR-2417",
+    "evidence": "PAC-042 source-bound storage inspection integration review and executed regressions: evidence/private-library-search/OGM-013.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2418",
+      "AssetType": "FILE",
+      "Path": "evidence/private-library-search/OGM-014.json",
+      "Purpose": "PAC-042 scoped private search integration acceptance for OGM-014",
+      "PACRefs": "PAC-042",
+      "Tags": "#acceptance #private-library-search"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-014",
+    "artifact": "OVR-2418",
+    "evidence": "PAC-042 source-bound storage inspection integration review and executed regressions: evidence/private-library-search/OGM-014.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2419",
+      "AssetType": "FILE",
+      "Path": "evidence/private-library-search/OGM-015.json",
+      "Purpose": "PAC-042 scoped private search integration acceptance for OGM-015",
+      "PACRefs": "PAC-042",
+      "Tags": "#acceptance #private-library-search"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-015",
+    "artifact": "OVR-2419",
+    "evidence": "PAC-042 source-bound storage inspection integration review and executed regressions: evidence/private-library-search/OGM-015.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2420",
+      "AssetType": "FILE",
+      "Path": "evidence/private-library-search/OGM-016.json",
+      "Purpose": "PAC-042 scoped private search integration acceptance for OGM-016",
+      "PACRefs": "PAC-042",
+      "Tags": "#acceptance #private-library-search"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-016",
+    "artifact": "OVR-2420",
+    "evidence": "PAC-042 source-bound storage inspection integration review and executed regressions: evidence/private-library-search/OGM-016.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2421",
+      "AssetType": "FILE",
+      "Path": "evidence/private-library-search/OGM-017.json",
+      "Purpose": "PAC-042 scoped private search integration acceptance for OGM-017",
+      "PACRefs": "PAC-042",
+      "Tags": "#acceptance #private-library-search"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-017",
+    "artifact": "OVR-2421",
+    "evidence": "PAC-042 source-bound storage inspection integration review and executed regressions: evidence/private-library-search/OGM-017.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2422",
+      "AssetType": "FILE",
+      "Path": "evidence/private-library-search/OGM-018.json",
+      "Purpose": "PAC-042 scoped private search integration acceptance for OGM-018",
+      "PACRefs": "PAC-042",
+      "Tags": "#acceptance #private-library-search"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-018",
+    "artifact": "OVR-2422",
+    "evidence": "PAC-042 source-bound storage inspection integration review and executed regressions: evidence/private-library-search/OGM-018.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2423",
+      "AssetType": "FILE",
+      "Path": "evidence/private-library-search/OGM-019.json",
+      "Purpose": "PAC-042 scoped private search integration acceptance for OGM-019",
+      "PACRefs": "PAC-042",
+      "Tags": "#acceptance #private-library-search"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-019",
+    "artifact": "OVR-2423",
+    "evidence": "PAC-042 source-bound storage inspection integration review and executed regressions: evidence/private-library-search/OGM-019.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2424",
+      "AssetType": "FILE",
+      "Path": "evidence/private-library-search/OGM-020.json",
+      "Purpose": "PAC-042 scoped private search integration acceptance for OGM-020",
+      "PACRefs": "PAC-042",
+      "Tags": "#acceptance #private-library-search"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-020",
+    "artifact": "OVR-2424",
+    "evidence": "PAC-042 source-bound storage inspection integration review and executed regressions: evidence/private-library-search/OGM-020.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2425",
+      "AssetType": "FILE",
+      "Path": "evidence/private-library-search/OGM-021.json",
+      "Purpose": "PAC-042 scoped private search integration acceptance for OGM-021",
+      "PACRefs": "PAC-042",
+      "Tags": "#acceptance #private-library-search"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-021",
+    "artifact": "OVR-2425",
+    "evidence": "PAC-042 source-bound storage inspection integration review and executed regressions: evidence/private-library-search/OGM-021.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2426",
+      "AssetType": "FILE",
+      "Path": "evidence/private-library-search/OGM-022.json",
+      "Purpose": "PAC-042 scoped private search integration acceptance for OGM-022",
+      "PACRefs": "PAC-042",
+      "Tags": "#acceptance #private-library-search"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-022",
+    "artifact": "OVR-2426",
+    "evidence": "PAC-042 source-bound storage inspection integration review and executed regressions: evidence/private-library-search/OGM-022.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2427",
+      "AssetType": "FILE",
+      "Path": "evidence/private-library-search/OGM-023.json",
+      "Purpose": "PAC-042 scoped private search integration acceptance for OGM-023",
+      "PACRefs": "PAC-042",
+      "Tags": "#acceptance #private-library-search"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-023",
+    "artifact": "OVR-2427",
+    "evidence": "PAC-042 source-bound storage inspection integration review and executed regressions: evidence/private-library-search/OGM-023.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2428",
+      "AssetType": "FILE",
+      "Path": "evidence/private-library-search/OGM-024.json",
+      "Purpose": "PAC-042 scoped private search integration acceptance for OGM-024",
+      "PACRefs": "PAC-042",
+      "Tags": "#acceptance #private-library-search"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-024",
+    "artifact": "OVR-2428",
+    "evidence": "PAC-042 source-bound storage inspection integration review and executed regressions: evidence/private-library-search/OGM-024.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2429",
+      "AssetType": "FILE",
+      "Path": "evidence/private-library-search/OGM-025.json",
+      "Purpose": "PAC-042 scoped private search integration acceptance for OGM-025",
+      "PACRefs": "PAC-042",
+      "Tags": "#acceptance #private-library-search"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-025",
+    "artifact": "OVR-2429",
+    "evidence": "PAC-042 source-bound storage inspection integration review and executed regressions: evidence/private-library-search/OGM-025.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2430",
+      "AssetType": "FILE",
+      "Path": "evidence/private-library-search/OGM-026.json",
+      "Purpose": "PAC-042 scoped private search integration acceptance for OGM-026",
+      "PACRefs": "PAC-042",
+      "Tags": "#acceptance #private-library-search"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-026",
+    "artifact": "OVR-2430",
+    "evidence": "PAC-042 source-bound storage inspection integration review and executed regressions: evidence/private-library-search/OGM-026.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2431",
+      "AssetType": "FILE",
+      "Path": "evidence/private-library-search/OGM-027.json",
+      "Purpose": "PAC-042 scoped private search integration acceptance for OGM-027",
+      "PACRefs": "PAC-042",
+      "Tags": "#acceptance #private-library-search"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-027",
+    "artifact": "OVR-2431",
+    "evidence": "PAC-042 source-bound storage inspection integration review and executed regressions: evidence/private-library-search/OGM-027.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2432",
+      "AssetType": "FILE",
+      "Path": "evidence/private-library-search/OGM-028.json",
+      "Purpose": "PAC-042 scoped private search integration acceptance for OGM-028",
+      "PACRefs": "PAC-042",
+      "Tags": "#acceptance #private-library-search"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-028",
+    "artifact": "OVR-2432",
+    "evidence": "PAC-042 source-bound storage inspection integration review and executed regressions: evidence/private-library-search/OGM-028.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2433",
+      "AssetType": "FILE",
+      "Path": "evidence/private-library-search/OGM-029.json",
+      "Purpose": "PAC-042 scoped private search integration acceptance for OGM-029",
+      "PACRefs": "PAC-042",
+      "Tags": "#acceptance #private-library-search"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-029",
+    "artifact": "OVR-2433",
+    "evidence": "PAC-042 source-bound storage inspection integration review and executed regressions: evidence/private-library-search/OGM-029.json"
+  }
+]

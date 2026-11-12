@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="1" time="1.987" timestamp="2026-09-20T13:12:00.556476-07:00" hostname="homeone"><testcase classname="tests.test_spatial_budgets" name="test_spatial_browser_native" time="1.438"><failure message="AssertionError: AssertionError [ERR_ASSERTION]: native browser result: FAIL Error: actual PNG accepted by authenticated server&#10;      at assert (&lt;anonymous&gt;:3:44)&#10;      at &lt;anonymous&gt;:11:3&#10;  + actual - expected&#10;  &#10;  + 'FAIL Error: actual PNG accepted by authenticated server\n' +&#10;  +   '    at assert (&lt;anonymous&gt;:3:44)\n' +&#10;  +   '    at &lt;anonymous&gt;:11:3'&#10;  - 'PASS'&#10;  &#10;      at main (C:\Users\ryanf\github\_new\image-riposte\tests\spatial_browser.cjs:99:12) {&#10;    generatedMessage: false,&#10;    code: 'ERR_ASSERTION',&#10;    actual: 'FAIL Error: actual PNG accepted by authenticated server\n' +&#10;      '    at assert (&lt;anonymous&gt;:3:44)\n' +&#10;      '    at &lt;anonymous&gt;:11:3',&#10;    expected: 'PASS',&#10;    operator: 'strictEqual',&#10;    diff: 'simple'&#10;  }&#10;  &#10;assert 1 == 0&#10; +  where 1 = CompletedProcess(args=['C:\\nvm4w\\nodejs\\node.EXE', 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\tests\\spatial_b...&gt;:3:44)\\n' +\n    '    at &lt;anonymous&gt;:11:3',\n  expected: 'PASS',\n  operator: 'strictEqual',\n  diff: 'simple'\n}\n&quot;).returncode">root = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/riposte-spatial-native-first/test_spatial_browser_native0/workspace')
+make_image = &lt;function make_image.&lt;locals&gt;.create at 0x0000020A5628EB90&gt;
+
+    def test_spatial_browser_native(root,make_image):
+        import os
+        from pathlib import Path
+        import shutil
+        import socket
+        import subprocess
+        import threading
+        import time
+        import uvicorn
+        from riposte.organizer import organize,plan
+        from riposte.policy import Policy
+        node=shutil.which('node')
+        browser=next((p for p in [os.environ.get('RIPOSTE_TEST_BROWSER',''),shutil.which('chromium'),
+            'C:/Program Files/Google/Chrome/Application/chrome.exe','C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe'] if p and Path(p).is_file()),None)
+        if not node or not browser:pytest.skip('Local Node and Chromium required')
+    
+        for n in range(2):make_image(root/f'art-{n}.png',size=(96,80))
+        policy=Policy(date_mode='modified');organize(root,policy,plan_id=plan(root,policy)['plan_id'])
+        before={str(f):f.read_bytes() for f in root.rglob('*') if f.is_file()}
+        listener=socket.socket();listener.bind(('127.0.0.1',0));listener.listen()
+        server=uvicorn.Server(uvicorn.Config(create_app(root,'spatial-native'),log_level='error'))
+        thread=threading.Thread(target=server.run,kwargs={'sockets':[listener]},daemon=True);thread.start()
+        try:
+            for _ in range(100):
+                if server.started:break
+                time.sleep(.02)
+            assert server.started
+            args=[node,str(Path(__file__).with_name('spatial_browser.cjs')),browser]
+            if os.environ.get('RIPOSTE_SPATIAL_SCREENSHOTS'):args.append(os.environ['RIPOSTE_SPATIAL_SCREENSHOTS'])
+            run=subprocess.run(args,env={**os.environ,'RIPOSTE_MASK_PNG':base64.b64encode(png(np.tile(np.array([0]*32+[255]*64,dtype=np.uint8),(80,1)))).decode(),'RIPOSTE_SORT_LIVE':f'http://127.0.0.1:{listener.getsockname()[1]}/#token=spatial-native'},
+                               capture_output=True,text=True,encoding='utf-8',timeout=90)
+&gt;           assert run.returncode==0,run.stdout+run.stderr
+E           AssertionError: AssertionError [ERR_ASSERTION]: native browser result: FAIL Error: actual PNG accepted by authenticated server
+E                 at assert (&lt;anonymous&gt;:3:44)
+E                 at &lt;anonymous&gt;:11:3
+E             + actual - expected
+E             
+E             + 'FAIL Error: actual PNG accepted by authenticated server\n' +
+E             +   '    at assert (&lt;anonymous&gt;:3:44)\n' +
+E             +   '    at &lt;anonymous&gt;:11:3'
+E             - 'PASS'
+E             
+E                 at main (C:\Users\ryanf\github\_new\image-riposte\tests\spatial_browser.cjs:99:12) {
+E               generatedMessage: false,
+E               code: 'ERR_ASSERTION',
+E               actual: 'FAIL Error: actual PNG accepted by authenticated server\n' +
+E                 '    at assert (&lt;anonymous&gt;:3:44)\n' +
+E                 '    at &lt;anonymous&gt;:11:3',
+E               expected: 'PASS',
+E               operator: 'strictEqual',
+E               diff: 'simple'
+E             }
+E             
+E           assert 1 == 0
+E            +  where 1 = CompletedProcess(args=['C:\\nvm4w\\nodejs\\node.EXE', 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\tests\\spatial_b...&gt;:3:44)\\n' +\n    '    at &lt;anonymous&gt;:11:3',\n  expected: 'PASS',\n  operator: 'strictEqual',\n  diff: 'simple'\n}\n").returncode
+
+tests\test_spatial_budgets.py:268: AssertionError</failure></testcase></testsuite></testsuites>

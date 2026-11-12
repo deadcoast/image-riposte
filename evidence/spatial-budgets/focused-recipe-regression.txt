@@ -1,0 +1,43 @@
+........................................................................ [ 38%]
+...................................................s....F............... [ 76%]
+............................................                             [100%]
+================================== FAILURES ===================================
+_________ test_terminal_load_preview_save_preserves_nonrecipe_choices _________
+
+root = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/pytest-of-ryanf/pytest-583/test_terminal_load_preview_sav0/workspace')
+
+    def test_terminal_load_preview_save_preserves_nonrecipe_choices(root):
+        saved(root)
+        controller=Controller(root,Presentation(no_animation=True))
+        try:
+            controller.action('riposte',{'input1':str(root),'vae1':'PRIVATE_MODEL','device':'cpu'})
+            controller.key(Key('char','l'))
+            assert controller.state.page.name=='recipes'
+            assert 'Load settings' in render(controller.state,72,24).plain()
+            controller.key(Key('enter'))
+            form=controller.state.page
+            assert form.values['seed']==91 and form.values['edges']==[768,1536]
+            assert form.values['vae1']=='PRIVATE_MODEL' and form.values['device']=='cpu'
+            assert controller.state.operation is None
+            form.values['seed']=88
+            controller.key(Key('char','s'));controller.state.editor.value='Another'
+            controller.key(Key('enter'))
+>           assert controller.state.page.result['status']=='DRAFT'
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           TypeError: 'NoneType' object is not subscriptable
+
+tests\test_recipe_interfaces.py:106: TypeError
+============================== warnings summary ===============================
+.venv\Lib\site-packages\fastapi\testclient.py:1
+  C:\Users\ryanf\github\_new\image-riposte\.venv\Lib\site-packages\fastapi\testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    from starlette.testclient import TestClient as TestClient  # noqa
+
+.venv\Lib\site-packages\starlette\testclient.py:53
+  C:\Users\ryanf\github\_new\image-riposte\.venv\Lib\site-packages\starlette\testclient.py:53: DeprecationWarning: The anyio.abc.BlockingPortal alias is deprecated, use anyio.from_thread.BlockingPortal instead.
+    _PortalFactoryType = Callable[[], AbstractContextManager[anyio.abc.BlockingPortal]]
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ===========================
+SKIPPED [1] tests\test_recipes.py:134: Symlink privilege unavailable on this Windows account
+FAILED tests/test_recipe_interfaces.py::test_terminal_load_preview_save_preserves_nonrecipe_choices
+1 failed, 186 passed, 1 skipped, 2 deselected, 2 warnings in 31.08s

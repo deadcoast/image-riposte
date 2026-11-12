@@ -1,0 +1,72 @@
+F                                                                        [100%]
+================================== FAILURES ===================================
+_____________________ test_library_search_browser_native ______________________
+
+root = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/riposte-search-pac042-native-02/test_library_search_browser_na0/workspace')
+make_image = <function make_image.<locals>.create at 0x0000026360438E00>
+
+    def test_library_search_browser_native(root,make_image):
+        import os
+        from pathlib import Path
+        import shutil
+        import socket
+        import subprocess
+        import threading
+        import time
+        import uvicorn
+        from riposte.organizer import organize,plan
+        from riposte.policy import Policy
+        node=shutil.which('node')
+        browser=next((p for p in [os.environ.get('RIPOSTE_TEST_BROWSER',''),shutil.which('chromium'),
+            'C:/Program Files/Google/Chrome/Application/chrome.exe','C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe'] if p and Path(p).is_file()),None)
+        if not node or not browser:pytest.skip('Local Node and Chromium required')
+        sorted_images(root, make_image, 52)
+        before=snapshot(root)
+        listener=socket.socket();listener.bind(('127.0.0.1',0));listener.listen()
+        server=uvicorn.Server(uvicorn.Config(create_app(root,'search-native'),log_level='error'))
+        thread=threading.Thread(target=server.run,kwargs={'sockets':[listener]},daemon=True);thread.start()
+        try:
+            for _ in range(100):
+                if server.started:break
+                time.sleep(.02)
+            assert server.started
+            args=[node,str(Path(__file__).with_name('library_search_browser.cjs')),browser]
+            if os.environ.get('RIPOSTE_SEARCH_SCREENSHOTS'):args.append(os.environ['RIPOSTE_SEARCH_SCREENSHOTS'])
+            run=subprocess.run(args,env={**os.environ,'RIPOSTE_SORT_LIVE':f'http://127.0.0.1:{listener.getsockname()[1]}/#token=search-native'},
+                               capture_output=True,text=True,encoding='utf-8',timeout=90)
+>           assert run.returncode==0,run.stdout+run.stderr
+E           AssertionError: AssertionError [ERR_ASSERTION]: native browser result: FAIL TypeError: Cannot read properties of null (reading 'click')
+E                 at <anonymous>:37:30
+E             + actual - expected
+E             
+E             + "FAIL TypeError: Cannot read properties of null (reading 'click')\n" +
+E             +   '    at <anonymous>:37:30'
+E             - 'PASS'
+E             
+E                 at main (C:\Users\ryanf\github\_new\image-riposte\tests\library_search_browser.cjs:111:12) {
+E               generatedMessage: false,
+E               code: 'ERR_ASSERTION',
+E               actual: "FAIL TypeError: Cannot read properties of null (reading 'click')\n" +
+E                 '    at <anonymous>:37:30',
+E               expected: 'PASS',
+E               operator: 'strictEqual',
+E               diff: 'simple'
+E             }
+E             
+E           assert 1 == 0
+E            +  where 1 = CompletedProcess(args=['C:\\nvm4w\\nodejs\\node.EXE', 'C:\\Users\\ryanf\\github\\_new\\image-riposte\\tests\\library_s...n" +\n    \'    at <anonymous>:37:30\',\n  expected: \'PASS\',\n  operator: \'strictEqual\',\n  diff: \'simple\'\n}\n').returncode
+
+tests\test_library_search.py:219: AssertionError
+============================== warnings summary ===============================
+.venv\Lib\site-packages\fastapi\testclient.py:1
+  C:\Users\ryanf\github\_new\image-riposte\.venv\Lib\site-packages\fastapi\testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    from starlette.testclient import TestClient as TestClient  # noqa
+
+.venv\Lib\site-packages\starlette\testclient.py:53
+  C:\Users\ryanf\github\_new\image-riposte\.venv\Lib\site-packages\starlette\testclient.py:53: DeprecationWarning: The anyio.abc.BlockingPortal alias is deprecated, use anyio.from_thread.BlockingPortal instead.
+    _PortalFactoryType = Callable[[], AbstractContextManager[anyio.abc.BlockingPortal]]
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ===========================
+FAILED tests/test_library_search.py::test_library_search_browser_native - Ass...
+1 failed, 26 deselected, 2 warnings in 6.50s

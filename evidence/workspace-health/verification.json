@@ -1,0 +1,62 @@
+{
+  "result": "PASS",
+  "application_files": 79,
+  "changed_application_files": [
+    "src/riposte/cli.py",
+    "src/riposte/health.py",
+    "src/riposte/records.py",
+    "src/riposte/server.py",
+    "src/riposte/static/app.js",
+    "src/riposte/static/health.js",
+    "src/riposte/static/index.html",
+    "src/riposte/static/publish.css",
+    "src/riposte/terminal/actions.py",
+    "src/riposte/terminal/controller.py",
+    "src/riposte/terminal/reports.py",
+    "src/riposte/terminal/service.py"
+  ],
+  "focused": {
+    "tests": 74,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 1,
+    "passed": 73
+  },
+  "suite": {
+    "tests": 1619,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 11,
+    "passed": 1608
+  },
+  "native": {
+    "tests": 5,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "passed": 5
+  },
+  "contracts": {
+    "mypy-contracts": true,
+    "mypy-tooling": true,
+    "stubtest": true,
+    "runtime-contracts": true,
+    "tooling-regressions": true,
+    "negative-consumers": true,
+    "source-stable": true
+  },
+  "packages_match": true,
+  "strict_source_typing": "FAIL: Found 862 errors in 36 files (checked 68 source files)",
+  "documentation": {
+    "commands": 45,
+    "examples": 76,
+    "links": 172
+  },
+  "limits": [
+    "Existing Windows dependencies; no clean-install, different OS or user VS Code host qualification.",
+    "Synthetic media and existing synthetic/tiny-random CPU engine tests; no pretrained-model efficacy or independent human/accessibility acceptance.",
+    "Native health test uses the real authenticated local server for read-only inspection and recorded recovery; delayed/offline and partial/cancelled UI states are explicitly injected.",
+    "First focused run exposed Windows lstat/fstat ctime mismatch; first native runs exposed harness polling and hidden narrow opener. Failures retained separately from fixed passes.",
+    "Strict source typing remains failing; external declarations pass separately. Static UI findings have scoped dispositions, not a global pass."
+  ]
+}

@@ -16,10 +16,12 @@ import shutil
 import uuid
 import zipfile
 from pathlib import Path
+from typing import Any, Mapping
 from PIL import Image
 from .errors import RiposteError
 from .policy import folder_for, valid_day
 from .quality import QualityLimits, quality_report
+from .spatial import ArtistMask, checked_masks, mask_for, preview as spatial_preview
 from .release_guard import ReleaseConfig, protect_release
 from .sanitize import encode_clean, png_audit, social_render
 from .metrics import transport_report
@@ -31,6 +33,7 @@ class PublishRecipe:
     edges: tuple[int, ...] = (1536,)
     guard: ReleaseConfig = ReleaseConfig()
     quality: QualityLimits = QualityLimits()
+    masks: tuple[ArtistMask, ...] = ()
 
     def __post_init__(self):
         if (not isinstance(self.edges, tuple) or not 1 <= len(self.edges) <= 3
@@ -38,14 +41,27 @@ class PublishRecipe:
             or any(type(n) is not int or not 64 <= n <= 4096 for n in self.edges)
             or not isinstance(self.guard, ReleaseConfig) or not isinstance(self.quality, QualityLimits)):
             raise RiposteError("PUBLICATION_RECIPE_INVALID")
+        checked_masks(self.masks)
 
-    def public(self) -> dict[str, object]: return asdict(self)
+    def public(self) -> dict[str, object]:
+        value: dict[str, object] = {"edges": self.edges, "guard": asdict(self.guard), "quality": asdict(self.quality)}
+        if self.masks:
+            value["masks"] = [mask.public() for mask in self.masks]
+        return value
+
+    def budget_revision(self) -> str | None:
+        if not self.masks:
+            return None
+        value = {"masks": [mask.public() for mask in self.masks], "edges": self.edges, "quality": asdict(self.quality)}
+        return hashlib.sha256(json.dumps(value, sort_keys=True, separators=(",", ":")).encode()).hexdigest()
 
     @classmethod
     def from_dict(cls, data):
         try:
-            if set(data) != {"edges", "guard", "quality"}: raise ValueError
-            return cls(tuple(data["edges"]), ReleaseConfig(**data["guard"]), QualityLimits(**data["quality"]))
+            if set(data) not in ({"edges", "guard", "quality"}, {"edges", "guard", "quality", "masks"}): raise ValueError
+            if "masks" in data and not isinstance(data["masks"], list): raise ValueError
+            return cls(tuple(data["edges"]), ReleaseConfig(**data["guard"]), QualityLimits(**data["quality"]),
+                       tuple(ArtistMask.from_dict(item) for item in data.get("masks", [])))
         except (TypeError, KeyError, ValueError): raise RiposteError("PUBLICATION_RECIPE_INVALID") from None
 
 
@@ -94,7 +110,7 @@ def _checkpoint(root):
         raise RiposteError("ORGANIZATION_CHECKPOINT_REQUIRED")
 
 
-def publication_plan(root, image_ids, recipe: PublishRecipe = PublishRecipe(), *, input_paths=None, date_mode="download") -> dict:
+def publication_plan(root, image_ids, recipe: PublishRecipe = PublishRecipe(), *, input_paths=None, date_mode="download", budget_offset: int = 0, _include_budget_previews: bool = True) -> dict:
     check_root(root)
     if input_paths:
         if image_ids:
@@ -102,17 +118,66 @@ def publication_plan(root, image_ids, recipe: PublishRecipe = PublishRecipe(), *
         from .intake import inspect_inputs
         from .policy import Policy
         sources, ignored = inspect_inputs(input_paths, Policy(date_mode=date_mode))
-        return {**_plan_rows([source.row for source in sources], recipe),
-                "source_mode": "snapshot", "ignored_files": ignored, "originals_preserved": True}
+        result = {**_plan_rows([source.row for source in sources], recipe),
+                  "source_mode": "snapshot", "ignored_files": ignored, "originals_preserved": True}
+        if recipe.masks and _include_budget_previews:
+            page = _preview_tasks(result, budget_offset)
+            previews = []
+            for source in sources:
+                edges = tuple(task["max_edge"] for task in page if task["image_id"] == source.row["id"])
+                if edges:
+                    with Image.open(io.BytesIO(source.snapshot(Policy(date_mode=date_mode)))) as image:
+                        previews.extend(_budget_previews(image, source.row, replace(recipe, edges=edges)))
+            result["budget_previews"] = previews
+        return result
     if (not isinstance(image_ids, (list, tuple)) or not 1 <= len(image_ids) <= 200
         or len(set(image_ids)) != len(image_ids)):
         raise RiposteError("PUBLICATION_SELECTION_INVALID")
-    return _plan_rows([find_image(root, _id(identifier)) for identifier in image_ids], recipe)
+    rows = [find_image(root, _id(identifier)) for identifier in image_ids]
+    result = _plan_rows(rows, recipe)
+    if recipe.masks and _include_budget_previews:
+        page = _preview_tasks(result, budget_offset)
+        previews = []
+        for row in rows:
+            edges = tuple(task["max_edge"] for task in page if task["image_id"] == row["id"])
+            if edges:
+                with Image.open(safe_child(root, row["relative"])) as image:
+                    previews.extend(_budget_previews(image, row, replace(recipe, edges=edges)))
+        result["budget_previews"] = previews
+    return result
+
+
+def _preview_tasks(result: dict[str, Any], offset: int) -> list[dict[str, Any]]:
+    tasks = [task for task in result["tasks"] if task.get("artist_mask_sha256")]
+    if type(offset) is not int or not 0 <= offset < max(1, len(tasks)):
+        raise RiposteError("ARTIST_MASK_PREVIEW_REQUIRED")
+    result.update(budget_preview_total=len(tasks), budget_preview_offset=offset)
+    return tasks[offset:offset + 3]
+
+
+def _budget_previews(image: Image.Image, row: Mapping[str, Any], recipe: PublishRecipe) -> list[dict[str, Any]]:
+    from .quality import spatial_budget
+    artist_mask = mask_for(recipe.masks, row)
+    if artist_mask is None:
+        return []
+    previews, sizes = [], set()
+    for edge in sorted(recipe.edges):
+        clean = social_render(image, edge)
+        if clean.size in sizes:
+            continue
+        sizes.add(clean.size)
+        caps = spatial_budget(clean, recipe.quality, artist_mask)
+        previews.append({"image_id": row["id"], "max_edge": edge, "date": row["day"],
+                         **spatial_preview(clean, caps, artist_mask)})
+    return previews
 
 
 def _plan_rows(rows, recipe):
+    if {mask.source_sha256 for mask in recipe.masks} - {row["sha256"] for row in rows}:
+        raise RiposteError("ARTIST_MASK_SELECTION_MISMATCH")
     tasks, avoided = [], 0
     for row in rows:
+        artist_mask = mask_for(recipe.masks, row)
         seen_edges = set()
         for edge in sorted(recipe.edges):
             effective = min(edge, max(row["width"], row["height"]))
@@ -120,10 +185,12 @@ def _plan_rows(rows, recipe):
                 avoided += 1; continue
             seen_edges.add(effective)
             tasks.append({"image_id": row["id"], "date": row["day"], "max_edge": edge,
-                          "source_clean_sha256": row["sha256"], "index": len(tasks)})
+                          "source_clean_sha256": row["sha256"], "index": len(tasks),
+                          **({"artist_mask_sha256": artist_mask.identity} if artist_mask else {})})
     return {"mode": "PUBLICATION_PLAN", "images": len(rows), "outputs": len(tasks),
             "duplicate_renders_avoided": avoided, "tasks": tasks, "recipe": recipe.public(),
-            "master_changes": 0, "ai_protection": "UNVERIFIED", "writes": False}
+            "master_changes": 0, "ai_protection": "UNVERIFIED", "writes": False,
+            **({"budget_revision": recipe.budget_revision()} if recipe.masks else {})}
 
 
 def _request(root, batch_id):
@@ -132,7 +199,7 @@ def _request(root, batch_id):
         raise RiposteError("PUBLICATION_RECORD_INVALID")
     if data.get("source_mode", "catalog") not in {"catalog", "snapshot"}:
         raise RiposteError("PUBLICATION_RECORD_INVALID")
-    PublishRecipe.from_dict(data.get("recipe", {}))
+    recipe = PublishRecipe.from_dict(data.get("recipe", {}))
     tasks = data.get("tasks")
     if not isinstance(tasks, list) or not 1 <= len(tasks) <= 600: raise RiposteError("PUBLICATION_RECORD_INVALID")
     ids = []
@@ -143,6 +210,9 @@ def _request(root, batch_id):
             or not re.fullmatch(r"[0-9a-f]{64}", task.get("source_clean_sha256", ""))):
             raise RiposteError("PUBLICATION_RECORD_INVALID")
         ids.append(task["id"])
+        artist_mask = next((mask for mask in recipe.masks if mask.source_sha256 == task["source_clean_sha256"]), None)
+        if task.get("artist_mask_sha256") != (artist_mask.identity if artist_mask else None):
+            raise RiposteError("ARTIST_MASK_BINDING_CHANGED")
     if len(set(ids)) != len(ids): raise RiposteError("PUBLICATION_RECORD_INVALID")
     return data
 
@@ -184,7 +254,7 @@ def start_publication(root, image_ids, vae_dirs, recipe: PublishRecipe = Publish
             sources, ignored = inspect_inputs(input_paths, policy, progress)
             plan = _plan_rows([source.row for source in sources], recipe)
         else:
-            plan = publication_plan(root, image_ids, recipe)
+            plan = publication_plan(root, image_ids, recipe, _include_budget_previews=False)
         models = _loaded_models if _loaded_models is not None else _models(vae_dirs, device, pipeline_dir, temporal_dir, progress)
         identifier = uuid.uuid4().hex
         try:
@@ -265,9 +335,11 @@ def _run(root, request, models, progress):
                     clean = social_render(source, task["max_edge"])
                 # A new seed per task, stable across interruption/resume; no global RNG.
                 config = replace(recipe.guard, seed=(recipe.guard.seed + task["index"] * 7919) % 2**32)
+                artist_mask = mask_for(recipe.masks, row)
                 candidate, report = protect_release(clean, encoders, config, recipe.quality,
-                                                     probe=probe, temporal=temporal, progress=progress)
-                quality = quality_report(clean, candidate, recipe.quality)
+                                                     probe=probe, temporal=temporal, progress=progress,
+                                                     **({"artist_mask": artist_mask} if artist_mask else {}))
+                quality = quality_report(clean, candidate, recipe.quality, artist_mask)
                 if quality["status"] != "PASS" or quality["identical_pixels"]:
                     raise RiposteError("PUBLICATION_QUALITY_FAILED")
                 if progress: progress({"phase": "Verifying publishing output", "processed": config.steps * config.restarts,
@@ -324,7 +396,11 @@ def _verified_item(root, request, task):
         expected_clean = encode_clean(social_render(master, task["max_edge"]), task["date"])
     if expected_clean != raw["clean"]:
         raise RiposteError("PUBLICATION_CLEAN_BASELINE_CHANGED")
-    quality = quality_report(images["clean"], images["candidate"], PublishRecipe.from_dict(request["recipe"]).quality)
+    recipe = PublishRecipe.from_dict(request["recipe"])
+    artist_mask = mask_for(recipe.masks, row)
+    quality = quality_report(images["clean"], images["candidate"], recipe.quality, artist_mask)
+    if report.get("quality", {}).get("spatial_budget") != quality.get("spatial_budget"):
+        raise RiposteError("ARTIST_MASK_BINDING_CHANGED")
     if quality["status"] != "PASS" or quality["identical_pixels"]:
         raise RiposteError("PUBLICATION_QUALITY_FAILED")
     expected_folder = folder_for(task["date"], images["candidate"].width, images["candidate"].height)

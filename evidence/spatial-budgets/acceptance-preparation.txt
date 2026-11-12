@@ -1,0 +1,4 @@
+{
+  "requirements": 30,
+  "operations": 60
+}

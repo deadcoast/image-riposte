@@ -1,0 +1,488 @@
+[
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2309",
+      "AssetType": "FILE",
+      "Path": "evidence/publishing-recipes/OGM-001.json",
+      "Purpose": "PAC-040 scoped recipe integration acceptance for OGM-001",
+      "PACRefs": "PAC-040",
+      "Tags": "#acceptance #publishing-recipes"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-001",
+    "artifact": "OVR-2309",
+    "evidence": "PAC-040 source-bound recipe integration review and executed regressions: evidence/publishing-recipes/OGM-001.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2310",
+      "AssetType": "FILE",
+      "Path": "evidence/publishing-recipes/OGM-002.json",
+      "Purpose": "PAC-040 scoped recipe integration acceptance for OGM-002",
+      "PACRefs": "PAC-040",
+      "Tags": "#acceptance #publishing-recipes"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-002",
+    "artifact": "OVR-2310",
+    "evidence": "PAC-040 source-bound recipe integration review and executed regressions: evidence/publishing-recipes/OGM-002.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2311",
+      "AssetType": "FILE",
+      "Path": "evidence/publishing-recipes/OGM-003.json",
+      "Purpose": "PAC-040 scoped recipe integration acceptance for OGM-003",
+      "PACRefs": "PAC-040",
+      "Tags": "#acceptance #publishing-recipes"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-003",
+    "artifact": "OVR-2311",
+    "evidence": "PAC-040 source-bound recipe integration review and executed regressions: evidence/publishing-recipes/OGM-003.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2312",
+      "AssetType": "FILE",
+      "Path": "evidence/publishing-recipes/OGM-004.json",
+      "Purpose": "PAC-040 scoped recipe integration acceptance for OGM-004",
+      "PACRefs": "PAC-040",
+      "Tags": "#acceptance #publishing-recipes"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-004",
+    "artifact": "OVR-2312",
+    "evidence": "PAC-040 source-bound recipe integration review and executed regressions: evidence/publishing-recipes/OGM-004.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2313",
+      "AssetType": "FILE",
+      "Path": "evidence/publishing-recipes/OGM-005.json",
+      "Purpose": "PAC-040 scoped recipe integration acceptance for OGM-005",
+      "PACRefs": "PAC-040",
+      "Tags": "#acceptance #publishing-recipes"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-005",
+    "artifact": "OVR-2313",
+    "evidence": "PAC-040 source-bound recipe integration review and executed regressions: evidence/publishing-recipes/OGM-005.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2314",
+      "AssetType": "FILE",
+      "Path": "evidence/publishing-recipes/OGM-006.json",
+      "Purpose": "PAC-040 scoped recipe integration acceptance for OGM-006",
+      "PACRefs": "PAC-040",
+      "Tags": "#acceptance #publishing-recipes"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-006",
+    "artifact": "OVR-2314",
+    "evidence": "PAC-040 source-bound recipe integration review and executed regressions: evidence/publishing-recipes/OGM-006.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2315",
+      "AssetType": "FILE",
+      "Path": "evidence/publishing-recipes/OGM-007.json",
+      "Purpose": "PAC-040 scoped recipe integration acceptance for OGM-007",
+      "PACRefs": "PAC-040",
+      "Tags": "#acceptance #publishing-recipes"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-007",
+    "artifact": "OVR-2315",
+    "evidence": "PAC-040 source-bound recipe integration review and executed regressions: evidence/publishing-recipes/OGM-007.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2316",
+      "AssetType": "FILE",
+      "Path": "evidence/publishing-recipes/OGM-008.json",
+      "Purpose": "PAC-040 scoped recipe integration acceptance for OGM-008",
+      "PACRefs": "PAC-040",
+      "Tags": "#acceptance #publishing-recipes"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-008",
+    "artifact": "OVR-2316",
+    "evidence": "PAC-040 source-bound recipe integration review and executed regressions: evidence/publishing-recipes/OGM-008.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2317",
+      "AssetType": "FILE",
+      "Path": "evidence/publishing-recipes/OGM-009.json",
+      "Purpose": "PAC-040 scoped recipe integration acceptance for OGM-009",
+      "PACRefs": "PAC-040",
+      "Tags": "#acceptance #publishing-recipes"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-009",
+    "artifact": "OVR-2317",
+    "evidence": "PAC-040 source-bound recipe integration review and executed regressions: evidence/publishing-recipes/OGM-009.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2318",
+      "AssetType": "FILE",
+      "Path": "evidence/publishing-recipes/OGM-010.json",
+      "Purpose": "PAC-040 scoped recipe integration acceptance for OGM-010",
+      "PACRefs": "PAC-040",
+      "Tags": "#acceptance #publishing-recipes"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-010",
+    "artifact": "OVR-2318",
+    "evidence": "PAC-040 source-bound recipe integration review and executed regressions: evidence/publishing-recipes/OGM-010.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2319",
+      "AssetType": "FILE",
+      "Path": "evidence/publishing-recipes/OGM-011.json",
+      "Purpose": "PAC-040 scoped recipe integration acceptance for OGM-011",
+      "PACRefs": "PAC-040",
+      "Tags": "#acceptance #publishing-recipes"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-011",
+    "artifact": "OVR-2319",
+    "evidence": "PAC-040 source-bound recipe integration review and executed regressions: evidence/publishing-recipes/OGM-011.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2320",
+      "AssetType": "FILE",
+      "Path": "evidence/publishing-recipes/OGM-012.json",
+      "Purpose": "PAC-040 scoped recipe integration acceptance for OGM-012",
+      "PACRefs": "PAC-040",
+      "Tags": "#acceptance #publishing-recipes"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-012",
+    "artifact": "OVR-2320",
+    "evidence": "PAC-040 source-bound recipe integration review and executed regressions: evidence/publishing-recipes/OGM-012.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2321",
+      "AssetType": "FILE",
+      "Path": "evidence/publishing-recipes/OGM-013.json",
+      "Purpose": "PAC-040 scoped recipe integration acceptance for OGM-013",
+      "PACRefs": "PAC-040",
+      "Tags": "#acceptance #publishing-recipes"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-013",
+    "artifact": "OVR-2321",
+    "evidence": "PAC-040 source-bound recipe integration review and executed regressions: evidence/publishing-recipes/OGM-013.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2322",
+      "AssetType": "FILE",
+      "Path": "evidence/publishing-recipes/OGM-014.json",
+      "Purpose": "PAC-040 scoped recipe integration acceptance for OGM-014",
+      "PACRefs": "PAC-040",
+      "Tags": "#acceptance #publishing-recipes"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-014",
+    "artifact": "OVR-2322",
+    "evidence": "PAC-040 source-bound recipe integration review and executed regressions: evidence/publishing-recipes/OGM-014.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2323",
+      "AssetType": "FILE",
+      "Path": "evidence/publishing-recipes/OGM-015.json",
+      "Purpose": "PAC-040 scoped recipe integration acceptance for OGM-015",
+      "PACRefs": "PAC-040",
+      "Tags": "#acceptance #publishing-recipes"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-015",
+    "artifact": "OVR-2323",
+    "evidence": "PAC-040 source-bound recipe integration review and executed regressions: evidence/publishing-recipes/OGM-015.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2324",
+      "AssetType": "FILE",
+      "Path": "evidence/publishing-recipes/OGM-016.json",
+      "Purpose": "PAC-040 scoped recipe integration acceptance for OGM-016",
+      "PACRefs": "PAC-040",
+      "Tags": "#acceptance #publishing-recipes"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-016",
+    "artifact": "OVR-2324",
+    "evidence": "PAC-040 source-bound recipe integration review and executed regressions: evidence/publishing-recipes/OGM-016.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2325",
+      "AssetType": "FILE",
+      "Path": "evidence/publishing-recipes/OGM-017.json",
+      "Purpose": "PAC-040 scoped recipe integration acceptance for OGM-017",
+      "PACRefs": "PAC-040",
+      "Tags": "#acceptance #publishing-recipes"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-017",
+    "artifact": "OVR-2325",
+    "evidence": "PAC-040 source-bound recipe integration review and executed regressions: evidence/publishing-recipes/OGM-017.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2326",
+      "AssetType": "FILE",
+      "Path": "evidence/publishing-recipes/OGM-018.json",
+      "Purpose": "PAC-040 scoped recipe integration acceptance for OGM-018",
+      "PACRefs": "PAC-040",
+      "Tags": "#acceptance #publishing-recipes"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-018",
+    "artifact": "OVR-2326",
+    "evidence": "PAC-040 source-bound recipe integration review and executed regressions: evidence/publishing-recipes/OGM-018.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2327",
+      "AssetType": "FILE",
+      "Path": "evidence/publishing-recipes/OGM-019.json",
+      "Purpose": "PAC-040 scoped recipe integration acceptance for OGM-019",
+      "PACRefs": "PAC-040",
+      "Tags": "#acceptance #publishing-recipes"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-019",
+    "artifact": "OVR-2327",
+    "evidence": "PAC-040 source-bound recipe integration review and executed regressions: evidence/publishing-recipes/OGM-019.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2328",
+      "AssetType": "FILE",
+      "Path": "evidence/publishing-recipes/OGM-020.json",
+      "Purpose": "PAC-040 scoped recipe integration acceptance for OGM-020",
+      "PACRefs": "PAC-040",
+      "Tags": "#acceptance #publishing-recipes"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-020",
+    "artifact": "OVR-2328",
+    "evidence": "PAC-040 source-bound recipe integration review and executed regressions: evidence/publishing-recipes/OGM-020.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2329",
+      "AssetType": "FILE",
+      "Path": "evidence/publishing-recipes/OGM-021.json",
+      "Purpose": "PAC-040 scoped recipe integration acceptance for OGM-021",
+      "PACRefs": "PAC-040",
+      "Tags": "#acceptance #publishing-recipes"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-021",
+    "artifact": "OVR-2329",
+    "evidence": "PAC-040 source-bound recipe integration review and executed regressions: evidence/publishing-recipes/OGM-021.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2330",
+      "AssetType": "FILE",
+      "Path": "evidence/publishing-recipes/OGM-022.json",
+      "Purpose": "PAC-040 scoped recipe integration acceptance for OGM-022",
+      "PACRefs": "PAC-040",
+      "Tags": "#acceptance #publishing-recipes"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-022",
+    "artifact": "OVR-2330",
+    "evidence": "PAC-040 source-bound recipe integration review and executed regressions: evidence/publishing-recipes/OGM-022.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2331",
+      "AssetType": "FILE",
+      "Path": "evidence/publishing-recipes/OGM-023.json",
+      "Purpose": "PAC-040 scoped recipe integration acceptance for OGM-023",
+      "PACRefs": "PAC-040",
+      "Tags": "#acceptance #publishing-recipes"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-023",
+    "artifact": "OVR-2331",
+    "evidence": "PAC-040 source-bound recipe integration review and executed regressions: evidence/publishing-recipes/OGM-023.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2332",
+      "AssetType": "FILE",
+      "Path": "evidence/publishing-recipes/OGM-024.json",
+      "Purpose": "PAC-040 scoped recipe integration acceptance for OGM-024",
+      "PACRefs": "PAC-040",
+      "Tags": "#acceptance #publishing-recipes"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-024",
+    "artifact": "OVR-2332",
+    "evidence": "PAC-040 source-bound recipe integration review and executed regressions: evidence/publishing-recipes/OGM-024.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2333",
+      "AssetType": "FILE",
+      "Path": "evidence/publishing-recipes/OGM-025.json",
+      "Purpose": "PAC-040 scoped recipe integration acceptance for OGM-025",
+      "PACRefs": "PAC-040",
+      "Tags": "#acceptance #publishing-recipes"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-025",
+    "artifact": "OVR-2333",
+    "evidence": "PAC-040 source-bound recipe integration review and executed regressions: evidence/publishing-recipes/OGM-025.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2334",
+      "AssetType": "FILE",
+      "Path": "evidence/publishing-recipes/OGM-026.json",
+      "Purpose": "PAC-040 scoped recipe integration acceptance for OGM-026",
+      "PACRefs": "PAC-040",
+      "Tags": "#acceptance #publishing-recipes"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-026",
+    "artifact": "OVR-2334",
+    "evidence": "PAC-040 source-bound recipe integration review and executed regressions: evidence/publishing-recipes/OGM-026.json"
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "ID": "OVR-2335",
+      "AssetType": "FILE",
+      "Path": "evidence/publishing-recipes/OGM-027.json",
+      "Purpose": "PAC-040 scoped recipe integration acceptance for OGM-027",
+      "PACRefs": "PAC-040",
+      "Tags": "#acceptance #publishing-recipes"
+    }
+  },
+  {
+    "op": "verify",
+    "id": "OGM-027",
+    "artifact": "OVR-2335",
+    "evidence": "PAC-040 source-bound recipe integration review and executed regressions: evidence/publishing-recipes/OGM-027.json"
+  }
+]

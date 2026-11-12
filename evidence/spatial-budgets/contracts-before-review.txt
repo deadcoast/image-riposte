@@ -1,0 +1,10 @@
+warning: `VIRTUAL_ENV=.venv` does not match the project environment path `typing\.venv` and will be ignored; use `--active` to target the active environment instead
+Source/stub parity: 566 signatures, 66 importable leaf modules
+Missing stub: spatial
+cli:publish: source/stub parameter mismatch
+publication:_budget_previews: missing declaration
+quality:spatial_budget: source/stub parameter mismatch
+quality:quality_report: source/stub parameter mismatch
+release_guard:protect_release: source/stub parameter mismatch
+terminal\service:masked_recipe: missing declaration
+Source differs from the reviewed snapshot; re-review these contracts: src/riposte/cli.py, src/riposte/publication.py, src/riposte/quality.py, src/riposte/records.py, src/riposte/release_guard.py, src/riposte/server.py, src/riposte/spatial.py, src/riposte/static/index.html, src/riposte/static/publish.css, src/riposte/static/publish.js, src/riposte/static/recovery-catalog.json, src/riposte/static/spatial.js, src/riposte/terminal/actions.py, src/riposte/terminal/controller.py, src/riposte/terminal/interaction.py, src/riposte/terminal/reports.py, src/riposte/terminal/service.py

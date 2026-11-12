@@ -3,40 +3,40 @@
   "result": "PASS",
   "issues": [],
   "counts": {
-    "source_files": 76,
-    "source_modules": 66,
-    "paired_stubs": 66,
-    "indexed_files": 1040,
-    "source_symbols": 742,
+    "source_files": 83,
+    "source_modules": 70,
+    "paired_stubs": 70,
+    "indexed_files": 1081,
+    "source_symbols": 816,
     "tool_functions": 9,
-    "symbol_dependency_edges": 3131,
-    "static_definitions": 2880,
-    "local_dependency_edges": 1205
+    "symbol_dependency_edges": 3444,
+    "static_definitions": 3153,
+    "local_dependency_edges": 1329
   },
   "sources": {
     "AGENTS.md": "9cf4d382c15ecff07d062d796a6e79b5504d63d15a4a26726e43ed154eff61fb",
     "INSTALL.ps1": "7bb338033eab109bd9f4767c9956fae00133444ab346bb3cbe20b8d612eabc3c",
     "INSTALL.sh": "d394c7756b2757382f5e78383c1b17a0cfefae640ce743dda09a44fbd2aafa01",
     "MANIFEST.in": "80bc999e2ced26a9abddec8ebaa6af3e21bc7cec85427f9c1cbafed2519ae79d",
-    "README.md": "284cce30209d807df8fde07a5ba4ac7e17419e7ddc136df9ccd000d60f02befb",
-    "RELEASE-MANIFEST.json": "0c3e6ea417934330e37d02b6e9730869b130cc592e61c09bbe882fce9a66905b",
+    "README.md": "70ad5fbd5770579ef17ffed38773d8e492b32a853b19e9e3f1cce2cd81cc518f",
+    "RELEASE-MANIFEST.json": "6abd1ef34f0d9db9c64dcb13dd576798d3cabb95d886b672ee3b73a35f239d3d",
     "START.cmd": "f1e2bbd4f9109a60cbeb646ef61d847f384a65348cc569c6d971e91f81ca1002",
     "START.ps1": "38f293347d099344ac8206c47c7eaa23ef44b03db95e6299db1214b736efaa91",
     "START.sh": "65ed119680efaebbc22c7907d69f9b940d662c4e2c1ed5e6faeb797011c07b79",
-    "docs/CHANGELOG.md": "308e8a26a405b7f96d410bb48c154dfebed470a0347cf64907b277ece424ec6a",
-    "docs/CLI.md": "c58c7e2a4d0cc45241487df0a5cb88f42efe6a7fdc3f3e22ff95c93f7ccbf5ca",
+    "docs/CHANGELOG.md": "67817f764219349233a2eec9f97e198a97ad258732a1cb60f985d02bd636f825",
+    "docs/CLI.md": "9b57bfc0680182f4ecc30da20a99d92ae782d938a8602977396d9bd7246b6bc0",
     "docs/CURRENT-CONTRACT.md": "8d9c701473bd1aa756b3583c0e01d5f1bf702ae3611777ef3d5e9f6a9f8060e5",
-    "docs/DESIGN.md": "4f3a6fc87aeeb7a96fda439d4c792025e528667693fcbf422c97118e668c5ce3",
+    "docs/DESIGN.md": "d7584b07a5d1f248a018ebe212e671c1724e130484aa700d3124e4ec18d88802",
     "docs/DUPLICATES.md": "653384d79e8e7ed541fde932c8f258a3250bf13ec7e54d4ac330f0a3a8c3342b",
     "docs/PATCH-v05-MERGE.md": "5d11de4515dd8de4a88e57750b87e6499af5084d02b1ae7c2ea397a48fc6b240",
     "docs/PCUC.md": "4271bb804fd3cf3a3469e85bd416f468ea2267e0bde7ecbb52dae50bad0f0976",
-    "docs/PROJECT-STATUS.md": "d8624d7e77f1532c85c9f5f8b7f4cb84537182da67d87b4de96cb25ef9fdb5ad",
+    "docs/PROJECT-STATUS.md": "24a5500adf261a8e58e74a425a21430a95084d04b64d757399cd1f6403f07a04",
     "docs/README.md": "3cb5eb3509dc1e776fa5e6f485074b1fc15e14d70323f6a95040be950a6976e4",
     "docs/REBUILD.md": "21cabab3351e732e5b87300352f925493c7e4be8d04d484e14b1021a0fef7144",
     "docs/REVISION-v05.md": "9328dc46b8da0b327dc13918a530f3a25c355b21c82b3f37db2222017c6ea261",
     "docs/TERMINAL-DESIGN.spec.md": "d228c2f02cd29c450e748402bc35f9f0cfaead60ce078b5c28ccb74dc8164959",
     "docs/THREAT-MODEL.md": "9988a5fcf43b1a469bb622f6464f6f1b4697bc7d56915b825af40cf1788b79f3",
-    "docs/UX-CONTRACT.md": "dcc5b0cb711c1fa4a1d1a5881abed07bfe3f1fbec6ac043cd78560faac9f82e7",
+    "docs/UX-CONTRACT.md": "dbd80ab1f4b889c271d7cd8d8f69cfef2f4dfa2aaefe8024de65fb23a8675834",
     "docs/VALIDATION.md": "4beaf95e52058bc428435af31510b5527e3481c6202e4209c69048afcf5d856c",
     "docs/research/sorting/RIPOSTE-REVIEW.md": "3f3398ffcd206d429c6131487bb164b7eedbf3e8f230d8648f89805c749bdeb4",
     "evidence/application-roots/README.md": "8c50704e76139c148faef501df58a593a39015ed8b9e986fa25d81921c95406a",
@@ -422,6 +422,15 @@
     "evidence/pcuc-shared-views/source-before.zip": "ddfea5139a03fa3a0b5593b196ba8eb0843db3ec9e0f10c2422ec2703f2f680b",
     "evidence/pcuc-shared-views/verify.py": "fdcff8a9481c6fcfefa7a8f6dbcd15f0fcc903e75789aa02986d50d8d1d9f772",
     "evidence/pcuc-shared-views/verify_package.py": "754c638c0dce71640c479132d63c2b3f1e391ec8ad9605f33737e221789f8e65",
+    "evidence/private-library-search/README.md": "03a8b5cb27807c5f39351b2a5ecd5fc11fd588d46583b15c58a7792254ecb439",
+    "evidence/private-library-search/contract-review.json": "2fd4dfae422320e91b06e488a8bfb50a6b01a89cdeeed1f37b3af75eff451d48",
+    "evidence/private-library-search/prepare.py": "eb4841c2cb5f9e52a5e8d7eb1ba1989040580492607326a88883d98c29aae798",
+    "evidence/private-library-search/requirement-review.json": "eb4ce3e6d04aa90535aaa8b2fef3a1659d002a69d6928be652005b1f96486a3f",
+    "evidence/private-library-search/verify.py": "1090c2a4ab17a4ea4720ae72af3461e16e2f6fd225067872eb3e56337d4a79c1",
+    "evidence/publishing-recipes/README.md": "c6afa254934ecfbeec43597917062e0cd35301d8376a2dee13b17a6a331007d4",
+    "evidence/publishing-recipes/contract-review.json": "14b8d812d9c19fc74489d33be2b6eafa664faf23b11480440533a482b5819514",
+    "evidence/publishing-recipes/requirement-review.json": "f2c8715fea162350e87d2fe7745cbdabd6f4e9b852bd3d237d5ce1f5615f4d6a",
+    "evidence/publishing-recipes/verify.py": "22e0ca0c9560676c5449ab47ad0ab3440385ad72b11013bb9840f4c153bbe6c7",
     "evidence/recovery-guidance/README.md": "f62ba0c7408d97a5a400b90eb53b43f845846fd075f219844fcf567dc393e7c2",
     "evidence/recovery-guidance/live_browser.py": "35ec9fba9409b11eb3630c361727d4fd73364fea5468cc18a2d084814717d5f7",
     "evidence/recovery-guidance/live_probe.js": "abc34d82eacad9a2040619af6b37a592ac40c930cec8198ffd00138d2989b73e",
@@ -640,6 +649,10 @@
     "evidence/source-typing/start-transcript.txt": "fd2132e3f7b2228e850d1c4cce66941a56a49095d94a0e643d5fc4ace56a20a5",
     "evidence/source-typing/verify.py": "5a3556f2b6ed8af26b4a890f6cc315abbd778286fdeb2bb1fa52ce62db7ab31f",
     "evidence/source-typing/verify_package.py": "a95fc3c286a92f0e791ba20c54c0bb6bbc5c3bbc7087b7abfae7f8388f0aac2b",
+    "evidence/spatial-budgets/README.md": "9e41d3a3189d62f99209440c71071b519e7b3c978684cde7ee5218b9f056088e",
+    "evidence/spatial-budgets/contract-review.json": "69659badc2b67d00fc2799c27d4fc1b80d8013e2aa13b746a1d474eb6365c39f",
+    "evidence/spatial-budgets/requirement-review.json": "33f0dd2dd4ba5bff4007aca98ee0c3dabd283a06e8734e6aa09088d4368a936b",
+    "evidence/spatial-budgets/verify.py": "0b1ec7cdb90ebcbc0d784995bc16c71f06d612be55b2fd02673c1066d941c846",
     "evidence/terminal-direction/README.md": "157960e5f08c17167c95807d8fd5213df422991cc4c6177f1a671b274e8905b7",
     "evidence/terminal-direction/after-default-cmd.txt": "232805be9d1c8a656b78e654b16d28812517493f167635299e0caf69b700bce0",
     "evidence/terminal-direction/after-default-powershell.txt": "f993d5c50dffff69779daf65562dea6430079fba953223265ed0a0fcd835d24c",
@@ -756,6 +769,10 @@
     "evidence/workflows/pytest.xml": "7d9544fe94e94419822012d614748863c6b0adb37b6587698ec67da391749d8b",
     "evidence/workflows/report.json": "c549d29c588fc39dffc13c28d0233c207fca62c13b37f3bee41e33e12d6b98a7",
     "evidence/workflows/typing.txt": "57654f6002ca976275a6343c0dacbefb97fc8a461e034e3ebcb22382a8f7e472",
+    "evidence/workspace-health/README.md": "ec4f9a3b9cc4ff97fda8e85c4174d5765afdef5d9ad98a917b1504124e58af65",
+    "evidence/workspace-health/contract-review.json": "14cb9f053c2007199fe458ab3d27e1e7421da9285c7b633e80555d18247a82f5",
+    "evidence/workspace-health/requirement-review.json": "1573ef81d6a74bbe060b036981d2ddcf1cf8b8d543e01920c0eef03ea8966c7b",
+    "evidence/workspace-health/verify.py": "9bcddcdfa9bb92ee0534c94cf543e0f6f58594224cde80cab70b94dc482037f6",
     "evidence/workspace-lease/README.md": "0712f79e97d97afc93cec58aa7663bd399c75455a50560290df1b893f5570851",
     "evidence/workspace-lease/acceptance.json": "3b0e68eda95d5a845d2426a6c135fd38441816daf29fe7d920efea196a0d9091",
     "evidence/workspace-lease/before.txt": "b9ec480dcc7ecebd4e6fcb3279fcb41630b652bf298f96991e985bfb19ebee3c",
@@ -790,7 +807,7 @@
     "src/riposte/category_corpus.py": "8bb923a6ce843d4e14b3294403c053f38a6663b0b42d14406e6d9467e324b047",
     "src/riposte/category_rules.py": "e059e403d39d392858c9c1f8a088df5d01b8b507ad860bc77db4b08d69159fc5",
     "src/riposte/category_sort.py": "691b956cd8ffb18d30995b8dda169f605b211bc176fb0cc55e2dfd4e9c45d343",
-    "src/riposte/cli.py": "79348aa7760dd1d1237829c7c127c45d86b73bf5afce64cc9b1a32ecdbfe2597",
+    "src/riposte/cli.py": "6076bdc9ee0a64244cb5a464e2c7df0182d642a4c5eec0090f4f5d8c0a05956b",
     "src/riposte/cohort.py": "a0fa1d5a3f8433d4123da5a8ddd2bb658753235a4c93c1df2dbf15d24e26d471",
     "src/riposte/context_graph.py": "5c92c1a8064f54b9b42d5dc779d922527172b526800245a168ebcc11defffe77",
     "src/riposte/coupled.py": "13ac7507a4ec6f9f81f97719a80a36d670fed1796fc05eed121a7da7c49c0403",
@@ -802,9 +819,11 @@
     "src/riposte/errors.py": "cc52e21f857dec38dfd200cccfcd70d2940fd337f3343221855765955701481d",
     "src/riposte/experiment.py": "c0d2148a3d6c7a63f17fe9ef6b0b9935df45a3933d1055b771704a2348253223",
     "src/riposte/generation.py": "2d0ba01c651a93484f22fcc90d9601fce3a96153b1285160c63a4b18b106767b",
+    "src/riposte/health.py": "81cc9cb6c8ead3503481fb95c6e5875e99c6b01c03477f3985e7068dd6ca02dd",
     "src/riposte/intake.py": "5fdea54e8c89d58230c68521317b89044de39e9b40e1cf173e5b9cd4575a97c4",
     "src/riposte/kontext.py": "edc9982cfb0b8b9f93a17fdabdc1f6f072ae48dfff171362940556422469614b",
     "src/riposte/lab.py": "3845f3e3abedd03d1f0c200b84395e6b46f67b2ff120f6e8a8fc75a2d8c03093",
+    "src/riposte/library_search.py": "2ee70c53559fe57846b2cf370ccdfe2f6ef7fb27c3ee525fd77331975cfe4f72",
     "src/riposte/locking.py": "90200f7b491d378b4c1e5a0e663d11a6e89f59fbdb489979541b97e981a10b17",
     "src/riposte/methods.json": "4405d32fac499c6f3b7fbce0afa04abea62e2509e130844a20899c39a6283920",
     "src/riposte/metrics.py": "0d873a0cb8972b5bdce14eb3cdc49ab391af31a297981fda1ad37603496c22eb",
@@ -812,36 +831,41 @@
     "src/riposte/optimizer.py": "b992d697787ca9b4fb9a79a2d1d4f4e1953f8e98a687f01e69ae8a9349e41a99",
     "src/riposte/organizer.py": "bbc8bd1c17c833e749ef13f4a679007a3924ee8a05df6b97bd1880c7d5d1588d",
     "src/riposte/policy.py": "1f26521de3439a45856dd4d9af4d6cc4a0d2bc92f7cc53b43b82bb9c09a35562",
-    "src/riposte/publication.py": "35fb3dfccdb3cb23095db5b631d1ee07abaddedaf402281e54db42cb4408e05e",
+    "src/riposte/publication.py": "2ad89c50313a53a5965f69e0919fb7eacb8331fa5e172c940e1f6f79ec03874b",
     "src/riposte/qualification.py": "4fc049f680adc31c34f02499d8dfe4ebed9af46f47fa1cd554f50ead273231ce",
-    "src/riposte/quality.py": "3af92838360f5f9ce65d69973eef37a6dd006d733f56c376443a2228d3c9656d",
-    "src/riposte/records.py": "df52f3e318ef097c364da841113e54e6c07de92c0cb5170355155c947312e08e",
+    "src/riposte/quality.py": "d11a13b897ece47c2eceb6c2b3ac43bd12e2271c16471b26c19a19e2f92efb3d",
+    "src/riposte/recipes.py": "9ddf8489278c4b2a7b1ab4d78d4a7a97fd9025db550d2be6ac1591fc7a35584b",
+    "src/riposte/records.py": "cb3e1f52dcf119ba404194309bf5043491010e0fb7b1f0c476ac97388d06e9c0",
     "src/riposte/recovery.py": "4adc23e9bc5dd61825640527824b9bfac919231b39ad491f4facae1da6fe048c",
-    "src/riposte/release_guard.py": "6e2a67a6b83be731ccd0f432c597938e0552f5e4fccc6e0ea974fed18f35334a",
+    "src/riposte/release_guard.py": "7a80f66c42b5fa980b65c006bb4c8422f8392661fb17489114a0b2e28ccbb987",
     "src/riposte/review_panel.py": "462bf06c9821bf7f15601cadc1eb3afa32aabeaf5779337ea95ff007c647187e",
     "src/riposte/runtime_probe.py": "67178701646b2d6e144b42400398394c85c14963a27f3e4a359d0942221f712d",
     "src/riposte/sanitize.py": "f73004a30ae104ea6ace31b65f97212391ccdb80f7e13573181135d280c31f4e",
-    "src/riposte/server.py": "465e926406dda3e0dac25bae50d07d2e5b4a7f13bd5e8b8f063aaaceb828d0ed",
+    "src/riposte/server.py": "0a22f06cc391523f5360ce2aef92042c6e95253bf7e97b0efff2c8a87cea827e",
     "src/riposte/sort_history.py": "aa82eb4dd31787b02d9ec81cf824a4bb7579173b3f57737f33d6cecd5772766a",
     "src/riposte/sort_plan.py": "0f7c27092029699caded7e4f93097c17cf6bfeeb7dd2f63836e813db3bde0ae6",
     "src/riposte/sort_titles.py": "12ca0b37e91007cbe45c6dd7f83d3a1e71665eeb1c72c0702c278ff9f78e8bf0",
-    "src/riposte/static/app.js": "1e5eb278d01e1e462269efd463a225f4440f0bb6a57c98fb697f317a71584893",
+    "src/riposte/spatial.py": "a6df645fb075c9858e80218cc5912a86b4102e8606bba92e76cdc63568744f0e",
+    "src/riposte/static/app.js": "ea21c051aac4c94c35e54470d0c7ff900b2963a2cdc4e87f653228d0fcfaecbc",
     "src/riposte/static/category-sort.js": "88a2a4e9f449dcd2f5326906bf9b2542b3aad1fc9578c4265f9c64874ee8c952",
     "src/riposte/static/duplicates.js": "0e06f8e0497f847560762079e3069d374ee0d41e2908d3f0805dd26971b88501",
-    "src/riposte/static/index.html": "43c625f93f3975f564aff643d6142886c31df3ef0221217037bd57a895341ded",
-    "src/riposte/static/publish.css": "3194ff34f6648c32432a8a85fcd7cbe8d2103f4fe0e4506e5af3e759c460261b",
-    "src/riposte/static/publish.js": "3364df84d3ab7de65fe4e344bfe273b2d8d260697db5e3b59bfe733b9c9a7545",
-    "src/riposte/static/recovery-catalog.json": "ad7415d247d90e08f6ae0b385e67e0dd3142ea53b1099ce5a89a05415309b5fe",
+    "src/riposte/static/health.js": "89cd7e3cd09e9edf442e0b14bf6d9ab7ead110ad85d87794070b800a7355d3ee",
+    "src/riposte/static/index.html": "eee570be7292438d97e787d45be5c0ccd5e1260347faf83db1854a38862ff06d",
+    "src/riposte/static/library-search.js": "63a3b77abdd6719fa39e01452c8f65df6dd72eff5ace759be6cf9a3c7ffb10a2",
+    "src/riposte/static/publish.css": "1c19b02f18da186e2b02a8da849c00f64806186b3d34b5bc5fcdd40c99cd6f73",
+    "src/riposte/static/publish.js": "388f07d5baf11709fa654665bb493f0a97a02cb5495cf4234bc8687337883376",
+    "src/riposte/static/recovery-catalog.json": "ee37ea371c4b10816d710a5fbf0bac80cc6aed7d9425ed469bd2bbe70af1b906",
     "src/riposte/static/recovery.js": "80c32018ef2c0765cee0a974b168ee7fe94b791c9fe5c8ee03696d09d3536f6c",
+    "src/riposte/static/spatial.js": "cf2b6cc1cd641c1a0d060030329e95d034c0dc47a09b0486c3e8819dff04f84a",
     "src/riposte/static/style.css": "479181e5781bfba6bdbc271f0d5ced58f4568da6a3b1fecd547c68512787ec90",
     "src/riposte/store.py": "b4ba88fd1c207b82eef4e9b6b2fe9aef9cf19ce9a0e3d29dadfe8c2a5ce6210d",
     "src/riposte/temporal.py": "e224555e5fdd1f98fcf030d5c66d99ee38440a0154959e63a2fe434fe42bbef9",
     "src/riposte/terminal/__init__.py": "3205c2b37274b4a78cad648f40635e4b02474f77515b94e506510e521ec79fa2",
-    "src/riposte/terminal/actions.py": "128da94b789b080dfc9b34b8d1d5e37e4354364c0154c6b5786f7683c59f88a5",
+    "src/riposte/terminal/actions.py": "ec08fa8f56f4dfde55ab7a63d4b72a5f40ad4531519c276ab70e938195c67d20",
     "src/riposte/terminal/app.py": "4c88c6cf13391bb6ec0e50987109909fa5a517cef2f47fc817003fe44be84bd0",
-    "src/riposte/terminal/controller.py": "ab5a86e18677ef26e9554567533469abbaa9e1f1ab1b9945ad38f5de2ff288e7",
+    "src/riposte/terminal/controller.py": "b0ed41239816a80dbd9fdd24a89db0aba606eb6d36ee826e849e5434578cbb79",
     "src/riposte/terminal/help.py": "a8602fc471cc001809b87d9e3145096914229e4ddaef7271cacfbba739c6dd8f",
-    "src/riposte/terminal/interaction.py": "5094ad0dd00e627ac37bddf30f856ffdcdf4f0f15c25999be87ae81dbe1aeae3",
+    "src/riposte/terminal/interaction.py": "9f3e5c567fe8a85a5ee1ecdf7a6e838332c23b388a3022353bfcdde953b6f5f3",
     "src/riposte/terminal/jobs.py": "d92e709ce9b21a047d0f1f4aab3c9e6302bfc6531255a2267a1eeb7ed5370770",
     "src/riposte/terminal/keyboard.py": "dd71262467037c66addd4aed0a73175e90fee133d2d05bbd6d3494bf9483ee01",
     "src/riposte/terminal/material.py": "522d5080177faae021905b94851bf3836bb2c18805a38d0a1d56b8402f5cebeb",
@@ -849,17 +873,17 @@
     "src/riposte/terminal/palette.py": "ab05080d75402a964ce73e25755fb3476b693ab8b79ab10982b4f74f42ee3e41",
     "src/riposte/terminal/paths.py": "ba5f06f7d5ed01520a1a794350a2afbc66cb1208373c082255470304f23366a9",
     "src/riposte/terminal/preview.py": "446b57630ee54c99070082b28f67e6d1d647b201577fb55d9ff5fb39259a67bc",
-    "src/riposte/terminal/render.py": "d1b1252e8627afa01a0961e6920923136d0065954230d1986160d0f97688be2b",
-    "src/riposte/terminal/reports.py": "3f1808e45dcb3de35e1aa87c24236f73af35f93bb1a84228e5d06a0f65063304",
-    "src/riposte/terminal/service.py": "07c4c274b7f7fc0006a086c572b1337b75ea56ffd37a5b57d115ec228f778cf1",
+    "src/riposte/terminal/render.py": "a210750a3c101e862205ef32674c4cb2e601239edd137cedf811e17e44c8f1a5",
+    "src/riposte/terminal/reports.py": "37a9bbfff47ae7225b78be1af6e0dcb39249f3d794ba13d2f3c469d35d3f8e46",
+    "src/riposte/terminal/service.py": "ff196c015a709cd395291367811dae05cbf32ca86e2c98c543d1baad21f95e63",
     "src/riposte/terminal/signals.py": "dd7ef5eac1860b126ceebeecb6aa6c6151f14dd4813254870b061ce71470ce19",
     "src/riposte/terminal/state.py": "cdb53502c4f795e938f8f37590c9d2d26699d2f224175028b876e45e90937700",
     "src/riposte/terminal/surface.py": "8088e77ab12aa16868beb09dcae60a2e3b67de64f106e7ea0b0245646bb110d1",
     "src/riposte/title_categories.py": "3382e9ab39cbde60343b5ded84bfe71c8059946919b32740b03d71817b348ed4",
     "src/riposte/video.py": "34083ce45e6f51ea03e3914206b7ae37f56d2ee8e80bfcc529f8d00dfb093382",
     "src/riposte/views.py": "901a71db135ce03b0c929d230de1bacb73542dcc1570df166f36013a906b90e7",
-    "src/riposte_studio.egg-info/PKG-INFO": "b077ac4638f2771223eb58f2d49009a6b7345abae94b7e199c87d6fcabf59440",
-    "src/riposte_studio.egg-info/SOURCES.txt": "0b483ebf7a574466b6cf952e52ef567c5e7da5b5cb951b3eed9651021892e7f8",
+    "src/riposte_studio.egg-info/PKG-INFO": "503bd9381fb629d55b11717634cb7c77c1432d8869eaf238ec3e762a42da6060",
+    "src/riposte_studio.egg-info/SOURCES.txt": "4a8799eb51692ace5e47904e8af5e984162ca27ae82c2dc35c0ce60b8f99a309",
     "src/riposte_studio.egg-info/dependency_links.txt": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
     "src/riposte_studio.egg-info/entry_points.txt": "98b3e382efea4ca6b2491a4a8c44d047025ab2e4365d7e6950c2998a3624b70e",
     "src/riposte_studio.egg-info/requires.txt": "cf9a6d3665a40abc44b1c22dc989f0bffdc6a7252767478ee8602c3b2c70c563",
@@ -870,7 +894,11 @@
     "tests/conftest.py": "f343e55b7e8d08b47fdf82580d05cef39cb11b7de3c87a0dabd94617e5c2762e",
     "tests/duplicate_browser.cjs": "5fedb137777c3394352e1b8561399961237d840acc027419968fc643cd50dd47",
     "tests/duplicate_probe.js": "253657afaa3b2a6487ec89678906fdcfe91f0155650923f5097ae33b3a3bddf3",
+    "tests/health_browser.cjs": "aeee2e2fed5cbfec1024613a123c1c5807d925bad2a60e63a3d1533a5ce8d630",
+    "tests/library_search_browser.cjs": "e20cc3d1630cf1813d0bf56ad7cfc09546b46b29177c4f011da17a3c04485aab",
+    "tests/recipes_browser.cjs": "e7c1ff5c9ef996d0f94be350f4b0d8f31842e1609babaf38c4b89f68239085b9",
     "tests/recovery_guidance.cjs": "0b30c6d6f8d47fd0adb05ffbf75fac19f44de61d2703a77abfa5a12b52f6c35f",
+    "tests/spatial_browser.cjs": "72241d28bf30d9363428a085b47fe690e24740e7c23d7363ab43b1d152fde754",
     "tests/test_application_roots.py": "03431bc837d9b75999bb20a339f708570f4f636aff9b0ca63d6b778450ddb60d",
     "tests/test_benchmark.py": "209a39b1678f49b365b8f9c5c524ed5f9ca504ea29555aac19abdadf2ac5d379",
     "tests/test_browser_review.py": "8be9063a792e733aad3b13eb56b61ffd2401ce4641834c9be6a1998bd008c181",
@@ -891,6 +919,7 @@
     "tests/test_kontext.py": "9e30f5e5ea122e77592328fbdb4f4a5b7d8394cc680798c24d8c06efd20a030f",
     "tests/test_lab.py": "eb223d86e27397f2aab910e96a12e34a3482c0ae07ecadc8296ac82149cf44cc",
     "tests/test_launcher_refresh.py": "ab47e19a0ad95524f1ce3e16f50c68f0eb9eac73e5328f41a8c5f576cdd0ba28",
+    "tests/test_library_search.py": "6d47cee89686cd084746d0bbb566a21e80de5d7522e7ebdd893e56d6a8160cc9",
     "tests/test_linear_focus.py": "8c4859b185c9d2520e1407aaba50dc1277fd0fc9c9c4c6c5c8acfd94be37d79c",
     "tests/test_menu_startup.py": "6075682efd6ac135b822a76e21cdff45c7122c5455b9f878fefbd86d0f10e7af",
     "tests/test_model_configuration_identity.py": "dd3476a0546601a2ce31a3b1e3efac0bfca390217a573b67a78961bc26ddd6db",
@@ -899,6 +928,8 @@
     "tests/test_organizer.py": "532d90e246c06c1eeaf7217b11ce2a21852a6def79b0663b3bd2a1212bfe52be",
     "tests/test_policy.py": "ecbc88a8ce36ba457407d15130119f6c6c1cd4ac4758224591c701fb7cfe6efb",
     "tests/test_publication_review_snapshots.py": "4fee88a5d7fa0dd68498ffbd825ad86eb6f5d629ff3fabc715b2ec9779faa2f4",
+    "tests/test_recipe_interfaces.py": "63a29ebe8bfa7de568c4b3473c557120ac4d0c9c1039636fcf97e98b635b8009",
+    "tests/test_recipes.py": "8e0872b187823eb93a62ceef87605a2ca12573987d92b95b494c930aa7acbaf2",
     "tests/test_recovery_guidance.py": "ac1ef493b3df111494b102ab511aba719dca39f26d9c8f8e29b90dff892e3bba",
     "tests/test_release_search.py": "3078cf02222f5732de88a56b3769d1babca35a0fecc13948b9b18f723938ad65",
     "tests/test_review_panel.py": "fa5b9e20f2021cfbc4dec480e6bf7597931e4a6720ad42d3e26e9985ac0161c6",
@@ -911,6 +942,7 @@
     "tests/test_sort_recovery.py": "113b488971f18c49d1d1f0c125b783626a056bf7cb0fbe603d22504de9b97138",
     "tests/test_sorter_menu.py": "d594a0c664e10bf5bf7482b424e4c94ffb3d55e83c5bd05c6ec9d5371bb72cd1",
     "tests/test_sorting_research.py": "79dba69aeb93cda7c3610fc74676b79abc468f2d1a6d35613b698396bc912d78",
+    "tests/test_spatial_budgets.py": "addbc744cf0705a90d7c17ce737f3662e501a82b926b763f476e6fb02ec5e573",
     "tests/test_terminal_direction.py": "caee98a088b51b84e3ee0bb63b88340de61214aebece4ea52131c653aee6f0a2",
     "tests/test_terminal_polish.py": "802ae71b1d9db5b737d2dd45f5c113963b73f0af319116a1be05d9090358abca",
     "tests/test_title_categories.py": "975adfe9c4ace31a190203edeb65868910a581734d0ba7a8ec639e5c2f10737e",
@@ -929,23 +961,24 @@
     "tests/test_v04_terminal_core.py": "997c2d2ce8b3dfe72b110ee8636bdabb0b33c53317b9edaac92377686dc2c7c0",
     "tests/test_v04_terminal_host.py": "1ba97569986eb39030d4500950d14e397e31db9597b87b0d90f5cdd97da51a1c",
     "tests/test_v04_typer.py": "976cf16c40aea1bdbca7156fbcf3b9b08d34fcedfbb7fb96e77849f9f2676774",
-    "tests/test_v05_revision.py": "90c674eeb7afe5acdf5d7e5b49e2a1fe6044fb901a383dd867d321cb100e73f0",
+    "tests/test_v05_revision.py": "4b2901bf36ee165f1dee084e277eca9ecab0f91c2e40eb650b41f91ab7583cf7",
     "tests/test_video_sort.py": "b2bea4b340be1873c0113a9794be558d4ac464fa92b8a0e45897ae791c0c414d",
     "tests/test_workflows.py": "14b0acded26e18e7a2bf634394ab9546c961d9f73e39df78ea96a28f9ebacfbb",
+    "tests/test_workspace_health.py": "052e16d6d691d6cd0e2f2cc2290d4006ffa2e81ad6c2ba0d36045a27065a89b3",
     "tests/test_workspace_lease.py": "678daab6e4174acb7d3c1516ab7a8daafbd139f3ce8a5bbf0eaa513669455f39",
-    "todo-audit.PACER.md": "e88b2c5d9701ab690d95c7b23afa4a9c7c461fba465a60f771ec02d597d0ab58",
-    "typing/README.md": "3cf7be96ea6a43c6f75ae9f9a850f5512b3ef851e75499ef170cba6b1ae1f63f",
-    "typing/check.py": "aeb3bd57817fb0309763bcd2e1d143fffe11b4f9e9946c86b42e9230ca9f420f",
+    "todo-audit.PACER.md": "3974d36c691d272aed921e9863157b95c996eb4be03598e9770230843b64f1bc",
+    "typing/README.md": "39b1a9390331255ee5b93239d53ed519a5aa74fe53331a61f1080b521fd1136e",
+    "typing/check.py": "5fa3c3d4eedfc10b21e7c8c76c53a2e002140ceb194d2be011907dd80f56a67d",
     "typing/checks/consumers.py": "e1b3e5053c12086baddbf41e49346d876aba70de638b675dec81ce7a0f777892",
     "typing/checks/rejected.py.txt": "d4d0311fd0d7897e2aabce3ef23ff1c214f6d31d825aaf84b122a13a5718aebe",
-    "typing/evidence/dynamic-boundaries.json": "063971724e9f46fa2fc5d71912c65a8c3e4bb8e5a768e010c60a952a33b7fbe0",
-    "typing/evidence/mypy-contracts.txt": "dd758c62e671570062f9954e1a5d527b0d481f03e1af252648074cae102ed75c",
+    "typing/evidence/dynamic-boundaries.json": "d79a28aee7f93971b0256260364d477f0a7247cc04504d45baee5bdb24bf455d",
+    "typing/evidence/mypy-contracts.txt": "7fc3a2a008fd149a547725791a88995a903553c47a281224a552ff815f4dd4db",
     "typing/evidence/mypy-tooling.txt": "281a094c39385b4d7b53e5db635f52158036861433c2a4975b9039e77a627a24",
-    "typing/evidence/source-after.json": "ebc551b91ff92957ba9001cd0645120a2fea534191f2557c7aad62c1b1c2994a",
+    "typing/evidence/source-after.json": "6436f1bc19aeafa907170d260834ec537b84eb2b0cf65a0e7cb60c5d85b55bc7",
     "typing/evidence/source-before.json": "d3fa8409db29ebf923523671b44fade9caf459f627bd4f16ea07a4ff6d094f8b",
-    "typing/evidence/source-current-command.json": "26fa569e103a0177888bbf63e18ab51fd24bc98e5765b4f381d2d45eb8528ef0",
+    "typing/evidence/source-current-command.json": "49e1dc30de0c314ae45c1ce7b24c93c400c710257bee98b15640786270c397a4",
     "typing/evidence/source-current-command.txt": "1e4d041bf375639ae5a0bcbd4f4c1cfa145c814580d0c4943ba1566596b4d38f",
-    "typing/evidence/source-current.txt": "cedbf1874d73e8bce5fdcd26a4982454d5026955de3c0a10f3057420146cb3d8",
+    "typing/evidence/source-current.txt": "c12990485bdb51c15919fb59208735ed4d7678d81a1e63a618c23b1c48f0a977",
     "typing/evidence/source-environment.json": "bbd297d0f095bc207e6537810c0ea1e971a78b6a874cee5af286877e40241cb8",
     "typing/evidence/source-reviewed-application-roots.json": "f6ea47c35533ae7fbb12729a2116c8b77a3a30020b2e74e07cab7c1e525dfb54",
     "typing/evidence/source-reviewed-browser-jobs.json": "50f4abaedb70d83ace7d4df0c98b577d526368c2da65566067f04771b8884186",
@@ -958,6 +991,8 @@
     "typing/evidence/source-reviewed-guided-categories.json": "fa20a098c74970c6b9ea2892cfbf4a49cced50aeb255dfceb5d269aed689afde",
     "typing/evidence/source-reviewed-kontext.json": "758a37811461d96efa91e6b0990c79386854eb1e69172f27f0c8af62a3b01c42",
     "typing/evidence/source-reviewed-menu.json": "0f61ac18d165e391ca314d64a3694e0cdec64ec364f7acda25807a07c7a46299",
+    "typing/evidence/source-reviewed-private-library-search.json": "b241b9eb327dc873f025ac762953b60c204b3cbaafd8d6a03f9e3aaf3c8c9880",
+    "typing/evidence/source-reviewed-publishing-recipes.json": "5af32eab0e695dae8cf7af9dacf8120dc5e0b30e20d4bc06a4f5ce56f06fc4ac",
     "typing/evidence/source-reviewed-recovery-guidance.json": "ebc551b91ff92957ba9001cd0645120a2fea534191f2557c7aad62c1b1c2994a",
     "typing/evidence/source-reviewed-repairs.json": "d2a1b1b164476ff1877520a21d115afb9ea37293e2d5f406330850f423fa0e64",
     "typing/evidence/source-reviewed-review-panels.json": "55977cda5261b5deb1f0be253aab991f71a89a004d09c37c553185f80484ec46",
@@ -968,22 +1003,24 @@
     "typing/evidence/source-reviewed-sort-preview.json": "8dc07903bed9a87320f386e69cddf079bfc94e60db608340bd68d4cca1d727b3",
     "typing/evidence/source-reviewed-sort-recovery.json": "36d179532da67255c2302d832269f0fd0c7de72fdbc0d897dbd9451e5205b202",
     "typing/evidence/source-reviewed-source-typing.json": "eb5816706645c25cf4c946904b6c2a312bb8a47157c1444c793af8ebc6ddfe4a",
+    "typing/evidence/source-reviewed-spatial-budgets.json": "6436f1bc19aeafa907170d260834ec537b84eb2b0cf65a0e7cb60c5d85b55bc7",
     "typing/evidence/source-reviewed-title-discovery.json": "8d2e10ead336df8315d6cf6740acc535990acfbbb7284d3ed511415ab18b0882",
     "typing/evidence/source-reviewed-v050.json": "0b62c31d7fc3e617bbc418ee56b962aeba0c03699103e94d90e5d52a5a0ac966",
     "typing/evidence/source-reviewed-workflows.json": "aa0a9d870961f41f3354d50859e70c76c0f2b7f3476d525a66109d4b0f71924c",
+    "typing/evidence/source-reviewed-workspace-health.json": "3e1654ac308c1cccd7c0b5d38b170b19112f3dab68230c170ed2c236b43a922f",
     "typing/evidence/source-reviewed-workspace-lease.json": "b38d437211071653dcc836ecd59c630cb7db435fa267735cd78382814b9f9d69",
-    "typing/evidence/stubtest.txt": "44ffb0ca5a5d1f95395c79107d6d9bb01169f6f710126537b11fdafbc2f5132f",
-    "typing/evidence/tooling-regressions.txt": "fcb8d7320ab61b004b4d12007dc82d905618f8d6269bba30bee173f6ad500937",
-    "typing/evidence/verification.json": "d7f85ae1d5f7c403ffd3344afe05d36553deab42995ff7dde0db6696b100c7ac",
+    "typing/evidence/stubtest.txt": "298c5a1d32c07bf2e972600bb0039c8c0efef804944c22d8251681061bcbc83c",
+    "typing/evidence/tooling-regressions.txt": "bb5d8befc8fb042fd8066f4b0a652015e3cf1a40bae8d2ea8c6f62dee5386520",
+    "typing/evidence/verification.json": "7f9b1a902ffcea279c3d0bf7d3ac67c90038e4f093e718f6d40b8ee0a811ab1e",
     "typing/evidence/windows-stat-probe-app-py314.txt": "97906e27e8c02071c86c777f457a1e4460a7f68b008935c6adbb2908846bad69",
     "typing/evidence/windows-stat-probe.txt": "171d820928accb3d74ed7d3590d95165a10eda06ccc2338b8f24d56cd7efbacf",
     "typing/mypy-contracts.ini": "78fddb2607c7cdb260de23c75b2570d07407dd9ba4aefeebccbfeb0b4c27e70e",
     "typing/mypy-source.ini": "f168d5874f12d6258a8e35311ea4fc90ebeab878a51fb1268cc1a89e8cb104bf",
-    "typing/pacer_inventory.py": "8fb67e4bac39bf383df5573f3cd9a02c01ee8f34755eeda4e93b380b3ffaa12f",
+    "typing/pacer_inventory.py": "2e85e0bba9ffec52bd7c05b87bb59d124c1fca367e8b9efb2fd2538165b54bc9",
     "typing/probe_windows_stat.py": "210e707483e1d8198689178b789580e1f23b26e49460c31ed5ddd059e5d5b142",
     "typing/pyproject.toml": "29e29b0dac5a0fb3dc6fb6db476f1d0cdf29970f5fe5e50c1b7e785e029fdcf2",
     "typing/runtime_contracts.py": "4c318ed70d094705c5a88a136eecc44fa86bcb77b8e59074ca7aead47c67209e",
-    "typing/stubs/_riposte_types.pyi": "20749e43b1a3c1d05d63e62506423d88f1ba5da75e7e8e508d8f9b4214f0a908",
+    "typing/stubs/_riposte_types.pyi": "28d029dcd8803bc9bd982f63622c994f627326d88e9020b8ba1ccd5b1a0856b5",
     "typing/stubs/riposte/__init__.pyi": "b572e2c4973b7500c42501d3e0d44c4a27d8fd35c6f7af6aaf1219357afcdf5d",
     "typing/stubs/riposte/__main__.pyi": "2f159ea3d0f9b62e80f64cbdf2bff8cd42a52fc8f4f709465e15bb1fcbce5ce0",
     "typing/stubs/riposte/agreement.pyi": "157898a4f3feb5a04cba6e2b36d1cc029a9cb874ac02a136dcfab13317291a3e",
@@ -992,7 +1029,7 @@
     "typing/stubs/riposte/category_corpus.pyi": "f6ed77ea7b0a8e137cd845050879a60b27b389686534add24d631a300085e603",
     "typing/stubs/riposte/category_rules.pyi": "ade975078a1a632d17d0c57c109734d34d510022e823dcd72461b27016e5222d",
     "typing/stubs/riposte/category_sort.pyi": "808d7b43de7c1fe0d9ba7a17facc6ea17adfc70c7c2009dae6815a63811d14f5",
-    "typing/stubs/riposte/cli.pyi": "a6b1996c28432e13e5369b82ff9bb8de155abe783de9789065554b3e1cd5519c",
+    "typing/stubs/riposte/cli.pyi": "0e6b33d7672d82adbb0f1f79e47870086d2e33d57893e0d19a17294c4938ae93",
     "typing/stubs/riposte/cohort.pyi": "926464f6610ab687bf10c1d875648ffd58163d4ed4ad078faf6adc44b670f7ad",
     "typing/stubs/riposte/context_graph.pyi": "81a9e839dbd06eded5f228e1e282a51e2428d678309aed98c546dc1c0061e2a3",
     "typing/stubs/riposte/coupled.pyi": "f98536a252f2968d6094e48c55f458b69e4d115da29230beb188a8652084901a",
@@ -1004,34 +1041,38 @@
     "typing/stubs/riposte/errors.pyi": "52191cef9232164915d6ff7997226afdf0d703eb59075f983f3c07a06fb5ee14",
     "typing/stubs/riposte/experiment.pyi": "c49a88bfb821dae620980ff2eefa8b746caf400b3a4b37e1286b5b6fe0787cd2",
     "typing/stubs/riposte/generation.pyi": "e24314d7b71dbf02939ae95795b68be5b828eca056da00c5b5a119a4370e352a",
+    "typing/stubs/riposte/health.pyi": "a7d99682467754cceab5266c691874bdbc1a500bb2a90bb3e9fd7381471eee3f",
     "typing/stubs/riposte/intake.pyi": "d1db68c7d723d71053ec16842a695dbccc0dde38ea1832b08e57f9edb4b777c2",
     "typing/stubs/riposte/kontext.pyi": "083991aedad986d47f93711dd67a79240f047b615fe0e9b2056d905948553ee7",
     "typing/stubs/riposte/lab.pyi": "dbfc1c582d8b7223ff61c4970f219d10fa438897d5770208cd4eee71d8dd8af2",
+    "typing/stubs/riposte/library_search.pyi": "c267e149eff422bfadd59553539fa17d3860ed1a8c31cdf431e1c74b3fef324a",
     "typing/stubs/riposte/locking.pyi": "b78a717d5405a048655c1c0c499678ed95dd4b6ec10d4334c8839eed5121ef36",
     "typing/stubs/riposte/metrics.pyi": "c062241120b5a53dc44709cb8f9ab605629e74af93a54f678b606cdc1bacb71a",
     "typing/stubs/riposte/models.pyi": "ce8b0ccaef7d0ddcd9cf155c2afa894cd695dfb635688e18c731bf59a7fe971d",
     "typing/stubs/riposte/optimizer.pyi": "4826e402f6445ad4d10d240eccfb34f7a572867f5f1f7467daedea1afbd08d93",
     "typing/stubs/riposte/organizer.pyi": "56d375ce96c0b3f1a90ec6bc7acc6a113de9628f8f360e0c9ba27c446639d588",
     "typing/stubs/riposte/policy.pyi": "468f1e03ad651e2986e5c1234b8410348ed483c5eeeaf740a497a3deb81948c3",
-    "typing/stubs/riposte/publication.pyi": "647d935ce087b269dd4039d062a7e5014783e671bd0db82d7a48adb7b07ca12b",
+    "typing/stubs/riposte/publication.pyi": "25e82e54369c3ac3e28ec97e63b75c11d5de3954398007ff64a257b0b1581f0c",
     "typing/stubs/riposte/qualification.pyi": "3160462ef5bf3909f0c1ec24131496d20ba755d66de97a0796986fa9f60b3eb0",
-    "typing/stubs/riposte/quality.pyi": "3b04366e1973b69021f96cbd7a1ee05929b95dc5fd1fd242116713c1cb6f62f9",
-    "typing/stubs/riposte/records.pyi": "fca3ed67feb5264af876a5b7271d12e6fbafb113ca42185b373598be050f6686",
+    "typing/stubs/riposte/quality.pyi": "f1c70a05fea8bda377a0bc47d1838e866105daa0f91ba7e09ba177573c50c4e2",
+    "typing/stubs/riposte/recipes.pyi": "aca20e5afa7808c87191433c1f069140c6e0c3c352653ff55d66ae3178697b7d",
+    "typing/stubs/riposte/records.pyi": "e0c5cf753a3b446a60aa919c6111e470e7c09af86b158d4892036d7eb75402a9",
     "typing/stubs/riposte/recovery.pyi": "d039fe290b846464adc7bb4077dbe8f0417ec6b1ace1cd70113f154ed9379306",
-    "typing/stubs/riposte/release_guard.pyi": "1a64b83f644971a6497f888e593a8ad63f6c8a3e7368c00120d6e2847814909e",
+    "typing/stubs/riposte/release_guard.pyi": "a4bb3cb86688dc0be6c2e6fa7feaf838dd238cb28b992005ea8a9213f024076d",
     "typing/stubs/riposte/review_panel.pyi": "4806cd0d7260ac8027f718343d9fc854efa6d0add35b80a521c519618867e49b",
     "typing/stubs/riposte/runtime_probe.pyi": "b2bbd20ba850122e7aa35eea8d7bed18ab70ede61034b4b60b1401f269ee7040",
     "typing/stubs/riposte/sanitize.pyi": "7389450202abf94d5a6dd7bf2582bcd00d8fe851265a845db8844b8aa37d3381",
-    "typing/stubs/riposte/server.pyi": "9306ce150e207455a396e387bcb4202dc5f8e208d0b355d233f77db98d444965",
+    "typing/stubs/riposte/server.pyi": "3d5c9ef6a1a29fd6be943aaf54f28eebaac8ea250bedf17b3ddbcd085209f103",
     "typing/stubs/riposte/sort_history.pyi": "7f99fb90c905e30c70e4f62a9e4933ca312e76caa3873caa7f499240ab9c40ca",
     "typing/stubs/riposte/sort_plan.pyi": "bc3f814eb6cdcdabbbd4fe8a6f302f02c55f6fe784da9a9c04c10be9436b5d36",
     "typing/stubs/riposte/sort_titles.pyi": "ea78e287ce60907222bb8f3711191814a6791e877ef723428212dd0eefa4e6dd",
+    "typing/stubs/riposte/spatial.pyi": "baed34fa5e1f8f0309d0c2613720b066b797b55abb2516e5f4cb98013ebfb994",
     "typing/stubs/riposte/store.pyi": "3ee087d30804d299eae58f1a05bd592df65e1a6a27259e60fdd3338d98dc9afa",
     "typing/stubs/riposte/temporal.pyi": "94f89035069f13090317d5b0515818f481ac71aa8bdb9be13916063ff9e16f5c",
     "typing/stubs/riposte/terminal/__init__.pyi": "17022212ba4ef7ca2de53e12cd9398edc248af0cd389c9e23e34ec6c641518dc",
     "typing/stubs/riposte/terminal/actions.pyi": "6b9d2c111ed5da8bc0627da3e050b83c43ffa96e43d444ddcf76eb2daabdbf5e",
     "typing/stubs/riposte/terminal/app.pyi": "4ac75745f58b44af4988e4e4d1a9197b0d225f3cc42483a9f61fd893892c9ad9",
-    "typing/stubs/riposte/terminal/controller.pyi": "3924e2756fb78ec8b67719c98810e744e6c8300e7b6d539df332fc85ea4efdaf",
+    "typing/stubs/riposte/terminal/controller.pyi": "3d48a36d7055b1e4d4d7a8e13fe09b663eca80854c620d85aca02d73ae7e0a62",
     "typing/stubs/riposte/terminal/help.pyi": "d3fed65d5cfa8c33fbd87af9e65ad9a0dc47dc836a55452aaa1389fcc4cd0726",
     "typing/stubs/riposte/terminal/interaction.pyi": "a45c882b885b7eeaf07f020dff51406897b58d1804853fcd92b1be145640fd16",
     "typing/stubs/riposte/terminal/jobs.pyi": "46d2821083900ef022cc98588597ead676272d3e1c57fed7992fa362696c7e35",
@@ -1041,9 +1082,9 @@
     "typing/stubs/riposte/terminal/palette.pyi": "4cb52a84c9c9d2fbb725b590532aa6bcd683cf56378f49d4dfca3f3b28876ba2",
     "typing/stubs/riposte/terminal/paths.pyi": "76dc80da768bbbe1b5be771a9fad4039f0fb555fcf95ea492475ad33167be1f8",
     "typing/stubs/riposte/terminal/preview.pyi": "6a3a4ac74cae2524bb2985e0a0ef7a71998d6c444c00b1101069132a9ab41671",
-    "typing/stubs/riposte/terminal/render.pyi": "04493bc23e3601add432bd73401161c288d610270098222d77c715f5c316262e",
+    "typing/stubs/riposte/terminal/render.pyi": "c44f76c2e31e00dd6ac4cba5439a321401dc94e887823ddcd25d007a48f4c367",
     "typing/stubs/riposte/terminal/reports.pyi": "5732722c796ec3881bcb83dd9d4c29319d3452d97ad1e94ee6d535916167673b",
-    "typing/stubs/riposte/terminal/service.pyi": "97009079186d4edaf618ef68ac3e39cc06b1197a1ec00f55ec64c183f656e649",
+    "typing/stubs/riposte/terminal/service.pyi": "3fdc16bb516caa74617b6ce530e41c001cfe7750272859d6e85bfa73c2f5d1b9",
     "typing/stubs/riposte/terminal/signals.pyi": "87116e0ebd0dcf3299f183a6f609d272907a3075f44fdfdc0759ee2c6d91d059",
     "typing/stubs/riposte/terminal/state.pyi": "11bc7233019e420270faef3023a6a4d527baced70fb78afae7a532124f13c84d",
     "typing/stubs/riposte/terminal/surface.pyi": "f5eeea647607c1d35349bc8eaade051be6d075d590fe323591c7dd3a8b3129f2",
@@ -3446,6 +3487,75 @@
       ]
     },
     {
+      "id": "OVR-2388",
+      "path": "evidence/private-library-search/README.md",
+      "definitions": []
+    },
+    {
+      "id": "OVR-2389",
+      "path": "evidence/private-library-search/contract-review.json",
+      "definitions": []
+    },
+    {
+      "id": "OVR-2390",
+      "path": "evidence/private-library-search/prepare.py",
+      "definitions": [
+        "HERE"
+      ]
+    },
+    {
+      "id": "OVR-2391",
+      "path": "evidence/private-library-search/requirement-review.json",
+      "definitions": []
+    },
+    {
+      "id": "OVR-2392",
+      "path": "evidence/private-library-search/verify.py",
+      "definitions": [
+        "HERE",
+        "ROOT",
+        "acceptance",
+        "counts",
+        "digest",
+        "documentation",
+        "manifest",
+        "previous",
+        "read",
+        "verify"
+      ]
+    },
+    {
+      "id": "OVR-2272",
+      "path": "evidence/publishing-recipes/README.md",
+      "definitions": []
+    },
+    {
+      "id": "OVR-2273",
+      "path": "evidence/publishing-recipes/contract-review.json",
+      "definitions": []
+    },
+    {
+      "id": "OVR-2274",
+      "path": "evidence/publishing-recipes/requirement-review.json",
+      "definitions": []
+    },
+    {
+      "id": "OVR-2275",
+      "path": "evidence/publishing-recipes/verify.py",
+      "definitions": [
+        "HERE",
+        "ROOT",
+        "acceptance",
+        "counts",
+        "digest",
+        "documentation",
+        "manifest",
+        "previous",
+        "read",
+        "verify"
+      ]
+    },
+    {
       "id": "OVR-2203",
       "path": "evidence/recovery-guidance/README.md",
       "definitions": []
@@ -4707,6 +4817,37 @@
       ]
     },
     {
+      "id": "OVR-2434",
+      "path": "evidence/spatial-budgets/README.md",
+      "definitions": []
+    },
+    {
+      "id": "OVR-2435",
+      "path": "evidence/spatial-budgets/contract-review.json",
+      "definitions": []
+    },
+    {
+      "id": "OVR-2436",
+      "path": "evidence/spatial-budgets/requirement-review.json",
+      "definitions": []
+    },
+    {
+      "id": "OVR-2437",
+      "path": "evidence/spatial-budgets/verify.py",
+      "definitions": [
+        "HERE",
+        "ROOT",
+        "acceptance",
+        "counts",
+        "digest",
+        "documentation",
+        "manifest",
+        "previous",
+        "read",
+        "verify"
+      ]
+    },
+    {
       "id": "OVR-1751",
       "path": "evidence/terminal-direction/README.md",
       "definitions": []
@@ -5336,6 +5477,37 @@
       "definitions": []
     },
     {
+      "id": "OVR-2336",
+      "path": "evidence/workspace-health/README.md",
+      "definitions": []
+    },
+    {
+      "id": "OVR-2337",
+      "path": "evidence/workspace-health/contract-review.json",
+      "definitions": []
+    },
+    {
+      "id": "OVR-2338",
+      "path": "evidence/workspace-health/requirement-review.json",
+      "definitions": []
+    },
+    {
+      "id": "OVR-2339",
+      "path": "evidence/workspace-health/verify.py",
+      "definitions": [
+        "HERE",
+        "ROOT",
+        "acceptance",
+        "counts",
+        "digest",
+        "documentation",
+        "manifest",
+        "previous",
+        "read",
+        "verify"
+      ]
+    },
+    {
       "id": "OVR-1858",
       "path": "evidence/workspace-lease/README.md",
       "definitions": []
@@ -5635,8 +5807,10 @@
         "generation",
         "generations",
         "guard",
+        "health",
         "image",
         "inspect",
+        "library_search",
         "list_images",
         "main",
         "organize",
@@ -5648,6 +5822,7 @@
         "publications",
         "publish",
         "qualify",
+        "recipes",
         "resume",
         "review",
         "root_callback",
@@ -5843,6 +6018,24 @@
       ]
     },
     {
+      "id": "OVR-2340",
+      "path": "src/riposte/health.py",
+      "definitions": [
+        "CapabilityReport",
+        "HISTORY_ID",
+        "HealthReport",
+        "MAX_ENTRIES",
+        "MAX_JOURNAL_BYTES",
+        "_DirectoryEntries",
+        "_DirectoryEntries.__next__",
+        "_DirectoryEntries.close",
+        "_journal",
+        "filesystem_capabilities",
+        "inspect_health",
+        "operation_observation"
+      ]
+    },
+    {
       "id": "OVR-799",
       "path": "src/riposte/intake.py",
       "definitions": [
@@ -5886,6 +6079,16 @@
         "trial_pixels",
         "trial_report",
         "trials"
+      ]
+    },
+    {
+      "id": "OVR-2393",
+      "path": "src/riposte/library_search.py",
+      "definitions": [
+        "SearchReport",
+        "SearchRow",
+        "normalized",
+        "search_library"
       ]
     },
     {
@@ -6001,13 +6204,16 @@
       "definitions": [
         "PublishRecipe",
         "PublishRecipe.__post_init__",
+        "PublishRecipe.budget_revision",
         "PublishRecipe.from_dict",
         "PublishRecipe.public",
+        "_budget_previews",
         "_checkpoint",
         "_id",
         "_models",
         "_plan_rows",
         "_prefix",
+        "_preview_tasks",
         "_publication_zip_locked",
         "_read",
         "_read_record",
@@ -6050,6 +6256,32 @@
         "_lab",
         "quality_report",
         "spatial_budget"
+      ]
+    },
+    {
+      "id": "OVR-2276",
+      "path": "src/riposte/recipes.py",
+      "definitions": [
+        "MAX_BYTES",
+        "MAX_RECIPES",
+        "RecipeEntry",
+        "RecipeLibrary",
+        "RecipeReport",
+        "RecipeSettings",
+        "RecipeSummary",
+        "SETTINGS",
+        "_bytes",
+        "_entry",
+        "_report",
+        "_unique",
+        "checked_settings",
+        "defaults",
+        "inspect_recipes",
+        "load_library",
+        "recipe_name",
+        "resolve_recipe",
+        "save_recipe",
+        "to_recipe"
       ]
     },
     {
@@ -6145,6 +6377,7 @@
       "id": "OVR-029",
       "path": "src/riposte/server.py",
       "definitions": [
+        "ArtistMaskRequest",
         "CategoryDiscoveryRequest",
         "CategoryRulesRequest",
         "CompareRequest",
@@ -6153,17 +6386,20 @@
         "ExportRequest",
         "GenerationRequest",
         "GuardRequest",
+        "HealthRequest",
         "Jobs",
         "Jobs.__init__",
         "Jobs.cancel",
         "Jobs.close",
         "Jobs.snapshot",
         "Jobs.start",
+        "LibrarySearchRequest",
         "OrganizeRequest",
         "PreflightRequest",
         "PublishRequest",
         "PublishReviewRequest",
         "QualificationRequest",
+        "RecipeRequest",
         "ResumePublishRequest",
         "STATIC",
         "StrictModel",
@@ -6171,6 +6407,7 @@
         "_BodyLimitMiddleware",
         "_BodyLimitMiddleware.__call__",
         "_BodyLimitMiddleware.__init__",
+        "api_body_limit",
         "create_app"
       ]
     },
@@ -6215,6 +6452,33 @@
       ]
     },
     {
+      "id": "OVR-2438",
+      "path": "src/riposte/spatial.py",
+      "definitions": [
+        "ArtistMask",
+        "ArtistMask.__post_init__",
+        "ArtistMask.from_dict",
+        "ArtistMask.from_png",
+        "ArtistMask.identity",
+        "ArtistMask.public",
+        "ArtistMask.raster",
+        "ArtistMask.validate_aspect",
+        "ArtistMaskRecord",
+        "BudgetPreview",
+        "BudgetSummary",
+        "MAX_PIXELS",
+        "MAX_PNG_BYTES",
+        "MAX_TOTAL_PIXELS",
+        "RESAMPLING",
+        "budget_identity",
+        "checked_masks",
+        "mask_for",
+        "preview",
+        "read_map",
+        "read_mask"
+      ]
+    },
+    {
       "id": "OVR-030",
       "path": "src/riposte/static/app.js",
       "definitions": []
@@ -6230,8 +6494,18 @@
       "definitions": []
     },
     {
+      "id": "OVR-2341",
+      "path": "src/riposte/static/health.js",
+      "definitions": []
+    },
+    {
       "id": "OVR-031",
       "path": "src/riposte/static/index.html",
+      "definitions": []
+    },
+    {
+      "id": "OVR-2394",
+      "path": "src/riposte/static/library-search.js",
       "definitions": []
     },
     {
@@ -6252,6 +6526,11 @@
     {
       "id": "OVR-2210",
       "path": "src/riposte/static/recovery.js",
+      "definitions": []
+    },
+    {
+      "id": "OVR-2439",
+      "path": "src/riposte/static/spatial.js",
       "definitions": []
     },
     {
@@ -6375,10 +6654,13 @@
         "Controller.inspect_item",
         "Controller.key",
         "Controller.library",
+        "Controller.load_recipe",
         "Controller.move",
         "Controller.picker_key",
         "Controller.preferences",
         "Controller.pump",
+        "Controller.recipe_save_name",
+        "Controller.recipes",
         "Controller.refresh",
         "Controller.reload_preview",
         "Controller.request_from_form",
@@ -6538,6 +6820,7 @@
         "page_window",
         "picker",
         "preferences",
+        "recipes",
         "render",
         "result",
         "scroll_limit",
@@ -6593,8 +6876,10 @@
         "execute",
         "image_bytes",
         "image_selection",
+        "masked_recipe",
         "parse_month",
         "recipe",
+        "resolved_recipe",
         "result_exit_code",
         "root_of",
         "select_rows",
@@ -6747,8 +7032,28 @@
       "definitions": []
     },
     {
+      "id": "OVR-2342",
+      "path": "tests/health_browser.cjs",
+      "definitions": []
+    },
+    {
+      "id": "OVR-2395",
+      "path": "tests/library_search_browser.cjs",
+      "definitions": []
+    },
+    {
+      "id": "OVR-2277",
+      "path": "tests/recipes_browser.cjs",
+      "definitions": []
+    },
+    {
       "id": "OVR-2211",
       "path": "tests/recovery_guidance.cjs",
+      "definitions": []
+    },
+    {
+      "id": "OVR-2440",
+      "path": "tests/spatial_browser.cjs",
       "definitions": []
     },
     {
@@ -7083,6 +7388,27 @@
       ]
     },
     {
+      "id": "OVR-2396",
+      "path": "tests/test_library_search.py",
+      "definitions": [
+        "POLICY",
+        "snapshot",
+        "sorted_images",
+        "test_application_root_and_linked_state_rejected",
+        "test_cli_api_private_response_never_added_to_default_state",
+        "test_empty_legacy_catalog_cancel_and_corruption",
+        "test_invalid_request_does_not_create_state",
+        "test_library_search_browser_native",
+        "test_one_snapshot_no_repeated_catalog_reads",
+        "test_real_sort_private_optin_and_unchanged_default_outputs",
+        "test_search_is_not_a_claim_of_current_image_bytes",
+        "test_stable_bounded_paging_and_stale_restart",
+        "test_terminal_optin_filter_paging_selection_and_command",
+        "test_undo_removes_current_search_provenance",
+        "test_unknown_never_invents_titles_or_matches_untrusted_words"
+      ]
+    },
+    {
       "id": "OVR-299",
       "path": "tests/test_linear_focus.py",
       "definitions": [
@@ -7214,6 +7540,42 @@
         "test_record_growth_after_stat_does_not_bypass_limit",
         "test_report_replaced_during_verification_cannot_supply_approval_hash",
         "test_review_releases_decoded_images_before_writing_receipts"
+      ]
+    },
+    {
+      "id": "OVR-2278",
+      "path": "tests/test_recipe_interfaces.py",
+      "definitions": [
+        "cli",
+        "saved",
+        "test_api_auth_preview_save_and_catalog_recipe_resolution",
+        "test_changed_recipe_blocks_combined_apply_before_models_or_sort",
+        "test_cli_preview_save_and_explicit_overrides",
+        "test_command_lens_roundtrips_recipe_save_and_explicit_white_override",
+        "test_recipe_browser_native",
+        "test_recipe_save_respects_job_and_shutdown_boundary",
+        "test_terminal_load_preview_save_preserves_nonrecipe_choices",
+        "test_terminal_stale_list_retains_form"
+      ]
+    },
+    {
+      "id": "OVR-2279",
+      "path": "tests/test_recipes.py",
+      "definitions": [
+        "library",
+        "save",
+        "test_atomic_replace_failure_preserves_library_and_cleans_temporary",
+        "test_corrupt_library_never_overwritten",
+        "test_legacy_workspace_uses_its_existing_namespace",
+        "test_linked_library_refused",
+        "test_names_cannot_contain_paths_or_controls",
+        "test_preview_is_read_only_and_save_has_only_supported_settings",
+        "test_private_and_unknown_fields_rejected_before_state_creation",
+        "test_revision_rechecked_after_temporary_write",
+        "test_revision_required_and_stale_saves_preserve_bytes",
+        "test_strict_invalid_settings",
+        "test_unicode_identity_and_unrelated_saves_preserve_selected_revision",
+        "test_workspace_lease_and_limit"
       ]
     },
     {
@@ -7435,6 +7797,38 @@
         "test_real_year_paths_and_canonical_compatibility",
         "test_research_example_yields_literal_supported_groups_and_abstains_on_conflict",
         "test_saved_rules_precede_corpus_and_rule_conflicts_are_not_overridden"
+      ]
+    },
+    {
+      "id": "OVR-2441",
+      "path": "tests/test_spatial_budgets.py",
+      "definitions": [
+        "Encoder",
+        "Encoder.__call__",
+        "artwork",
+        "configured",
+        "encoder",
+        "mask_for_row",
+        "png",
+        "test_actual_optimizer_enforces_mask_and_is_deterministic",
+        "test_authenticated_api_validates_mask_and_readonly_preview",
+        "test_changed_mask_identity_cannot_reuse_approval",
+        "test_cli_terminal_and_raw_intake",
+        "test_combined_mask_bound_before_source_replacement",
+        "test_integer_floor_caps",
+        "test_large_batch_previews_are_paged_and_start_skips_preview_work",
+        "test_large_mask_api_and_streamed_limits",
+        "test_mask_identity_strips_metadata_binds_source_and_rejects_corruption",
+        "test_mask_invalid_before_combined_sort_mutation",
+        "test_mask_rejects_ambiguous_png_modes",
+        "test_plan_readonly_previews_exact_caps_for_each_final_size",
+        "test_quality_rejects_change_in_zero_region_even_within_global_epsilon",
+        "test_real_batch_resume_review_and_date_only_pack",
+        "test_resampling_matches_independent_overlap_minimum",
+        "test_saved_mask_file_change_requires_new_terminal_preview",
+        "test_spatial_browser_native",
+        "test_terminal_mask_preview_control_uses_existing_viewer",
+        "test_thin_protected_line_survives_resize_and_never_increases_automatic_limits"
       ]
     },
     {
@@ -7866,6 +8260,31 @@
       ]
     },
     {
+      "id": "OVR-2343",
+      "path": "tests/test_workspace_health.py",
+      "definitions": [
+        "history",
+        "snapshot",
+        "test_actual_recovery_and_legacy_state_remain_identical",
+        "test_api_authenticated_background_job_and_rejected_mutation",
+        "test_cli_service_and_terminal_settings",
+        "test_empty_never_initializes_workspace",
+        "test_float_root_excluded_from_estimate",
+        "test_health_browser_native",
+        "test_history_status_not_restore_qualification",
+        "test_invalid_limits",
+        "test_known_unsupported_volume_is_advice_not_sort_guard",
+        "test_limits_cancellation_and_capacity_failure",
+        "test_link_and_fifo_not_followed",
+        "test_marker_observation_does_not_claim_or_reclaim",
+        "test_mutation_during_scan_is_not_complete_snapshot",
+        "test_partial_access_time_and_history_directory_failures",
+        "test_root_and_unsafe_lease_safeguards",
+        "test_unverified_histories_retained",
+        "test_usage_float_private_and_backup_envelope"
+      ]
+    },
+    {
       "id": "OVR-1926",
       "path": "tests/test_workspace_lease.py",
       "definitions": [
@@ -8043,6 +8462,16 @@
       "definitions": []
     },
     {
+      "id": "OVR-2404",
+      "path": "typing/evidence/source-reviewed-private-library-search.json",
+      "definitions": []
+    },
+    {
+      "id": "OVR-2280",
+      "path": "typing/evidence/source-reviewed-publishing-recipes.json",
+      "definitions": []
+    },
+    {
       "id": "OVR-2213",
       "path": "typing/evidence/source-reviewed-recovery-guidance.json",
       "definitions": []
@@ -8093,6 +8522,11 @@
       "definitions": []
     },
     {
+      "id": "OVR-2442",
+      "path": "typing/evidence/source-reviewed-spatial-budgets.json",
+      "definitions": []
+    },
+    {
       "id": "OVR-1082",
       "path": "typing/evidence/source-reviewed-title-discovery.json",
       "definitions": []
@@ -8105,6 +8539,11 @@
     {
       "id": "OVR-801",
       "path": "typing/evidence/source-reviewed-workflows.json",
+      "definitions": []
+    },
+    {
+      "id": "OVR-2344",
+      "path": "typing/evidence/source-reviewed-workspace-health.json",
       "definitions": []
     },
     {
@@ -8388,8 +8827,10 @@
         "generation",
         "generations",
         "guard",
+        "health",
         "image",
         "inspect",
+        "library_search",
         "list_images",
         "main",
         "organize",
@@ -8401,6 +8842,7 @@
         "publications",
         "publish",
         "qualify",
+        "recipes",
         "resume",
         "review",
         "root_callback",
@@ -8595,6 +9037,24 @@
       ]
     },
     {
+      "id": "OVR-2345",
+      "path": "typing/stubs/riposte/health.pyi",
+      "definitions": [
+        "CapabilityReport",
+        "HISTORY_ID",
+        "HealthReport",
+        "MAX_ENTRIES",
+        "MAX_JOURNAL_BYTES",
+        "_DirectoryEntries",
+        "_DirectoryEntries.__next__",
+        "_DirectoryEntries.close",
+        "_journal",
+        "filesystem_capabilities",
+        "inspect_health",
+        "operation_observation"
+      ]
+    },
+    {
       "id": "OVR-802",
       "path": "typing/stubs/riposte/intake.pyi",
       "definitions": [
@@ -8638,6 +9098,16 @@
         "trial_pixels",
         "trial_report",
         "trials"
+      ]
+    },
+    {
+      "id": "OVR-2397",
+      "path": "typing/stubs/riposte/library_search.pyi",
+      "definitions": [
+        "SearchReport",
+        "SearchRow",
+        "normalized",
+        "search_library"
       ]
     },
     {
@@ -8748,13 +9218,16 @@
       "definitions": [
         "PublishRecipe",
         "PublishRecipe.__post_init__",
+        "PublishRecipe.budget_revision",
         "PublishRecipe.from_dict",
         "PublishRecipe.public",
+        "_budget_previews",
         "_checkpoint",
         "_id",
         "_models",
         "_plan_rows",
         "_prefix",
+        "_preview_tasks",
         "_publication_zip_locked",
         "_read",
         "_read_record",
@@ -8797,6 +9270,32 @@
         "_lab",
         "quality_report",
         "spatial_budget"
+      ]
+    },
+    {
+      "id": "OVR-2281",
+      "path": "typing/stubs/riposte/recipes.pyi",
+      "definitions": [
+        "MAX_BYTES",
+        "MAX_RECIPES",
+        "RecipeEntry",
+        "RecipeLibrary",
+        "RecipeReport",
+        "RecipeSettings",
+        "RecipeSummary",
+        "SETTINGS",
+        "_bytes",
+        "_entry",
+        "_report",
+        "_unique",
+        "checked_settings",
+        "defaults",
+        "inspect_recipes",
+        "load_library",
+        "recipe_name",
+        "resolve_recipe",
+        "save_recipe",
+        "to_recipe"
       ]
     },
     {
@@ -8892,6 +9391,7 @@
       "id": "OVR-095",
       "path": "typing/stubs/riposte/server.pyi",
       "definitions": [
+        "ArtistMaskRequest",
         "CategoryDiscoveryRequest",
         "CategoryRulesRequest",
         "CompareRequest",
@@ -8900,17 +9400,20 @@
         "ExportRequest",
         "GenerationRequest",
         "GuardRequest",
+        "HealthRequest",
         "Jobs",
         "Jobs.__init__",
         "Jobs.cancel",
         "Jobs.close",
         "Jobs.snapshot",
         "Jobs.start",
+        "LibrarySearchRequest",
         "OrganizeRequest",
         "PreflightRequest",
         "PublishRequest",
         "PublishReviewRequest",
         "QualificationRequest",
+        "RecipeRequest",
         "ResumePublishRequest",
         "STATIC",
         "StrictModel",
@@ -8918,6 +9421,7 @@
         "_BodyLimitMiddleware",
         "_BodyLimitMiddleware.__call__",
         "_BodyLimitMiddleware.__init__",
+        "api_body_limit",
         "create_app"
       ]
     },
@@ -8959,6 +9463,33 @@
         "save_title",
         "title_records",
         "validate_title"
+      ]
+    },
+    {
+      "id": "OVR-2443",
+      "path": "typing/stubs/riposte/spatial.pyi",
+      "definitions": [
+        "ArtistMask",
+        "ArtistMask.__post_init__",
+        "ArtistMask.from_dict",
+        "ArtistMask.from_png",
+        "ArtistMask.identity",
+        "ArtistMask.public",
+        "ArtistMask.raster",
+        "ArtistMask.validate_aspect",
+        "ArtistMaskRecord",
+        "BudgetPreview",
+        "BudgetSummary",
+        "MAX_PIXELS",
+        "MAX_PNG_BYTES",
+        "MAX_TOTAL_PIXELS",
+        "RESAMPLING",
+        "budget_identity",
+        "checked_masks",
+        "mask_for",
+        "preview",
+        "read_map",
+        "read_mask"
       ]
     },
     {
@@ -9077,10 +9608,13 @@
         "Controller.inspect_item",
         "Controller.key",
         "Controller.library",
+        "Controller.load_recipe",
         "Controller.move",
         "Controller.picker_key",
         "Controller.preferences",
         "Controller.pump",
+        "Controller.recipe_save_name",
+        "Controller.recipes",
         "Controller.refresh",
         "Controller.reload_preview",
         "Controller.request_from_form",
@@ -9242,6 +9776,7 @@
         "page_window",
         "picker",
         "preferences",
+        "recipes",
         "render",
         "result",
         "scroll_limit",
@@ -9298,8 +9833,10 @@
         "execute",
         "image_bytes",
         "image_selection",
+        "masked_recipe",
         "parse_month",
         "recipe",
+        "resolved_recipe",
         "result_exit_code",
         "root_of",
         "select_rows",
@@ -10209,6 +10746,15 @@
     {
       "AssetType": "FUNCTION",
       "Path": "src/riposte/cli.py",
+      "Symbol": "health",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-012;OVR-338;OVR-347;OVR-349",
+      "Tags": "#source-symbol",
+      "ID": "OVR-2346"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/cli.py",
       "Symbol": "image",
       "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
       "Requires": "OVR-012;OVR-338;OVR-347;OVR-349;OVR-380",
@@ -10223,6 +10769,15 @@
       "Requires": "OVR-012;OVR-338;OVR-347;OVR-349",
       "Tags": "#source-symbol",
       "ID": "OVR-358"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/cli.py",
+      "Symbol": "library_search",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-012;OVR-338;OVR-347;OVR-349",
+      "Tags": "#source-symbol",
+      "ID": "OVR-2398"
     },
     {
       "AssetType": "FUNCTION",
@@ -10322,6 +10877,15 @@
       "Requires": "OVR-012;OVR-336;OVR-338;OVR-341;OVR-347;OVR-349",
       "Tags": "#source-symbol",
       "ID": "OVR-365"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/cli.py",
+      "Symbol": "recipes",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-012;OVR-2297;OVR-338;OVR-347;OVR-349;OVR-380",
+      "Tags": "#source-symbol",
+      "ID": "OVR-2282"
     },
     {
       "AssetType": "FUNCTION",
@@ -11459,6 +12023,114 @@
     },
     {
       "AssetType": "CLASS",
+      "Path": "src/riposte/health.py",
+      "Symbol": "CapabilityReport",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-2340",
+      "Tags": "#source-symbol",
+      "ID": "OVR-2347"
+    },
+    {
+      "AssetType": "CONFIG",
+      "Path": "src/riposte/health.py",
+      "Symbol": "HISTORY_ID",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-2340",
+      "Tags": "#source-symbol",
+      "ID": "OVR-2348"
+    },
+    {
+      "AssetType": "CLASS",
+      "Path": "src/riposte/health.py",
+      "Symbol": "HealthReport",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-2340;OVR-2347",
+      "Tags": "#source-symbol",
+      "ID": "OVR-2349"
+    },
+    {
+      "AssetType": "CONFIG",
+      "Path": "src/riposte/health.py",
+      "Symbol": "MAX_ENTRIES",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-2340",
+      "Tags": "#source-symbol",
+      "ID": "OVR-2350"
+    },
+    {
+      "AssetType": "CONFIG",
+      "Path": "src/riposte/health.py",
+      "Symbol": "MAX_JOURNAL_BYTES",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-2340",
+      "Tags": "#source-symbol",
+      "ID": "OVR-2351"
+    },
+    {
+      "AssetType": "CLASS",
+      "Path": "src/riposte/health.py",
+      "Symbol": "_DirectoryEntries",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-2340",
+      "Tags": "#source-symbol",
+      "ID": "OVR-2352"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/health.py",
+      "Symbol": "_DirectoryEntries.__next__",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-2340",
+      "Tags": "#source-symbol",
+      "ID": "OVR-2353"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/health.py",
+      "Symbol": "_DirectoryEntries.close",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-2340",
+      "Tags": "#source-symbol",
+      "ID": "OVR-2354"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/health.py",
+      "Symbol": "_journal",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-2340;OVR-2351;OVR-452;OVR-525",
+      "Tags": "#source-symbol",
+      "ID": "OVR-2355"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/health.py",
+      "Symbol": "filesystem_capabilities",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-2340;OVR-2347",
+      "Tags": "#source-symbol",
+      "ID": "OVR-2356"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/health.py",
+      "Symbol": "inspect_health",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-2110;OVR-2116;OVR-2124;OVR-2340;OVR-2348;OVR-2349;OVR-2350;OVR-2352;OVR-2355;OVR-2356;OVR-2358;OVR-380;OVR-439;OVR-442;OVR-446;OVR-451;OVR-452;OVR-520;OVR-525;OVR-527;OVR-973",
+      "Tags": "#source-symbol",
+      "ID": "OVR-2357"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/health.py",
+      "Symbol": "operation_observation",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-2110;OVR-2113;OVR-2152;OVR-2340;OVR-380;OVR-527",
+      "Tags": "#source-symbol",
+      "ID": "OVR-2358"
+    },
+    {
+      "AssetType": "CLASS",
       "Path": "src/riposte/intake.py",
       "Symbol": "InputSource",
       "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
@@ -11708,6 +12380,42 @@
       "Requires": "OVR-016;OVR-380;OVR-400;OVR-520;OVR-525;OVR-528",
       "Tags": "#source-symbol",
       "ID": "OVR-401"
+    },
+    {
+      "AssetType": "CLASS",
+      "Path": "src/riposte/library_search.py",
+      "Symbol": "SearchReport",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-2393;OVR-2400",
+      "Tags": "#source-symbol",
+      "ID": "OVR-2399"
+    },
+    {
+      "AssetType": "CLASS",
+      "Path": "src/riposte/library_search.py",
+      "Symbol": "SearchRow",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-2117;OVR-2393",
+      "Tags": "#source-symbol",
+      "ID": "OVR-2400"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/library_search.py",
+      "Symbol": "normalized",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-2393",
+      "Tags": "#source-symbol",
+      "ID": "OVR-2401"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/library_search.py",
+      "Symbol": "search_library",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-1272;OVR-2124;OVR-2393;OVR-2399;OVR-2400;OVR-2401;OVR-380;OVR-438;OVR-443;OVR-448;OVR-520;OVR-525;OVR-528",
+      "Tags": "#source-symbol",
+      "ID": "OVR-2402"
     },
     {
       "AssetType": "CONFIG",
@@ -12308,7 +13016,7 @@
       "Path": "src/riposte/publication.py",
       "Symbol": "PublishRecipe",
       "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
-      "Requires": "OVR-023;OVR-380;OVR-479;OVR-485",
+      "Requires": "OVR-023;OVR-2448;OVR-2464;OVR-380;OVR-479;OVR-485",
       "Tags": "#source-symbol",
       "ID": "OVR-455"
     },
@@ -12317,16 +13025,25 @@
       "Path": "src/riposte/publication.py",
       "Symbol": "PublishRecipe.__post_init__",
       "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
-      "Requires": "OVR-023;OVR-380;OVR-479;OVR-485",
+      "Requires": "OVR-023;OVR-2464;OVR-380;OVR-479;OVR-485",
       "Tags": "#source-symbol",
       "ID": "OVR-456"
     },
     {
       "AssetType": "FUNCTION",
       "Path": "src/riposte/publication.py",
+      "Symbol": "PublishRecipe.budget_revision",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-023",
+      "Tags": "#source-symbol",
+      "ID": "OVR-2444"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/publication.py",
       "Symbol": "PublishRecipe.from_dict",
       "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
-      "Requires": "OVR-023;OVR-380;OVR-479;OVR-485",
+      "Requires": "OVR-023;OVR-2448;OVR-380;OVR-479;OVR-485",
       "Tags": "#source-symbol",
       "ID": "OVR-457"
     },
@@ -12338,6 +13055,15 @@
       "Requires": "OVR-023",
       "Tags": "#source-symbol",
       "ID": "OVR-458"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/publication.py",
+      "Symbol": "_budget_previews",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-023;OVR-2465;OVR-2466;OVR-455;OVR-484;OVR-495",
+      "Tags": "#source-symbol",
+      "ID": "OVR-2445"
     },
     {
       "AssetType": "FUNCTION",
@@ -12371,7 +13097,7 @@
       "Path": "src/riposte/publication.py",
       "Symbol": "_plan_rows",
       "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
-      "Requires": "OVR-023",
+      "Requires": "OVR-023;OVR-2465;OVR-380",
       "Tags": "#source-symbol",
       "ID": "OVR-808"
     },
@@ -12383,6 +13109,15 @@
       "Requires": "OVR-023;OVR-460;OVR-528",
       "Tags": "#source-symbol",
       "ID": "OVR-461"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/publication.py",
+      "Symbol": "_preview_tasks",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-023;OVR-380",
+      "Tags": "#source-symbol",
+      "ID": "OVR-2500"
     },
     {
       "AssetType": "FUNCTION",
@@ -12434,7 +13169,7 @@
       "Path": "src/riposte/publication.py",
       "Symbol": "_run",
       "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
-      "Requires": "OVR-023;OVR-319;OVR-380;OVR-406;OVR-450;OVR-455;OVR-461;OVR-464;OVR-483;OVR-487;OVR-492;OVR-494;OVR-495;OVR-517;OVR-518;OVR-525;OVR-809",
+      "Requires": "OVR-023;OVR-2465;OVR-319;OVR-380;OVR-406;OVR-450;OVR-455;OVR-461;OVR-464;OVR-483;OVR-487;OVR-492;OVR-494;OVR-495;OVR-517;OVR-518;OVR-525;OVR-809",
       "Tags": "#source-symbol",
       "ID": "OVR-466"
     },
@@ -12452,7 +13187,7 @@
       "Path": "src/riposte/publication.py",
       "Symbol": "_verified_item",
       "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
-      "Requires": "OVR-023;OVR-380;OVR-448;OVR-450;OVR-455;OVR-461;OVR-483;OVR-492;OVR-494;OVR-495;OVR-525;OVR-784;OVR-809",
+      "Requires": "OVR-023;OVR-2465;OVR-380;OVR-448;OVR-450;OVR-455;OVR-461;OVR-483;OVR-492;OVR-494;OVR-495;OVR-525;OVR-784;OVR-809",
       "Tags": "#source-symbol",
       "ID": "OVR-318"
     },
@@ -12488,7 +13223,7 @@
       "Path": "src/riposte/publication.py",
       "Symbol": "publication_plan",
       "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
-      "Requires": "OVR-023;OVR-380;OVR-444;OVR-455;OVR-460;OVR-520;OVR-522;OVR-807;OVR-808",
+      "Requires": "OVR-023;OVR-2445;OVR-2500;OVR-380;OVR-444;OVR-455;OVR-460;OVR-520;OVR-522;OVR-525;OVR-807;OVR-808",
       "Tags": "#source-symbol",
       "ID": "OVR-470"
     },
@@ -12641,7 +13376,7 @@
       "Path": "src/riposte/quality.py",
       "Symbol": "quality_report",
       "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
-      "Requires": "OVR-025;OVR-380;OVR-404;OVR-479;OVR-482;OVR-484",
+      "Requires": "OVR-025;OVR-2448;OVR-2463;OVR-380;OVR-404;OVR-479;OVR-482;OVR-484",
       "Tags": "#source-symbol",
       "ID": "OVR-483"
     },
@@ -12650,9 +13385,189 @@
       "Path": "src/riposte/quality.py",
       "Symbol": "spatial_budget",
       "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
-      "Requires": "OVR-025;OVR-479",
+      "Requires": "OVR-025;OVR-2448;OVR-479",
       "Tags": "#source-symbol",
       "ID": "OVR-484"
+    },
+    {
+      "AssetType": "CONFIG",
+      "Path": "src/riposte/recipes.py",
+      "Symbol": "MAX_BYTES",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-2276",
+      "Tags": "#source-symbol",
+      "ID": "OVR-2283"
+    },
+    {
+      "AssetType": "CONFIG",
+      "Path": "src/riposte/recipes.py",
+      "Symbol": "MAX_RECIPES",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-2276",
+      "Tags": "#source-symbol",
+      "ID": "OVR-2284"
+    },
+    {
+      "AssetType": "CLASS",
+      "Path": "src/riposte/recipes.py",
+      "Symbol": "RecipeEntry",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-2276;OVR-2288",
+      "Tags": "#source-symbol",
+      "ID": "OVR-2285"
+    },
+    {
+      "AssetType": "CLASS",
+      "Path": "src/riposte/recipes.py",
+      "Symbol": "RecipeLibrary",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-2276;OVR-2285",
+      "Tags": "#source-symbol",
+      "ID": "OVR-2286"
+    },
+    {
+      "AssetType": "CLASS",
+      "Path": "src/riposte/recipes.py",
+      "Symbol": "RecipeReport",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-2276;OVR-2288;OVR-2289",
+      "Tags": "#source-symbol",
+      "ID": "OVR-2287"
+    },
+    {
+      "AssetType": "CLASS",
+      "Path": "src/riposte/recipes.py",
+      "Symbol": "RecipeSettings",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-2276",
+      "Tags": "#source-symbol",
+      "ID": "OVR-2288"
+    },
+    {
+      "AssetType": "CLASS",
+      "Path": "src/riposte/recipes.py",
+      "Symbol": "RecipeSummary",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-2276;OVR-2285",
+      "Tags": "#source-symbol",
+      "ID": "OVR-2289"
+    },
+    {
+      "AssetType": "CONFIG",
+      "Path": "src/riposte/recipes.py",
+      "Symbol": "SETTINGS",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-2276",
+      "Tags": "#source-symbol",
+      "ID": "OVR-2290"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/recipes.py",
+      "Symbol": "_bytes",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-2276",
+      "Tags": "#source-symbol",
+      "ID": "OVR-2291"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/recipes.py",
+      "Symbol": "_entry",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-2276;OVR-2285;OVR-2286",
+      "Tags": "#source-symbol",
+      "ID": "OVR-2292"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/recipes.py",
+      "Symbol": "_report",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-2276;OVR-2285;OVR-2286;OVR-2287;OVR-2291",
+      "Tags": "#source-symbol",
+      "ID": "OVR-2293"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/recipes.py",
+      "Symbol": "_unique",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-2276;OVR-380",
+      "Tags": "#source-symbol",
+      "ID": "OVR-2294"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/recipes.py",
+      "Symbol": "checked_settings",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-2276;OVR-2288;OVR-2290;OVR-2296;OVR-2302;OVR-380",
+      "Tags": "#source-symbol",
+      "ID": "OVR-2295"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/recipes.py",
+      "Symbol": "defaults",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-2276;OVR-2288",
+      "Tags": "#source-symbol",
+      "ID": "OVR-2296"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/recipes.py",
+      "Symbol": "inspect_recipes",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-2276;OVR-2287;OVR-2292;OVR-2293;OVR-2295;OVR-2296;OVR-2298;OVR-2299;OVR-380",
+      "Tags": "#source-symbol",
+      "ID": "OVR-2297"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/recipes.py",
+      "Symbol": "load_library",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-2276;OVR-2283;OVR-2284;OVR-2285;OVR-2286;OVR-2294;OVR-2295;OVR-2299;OVR-380;OVR-520;OVR-525;OVR-528",
+      "Tags": "#source-symbol",
+      "ID": "OVR-2298"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/recipes.py",
+      "Symbol": "recipe_name",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-2276;OVR-380",
+      "Tags": "#source-symbol",
+      "ID": "OVR-2299"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/recipes.py",
+      "Symbol": "resolve_recipe",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-2276;OVR-2288;OVR-2295;OVR-2296;OVR-2297;OVR-2302;OVR-380;OVR-455",
+      "Tags": "#source-symbol",
+      "ID": "OVR-2300"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/recipes.py",
+      "Symbol": "save_recipe",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-2276;OVR-2283;OVR-2284;OVR-2285;OVR-2286;OVR-2287;OVR-2291;OVR-2293;OVR-2295;OVR-2298;OVR-2299;OVR-380;OVR-520;OVR-525;OVR-528;OVR-530",
+      "Tags": "#source-symbol",
+      "ID": "OVR-2301"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/recipes.py",
+      "Symbol": "to_recipe",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-2276;OVR-2288;OVR-455;OVR-479;OVR-485",
+      "Tags": "#source-symbol",
+      "ID": "OVR-2302"
     },
     {
       "AssetType": "CLASS",
@@ -12848,7 +13763,7 @@
       "Path": "src/riposte/release_guard.py",
       "Symbol": "protect_release",
       "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
-      "Requires": "OVR-026;OVR-2013;OVR-2014;OVR-2015;OVR-2016;OVR-374;OVR-377;OVR-380;OVR-479;OVR-483;OVR-484;OVR-485;OVR-488;OVR-729;OVR-731;OVR-732;OVR-736;OVR-737",
+      "Requires": "OVR-026;OVR-2013;OVR-2014;OVR-2015;OVR-2016;OVR-2448;OVR-374;OVR-377;OVR-380;OVR-479;OVR-483;OVR-484;OVR-485;OVR-488;OVR-729;OVR-731;OVR-732;OVR-736;OVR-737",
       "Tags": "#source-symbol",
       "ID": "OVR-487"
     },
@@ -13134,6 +14049,15 @@
     {
       "AssetType": "CLASS",
       "Path": "src/riposte/server.py",
+      "Symbol": "ArtistMaskRequest",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-029;OVR-513",
+      "Tags": "#source-symbol",
+      "ID": "OVR-2446"
+    },
+    {
+      "AssetType": "CLASS",
+      "Path": "src/riposte/server.py",
       "Symbol": "CategoryDiscoveryRequest",
       "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
       "Requires": "OVR-029;OVR-513",
@@ -13206,6 +14130,15 @@
     {
       "AssetType": "CLASS",
       "Path": "src/riposte/server.py",
+      "Symbol": "HealthRequest",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-029;OVR-513",
+      "Tags": "#source-symbol",
+      "ID": "OVR-2359"
+    },
+    {
+      "AssetType": "CLASS",
+      "Path": "src/riposte/server.py",
       "Symbol": "Jobs",
       "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
       "Requires": "OVR-029;OVR-380;OVR-616",
@@ -13260,6 +14193,15 @@
     {
       "AssetType": "CLASS",
       "Path": "src/riposte/server.py",
+      "Symbol": "LibrarySearchRequest",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-029;OVR-513",
+      "Tags": "#source-symbol",
+      "ID": "OVR-2403"
+    },
+    {
+      "AssetType": "CLASS",
+      "Path": "src/riposte/server.py",
       "Symbol": "OrganizeRequest",
       "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
       "Requires": "OVR-029;OVR-513",
@@ -13305,6 +14247,15 @@
     {
       "AssetType": "CLASS",
       "Path": "src/riposte/server.py",
+      "Symbol": "RecipeRequest",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-029;OVR-513",
+      "Tags": "#source-symbol",
+      "ID": "OVR-2303"
+    },
+    {
+      "AssetType": "CLASS",
+      "Path": "src/riposte/server.py",
       "Symbol": "ResumePublishRequest",
       "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
       "Requires": "OVR-029;OVR-513",
@@ -13343,7 +14294,7 @@
       "Path": "src/riposte/server.py",
       "Symbol": "_BodyLimitMiddleware",
       "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
-      "Requires": "OVR-029",
+      "Requires": "OVR-029;OVR-2447",
       "Tags": "#source-symbol",
       "ID": "OVR-323"
     },
@@ -13352,7 +14303,7 @@
       "Path": "src/riposte/server.py",
       "Symbol": "_BodyLimitMiddleware.__call__",
       "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
-      "Requires": "OVR-029",
+      "Requires": "OVR-029;OVR-2447",
       "Tags": "#source-symbol",
       "ID": "OVR-324"
     },
@@ -13368,9 +14319,18 @@
     {
       "AssetType": "FUNCTION",
       "Path": "src/riposte/server.py",
+      "Symbol": "api_body_limit",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-029",
+      "Tags": "#source-symbol",
+      "ID": "OVR-2447"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/server.py",
       "Symbol": "create_app",
       "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
-      "Requires": "OVR-029;OVR-1093;OVR-1183;OVR-1264;OVR-1265;OVR-1266;OVR-2043;OVR-2060;OVR-2068;OVR-2124;OVR-2146;OVR-308;OVR-309;OVR-316;OVR-317;OVR-319;OVR-320;OVR-321;OVR-323;OVR-331;OVR-380;OVR-389;OVR-391;OVR-396;OVR-397;OVR-398;OVR-399;OVR-401;OVR-417;OVR-421;OVR-434;OVR-436;OVR-444;OVR-455;OVR-468;OVR-469;OVR-470;OVR-471;OVR-472;OVR-477;OVR-478;OVR-479;OVR-485;OVR-489;OVR-492;OVR-497;OVR-498;OVR-499;OVR-500;OVR-501;OVR-506;OVR-507;OVR-508;OVR-509;OVR-510;OVR-511;OVR-512;OVR-519;OVR-520;OVR-522;OVR-523;OVR-525;OVR-528;OVR-529;OVR-972",
+      "Requires": "OVR-029;OVR-1093;OVR-1183;OVR-1264;OVR-1265;OVR-1266;OVR-2043;OVR-2060;OVR-2068;OVR-2124;OVR-2146;OVR-2290;OVR-2297;OVR-2300;OVR-2301;OVR-2303;OVR-2357;OVR-2359;OVR-2402;OVR-2403;OVR-2446;OVR-2447;OVR-2448;OVR-308;OVR-309;OVR-316;OVR-317;OVR-319;OVR-320;OVR-321;OVR-323;OVR-331;OVR-380;OVR-389;OVR-391;OVR-396;OVR-397;OVR-398;OVR-399;OVR-401;OVR-417;OVR-421;OVR-434;OVR-436;OVR-444;OVR-468;OVR-469;OVR-470;OVR-471;OVR-472;OVR-477;OVR-478;OVR-489;OVR-492;OVR-497;OVR-498;OVR-499;OVR-500;OVR-501;OVR-506;OVR-507;OVR-508;OVR-509;OVR-510;OVR-511;OVR-512;OVR-519;OVR-520;OVR-522;OVR-523;OVR-525;OVR-528;OVR-529;OVR-972",
       "Tags": "#source-symbol",
       "ID": "OVR-325"
     },
@@ -13571,6 +14531,195 @@
       "Requires": "OVR-1250;OVR-1262;OVR-380",
       "Tags": "#source-symbol",
       "ID": "OVR-1272"
+    },
+    {
+      "AssetType": "CLASS",
+      "Path": "src/riposte/spatial.py",
+      "Symbol": "ArtistMask",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-2438;OVR-2456;OVR-2459;OVR-2460;OVR-2462;OVR-380",
+      "Tags": "#source-symbol",
+      "ID": "OVR-2448"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/spatial.py",
+      "Symbol": "ArtistMask.__post_init__",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-2438;OVR-2459;OVR-380",
+      "Tags": "#source-symbol",
+      "ID": "OVR-2449"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/spatial.py",
+      "Symbol": "ArtistMask.from_dict",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-2438;OVR-2448;OVR-2459;OVR-380",
+      "Tags": "#source-symbol",
+      "ID": "OVR-2450"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/spatial.py",
+      "Symbol": "ArtistMask.from_png",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-2438;OVR-2448;OVR-2459;OVR-2460;OVR-380",
+      "Tags": "#source-symbol",
+      "ID": "OVR-2451"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/spatial.py",
+      "Symbol": "ArtistMask.identity",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-2438;OVR-2462",
+      "Tags": "#source-symbol",
+      "ID": "OVR-2452"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/spatial.py",
+      "Symbol": "ArtistMask.public",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-2438;OVR-2452;OVR-2456",
+      "Tags": "#source-symbol",
+      "ID": "OVR-2453"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/spatial.py",
+      "Symbol": "ArtistMask.raster",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-2438;OVR-380",
+      "Tags": "#source-symbol",
+      "ID": "OVR-2454"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/spatial.py",
+      "Symbol": "ArtistMask.validate_aspect",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-2438;OVR-380",
+      "Tags": "#source-symbol",
+      "ID": "OVR-2455"
+    },
+    {
+      "AssetType": "CLASS",
+      "Path": "src/riposte/spatial.py",
+      "Symbol": "ArtistMaskRecord",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-2438",
+      "Tags": "#source-symbol",
+      "ID": "OVR-2456"
+    },
+    {
+      "AssetType": "CLASS",
+      "Path": "src/riposte/spatial.py",
+      "Symbol": "BudgetPreview",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-2438;OVR-2458",
+      "Tags": "#source-symbol",
+      "ID": "OVR-2457"
+    },
+    {
+      "AssetType": "CLASS",
+      "Path": "src/riposte/spatial.py",
+      "Symbol": "BudgetSummary",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-2438",
+      "Tags": "#source-symbol",
+      "ID": "OVR-2458"
+    },
+    {
+      "AssetType": "CONFIG",
+      "Path": "src/riposte/spatial.py",
+      "Symbol": "MAX_PIXELS",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-2438",
+      "Tags": "#source-symbol",
+      "ID": "OVR-2459"
+    },
+    {
+      "AssetType": "CONFIG",
+      "Path": "src/riposte/spatial.py",
+      "Symbol": "MAX_PNG_BYTES",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-2438",
+      "Tags": "#source-symbol",
+      "ID": "OVR-2460"
+    },
+    {
+      "AssetType": "CONFIG",
+      "Path": "src/riposte/spatial.py",
+      "Symbol": "MAX_TOTAL_PIXELS",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-2438",
+      "Tags": "#source-symbol",
+      "ID": "OVR-2461"
+    },
+    {
+      "AssetType": "CONFIG",
+      "Path": "src/riposte/spatial.py",
+      "Symbol": "RESAMPLING",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-2438",
+      "Tags": "#source-symbol",
+      "ID": "OVR-2462"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/spatial.py",
+      "Symbol": "budget_identity",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-2438;OVR-2448;OVR-2458;OVR-2462",
+      "Tags": "#source-symbol",
+      "ID": "OVR-2463"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/spatial.py",
+      "Symbol": "checked_masks",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-2438;OVR-2448;OVR-2461;OVR-380",
+      "Tags": "#source-symbol",
+      "ID": "OVR-2464"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/spatial.py",
+      "Symbol": "mask_for",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-2438;OVR-2448",
+      "Tags": "#source-symbol",
+      "ID": "OVR-2465"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/spatial.py",
+      "Symbol": "preview",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-2438;OVR-2448;OVR-2457;OVR-2463",
+      "Tags": "#source-symbol",
+      "ID": "OVR-2466"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/spatial.py",
+      "Symbol": "read_map",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-2438;OVR-2448;OVR-2464;OVR-380;OVR-805",
+      "Tags": "#source-symbol",
+      "ID": "OVR-2467"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/spatial.py",
+      "Symbol": "read_mask",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-2438;OVR-2448;OVR-2460;OVR-380;OVR-805",
+      "Tags": "#source-symbol",
+      "ID": "OVR-2468"
     },
     {
       "AssetType": "CONFIG",
@@ -14126,7 +15275,7 @@
       "Path": "src/riposte/terminal/controller.py",
       "Symbol": "Controller",
       "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
-      "Requires": "OVR-040;OVR-194;OVR-197;OVR-2043;OVR-2058;OVR-2117;OVR-2126;OVR-2222;OVR-380;OVR-402;OVR-543;OVR-547;OVR-561;OVR-562;OVR-563;OVR-606;OVR-615;OVR-617;OVR-635;OVR-649;OVR-670;OVR-672;OVR-696;OVR-699;OVR-700;OVR-705;OVR-710;OVR-712;OVR-713;OVR-884;OVR-890;OVR-891;OVR-892",
+      "Requires": "OVR-040;OVR-194;OVR-197;OVR-2043;OVR-2058;OVR-2117;OVR-2126;OVR-2222;OVR-2290;OVR-2297;OVR-380;OVR-402;OVR-543;OVR-547;OVR-553;OVR-561;OVR-562;OVR-563;OVR-606;OVR-615;OVR-617;OVR-635;OVR-649;OVR-670;OVR-672;OVR-696;OVR-699;OVR-700;OVR-705;OVR-710;OVR-712;OVR-713;OVR-884;OVR-890;OVR-891;OVR-892",
       "Tags": "#source-symbol",
       "ID": "OVR-568"
     },
@@ -14144,7 +15293,7 @@
       "Path": "src/riposte/terminal/controller.py",
       "Symbol": "Controller._key",
       "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
-      "Requires": "OVR-040;OVR-194;OVR-197;OVR-2058;OVR-2117;OVR-2126;OVR-2155;OVR-2156;OVR-2157;OVR-380;OVR-402;OVR-547;OVR-572;OVR-573;OVR-574;OVR-575;OVR-576;OVR-577;OVR-578;OVR-579;OVR-580;OVR-581;OVR-582;OVR-583;OVR-586;OVR-590;OVR-591;OVR-592;OVR-593;OVR-594;OVR-596;OVR-597;OVR-599;OVR-617;OVR-672;OVR-696;OVR-710;OVR-712;OVR-881;OVR-882;OVR-883",
+      "Requires": "OVR-040;OVR-194;OVR-197;OVR-2058;OVR-2117;OVR-2126;OVR-2155;OVR-2156;OVR-2157;OVR-2304;OVR-2305;OVR-2306;OVR-380;OVR-402;OVR-547;OVR-572;OVR-573;OVR-574;OVR-575;OVR-576;OVR-577;OVR-578;OVR-579;OVR-580;OVR-581;OVR-582;OVR-583;OVR-586;OVR-590;OVR-591;OVR-592;OVR-593;OVR-594;OVR-596;OVR-597;OVR-599;OVR-617;OVR-672;OVR-696;OVR-710;OVR-712;OVR-881;OVR-882;OVR-883",
       "Tags": "#source-symbol",
       "ID": "OVR-570"
     },
@@ -14153,7 +15302,7 @@
       "Path": "src/riposte/terminal/controller.py",
       "Symbol": "Controller.accept_editor",
       "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
-      "Requires": "OVR-040;OVR-2156;OVR-2222;OVR-380;OVR-563;OVR-572;OVR-587;OVR-589;OVR-696;OVR-705;OVR-710;OVR-712;OVR-892",
+      "Requires": "OVR-040;OVR-2156;OVR-2222;OVR-2290;OVR-2297;OVR-380;OVR-553;OVR-563;OVR-572;OVR-587;OVR-589;OVR-597;OVR-696;OVR-705;OVR-710;OVR-712;OVR-892",
       "Tags": "#source-symbol",
       "ID": "OVR-571"
     },
@@ -14322,6 +15471,15 @@
     {
       "AssetType": "FUNCTION",
       "Path": "src/riposte/terminal/controller.py",
+      "Symbol": "Controller.load_recipe",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-040;OVR-2297;OVR-380;OVR-573;OVR-596;OVR-696;OVR-705",
+      "Tags": "#source-symbol",
+      "ID": "OVR-2304"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/controller.py",
       "Symbol": "Controller.move",
       "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
       "Requires": "OVR-040;OVR-194;OVR-670;OVR-672",
@@ -14354,6 +15512,24 @@
       "Requires": "OVR-040;OVR-2043;OVR-380;OVR-573;OVR-574;OVR-589;OVR-597;OVR-615;OVR-712",
       "Tags": "#source-symbol",
       "ID": "OVR-588"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/controller.py",
+      "Symbol": "Controller.recipe_save_name",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-040;OVR-2290;OVR-547;OVR-553;OVR-563;OVR-710",
+      "Tags": "#source-symbol",
+      "ID": "OVR-2305"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/controller.py",
+      "Symbol": "Controller.recipes",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-040;OVR-597;OVR-696;OVR-699;OVR-712",
+      "Tags": "#source-symbol",
+      "ID": "OVR-2306"
     },
     {
       "AssetType": "FUNCTION",
@@ -15249,9 +16425,18 @@
     {
       "AssetType": "FUNCTION",
       "Path": "src/riposte/terminal/render.py",
+      "Symbol": "recipes",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-047;OVR-659;OVR-666;OVR-672",
+      "Tags": "#source-symbol",
+      "ID": "OVR-2307"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/render.py",
       "Symbol": "render",
       "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
-      "Requires": "OVR-047;OVR-2159;OVR-2160;OVR-653;OVR-654;OVR-655;OVR-656;OVR-657;OVR-658;OVR-660;OVR-661;OVR-662;OVR-663;OVR-664;OVR-665;OVR-667;OVR-669;OVR-673;OVR-713;OVR-715;OVR-893",
+      "Requires": "OVR-047;OVR-2159;OVR-2160;OVR-2307;OVR-653;OVR-654;OVR-655;OVR-656;OVR-657;OVR-658;OVR-660;OVR-661;OVR-662;OVR-663;OVR-664;OVR-665;OVR-667;OVR-669;OVR-673;OVR-713;OVR-715;OVR-893",
       "Tags": "#source-symbol",
       "ID": "OVR-668"
     },
@@ -15611,7 +16796,7 @@
       "Path": "src/riposte/terminal/service.py",
       "Symbol": "execute",
       "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
-      "Requires": "OVR-048;OVR-1086;OVR-1093;OVR-1183;OVR-2009;OVR-2010;OVR-2043;OVR-2060;OVR-2068;OVR-2092;OVR-2094;OVR-2095;OVR-2120;OVR-2123;OVR-2124;OVR-2127;OVR-2128;OVR-2141;OVR-2143;OVR-2144;OVR-2145;OVR-2148;OVR-308;OVR-309;OVR-315;OVR-316;OVR-317;OVR-319;OVR-320;OVR-333;OVR-380;OVR-390;OVR-391;OVR-396;OVR-397;OVR-398;OVR-400;OVR-401;OVR-417;OVR-421;OVR-434;OVR-436;OVR-444;OVR-467;OVR-468;OVR-470;OVR-472;OVR-477;OVR-478;OVR-489;OVR-494;OVR-522;OVR-525;OVR-529;OVR-694;OVR-696;OVR-697;OVR-698;OVR-701;OVR-703;OVR-705;OVR-706;OVR-707;OVR-972",
+      "Requires": "OVR-048;OVR-1086;OVR-1093;OVR-1183;OVR-2009;OVR-2010;OVR-2043;OVR-2060;OVR-2068;OVR-2092;OVR-2094;OVR-2095;OVR-2120;OVR-2123;OVR-2124;OVR-2127;OVR-2128;OVR-2141;OVR-2143;OVR-2144;OVR-2145;OVR-2148;OVR-2297;OVR-2301;OVR-2308;OVR-2357;OVR-2402;OVR-2469;OVR-308;OVR-309;OVR-315;OVR-316;OVR-317;OVR-319;OVR-320;OVR-333;OVR-380;OVR-390;OVR-391;OVR-396;OVR-397;OVR-398;OVR-400;OVR-401;OVR-417;OVR-421;OVR-434;OVR-436;OVR-444;OVR-467;OVR-468;OVR-470;OVR-472;OVR-477;OVR-478;OVR-489;OVR-494;OVR-522;OVR-525;OVR-529;OVR-694;OVR-696;OVR-697;OVR-698;OVR-701;OVR-702;OVR-705;OVR-706;OVR-707;OVR-807;OVR-972",
       "Tags": "#source-symbol",
       "ID": "OVR-699"
     },
@@ -15620,7 +16805,7 @@
       "Path": "src/riposte/terminal/service.py",
       "Symbol": "image_bytes",
       "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
-      "Requires": "OVR-048;OVR-2126;OVR-380;OVR-389;OVR-399;OVR-469;OVR-494;OVR-522;OVR-525",
+      "Requires": "OVR-048;OVR-2126;OVR-380;OVR-389;OVR-399;OVR-469;OVR-492;OVR-494;OVR-522;OVR-525",
       "Tags": "#source-symbol",
       "ID": "OVR-700"
     },
@@ -15632,6 +16817,15 @@
       "Requires": "OVR-048;OVR-2126;OVR-2127;OVR-380;OVR-706",
       "Tags": "#source-symbol",
       "ID": "OVR-701"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/service.py",
+      "Symbol": "masked_recipe",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-048;OVR-2126;OVR-2465;OVR-2467;OVR-2468;OVR-380",
+      "Tags": "#source-symbol",
+      "ID": "OVR-2469"
     },
     {
       "AssetType": "FUNCTION",
@@ -15650,6 +16844,15 @@
       "Requires": "OVR-048;OVR-2126;OVR-455;OVR-479;OVR-485",
       "Tags": "#source-symbol",
       "ID": "OVR-703"
+    },
+    {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/service.py",
+      "Symbol": "resolved_recipe",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-048;OVR-2126;OVR-2290;OVR-2300;OVR-380",
+      "Tags": "#source-symbol",
+      "ID": "OVR-2308"
     },
     {
       "AssetType": "FUNCTION",

@@ -1,0 +1,13 @@
+
+  RIPOSTE / IMAGE SECURITY
+  Inspect storage and recovery without writing, pruning or reclaiming locks.
+
+  Usage: riposte health [OPTIONS] ROOT
+PARAMETERS                                                                                          
++-----------------------------+--------------------------------------------------------------------+
+| ROOT                        | Existing dedicated image folder; everything inside is in scope.    |
+|                             | [required]                                                         |
+| --max-entries INTEGER RANGE | Bound storage inspection; partial totals stay explicit.  [default: |
+|                             | 100000; 1<=x<=200000]                                              |
+| --help                      | Show this message and exit.                                        |
++-----------------------------+--------------------------------------------------------------------+

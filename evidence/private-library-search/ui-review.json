@@ -1,0 +1,17 @@
+{
+  "scope": "PAC-042 private search only; no global UI compliance claim",
+  "static_findings": {
+    "ownership.native-select-undecided": 1,
+    "affordance.actionless-button": 88,
+    "affordance.empty-href": 1,
+    "form.textarea-resize-missing": 1
+  },
+  "dispositions": {
+    "affordance.actionless-button": "Literal static scan cannot follow external ID-bound handlers. New search buttons bind in library-search.js; real Chromium exercises run, close, clear, paging and inspector. Existing findings retained.",
+    "ownership.native-select-undecided": "Native platform popup ownership explicitly recorded in docs/DESIGN.md and UX-CONTRACT.md. New title-state select keyboard popup tested.",
+    "affordance.empty-href": "Existing runtime download link, unchanged.",
+    "form.textarea-resize-missing": "Existing duplicate settings textarea, unchanged; search adds no textarea."
+  },
+  "visual_review": "Inspected 1280x1000 and 390x844 screenshots. Shared green workbench, native modal, wrapping paths and global scrollbar retained. Expanded hidden invalid date fields now focus correctly; full-width query geometry repaired.",
+  "limits": "Actual authenticated server lookup/paging; delayed/offline and composition events injected. Native keyboard Escape/select verified, not screen-reader, physical IME or human usability acceptance."
+}

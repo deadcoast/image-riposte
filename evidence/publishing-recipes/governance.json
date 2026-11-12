@@ -1,0 +1,77 @@
+{
+  "onboarding": {
+    "root": "C:\\Users\\ryanf\\github\\_new\\image-riposte",
+    "format": "0.5",
+    "files": {
+      "README.md": "ec61bc1f3be8600ecf939f725255ad3bf48c810fa9da163c82fcecbd735e1abb",
+      "AGENTS.md": "9cf4d382c15ecff07d062d796a6e79b5504d63d15a4a26726e43ed154eff61fb"
+    },
+    "onboarding": "a91ad1ccc2866a699290b1146f7ba55914ff8410068d9a34002c71b1f474c36d",
+    "revision": "22560c5955d32cd739f23e620d4bb1659f9f6211d5725c68e8a7969a36453333",
+    "health": {
+      "todo": {
+        "DONE": 44,
+        "TODO": 5
+      },
+      "organism": {
+        "VALIDATED_COMPLETE": 27
+      },
+      "nodule": {
+        "ABSORBED": 26
+      }
+    },
+    "ready": {
+      "rows": [],
+      "total": 0,
+      "offset": 0,
+      "next_offset": null
+    },
+    "active": {
+      "rows": [],
+      "total": 0,
+      "offset": 0,
+      "next_offset": null
+    },
+    "next_ids": {
+      "todo": "PAC-046",
+      "overlord": "OVR-2336",
+      "organism": "OGM-028",
+      "nodule": "NDL-027"
+    },
+    "validation": {
+      "valid": true,
+      "errors": [],
+      "warnings": []
+    },
+    "stale_evidence": [],
+    "instructions": "Read this project's README.md then AGENTS.md. Query OVR by Path before source edits. Pace new scope before building. Use query projections and pacer_context for the active task. Submit commands with current revision, onboarding and context receipt. Checkpoint next action; evaluate, refresh and verify rules. Receipts do not prove understanding; judge DoDs and evidence."
+  },
+  "validation": {
+    "revision": "22560c5955d32cd739f23e620d4bb1659f9f6211d5725c68e8a7969a36453333",
+    "valid": true,
+    "errors": [],
+    "warnings": [],
+    "stale_evidence": []
+  },
+  "next": {
+    "ID": "PAC-041",
+    "Title": "Add workspace storage and recovery health inspection",
+    "Status": "TODO"
+  },
+  "initial_next_query_error": {
+    "content": [
+      {
+        "type": "text",
+        "text": "Error executing tool pacer_query: Query contains unknown or empty projection columns"
+      }
+    ],
+    "isError": true
+  },
+  "task": {
+    "ID": "PAC-040",
+    "Title": "Add reusable path-free publishing recipes",
+    "Status": "DONE",
+    "OGMRefs": "OGM-027",
+    "NDLRefs": "NDL-026"
+  }
+}

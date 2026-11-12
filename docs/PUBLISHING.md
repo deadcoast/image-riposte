@@ -4,6 +4,35 @@ This maintained guide covers publishing artifacts. The [current data contract](C
 
 The normal path imports no workshop module. `publication.py` owns the publishing lifecycle; `open_in_workshop` is the only optional bridge into `lab.py`. That bridge copies the exact committed pixels and is idempotent for the same output. There is no engine rerun, extra resizing or secret change of candidate.
 
+
+## Reusable publishing recipes
+
+Recipes save the publishing edges, channel-change cap, iterations, restarts,
+seed, smooth-white choice, colour cap and local RMS fraction. The private,
+versioned library is `.riposte/publishing-recipes.json` inside the results
+workspace (`.shroud` for an existing legacy workspace). It holds up to 64 names.
+Names contain 1–64 characters, start with a letter or number, and use letters,
+numbers, spaces, hyphens or underscores. Names match without case sensitivity.
+
+In a terminal publishing form, press **l** to choose a recipe and **Enter** to
+load its settings; **i** inspects the full saved settings. Press **s** in the form
+to name and preview the current settings, then **s** on that preview to save.
+In the browser's publishing settings, open **Publishing recipes**, choose a
+name and click **Load settings**. **Preview settings** shows every saved field;
+**Save reviewed recipe** explicitly creates or replaces the named recipe.
+Changing settings invalidates that save preview. A conflict retains your draft;
+reload the library, compare the saved version, then preview again.
+
+Loading fills editable settings. Saving changes only the private recipe library
+and workspace bookkeeping; neither action starts processing. Image selection,
+source/result paths, device, local model paths and identities, visual approvals
+and export acknowledgements are never saved in recipes. Choose them for each
+run. Publishing still validates the current settings and commits its complete
+resolved configuration and actual model identity per batch. Resume uses that
+batch's committed configuration. Combined sorting still requires its exact
+preview and replacement consent. A changed pinned recipe requires reloading.
+
+
 ## State and data boundaries
 
 The actively maintained calendar hierarchy holds canonical clean masters. Publishing operations use `.riposte/publishing/BATCH_ID/`; old `.shroud` workspaces use their existing namespace until explicit upgrade. Model directories must be outside the managed artwork folder.
@@ -58,3 +87,68 @@ Date-only metadata is a generated-PNG and publishing-pack boundary. Local JSON
 protocols, model/review records and explicit research packets may contain
 technical timestamps, hashes and settings. Keep them distinct from artwork
 approved for publication; see [the threat model](THREAT-MODEL.md).
+
+## Artist masks
+
+Artist masks reduce the existing per-pixel channel allowance. Black (0) permits
+no change; white (255) retains the automatic white/edge budget; gray scales that
+budget down with integer flooring. A gray value of 128 with an automatic cap of
+4 permits at most 2 channel levels. Masks cannot loosen white, edge, local RMS
+or colour-difference gates. A fully protected raster has no editable budget and
+produces a blocked item, never fallback noise.
+
+In browser publishing, select artwork, expand **Artist masks**, choose the target
+artwork and attach its PNG. **Preview masks** renders the overlay at every distinct
+final size. Cyan means artist restraint; the counts include automatic limits too.
+**Download exact cap raster** returns a grayscale PNG whose literal values are
+0–16 allowed channel levels, so it will look nearly black in an ordinary viewer.
+Remove mask restores automatic limits. Model execution is unnecessary for previews.
+
+The terminal exposes Artist mask and Artist mask map under Advanced. A publishing
+plan lists each final raster; press `m` to open its overlay in the local viewer.
+The cache is private and date-only; opening it does not approve any output.
+
+```powershell
+.\riposte.cmd publish D:\Artwork --image IMAGE_ID --budget-mask D:\Masks\linework.png --plan
+.\riposte.cmd publish D:\Artwork --image IMAGE_ID --budget-mask D:\Masks\linework.png --plan --view-budget 1
+.\riposte.cmd riposte D:\Workspace --input D:\Artwork\drawing.png --budget-mask D:\Masks\linework.png --plan
+.\riposte.cmd publish D:\Artwork --all --budget-map D:\Masks\riposte-private-mask-map.json --plan
+```
+
+A PNG mask must be one frame, 8-bit grayscale (`L`), without transparency or
+nontrivial EXIF orientation; at most 2 MiB, 1,048,576 pixels and 4096 on either edge.
+Use the clean, oriented canvas proportions. A reduced mask allows at most one cell
+of aspect-ratio rounding. No rotation or crop is guessed. Every output pixel uses
+the minimum of all mask cells whose normalized areas overlap it (`overlap-min-v1`).
+This applies to enlargement and reduction; thin protected areas survive resizing.
+The final output itself still never enlarges the master.
+
+**Export mask map** explicitly downloads a private JSON file for `--budget-map`.
+It contains `schema: 1` and `masks`: source SHA-256, width, height, canonical base64
+8-bit pixels, and SHA-256 identity covering the version, resampling rule, source,
+dimensions and pixels. PNG metadata and filenames are discarded. Up to 200 unique
+source masks and 4,194,304 total mask pixels are accepted. The mask is bound to exact
+clean date-only source bytes, so identical copies share it. A mask for an unselected
+or changed source is rejected rather than silently ignored. Keep masks and maps
+outside folders being sorted or scanned for protection; they are user input files,
+not artwork. `_float_` only exempts sorting, not standalone image intake.
+
+Saved named recipes still contain general settings only. Masks remain transient
+in the browser until an explicitly started batch stores them in its private request
+or an explicit map export downloads them. They never enter public PNG metadata or
+publishing ZIPs. Each task and quality report bind the mask identity; resume, review,
+image serving and packaging reject a changed budget. Resume uses the saved pixels
+and needs no original mask file. The engine and independent post-output audit both
+apply these limits. Exact output approval remains separate from the overlay.
+
+CLI plans include `budget_revision`; pass it with `--budget-revision` when starting
+to reject changed masks, sizes or quality limits. Terminal Start from a mask plan
+does this automatically. Combined sorting binds the mask in its existing plan ID
+and validates the source selection before replacing anything; use browser or the
+ordinary publishing plan for its overlay. No-mask workflows retain their defaults.
+These are damage constraints, not evidence of improved AI resistance.
+
+Raster previews return at most three at a time. Browser Previous/Next previews and
+terminal `[ / ]` retain the full batch selection. CLI `--budget-offset N --plan`
+selects a preview page; `--view-budget N` opens an absolute numbered preview.
+Processing skips preview rendering, so pagination never limits batch size.

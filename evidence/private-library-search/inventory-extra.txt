@@ -1,0 +1,19 @@
+warning: `VIRTUAL_ENV=.venv` does not match the project environment path `typing\.venv` and will be ignored; use `--active` to target the active environment instead
+{
+  "result": "FAIL",
+  "counts": {
+    "source_files": 81,
+    "source_modules": 69,
+    "paired_stubs": 69,
+    "indexed_files": 1071,
+    "source_symbols": 789,
+    "tool_functions": 9,
+    "symbol_dependency_edges": 3340,
+    "static_definitions": 3063,
+    "local_dependency_edges": 1296
+  },
+  "source_unchanged": true,
+  "issues": [
+    "Unregistered file: typing/evidence/source-reviewed-private-library-search.json"
+  ]
+}

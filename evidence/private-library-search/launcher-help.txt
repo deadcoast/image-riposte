@@ -1,0 +1,21 @@
+
+  RIPOSTE / IMAGE SECURITY
+  Explicit private lookup. Output contains original filenames; keep it local.
+
+  Usage: riposte library-search [OPTIONS] ROOT
+PARAMETERS                                                                                          
++--------------------------+-----------------------------------------------------------------------+
+| ROOT                     | Existing dedicated image folder; everything inside is in scope.       |
+|                          | [required]                                                            |
+| --search TEXT            | Private original title, category, canonical path, date or ID; literal |
+|                          | Unicode substring.                                                    |
+| --category TEXT          | Exact saved category folder slug, matched without case.               |
+| --title-state TEXT       | all, known or unknown original titles.  [default: all]                |
+| --year TEXT              |                                                                       |
+| --month TEXT             |                                                                       |
+| --size TEXT              |                                                                       |
+| --limit INTEGER RANGE    | [default: 50; 1<=x<=500]                                              |
+| --offset INTEGER RANGE   | [default: 0; 0<=x<=1000000000]                                        |
+| --expected-revision TEXT | Previous search revision; reject changed pages.                       |
+| --help                   | Show this message and exit.                                           |
++--------------------------+-----------------------------------------------------------------------+

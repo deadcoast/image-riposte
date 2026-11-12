@@ -100,11 +100,13 @@ def test_enter_from_migration_plan_still_requires_replace(root):
 
 def test_advanced_disclosure_preserves_all_settings(root):
     c=Controller(root,Presentation());c.state.selected.add("a"*32);c.action("publish")
-    p=c.state.page;p.values.update(steps=73,vae4="SESSION_ONLY")
+    p=c.state.page;p.values.update(steps=73,vae4="SESSION_ONLY",budget_mask="PRIVATE_MASK.png")
     assert len(fields_for(p))==5
-    c.key(Key("char","f"));assert p.advanced and len(fields_for(p))==15
+    c.key(Key("char","f"));assert p.advanced and len(fields_for(p))==17
+    assert {f.key for f in fields_for(p) if f.optional} >= {"budget_mask", "budget_map"}
     c.key(Key("char","f"));assert not p.advanced and p.values["steps"]==73 and p.values["vae4"]=="SESSION_ONLY"
     request=c.request_from_form();assert request.values["steps"]==73
+    assert str(request.values["budget_mask"])=="PRIVATE_MASK.png"
 
 
 def test_contextual_help_describes_the_focused_setting(root):

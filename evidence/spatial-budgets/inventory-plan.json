@@ -1,0 +1,714 @@
+[
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "FILE",
+      "Path": "evidence/spatial-budgets/README.md",
+      "Symbol": "",
+      "Exports": "",
+      "Imports": "",
+      "Requires": "",
+      "Purpose": "Typing validation input, evidence or development authority",
+      "ID": "OVR-2434",
+      "Tags": "#typing-index"
+    }
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "FILE",
+      "Path": "evidence/spatial-budgets/contract-review.json",
+      "Symbol": "",
+      "Exports": "",
+      "Imports": "",
+      "Requires": "",
+      "Purpose": "Typing validation input, evidence or development authority",
+      "ID": "OVR-2435",
+      "Tags": "#typing-index"
+    }
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "FILE",
+      "Path": "evidence/spatial-budgets/requirement-review.json",
+      "Symbol": "",
+      "Exports": "",
+      "Imports": "",
+      "Requires": "",
+      "Purpose": "Typing validation input, evidence or development authority",
+      "ID": "OVR-2436",
+      "Tags": "#typing-index"
+    }
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "FILE",
+      "Path": "evidence/spatial-budgets/verify.py",
+      "Symbol": "",
+      "Exports": "HERE;ROOT;acceptance;counts;digest;documentation;manifest;previous;read;verify",
+      "Imports": "from contextlib import redirect_stdout, redirect_stderr\nfrom pacer_mcp.service import Service\nfrom pathlib import Path\nfrom riposte.cli import app\nfrom typer.main import get_command\nfrom urllib.parse import unquote, urlsplit\nimport argparse\nimport csv\nimport hashlib\nimport importlib.util\nimport io\nimport json\nimport re\nimport sys\nimport tarfile\nimport xml.etree.ElementTree as ET\nimport zipfile",
+      "Requires": "OVR-012",
+      "Purpose": "Typing validation input, evidence or development authority",
+      "ID": "OVR-2437",
+      "Tags": "#typing-index"
+    }
+  },
+  {
+    "op": "set",
+    "id": "OVR-023",
+    "fields": {
+      "Exports": "PublishRecipe;PublishRecipe.__post_init__;PublishRecipe.budget_revision;PublishRecipe.from_dict;PublishRecipe.public;_budget_previews;_checkpoint;_id;_models;_plan_rows;_prefix;_publication_zip_locked;_read;_read_record;_replace_json;_request;_run;_source_row;_verified_item;export_publication;open_in_workshop;publication_pixels;publication_plan;publication_status;publication_zip;publications;resume_publication;review_publication;start_publication",
+      "Imports": "from .errors import RiposteError\nfrom .intake import inspect_inputs\nfrom .lab import trials, _store_trial\nfrom .metrics import TRANSFORMS, transform\nfrom .metrics import difference_image\nfrom .metrics import transport_report\nfrom .models import LocalEncoder, LocalInpaintProbe\nfrom .organizer import audit_workspace\nfrom .policy import Policy\nfrom .policy import canonical_path\nfrom .policy import folder_for, valid_day\nfrom .quality import QualityLimits, quality_report\nfrom .quality import spatial_budget\nfrom .records import ImageSource\nfrom .release_guard import ReleaseConfig, protect_release\nfrom .runtime_probe import probe_encoder, probe_inpaint, probe_temporal\nfrom .sanitize import encode_clean, png_audit, social_render\nfrom .spatial import ArtistMask, checked_masks, mask_for, preview as spatial_preview\nfrom .store import check_root, safe_child, state_relative, workspace_lock, find_image, atomic_clean_write, atomic_json_write\nfrom .temporal import LocalTemporalProbe\nfrom PIL import Image\nfrom __future__ import annotations\nfrom dataclasses import asdict, dataclass, replace\nfrom pathlib import Path\nfrom typing import Any, Mapping\nimport hashlib\nimport io\nimport json\nimport os\nimport re\nimport shutil\nimport uuid\nimport zipfile",
+      "Requires": "OVR-014;OVR-016;OVR-018;OVR-019;OVR-021;OVR-022;OVR-025;OVR-026;OVR-027;OVR-028;OVR-035;OVR-036;OVR-1890;OVR-2438;OVR-799"
+    }
+  },
+  {
+    "op": "set",
+    "id": "OVR-025",
+    "fields": {
+      "Imports": "from .errors import RiposteError\nfrom .metrics import fidelity\nfrom .spatial import ArtistMask, budget_identity\nfrom PIL import Image\nfrom __future__ import annotations\nfrom dataclasses import asdict, dataclass\nimport math\nimport numpy as np",
+      "Requires": "OVR-014;OVR-018;OVR-2438"
+    }
+  },
+  {
+    "op": "set",
+    "id": "OVR-026",
+    "fields": {
+      "Imports": "from .context_graph import context_groups, context_values, context_gradient\nfrom .coupled import Branch, _branches, _features\nfrom .coupled import _view_features\nfrom .errors import RiposteError\nfrom .optimizer import _round_ste\nfrom .quality import QualityLimits, spatial_budget, quality_report\nfrom .spatial import ArtistMask\nfrom .views import image_tensor, tensor_image, spectral_direction, differentiable_view, TRAIN_VIEWS\nfrom PIL import Image\nfrom __future__ import annotations\nfrom dataclasses import asdict, dataclass\nfrom torch import Tensor\nfrom typing import TYPE_CHECKING\nimport math\nimport numpy as np\nimport torch",
+      "Requires": "OVR-013;OVR-014;OVR-020;OVR-025;OVR-052;OVR-1881;OVR-2438"
+    }
+  },
+  {
+    "op": "set",
+    "id": "OVR-029",
+    "fields": {
+      "Exports": "ArtistMaskRequest;CategoryDiscoveryRequest;CategoryRulesRequest;CompareRequest;DuplicateScanRequest;ExecutionRequest;ExportRequest;GenerationRequest;GuardRequest;HealthRequest;Jobs;Jobs.__init__;Jobs.cancel;Jobs.close;Jobs.snapshot;Jobs.start;LibrarySearchRequest;OrganizeRequest;PreflightRequest;PublishRequest;PublishReviewRequest;QualificationRequest;RecipeRequest;ResumePublishRequest;STATIC;StrictModel;UndoSortRequest;_BodyLimitMiddleware;_BodyLimitMiddleware.__call__;_BodyLimitMiddleware.__init__;api_body_limit;create_app",
+      "Imports": "from . import __version__\nfrom .category_rules import category_rules\nfrom .duplicate_review import DuplicateReview\nfrom .duplicates import ScanOptions, scan_duplicates\nfrom .errors import RiposteError\nfrom .generation import controlled_generation\nfrom .generation import generation_frame\nfrom .generation import generation_runs\nfrom .health import inspect_health\nfrom .lab import create_candidate, compare_external, trials, trial_report, export_candidate, trial_pixels\nfrom .library_search import search_library\nfrom .models import inspect_vae, runtime_capabilities\nfrom .models import runtime_capabilities\nfrom .organizer import plan, organize, audit_workspace\nfrom .policy import Policy\nfrom .publication import open_in_workshop\nfrom .publication import publication_pixels\nfrom .publication import publication_status\nfrom .publication import publication_zip\nfrom .publication import publications\nfrom .publication import resume_publication\nfrom .publication import review_publication\nfrom .publication import start_publication, publication_plan\nfrom .qualification import evaluations\nfrom .qualification import qualify_trial\nfrom .recipes import SETTINGS, resolve_recipe\nfrom .recipes import inspect_recipes\nfrom .recipes import inspect_recipes, save_recipe\nfrom .records import Progress\nfrom .runtime_probe import execute_local_probe\nfrom .sanitize import encode_clean, png_audit\nfrom .sort_history import undo_sort\nfrom .spatial import ArtistMask\nfrom .store import check_root, catalog, find_image, safe_child, state_relative, legacy_workspace, upgrade_workspace\nfrom .terminal.jobs import safe_phase\nfrom .title_categories import discover_categories\nfrom PIL import Image\nfrom __future__ import annotations\nfrom contextlib import asynccontextmanager\nfrom dataclasses import replace\nfrom fastapi import FastAPI, Request\nfrom fastapi.exceptions import RequestValidationError\nfrom fastapi.responses import HTMLResponse, Response, JSONResponse\nfrom fastapi.staticfiles import StaticFiles\nfrom pathlib import Path\nfrom pydantic import BaseModel, Field, ConfigDict\nfrom typing import Literal, cast\nimport base64\nimport binascii\nimport concurrent.futures\nimport io\nimport json\nimport secrets\nimport threading\nimport uuid",
+      "Requires": "OVR-009;OVR-014;OVR-015;OVR-016;OVR-019;OVR-021;OVR-022;OVR-023;OVR-024;OVR-027;OVR-028;OVR-035;OVR-042;OVR-1080;OVR-1169;OVR-1885;OVR-1886;OVR-1890;OVR-2276;OVR-2340;OVR-2393;OVR-2438;OVR-950"
+    }
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "FILE",
+      "Path": "src/riposte/spatial.py",
+      "Symbol": "",
+      "Exports": "ArtistMask;ArtistMask.__post_init__;ArtistMask.from_dict;ArtistMask.from_png;ArtistMask.identity;ArtistMask.public;ArtistMask.raster;ArtistMask.validate_aspect;ArtistMaskRecord;BudgetPreview;BudgetSummary;MAX_PIXELS;MAX_PNG_BYTES;MAX_TOTAL_PIXELS;RESAMPLING;budget_identity;checked_masks;mask_for;preview;read_map;read_mask",
+      "Imports": "from .errors import RiposteError\nfrom .intake import _safe_input\nfrom PIL import Image, UnidentifiedImageError\nfrom __future__ import annotations\nfrom dataclasses import dataclass\nfrom functools import lru_cache\nfrom numpy.typing import NDArray\nfrom pathlib import Path\nfrom typing import Mapping, TypedDict\nimport base64\nimport binascii\nimport hashlib\nimport io\nimport json\nimport numpy as np\nimport re",
+      "Requires": "OVR-014;OVR-799",
+      "Purpose": "Existing application module riposte.spatial",
+      "ID": "OVR-2438",
+      "Tags": "#typing-index"
+    }
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "FILE",
+      "Path": "src/riposte/static/spatial.js",
+      "Symbol": "",
+      "Exports": "",
+      "Imports": "",
+      "Requires": "",
+      "Purpose": "Existing application asset",
+      "ID": "OVR-2439",
+      "Tags": "#typing-index"
+    }
+  },
+  {
+    "op": "set",
+    "id": "OVR-040",
+    "fields": {
+      "Imports": "from ..duplicate_review import DuplicateReview\nfrom ..duplicates import LABELS\nfrom ..errors import RiposteError\nfrom ..metrics import TRANSFORMS\nfrom ..recipes import SETTINGS\nfrom ..recipes import inspect_recipes\nfrom ..recipes import inspect_recipes, SETTINGS\nfrom ..records import CatalogRow, RequestValues\nfrom ..recovery import recovery_text\nfrom .actions import ACTIONS, BY_KEY, PUB_FIELDS, Field, defaults, make_request, parse_value\nfrom .interaction import fields_for, contextual_help\nfrom .jobs import Operation, safe_code\nfrom .keyboard import Key\nfrom .output import Presentation\nfrom .paths import Picker, starting_directory, validate_workspace, locations\nfrom .preview import make_preview\nfrom .render import view_rows, scroll_limit\nfrom .service import Request, execute, image_bytes, root_of\nfrom .state import Session, Page, Editor\nfrom __future__ import annotations\nfrom collections.abc import Callable, Mapping, Sequence\nfrom dataclasses import replace\nfrom pathlib import Path\nfrom typing import cast\nimport time"
+    }
+  },
+  {
+    "op": "set",
+    "id": "OVR-048",
+    "fields": {
+      "Exports": "CANCELLABLE;EFFECTS;Request;_optional;_paths;execute;image_bytes;image_selection;masked_recipe;parse_month;recipe;resolved_recipe;result_exit_code;root_of;select_rows;view_image",
+      "Imports": "from ..benchmark import run_benchmark\nfrom ..category_rules import category_rules\nfrom ..cohort import cohort_challenge\nfrom ..cohort import cohort_status\nfrom ..duplicate_review import DuplicateReview\nfrom ..duplicates import ScanOptions, scan_duplicates\nfrom ..duplicates import scan_root\nfrom ..errors import RiposteError\nfrom ..experiment import experiment_status\nfrom ..experiment import record_review\nfrom ..experiment import review_packet\nfrom ..generation import controlled_generation\nfrom ..generation import generation_frame\nfrom ..generation import generation_report\nfrom ..generation import generation_runs\nfrom ..health import inspect_health\nfrom ..intake import inspect_inputs\nfrom ..lab import compare_external\nfrom ..lab import create_candidate\nfrom ..lab import export_candidate\nfrom ..lab import trial_pixels\nfrom ..lab import trials, trial_report\nfrom ..library_search import search_library\nfrom ..models import runtime_capabilities, inspect_vae\nfrom ..organizer import audit_workspace\nfrom ..organizer import plan, organize\nfrom ..policy import Policy, MONTHS, BINS, YEARS\nfrom ..publication import PublishRecipe\nfrom ..publication import _models, publication_plan, start_publication\nfrom ..publication import export_publication\nfrom ..publication import open_in_workshop\nfrom ..publication import publication_pixels\nfrom ..publication import publication_plan, start_publication\nfrom ..publication import publication_status, publications\nfrom ..publication import resume_publication\nfrom ..publication import review_publication\nfrom ..qualification import evaluations\nfrom ..qualification import qualify_trial\nfrom ..quality import QualityLimits\nfrom ..recipes import SETTINGS, resolve_recipe\nfrom ..recipes import inspect_recipes, save_recipe\nfrom ..records import CatalogRow, ImageInfo, ListOptions, PreviewSortOptions, Progress, RequestValues, SelectionFilters, SortOptions\nfrom ..release_guard import ReleaseConfig\nfrom ..review_panel import create_panel\nfrom ..review_panel import panel_packet\nfrom ..review_panel import panel_status\nfrom ..review_panel import record_panel_review\nfrom ..runtime_probe import execute_local_probe\nfrom ..sanitize import encode_clean\nfrom ..sanitize import png_audit\nfrom ..sort_history import undo_sort\nfrom ..sort_plan import receipt\nfrom ..spatial import read_map, read_mask, mask_for\nfrom ..store import catalog\nfrom ..store import check_root\nfrom ..store import find_image\nfrom ..store import find_image, safe_child\nfrom ..store import safe_child, state_relative, atomic_clean_write, workspace_lock, find_image\nfrom ..store import upgrade_workspace\nfrom ..title_categories import discover_categories, DEFAULT_FILLERS\nfrom PIL import Image\nfrom __future__ import annotations\nfrom dataclasses import dataclass, field\nfrom dataclasses import replace\nfrom pathlib import Path\nfrom typing import Any, Literal, TYPE_CHECKING, cast\nimport base64\nimport io\nimport os\nimport re\nimport subprocess\nimport sys",
+      "Requires": "OVR-011;OVR-014;OVR-015;OVR-016;OVR-019;OVR-021;OVR-022;OVR-023;OVR-024;OVR-025;OVR-026;OVR-027;OVR-028;OVR-035;OVR-1080;OVR-1169;OVR-1880;OVR-1885;OVR-1886;OVR-1887;OVR-1890;OVR-1891;OVR-1892;OVR-2276;OVR-2340;OVR-2393;OVR-2438;OVR-799;OVR-950"
+    }
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "FILE",
+      "Path": "tests/spatial_browser.cjs",
+      "Symbol": "",
+      "Exports": "",
+      "Imports": "",
+      "Requires": "",
+      "Purpose": "Typing validation input, evidence or development authority",
+      "ID": "OVR-2440",
+      "Tags": "#typing-index"
+    }
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "FILE",
+      "Path": "tests/test_spatial_budgets.py",
+      "Symbol": "",
+      "Exports": "Encoder;Encoder.__call__;artwork;configured;encoder;mask_for_row;png;test_actual_optimizer_enforces_mask_and_is_deterministic;test_authenticated_api_validates_mask_and_readonly_preview;test_changed_mask_identity_cannot_reuse_approval;test_cli_terminal_and_raw_intake;test_combined_mask_bound_before_source_replacement;test_integer_floor_caps;test_large_mask_api_and_streamed_limits;test_mask_identity_strips_metadata_binds_source_and_rejects_corruption;test_mask_invalid_before_combined_sort_mutation;test_mask_rejects_ambiguous_png_modes;test_plan_readonly_previews_exact_caps_for_each_final_size;test_quality_rejects_change_in_zero_region_even_within_global_epsilon;test_real_batch_resume_review_and_date_only_pack;test_resampling_matches_independent_overlap_minimum;test_saved_mask_file_change_requires_new_terminal_preview;test_spatial_browser_native;test_terminal_mask_preview_control_uses_existing_viewer;test_thin_protected_line_survives_resize_and_never_increases_automatic_limits",
+      "Imports": "from PIL import Image, PngImagePlugin\nfrom dataclasses import replace\nfrom fastapi.testclient import TestClient\nfrom pathlib import Path\nfrom riposte import models\nfrom riposte import publication as p\nfrom riposte.cli import app\nfrom riposte.errors import RiposteError\nfrom riposte.organizer import organize, plan\nfrom riposte.policy import Policy\nfrom riposte.quality import QualityLimits, spatial_budget, quality_report\nfrom riposte.release_guard import ReleaseConfig, protect_release\nfrom riposte.sanitize import png_audit\nfrom riposte.server import create_app\nfrom riposte.spatial import ArtistMask, checked_masks, read_map\nfrom riposte.store import catalog, state_relative\nfrom riposte.terminal.controller import Controller\nfrom riposte.terminal.keyboard import Key\nfrom riposte.terminal.render import render\nfrom riposte.terminal.service import Request, execute, image_bytes\nfrom riposte.terminal.state import Presentation, Page\nfrom typer.testing import CliRunner\nfrom zipfile import ZipFile\nimport base64\nimport hashlib\nimport io\nimport json\nimport numpy as np\nimport os\nimport pytest\nimport shutil\nimport socket\nimport subprocess\nimport threading\nimport time\nimport uvicorn",
+      "Requires": "OVR-009;OVR-012;OVR-014;OVR-019;OVR-021;OVR-022;OVR-023;OVR-025;OVR-026;OVR-028;OVR-029;OVR-035;OVR-040;OVR-043;OVR-047;OVR-048;OVR-050;OVR-2438",
+      "Purpose": "Typing validation input, evidence or development authority",
+      "ID": "OVR-2441",
+      "Tags": "#typing-index"
+    }
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "FILE",
+      "Path": "typing/evidence/source-reviewed-spatial-budgets.json",
+      "Symbol": "",
+      "Exports": "",
+      "Imports": "",
+      "Requires": "",
+      "Purpose": "Typing validation input, evidence or development authority",
+      "ID": "OVR-2442",
+      "Tags": "#typing-index"
+    }
+  },
+  {
+    "op": "set",
+    "id": "OVR-075",
+    "fields": {
+      "Imports": "from collections.abc import Callable, Sequence\nfrom pathlib import Path\nfrom riposte.records import ProgressEvent as ProgressEvent, PngAudit as PngAudit, CatalogRow as CatalogRow, ImageInfo as ImageInfo, RequestValues as RequestValues\nfrom riposte.spatial import ArtistMaskRecord, BudgetSummary\nfrom typing import Any, Literal, NotRequired, Protocol, TypeAlias, TypedDict, TypeVar\nimport os",
+      "Requires": "OVR-1953;OVR-2443"
+    }
+  },
+  {
+    "op": "set",
+    "id": "OVR-089",
+    "fields": {
+      "Exports": "PublishRecipe;PublishRecipe.__post_init__;PublishRecipe.budget_revision;PublishRecipe.from_dict;PublishRecipe.public;_budget_previews;_checkpoint;_id;_models;_plan_rows;_prefix;_publication_zip_locked;_read;_read_record;_replace_json;_request;_run;_source_row;_verified_item;export_publication;open_in_workshop;publication_pixels;publication_plan;publication_status;publication_zip;publications;resume_publication;review_publication;start_publication",
+      "Imports": "from .errors import RiposteError as RiposteError\nfrom .metrics import transport_report as transport_report\nfrom .policy import folder_for as folder_for, valid_day as valid_day\nfrom .quality import QualityLimits as QualityLimits, quality_report as quality_report\nfrom .release_guard import ReleaseConfig as ReleaseConfig, protect_release as protect_release\nfrom .sanitize import encode_clean as encode_clean, png_audit as png_audit, social_render as social_render\nfrom .spatial import ArtistMask as ArtistMask, checked_masks as checked_masks, mask_for as mask_for, preview as spatial_preview\nfrom .store import atomic_clean_write as atomic_clean_write, atomic_json_write as atomic_json_write, check_root as check_root, find_image as find_image, safe_child as safe_child, state_relative as state_relative, workspace_lock as workspace_lock\nfrom PIL.Image import Image as _Image\nfrom _riposte_types import Progress as _Progress\nfrom _riposte_types import Report, RecipeRecord, PublicationPlan, PublicationSummary, PublicationBatch, PublicationExport, Encoder, InpaintProbe, TemporalProbe\nfrom dataclasses import dataclass\nfrom pathlib import Path\nfrom pathlib import Path as Path\nfrom typing import Any, Mapping, Self",
+      "Requires": "OVR-023;OVR-075;OVR-081;OVR-084;OVR-088;OVR-091;OVR-092;OVR-094;OVR-096;OVR-2443"
+    }
+  },
+  {
+    "op": "set",
+    "id": "OVR-091",
+    "fields": {
+      "Imports": "from .errors import RiposteError as RiposteError\nfrom .metrics import fidelity as fidelity\nfrom .spatial import ArtistMask as ArtistMask, budget_identity as budget_identity\nfrom PIL import Image as Image\nfrom PIL.Image import Image as _Image\nfrom _riposte_types import QualityPolicy, QualityReport\nfrom dataclasses import dataclass\nfrom numpy.typing import NDArray\nfrom typing import Any\nimport numpy as np",
+      "Requires": "OVR-025;OVR-075;OVR-081;OVR-084;OVR-2443"
+    }
+  },
+  {
+    "op": "set",
+    "id": "OVR-092",
+    "fields": {
+      "Imports": "from .context_graph import context_groups as context_groups, context_values as context_values, context_gradient as context_gradient\nfrom .coupled import Branch as Branch, _branches as _branches, _features as _features\nfrom .coupled import _view_features as _view_features\nfrom .errors import RiposteError as RiposteError\nfrom .optimizer import _round_ste as _round_ste\nfrom .quality import QualityLimits as QualityLimits, quality_report as quality_report, spatial_budget as spatial_budget\nfrom .spatial import ArtistMask as ArtistMask\nfrom .views import TRAIN_VIEWS as TRAIN_VIEWS, differentiable_view as differentiable_view, image_tensor as image_tensor, spectral_direction as spectral_direction, tensor_image as tensor_image\nfrom PIL import Image as Image\nfrom PIL.Image import Image as _Image\nfrom _riposte_types import EncoderT\nfrom _riposte_types import Progress as _Progress\nfrom _riposte_types import Report, ModelTensor, Encoder, InpaintProbe, TemporalProbe\nfrom dataclasses import dataclass",
+      "Requires": "OVR-026;OVR-075;OVR-080;OVR-081;OVR-086;OVR-091;OVR-113;OVR-1944;OVR-2443"
+    }
+  },
+  {
+    "op": "set",
+    "id": "OVR-095",
+    "fields": {
+      "Exports": "ArtistMaskRequest;CategoryDiscoveryRequest;CategoryRulesRequest;CompareRequest;DuplicateScanRequest;ExecutionRequest;ExportRequest;GenerationRequest;GuardRequest;HealthRequest;Jobs;Jobs.__init__;Jobs.cancel;Jobs.close;Jobs.snapshot;Jobs.start;LibrarySearchRequest;OrganizeRequest;PreflightRequest;PublishRequest;PublishReviewRequest;QualificationRequest;RecipeRequest;ResumePublishRequest;STATIC;StrictModel;UndoSortRequest;_BodyLimitMiddleware;_BodyLimitMiddleware.__call__;_BodyLimitMiddleware.__init__;api_body_limit;create_app"
+    }
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "FILE",
+      "Path": "typing/stubs/riposte/spatial.pyi",
+      "Symbol": "",
+      "Exports": "ArtistMask;ArtistMask.__post_init__;ArtistMask.from_dict;ArtistMask.from_png;ArtistMask.identity;ArtistMask.public;ArtistMask.raster;ArtistMask.validate_aspect;ArtistMaskRecord;BudgetPreview;BudgetSummary;MAX_PIXELS;MAX_PNG_BYTES;MAX_TOTAL_PIXELS;RESAMPLING;budget_identity;checked_masks;mask_for;preview;read_map;read_mask",
+      "Imports": "from .errors import RiposteError\nfrom PIL import Image, UnidentifiedImageError\nfrom __future__ import annotations\nfrom dataclasses import dataclass\nfrom functools import lru_cache\nfrom numpy.typing import NDArray\nfrom pathlib import Path\nfrom typing import Mapping, TypedDict\nimport base64\nimport binascii\nimport hashlib\nimport io\nimport json\nimport numpy as np\nimport re",
+      "Requires": "OVR-081;OVR-2438",
+      "Purpose": "External source-derived typing declarations",
+      "ID": "OVR-2443",
+      "Tags": "#typing-index"
+    }
+  },
+  {
+    "op": "set",
+    "id": "OVR-109",
+    "fields": {
+      "Exports": "CANCELLABLE;EFFECTS;Progress;Request;_optional;_paths;execute;image_bytes;image_selection;masked_recipe;parse_month;recipe;resolved_recipe;result_exit_code;root_of;select_rows;view_image",
+      "Imports": "from ..errors import RiposteError as RiposteError\nfrom ..policy import BINS as BINS, MONTHS as MONTHS, Policy as Policy, YEARS as YEARS\nfrom ..publication import PublishRecipe\nfrom _riposte_types import CatalogRow, ImageInfo, RequestValues\nfrom _riposte_types import Progress as _Progress\nfrom dataclasses import dataclass\nfrom pathlib import Path\nfrom typing import Any"
+    }
+  },
+  {
+    "op": "set",
+    "id": "OVR-455",
+    "fields": {
+      "Requires": "OVR-023;OVR-2448;OVR-2464;OVR-380;OVR-479;OVR-485"
+    }
+  },
+  {
+    "op": "set",
+    "id": "OVR-456",
+    "fields": {
+      "Requires": "OVR-023;OVR-2464;OVR-380;OVR-479;OVR-485"
+    }
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/publication.py",
+      "Symbol": "PublishRecipe.budget_revision",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-023",
+      "Tags": "#source-symbol",
+      "ID": "OVR-2444"
+    }
+  },
+  {
+    "op": "set",
+    "id": "OVR-457",
+    "fields": {
+      "Requires": "OVR-023;OVR-2448;OVR-380;OVR-479;OVR-485"
+    }
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/publication.py",
+      "Symbol": "_budget_previews",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-023;OVR-2465;OVR-2466;OVR-455;OVR-484;OVR-495",
+      "Tags": "#source-symbol",
+      "ID": "OVR-2445"
+    }
+  },
+  {
+    "op": "set",
+    "id": "OVR-808",
+    "fields": {
+      "Requires": "OVR-023;OVR-2465;OVR-380"
+    }
+  },
+  {
+    "op": "set",
+    "id": "OVR-466",
+    "fields": {
+      "Requires": "OVR-023;OVR-2465;OVR-319;OVR-380;OVR-406;OVR-450;OVR-455;OVR-461;OVR-464;OVR-483;OVR-487;OVR-492;OVR-494;OVR-495;OVR-517;OVR-518;OVR-522;OVR-525;OVR-809"
+    }
+  },
+  {
+    "op": "set",
+    "id": "OVR-318",
+    "fields": {
+      "Requires": "OVR-023;OVR-2465;OVR-380;OVR-448;OVR-450;OVR-455;OVR-461;OVR-463;OVR-483;OVR-492;OVR-494;OVR-495;OVR-522;OVR-525;OVR-784;OVR-809"
+    }
+  },
+  {
+    "op": "set",
+    "id": "OVR-470",
+    "fields": {
+      "Requires": "OVR-023;OVR-2445;OVR-2465;OVR-380;OVR-444;OVR-455;OVR-459;OVR-460;OVR-520;OVR-522;OVR-525;OVR-807;OVR-808"
+    }
+  },
+  {
+    "op": "set",
+    "id": "OVR-483",
+    "fields": {
+      "Requires": "OVR-025;OVR-2448;OVR-2463;OVR-380;OVR-404;OVR-479;OVR-482;OVR-484"
+    }
+  },
+  {
+    "op": "set",
+    "id": "OVR-484",
+    "fields": {
+      "Requires": "OVR-025;OVR-2448;OVR-479"
+    }
+  },
+  {
+    "op": "set",
+    "id": "OVR-487",
+    "fields": {
+      "Requires": "OVR-026;OVR-2013;OVR-2014;OVR-2015;OVR-2016;OVR-2448;OVR-374;OVR-377;OVR-378;OVR-380;OVR-428;OVR-479;OVR-483;OVR-484;OVR-485;OVR-488;OVR-729;OVR-731;OVR-732;OVR-736;OVR-737"
+    }
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "CLASS",
+      "Path": "src/riposte/server.py",
+      "Symbol": "ArtistMaskRequest",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-029;OVR-513",
+      "Tags": "#source-symbol",
+      "ID": "OVR-2446"
+    }
+  },
+  {
+    "op": "set",
+    "id": "OVR-323",
+    "fields": {
+      "Requires": "OVR-029;OVR-2447"
+    }
+  },
+  {
+    "op": "set",
+    "id": "OVR-324",
+    "fields": {
+      "Requires": "OVR-029;OVR-2447"
+    }
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/server.py",
+      "Symbol": "api_body_limit",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-029",
+      "Tags": "#source-symbol",
+      "ID": "OVR-2447"
+    }
+  },
+  {
+    "op": "set",
+    "id": "OVR-325",
+    "fields": {
+      "Requires": "OVR-029;OVR-1093;OVR-1183;OVR-1264;OVR-1265;OVR-1266;OVR-2043;OVR-2060;OVR-2068;OVR-2124;OVR-2146;OVR-2290;OVR-2297;OVR-2300;OVR-2301;OVR-2303;OVR-2357;OVR-2359;OVR-2402;OVR-2403;OVR-2446;OVR-2447;OVR-2448;OVR-308;OVR-309;OVR-316;OVR-317;OVR-319;OVR-320;OVR-321;OVR-323;OVR-331;OVR-380;OVR-389;OVR-391;OVR-396;OVR-397;OVR-398;OVR-399;OVR-401;OVR-417;OVR-421;OVR-434;OVR-436;OVR-444;OVR-455;OVR-468;OVR-469;OVR-470;OVR-471;OVR-472;OVR-477;OVR-478;OVR-479;OVR-485;OVR-489;OVR-492;OVR-497;OVR-498;OVR-499;OVR-500;OVR-501;OVR-506;OVR-507;OVR-508;OVR-509;OVR-510;OVR-511;OVR-512;OVR-519;OVR-520;OVR-522;OVR-523;OVR-525;OVR-528;OVR-529;OVR-972"
+    }
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "CLASS",
+      "Path": "src/riposte/spatial.py",
+      "Symbol": "ArtistMask",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-2438;OVR-2456;OVR-2459;OVR-2460;OVR-2462;OVR-380",
+      "Tags": "#source-symbol",
+      "ID": "OVR-2448"
+    }
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/spatial.py",
+      "Symbol": "ArtistMask.__post_init__",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-2438;OVR-2459;OVR-380",
+      "Tags": "#source-symbol",
+      "ID": "OVR-2449"
+    }
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/spatial.py",
+      "Symbol": "ArtistMask.from_dict",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-2438;OVR-2448;OVR-2459;OVR-380",
+      "Tags": "#source-symbol",
+      "ID": "OVR-2450"
+    }
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/spatial.py",
+      "Symbol": "ArtistMask.from_png",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-2438;OVR-2448;OVR-2459;OVR-2460;OVR-380",
+      "Tags": "#source-symbol",
+      "ID": "OVR-2451"
+    }
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/spatial.py",
+      "Symbol": "ArtistMask.identity",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-2438;OVR-2462",
+      "Tags": "#source-symbol",
+      "ID": "OVR-2452"
+    }
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/spatial.py",
+      "Symbol": "ArtistMask.public",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-2438;OVR-2452;OVR-2456",
+      "Tags": "#source-symbol",
+      "ID": "OVR-2453"
+    }
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/spatial.py",
+      "Symbol": "ArtistMask.raster",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-2438;OVR-380",
+      "Tags": "#source-symbol",
+      "ID": "OVR-2454"
+    }
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/spatial.py",
+      "Symbol": "ArtistMask.validate_aspect",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-2438;OVR-380",
+      "Tags": "#source-symbol",
+      "ID": "OVR-2455"
+    }
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "CLASS",
+      "Path": "src/riposte/spatial.py",
+      "Symbol": "ArtistMaskRecord",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-2438",
+      "Tags": "#source-symbol",
+      "ID": "OVR-2456"
+    }
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "CLASS",
+      "Path": "src/riposte/spatial.py",
+      "Symbol": "BudgetPreview",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-2438;OVR-2458",
+      "Tags": "#source-symbol",
+      "ID": "OVR-2457"
+    }
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "CLASS",
+      "Path": "src/riposte/spatial.py",
+      "Symbol": "BudgetSummary",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-2438",
+      "Tags": "#source-symbol",
+      "ID": "OVR-2458"
+    }
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "CONFIG",
+      "Path": "src/riposte/spatial.py",
+      "Symbol": "MAX_PIXELS",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-2438",
+      "Tags": "#source-symbol",
+      "ID": "OVR-2459"
+    }
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "CONFIG",
+      "Path": "src/riposte/spatial.py",
+      "Symbol": "MAX_PNG_BYTES",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-2438",
+      "Tags": "#source-symbol",
+      "ID": "OVR-2460"
+    }
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "CONFIG",
+      "Path": "src/riposte/spatial.py",
+      "Symbol": "MAX_TOTAL_PIXELS",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-2438",
+      "Tags": "#source-symbol",
+      "ID": "OVR-2461"
+    }
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "CONFIG",
+      "Path": "src/riposte/spatial.py",
+      "Symbol": "RESAMPLING",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-2438",
+      "Tags": "#source-symbol",
+      "ID": "OVR-2462"
+    }
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/spatial.py",
+      "Symbol": "budget_identity",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-2438;OVR-2448;OVR-2458;OVR-2462",
+      "Tags": "#source-symbol",
+      "ID": "OVR-2463"
+    }
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/spatial.py",
+      "Symbol": "checked_masks",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-2438;OVR-2448;OVR-2461;OVR-380",
+      "Tags": "#source-symbol",
+      "ID": "OVR-2464"
+    }
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/spatial.py",
+      "Symbol": "mask_for",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-2438;OVR-2448",
+      "Tags": "#source-symbol",
+      "ID": "OVR-2465"
+    }
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/spatial.py",
+      "Symbol": "preview",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-2438;OVR-2448;OVR-2457;OVR-2463",
+      "Tags": "#source-symbol",
+      "ID": "OVR-2466"
+    }
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/spatial.py",
+      "Symbol": "read_map",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-2438;OVR-2448;OVR-2464;OVR-380;OVR-805",
+      "Tags": "#source-symbol",
+      "ID": "OVR-2467"
+    }
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/spatial.py",
+      "Symbol": "read_mask",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-2438;OVR-2448;OVR-2460;OVR-380;OVR-805",
+      "Tags": "#source-symbol",
+      "ID": "OVR-2468"
+    }
+  },
+  {
+    "op": "set",
+    "id": "OVR-568",
+    "fields": {
+      "Requires": "OVR-040;OVR-194;OVR-197;OVR-2043;OVR-2058;OVR-2117;OVR-2126;OVR-2222;OVR-2290;OVR-2297;OVR-380;OVR-402;OVR-543;OVR-547;OVR-553;OVR-561;OVR-562;OVR-563;OVR-606;OVR-615;OVR-617;OVR-635;OVR-638;OVR-649;OVR-670;OVR-672;OVR-696;OVR-699;OVR-700;OVR-705;OVR-710;OVR-712;OVR-713;OVR-884;OVR-890;OVR-891;OVR-892"
+    }
+  },
+  {
+    "op": "set",
+    "id": "OVR-571",
+    "fields": {
+      "Requires": "OVR-040;OVR-2156;OVR-2222;OVR-2290;OVR-2297;OVR-380;OVR-553;OVR-563;OVR-572;OVR-587;OVR-589;OVR-597;OVR-638;OVR-696;OVR-705;OVR-710;OVR-712;OVR-892"
+    }
+  },
+  {
+    "op": "set",
+    "id": "OVR-2305",
+    "fields": {
+      "Requires": "OVR-040;OVR-2290;OVR-547;OVR-553;OVR-563;OVR-710"
+    }
+  },
+  {
+    "op": "set",
+    "id": "OVR-699",
+    "fields": {
+      "Requires": "OVR-048;OVR-1086;OVR-1093;OVR-1183;OVR-2009;OVR-2010;OVR-2043;OVR-2060;OVR-2068;OVR-2092;OVR-2094;OVR-2095;OVR-2120;OVR-2123;OVR-2124;OVR-2127;OVR-2128;OVR-2141;OVR-2143;OVR-2144;OVR-2145;OVR-2148;OVR-2297;OVR-2301;OVR-2308;OVR-2357;OVR-2402;OVR-2469;OVR-308;OVR-309;OVR-315;OVR-316;OVR-317;OVR-319;OVR-320;OVR-333;OVR-380;OVR-390;OVR-391;OVR-396;OVR-397;OVR-398;OVR-400;OVR-401;OVR-417;OVR-421;OVR-434;OVR-436;OVR-444;OVR-467;OVR-468;OVR-470;OVR-472;OVR-477;OVR-478;OVR-489;OVR-494;OVR-522;OVR-525;OVR-529;OVR-694;OVR-695;OVR-696;OVR-697;OVR-698;OVR-701;OVR-702;OVR-703;OVR-705;OVR-706;OVR-707;OVR-807;OVR-972"
+    }
+  },
+  {
+    "op": "set",
+    "id": "OVR-700",
+    "fields": {
+      "Requires": "OVR-048;OVR-2126;OVR-380;OVR-389;OVR-399;OVR-469;OVR-492;OVR-494;OVR-522;OVR-525"
+    }
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/terminal/service.py",
+      "Symbol": "masked_recipe",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-048;OVR-2126;OVR-2465;OVR-2467;OVR-2468;OVR-380",
+      "Tags": "#source-symbol",
+      "ID": "OVR-2469"
+    }
+  }
+]

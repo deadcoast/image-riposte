@@ -1,0 +1,13 @@
+[
+  {
+    "op": "transition",
+    "id": "PAC-041",
+    "status": "DONE",
+    "evidence": "PAC-041: read-only CLI/terminal/browser health implemented with bounded usage/estimate/capability/history observations; 73 focused passes plus final 28 health passes, 1608 full-suite passes/11 skips, five native passes, seven contract stages, parser/archive/package parity and current scoped acceptance. Strict typing debt remains documented. See evidence/workspace-health/README.md and verification.json."
+  },
+  {
+    "op": "absorb",
+    "id": "NDL-027",
+    "evidence": "PAC-041 DoD and admitted read-only health assets implemented and registered; all 28 scoped requirements current, validation clean. No cleanup, lock reclamation, write durability or restore qualification. evidence/workspace-health/README.md."
+  }
+]

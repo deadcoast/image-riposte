@@ -10,6 +10,6 @@ test_symbol_local_shadow_does_not_invent_import_dependency (__main__.TypingTooli
 test_symbols_cover_public_private_class_and_async_dependencies (__main__.TypingToolingTests.test_symbols_cover_public_private_class_and_async_dependencies) ... ok
 
 ----------------------------------------------------------------------
-Ran 10 tests in 2.128s
+Ran 10 tests in 1.921s
 
 OK

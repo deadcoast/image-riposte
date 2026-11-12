@@ -1,0 +1,57 @@
+{
+  "requirement": "OGM-002",
+  "meaning": "cab61136ee7f1dff1d0e65666500efbc1441552cdc2c5fb577823694afa8c75a",
+  "sources": {
+    "typing/test_tooling.py": "06936eeb2cfcf156bcea0d296abd91ff316e6c6dc398a4c4e9960509b2e57724",
+    "typing/check.py": "7028acd2dcee6edca239e82a20ae51a7d16635e1c0f724031bb6898951eaf230",
+    "typing/pacer_inventory.py": "193f08fe767a4466505aff73493570076045145c6eacb80cdaa52282ad78b409",
+    "typing/evidence/source-environment.json": "bbd297d0f095bc207e6537810c0ea1e971a78b6a874cee5af286877e40241cb8",
+    "typing/evidence/source-current-command.json": "4f360ffab13c4e761b8f291eebe10292d74c633d7f54b289982199dd6fbc0dd6",
+    "evidence/patch-v050/root-mypy.json": "c87bf9475086557b10f0d5d7b2a165ba8972400e030b467fe62e9d6e1cdc9e64",
+    "evidence/patch-v050/root-mypy-dot.txt": "78a3b1c0f5395e6487e5ae4d5a3d270a9286ae431c094b0f3763f8acfa4b31f2",
+    "evidence/patch-v050/root-mypy-default.txt": "78a3b1c0f5395e6487e5ae4d5a3d270a9286ae431c094b0f3763f8acfa4b31f2",
+    "typing/evidence/source-reviewed-v050.json": "0b62c31d7fc3e617bbc418ee56b962aeba0c03699103e94d90e5d52a5a0ac966",
+    "typing/evidence/pac-003-root-audit.json": "5c1555e201fe1dc7db6a8f14b53e33e2d48f8d098d5790cd627ef0fea5ff39c1",
+    "typing/evidence/pac-003-before.json": "062e2a21c61af2102001d5352a24ad73f93dc875d40d8db27660e90c9fd95ccb",
+    "typing/mypy-contracts.ini": "78fddb2607c7cdb260de23c75b2570d07407dd9ba4aefeebccbfeb0b4c27e70e",
+    "typing/evidence/tooling-regressions.txt": "15e4b344a63b5f61ca6904571e13207d72102177125013136bb8d9297382458f",
+    "typing/evidence/source-after.json": "3e1654ac308c1cccd7c0b5d38b170b19112f3dab68230c170ed2c236b43a922f",
+    "typing/evidence/mypy-tooling.txt": "281a094c39385b4d7b53e5db635f52158036861433c2a4975b9039e77a627a24",
+    "typing/evidence/runtime-contracts.txt": "d03b8ac93b21d063436118aa750fcddf4d62460d8ab79377dc0ca78f9f6c5ecb",
+    "typing/evidence/pacer-inventory.json": "e738f85d1f3ee4bb8618bc31d9e7870603524e621becf0876fa234eca0e60768",
+    "typing/mypy-source.ini": "f168d5874f12d6258a8e35311ea4fc90ebeab878a51fb1268cc1a89e8cb104bf",
+    "typing/evidence/verification.json": "b0bfe4042fa380dc65287b05d9b6bc3e308318bd87506563a5c478d33c395a4a",
+    "typing/evidence/source-before.json": "d3fa8409db29ebf923523671b44fade9caf459f627bd4f16ea07a4ff6d094f8b",
+    "typing/README.md": "7757c9625dbc5cc73665c81411221069834e78a022cb21122dadf8aacebf1155",
+    "mypy.ini": "c0961208a99c02083a873c32a8bd5ca6a7ba1c88d601eb2210fb3f94c00d2d99"
+  },
+  "result": "PASS",
+  "command": [
+    ".venv/Scripts/python.exe evidence/workspace-health/verify.py",
+    ".venv/Scripts/python.exe -m pytest -q -k \"not browser_native and not native_browser and not browser_review_in_real_chromium\" --junitxml=evidence/workspace-health/suite.xml",
+    ".venv/Scripts/python.exe -m pytest -q -k \"browser_native or native_browser or browser_review_in_real_chromium\" --junitxml=evidence/workspace-health/native.xml",
+    "uv run --project typing --frozen --cache-dir typing/.cache/uv python typing/check.py"
+  ],
+  "review": "Raw-source diagnostics and delta are retained separately, with no new health.py diagnostics; configurations and generated-file exclusions are unchanged.",
+  "changed_sources_since_previous_acceptance": [
+    "typing/README.md",
+    "typing/check.py",
+    "typing/evidence/pacer-inventory.json",
+    "typing/evidence/runtime-contracts.txt",
+    "typing/evidence/source-after.json",
+    "typing/evidence/source-current-command.json",
+    "typing/evidence/tooling-regressions.txt",
+    "typing/evidence/verification.json",
+    "typing/pacer_inventory.py"
+  ],
+  "executed_modules": {},
+  "previous_review_artifact": "evidence/publishing-recipes/OGM-002.json",
+  "previous_review_sha256": "d2bd506e076309c17435eeb7ee92b65d56bf38d54ee65b18737337173d0cc117",
+  "scope_limits": [
+    "Existing Windows dependencies; no clean-install, different OS or user VS Code host qualification.",
+    "Synthetic media and existing synthetic/tiny-random CPU engine tests; no pretrained-model efficacy or independent human/accessibility acceptance.",
+    "Native health test uses the real authenticated local server for read-only inspection and recorded recovery; delayed/offline and partial/cancelled UI states are explicitly injected.",
+    "First focused run exposed Windows lstat/fstat ctime mismatch; first native runs exposed harness polling and hidden narrow opener. Failures retained separately from fixed passes.",
+    "Strict source typing remains failing; external declarations pass separately. Static UI findings have scoped dispositions, not a global pass."
+  ]
+}

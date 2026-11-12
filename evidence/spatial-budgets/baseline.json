@@ -1,0 +1,12 @@
+{
+  "observed": "No artist-supplied budget argument or recipe field",
+  "quality_signature": "(image: 'Image.Image', limits: 'QualityLimits') -> 'np.ndarray'",
+  "recipe_fields": [
+    "edges",
+    "guard",
+    "quality"
+  ],
+  "flat_gray_caps": [
+    4
+  ]
+}

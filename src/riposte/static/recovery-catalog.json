@@ -30,7 +30,9 @@
     "resume": "publish",
     "review-publication": "publish",
     "publications": "publish",
-    "batches": "publish"
+    "batches": "publish",
+    "recipes": "publish",
+    "recipes-save": "publish"
   },
   "entries": {
     "DUPLICATE_SOURCE_CHANGED": {
@@ -487,6 +489,106 @@
     "JOB_MANAGER_CLOSED": {
       "title": "The local job manager is shutting down.",
       "action": "Wait for the current process to finish, then launch RIPOSTE again and inspect recorded operation status before retrying."
+    },
+    "RECIPE_NAME_INVALID": {
+      "title": "Recipe name needs attention.",
+      "action": "Use 1-64 characters, starting with a letter or number. Use letters, numbers, spaces, hyphens or underscores."
+    },
+    "RECIPE_NAME_REQUIRED": {
+      "title": "Choose a recipe name.",
+      "action": "Enter a name before previewing or saving. For publishing, choose a saved recipe or use current settings."
+    },
+    "RECIPE_NOT_FOUND": {
+      "title": "Recipe is no longer available.",
+      "action": "Reload the recipe list and choose an existing name. Your current settings are retained."
+    },
+    "RECIPE_SETTINGS_INVALID": {
+      "title": "Recipe settings need attention.",
+      "action": "Check 1-3 distinct edges (64-4096), channel cap (1-16), iterations (1-1000), restarts (1-4), seed (0-4294967295), colour cap (0.1-40) and RMS (0.1-1). Recipes cannot contain paths, models or approvals."
+    },
+    "RECIPE_LIBRARY_INVALID": {
+      "title": "Saved recipe library is invalid.",
+      "action": "Keep the existing publishing-recipes.json file intact. Restore it from a verified backup or inspect its version and contents before retrying; it will not be overwritten."
+    },
+    "RECIPE_LIBRARY_UNREADABLE": {
+      "title": "Saved recipes could not be read.",
+      "action": "Check access to the workspace and its private publishing-recipes.json file, then reload. Keep the file intact."
+    },
+    "RECIPE_REVISION_REQUIRED": {
+      "title": "Preview the recipe before saving.",
+      "action": "Use the current library revision returned by preview; use missing only for the first save. Saving never starts protection."
+    },
+    "RECIPE_REVISION_REQUIRES_SAVE": {
+      "title": "Revision is only used with save.",
+      "action": "Remove --expected-revision for inspection, or use --save after reviewing the settings."
+    },
+    "RECIPE_LIBRARY_CHANGED": {
+      "title": "Saved recipes changed.",
+      "action": "Reload recipes, compare the stored settings with your retained draft, then preview and save again."
+    },
+    "RECIPE_CHANGED": {
+      "title": "The selected recipe changed.",
+      "action": "Reload recipes and load the current settings before previewing the batch again. No protection started from this stale selection."
+    },
+    "RECIPE_LIBRARY_FULL": {
+      "title": "Recipe library is full.",
+      "action": "The library supports up to 64 names. Review and replace an existing recipe instead of adding another."
+    },
+    "RECIPE_SAVE_FAILED": {
+      "title": "Recipe save was not confirmed.",
+      "action": "Check workspace access, reload recipes to inspect the stored version, then preview your retained settings again. No processing was started by this save."
+    },
+    "LIBRARY_SEARCH_INVALID": {
+      "title": "Private search filters are invalid.",
+      "action": "Use up to 200 search characters, an exact category folder and all, known or unknown title state."
+    },
+    "LIBRARY_SEARCH_UNAVAILABLE": {
+      "title": "Private library data could not be read.",
+      "action": "Wait for any active sort to finish, then search again. If this continues, preserve private state and check the catalog; do not delete it."
+    },
+    "LIBRARY_SEARCH_STALE": {
+      "title": "The library changed between result pages.",
+      "action": "Restart the search from its first page. Existing image selections remain unchanged."
+    },
+    "ARTIST_MASK_INVALID": {
+      "title": "The saved mask map is invalid.",
+      "action": "Use a mask map exported by RIPOSTE. Reattach the original grayscale PNG and export again; do not edit its identity fields."
+    },
+    "ARTIST_MASK_PNG_INVALID": {
+      "title": "This file is not a supported artist mask.",
+      "action": "Choose a single-frame 8-bit grayscale PNG without transparency or rotation, up to 2 MiB and 1,048,576 pixels. Black preserves pixels; white keeps automatic limits."
+    },
+    "ARTIST_MASK_ASPECT_MISMATCH": {
+      "title": "The mask canvas does not match the artwork.",
+      "action": "Export the mask with the same canvas proportions and orientation as the clean artwork. Preview the overlay to check alignment."
+    },
+    "ARTIST_MASK_SELECTION_INVALID": {
+      "title": "The mask selection is invalid or too large.",
+      "action": "Choose either one PNG or a saved mask map. Use one mask per source and at most 4,194,304 mask pixels in total."
+    },
+    "ARTIST_MASK_SINGLE_IMAGE_REQUIRED": {
+      "title": "A single PNG mask needs one selected image.",
+      "action": "Select exactly one image, or export a source-bound mask map from browser publishing for a larger selection."
+    },
+    "ARTIST_MASK_SELECTION_MISMATCH": {
+      "title": "A mask belongs to an image outside this selection.",
+      "action": "Select its exact clean source, or remove the unused mask from the map. Do not reuse it on a different artwork."
+    },
+    "ARTIST_MASK_UNREADABLE": {
+      "title": "The artist mask could not be read.",
+      "action": "Check the file exists and is accessible, then choose it again. Keep masks outside folders being sorted."
+    },
+    "ARTIST_MASK_BINDING_CHANGED": {
+      "title": "The saved mask or its output binding changed.",
+      "action": "Keep the batch files intact. Start a new batch with the intended mask, then review the new output. Existing approval cannot authorize a changed budget."
+    },
+    "ARTIST_MASK_PREVIEW_REQUIRED": {
+      "title": "That mask preview is unavailable.",
+      "action": "Attach a mask and run --plan first. Use --view-budget with a preview number shown in the report; combined sorting does not open previews."
+    },
+    "ARTIST_MASK_PREVIEW_CHANGED": {
+      "title": "The artist budget changed after preview.",
+      "action": "Preview again and inspect the new mask, sizes and limits before starting. No processing started from this stale preview."
     }
   }
 }

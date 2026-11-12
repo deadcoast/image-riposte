@@ -1,0 +1,49 @@
+{
+  "revision": "2d4ca5a4ff7a614d9a9a7929367787a72af313aacbbd795d091ab2a1e5ac77c0",
+  "validation": {
+    "valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "health": {
+    "todo": {
+      "DONE": 46,
+      "TODO": 2,
+      "REVIEW": 1
+    },
+    "organism": {
+      "VALIDATED_COMPLETE": 30
+    },
+    "nodule": {
+      "ACTIVE": 1,
+      "ABSORBED": 28
+    }
+  },
+  "stale_evidence": [],
+  "task": {
+    "ID": "PAC-043",
+    "Title": "Add artist-directed spatial protection budgets",
+    "Status": "REVIEW",
+    "NextAction": "resolve"
+  },
+  "remaining": [
+    {
+      "ID": "PAC-015",
+      "Title": "Execute missing real-model and native-platform qualification",
+      "Status": "TODO",
+      "ApprovalState": "PENDING",
+      "BlockedBy": "",
+      "NextAction": "inspect"
+    },
+    {
+      "ID": "PAC-034",
+      "Title": "Verify the declared Python and installation platform matrix",
+      "Status": "TODO",
+      "ApprovalState": "PENDING",
+      "BlockedBy": "",
+      "NextAction": "inspect"
+    }
+  ],
+  "nodule": "NDL-029 ACTIVE; reviewed metadata correction awaits explicit exception to guarded command restriction",
+  "implementation": "PASS within evidence/spatial-budgets/verification.json scope"
+}

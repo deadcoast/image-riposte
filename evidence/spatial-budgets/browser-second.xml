@@ -1,0 +1,1 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="0" skipped="0" tests="1" time="2.668" timestamp="2026-09-20T13:13:05.144228-07:00" hostname="homeone"><testcase classname="tests.test_spatial_budgets" name="test_spatial_browser_native" time="2.241" /></testsuite></testsuites>

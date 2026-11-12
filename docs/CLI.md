@@ -32,6 +32,50 @@ Folder browsers keep `g` available at every depth, Enter opens the highlighted
 directory and `s` uses it directly. Protection's multi-input browser retains Space
 to select files/folders and `s` to select the current folder.
 
+## Private library search
+
+In the clean terminal library, press **s** for private search. Enter a title term,
+an optional exact category folder, title availability, year/month or size. Run
+the search, then use **[ / ]** for result pages, **s** or **/** to edit filters,
+and **r** to restart from the current first page. **Enter** selects an image;
+**i** inspects it; **p** opens the normal protection form. **a** selects only the
+current page. No sorting, processing or publishing consent is implied.
+
+The browser's **Private library search** navigation opens the same lookup, with
+50 results per page. Filters update after a short typing pause; Enter searches
+immediately. Clear search clears the title query. Other filters stay in effect.
+Closing clears private text and results; nothing is placed in URLs or browser
+storage. Inspect image passes only the canonical image ID to the existing viewer.
+
+```powershell
+riposte library-search "D:\Artwork" --search "moonlight"
+riposte library-search "D:\Artwork" --category portrait --year 2025 --month March
+riposte --json library-search "D:\Artwork" --title-state unknown --limit 50
+```
+
+Search uses literal Unicode NFKC/casefold matching across the original filename,
+category, canonical path, date and ID. The category filter matches an exact saved
+folder slug without case; all supplied filters combine with AND. Title state is
+`all`, `known` or `unknown`. Results are images in the clean library; videos and
+unsorted files are outside this lookup. Private titles must match catalog ID,
+image type and stored hash. Missing, invalid or mismatched provenance is unknown;
+numbered filenames never become guessed original titles. A matched record may
+still have no original title. Current image bytes are audited when opened, not
+hashed across the whole library during search.
+
+The command returns at most `--limit` rows (default 50, maximum 500), ordered by
+day descending, canonical path and ID. JSON includes `total`, `offset`,
+`next_offset` and `revision`. Use the returned next offset with the same filters,
+limit and `--expected-revision` for consistent paging. A changed catalog or
+provenance rejects that revision; restart at offset 0. An offset beyond the end
+returns an empty page. Each request scans the metadata snapshot once; it does
+not create a persistent search index or modify the workspace.
+
+**This command's output contains private filenames. Keep it local.** Ordinary
+`list`, default API state, generated PNG metadata and publishing packs never
+receive these private fields. Authenticated clients use `POST /api/library-search`
+with filters in the JSON body; responses are not cached or retained as jobs.
+
 ## Duplicate Finder
 
 Main menu **d** opens one scan-settings screen. Paste a folder with **g**, then
@@ -69,6 +113,44 @@ memory. Standalone CLI/terminal scans skip private state without requiring a
 valid sorted catalog; the browser server retains its normal workspace checks.
 See [DUPLICATES.md](DUPLICATES.md) for the confidence policy and media boundaries.
 
+## Storage and recovery inspection
+
+Run `riposte health ROOT`, or open **Terminal & workspace > Storage & recovery**.
+The browser has **Storage & recovery** in workspace navigation. Inspection is
+optional; it does not add a sorting step or create private state.
+
+```powershell
+riposte health "D:\Artwork"
+riposte --json health "D:\Artwork" --max-entries 200000
+```
+
+The report separates total logical bytes, private state, recovery within private
+state, and `_float_` / `__float__` storage. Available volume capacity is separate.
+The backup envelope counts observed media/sidecar suffixes outside private/float
+storage, including already-sorted files. It is not a required-free-space or peak
+estimate: extensionless images, decode expansion, temporary outputs and journals
+remain unknown. Use a dry run for actual sort selection; enough reported free
+space never guarantees a sort will fit.
+
+Inspection defaults to 100,000 entries (maximum 200,000), a cooperative 30-second
+budget, 128 nested open directories and 4 MiB per journal. Slow OS reads can
+outlast that budget or delay cancellation. Links/reparse paths and other volumes
+are skipped; inaccessible, changing or limited scans report INCOMPLETE and retain
+partial totals. Logical bytes count hard-linked entries separately and differ
+from allocated storage. Reads can update filesystem access times.
+
+Windows volume flags report advertised hard-link support and read-only status;
+POSIX statvfs reports read-only status with hard-link support unknown. Neither
+runs a write, commit, lock or durability test. Unknown results stay unknown.
+Recovery headers/entry shapes report APPLIED, APPLYING, UNDOING, UNDONE or
+UNVERIFIED. They do not verify backups or undo conflicts. Preview undo performs
+the existing recovery checks before any explicit restore.
+
+Operation markers are observed without acquiring/reclaiming a lease. A marker
+cannot establish whether its owner is alive or abandoned. Inspection never
+prunes history or removes locks. Keep recovery copies private and together;
+they retain original filenames, metadata and full video bytes.
+
 ## Command inventory
 
 Every listed command is a real Typer command; use `riposte COMMAND --help` for parameter types, defaults, bounds and repeatable options.
@@ -78,6 +160,8 @@ Every listed command is a real Typer command; use `riposte COMMAND --help` for p
 | `ui [ROOT]` | Optional workspace | Native Rich menu; `--linear` explicitly permits scripted stdin |
 | `organize ROOT` | Whole maintained workspace | Read-only plan; `--apply --plan-id PLAN_ID` replaces sources from the unchanged reviewed plan |
 | `sort ROOT` | Whole maintained workspace | Alias of `organize`; incremental sorting without protection |
+| `health ROOT` | Workspace storage and recovery | Inspect only; no writes, pruning or lock reclamation |
+| `library-search ROOT` | Opt-in private title/category search; bounded result pages. No writes. |
 | `duplicates ROOT` | Recursive files, independently of sorting | Read-only exact/visual comparison; optional explicit JSON/CSV export |
 | `categories ROOT` | Filename stems under ROOT | Read-only term discovery and session category review; no media, catalog or rules writes |
 | `category-rules ROOT` | Private rules and optional filename review | Read-only preview; `--save --expected-revision REVISION` explicitly saves rules; never moves media |
@@ -88,6 +172,7 @@ Every listed command is a real Typer command; use `riposte COMMAND --help` for p
 | `list ROOT` | Filterable clean catalog | Inspect; `--year`, `--month`, `--size`, `--search`, `--offset`, `--limit` |
 | `inspect ROOT IMAGE_ID` | Clean master | Verify exact bytes and print complete technical metadata audit |
 | `publish ROOT` | Repeated `--input`, or `--image` repeated, or `--all` with filters | Generate final-size candidates; `--plan` is read-only |
+| `recipes ROOT [NAME]` | Inspect/list; `--preview` drafts; `--save --expected-revision REVISION` saves | Reusable publishing settings only; no processing or approvals |
 | `protect ROOT` | Same as publish | Typed alias, not a separate engine |
 | `publications ROOT [BATCH_ID]` | All batches or one | Inspect complete output/review states |
 | `resume ROOT BATCH_ID` | Unfinished batch | Reload matching models; keep committed outputs byte-identical |
@@ -579,3 +664,46 @@ the same options with `apply: true`, `acknowledge_source_removal: true`, and
 that `plan_id`. A missing or stale ordinary ID becomes a job error with
 `SORT_PREVIEW_REQUIRED` or `SORT_PREVIEW_CHANGED`. Inspect again after changes;
 acknowledgement alone does not permit a new directory scan to expand the work.
+
+## Named publishing recipes
+
+The same library is available from the terminal and browser publishing forms.
+See [publishing recipes](PUBLISHING.md#reusable-publishing-recipes) for scope.
+
+```powershell
+riposte recipes ROOT
+riposte recipes ROOT "Web art" --preview --edge 1536 --seed 19
+riposte recipes ROOT "Web art" --save --edge 1536 --seed 19 --expected-revision missing
+riposte recipes ROOT "Web art"
+riposte riposte ROOT --input ART --recipe "Web art" --plan
+riposte publish ROOT --all --recipe "Web art" --edge 1024 --seed 7 --plan
+```
+
+`missing` is valid only for the first library save. For later saves, supply the
+current `revision` returned by preview. Repeat the reviewed settings when saving
+from the CLI. Saving a matching name replaces that entry, preserving others.
+All eight settings flags are supported on `recipes`; unsupported/private fields
+are rejected. Inspection and preview do not create a workspace or load models.
+
+On `publish`, `protect`, `riposte` and `sort-riposte`, explicit flags override
+saved settings; omitted flags keep the recipe's values. `--recipe-revision` can
+pin the selected entry's `recipe_revision` returned by inspection. Browser and
+terminal loads pin it automatically. An edited saved recipe then requires a fresh
+load/preview; unrelated saved recipes do not invalidate that entry.
+
+### Optional artist budgets
+
+Publishing aliases (`publish`, `protect`, `riposte`, `sort-riposte`) accept
+`--budget-mask PATH` for exactly one selected source or `--budget-map PATH` for
+source-bound masks exported by browser publishing. Both remain optional.
+`--plan` includes final-size budget summaries, cap PNGs, overlays and a
+`budget_revision`. `--view-budget N` with an ordinary or standalone `--plan`
+explicitly opens that numbered overlay in the local viewer and writes a private
+date-only preview cache. Combined sorting retains its existing plan/consent flow.
+`--budget-revision HASH` rejects changed masks, sizes or limits before processing.
+See [artist masks](PUBLISHING.md#artist-masks) for format and privacy details.
+
+Raster previews return at most three at a time. Browser Previous/Next previews and
+terminal `[ / ]` retain the full batch selection. CLI `--budget-offset N --plan`
+selects a preview page; `--view-budget N` opens an absolute numbered preview.
+Processing skips preview rendering, so pagination never limits batch size.

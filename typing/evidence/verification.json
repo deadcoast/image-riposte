@@ -9,11 +9,11 @@
     "fastapi": "0.141.1",
     "rich": "15.0.0"
   },
-  "source_files": 76,
-  "source_signatures": 536,
-  "stubtest_leaf_modules": 63,
+  "source_files": 83,
+  "source_signatures": 582,
+  "stubtest_leaf_modules": 67,
   "stubtest_allowlist_entries": 4,
-  "dynamic_declarations": 127,
+  "dynamic_declarations": 134,
   "results": {
     "mypy-contracts": true,
     "mypy-tooling": true,

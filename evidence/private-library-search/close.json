@@ -1,0 +1,5 @@
+[
+  {"op":"transition","id":"PAC-042","status":"DONE","evidence":"Private original-title/category search delivered across CLI, terminal and browser. 1637 full regression passes/12 platform or privilege skips; 90 focused passes/1 skip; 6 native browser passes; seven external contract stages and package/docs checks pass. Raw source typing remains FAIL at 873 diagnostics; no new search-module diagnostics. All 29 scoped requirements have current accepted evidence and validation is clean. evidence/private-library-search/README.md."},
+  {"op":"checkpoint","id":"PAC-042","next_action":"absorb"},
+  {"op":"absorb","id":"NDL-028","evidence":"PAC-042 DoD and admitted private search assets implemented and registered; all 29 scoped requirements current, validation clean. Bounded read-only catalog/provenance lookup, unknown states, stable paging and explicit privacy boundary verified. No clean-install, human/platform or pretrained-model efficacy qualification. evidence/private-library-search/README.md."}
+]

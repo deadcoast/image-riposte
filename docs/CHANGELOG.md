@@ -1,5 +1,18 @@
 # 0.5.0 / current development checkout
 
+PAC-042: opt-in private original-title/category library search, bounded revision-bound pages, explicit unknown provenance, CLI/terminal/browser entry points and privacy-preserving canonical selection.
+
+### PAC-041 / workspace storage and recovery
+
+Added optional `health ROOT`, terminal Storage & recovery and browser inspection. Reports bounded logical usage, available capacity, qualified backup envelope, advertised filesystem capabilities and recovery/operation observations. No workspace writes, cleanup or lock reclamation.
+
+## PAC-040 / reusable publishing recipes
+
+- Added private, versioned named settings with bounded validation and atomic revision-checked saves.
+- Added CLI `recipes` and publishing `--recipe` selection, terminal load/preview/save keys, and browser recipe controls with custom sizes and seeds.
+- Loading/saving retains per-run paths, models and image/approval decisions; stale entries or save previews must be refreshed.
+
+
 PAC-039 adds a current workflow/data contract and documentation map, precise
 historical supersession links, corrected private-original and crash-lock guidance,
 and the complete shipping command inventory. Historical bodies remain byte-identical;
@@ -153,3 +166,11 @@ Pretrained/CUDA/native Windows efficacy qualification remains outstanding. This 
 ## 0.1.0 — SHROUD / retained foundation
 
 Original delivered sanitation, organization, public-raster laboratory, EOT-VAE experiment, external-candidate import, transport tests, paired baseline runner and local interface. The original archive's 194 tests were run before development; inherited test logic is preserved under the new identity. Provenance is recorded in `evidence/`.
+
+### PAC-043 — artist-directed spatial budgets
+
+Optional source-bound grayscale masks now tighten automatic publishing limits
+through final-size previews, actual optimization, independent quality checks,
+resume and exact-output approval. CLI/terminal and browser support mask inputs;
+private maps can be explicitly exported. Public PNGs and ZIPs remain date-only.
+No-mask defaults are preserved. No new AI-resistance qualification is claimed.

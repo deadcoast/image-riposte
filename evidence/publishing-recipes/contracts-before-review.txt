@@ -1,0 +1,11 @@
+warning: `VIRTUAL_ENV=.venv` does not match the project environment path `typing\.venv` and will be ignored; use `--active` to target the active environment instead
+Source/stub parity: 542 signatures, 63 importable leaf modules
+Missing stub: recipes
+cli:publish: source/stub parameter mismatch
+cli:recipes: missing declaration
+terminal\controller:Controller.recipes: missing declaration
+terminal\controller:Controller.load_recipe: missing declaration
+terminal\controller:Controller.recipe_save_name: missing declaration
+terminal\render:recipes: missing declaration
+terminal\service:resolved_recipe: missing declaration
+Source differs from the reviewed snapshot; re-review these contracts: src/riposte/cli.py, src/riposte/recipes.py, src/riposte/records.py, src/riposte/server.py, src/riposte/static/index.html, src/riposte/static/publish.css, src/riposte/static/publish.js, src/riposte/static/recovery-catalog.json, src/riposte/terminal/actions.py, src/riposte/terminal/controller.py, src/riposte/terminal/interaction.py, src/riposte/terminal/render.py, src/riposte/terminal/reports.py, src/riposte/terminal/service.py

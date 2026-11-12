@@ -1,0 +1,46 @@
+{
+  "revision": "fa5b9eaa42204f225933591b6c750f2445ed35ba7543f2583a0da20d1cbe695e",
+  "validation": {
+    "valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "health": {
+    "todo": {
+      "DONE": 47,
+      "TODO": 2
+    },
+    "organism": {
+      "VALIDATED_COMPLETE": 30
+    },
+    "nodule": {
+      "ABSORBED": 29
+    }
+  },
+  "stale_evidence": [],
+  "task": {
+    "ID": "PAC-043",
+    "Title": "Add artist-directed spatial protection budgets",
+    "Status": "DONE",
+    "DoneAt": "2026-09-20T22:11:33Z",
+    "NextAction": "absorb"
+  },
+  "nodule": {
+    "ID": "NDL-029",
+    "Status": "ABSORBED",
+    "NewAssets": "evidence/spatial-budgets/README.md;evidence/spatial-budgets/contract-review.json;evidence/spatial-budgets/requirement-review.json;evidence/spatial-budgets/verify.py;src/riposte/spatial.py;src/riposte/static/spatial.js;tests/spatial_browser.cjs;tests/test_spatial_budgets.py;typing/evidence/source-reviewed-spatial-budgets.json;typing/stubs/riposte/spatial.pyi",
+    "AbsorbedAt": "2026-09-20T22:11:33Z"
+  },
+  "correction": "evidence/spatial-budgets/nodule-path-applied.json",
+  "closure": "evidence/spatial-budgets/closure-applied.json",
+  "verification": "evidence/spatial-budgets/verification.json",
+  "executed_this_turn": "Approved metadata correction, documentation/hash checks, package rebuild and equality verification, six refreshed acceptance reports and guarded task/nodule closure. Application files unchanged.",
+  "retained_regression_evidence": {
+    "non_browser_passed": 1673,
+    "non_browser_skipped": 12,
+    "chromium_passed": 7,
+    "external_contract_stages_passed": 7,
+    "strict_source_typing": "FAIL: 876 errors in 36 of 70 modules"
+  },
+  "remaining": "PAC-015 real-model/native-platform qualification remains pending; PAC-034 clean installation qualification stays shelved."
+}

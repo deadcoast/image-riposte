@@ -1,0 +1,30 @@
+{
+  "owners": [
+    "src/riposte/cli.py",
+    "src/riposte/recipes.py",
+    "src/riposte/records.py",
+    "src/riposte/server.py",
+    "src/riposte/static/index.html",
+    "src/riposte/static/publish.css",
+    "src/riposte/static/publish.js",
+    "src/riposte/static/recovery-catalog.json",
+    "src/riposte/terminal/actions.py",
+    "src/riposte/terminal/controller.py",
+    "src/riposte/terminal/interaction.py",
+    "src/riposte/terminal/render.py",
+    "src/riposte/terminal/reports.py",
+    "src/riposte/terminal/service.py"
+  ],
+  "application_files": 77,
+  "signatures": 554,
+  "leaf_modules": 64,
+  "review": [
+    "recipes.py defines source-owned settings/entry/report records, complete version/field/value validation and bounded state reads; atomic saves use the established workspace lease and revision checks.",
+    "CLI selects saved settings using parameter provenance: only explicit flags override. Service and authenticated API resolve before planning or model loading; current engine validation and combined plan binding apply.",
+    "Terminal controls copy only the eight settings, preserve local paths/device and pin the loaded entry revision. Save validates only settings and uses its exact reviewed revision.",
+    "Browser uses packaged authenticated API and shared recovery helpers, native controls, explicit load/preview/save, busy feedback, snapshot invalidation and late-response guards. Custom edges/order and seed are represented.",
+    "External declarations describe new functions, request fields, HTTP model and stored/report structures. Contract drift was retained before the reviewed snapshot was admitted.",
+    "Publication engine math, batch model identities, resume configuration, exact output review and packs remain in their existing owners and were exercised through current regressions.",
+    "All 14 changed application owners reviewed against the retained PAC-039 snapshot; 77 current application hashes admitted. No config weakening or extra dynamic declarations."
+  ]
+}

@@ -41,6 +41,23 @@ class RecipeEntry(TypedDict):
     settings: RecipeSettings
 
 
+class RecipeSummary(RecipeEntry):
+    recipe_revision: str
+
+
+class RecipeReport(TypedDict):
+    mode: str
+    version: int
+    revision: str
+    writes: bool
+    status: str
+    recipes: list[RecipeSummary]
+    name: str | None
+    settings: RecipeSettings | None
+    recipe_revision: str | None
+    processing_started: bool
+
+
 @dataclass(frozen=True)
 class RecipeLibrary:
     entries: tuple[RecipeEntry, ...]
@@ -75,7 +92,7 @@ def checked_settings(value: object, *, partial: bool = False) -> RecipeSettings:
     settings = cast(RecipeSettings, data)
     settings['edges'] = list(settings['edges'])
     try:
-        if not all(math.isfinite(settings[k]) for k in ('delta_e76_p95', 'rms_fraction')):
+        if not math.isfinite(settings['delta_e76_p95']) or not math.isfinite(settings['rms_fraction']):
             raise ValueError()
         to_recipe(settings)
     except (RiposteError, TypeError, ValueError, OverflowError):
@@ -137,7 +154,7 @@ def load_library(root: Path) -> RecipeLibrary:
                 raise RiposteError('RECIPE_LIBRARY_INVALID')
             names.add(name.casefold())
             entries.append({'name': name, 'settings': checked_settings(row['settings'])})
-    except (UnicodeError, ValueError, TypeError, RecursionError, OverflowError):
+    except (RiposteError, UnicodeError, ValueError, TypeError, RecursionError, OverflowError):
         raise RiposteError('RECIPE_LIBRARY_INVALID') from None
     except OSError:
         raise RiposteError('RECIPE_LIBRARY_UNREADABLE') from None
@@ -148,7 +165,7 @@ def _entry(library: RecipeLibrary, name: str) -> RecipeEntry | None:
     return next((row for row in library.entries if row['name'].casefold() == name.casefold()), None)
 
 
-def _report(library: RecipeLibrary, entry: RecipeEntry | None = None, *, writes: bool = False, stored: bool = True) -> dict[str, object]:
+def _report(library: RecipeLibrary, entry: RecipeEntry | None = None, *, writes: bool = False, stored: bool = True) -> RecipeReport:
     return {'mode': 'PUBLISHING_RECIPES', 'version': 1, 'revision': library.revision, 'writes': writes,
             'status': 'SAVED' if writes else 'STORED' if stored else 'DRAFT',
             'recipes': [{'name': row['name'], 'settings': row['settings'], 'recipe_revision': hashlib.sha256(_bytes(row)).hexdigest()} for row in library.entries],
@@ -157,7 +174,7 @@ def _report(library: RecipeLibrary, entry: RecipeEntry | None = None, *, writes:
             'processing_started': False}
 
 
-def inspect_recipes(root: Path, name: str | None = None, *, settings: Mapping[str, object] | None = None) -> dict[str, object]:
+def inspect_recipes(root: Path, name: str | None = None, *, settings: Mapping[str, object] | None = None) -> RecipeReport:
     library = load_library(root)
     if name is None:
         if settings is not None:
@@ -175,7 +192,7 @@ def inspect_recipes(root: Path, name: str | None = None, *, settings: Mapping[st
     return _report(library, {'name': name, 'settings': merged}, stored=False)
 
 
-def save_recipe(root: Path, name: str, settings: Mapping[str, object], *, expected_revision: str) -> dict[str, object]:
+def save_recipe(root: Path, name: str, settings: Mapping[str, object], *, expected_revision: str) -> RecipeReport:
     """Save one reviewed named entry, preserving unrelated recipes and media."""
     name = recipe_name(name)
     checked = checked_settings(settings)

@@ -1,3 +1,4 @@
+from .spatial import ArtistMask as ArtistMask
 from _riposte_types import EncoderT
 # Source-derived external stub; see typing/README.md for scope.
 from PIL.Image import Image as _Image
@@ -26,4 +27,4 @@ class ReleaseConfig:
 
 def temporal_energy(frames: ModelTensor) -> ModelTensor: ...
 
-def protect_release(image: Image.Image, encoders: list[EncoderT], config: ReleaseConfig=..., limits: QualityLimits=..., probe: InpaintProbe | None=None, temporal: TemporalProbe | None=None, progress: _Progress | None=None) -> tuple[_Image, Report]: ...
+def protect_release(image: Image.Image, encoders: list[EncoderT], config: ReleaseConfig=..., limits: QualityLimits=..., probe: InpaintProbe | None=None, temporal: TemporalProbe | None=None, progress: _Progress | None=None, *, artist_mask: ArtistMask | None=None) -> tuple[_Image, Report]: ...

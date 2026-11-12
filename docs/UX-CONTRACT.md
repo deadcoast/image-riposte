@@ -231,3 +231,67 @@ save/conflict/sort/undo evidence: `evidence/guided-category-editing/`.
 | Terminal menu and folder selection | `terminal/controller.py`, `paths.py`, `render.py`, `keyboard.py`, `app.py` | Three-action user request and existing operation consent | Riposte Sorter preset; Full Sort Workshop configuration; multi-input protection | `tests/test_sorter_menu.py`, `tests/test_terminal_polish.py`; final Windows ConPTY checks in `evidence/terminal-polish/` |
 | Sorting exclusion | `policy.FLOAT_DIRECTORIES`, `sort_excluded`, shared sort planners/walker | User's `_float_` / `__float__` storage rule | Exact case-insensitive directory names at any depth; protection intake remains available | `tests/test_float_sort.py`, synthetic protection/combined tests in `tests/test_workflows.py` |
 | Optional categories | Shared `category_sort.category_plan` and saved-rule matcher | User correction: categories apply if found | Ordinary route for absent/tied/unknown matches; retained existing categories; optional manual choices | `tests/test_optional_categories.py`, CLI/API/video/combined checks and actual launcher sort/undo in `evidence/optional-categories/` |
+
+## Named recipe boundary / PAC-040
+
+Recipes are optional publishing configuration, never processing consent. CLI,
+terminal and browser share the same bounded, versioned workspace library and
+validation. List/inspect/preview are read-only; an explicit save checks the
+reviewed library revision and atomically replaces one named entry. Corrupt,
+linked or unsupported state is preserved for recovery. Loading a saved entry
+fills all eight supported fields, including custom sizes and seed, and pins that
+entry's revision. Later edits remain editable but must pass current engine checks.
+A changed saved entry must be reloaded; a combined sort still needs a fresh exact
+preview and explicit replacement consent. Saved recipes cannot provide model
+paths, identities, source selection or visual/export approval.
+
+The browser uses existing authenticated API/error helpers and a native recipe
+selector. No automatic save or retry; pending/empty/error/conflict states are
+visible. Keyboard selection and a 390px viewport are regression checks, not
+independent assistive-technology or human usability certification.
+
+## Storage and recovery inspection / PAC-041
+
+`health.py` owns read-only observations; CLI and terminal share the service and
+semantic report. Terminal workspace settings open the report directly. Browser
+workspace navigation opens a native modal using the shared dialog styles, button
+classes, runtime tokens, global scrollbars and authenticated `app.js` job owner.
+The action remains visible at narrow widths. `health.js` owns only this report's
+layout and job identity; it reuses shared recovery text. Close/Escape returns
+focus to the opener, retains an in-flight inspection, and late completion never
+reopens the dialog. Re-inspection hides stale totals; errors remain inline with
+a retry action. Partial results, unknown capabilities and unverified histories
+are explicit. Cancellation discards the report without touching files. No new
+fonts, theme tokens, native select or stored browser data are introduced.
+
+
+## Private library search / PAC-042
+
+The English local desktop workbench keeps its current tokens, typography,
+buttons, native selects, dialog and global scrollbars. `library_search.py` owns
+literal Unicode matching, catalog-bound provenance, unknown states and paging.
+The terminal shares its worker, action form and library selection. `library-search.js`
+owns the browser dialog's transient query and rows; `app.js` owns authenticated
+requests, existing canonical selection and shared errors. `publish.css` owns the
+new list geometry only. Native select popup geometry remains platform owned.
+
+Opt-in navigation opens a 50-row private result list. Private values never enter
+the normal gallery state, URLs, localStorage, ordinary catalogs or retained jobs.
+Closing aborts pending fetches, clears text/results and restores opener focus.
+Remote input waits 300ms and respects IME composition; explicit submit/clear does
+not wait. Input changes immediately discard old rows, disable paging and revoke
+older responses. One revision binds pages; stale data requires restart without
+changing selected image IDs. Inline errors retain filters; date errors open their
+collapsed disclosure and focus the offending field. No mutation confirmation is
+added. The dialog owns outer scrolling; long titles/paths wrap and filters stack
+below 600px. Read-only search and existing image operations remain separate.
+
+Artist-budget business source: [publishing mask contract](PUBLISHING.md#artist-masks),
+implemented by `spatial.py`, `quality.py`, `publication.py` and `release_guard.py`.
+The optional disclosure uses existing selection, native controls, authenticated
+API, errors and page scrolling. Upload validates before attachment; failed replacement
+retains the prior mask. Cancellation/generation checks reject stale replies and
+changed settings discard previews. Remove has no extra confirmation. Explicit
+export downloads a private map; general recipe saves exclude masks. Keyboard mask
+previews in terminal use the existing local viewer and cannot record approval.
+Numeric quality, overlay inspection and exact output approval remain separate.

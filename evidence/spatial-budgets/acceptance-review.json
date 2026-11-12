@@ -1,0 +1,490 @@
+[
+  {
+    "id": "OGM-001",
+    "changed_sources": [
+      "RELEASE-MANIFEST.json",
+      "docs/CLI.md",
+      "docs/DESIGN.md",
+      "evidence/spatial-budgets/README.md",
+      "evidence/spatial-budgets/contract-review.json",
+      "evidence/spatial-budgets/requirement-review.json",
+      "evidence/spatial-budgets/verify.py",
+      "src/riposte/cli.py",
+      "src/riposte/publication.py",
+      "src/riposte/records.py",
+      "src/riposte/server.py",
+      "src/riposte/static/index.html",
+      "src/riposte/static/spatial.js",
+      "src/riposte/terminal/controller.py",
+      "src/riposte/terminal/interaction.py",
+      "src/riposte/terminal/reports.py",
+      "src/riposte/terminal/service.py",
+      "tests/spatial_browser.cjs",
+      "tests/test_spatial_budgets.py",
+      "todo-audit.PACER.md",
+      "typing/evidence/dynamic-boundaries.json",
+      "typing/evidence/pacer-inventory.json",
+      "typing/evidence/runtime-contracts.txt",
+      "typing/evidence/source-after.json",
+      "typing/evidence/source-current-command.json",
+      "typing/evidence/source-current.txt",
+      "typing/evidence/source-reviewed-spatial-budgets.json",
+      "typing/evidence/tooling-regressions.txt",
+      "typing/evidence/verification.json",
+      "typing/stubs/_riposte_types.pyi",
+      "typing/stubs/riposte/cli.pyi",
+      "typing/stubs/riposte/publication.pyi",
+      "typing/stubs/riposte/records.pyi",
+      "typing/stubs/riposte/server.pyi"
+    ],
+    "review": "Index 83 application assets plus admitted mask tests, evidence tools and contracts; register file/symbol/import/dependency edges. Inventory must pass with an empty residual plan."
+  },
+  {
+    "id": "OGM-002",
+    "changed_sources": [
+      "typing/evidence/pacer-inventory.json",
+      "typing/evidence/runtime-contracts.txt",
+      "typing/evidence/source-after.json",
+      "typing/evidence/source-current-command.json",
+      "typing/evidence/tooling-regressions.txt",
+      "typing/evidence/verification.json"
+    ],
+    "review": "Reviewed immutable mask types, optional primary request fields, bounded decoder and preview/report signatures. Seven external contract stages pass independently of the retained strict-source failure (876 errors)."
+  },
+  {
+    "id": "OGM-003",
+    "changed_sources": [
+      "docs/CLI.md",
+      "src/riposte/cli.py",
+      "src/riposte/publication.py",
+      "src/riposte/records.py",
+      "src/riposte/server.py",
+      "src/riposte/terminal/controller.py",
+      "src/riposte/terminal/interaction.py",
+      "src/riposte/terminal/reports.py",
+      "src/riposte/terminal/service.py",
+      "typing/evidence/dynamic-boundaries.json",
+      "typing/evidence/pacer-inventory.json",
+      "typing/evidence/runtime-contracts.txt",
+      "typing/evidence/source-after.json",
+      "typing/evidence/source-current.txt",
+      "typing/evidence/tooling-regressions.txt",
+      "typing/evidence/verification.json",
+      "typing/stubs/_riposte_types.pyi",
+      "typing/stubs/riposte/cli.pyi",
+      "typing/stubs/riposte/publication.pyi",
+      "typing/stubs/riposte/records.pyi",
+      "typing/stubs/riposte/server.pyi"
+    ],
+    "review": "Historical selective patch imports preserved. Current CLI and terminal regression modules cover the additive optional mask fields without replacing newer workflows."
+  },
+  {
+    "id": "OGM-004",
+    "changed_sources": [
+      "src/riposte/cli.py",
+      "src/riposte/publication.py",
+      "src/riposte/records.py",
+      "src/riposte/server.py",
+      "src/riposte/terminal/controller.py",
+      "src/riposte/terminal/interaction.py",
+      "src/riposte/terminal/reports.py",
+      "src/riposte/terminal/service.py",
+      "typing/stubs/_riposte_types.pyi",
+      "typing/stubs/riposte/records.pyi",
+      "typing/stubs/riposte/server.pyi"
+    ],
+    "review": "Primary API/CLI/source-preserving publication remains integrated. Optional masks bind clean source hashes and render per final edge; no-mask defaults and original preservation pass. Wider request limits use the same actual streamed-byte limiter only on publish and artist-mask."
+  },
+  {
+    "id": "OGM-005",
+    "changed_sources": [
+      "src/riposte/publication.py",
+      "src/riposte/records.py"
+    ],
+    "review": "Production real-gradient synthetic search still keeps best quality-feasible iterates. Artist caps tighten automatic bounds and participate in projection/backtracking/final audit. Deterministic CPU tests show unchanged zero regions and numeric caps, not pretrained protection efficacy."
+  },
+  {
+    "id": "OGM-006",
+    "changed_sources": [
+      "docs/PUBLISHING.md",
+      "src/riposte/publication.py",
+      "src/riposte/records.py",
+      "src/riposte/static/index.html"
+    ],
+    "review": "Model identity and preparation checks are retained. Mask bytes are additionally committed in publication recipes/tasks and reconstructed during resume; synthetic model-drift and mask-tamper tests pass."
+  },
+  {
+    "id": "OGM-007",
+    "changed_sources": [
+      "docs/PUBLISHING.md",
+      "src/riposte/publication.py",
+      "src/riposte/records.py",
+      "typing/stubs/_riposte_types.pyi",
+      "typing/stubs/riposte/publication.pyi",
+      "typing/stubs/riposte/records.pyi"
+    ],
+    "review": "Exact output review and packages independently reconstruct clean baselines and caps, compare mask identity and saved report identity, and reject changed mask/configuration even when a looser replacement would numerically pass."
+  },
+  {
+    "id": "OGM-008",
+    "changed_sources": [],
+    "review": "Browser output approval still requires decoded original/candidate pixels and explicit acknowledgements; optional budget previews are separate and cannot approve. Existing actual Chromium review regression passes."
+  },
+  {
+    "id": "OGM-009",
+    "changed_sources": [
+      "docs/CLI.md",
+      "src/riposte/cli.py",
+      "src/riposte/publication.py",
+      "src/riposte/records.py",
+      "src/riposte/server.py",
+      "src/riposte/terminal/controller.py",
+      "src/riposte/terminal/interaction.py",
+      "src/riposte/terminal/reports.py",
+      "src/riposte/terminal/service.py"
+    ],
+    "review": "Independent Sort/RIPOSTE/combined operations and date-only outputs remain. Mask input does not make categorization mandatory or change float sorting exclusions. Combined source selection/mask content enters the frozen existing sort receipt before replacement."
+  },
+  {
+    "id": "OGM-010",
+    "changed_sources": [
+      "src/riposte/cli.py",
+      "src/riposte/publication.py",
+      "src/riposte/records.py",
+      "src/riposte/server.py",
+      "src/riposte/terminal/controller.py",
+      "src/riposte/terminal/interaction.py",
+      "src/riposte/terminal/reports.py",
+      "src/riposte/terminal/service.py"
+    ],
+    "review": "Wheel/sdist byte parity covers 83 current application files and maintained guides; actual Windows launcher publish help in the existing environment includes mask and preview flags. No clean installation qualification."
+  },
+  {
+    "id": "OGM-011",
+    "changed_sources": [
+      "docs/CLI.md",
+      "docs/DESIGN.md",
+      "src/riposte/cli.py",
+      "src/riposte/publication.py",
+      "src/riposte/records.py",
+      "src/riposte/server.py",
+      "src/riposte/static/index.html",
+      "src/riposte/terminal/controller.py",
+      "src/riposte/terminal/interaction.py",
+      "src/riposte/terminal/reports.py",
+      "src/riposte/terminal/service.py"
+    ],
+    "review": "Startup/menu/direction/linear regressions retained. Terminal mask paths, numbered overlay opening, bounded paging and captured preview revision are exercised through the shared service/controller. No qualification of user Windows Terminal or VS Code host."
+  },
+  {
+    "id": "OGM-012",
+    "changed_sources": [
+      "src/riposte/cli.py",
+      "src/riposte/publication.py",
+      "src/riposte/records.py",
+      "src/riposte/server.py",
+      "src/riposte/terminal/controller.py",
+      "src/riposte/terminal/interaction.py",
+      "src/riposte/terminal/reports.py",
+      "src/riposte/terminal/service.py",
+      "typing/stubs/_riposte_types.pyi",
+      "typing/stubs/riposte/records.pyi"
+    ],
+    "review": "Sort/recovery/video/lease/float regressions pass. Optional masks do not alter destination, category or original-preservation policy; combined sorting validates source binding and mask input before mutation."
+  },
+  {
+    "id": "OGM-013",
+    "changed_sources": [
+      "src/riposte/cli.py",
+      "src/riposte/publication.py",
+      "src/riposte/records.py",
+      "src/riposte/server.py",
+      "src/riposte/terminal/controller.py",
+      "src/riposte/terminal/interaction.py",
+      "src/riposte/terminal/reports.py",
+      "src/riposte/terminal/service.py"
+    ],
+    "review": "Source-removal commit implementation is unchanged. Existing replacement regression tests pass; combined invalid-mask and stale-mask tests reject before source replacement."
+  },
+  {
+    "id": "OGM-014",
+    "changed_sources": [
+      "src/riposte/records.py",
+      "typing/stubs/_riposte_types.pyi",
+      "typing/stubs/riposte/records.pyi"
+    ],
+    "review": "Partial sort recovery/allocation implementations are unchanged with current regressions. Publication cancellation/resume retains the committed mask bytes and rejects changed request/task identity."
+  },
+  {
+    "id": "OGM-015",
+    "changed_sources": [
+      "src/riposte/records.py",
+      "typing/stubs/_riposte_types.pyi",
+      "typing/stubs/riposte/records.pyi"
+    ],
+    "review": "Exclusive output creation and undo-conflict regressions retained; optional mask previews are read-only until the user explicitly opens a cached overlay. Masks do not relax output conflict checks."
+  },
+  {
+    "id": "OGM-016",
+    "changed_sources": [
+      "src/riposte/cli.py",
+      "src/riposte/publication.py",
+      "src/riposte/records.py",
+      "src/riposte/server.py",
+      "src/riposte/terminal/controller.py",
+      "src/riposte/terminal/interaction.py",
+      "src/riposte/terminal/reports.py",
+      "src/riposte/terminal/service.py",
+      "typing/stubs/_riposte_types.pyi",
+      "typing/stubs/riposte/cli.pyi",
+      "typing/stubs/riposte/publication.pyi",
+      "typing/stubs/riposte/records.pyi"
+    ],
+    "review": "Title discovery and matching implementations are unchanged. Existing missing, invalid and mismatched provenance regressions pass; mask identity uses clean image bytes rather than guessed titles."
+  },
+  {
+    "id": "OGM-017",
+    "changed_sources": [
+      "src/riposte/cli.py",
+      "src/riposte/publication.py",
+      "src/riposte/records.py",
+      "src/riposte/server.py",
+      "src/riposte/terminal/controller.py",
+      "src/riposte/terminal/interaction.py",
+      "src/riposte/terminal/reports.py",
+      "src/riposte/terminal/service.py"
+    ],
+    "review": "Category rule implementations and revisions are unchanged. Existing category matching and optional-category regressions pass; mask selection introduces no category requirement."
+  },
+  {
+    "id": "OGM-018",
+    "changed_sources": [
+      "docs/CLI.md",
+      "docs/DESIGN.md",
+      "src/riposte/cli.py",
+      "src/riposte/publication.py",
+      "src/riposte/records.py",
+      "src/riposte/server.py",
+      "src/riposte/static/index.html",
+      "src/riposte/terminal/controller.py",
+      "src/riposte/terminal/interaction.py",
+      "src/riposte/terminal/reports.py",
+      "src/riposte/terminal/service.py",
+      "typing/stubs/_riposte_types.pyi",
+      "typing/stubs/riposte/records.pyi"
+    ],
+    "review": "Combined preview fingerprints include source-bound mask pixels. Changing a mask before apply rejects before model load or source replacement. Standalone terminal mask previews also retain a budget revision and reject changed input/quality/size."
+  },
+  {
+    "id": "OGM-019",
+    "changed_sources": [
+      "src/riposte/cli.py",
+      "src/riposte/publication.py",
+      "src/riposte/records.py",
+      "src/riposte/server.py",
+      "src/riposte/static/index.html",
+      "src/riposte/terminal/controller.py",
+      "src/riposte/terminal/interaction.py",
+      "src/riposte/terminal/reports.py",
+      "src/riposte/terminal/service.py",
+      "typing/evidence/source-current.txt"
+    ],
+    "review": "PAC-043 continuity review: Original audit wording and historical evidence remain intact; todo-audit.PACER.md adds a distinct authorized implementation checkpoint."
+  },
+  {
+    "id": "OGM-020",
+    "changed_sources": [
+      "src/riposte/cli.py",
+      "src/riposte/publication.py",
+      "src/riposte/records.py",
+      "src/riposte/server.py",
+      "src/riposte/terminal/controller.py",
+      "src/riposte/terminal/interaction.py",
+      "src/riposte/terminal/reports.py",
+      "src/riposte/terminal/service.py"
+    ],
+    "review": "PAC-043 continuity review: PCUC research owners are unchanged with current synthetic regressions; no pretrained CUDA, independent reviewer or protection efficacy qualification."
+  },
+  {
+    "id": "OGM-021",
+    "changed_sources": [
+      "src/riposte/cli.py",
+      "src/riposte/publication.py",
+      "src/riposte/records.py",
+      "src/riposte/server.py",
+      "src/riposte/terminal/controller.py",
+      "src/riposte/terminal/interaction.py",
+      "src/riposte/terminal/reports.py",
+      "src/riposte/terminal/service.py"
+    ],
+    "review": "Sorter/path/direction/polish regressions retained. Optional publishing mask inputs and result paging preserve the three-action sorter and the existing terminal input controller."
+  },
+  {
+    "id": "OGM-022",
+    "changed_sources": [
+      "src/riposte/cli.py",
+      "src/riposte/publication.py",
+      "src/riposte/records.py",
+      "src/riposte/server.py",
+      "src/riposte/terminal/controller.py",
+      "src/riposte/terminal/interaction.py",
+      "src/riposte/terminal/reports.py",
+      "src/riposte/terminal/service.py"
+    ],
+    "review": "PAC-043 continuity review: Duplicate engine/interface/native regressions retained; no changes to matching confidence or file deletion behavior."
+  },
+  {
+    "id": "OGM-023",
+    "changed_sources": [
+      "src/riposte/publication.py",
+      "src/riposte/records.py",
+      "src/riposte/server.py",
+      "src/riposte/static/index.html",
+      "src/riposte/terminal/service.py"
+    ],
+    "review": "Existing browser scan-job cancellation regressions pass. New mask upload/preview requests abort and discard obsolete generations; failed replacement retains the last valid mask, and cancel restores controls."
+  },
+  {
+    "id": "OGM-024",
+    "changed_sources": [
+      "docs/DESIGN.md",
+      "src/riposte/cli.py",
+      "src/riposte/publication.py",
+      "src/riposte/records.py",
+      "src/riposte/server.py",
+      "src/riposte/static/index.html",
+      "src/riposte/terminal/controller.py",
+      "src/riposte/terminal/interaction.py",
+      "src/riposte/terminal/reports.py",
+      "src/riposte/terminal/service.py"
+    ],
+    "review": "Guided category API/controller/native regressions retained. Mask controls live in publishing and do not alter category review, save or per-file consent."
+  },
+  {
+    "id": "OGM-025",
+    "changed_sources": [
+      "docs/DESIGN.md",
+      "src/riposte/publication.py",
+      "src/riposte/records.py",
+      "src/riposte/server.py",
+      "src/riposte/static/index.html",
+      "src/riposte/terminal/controller.py",
+      "src/riposte/terminal/interaction.py",
+      "src/riposte/terminal/reports.py",
+      "src/riposte/terminal/service.py",
+      "typing/stubs/_riposte_types.pyi",
+      "typing/stubs/riposte/publication.pyi",
+      "typing/stubs/riposte/records.pyi",
+      "typing/stubs/riposte/server.pyi"
+    ],
+    "review": "New mask validation, mismatch, no-preview and stale-mask errors have shared actionable recovery messages. Existing recovery catalogue/terminal/browser tests pass. Guidance never mutates or relaxes integrity checks."
+  },
+  {
+    "id": "OGM-026",
+    "changed_sources": [
+      "docs/CLI.md",
+      "docs/PUBLISHING.md",
+      "src/riposte/cli.py",
+      "src/riposte/publication.py",
+      "src/riposte/records.py",
+      "src/riposte/server.py",
+      "src/riposte/terminal/controller.py",
+      "src/riposte/terminal/interaction.py",
+      "src/riposte/terminal/reports.py",
+      "src/riposte/terminal/service.py",
+      "todo-audit.PACER.md"
+    ],
+    "review": "Maintained guides document mask format, source identity, overlap-min resampling, limits, optional CLI/terminal/browser paths, bounded previews, private maps and qualification limits. Parser/link/historical-payload checks and package parity accompany the change."
+  },
+  {
+    "id": "OGM-027",
+    "changed_sources": [
+      "docs/CLI.md",
+      "docs/DESIGN.md",
+      "docs/PUBLISHING.md",
+      "src/riposte/cli.py",
+      "src/riposte/publication.py",
+      "src/riposte/records.py",
+      "src/riposte/server.py",
+      "src/riposte/static/index.html",
+      "src/riposte/terminal/controller.py",
+      "src/riposte/terminal/interaction.py",
+      "src/riposte/terminal/reports.py",
+      "src/riposte/terminal/service.py",
+      "todo-audit.PACER.md",
+      "typing/stubs/_riposte_types.pyi",
+      "typing/stubs/riposte/cli.pyi",
+      "typing/stubs/riposte/publication.pyi",
+      "typing/stubs/riposte/records.pyi",
+      "typing/stubs/riposte/server.pyi"
+    ],
+    "review": "General recipe settings stay exactly the canonical eight fields. Expanded primary forms exposed positional slicing; replaced it with SETTINGS membership. Existing recipe save/load/override/changed-revision and native UI tests pass with masks excluded."
+  },
+  {
+    "id": "OGM-028",
+    "changed_sources": [
+      "docs/CLI.md",
+      "docs/DESIGN.md",
+      "src/riposte/cli.py",
+      "src/riposte/publication.py",
+      "src/riposte/records.py",
+      "src/riposte/server.py",
+      "src/riposte/static/index.html",
+      "src/riposte/terminal/controller.py",
+      "src/riposte/terminal/interaction.py",
+      "src/riposte/terminal/reports.py",
+      "src/riposte/terminal/service.py",
+      "typing/stubs/_riposte_types.pyi",
+      "typing/stubs/riposte/cli.pyi",
+      "typing/stubs/riposte/publication.pyi",
+      "typing/stubs/riposte/records.pyi",
+      "typing/stubs/riposte/server.pyi"
+    ],
+    "review": "Read-only workspace health, lease and recovery implementations remain unchanged with current regressions. Mask loading reuses safe local input checks and never removes operation locks."
+  },
+  {
+    "id": "OGM-029",
+    "changed_sources": [
+      "RELEASE-MANIFEST.json",
+      "docs/CLI.md",
+      "docs/DESIGN.md",
+      "src/riposte/cli.py",
+      "src/riposte/publication.py",
+      "src/riposte/records.py",
+      "src/riposte/server.py",
+      "src/riposte/static/index.html",
+      "src/riposte/terminal/controller.py",
+      "src/riposte/terminal/interaction.py",
+      "src/riposte/terminal/reports.py",
+      "src/riposte/terminal/service.py",
+      "todo-audit.PACER.md",
+      "typing/stubs/_riposte_types.pyi",
+      "typing/stubs/riposte/cli.pyi",
+      "typing/stubs/riposte/publication.pyi",
+      "typing/stubs/riposte/records.pyi",
+      "typing/stubs/riposte/server.pyi"
+    ],
+    "review": "PAC-043 continuity review: Real sorting/provenance, Unicode normalization, category/date/size AND filters, malformed/missing/mismatched/null titles, bounded deterministic pages and stale revisions, one joined catalog query, cancellation, root/link rejection, unchanged default catalog/API/PNG output, undo, CLI/controller and real Chromium integration. Search trust is catalog ID/media/stored hash, not file-byte audit or historical source authenticity. Native keyboard/viewport checks are bounded automated evidence; delayed/offline/composition states are injected."
+  },
+  {
+    "id": "OGM-030",
+    "changed_sources": [
+      "docs/PUBLISHING.md",
+      "evidence/spatial-budgets/README.md",
+      "evidence/spatial-budgets/verify.py",
+      "src/riposte/cli.py",
+      "src/riposte/publication.py",
+      "src/riposte/records.py",
+      "src/riposte/server.py",
+      "src/riposte/static/index.html",
+      "src/riposte/static/spatial.js",
+      "src/riposte/terminal/controller.py",
+      "src/riposte/terminal/interaction.py",
+      "src/riposte/terminal/reports.py",
+      "src/riposte/terminal/service.py",
+      "tests/spatial_browser.cjs",
+      "tests/test_spatial_budgets.py"
+    ],
+    "review": "Validated single-frame L PNG and canonical private map, immutable source-bound identity, bounded dimensions/bytes/pixel totals, overlap-min resampling, final-size cap/overlay previews, actual optimizer projection and independent quality audit. Tests cover zero regions, gray flooring, thin downsampled regions, tampering including coherent mask/task replacement, cancellation/resume, date-only ZIP, primary interfaces, masks over 32 KiB and streamed size limits. No-mask behavior and private saved-recipe exclusion pass. Native Chromium covers optional/no-mask state, upload failure, cancel, stale/offline previews, remove and native select keys. Efficacy remains unverified. Final scaling review bounds image-bearing preview replies to three rasters, with CLI/terminal/browser paging and no preview rendering during batch start. Actual batch selection is not truncated."
+  }
+]

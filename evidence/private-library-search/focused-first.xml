@@ -1,0 +1,520 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="14" skipped="0" tests="26" time="0.927" timestamp="2026-09-20T12:19:56.131648-07:00" hostname="homeone"><testcase classname="tests.test_library_search" name="test_real_sort_private_optin_and_unchanged_default_outputs" time="0.016"><failure message="riposte.errors.RiposteError: CATEGORY_ASSIGNMENT_INVALID">root = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/pytest-of-ryanf/pytest-572/test_real_sort_private_optin_a0/workspace')
+make_image = &lt;function make_image.&lt;locals&gt;.create at 0x00000219E5F16E50&gt;
+
+    def test_real_sort_private_optin_and_unchanged_default_outputs(root, make_image):
+&gt;       rows = sorted_images(root, make_image)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_library_search.py:38: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_library_search.py:28: in sorted_images
+    preview = plan(root, POLICY, categories=True, assignments=['Private-Caf\u00e9-Moonlight-000.png=portrait'])
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\riposte\organizer.py:82: in plan
+    return category_plan(root, policy, assignments=assignments, progress=progress)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+root = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/pytest-of-ryanf/pytest-572/test_real_sort_private_optin_a0/workspace')
+policy = Policy(date_mode='modified', max_pixels=60000000, max_file_bytes=536870912, discard_sidecars=False)
+assignments = ['Private-Café-Moonlight-000.png=portrait'], progress = None
+
+    def category_plan(root: Path, policy: Policy, *, assignments: Sequence[str] = (),
+                      progress: Callable[[dict[str, Any]], None] | None = None) -&gt; dict[str, Any]:
+        from .organizer import walk_inputs, known_good, _next_relative, _validate_managed
+        root = check_root(root)
+        if sort_excluded(root.resolve()):
+            raise RiposteError("SORT_FLOAT_ROOT")
+        rules = load_rules(root)
+        labels = {r.slug: r.label for r in rules.rules} | {"uncategorized": "Uncategorized"}
+        overrides: dict[str, str] = {}
+        for spec in assignments:
+            if not isinstance(spec, str):
+                raise RiposteError("CATEGORY_ASSIGNMENT_INVALID")
+            relative, sep, slug = spec.rpartition("=")
+            if (not sep or not relative or slug not in labels and slug != "auto" or relative in overrides
+                    or Path(relative).as_posix() != relative or relative.split("/")[0] in {".riposte", ".shroud"}):
+&gt;               raise RiposteError("CATEGORY_ASSIGNMENT_INVALID")
+E               riposte.errors.RiposteError: CATEGORY_ASSIGNMENT_INVALID
+
+src\riposte\category_sort.py:60: RiposteError</failure></testcase><testcase classname="tests.test_library_search" name="test_unknown_never_invents_titles_or_matches_untrusted_words[missing-MISSING]" time="0.005"><failure message="riposte.errors.RiposteError: CATEGORY_ASSIGNMENT_INVALID">root = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/pytest-of-ryanf/pytest-572/test_unknown_never_invents_tit0/workspace')
+make_image = &lt;function make_image.&lt;locals&gt;.create at 0x00000219E5F57B60&gt;
+change = 'missing', expected = 'MISSING'
+
+    @pytest.mark.parametrize('change,expected', [('missing','MISSING'),('hash','MISMATCHED'),('media','MISMATCHED'),('id','MISMATCHED'),('bad','INVALID'),('oversize','INVALID'),('null','MATCHED')])
+    def test_unknown_never_invents_titles_or_matches_untrusted_words(root, make_image, change, expected):
+&gt;       sorted_images(root, make_image, 1)
+
+tests\test_library_search.py:59: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_library_search.py:28: in sorted_images
+    preview = plan(root, POLICY, categories=True, assignments=['Private-Caf\u00e9-Moonlight-000.png=portrait'])
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\riposte\organizer.py:82: in plan
+    return category_plan(root, policy, assignments=assignments, progress=progress)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+root = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/pytest-of-ryanf/pytest-572/test_unknown_never_invents_tit0/workspace')
+policy = Policy(date_mode='modified', max_pixels=60000000, max_file_bytes=536870912, discard_sidecars=False)
+assignments = ['Private-Café-Moonlight-000.png=portrait'], progress = None
+
+    def category_plan(root: Path, policy: Policy, *, assignments: Sequence[str] = (),
+                      progress: Callable[[dict[str, Any]], None] | None = None) -&gt; dict[str, Any]:
+        from .organizer import walk_inputs, known_good, _next_relative, _validate_managed
+        root = check_root(root)
+        if sort_excluded(root.resolve()):
+            raise RiposteError("SORT_FLOAT_ROOT")
+        rules = load_rules(root)
+        labels = {r.slug: r.label for r in rules.rules} | {"uncategorized": "Uncategorized"}
+        overrides: dict[str, str] = {}
+        for spec in assignments:
+            if not isinstance(spec, str):
+                raise RiposteError("CATEGORY_ASSIGNMENT_INVALID")
+            relative, sep, slug = spec.rpartition("=")
+            if (not sep or not relative or slug not in labels and slug != "auto" or relative in overrides
+                    or Path(relative).as_posix() != relative or relative.split("/")[0] in {".riposte", ".shroud"}):
+&gt;               raise RiposteError("CATEGORY_ASSIGNMENT_INVALID")
+E               riposte.errors.RiposteError: CATEGORY_ASSIGNMENT_INVALID
+
+src\riposte\category_sort.py:60: RiposteError</failure></testcase><testcase classname="tests.test_library_search" name="test_unknown_never_invents_titles_or_matches_untrusted_words[hash-MISMATCHED]" time="0.005"><failure message="riposte.errors.RiposteError: CATEGORY_ASSIGNMENT_INVALID">root = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/pytest-of-ryanf/pytest-572/test_unknown_never_invents_tit1/workspace')
+make_image = &lt;function make_image.&lt;locals&gt;.create at 0x00000219E5FDC0F0&gt;
+change = 'hash', expected = 'MISMATCHED'
+
+    @pytest.mark.parametrize('change,expected', [('missing','MISSING'),('hash','MISMATCHED'),('media','MISMATCHED'),('id','MISMATCHED'),('bad','INVALID'),('oversize','INVALID'),('null','MATCHED')])
+    def test_unknown_never_invents_titles_or_matches_untrusted_words(root, make_image, change, expected):
+&gt;       sorted_images(root, make_image, 1)
+
+tests\test_library_search.py:59: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_library_search.py:28: in sorted_images
+    preview = plan(root, POLICY, categories=True, assignments=['Private-Caf\u00e9-Moonlight-000.png=portrait'])
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\riposte\organizer.py:82: in plan
+    return category_plan(root, policy, assignments=assignments, progress=progress)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+root = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/pytest-of-ryanf/pytest-572/test_unknown_never_invents_tit1/workspace')
+policy = Policy(date_mode='modified', max_pixels=60000000, max_file_bytes=536870912, discard_sidecars=False)
+assignments = ['Private-Café-Moonlight-000.png=portrait'], progress = None
+
+    def category_plan(root: Path, policy: Policy, *, assignments: Sequence[str] = (),
+                      progress: Callable[[dict[str, Any]], None] | None = None) -&gt; dict[str, Any]:
+        from .organizer import walk_inputs, known_good, _next_relative, _validate_managed
+        root = check_root(root)
+        if sort_excluded(root.resolve()):
+            raise RiposteError("SORT_FLOAT_ROOT")
+        rules = load_rules(root)
+        labels = {r.slug: r.label for r in rules.rules} | {"uncategorized": "Uncategorized"}
+        overrides: dict[str, str] = {}
+        for spec in assignments:
+            if not isinstance(spec, str):
+                raise RiposteError("CATEGORY_ASSIGNMENT_INVALID")
+            relative, sep, slug = spec.rpartition("=")
+            if (not sep or not relative or slug not in labels and slug != "auto" or relative in overrides
+                    or Path(relative).as_posix() != relative or relative.split("/")[0] in {".riposte", ".shroud"}):
+&gt;               raise RiposteError("CATEGORY_ASSIGNMENT_INVALID")
+E               riposte.errors.RiposteError: CATEGORY_ASSIGNMENT_INVALID
+
+src\riposte\category_sort.py:60: RiposteError</failure></testcase><testcase classname="tests.test_library_search" name="test_unknown_never_invents_titles_or_matches_untrusted_words[media-MISMATCHED]" time="0.004"><failure message="riposte.errors.RiposteError: CATEGORY_ASSIGNMENT_INVALID">root = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/pytest-of-ryanf/pytest-572/test_unknown_never_invents_tit2/workspace')
+make_image = &lt;function make_image.&lt;locals&gt;.create at 0x00000219E5FDC7D0&gt;
+change = 'media', expected = 'MISMATCHED'
+
+    @pytest.mark.parametrize('change,expected', [('missing','MISSING'),('hash','MISMATCHED'),('media','MISMATCHED'),('id','MISMATCHED'),('bad','INVALID'),('oversize','INVALID'),('null','MATCHED')])
+    def test_unknown_never_invents_titles_or_matches_untrusted_words(root, make_image, change, expected):
+&gt;       sorted_images(root, make_image, 1)
+
+tests\test_library_search.py:59: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_library_search.py:28: in sorted_images
+    preview = plan(root, POLICY, categories=True, assignments=['Private-Caf\u00e9-Moonlight-000.png=portrait'])
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\riposte\organizer.py:82: in plan
+    return category_plan(root, policy, assignments=assignments, progress=progress)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+root = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/pytest-of-ryanf/pytest-572/test_unknown_never_invents_tit2/workspace')
+policy = Policy(date_mode='modified', max_pixels=60000000, max_file_bytes=536870912, discard_sidecars=False)
+assignments = ['Private-Café-Moonlight-000.png=portrait'], progress = None
+
+    def category_plan(root: Path, policy: Policy, *, assignments: Sequence[str] = (),
+                      progress: Callable[[dict[str, Any]], None] | None = None) -&gt; dict[str, Any]:
+        from .organizer import walk_inputs, known_good, _next_relative, _validate_managed
+        root = check_root(root)
+        if sort_excluded(root.resolve()):
+            raise RiposteError("SORT_FLOAT_ROOT")
+        rules = load_rules(root)
+        labels = {r.slug: r.label for r in rules.rules} | {"uncategorized": "Uncategorized"}
+        overrides: dict[str, str] = {}
+        for spec in assignments:
+            if not isinstance(spec, str):
+                raise RiposteError("CATEGORY_ASSIGNMENT_INVALID")
+            relative, sep, slug = spec.rpartition("=")
+            if (not sep or not relative or slug not in labels and slug != "auto" or relative in overrides
+                    or Path(relative).as_posix() != relative or relative.split("/")[0] in {".riposte", ".shroud"}):
+&gt;               raise RiposteError("CATEGORY_ASSIGNMENT_INVALID")
+E               riposte.errors.RiposteError: CATEGORY_ASSIGNMENT_INVALID
+
+src\riposte\category_sort.py:60: RiposteError</failure></testcase><testcase classname="tests.test_library_search" name="test_unknown_never_invents_titles_or_matches_untrusted_words[id-MISMATCHED]" time="0.005"><failure message="riposte.errors.RiposteError: CATEGORY_ASSIGNMENT_INVALID">root = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/pytest-of-ryanf/pytest-572/test_unknown_never_invents_tit3/workspace')
+make_image = &lt;function make_image.&lt;locals&gt;.create at 0x00000219E5F15FE0&gt;
+change = 'id', expected = 'MISMATCHED'
+
+    @pytest.mark.parametrize('change,expected', [('missing','MISSING'),('hash','MISMATCHED'),('media','MISMATCHED'),('id','MISMATCHED'),('bad','INVALID'),('oversize','INVALID'),('null','MATCHED')])
+    def test_unknown_never_invents_titles_or_matches_untrusted_words(root, make_image, change, expected):
+&gt;       sorted_images(root, make_image, 1)
+
+tests\test_library_search.py:59: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_library_search.py:28: in sorted_images
+    preview = plan(root, POLICY, categories=True, assignments=['Private-Caf\u00e9-Moonlight-000.png=portrait'])
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\riposte\organizer.py:82: in plan
+    return category_plan(root, policy, assignments=assignments, progress=progress)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+root = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/pytest-of-ryanf/pytest-572/test_unknown_never_invents_tit3/workspace')
+policy = Policy(date_mode='modified', max_pixels=60000000, max_file_bytes=536870912, discard_sidecars=False)
+assignments = ['Private-Café-Moonlight-000.png=portrait'], progress = None
+
+    def category_plan(root: Path, policy: Policy, *, assignments: Sequence[str] = (),
+                      progress: Callable[[dict[str, Any]], None] | None = None) -&gt; dict[str, Any]:
+        from .organizer import walk_inputs, known_good, _next_relative, _validate_managed
+        root = check_root(root)
+        if sort_excluded(root.resolve()):
+            raise RiposteError("SORT_FLOAT_ROOT")
+        rules = load_rules(root)
+        labels = {r.slug: r.label for r in rules.rules} | {"uncategorized": "Uncategorized"}
+        overrides: dict[str, str] = {}
+        for spec in assignments:
+            if not isinstance(spec, str):
+                raise RiposteError("CATEGORY_ASSIGNMENT_INVALID")
+            relative, sep, slug = spec.rpartition("=")
+            if (not sep or not relative or slug not in labels and slug != "auto" or relative in overrides
+                    or Path(relative).as_posix() != relative or relative.split("/")[0] in {".riposte", ".shroud"}):
+&gt;               raise RiposteError("CATEGORY_ASSIGNMENT_INVALID")
+E               riposte.errors.RiposteError: CATEGORY_ASSIGNMENT_INVALID
+
+src\riposte\category_sort.py:60: RiposteError</failure></testcase><testcase classname="tests.test_library_search" name="test_unknown_never_invents_titles_or_matches_untrusted_words[bad-INVALID]" time="0.004"><failure message="riposte.errors.RiposteError: CATEGORY_ASSIGNMENT_INVALID">root = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/pytest-of-ryanf/pytest-572/test_unknown_never_invents_tit4/workspace')
+make_image = &lt;function make_image.&lt;locals&gt;.create at 0x00000219E5F15170&gt;
+change = 'bad', expected = 'INVALID'
+
+    @pytest.mark.parametrize('change,expected', [('missing','MISSING'),('hash','MISMATCHED'),('media','MISMATCHED'),('id','MISMATCHED'),('bad','INVALID'),('oversize','INVALID'),('null','MATCHED')])
+    def test_unknown_never_invents_titles_or_matches_untrusted_words(root, make_image, change, expected):
+&gt;       sorted_images(root, make_image, 1)
+
+tests\test_library_search.py:59: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_library_search.py:28: in sorted_images
+    preview = plan(root, POLICY, categories=True, assignments=['Private-Caf\u00e9-Moonlight-000.png=portrait'])
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\riposte\organizer.py:82: in plan
+    return category_plan(root, policy, assignments=assignments, progress=progress)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+root = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/pytest-of-ryanf/pytest-572/test_unknown_never_invents_tit4/workspace')
+policy = Policy(date_mode='modified', max_pixels=60000000, max_file_bytes=536870912, discard_sidecars=False)
+assignments = ['Private-Café-Moonlight-000.png=portrait'], progress = None
+
+    def category_plan(root: Path, policy: Policy, *, assignments: Sequence[str] = (),
+                      progress: Callable[[dict[str, Any]], None] | None = None) -&gt; dict[str, Any]:
+        from .organizer import walk_inputs, known_good, _next_relative, _validate_managed
+        root = check_root(root)
+        if sort_excluded(root.resolve()):
+            raise RiposteError("SORT_FLOAT_ROOT")
+        rules = load_rules(root)
+        labels = {r.slug: r.label for r in rules.rules} | {"uncategorized": "Uncategorized"}
+        overrides: dict[str, str] = {}
+        for spec in assignments:
+            if not isinstance(spec, str):
+                raise RiposteError("CATEGORY_ASSIGNMENT_INVALID")
+            relative, sep, slug = spec.rpartition("=")
+            if (not sep or not relative or slug not in labels and slug != "auto" or relative in overrides
+                    or Path(relative).as_posix() != relative or relative.split("/")[0] in {".riposte", ".shroud"}):
+&gt;               raise RiposteError("CATEGORY_ASSIGNMENT_INVALID")
+E               riposte.errors.RiposteError: CATEGORY_ASSIGNMENT_INVALID
+
+src\riposte\category_sort.py:60: RiposteError</failure></testcase><testcase classname="tests.test_library_search" name="test_unknown_never_invents_titles_or_matches_untrusted_words[oversize-INVALID]" time="0.005"><failure message="riposte.errors.RiposteError: CATEGORY_ASSIGNMENT_INVALID">root = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/pytest-of-ryanf/pytest-572/test_unknown_never_invents_tit5/workspace')
+make_image = &lt;function make_image.&lt;locals&gt;.create at 0x00000219E5F14EB0&gt;
+change = 'oversize', expected = 'INVALID'
+
+    @pytest.mark.parametrize('change,expected', [('missing','MISSING'),('hash','MISMATCHED'),('media','MISMATCHED'),('id','MISMATCHED'),('bad','INVALID'),('oversize','INVALID'),('null','MATCHED')])
+    def test_unknown_never_invents_titles_or_matches_untrusted_words(root, make_image, change, expected):
+&gt;       sorted_images(root, make_image, 1)
+
+tests\test_library_search.py:59: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_library_search.py:28: in sorted_images
+    preview = plan(root, POLICY, categories=True, assignments=['Private-Caf\u00e9-Moonlight-000.png=portrait'])
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\riposte\organizer.py:82: in plan
+    return category_plan(root, policy, assignments=assignments, progress=progress)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+root = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/pytest-of-ryanf/pytest-572/test_unknown_never_invents_tit5/workspace')
+policy = Policy(date_mode='modified', max_pixels=60000000, max_file_bytes=536870912, discard_sidecars=False)
+assignments = ['Private-Café-Moonlight-000.png=portrait'], progress = None
+
+    def category_plan(root: Path, policy: Policy, *, assignments: Sequence[str] = (),
+                      progress: Callable[[dict[str, Any]], None] | None = None) -&gt; dict[str, Any]:
+        from .organizer import walk_inputs, known_good, _next_relative, _validate_managed
+        root = check_root(root)
+        if sort_excluded(root.resolve()):
+            raise RiposteError("SORT_FLOAT_ROOT")
+        rules = load_rules(root)
+        labels = {r.slug: r.label for r in rules.rules} | {"uncategorized": "Uncategorized"}
+        overrides: dict[str, str] = {}
+        for spec in assignments:
+            if not isinstance(spec, str):
+                raise RiposteError("CATEGORY_ASSIGNMENT_INVALID")
+            relative, sep, slug = spec.rpartition("=")
+            if (not sep or not relative or slug not in labels and slug != "auto" or relative in overrides
+                    or Path(relative).as_posix() != relative or relative.split("/")[0] in {".riposte", ".shroud"}):
+&gt;               raise RiposteError("CATEGORY_ASSIGNMENT_INVALID")
+E               riposte.errors.RiposteError: CATEGORY_ASSIGNMENT_INVALID
+
+src\riposte\category_sort.py:60: RiposteError</failure></testcase><testcase classname="tests.test_library_search" name="test_unknown_never_invents_titles_or_matches_untrusted_words[null-MATCHED]" time="0.005"><failure message="riposte.errors.RiposteError: CATEGORY_ASSIGNMENT_INVALID">root = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/pytest-of-ryanf/pytest-572/test_unknown_never_invents_tit6/workspace')
+make_image = &lt;function make_image.&lt;locals&gt;.create at 0x00000219E5F157A0&gt;
+change = 'null', expected = 'MATCHED'
+
+    @pytest.mark.parametrize('change,expected', [('missing','MISSING'),('hash','MISMATCHED'),('media','MISMATCHED'),('id','MISMATCHED'),('bad','INVALID'),('oversize','INVALID'),('null','MATCHED')])
+    def test_unknown_never_invents_titles_or_matches_untrusted_words(root, make_image, change, expected):
+&gt;       sorted_images(root, make_image, 1)
+
+tests\test_library_search.py:59: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_library_search.py:28: in sorted_images
+    preview = plan(root, POLICY, categories=True, assignments=['Private-Caf\u00e9-Moonlight-000.png=portrait'])
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\riposte\organizer.py:82: in plan
+    return category_plan(root, policy, assignments=assignments, progress=progress)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+root = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/pytest-of-ryanf/pytest-572/test_unknown_never_invents_tit6/workspace')
+policy = Policy(date_mode='modified', max_pixels=60000000, max_file_bytes=536870912, discard_sidecars=False)
+assignments = ['Private-Café-Moonlight-000.png=portrait'], progress = None
+
+    def category_plan(root: Path, policy: Policy, *, assignments: Sequence[str] = (),
+                      progress: Callable[[dict[str, Any]], None] | None = None) -&gt; dict[str, Any]:
+        from .organizer import walk_inputs, known_good, _next_relative, _validate_managed
+        root = check_root(root)
+        if sort_excluded(root.resolve()):
+            raise RiposteError("SORT_FLOAT_ROOT")
+        rules = load_rules(root)
+        labels = {r.slug: r.label for r in rules.rules} | {"uncategorized": "Uncategorized"}
+        overrides: dict[str, str] = {}
+        for spec in assignments:
+            if not isinstance(spec, str):
+                raise RiposteError("CATEGORY_ASSIGNMENT_INVALID")
+            relative, sep, slug = spec.rpartition("=")
+            if (not sep or not relative or slug not in labels and slug != "auto" or relative in overrides
+                    or Path(relative).as_posix() != relative or relative.split("/")[0] in {".riposte", ".shroud"}):
+&gt;               raise RiposteError("CATEGORY_ASSIGNMENT_INVALID")
+E               riposte.errors.RiposteError: CATEGORY_ASSIGNMENT_INVALID
+
+src\riposte\category_sort.py:60: RiposteError</failure></testcase><testcase classname="tests.test_library_search" name="test_stable_bounded_paging_and_stale_restart" time="0.009"><failure message="riposte.errors.RiposteError: CATEGORY_ASSIGNMENT_INVALID">root = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/pytest-of-ryanf/pytest-572/test_stable_bounded_paging_and0/workspace')
+make_image = &lt;function make_image.&lt;locals&gt;.create at 0x00000219E5F14F60&gt;
+
+    def test_stable_bounded_paging_and_stale_restart(root, make_image):
+&gt;       sorted_images(root, make_image, 7)
+
+tests\test_library_search.py:81: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_library_search.py:28: in sorted_images
+    preview = plan(root, POLICY, categories=True, assignments=['Private-Caf\u00e9-Moonlight-000.png=portrait'])
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\riposte\organizer.py:82: in plan
+    return category_plan(root, policy, assignments=assignments, progress=progress)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+root = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/pytest-of-ryanf/pytest-572/test_stable_bounded_paging_and0/workspace')
+policy = Policy(date_mode='modified', max_pixels=60000000, max_file_bytes=536870912, discard_sidecars=False)
+assignments = ['Private-Café-Moonlight-000.png=portrait'], progress = None
+
+    def category_plan(root: Path, policy: Policy, *, assignments: Sequence[str] = (),
+                      progress: Callable[[dict[str, Any]], None] | None = None) -&gt; dict[str, Any]:
+        from .organizer import walk_inputs, known_good, _next_relative, _validate_managed
+        root = check_root(root)
+        if sort_excluded(root.resolve()):
+            raise RiposteError("SORT_FLOAT_ROOT")
+        rules = load_rules(root)
+        labels = {r.slug: r.label for r in rules.rules} | {"uncategorized": "Uncategorized"}
+        overrides: dict[str, str] = {}
+        for spec in assignments:
+            if not isinstance(spec, str):
+                raise RiposteError("CATEGORY_ASSIGNMENT_INVALID")
+            relative, sep, slug = spec.rpartition("=")
+            if (not sep or not relative or slug not in labels and slug != "auto" or relative in overrides
+                    or Path(relative).as_posix() != relative or relative.split("/")[0] in {".riposte", ".shroud"}):
+&gt;               raise RiposteError("CATEGORY_ASSIGNMENT_INVALID")
+E               riposte.errors.RiposteError: CATEGORY_ASSIGNMENT_INVALID
+
+src\riposte\category_sort.py:60: RiposteError</failure></testcase><testcase classname="tests.test_library_search" name="test_invalid_request_does_not_create_state[options0]" time="0.003" /><testcase classname="tests.test_library_search" name="test_invalid_request_does_not_create_state[options1]" time="0.002" /><testcase classname="tests.test_library_search" name="test_invalid_request_does_not_create_state[options2]" time="0.002" /><testcase classname="tests.test_library_search" name="test_invalid_request_does_not_create_state[options3]" time="0.003" /><testcase classname="tests.test_library_search" name="test_invalid_request_does_not_create_state[options4]" time="0.002" /><testcase classname="tests.test_library_search" name="test_invalid_request_does_not_create_state[options5]" time="0.002" /><testcase classname="tests.test_library_search" name="test_invalid_request_does_not_create_state[options6]" time="0.002" /><testcase classname="tests.test_library_search" name="test_invalid_request_does_not_create_state[options7]" time="0.002" /><testcase classname="tests.test_library_search" name="test_invalid_request_does_not_create_state[options8]" time="0.002" /><testcase classname="tests.test_library_search" name="test_invalid_request_does_not_create_state[options9]" time="0.002" /><testcase classname="tests.test_library_search" name="test_invalid_request_does_not_create_state[options10]" time="0.002" /><testcase classname="tests.test_library_search" name="test_invalid_request_does_not_create_state[options11]" time="0.002" /><testcase classname="tests.test_library_search" name="test_empty_legacy_catalog_cancel_and_corruption" time="0.007"><failure message="riposte.errors.RiposteError: CATEGORY_ASSIGNMENT_INVALID">root = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/pytest-of-ryanf/pytest-572/test_empty_legacy_catalog_canc0/workspace')
+make_image = &lt;function make_image.&lt;locals&gt;.create at 0x00000219E5E81B10&gt;
+
+    def test_empty_legacy_catalog_cancel_and_corruption(root, make_image):
+        assert search_library(root)['total'] == 0 and not list(root.iterdir())
+&gt;       sorted_images(root, make_image, 1)
+
+tests\test_library_search.py:105: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_library_search.py:28: in sorted_images
+    preview = plan(root, POLICY, categories=True, assignments=['Private-Caf\u00e9-Moonlight-000.png=portrait'])
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\riposte\organizer.py:82: in plan
+    return category_plan(root, policy, assignments=assignments, progress=progress)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+root = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/pytest-of-ryanf/pytest-572/test_empty_legacy_catalog_canc0/workspace')
+policy = Policy(date_mode='modified', max_pixels=60000000, max_file_bytes=536870912, discard_sidecars=False)
+assignments = ['Private-Café-Moonlight-000.png=portrait'], progress = None
+
+    def category_plan(root: Path, policy: Policy, *, assignments: Sequence[str] = (),
+                      progress: Callable[[dict[str, Any]], None] | None = None) -&gt; dict[str, Any]:
+        from .organizer import walk_inputs, known_good, _next_relative, _validate_managed
+        root = check_root(root)
+        if sort_excluded(root.resolve()):
+            raise RiposteError("SORT_FLOAT_ROOT")
+        rules = load_rules(root)
+        labels = {r.slug: r.label for r in rules.rules} | {"uncategorized": "Uncategorized"}
+        overrides: dict[str, str] = {}
+        for spec in assignments:
+            if not isinstance(spec, str):
+                raise RiposteError("CATEGORY_ASSIGNMENT_INVALID")
+            relative, sep, slug = spec.rpartition("=")
+            if (not sep or not relative or slug not in labels and slug != "auto" or relative in overrides
+                    or Path(relative).as_posix() != relative or relative.split("/")[0] in {".riposte", ".shroud"}):
+&gt;               raise RiposteError("CATEGORY_ASSIGNMENT_INVALID")
+E               riposte.errors.RiposteError: CATEGORY_ASSIGNMENT_INVALID
+
+src\riposte\category_sort.py:60: RiposteError</failure></testcase><testcase classname="tests.test_library_search" name="test_one_snapshot_no_repeated_catalog_reads" time="0.083"><failure message="riposte.errors.RiposteError: CATEGORY_ASSIGNMENT_INVALID">root = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/pytest-of-ryanf/pytest-572/test_one_snapshot_no_repeated_0/workspace')
+make_image = &lt;function make_image.&lt;locals&gt;.create at 0x00000219E5E814E0&gt;
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x00000219E5EBF230&gt;
+
+    def test_one_snapshot_no_repeated_catalog_reads(root, make_image, monkeypatch):
+&gt;       sorted_images(root, make_image, 130)
+
+tests\test_library_search.py:118: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_library_search.py:28: in sorted_images
+    preview = plan(root, POLICY, categories=True, assignments=['Private-Caf\u00e9-Moonlight-000.png=portrait'])
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\riposte\organizer.py:82: in plan
+    return category_plan(root, policy, assignments=assignments, progress=progress)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+root = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/pytest-of-ryanf/pytest-572/test_one_snapshot_no_repeated_0/workspace')
+policy = Policy(date_mode='modified', max_pixels=60000000, max_file_bytes=536870912, discard_sidecars=False)
+assignments = ['Private-Café-Moonlight-000.png=portrait'], progress = None
+
+    def category_plan(root: Path, policy: Policy, *, assignments: Sequence[str] = (),
+                      progress: Callable[[dict[str, Any]], None] | None = None) -&gt; dict[str, Any]:
+        from .organizer import walk_inputs, known_good, _next_relative, _validate_managed
+        root = check_root(root)
+        if sort_excluded(root.resolve()):
+            raise RiposteError("SORT_FLOAT_ROOT")
+        rules = load_rules(root)
+        labels = {r.slug: r.label for r in rules.rules} | {"uncategorized": "Uncategorized"}
+        overrides: dict[str, str] = {}
+        for spec in assignments:
+            if not isinstance(spec, str):
+                raise RiposteError("CATEGORY_ASSIGNMENT_INVALID")
+            relative, sep, slug = spec.rpartition("=")
+            if (not sep or not relative or slug not in labels and slug != "auto" or relative in overrides
+                    or Path(relative).as_posix() != relative or relative.split("/")[0] in {".riposte", ".shroud"}):
+&gt;               raise RiposteError("CATEGORY_ASSIGNMENT_INVALID")
+E               riposte.errors.RiposteError: CATEGORY_ASSIGNMENT_INVALID
+
+src\riposte\category_sort.py:60: RiposteError</failure></testcase><testcase classname="tests.test_library_search" name="test_cli_api_private_response_never_added_to_default_state" time="0.006"><failure message="riposte.errors.RiposteError: CATEGORY_ASSIGNMENT_INVALID">root = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/pytest-of-ryanf/pytest-572/test_cli_api_private_response_0/workspace')
+make_image = &lt;function make_image.&lt;locals&gt;.create at 0x00000219E5FDC460&gt;
+
+    def test_cli_api_private_response_never_added_to_default_state(root, make_image):
+&gt;       sorted_images(root, make_image)
+
+tests\test_library_search.py:131: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_library_search.py:28: in sorted_images
+    preview = plan(root, POLICY, categories=True, assignments=['Private-Caf\u00e9-Moonlight-000.png=portrait'])
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\riposte\organizer.py:82: in plan
+    return category_plan(root, policy, assignments=assignments, progress=progress)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+root = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/pytest-of-ryanf/pytest-572/test_cli_api_private_response_0/workspace')
+policy = Policy(date_mode='modified', max_pixels=60000000, max_file_bytes=536870912, discard_sidecars=False)
+assignments = ['Private-Café-Moonlight-000.png=portrait'], progress = None
+
+    def category_plan(root: Path, policy: Policy, *, assignments: Sequence[str] = (),
+                      progress: Callable[[dict[str, Any]], None] | None = None) -&gt; dict[str, Any]:
+        from .organizer import walk_inputs, known_good, _next_relative, _validate_managed
+        root = check_root(root)
+        if sort_excluded(root.resolve()):
+            raise RiposteError("SORT_FLOAT_ROOT")
+        rules = load_rules(root)
+        labels = {r.slug: r.label for r in rules.rules} | {"uncategorized": "Uncategorized"}
+        overrides: dict[str, str] = {}
+        for spec in assignments:
+            if not isinstance(spec, str):
+                raise RiposteError("CATEGORY_ASSIGNMENT_INVALID")
+            relative, sep, slug = spec.rpartition("=")
+            if (not sep or not relative or slug not in labels and slug != "auto" or relative in overrides
+                    or Path(relative).as_posix() != relative or relative.split("/")[0] in {".riposte", ".shroud"}):
+&gt;               raise RiposteError("CATEGORY_ASSIGNMENT_INVALID")
+E               riposte.errors.RiposteError: CATEGORY_ASSIGNMENT_INVALID
+
+src\riposte\category_sort.py:60: RiposteError</failure></testcase><testcase classname="tests.test_library_search" name="test_terminal_optin_filter_paging_selection_and_command" time="0.036"><failure message="ModuleNotFoundError: No module named 'riposte.terminal.config'">root = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/pytest-of-ryanf/pytest-572/test_terminal_optin_filter_pag0/workspace')
+make_image = &lt;function make_image.&lt;locals&gt;.create at 0x00000219E5FDCCA0&gt;
+
+    def test_terminal_optin_filter_paging_selection_and_command(root, make_image):
+        from riposte.terminal.controller import Controller
+&gt;       from riposte.terminal.config import Presentation
+E       ModuleNotFoundError: No module named 'riposte.terminal.config'
+
+tests\test_library_search.py:152: ModuleNotFoundError</failure></testcase><testcase classname="tests.test_library_search" name="test_undo_removes_current_search_provenance" time="0.005"><failure message="riposte.errors.RiposteError: CATEGORY_ASSIGNMENT_INVALID">root = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/pytest-of-ryanf/pytest-572/test_undo_removes_current_sear0/workspace')
+make_image = &lt;function make_image.&lt;locals&gt;.create at 0x00000219E608A140&gt;
+
+    def test_undo_removes_current_search_provenance(root, make_image):
+&gt;       sorted_images(root, make_image, 1)
+
+tests\test_library_search.py:182: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_library_search.py:28: in sorted_images
+    preview = plan(root, POLICY, categories=True, assignments=['Private-Caf\u00e9-Moonlight-000.png=portrait'])
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\riposte\organizer.py:82: in plan
+    return category_plan(root, policy, assignments=assignments, progress=progress)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+root = WindowsPath('C:/Users/ryanf/AppData/Local/Temp/pytest-of-ryanf/pytest-572/test_undo_removes_current_sear0/workspace')
+policy = Policy(date_mode='modified', max_pixels=60000000, max_file_bytes=536870912, discard_sidecars=False)
+assignments = ['Private-Café-Moonlight-000.png=portrait'], progress = None
+
+    def category_plan(root: Path, policy: Policy, *, assignments: Sequence[str] = (),
+                      progress: Callable[[dict[str, Any]], None] | None = None) -&gt; dict[str, Any]:
+        from .organizer import walk_inputs, known_good, _next_relative, _validate_managed
+        root = check_root(root)
+        if sort_excluded(root.resolve()):
+            raise RiposteError("SORT_FLOAT_ROOT")
+        rules = load_rules(root)
+        labels = {r.slug: r.label for r in rules.rules} | {"uncategorized": "Uncategorized"}
+        overrides: dict[str, str] = {}
+        for spec in assignments:
+            if not isinstance(spec, str):
+                raise RiposteError("CATEGORY_ASSIGNMENT_INVALID")
+            relative, sep, slug = spec.rpartition("=")
+            if (not sep or not relative or slug not in labels and slug != "auto" or relative in overrides
+                    or Path(relative).as_posix() != relative or relative.split("/")[0] in {".riposte", ".shroud"}):
+&gt;               raise RiposteError("CATEGORY_ASSIGNMENT_INVALID")
+E               riposte.errors.RiposteError: CATEGORY_ASSIGNMENT_INVALID
+
+src\riposte\category_sort.py:60: RiposteError</failure></testcase></testsuite></testsuites>

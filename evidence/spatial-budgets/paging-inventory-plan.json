@@ -1,0 +1,43 @@
+[
+  {
+    "op": "set",
+    "id": "OVR-023",
+    "fields": {
+      "Exports": "PublishRecipe;PublishRecipe.__post_init__;PublishRecipe.budget_revision;PublishRecipe.from_dict;PublishRecipe.public;_budget_previews;_checkpoint;_id;_models;_plan_rows;_prefix;_preview_tasks;_publication_zip_locked;_read;_read_record;_replace_json;_request;_run;_source_row;_verified_item;export_publication;open_in_workshop;publication_pixels;publication_plan;publication_status;publication_zip;publications;resume_publication;review_publication;start_publication"
+    }
+  },
+  {
+    "op": "set",
+    "id": "OVR-2441",
+    "fields": {
+      "Exports": "Encoder;Encoder.__call__;artwork;configured;encoder;mask_for_row;png;test_actual_optimizer_enforces_mask_and_is_deterministic;test_authenticated_api_validates_mask_and_readonly_preview;test_changed_mask_identity_cannot_reuse_approval;test_cli_terminal_and_raw_intake;test_combined_mask_bound_before_source_replacement;test_integer_floor_caps;test_large_batch_previews_are_paged_and_start_skips_preview_work;test_large_mask_api_and_streamed_limits;test_mask_identity_strips_metadata_binds_source_and_rejects_corruption;test_mask_invalid_before_combined_sort_mutation;test_mask_rejects_ambiguous_png_modes;test_plan_readonly_previews_exact_caps_for_each_final_size;test_quality_rejects_change_in_zero_region_even_within_global_epsilon;test_real_batch_resume_review_and_date_only_pack;test_resampling_matches_independent_overlap_minimum;test_saved_mask_file_change_requires_new_terminal_preview;test_spatial_browser_native;test_terminal_mask_preview_control_uses_existing_viewer;test_thin_protected_line_survives_resize_and_never_increases_automatic_limits"
+    }
+  },
+  {
+    "op": "set",
+    "id": "OVR-089",
+    "fields": {
+      "Exports": "PublishRecipe;PublishRecipe.__post_init__;PublishRecipe.budget_revision;PublishRecipe.from_dict;PublishRecipe.public;_budget_previews;_checkpoint;_id;_models;_plan_rows;_prefix;_preview_tasks;_publication_zip_locked;_read;_read_record;_replace_json;_request;_run;_source_row;_verified_item;export_publication;open_in_workshop;publication_pixels;publication_plan;publication_status;publication_zip;publications;resume_publication;review_publication;start_publication"
+    }
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/publication.py",
+      "Symbol": "_preview_tasks",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-023;OVR-380",
+      "Tags": "#source-symbol",
+      "ID": "OVR-2500"
+    }
+  },
+  {
+    "op": "set",
+    "id": "OVR-470",
+    "fields": {
+      "Requires": "OVR-023;OVR-2445;OVR-2465;OVR-2500;OVR-380;OVR-444;OVR-455;OVR-459;OVR-460;OVR-520;OVR-522;OVR-525;OVR-807;OVR-808"
+    }
+  }
+]

@@ -16,6 +16,8 @@
     <button class="nav" data-view="lab"><span aria-hidden="true">⌁</span> Workshop <b id="trial-count">0</b></button>
     <button class="nav" data-view="evidence"><span aria-hidden="true">≡</span> Evidence register</button>
     <button class="nav" data-view="duplicates"><span aria-hidden="true">≈</span> Duplicate Finder</button>
+    <button id="health-open" class="nav" type="button">Storage &amp; recovery</button>
+    <button id="private-search-open" class="nav" type="button">Private library search</button>
   </nav>
   <div class="rail-heading collection-heading">COLLECTION <button id="all-folders" title="Show all image">ALL</button></div>
   <div id="tree" class="tree"><p class="quiet">Only populated folders appear here.</p></div>
@@ -73,12 +75,37 @@
     </section>
     <aside class="publish-settings" aria-label="Publishing protection settings">
       <div class="eyebrow">IMAGE-INTEGRATED PROTECTION</div><h2>Keep the image.<br> Change the model input.</h2><p class="control-intro">Bounded, model-driven pixel changes. The strongest numerically acceptable checkpoint is retained—not simply the last iteration.</p>
+      <details id="pub-recipes" class="advanced"><summary>Publishing recipes</summary>
+        <p class="field-help">Reuse size, search and quality settings. Choose images and local models for each run. Loading or saving never starts processing.</p>
+        <label>Saved recipe<select id="pub-recipe-list"><option value="">No recipes loaded</option></select></label>
+        <div class="field-row"><button id="pub-recipe-load" type="button" class="secondary" disabled>Load settings</button><button id="pub-recipe-reload" type="button" class="secondary">Reload recipes</button></div>
+        <label>Recipe name<input id="pub-recipe-name" maxlength="64" autocomplete="off" aria-describedby="pub-recipe-help pub-recipe-error"></label>
+        <p id="pub-recipe-help" class="field-help">1–64 characters. Start with a letter or number; use letters, numbers, spaces, hyphens or underscores.</p>
+        <div class="field-row"><button id="pub-recipe-preview" type="button" class="secondary">Preview settings</button><button id="pub-recipe-save" type="button" class="secondary" disabled>Save reviewed recipe</button></div>
+        <p id="pub-recipe-status" class="field-help" role="status">No saved recipe selected.</p><p id="pub-recipe-error" class="sort-error" role="alert" tabindex="-1" hidden></p>
+        <dl id="pub-recipe-preview-values" class="pub-recipe-values" hidden></dl>
+      </details>
       <label>Local encoder folders<textarea id="pub-models" rows="2" autocomplete="off" spellcheck="false" placeholder="One VAE folder per line · up to four"></textarea></label><p class="field-help">Local safetensors only. Model paths are not saved. Missing weights never become a noise-filter fallback.</p>
       <div class="field-row device-row"><label>Device<select id="pub-device"><option value="auto">Automatic</option><option value="cuda">CUDA</option><option value="cpu">CPU</option><option value="mps">Apple MPS</option></select></label><button id="pub-execute" class="secondary">Test model execution</button></div>
       <fieldset class="pub-sizes"><legend>Publishing sizes · longest edge</legend><label><input type="checkbox" value="1024" checked> 1024</label><label><input type="checkbox" value="1536"> 1536</label><label><input type="checkbox" value="2048"> 2048</label></fieldset><p class="field-help">No upscaling. Duplicate small-image sizes are skipped. Every distinct size gets its own optimization.</p>
+      <label>Additional edges<input id="pub-extra-edges" inputmode="numeric" autocomplete="off" placeholder="For example: 768, 2560" aria-describedby="pub-extra-edges-help"></label><p id="pub-extra-edges-help" class="field-help">64–4096 pixels. Up to three distinct sizes total, including checked sizes above.</p>
+      <label>Seed<input id="pub-seed" type="number" min="0" max="4294967295" value="7"></label>
       <label class="budget-label">Maximum channel change <output id="pub-epsilon-value">4 / 255</output><input id="pub-epsilon" type="range" min="1" max="16" value="4"></label>
       <div class="field-row"><label>Iterations<input id="pub-steps" type="number" min="1" max="1000" value="24"></label><label>Search restarts<select id="pub-restarts"><option value="1">1</option><option value="2" selected>2</option><option value="3">3</option><option value="4">4</option></select></label></div>
       <label class="checkbox tight"><input type="checkbox" id="pub-white" checked>Preserve smooth white canvas; reduce changes around hard edges.</label>
+      <details id="pub-spatial" class="advanced"><summary>Artist masks · optional</summary>
+        <p id="spatial-help" class="field-help">Black keeps pixels unchanged. Gray lowers the allowance; white keeps automatic limits. Use an 8-bit grayscale PNG with the same canvas proportions, up to 1,048,576 pixels and 2 MiB. Keep mask files outside folders you sort.</p>
+        <label>Selected artwork<select id="spatial-image" aria-describedby="spatial-help"><option value="">Select artwork first</option></select></label>
+        <label>Grayscale mask PNG<input id="spatial-file" type="file" accept="image/png,.png" aria-describedby="spatial-help spatial-error" disabled></label>
+        <p id="spatial-status" class="field-help" role="status">No artist masks. Automatic limits apply.</p>
+        <button id="spatial-cancel" type="button" class="text-link" hidden>Cancel mask check</button>
+        <p id="spatial-error" class="sort-error" role="alert" tabindex="-1" hidden></p>
+        <ul id="spatial-masks" aria-label="Attached artist masks"></ul>
+        <div class="field-row"><button id="spatial-preview" class="secondary" type="button" disabled>Preview masks</button><button id="spatial-export" class="secondary" type="button" disabled>Export mask map</button></div>
+        <p class="field-help">Masks stay with this session until you start a batch or export a private map. Saved recipes contain only general settings. Preview again after changing sizes or limits.</p>
+        <div id="spatial-previews" aria-live="polite"></div>
+        <div id="spatial-pages" class="field-row" hidden><button id="spatial-prev" class="secondary" type="button" disabled>Previous previews</button><button id="spatial-next" class="secondary" type="button" disabled>Next previews</button></div>
+      </details>
       <details class="advanced"><summary>Quality limits and additional objectives</summary><div class="field-row"><label>Local RMS / budget<input id="pub-rms" type="number" value="0.95" min="0.1" max="1" step="0.05"></label><label>Colour ΔE76 · p95<input id="pub-colour" type="number" value="6" min="0.1" max="40" step="0.1"></label></div><p class="field-help">Numeric limits are not an aesthetic judgment. You still review the final image.</p><label>Optional inpainting model<input id="pub-inpaint" autocomplete="off" placeholder="Local 9-channel SD inpainting folder"></label><label>Optional video objective<input id="pub-video" autocomplete="off" placeholder="Local Stable Video Diffusion folder"></label><p class="field-help">Video adds a first-step temporal-latent objective at 512 × 288 / 14 frames. Experimental, image-conditioned—not text-guided or verified video resistance. Additional models require more memory.</p></details>
       <button id="pub-plan-button" class="secondary full">Preview batch</button><button id="pub-start" class="primary full">Protect selected image <span>→</span></button><button id="pub-resume" class="text-link full" hidden>Resume unfinished outputs →</button>
       <div class="pub-boundary"><span class="chip amber">AI RESISTANCE · UNVERIFIED</span><p>These engines are experimental. A completed render or quality check is not proof that an AI model cannot copy your work.</p></div>
@@ -157,9 +184,41 @@
 <button id="undo-apply" class="danger" disabled>Restore reviewed sort</button>
 </details>
 </dialog>
+<dialog id="health-dialog" aria-labelledby="health-title">
+<button id="health-close" class="dialog-close" type="button" aria-label="Close storage inspection">×</button>
+<div class="eyebrow">WORKSPACE STORAGE</div><h2 id="health-title">Storage &amp; recovery</h2>
+<p>Inspect disk space and private recovery copies. Files stay where they are.</p>
+<div class="health-controls"><button id="health-run" class="primary" type="button">Inspect storage</button><button id="health-stop" class="secondary" type="button" hidden>Stop inspection</button></div>
+<p id="health-status" role="status" aria-live="polite">Ready. Inspection is optional and changes no files.</p>
+<div id="health-result" hidden></div>
+</dialog>
 <dialog id="report-dialog"><form method="dialog" novalidate><button class="dialog-close" aria-label="Close">×</button></form><div class="eyebrow">WORKSPACE EVIDENCE</div><h2 id="report-title">Audit result</h2><pre id="report-content"></pre></dialog>
 <aside id="recovery-notice" aria-label="Operation recovery" hidden><p id="recovery-message" role="alert"></p><button id="recovery-dismiss" type="button" class="secondary compact">Dismiss message</button></aside>
 <div id="toast" role="status" aria-live="polite" hidden></div>
 <dialog id="pub-review-dialog" aria-labelledby="pub-review-title"><button id="pub-review-close" class="dialog-close" aria-label="Close publishing review">×</button><div class="eyebrow">REVIEW THE FILE YOU WILL PUBLISH</div><div class="pub-review-heading"><h2 id="pub-review-title">Publishing image</h2><span class="chip amber">UNVERIFIED</span></div><div class="pub-review-toolbar"><label class="inline-select">Preview <select id="pub-review-view"><option value="identity">Exact publishing raster</option><option value="jpeg95">JPEG 95</option><option value="jpeg85">JPEG 85</option><option value="jpeg70">JPEG 70</option><option value="resize75">75% resize</option><option value="crop90">90% crop</option><option value="blur06">Mild blur</option><option value="resize75-jpeg85">75% resize + JPEG 85</option></select></label><div class="segmented"><button id="pub-review-fit" class="selected">Fit</button><button id="pub-review-native">1:1 pixels</button><button id="pub-review-difference">Difference ×12</button></div></div><div id="pub-review-pair" class="pub-review-pair"><figure><figcaption>CLEAN PUBLISHING BASELINE</figcaption><div><img id="pub-review-clean" alt="Clean publishing baseline"></div></figure><figure><figcaption id="pub-review-candidate-label">CANDIDATE · ACTUAL EXPORT PIXELS</figcaption><div><img id="pub-review-candidate" alt="Candidate publishing raster"></div></figure></div><div id="pub-review-metrics" class="pub-review-metrics"></div><p class="field-help" id="pub-review-help">Compare the actual pixels, including your line work and colour. Codec previews are stress tests; the exported file is the unchanged publishing PNG.</p><div class="pub-review-actions"><div><label class="checkbox tight"><input type="checkbox" id="pub-review-quality">I have reviewed this image and accept its visual quality.</label><label class="checkbox tight"><input type="checkbox" id="pub-review-ack">I understand AI resistance is unverified.</label></div><div><button id="pub-review-reject" class="secondary">Do not publish</button><button id="pub-review-accept" class="primary">Approve this file <span>✓</span></button></div></div><button id="pub-workshop" class="text-link">Advanced model testing in the workshop ↗</button></dialog>
 
-<script src="/static/recovery.js" defer></script><script src="/static/app.js" defer></script><script src="/static/category-sort.js" defer></script><script src="/static/publish.js" defer></script><script src="/static/duplicates.js" defer></script></body></html>
+<dialog id="private-search-dialog" aria-labelledby="private-search-title" aria-describedby="private-search-help">
+  <button id="private-search-close" class="dialog-close" type="button" aria-label="Close private search">×</button>
+  <div class="eyebrow">PRIVATE LIBRARY</div><h2 id="private-search-title">Find the original title</h2>
+  <p id="private-search-help">Search saved original filenames and categories. These details stay out of ordinary catalogs and shared files. Closing clears this search.</p>
+  <form id="private-search-form" novalidate>
+    <label for="private-query">Title, path, date or ID</label>
+    <div class="field-row"><input id="private-query" type="search" maxlength="200" autocomplete="off" aria-describedby="private-search-error"><button id="private-query-clear" type="button" class="secondary" hidden>Clear search</button></div>
+    <div class="private-search-filters">
+      <label>Category folder<input id="private-category" maxlength="96" autocomplete="off" placeholder="All categories" aria-describedby="private-search-error"></label>
+      <label>Original title<select id="private-title-state"><option value="all">All titles</option><option value="known">Known original title</option><option value="unknown">Unknown original title</option></select></label>
+    </div>
+    <details><summary>Date and size filters</summary><div class="private-search-filters">
+      <label>Year<input id="private-year" maxlength="4" inputmode="numeric" placeholder="All years" aria-describedby="private-search-error"></label>
+      <label>Month<input id="private-month" maxlength="9" placeholder="Name or 1–12" aria-describedby="private-search-error"></label>
+      <label>Size<select id="private-size"><option value="all">All sizes</option><option>SML</option><option>MED</option><option>LRG</option><option>XTL</option></select></label>
+    </div></details>
+    <button id="private-search-run" type="submit" class="primary">Search private library</button>
+  </form>
+  <p id="private-search-status" role="status" aria-live="polite">Ready.</p>
+  <p id="private-search-error" class="sort-error" role="alert" tabindex="-1" hidden></p>
+  <div class="field-row"><button id="private-prev" class="secondary" type="button" disabled>Previous page</button><button id="private-next" class="secondary" type="button" disabled>Next page</button></div>
+  <ol id="private-results" aria-label="Private search results"></ol>
+  <p class="field-help">50 results per page. Unknown titles are never guessed from numbered filenames. Search checks saved catalog identity; opening an image audits its current bytes.</p>
+</dialog>
+<script src="/static/recovery.js" defer></script><script src="/static/app.js" defer></script><script src="/static/category-sort.js" defer></script><script src="/static/spatial.js" defer></script><script src="/static/publish.js" defer></script><script src="/static/duplicates.js" defer></script><script src="/static/health.js" defer></script><script src="/static/library-search.js" defer></script></body></html>

@@ -1,0 +1,12 @@
+{
+  "before": "Found 841 errors in 36 files (checked 67 source files)",
+  "after": "Found 862 errors in 36 files (checked 68 source files)",
+  "by_file": {
+    "src\\riposte\\terminal\\reports.py": {
+      "before": 188,
+      "after": 209,
+      "delta": 21
+    }
+  },
+  "new_module_diagnostics": 0
+}

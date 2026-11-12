@@ -1,0 +1,282 @@
+[
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "FILE",
+      "Path": "evidence/private-library-search/README.md",
+      "Symbol": "",
+      "Exports": "",
+      "Imports": "",
+      "Requires": "",
+      "Purpose": "Typing validation input, evidence or development authority",
+      "ID": "OVR-2388",
+      "Tags": "#typing-index"
+    }
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "FILE",
+      "Path": "evidence/private-library-search/contract-review.json",
+      "Symbol": "",
+      "Exports": "",
+      "Imports": "",
+      "Requires": "",
+      "Purpose": "Typing validation input, evidence or development authority",
+      "ID": "OVR-2389",
+      "Tags": "#typing-index"
+    }
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "FILE",
+      "Path": "evidence/private-library-search/prepare.py",
+      "Symbol": "",
+      "Exports": "HERE",
+      "Imports": "from PIL import Image\nfrom pathlib import Path\nfrom riposte.organizer import organize, plan\nfrom riposte.policy import Policy\nfrom riposte.sort_titles import title_records\nfrom riposte.terminal.service import select_rows\nimport json\nimport shutil\nimport tempfile",
+      "Requires": "OVR-021;OVR-022;OVR-048;OVR-1250",
+      "Purpose": "Typing validation input, evidence or development authority",
+      "ID": "OVR-2390",
+      "Tags": "#typing-index"
+    }
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "FILE",
+      "Path": "evidence/private-library-search/requirement-review.json",
+      "Symbol": "",
+      "Exports": "",
+      "Imports": "",
+      "Requires": "",
+      "Purpose": "Typing validation input, evidence or development authority",
+      "ID": "OVR-2391",
+      "Tags": "#typing-index"
+    }
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "FILE",
+      "Path": "evidence/private-library-search/verify.py",
+      "Symbol": "",
+      "Exports": "HERE;ROOT;acceptance;counts;digest;documentation;manifest;previous;read;verify",
+      "Imports": "from contextlib import redirect_stdout, redirect_stderr\nfrom pacer_mcp.service import Service\nfrom pathlib import Path\nfrom riposte.cli import app\nfrom typer.main import get_command\nfrom urllib.parse import unquote, urlsplit\nimport argparse\nimport csv\nimport hashlib\nimport importlib.util\nimport io\nimport json\nimport re\nimport sys\nimport tarfile\nimport xml.etree.ElementTree as ET\nimport zipfile",
+      "Requires": "OVR-012",
+      "Purpose": "Typing validation input, evidence or development authority",
+      "ID": "OVR-2392",
+      "Tags": "#typing-index"
+    }
+  },
+  {
+    "op": "set",
+    "id": "OVR-012",
+    "fields": {
+      "Exports": "DateMode;Decision;Device;Engine;Root;Task;Theme;Vae;_P;_R;_version;app;audit;benchmark;categories;category_rules;challenge;cohort;cohort_challenge;command;compare;dispatch;doctor;duplicates;evaluations;experiment;experiment_packet;experiment_review;export;frame;generation;generations;guard;health;image;inspect;library_search;list_images;main;organize;package;panel;panel_create;panel_packet;panel_review;publications;publish;qualify;recipes;resume;review;root_callback;serve;trials;ui;undo_sort;upgrade;workshop"
+    }
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "FILE",
+      "Path": "src/riposte/library_search.py",
+      "Symbol": "",
+      "Exports": "SearchReport;SearchRow;normalized;search_library",
+      "Imports": "from .errors import RiposteError\nfrom .policy import BINS, MONTHS, canonical_path\nfrom .records import CatalogRow, Progress\nfrom .sort_titles import validate_title\nfrom .store import check_root, safe_child, state_relative\nfrom __future__ import annotations\nfrom pathlib import Path\nfrom typing import Literal, TypedDict, cast\nimport contextlib\nimport hashlib\nimport json\nimport re\nimport sqlite3\nimport unicodedata",
+      "Requires": "OVR-014;OVR-022;OVR-035;OVR-1250;OVR-1890",
+      "Purpose": "Existing application module riposte.library_search",
+      "ID": "OVR-2393",
+      "Tags": "#typing-index"
+    }
+  },
+  {
+    "op": "set",
+    "id": "OVR-029",
+    "fields": {
+      "Exports": "CategoryDiscoveryRequest;CategoryRulesRequest;CompareRequest;DuplicateScanRequest;ExecutionRequest;ExportRequest;GenerationRequest;GuardRequest;HealthRequest;Jobs;Jobs.__init__;Jobs.cancel;Jobs.close;Jobs.snapshot;Jobs.start;LibrarySearchRequest;OrganizeRequest;PreflightRequest;PublishRequest;PublishReviewRequest;QualificationRequest;RecipeRequest;ResumePublishRequest;STATIC;StrictModel;UndoSortRequest;_BodyLimitMiddleware;_BodyLimitMiddleware.__call__;_BodyLimitMiddleware.__init__;create_app",
+      "Imports": "from . import __version__\nfrom .category_rules import category_rules\nfrom .duplicate_review import DuplicateReview\nfrom .duplicates import ScanOptions, scan_duplicates\nfrom .errors import RiposteError\nfrom .generation import controlled_generation\nfrom .generation import generation_frame\nfrom .generation import generation_runs\nfrom .health import inspect_health\nfrom .lab import create_candidate, compare_external, trials, trial_report, export_candidate, trial_pixels\nfrom .library_search import search_library\nfrom .models import inspect_vae, runtime_capabilities\nfrom .models import runtime_capabilities\nfrom .organizer import plan, organize, audit_workspace\nfrom .policy import Policy\nfrom .publication import open_in_workshop\nfrom .publication import publication_pixels\nfrom .publication import publication_status\nfrom .publication import publication_zip\nfrom .publication import publications\nfrom .publication import resume_publication\nfrom .publication import review_publication\nfrom .publication import start_publication, publication_plan\nfrom .qualification import evaluations\nfrom .qualification import qualify_trial\nfrom .recipes import SETTINGS, resolve_recipe\nfrom .recipes import inspect_recipes\nfrom .recipes import inspect_recipes, save_recipe\nfrom .records import Progress\nfrom .runtime_probe import execute_local_probe\nfrom .sanitize import encode_clean, png_audit\nfrom .sort_history import undo_sort\nfrom .store import check_root, catalog, find_image, safe_child, state_relative, legacy_workspace, upgrade_workspace\nfrom .terminal.jobs import safe_phase\nfrom .title_categories import discover_categories\nfrom PIL import Image\nfrom __future__ import annotations\nfrom contextlib import asynccontextmanager\nfrom fastapi import FastAPI, Request\nfrom fastapi.exceptions import RequestValidationError\nfrom fastapi.responses import HTMLResponse, Response, JSONResponse\nfrom fastapi.staticfiles import StaticFiles\nfrom pathlib import Path\nfrom pydantic import BaseModel, Field, ConfigDict\nfrom typing import Literal, cast\nimport concurrent.futures\nimport io\nimport json\nimport secrets\nimport threading\nimport uuid",
+      "Requires": "OVR-009;OVR-014;OVR-015;OVR-016;OVR-019;OVR-021;OVR-022;OVR-023;OVR-024;OVR-027;OVR-028;OVR-035;OVR-042;OVR-1080;OVR-1169;OVR-1885;OVR-1886;OVR-1890;OVR-2276;OVR-2340;OVR-2393;OVR-950"
+    }
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "FILE",
+      "Path": "src/riposte/static/library-search.js",
+      "Symbol": "",
+      "Exports": "",
+      "Imports": "",
+      "Requires": "",
+      "Purpose": "Existing application asset",
+      "ID": "OVR-2394",
+      "Tags": "#typing-index"
+    }
+  },
+  {
+    "op": "set",
+    "id": "OVR-048",
+    "fields": {
+      "Imports": "from ..benchmark import run_benchmark\nfrom ..category_rules import category_rules\nfrom ..cohort import cohort_challenge\nfrom ..cohort import cohort_status\nfrom ..duplicate_review import DuplicateReview\nfrom ..duplicates import ScanOptions, scan_duplicates\nfrom ..duplicates import scan_root\nfrom ..errors import RiposteError\nfrom ..experiment import experiment_status\nfrom ..experiment import record_review\nfrom ..experiment import review_packet\nfrom ..generation import controlled_generation\nfrom ..generation import generation_frame\nfrom ..generation import generation_report\nfrom ..generation import generation_runs\nfrom ..health import inspect_health\nfrom ..lab import compare_external\nfrom ..lab import create_candidate\nfrom ..lab import export_candidate\nfrom ..lab import trial_pixels\nfrom ..lab import trials, trial_report\nfrom ..library_search import search_library\nfrom ..models import runtime_capabilities, inspect_vae\nfrom ..organizer import audit_workspace\nfrom ..organizer import plan, organize\nfrom ..policy import Policy, MONTHS, BINS, YEARS\nfrom ..publication import PublishRecipe\nfrom ..publication import _models, publication_plan, start_publication\nfrom ..publication import export_publication\nfrom ..publication import open_in_workshop\nfrom ..publication import publication_pixels\nfrom ..publication import publication_plan, start_publication\nfrom ..publication import publication_status, publications\nfrom ..publication import resume_publication\nfrom ..publication import review_publication\nfrom ..qualification import evaluations\nfrom ..qualification import qualify_trial\nfrom ..quality import QualityLimits\nfrom ..recipes import SETTINGS, resolve_recipe\nfrom ..recipes import inspect_recipes, save_recipe\nfrom ..records import CatalogRow, ImageInfo, ListOptions, PreviewSortOptions, Progress, RequestValues, SelectionFilters, SortOptions\nfrom ..release_guard import ReleaseConfig\nfrom ..review_panel import create_panel\nfrom ..review_panel import panel_packet\nfrom ..review_panel import panel_status\nfrom ..review_panel import record_panel_review\nfrom ..runtime_probe import execute_local_probe\nfrom ..sanitize import png_audit\nfrom ..sort_history import undo_sort\nfrom ..sort_plan import receipt\nfrom ..store import catalog\nfrom ..store import check_root\nfrom ..store import find_image, safe_child\nfrom ..store import safe_child, state_relative, atomic_clean_write, workspace_lock, find_image\nfrom ..store import upgrade_workspace\nfrom ..title_categories import discover_categories, DEFAULT_FILLERS\nfrom __future__ import annotations\nfrom dataclasses import dataclass, field\nfrom pathlib import Path\nfrom typing import Any, Literal, TYPE_CHECKING, cast\nimport io\nimport os\nimport re\nimport subprocess\nimport sys",
+      "Requires": "OVR-011;OVR-014;OVR-015;OVR-016;OVR-019;OVR-021;OVR-022;OVR-023;OVR-024;OVR-025;OVR-026;OVR-027;OVR-028;OVR-035;OVR-1080;OVR-1169;OVR-1880;OVR-1885;OVR-1886;OVR-1887;OVR-1890;OVR-1891;OVR-1892;OVR-2276;OVR-2340;OVR-2393;OVR-950"
+    }
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "FILE",
+      "Path": "tests/library_search_browser.cjs",
+      "Symbol": "",
+      "Exports": "",
+      "Imports": "",
+      "Requires": "",
+      "Purpose": "Typing validation input, evidence or development authority",
+      "ID": "OVR-2395",
+      "Tags": "#typing-index"
+    }
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "FILE",
+      "Path": "tests/test_library_search.py",
+      "Symbol": "",
+      "Exports": "POLICY;snapshot;sorted_images;test_application_root_and_linked_state_rejected;test_cli_api_private_response_never_added_to_default_state;test_empty_legacy_catalog_cancel_and_corruption;test_invalid_request_does_not_create_state;test_library_search_browser_native;test_one_snapshot_no_repeated_catalog_reads;test_real_sort_private_optin_and_unchanged_default_outputs;test_search_is_not_a_claim_of_current_image_bytes;test_stable_bounded_paging_and_stale_restart;test_terminal_optin_filter_paging_selection_and_command;test_undo_removes_current_search_provenance;test_unknown_never_invents_titles_or_matches_untrusted_words",
+      "Imports": "from PIL import Image\nfrom fastapi.testclient import TestClient\nfrom pathlib import Path\nfrom riposte.category_rules import build_rules, load_rules, save_rules\nfrom riposte.cli import app\nfrom riposte.errors import RiposteError\nfrom riposte.library_search import search_library\nfrom riposte.organizer import organize, plan\nfrom riposte.organizer import organize, plan, undo_sort\nfrom riposte.policy import Policy\nfrom riposte.sanitize import encode_clean\nfrom riposte.server import create_app\nfrom riposte.sort_titles import title_records, save_title\nfrom riposte.store import application_directory\nfrom riposte.store import catalog, connect\nfrom riposte.terminal.actions import request_argv\nfrom riposte.terminal.controller import Controller\nfrom riposte.terminal.keyboard import Key\nfrom riposte.terminal.output import Presentation\nfrom riposte.terminal.render import render\nfrom riposte.terminal.service import Request, execute, select_rows\nfrom typer.testing import CliRunner\nimport contextlib\nimport hashlib\nimport json\nimport os\nimport pytest\nimport shutil\nimport socket\nimport sqlite3\nimport subprocess\nimport threading\nimport time\nimport uvicorn",
+      "Requires": "OVR-012;OVR-014;OVR-021;OVR-022;OVR-028;OVR-029;OVR-035;OVR-038;OVR-040;OVR-043;OVR-045;OVR-047;OVR-048;OVR-1169;OVR-1250;OVR-2393",
+      "Purpose": "Typing validation input, evidence or development authority",
+      "ID": "OVR-2396",
+      "Tags": "#typing-index"
+    }
+  },
+  {
+    "op": "set",
+    "id": "OVR-079",
+    "fields": {
+      "Exports": "DateMode;DateMode.__new__;Decision;Decision.__new__;Device;Device.__new__;Engine;Engine.__new__;Root;Task;Task.__new__;Theme;Theme.__new__;Vae;_F;_version;app;audit;benchmark;categories;category_rules;challenge;cohort;cohort_challenge;command;compare;dispatch;doctor;duplicates;evaluations;experiment;experiment_packet;experiment_review;export;frame;generation;generations;guard;health;image;inspect;library_search;list_images;main;organize;package;panel;panel_create;panel_packet;panel_review;publications;publish;qualify;recipes;resume;review;root_callback;serve;trials;ui;undo_sort;upgrade;workshop"
+    }
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "FILE",
+      "Path": "typing/stubs/riposte/library_search.pyi",
+      "Symbol": "",
+      "Exports": "SearchReport;SearchRow;normalized;search_library",
+      "Imports": "from .records import CatalogRow, Progress\nfrom pathlib import Path\nfrom typing import Literal, TypedDict, cast",
+      "Requires": "OVR-1953;OVR-2393",
+      "Purpose": "External source-derived typing declarations",
+      "ID": "OVR-2397",
+      "Tags": "#typing-index"
+    }
+  },
+  {
+    "op": "set",
+    "id": "OVR-095",
+    "fields": {
+      "Exports": "CategoryDiscoveryRequest;CategoryRulesRequest;CompareRequest;DuplicateScanRequest;ExecutionRequest;ExportRequest;GenerationRequest;GuardRequest;HealthRequest;Jobs;Jobs.__init__;Jobs.cancel;Jobs.close;Jobs.snapshot;Jobs.start;LibrarySearchRequest;OrganizeRequest;PreflightRequest;PublishRequest;PublishReviewRequest;QualificationRequest;RecipeRequest;ResumePublishRequest;STATIC;StrictModel;UndoSortRequest;_BodyLimitMiddleware;_BodyLimitMiddleware.__call__;_BodyLimitMiddleware.__init__;create_app"
+    }
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/cli.py",
+      "Symbol": "library_search",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-012;OVR-338;OVR-347;OVR-349",
+      "Tags": "#source-symbol",
+      "ID": "OVR-2398"
+    }
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "CLASS",
+      "Path": "src/riposte/library_search.py",
+      "Symbol": "SearchReport",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-2393;OVR-2400",
+      "Tags": "#source-symbol",
+      "ID": "OVR-2399"
+    }
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "CLASS",
+      "Path": "src/riposte/library_search.py",
+      "Symbol": "SearchRow",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-2117;OVR-2393",
+      "Tags": "#source-symbol",
+      "ID": "OVR-2400"
+    }
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/library_search.py",
+      "Symbol": "normalized",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-2393",
+      "Tags": "#source-symbol",
+      "ID": "OVR-2401"
+    }
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "FUNCTION",
+      "Path": "src/riposte/library_search.py",
+      "Symbol": "search_library",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-1272;OVR-2124;OVR-2393;OVR-2399;OVR-2400;OVR-2401;OVR-380;OVR-438;OVR-443;OVR-448;OVR-520;OVR-525;OVR-528",
+      "Tags": "#source-symbol",
+      "ID": "OVR-2402"
+    }
+  },
+  {
+    "op": "add",
+    "register": "overlord",
+    "row": {
+      "AssetType": "CLASS",
+      "Path": "src/riposte/server.py",
+      "Symbol": "LibrarySearchRequest",
+      "Purpose": "OBSERVED source declaration; static references, not a runtime call graph",
+      "Requires": "OVR-029;OVR-513",
+      "Tags": "#source-symbol",
+      "ID": "OVR-2403"
+    }
+  },
+  {
+    "op": "set",
+    "id": "OVR-325",
+    "fields": {
+      "Requires": "OVR-029;OVR-1093;OVR-1183;OVR-1264;OVR-1265;OVR-1266;OVR-2043;OVR-2060;OVR-2068;OVR-2124;OVR-2146;OVR-2290;OVR-2297;OVR-2300;OVR-2301;OVR-2303;OVR-2357;OVR-2359;OVR-2402;OVR-2403;OVR-308;OVR-309;OVR-316;OVR-317;OVR-319;OVR-320;OVR-321;OVR-323;OVR-331;OVR-380;OVR-389;OVR-391;OVR-396;OVR-397;OVR-398;OVR-399;OVR-401;OVR-417;OVR-421;OVR-434;OVR-436;OVR-444;OVR-455;OVR-468;OVR-469;OVR-470;OVR-471;OVR-472;OVR-477;OVR-478;OVR-479;OVR-485;OVR-489;OVR-492;OVR-497;OVR-498;OVR-499;OVR-500;OVR-501;OVR-506;OVR-507;OVR-508;OVR-509;OVR-510;OVR-511;OVR-512;OVR-519;OVR-520;OVR-522;OVR-523;OVR-525;OVR-528;OVR-529;OVR-972"
+    }
+  },
+  {
+    "op": "set",
+    "id": "OVR-699",
+    "fields": {
+      "Requires": "OVR-048;OVR-1086;OVR-1093;OVR-1183;OVR-2009;OVR-2010;OVR-2043;OVR-2060;OVR-2068;OVR-2092;OVR-2094;OVR-2095;OVR-2120;OVR-2123;OVR-2124;OVR-2127;OVR-2128;OVR-2141;OVR-2143;OVR-2144;OVR-2145;OVR-2148;OVR-2297;OVR-2301;OVR-2308;OVR-2357;OVR-2402;OVR-308;OVR-309;OVR-315;OVR-316;OVR-317;OVR-319;OVR-320;OVR-333;OVR-380;OVR-390;OVR-391;OVR-396;OVR-397;OVR-398;OVR-400;OVR-401;OVR-417;OVR-421;OVR-434;OVR-436;OVR-444;OVR-467;OVR-468;OVR-470;OVR-472;OVR-477;OVR-478;OVR-489;OVR-494;OVR-522;OVR-525;OVR-529;OVR-694;OVR-695;OVR-696;OVR-697;OVR-698;OVR-701;OVR-703;OVR-705;OVR-706;OVR-707;OVR-972"
+    }
+  }
+]
